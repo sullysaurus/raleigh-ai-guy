@@ -9,6 +9,15 @@ const { url, title, subtitle, image } = {
   subtitle: Astro.props.post.data.subtitle,
   image: Astro.props.post.data.image.url,
 };
+const imageWidth = typeof image === "string" ? 500 : image.width;
+const imageHeight = typeof image === "string" ? 500 : image.height;
+const isPortraitImage = imageHeight > imageWidth;
+const imageFrameClass = isPortraitImage
+  ? "bg-black/5 dark:bg-white/5 rounded-xl p-6 sm:p-8 lg:p-10"
+  : "bg-black/5 dark:bg-white/5 rounded-xl p-12 lg:p-20";
+const imageClass = isPortraitImage
+  ? "mx-auto max-h-[420px] w-auto max-w-full rounded-2xl object-contain"
+  : "w-full rounded object-cover";
 ---
 
 <article class="h-full flex flex-col py-8 relative group">
@@ -18,11 +27,11 @@ const { url, title, subtitle, image } = {
     aria-label={`Read project: ${title}`}
     class="absolute inset-0 z-10"></a>
 
-  <div class="bg-black/5 dark:bg-white/5 rounded-xl p-12 lg:p-20">
+  <div class={imageFrameClass}>
     <Image
-      width={500}
-      height={500}
-      class="object-cover w-full rounded"
+      width={imageWidth}
+      height={imageHeight}
+      class={imageClass}
       alt={title}
       src={image}
     />

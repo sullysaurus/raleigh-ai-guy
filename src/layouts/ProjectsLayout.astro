@@ -11,6 +11,18 @@ const projectDate = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 }).format(frontmatter.pubDate);
 const projectDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
+const projectImage = frontmatter.image.url;
+const projectImageWidth =
+  typeof projectImage === "string" ? 1200 : projectImage.width;
+const projectImageHeight =
+  typeof projectImage === "string" ? 900 : projectImage.height;
+const isPortraitImage = projectImageHeight > projectImageWidth;
+const imageFrameClass = isPortraitImage
+  ? "mt-8 bg-black/5 dark:bg-white/5 p-6 sm:p-10 lg:p-14"
+  : "mt-8 bg-black/5 dark:bg-white/5 p-8 lg:p-16";
+const projectImageClass = isPortraitImage
+  ? "mx-auto max-h-[760px] w-auto max-w-full rounded-[2rem] object-contain shadow-sm"
+  : "mx-auto w-full rounded-xl object-contain";
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.subtitle}>
@@ -53,13 +65,13 @@ const projectDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
           </Text>
         </div>
       </div>
-      <div class="mt-8 bg-black/5 dark:bg-white/5 p-12 lg:p-20">
+      <div class={imageFrameClass}>
         <Image
-          width={1000}
-          height={1000}
-          src={frontmatter.image.url}
+          width={projectImageWidth}
+          height={projectImageHeight}
+          src={projectImage}
           alt={frontmatter.image.alt}
-          class="mx-auto max-h-[720px] w-full rounded object-contain"
+          class={projectImageClass}
         />
       </div>
       <Wrapper variant="prose" class="mt-8">
