@@ -5,10 +5,14 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 const allPosts = await getCollection("posts");
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-const pageTitle = "Tag Index";
+const pageTitle = "Blog Tags";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  pageDescription="Browse blog posts by AI, automation, growth, and product topics."
+  noindex
+>
   <section>
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text

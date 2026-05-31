@@ -21,9 +21,15 @@ export async function getStaticPaths() {
 }
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const tagLabel =
+  tag === "ai" ? "AI" : tag ? tag.charAt(0).toUpperCase() + tag.slice(1) : "Tag";
 ---
 
-<BaseLayout pageTitle={tag}>
+<BaseLayout
+  pageTitle={`${tagLabel} Blog Posts`}
+  pageDescription={`Posts about ${tag} from Danny Sullivan.`}
+  noindex
+>
   <section>
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text
@@ -31,7 +37,7 @@ const { posts } = Astro.props;
         variant="textBase"
         class="text-black dark:text-white font-medium"
       >
-        All posts about {tag}
+        All posts about {tagLabel}
       </Text>
     </Wrapper>
     <Wrapper variant="standard" class="py-12">

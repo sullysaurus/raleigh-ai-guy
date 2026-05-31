@@ -10,7 +10,10 @@ const allProjects = (await getCollection("projects")).sort(
 );
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle="Projects"
+  pageDescription="Selected projects across AI, product, automation, content, and growth."
+>
   <section>
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text

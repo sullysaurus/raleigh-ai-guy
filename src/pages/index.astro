@@ -12,10 +12,10 @@ import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 ---
 
-<BaseLayout>
+<BaseLayout pageDescription="I build products that streamline work and help companies grow revenue.">
   <Hero />
   <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:pt-74 xl:pb-50">
+    <Wrapper variant="standard" class="pt-8 pb-12 lg:pt-24 lg:pb-32">
       <div
         class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
       >
@@ -31,8 +31,8 @@ const allPosts = await getCollection("posts");
             tag="a"
             variant="textSM"
             href="/blog/"
-            aria-label="your label"
-            title="link to your page"
+            aria-label="See all blog posts"
+            title="See all blog posts"
             class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
           >
             &rarr; See all posts

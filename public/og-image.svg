@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Danny Sullivan">
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="72" y="72" width="1056" height="486" rx="48" fill="#0b1220"/>
+  <circle cx="1010" cy="168" r="54" fill="#c8ff4d"/>
+  <text x="128" y="256" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="800">Danny Sullivan</text>
+  <text x="132" y="344" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="500">Product engineering, AI automation,</text>
+  <text x="132" y="404" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="500">and workflow systems that grow revenue.</text>
+</svg>

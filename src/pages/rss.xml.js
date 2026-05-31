@@ -1,11 +1,21 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+
 export async function GET(context) {
+  const posts = (await getCollection("posts")).sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+
   return rss({
-     title: 'Lexington Themes',
-    description: 'Free and premium multipage themes and UI Kits For freelancers, developers, businesses, and personal use.Beautifully crafted with Astro.js, and Tailwind CSS — Simple & easy to customise.',
+    title: "Danny Sullivan",
+    description:
+      "Notes on AI automation, product work, and systems that help companies grow revenue.",
     site: context.site,
-    items: await pagesGlobToRssItems(
-      import.meta.glob('./blog/*.{md,mdx}'),
-    ),
+    items: posts.map((post) => ({
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.pubDate,
+      link: `/blog/posts/${post.id}/`,
+    })),
   });
 }

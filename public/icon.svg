@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Danny Sullivan">
+  <rect width="512" height="512" rx="112" fill="#0b1220"/>
+  <circle cx="392" cy="120" r="46" fill="#c8ff4d"/>
+  <path fill="#ffffff" d="M114 150h102c42 0 76 12 102 37 26 24 39 58 39 101s-13 77-39 102c-26 24-60 36-102 36H114V150Zm94 216c24 0 43-7 57-20 14-14 21-33 21-58s-7-44-21-57c-14-14-33-21-57-21h-28v156h28Z"/>
+</svg>

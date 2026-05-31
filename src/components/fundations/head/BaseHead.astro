@@ -11,27 +11,54 @@ import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStora
 interface Props {
   pageTitle?: string;
   pageDescription?: string;
+  noindex?: boolean;
 }
 
-const { pageTitle, pageDescription } = Astro.props;
+const { pageTitle, pageDescription, noindex } = Astro.props;
 const siteName = "Danny Sullivan";
-const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
-const description =
-  pageDescription ??
+const defaultDescription =
   "I build products that streamline work and help companies grow revenue.";
+const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
+const description = pageDescription ?? defaultDescription;
 const canonical = new URL(
   Astro.url.pathname,
   Astro.site ?? "https://dannysullivan.ai"
 ).toString();
+const siteUrl = new URL("/", Astro.site ?? "https://dannysullivan.ai").toString();
+const image = new URL("/og-image.png", siteUrl).toString();
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}#person`,
+      name: siteName,
+      url: siteUrl,
+      sameAs: ["https://www.linkedin.com/in/danny-sullivan-raleigh/"],
+      jobTitle: "Product Engineer",
+      description: defaultDescription,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      name: siteName,
+      url: siteUrl,
+      publisher: { "@id": `${siteUrl}#person` },
+    },
+  ],
+};
 ---
 
+<Meta author={siteName} />
 <Seo
   title={title}
   description={description}
   canonical={canonical}
   siteName={siteName}
+  image={image}
+  noindex={noindex}
 />
-<Meta description={description} author={siteName} />
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <Fonts />
 <Favicons />
 <!-- Scripts -->

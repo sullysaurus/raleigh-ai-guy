@@ -19,5 +19,11 @@ export default defineConfig({
     drafts: true,
   },
   site: "https://dannysullivan.ai",
-  integrations: [sitemap(), mdx()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.endsWith("/404/") && !page.includes("/blog/tags/"),
+    }),
+    mdx(),
+  ],
 });

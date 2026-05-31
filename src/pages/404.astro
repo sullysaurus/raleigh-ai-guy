@@ -13,13 +13,17 @@ const links = [
     href: "/blog/",
   },
   {
-    text: "Contact me if you think this is an error.",
-    href: "/forms/contact",
+    text: "View selected projects",
+    href: "/projects/",
   },
 ];
 ---
 
-<BaseLayout>
+<BaseLayout
+  pageTitle="Page Not Found"
+  pageDescription="The page you were looking for does not exist."
+  noindex
+>
   <section>
     <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
       <Text

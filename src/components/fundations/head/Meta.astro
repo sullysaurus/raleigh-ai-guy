@@ -1,16 +1,14 @@
 ---
 interface Props {
-  description: string;
   author: string;
 }
 
-const { description, author } = Astro.props;
+const { author } = Astro.props;
 ---
 
 <!-- Meta Tags -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content={description} />
 <meta name="author" content={author} />
 
 <!-- Theme Color for Mobile Browsers -->

@@ -1,6 +1,6 @@
 ---
 pubDate: 2026-05-31
-title: "How I help businesses build practical AI automations"
+title: "How I help businesses automate the busy work"
 description: "A short intro to how I help teams use AI automations to save time, find revenue leaks, and turn messy workflows into systems that compound."
 image:
   url: "/src/images/blog/practical-ai-automations.png"
