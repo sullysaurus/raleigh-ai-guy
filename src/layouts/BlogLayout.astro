@@ -9,6 +9,10 @@ const { frontmatter, readingTime, previous, next } = Astro.props;
 import { getCollection } from "astro:content";
 import BlogCard2 from "@/components/blog/BlogCard2.astro";
 const allPostsUnsorted = await getCollection("posts");
+const postImage = frontmatter.image.url;
+const postImageWidth = typeof postImage === "string" ? 1200 : postImage.width;
+const postImageHeight =
+  typeof postImage === "string" ? 675 : postImage.height;
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
   (a, b) =>
@@ -41,11 +45,11 @@ const publishedDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
         {frontmatter.description}
       </Text>
       <Image
-        width="800"
-        height="800"
-        src={frontmatter.image.url}
+        width={postImageWidth}
+        height={postImageHeight}
+        src={postImage}
         alt={frontmatter.image.alt}
-        class="object-cover aspect-[16/9] rounded-xl mt-2"
+        class="mt-2 h-auto w-full rounded-xl"
       />
     </Wrapper>
   </section>
@@ -94,49 +98,47 @@ const publishedDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
       <Wrapper variant="prose" class="mt-12">
         <slot />
       </Wrapper>
-      <nav
-        class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs mt-24"
-      >
-        <div>
-          {
-            previous && (
-              <a
-                href={`/blog/posts/${previous.id}`}
-                class="hover:opacity-80 "
-              >
-                <span class="block  text-black dark:text-white font-medium uppercase">
-                  Previous:
-                </span>
-                <span class="block  text-base-600 dark:text-base-400 text-balance">
-                  {previous.data.title}
-                </span>
-              </a>
-            )
-          }
-        </div>
+      {
+        (previous || next) && (
+          <nav class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs mt-16">
+            <div>
+              {previous && (
+                <a
+                  href={`/blog/posts/${previous.id}`}
+                  class="hover:opacity-80 "
+                >
+                  <span class="block  text-black dark:text-white font-medium uppercase">
+                    Previous:
+                  </span>
+                  <span class="block  text-base-600 dark:text-base-400 text-balance">
+                    {previous.data.title}
+                  </span>
+                </a>
+              )}
+            </div>
 
-        <div>
-          {
-            next && (
-              <a
-                href={`/blog/posts/${next.id}`}
-                class=" hover:opacity-80 text-right"
-              >
-                <span class="block  text-black dark:text-white font-medium uppercase ">
-                  Next:
-                </span>
-                <span class="block  text-base-600 dark:text-base-400 text-balance">
-                  {next.data.title}
-                </span>
-              </a>
-            )
-          }
-        </div>
-      </nav>
+            <div>
+              {next && (
+                <a
+                  href={`/blog/posts/${next.id}`}
+                  class=" hover:opacity-80 text-right"
+                >
+                  <span class="block  text-black dark:text-white font-medium uppercase ">
+                    Next:
+                  </span>
+                  <span class="block  text-base-600 dark:text-base-400 text-balance">
+                    {next.data.title}
+                  </span>
+                </a>
+              )}
+            </div>
+          </nav>
+        )
+      }
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:pb-50">
+    <Wrapper variant="standard" class="pt-8 pb-12 lg:pt-20 lg:pb-28">
       <div
         class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
       >
@@ -152,8 +154,8 @@ const publishedDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
             tag="a"
             variant="textSM"
             href="/blog/"
-            aria-label="your label"
-            title="link to your page"
+            aria-label="See all blog posts"
+            title="See all blog posts"
             class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
             >See all posts
           </Text>
