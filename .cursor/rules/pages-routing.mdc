@@ -1,0 +1,14 @@
+---
+description: File-based routes and layouts for Simplexity
+globs:
+  - src/pages/**
+alwaysApply: false
+---
+
+# Pages (`src/pages/**`)
+
+- **Blog:** Index and tags use `getCollection("posts")`. Post URLs are `src/pages/blog/posts/[...slug].astro` with `params.slug === entry.id` (filename stem).
+- **Store / projects / authors:** List pages + `[...slug].astro` dynamic routes; `slug` matches collection `entry.id`. Store/projects/authors `getStaticPaths` use `trailingSlash: false`.
+- **RSS:** `rss.xml.js` lives in `src/pages/`; if wiring RSS to the `posts` collection, align globs or data source with `src/content/posts/` (current glob targets `./blog/*` under `pages`, not collection files).
+- **Legal URLs:** `src/pages/system/overview.astro` references `/infopages/*`, but dedicated `infopages` routes are not defined under `src/pages/` in this repo—add pages or change links if those URLs must work.
+- Prefer wrapping content in `BaseLayout` (or the section layout used elsewhere on the same section) for consistent nav/footer.

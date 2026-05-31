@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ProjectsEntries from "@/components/projects/ProjectsEntries.astro";
+import { getCollection } from "astro:content";
+const allProjects = (await getCollection("projects")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        Selected projects
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base dark:text-base-400 text-base-500"
+        >
+          A few projects across AI, product, automation, content, and growth.
+          These are the kinds of problems I like working on: messy discovery
+          workflows, useful tools, and product surfaces that make a real behavior
+          easier.
+        </Text>
+      </div>
+      <div
+        class="flex flex-col divide-black/10 dark:fivide-white/0 divide-y border-y mt-8 dark:border-white/10 border-black/10"
+      >
+        {allProjects.map((post) => <ProjectsEntries post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

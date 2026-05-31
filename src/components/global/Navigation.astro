@@ -1,0 +1,77 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Assets
+import Search from "@/components/assets/Search.astro";
+import Logo from "@/components/assets/Logo.astro";
+import ThemeToggle from "@/components/assets/ThemeToggle.astro";
+const navLinks = [
+  {
+    text: "Home",
+    href: "/",
+  },
+  {
+    text: "Blog",
+    href: "/blog/",
+  },
+  {
+    text: "Projects",
+    href: "/projects/",
+  },
+  {
+    text: "Work with me",
+    href: "/blog/posts/intro",
+  },
+];
+---
+
+<header>
+  <Wrapper class="bg-white dark:bg-base-900 pt-14">
+    <div class="grid grid-cols-2 items-center w-full">
+      <a href="/">
+        <span class="sr-only">Go home</span>
+        <Logo class="h-5 text-black dark:text-white" /></a
+      >
+      <div class="ml-auto flex items-center gap-2">
+        <Search />
+        <ThemeToggle class="fixed bottom-2 right-2" />
+        <Text
+          tag="a"
+          variant="textSM"
+          class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium shrink-0"
+          href="/blog/posts/intro"
+          >Work with me
+        </Text>
+        <div class="flex items-center gap-2 md:gap-3">
+          <details class="relative group">
+            <summary
+              class="flex text-base-500 text-sm dark:text-base-400 dark:hover:text-white font-medium hover:text-black duration-300"
+            >
+              Menu
+            </summary>
+            <div
+              class="absolute right-0 top-full mt-3 w-[10rem] p-4 rounded-xl bg-base-100 dark:bg-base-800"
+            >
+              <div class="space-y-4">
+                {
+                  navLinks.map((link) => (
+                    <Text
+                      tag="a"
+                      variant="textSM"
+                      href={link.href}
+                      class="text-base-500 block  dark:text-base-400 dark:hover:text-white font-medium  hover:text-black duration-300 "
+                    >
+                      {link.text}
+                    </Text>
+                  ))
+                }
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</header>

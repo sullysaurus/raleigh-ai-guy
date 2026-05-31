@@ -1,0 +1,105 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { Image } from "astro:assets";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const { frontmatter, previous, next } = Astro.props;
+const projectDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+  timeZone: "UTC",
+}).format(frontmatter.pubDate);
+const projectDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
+---
+
+<BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.subtitle}>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        {frontmatter.title}
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base mt-2 dark:text-base-400 text-base-500"
+        >
+          {frontmatter.subtitle}
+        </Text>
+        <div class="flex items-center justify-between mt-8">
+          <Text
+            tag="h1"
+            variant="textBase"
+            class="text-black dark:text-white font-medium"
+          >
+            Launched on <time datetime={projectDateTime}>{projectDate}</time>
+          </Text>
+          <Text
+            tag="a"
+            variant="textSM"
+            href={frontmatter.live}
+            title={frontmatter.title}
+            aria-label={frontmatter.title}
+            class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
+          >
+            Visit &nbsp; &rarr;
+          </Text>
+        </div>
+      </div>
+      <div class="mt-8 bg-black/5 dark:bg-white/5 p-12 lg:p-20">
+        <Image
+          width={1000}
+          height={1000}
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          class="mx-auto max-h-[720px] w-full rounded object-contain"
+        />
+      </div>
+      <Wrapper variant="prose" class="mt-8">
+        <slot />
+      </Wrapper>
+      <nav
+        class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs mt-24"
+      >
+        <div>
+          {
+            previous && (
+              <a href={`/projects/${previous.id}`} class="hover:opacity-80 ">
+                <span class="block  text-black dark:text-white font-medium uppercase">
+                  Previous:
+                </span>
+                <span class="block  text-base-600 dark:text-base-400 text-balance">
+                  {previous.data.title}
+                </span>
+              </a>
+            )
+          }
+        </div>
+        <div>
+          {
+            next && (
+              <a
+                href={`/projects/${next.id}`}
+                class=" hover:opacity-80 text-right"
+              >
+                <span class="block  text-black dark:text-white font-medium uppercase ">
+                  Next:
+                </span>
+                <span class="block  text-base-600 dark:text-base-400 text-balance">
+                  {next.data.title}
+                </span>
+              </a>
+            )
+          }
+        </div>
+      </nav>
+    </Wrapper>
+  </section>
+</BaseLayout>

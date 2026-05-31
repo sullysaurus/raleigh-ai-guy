@@ -1,0 +1,33 @@
+---
+import { AstroSeo } from "@lexingtonthemes/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  siteName: string;
+}
+
+const { title, description, canonical, siteName } = Astro.props;
+---
+
+<AstroSeo
+  title={title}
+  description={description}
+  canonical={canonical}
+  openGraph={{
+    url: canonical,
+    title,
+    description,
+    site_name: siteName,
+    type: "website",
+    locale: "en_US",
+  }}
+  twitter={{
+    cardType: "summary",
+  }}
+/>
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />

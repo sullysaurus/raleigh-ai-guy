@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import Text from "@/components/fundations/elements/Text.astro";
+
+const { url, title, image, description, pubDate } = {
+  url: "/blog/posts/" + Astro.props.post.id,
+  title: Astro.props.post.data.title,
+  image: Astro.props.post.data.image.url,
+  description: Astro.props.post.data.description,
+  pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+    timeZone: "UTC",
+  }),
+};
+// Integrations: calculate reading time
+import readingTime from "reading-time";
+const timeToRead = readingTime(Astro.props.post.body);
+---
+
+<article class="sm:flex items-center gap-8 group relative">
+  <a
+    href={url}
+    title={`Read more: ${title}`}
+    aria-label={`Read blog post: ${title}`}
+    class="absolute inset-0 z-10"
+  >
+  </a>
+  <div class="mb-4 flex-shrink-0 sm:mb-0 order-last lg:order-first">
+    <Image
+      width="400"
+      height="400"
+      src={image}
+      alt={title}
+      class="size-16 lg:size-28 object-cover rounded-lg dark:opacity-70"
+    />
+  </div>
+  <div>
+    <Text tag="p" variant="textXS" class="text-base-500">
+      <time datetime={pubDate}>{pubDate}</time>
+      <span>·</span>
+      <span>{timeToRead.text}</span>
+    </Text>
+    <Text
+      tag="h4"
+      variant="textBase"
+      class="text-black dark:text-white mt-1 font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+    >
+      {title}
+    </Text>
+    <Text
+      tag="p"
+      variant="textXS"
+      class="text-base-500 dark:text-base-400 mt-1 line-clamp-2"
+    >
+      {description}
+    </Text>
+  </div>
+</article>

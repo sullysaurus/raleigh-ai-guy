@@ -1,0 +1,39 @@
+---
+import Seo from "@/components/fundations/head/Seo.astro";
+import Meta from "@/components/fundations/head/Meta.astro";
+import Fonts from "@/components/fundations/head/Fonts.astro";
+import Favicons from "@/components/fundations/head/Favicons.astro";
+import FuseJs from "@/components/fundations/scripts/FuseJS.astro";
+// Scripts
+import FuseJS from "@/components/fundations/scripts/FuseJS.astro";
+import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
+
+interface Props {
+  pageTitle?: string;
+  pageDescription?: string;
+}
+
+const { pageTitle, pageDescription } = Astro.props;
+const siteName = "Danny Sullivan";
+const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
+const description =
+  pageDescription ??
+  "I build products that streamline work and help companies grow revenue.";
+const canonical = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "https://dannysullivan.ai"
+).toString();
+---
+
+<Seo
+  title={title}
+  description={description}
+  canonical={canonical}
+  siteName={siteName}
+/>
+<Meta description={description} author={siteName} />
+<Fonts />
+<Favicons />
+<!-- Scripts -->
+<FuseJS/>
+<ToggleLocalStorage/>

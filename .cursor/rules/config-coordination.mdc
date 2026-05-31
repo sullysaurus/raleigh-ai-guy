@@ -1,0 +1,14 @@
+---
+description: Astro config and content config must stay consistent with pages
+globs:
+  - astro.config.*
+  - src/content.config.ts
+alwaysApply: false
+---
+
+# Config coordination
+
+- **`astro.config.mjs`:** Defines `site`, Vite plugin `@tailwindcss/vite`, and integrations `@astrojs/sitemap`, `@astrojs/mdx`. Changing `site` affects sitemap, RSS `context.site`, and SEO assumptions; update placeholder URLs in `Seo.astro` / `Meta.astro` when replacing domains.
+- **`src/content.config.ts`:** Any new collection or schema field requires matching updates in `getStaticPaths` / `getCollection` usages under `src/pages/` and in components that read `entry.data`.
+- **`markdown` / `shikiConfig`:** Defined in `astro.config.mjs`; keep in mind for MD/MDX authoring (e.g. drafts, Shiki theme `github-dark`).
+- Edit config only when needed; pair content-schema changes with consumer updates in the same change set.

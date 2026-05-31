@@ -1,0 +1,41 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+const { url, title, pubDate } = {
+  url: Astro.props.post?.id ? `/blog/posts/${Astro.props.post.id}` : "#",
+  title: Astro.props.post?.data?.title ?? "Untitled",
+  pubDate: Astro.props.post?.data?.pubDate
+    ? new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        timeZone: "UTC",
+      })
+    : "Date missing",
+};
+// Integrations: calculate reading time
+import readingTime from "reading-time";
+const timeToRead = readingTime(Astro.props.post.body);
+---
+
+<article>
+  <a href={url} title={`Read blog post: ${title}`} class="group block">
+    <div class="flex flex-col gap-2 py-2">
+      <Text
+        tag="span"
+        variant="textXS"
+        class="font-medium text-base-500 dark:text-base-400 uppercase order-first"
+      >
+        <time datetime={pubDate}>{pubDate}</time>
+        <span>·</span>
+        <span>{timeToRead.text}</span>
+      </Text>
+      <Text
+        tag="h4"
+        variant="textBase"
+        class="text-black dark:text-white font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+      >
+        {title}
+      </Text>
+    </div>
+  </a>
+</article>

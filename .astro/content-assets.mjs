@@ -1,0 +1,11 @@
+
+import __ASTRO_IMAGE_IMPORT_2sTCGJ from "/src/images/authors/1.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md";
+import __ASTRO_IMAGE_IMPORT_Z1zEzci from "/src/images/authors/2.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md";
+import __ASTRO_IMAGE_IMPORT_Zy2Dho from "/src/images/authors/3.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md";
+import __ASTRO_IMAGE_IMPORT_szhCv from "/src/images/authors/4.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md";
+import __ASTRO_IMAGE_IMPORT_Z2kmNiP from "/src/images/blog/practical-ai-automations.png?astroContentImageFlag=&importer=src%2Fcontent%2Fposts%2Fintro.md";
+import __ASTRO_IMAGE_IMPORT_SrEWJ from "/src/images/projects/prowl-app.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fprowl-fm.md";
+import __ASTRO_IMAGE_IMPORT_1FPOrb from "/src/images/store/carbon.png?astroContentImageFlag=&importer=src%2Fcontent%2Fstore%2F2.md";
+import __ASTRO_IMAGE_IMPORT_MV7xK from "/src/images/store/studiomax.png?astroContentImageFlag=&importer=src%2Fcontent%2Fstore%2F1.md";
+export default new Map([["/src/images/authors/1.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md", __ASTRO_IMAGE_IMPORT_2sTCGJ], ["/src/images/authors/2.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md", __ASTRO_IMAGE_IMPORT_Z1zEzci], ["/src/images/authors/3.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md", __ASTRO_IMAGE_IMPORT_Zy2Dho], ["/src/images/authors/4.jpeg?astroContentImageFlag=&importer=src%2Fcontent%2Fauthors%2Fauthors.md", __ASTRO_IMAGE_IMPORT_szhCv], ["/src/images/blog/practical-ai-automations.png?astroContentImageFlag=&importer=src%2Fcontent%2Fposts%2Fintro.md", __ASTRO_IMAGE_IMPORT_Z2kmNiP], ["/src/images/projects/prowl-app.png?astroContentImageFlag=&importer=src%2Fcontent%2Fprojects%2Fprowl-fm.md", __ASTRO_IMAGE_IMPORT_SrEWJ], ["/src/images/store/carbon.png?astroContentImageFlag=&importer=src%2Fcontent%2Fstore%2F2.md", __ASTRO_IMAGE_IMPORT_1FPOrb], ["/src/images/store/studiomax.png?astroContentImageFlag=&importer=src%2Fcontent%2Fstore%2F1.md", __ASTRO_IMAGE_IMPORT_MV7xK]]);
+		

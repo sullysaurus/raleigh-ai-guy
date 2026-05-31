@@ -1,0 +1,14 @@
+---
+description: Content collections, frontmatter, and image() for Simplexity
+globs:
+  - src/content/**
+alwaysApply: false
+---
+
+# Content (`src/content/**`)
+
+- Schema definitions are only in `src/content.config.ts`. Collections: **`store`**, **`projects`**, **`authors`**, **`posts`** (each mapped to its subfolder under `src/content/`).
+- **Images:** Frontmatter uses `image()` from the collection schema. Keep `image.url` / nested `images[].url` values valid for Astro’s asset pipeline (paths like `/src/images/...` as used in existing entries, or other supported sources). Breaking `image()` shape or paths can fail the build.
+- **Templates:** When adding entries, copy an existing file in the same folder (e.g. `posts/1.md`, `store/1.md`) so required fields stay complete.
+- **`infopages/`:** Markdown here is **not** in `content.config.ts`. Editing it does not affect `getCollection()` until you add a collection and routes.
+- Do not widen Zod schemas without updating all consuming pages/components for that collection.

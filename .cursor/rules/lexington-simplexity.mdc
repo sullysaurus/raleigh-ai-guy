@@ -1,0 +1,13 @@
+---
+description: Global conventions for Simplexity (Lexington Themes Astro theme) — imports, layout, minimal changes
+alwaysApply: true
+---
+
+# Simplexity — global rules
+
+- **Publisher:** Lexington Themes; package name `@lexington/simplexity`. Prefer `@/` imports (`@/*` → `src/*`).
+- **Folder spelling:** The design-system path is `src/components/fundations/` (not “foundations”). Do not rename it; update imports if paths change.
+- **Shell layout:** Most marketing pages use `BaseLayout` → `Navigation` + `main` + `Footer`. Specialized templates: `BlogLayout`, `StoreLayout`, `ProjectsLayout`, `AuthorsLayout`.
+- **Head / SEO:** Compose shared head via `src/components/fundations/head/BaseHead.astro` (`Seo` uses `@lexingtonthemes/seo`). Keep placeholder URLs in sync with `astro.config.mjs` → `site` when customizing.
+- **Styling:** Global tokens and Tailwind `@theme` live in `src/styles/global.css`; avoid introducing duplicate theme definitions elsewhere without a clear reason.
+- **Scope:** Make the smallest change that satisfies the task; match existing component patterns (`Wrapper`, `Text`, `Button`, etc.). Do not add dependencies absent from `package.json`.

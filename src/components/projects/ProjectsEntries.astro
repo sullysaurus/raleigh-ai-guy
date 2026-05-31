@@ -1,0 +1,54 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import Text from "@/components/fundations/elements/Text.astro";
+
+const { url, title, subtitle, image } = {
+  url: "/projects/" + Astro.props.post.id,
+  title: Astro.props.post.data.title,
+  subtitle: Astro.props.post.data.subtitle,
+  image: Astro.props.post.data.image.url,
+};
+---
+
+<article class="h-full flex flex-col py-8 relative group">
+  <a
+    href={url}
+    title={`Read more: ${title}`}
+    aria-label={`Read project: ${title}`}
+    class="absolute inset-0 z-10"></a>
+
+  <div class="bg-black/5 dark:bg-white/5 rounded-xl p-12 lg:p-20">
+    <Image
+      width={500}
+      height={500}
+      class="object-cover w-full rounded"
+      alt={title}
+      src={image}
+    />
+  </div>
+
+  <div
+    class="grid grid-cols-1 gap-4 md:grid-cols-3 justify-between h-full mt-4 relative z-0"
+  >
+    <Text
+      tag="h4"
+      variant="textBase"
+      class="text-black dark:text-white font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+    >
+      {title}
+    </Text>
+    <div class="md:col-span-2">
+      <Text tag="p" variant="textSM" class="text-base-500 dark:text-base-400">
+        {subtitle}
+      </Text>
+      <Text
+        tag="span"
+        variant="textSM"
+        class="text-base-500 group-hover:text-black dark:text-base-400 dark:group-hover:text-white font-medium mt-4 flex"
+      >
+        &rarr; Read more
+      </Text>
+    </div>
+  </div>
+</article>
