@@ -1,62 +1,213 @@
 ---
+import { Image } from "astro:assets";
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import profileImage from "../../danny.jpeg";
 ---
 
 <BaseLayout
-  pageTitle="About"
-  pageDescription="About Danny Sullivan, a product engineer building AI tools, automations, and product systems."
+  pageTitle="About Danny Sullivan"
+  pageDescription="About Danny Sullivan, a Raleigh-based product engineer building AI-powered products, automations, and workflow systems."
 >
   <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
-      <Text
-        tag="h1"
-        variant="textBase"
-        class="text-black dark:text-white font-medium"
-      >
-        About
-      </Text>
+    <Wrapper variant="standard" class="pt-12 lg:pt-28 lg:pb-20">
+      <div class="grid gap-8 border-t border-black/10 pt-6 dark:border-white/10 sm:grid-cols-[9rem_1fr] sm:items-start">
+        <Image
+          src={profileImage}
+          alt="Danny Sullivan"
+          width={615}
+          height={615}
+          class="size-32 rounded-xl object-cover sm:size-36"
+        />
+        <div>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="mb-3 font-medium uppercase text-base-500 dark:text-base-400"
+          >
+            Raleigh, NC · Product engineer
+          </Text>
+          <Text
+            tag="h1"
+            variant="displayXS"
+            class="text-balance font-medium text-black dark:text-white"
+          >
+            I build AI-powered products and practical systems for messy
+            workflows.
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-6 text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            I work where product, engineering, content, and growth overlap. My
+            favorite problems are ambiguous at the start: a manual process, a
+            rough idea, a content bottleneck, a broken handoff, or a product
+            experience that could be much smarter with the right system behind
+            it.
+          </Text>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <Button
+              href="/blog/posts/intro/"
+              variant="default"
+              size="medium"
+              title="Read how I help teams with AI automation"
+              aria-label="Read how I help teams with AI automation"
+            >
+              Work with me
+            </Button>
+            <Button
+              href="https://www.linkedin.com/in/danny-sullivan-raleigh/"
+              variant="muted"
+              size="medium"
+              title="Connect with Danny Sullivan on LinkedIn"
+              aria-label="Connect with Danny Sullivan on LinkedIn"
+            >
+              LinkedIn
+            </Button>
+          </div>
+        </div>
+      </div>
     </Wrapper>
-    <Wrapper variant="standard" class="py-12">
-      <div class="border-t dark:border-white/10 border-black/10 pt-2">
-        <Text
-          tag="h2"
-          variant="textBase"
-          class="text-black dark:text-white font-medium"
-        >
-          I build practical systems for product and growth teams
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-16">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          What I do now
+        </Text>
+        <div class="mt-8 space-y-6">
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            At Gametime, I build AI product systems for live event discovery.
+            A lot of that work sits around image quality and decision-making:
+            using generative AI to make venue, seat, and event experiences more
+            useful before someone buys.
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            Outside of my day-to-day product work, I build tools and
+            automations that help teams move faster. That can mean prototype
+            workflows, internal AI tools, lead and research systems, content
+            production pipelines, or lightweight apps that turn scattered
+            information into something a team can actually use.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-16">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          How I got here
+        </Text>
+        <div class="mt-8 space-y-6">
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            Before Gametime, I spent several years at Pluralsight working
+            across generative AI education, content strategy, and internal AI
+            tooling. I created hands-on AI and machine learning learning
+            experiences, then moved into a creative technologist role focused
+            on making content teams faster and more effective.
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            Earlier in my career I built software for healthcare, media,
+            bootcamp education, and growth teams. I have worked as a software
+            engineer, curriculum engineer, curriculum manager, growth marketer,
+            author, and product builder, which is why I tend to see AI work as
+            more than a model choice. The product, workflow, user experience,
+            and business outcome all have to line up.
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            I also started my career outside of software, first in professional
+            baseball and then in special education. Both still shape how I work:
+            learn quickly, explain clearly, and keep improving the system
+            around the people using it.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-16">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          The kind of work I like
+        </Text>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {
+            [
+              "AI-assisted product features that improve customer decisions",
+              "Workflow automations that remove repetitive operations work",
+              "Internal tools for content, marketing, and product teams",
+              "Prototypes that make early-stage ideas concrete",
+              "Data cleanup, enrichment, and reporting systems",
+              "Practical AI education for teams building real products",
+            ].map((item) => (
+              <Text
+                tag="p"
+                variant="textSM"
+                class="border-t border-black/10 pt-3 font-medium text-black dark:border-white/10 dark:text-white"
+              >
+                {item}
+              </Text>
+            ))
+          }
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="pt-12 pb-20 lg:pt-16 lg:pb-28">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          Want to compare notes?
         </Text>
         <Text
           tag="p"
           variant="textSM"
-          class="2xl:text-base mt-8 dark:text-base-400 text-base-500"
+          class="mt-6 text-base-500 dark:text-base-400 2xl:text-base"
         >
-          I work at the intersection of AI, product, content, and automation.
-          My background spans full-stack development, curriculum engineering,
-          growth marketing, and product strategy, which means I tend to think
-          about software as both a technical system and a business workflow.
+          I am always interested in practical AI product work, content systems,
+          workflow automation, and live event discovery. The easiest place to
+          reach me is LinkedIn.
         </Text>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="2xl:text-base mt-6 dark:text-base-400 text-base-500"
-        >
-          At Gametime, I build AI tools and product systems for live event
-          discovery. Before that, I spent nearly five years at Pluralsight
-          across content strategy, generative AI education, and internal tooling
-          for content teams.
-        </Text>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="2xl:text-base mt-6 dark:text-base-400 text-base-500"
-        >
-          I am based in Raleigh, NC, and I like helping teams turn ambiguous
-          ideas and manual workflows into useful automations, tools, pipelines,
-          and product features.
-        </Text>
+        <div class="mt-6">
+          <Button
+            href="https://www.linkedin.com/in/danny-sullivan-raleigh/"
+            variant="default"
+            size="medium"
+            title="Connect with Danny Sullivan on LinkedIn"
+            aria-label="Connect with Danny Sullivan on LinkedIn"
+          >
+            Connect on LinkedIn
+          </Button>
+        </div>
       </div>
     </Wrapper>
   </section>
