@@ -10,7 +10,7 @@ image:
 
 ## Overview
 
-Prowl.fm is a live music discovery product built around a simple idea: fans should be able to see which rooms are alive right now, and bands should have an easier way to show up where people are already looking.
+[Prowl.fm](https://prowl.fm) is a live music discovery product built around a simple idea: fans should be able to see which rooms are alive right now, and bands should have an easier way to show up where people are already looking.
 
 The product positions itself as a real-time map for live music nearby. Bands go live, fans spot music, and venue pages stay tied to the real places people search for.
 
