@@ -1,0 +1,319 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const intakeEmail = "hello@dannysullivan.ai";
+
+const toolGroups = [
+  {
+    label: "Communication",
+    tools: ["Slack", "Microsoft Teams", "Email", "iMessage / text", "Zoom"],
+  },
+  {
+    label: "Planning & knowledge",
+    tools: ["Notion", "Asana", "Trello", "Jira", "Monday.com"],
+  },
+  {
+    label: "Data & customers",
+    tools: ["Google Sheets", "Excel", "Airtable", "HubSpot", "Salesforce"],
+  },
+  {
+    label: "AI & automation",
+    tools: ["ChatGPT", "Claude", "Zapier", "Make", "Custom tools"],
+  },
+];
+
+const fieldClass =
+  "mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black shadow-none outline-none transition placeholder:text-base-400 hover:border-black/20 focus:border-black focus:ring-2 focus:ring-black/10 dark:border-white/10 dark:bg-base-900 dark:text-white dark:hover:border-white/20 dark:focus:border-white dark:focus:ring-white/10";
+---
+
+<BaseLayout
+  pageTitle="Start a Project with Danny Sullivan"
+  pageDescription="Tell me about your business, workflow, and biggest operational pain points. I’ll look for practical ways AI, automation, or better systems could help."
+>
+  <Wrapper variant="standard" class="pt-12 pb-24 lg:pt-28 lg:pb-32">
+    <header class="border-t border-black/10 pt-6 dark:border-white/10">
+      <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
+        <div>
+          <Text
+            tag="p"
+            variant="textXS"
+            class="mb-3 font-medium uppercase tracking-wide text-base-500 dark:text-base-400"
+          >
+            Workflow diagnostic · About 5 minutes
+          </Text>
+          <Text
+            tag="h1"
+            variant="displayXS"
+            class="max-w-xl text-balance font-medium text-black dark:text-white"
+          >
+            Let’s find the work that should feel easier.
+          </Text>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="mt-6 max-w-xl text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            You don’t need to arrive with a solution. Tell me what feels slow,
+            repetitive, disconnected, or harder than it should be. I’ll use
+            the details to understand the real problem before suggesting what
+            to build.
+          </Text>
+        </div>
+        <div class="hidden size-24 rotate-2 rounded-2xl bg-[#ddff73] p-4 text-black sm:flex sm:flex-col sm:justify-between">
+          <span class="text-xs font-medium uppercase">Start here</span>
+          <span class="text-2xl leading-none">↘</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="sticky top-0 z-10 -mx-2 mt-12 rounded-xl border border-black/10 bg-white/90 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-base-900/90">
+      <div class="flex items-center justify-between gap-4 text-xs font-medium">
+        <span class="text-black dark:text-white">Your brief</span>
+        <span id="progress-label" class="text-base-500 dark:text-base-400">0 of 6 essentials</span>
+      </div>
+      <div class="mt-2 h-1 overflow-hidden rounded-full bg-base-100 dark:bg-base-800">
+        <div id="progress-bar" class="h-full w-0 rounded-full bg-black transition-all duration-300 dark:bg-white"></div>
+      </div>
+    </div>
+
+    <form id="intake-form" class="mt-8 space-y-6" data-email={intakeEmail}>
+      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
+        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
+          <div class="text-sm font-medium text-base-400">01</div>
+          <fieldset>
+            <legend class="text-lg font-medium text-black dark:text-white">A little context</legend>
+            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
+              Enough to know who I’m talking to and how the work fits your business.
+            </p>
+            <div class="mt-7 grid gap-5 sm:grid-cols-2">
+              <label class="text-sm font-medium text-black dark:text-white">
+                Your name <span class="text-base-400">*</span>
+                <input class={fieldClass} type="text" name="name" autocomplete="name" required placeholder="Jane Smith" />
+              </label>
+              <label class="text-sm font-medium text-black dark:text-white">
+                Work email <span class="text-base-400">*</span>
+                <input class={fieldClass} type="email" name="email" autocomplete="email" required placeholder="jane@company.com" />
+              </label>
+              <label class="text-sm font-medium text-black dark:text-white">
+                Company or organization
+                <input class={fieldClass} type="text" name="company" autocomplete="organization" placeholder="Acme, Inc." />
+              </label>
+              <label class="text-sm font-medium text-black dark:text-white">
+                Your role
+                <input class={fieldClass} type="text" name="role" autocomplete="organization-title" placeholder="Founder, operations lead…" />
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
+        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
+          <div class="text-sm font-medium text-base-400">02</div>
+          <fieldset>
+            <legend class="text-lg font-medium text-black dark:text-white">What needs to change?</legend>
+            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
+              Start with the situation as it is today. Plain language is perfect.
+            </p>
+            <div class="mt-7 space-y-6">
+              <label class="block text-sm font-medium text-black dark:text-white">
+                What are you looking to do? <span class="text-base-400">*</span>
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Describe the idea, goal, or change you have in mind—even if it’s still fuzzy.</span>
+                <textarea class={fieldClass} name="goal" rows="5" maxlength="1800" required placeholder="We want to improve…"></textarea>
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                What are your biggest pain points? <span class="text-base-400">*</span>
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Where do time, money, information, or customer experience currently fall through the cracks?</span>
+                <textarea class={fieldClass} name="pain_points" rows="5" maxlength="1800" required placeholder="The hardest part right now is…"></textarea>
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                What do you repeatedly do that you wish would just happen automatically? <span class="text-base-400">*</span>
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Think copying data, sending follow-ups, creating reports, finding information, approvals, scheduling, or handoffs.</span>
+                <textarea class={fieldClass} name="repetitive_work" rows="5" maxlength="1800" required placeholder="Every day or week, someone has to…"></textarea>
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                What would a successful outcome look like? <span class="text-base-400">*</span>
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">What becomes faster, clearer, cheaper, or possible?</span>
+                <textarea class={fieldClass} name="success" rows="4" maxlength="1400" required placeholder="We’d know this worked if…"></textarea>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
+        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
+          <div class="text-sm font-medium text-base-400">03</div>
+          <fieldset>
+            <legend class="text-lg font-medium text-black dark:text-white">Your current toolkit</legend>
+            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
+              Select everything your team relies on. This helps reveal where information already lives—and where handoffs break.
+            </p>
+            <div class="mt-7 space-y-7">
+              {
+                toolGroups.map((group) => (
+                  <div>
+                    <p class="text-xs font-medium uppercase tracking-wide text-base-400">{group.label}</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      {group.tools.map((tool) => (
+                        <label class="cursor-pointer">
+                          <input class="peer sr-only" type="checkbox" name="tools" value={tool} />
+                          <span class="block rounded-full border border-black/10 px-3 py-2 text-sm text-base-500 transition hover:border-black/30 hover:text-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white dark:border-white/10 dark:text-base-400 dark:hover:border-white/30 dark:hover:text-white dark:peer-checked:border-white dark:peer-checked:bg-white dark:peer-checked:text-black">
+                            {tool}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              }
+              <label class="block text-sm font-medium text-black dark:text-white">
+                Anything else in the mix?
+                <input class={fieldClass} type="text" name="other_tools" placeholder="Industry software, internal systems, paper processes…" />
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                How does work move between these tools today?
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">For example: “A request arrives in Slack, then we copy it into a spreadsheet and email an approval.”</span>
+                <textarea class={fieldClass} name="tool_handoffs" rows="4" maxlength="1400" placeholder="A typical workflow looks like…"></textarea>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
+        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
+          <div class="text-sm font-medium text-base-400">04</div>
+          <fieldset>
+            <legend class="text-lg font-medium text-black dark:text-white">Practical details</legend>
+            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
+              These don’t lock you into anything. They help me respond with something realistic.
+            </p>
+            <div class="mt-7 space-y-7">
+              <div>
+                <p class="text-sm font-medium text-black dark:text-white">When would you like to start?</p>
+                <div class="mt-3 grid gap-2 sm:grid-cols-2">
+                  {
+                    ["As soon as possible", "Within 1–2 months", "Later this year", "Just exploring"].map((option) => (
+                      <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-black/10 px-4 py-3 text-sm text-base-500 transition hover:border-black/30 dark:border-white/10 dark:text-base-400 dark:hover:border-white/30">
+                        <input type="radio" name="timeline" value={option} class="border-base-300 text-black focus:ring-black dark:border-base-600 dark:bg-base-900 dark:text-white dark:focus:ring-white" />
+                        {option}
+                      </label>
+                    ))
+                  }
+                </div>
+              </div>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                Who would be involved in making this work?
+                <input class={fieldClass} type="text" name="stakeholders" placeholder="Just me, our operations team, IT and leadership…" />
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                Are there constraints I should know about?
+                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Budget range, security or privacy requirements, existing contracts, technical limitations, or a firm deadline.</span>
+                <textarea class={fieldClass} name="constraints" rows="4" maxlength="1400" placeholder="We need to work within…"></textarea>
+              </label>
+              <label class="block text-sm font-medium text-black dark:text-white">
+                Anything else that would help me understand the situation?
+                <textarea class={fieldClass} name="anything_else" rows="4" maxlength="1400" placeholder="One more thing…"></textarea>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <div class="rounded-2xl bg-black p-6 text-white dark:bg-white dark:text-black sm:p-8">
+        <div class="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+          <div>
+            <p class="text-lg font-medium">Ready when you are.</p>
+            <p class="mt-2 max-w-md text-sm text-white/60 dark:text-black/60">
+              Submitting opens a pre-addressed email with your answers. You can review everything before sending it.
+            </p>
+          </div>
+          <button type="submit" class="flex min-h-11 items-center justify-center rounded-xl bg-[#ddff73] px-5 py-3 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-[#e6ff95] focus:outline-none focus:ring-2 focus:ring-[#ddff73] focus:ring-offset-2 focus:ring-offset-black dark:focus:ring-offset-white">
+            Send my brief <span aria-hidden="true" class="ml-2">↗</span>
+          </button>
+        </div>
+        <p id="form-status" class="mt-4 hidden text-sm text-white/70 dark:text-black/70" role="status"></p>
+      </div>
+    </form>
+  </Wrapper>
+
+  <script>
+    const form = document.querySelector("#intake-form");
+    const progressBar = document.querySelector("#progress-bar");
+    const progressLabel = document.querySelector("#progress-label");
+    const status = document.querySelector("#form-status");
+
+    if (form instanceof HTMLFormElement) {
+      const essentials = Array.from(form.querySelectorAll("[required]"));
+
+      const updateProgress = () => {
+        const complete = essentials.filter((field) => {
+          if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+            return field.value.trim().length > 0 && field.checkValidity();
+          }
+          return false;
+        }).length;
+        const percent = Math.round((complete / essentials.length) * 100);
+        if (progressBar instanceof HTMLElement) progressBar.style.width = `${percent}%`;
+        if (progressLabel) progressLabel.textContent = `${complete} of ${essentials.length} essentials`;
+      };
+
+      form.addEventListener("input", updateProgress);
+      updateProgress();
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+        const tools = data.getAll("tools").join(", ") || "None selected";
+        const answer = (name) => String(data.get(name) || "Not provided").trim();
+        const body = [
+          "WORKFLOW DIAGNOSTIC",
+          "",
+          "CONTACT",
+          `Name: ${answer("name")}`,
+          `Email: ${answer("email")}`,
+          `Company: ${answer("company")}`,
+          `Role: ${answer("role")}`,
+          "",
+          "WHAT NEEDS TO CHANGE",
+          `What they are looking to do:\n${answer("goal")}`,
+          `\nBiggest pain points:\n${answer("pain_points")}`,
+          `\nRepetitive work to automate:\n${answer("repetitive_work")}`,
+          `\nSuccessful outcome:\n${answer("success")}`,
+          "",
+          "CURRENT TOOLKIT",
+          `Tools: ${tools}`,
+          `Other tools: ${answer("other_tools")}`,
+          `How work moves between tools:\n${answer("tool_handoffs")}`,
+          "",
+          "PRACTICAL DETAILS",
+          `Timeline: ${answer("timeline")}`,
+          `People involved: ${answer("stakeholders")}`,
+          `Constraints:\n${answer("constraints")}`,
+          `\nAnything else:\n${answer("anything_else")}`,
+        ].join("\n");
+
+        try {
+          await navigator.clipboard.writeText(body);
+        } catch {
+          // The email draft still contains the full brief if clipboard access is unavailable.
+        }
+
+        const recipient = form.dataset.email;
+        const subject = `Workflow diagnostic — ${answer("name")}${answer("company") !== "Not provided" ? ` / ${answer("company")}` : ""}`;
+        const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        if (status) {
+          status.textContent = "Your brief is copied to your clipboard, and your email draft is opening now.";
+          status.classList.remove("hidden");
+        }
+        window.location.href = mailto;
+      });
+    }
+  </script>
+</BaseLayout>
