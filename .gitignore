@@ -34,3 +34,6 @@ pnpm-debug.log*
 *.tmp
 .astro/settings.json
 Thumbs.db
+
+# Local Netlify folder
+.netlify

@@ -3,8 +3,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
-const intakeEmail = "hello@dannysullivan.ai";
-
 const toolGroups = [
   {
     label: "Communication",
@@ -78,7 +76,20 @@ const fieldClass =
       </div>
     </div>
 
-    <form id="intake-form" class="mt-8 space-y-6" data-email={intakeEmail}>
+    <form
+      id="intake-form"
+      name="project-intake"
+      method="POST"
+      action="/thank-you/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      class="mt-8 space-y-6"
+    >
+      <input type="hidden" name="form-name" value="project-intake" />
+      <input type="hidden" name="subject" data-remove-prefix value="New project brief from %{formName}" />
+      <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true">
+        <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
       <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
         <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
           <div class="text-sm font-medium text-base-400">01</div>
@@ -228,10 +239,10 @@ const fieldClass =
           <div>
             <p class="text-lg font-medium">Ready when you are.</p>
             <p class="mt-2 max-w-md text-sm text-white/60 dark:text-black/60">
-              Submitting opens a pre-addressed email with your answers. You can review everything before sending it.
+              Your answers are sent securely and saved with the project inquiry so I can respond with useful next steps.
             </p>
           </div>
-          <button type="submit" class="flex min-h-11 items-center justify-center rounded-xl bg-[#ddff73] px-5 py-3 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-[#e6ff95] focus:outline-none focus:ring-2 focus:ring-[#ddff73] focus:ring-offset-2 focus:ring-offset-black dark:focus:ring-offset-white">
+          <button id="submit-button" type="submit" class="flex min-h-11 items-center justify-center rounded-xl bg-[#ddff73] px-5 py-3 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-[#e6ff95] focus:outline-none focus:ring-2 focus:ring-[#ddff73] focus:ring-offset-2 focus:ring-offset-black disabled:cursor-wait disabled:opacity-60 dark:focus:ring-offset-white">
             Send my brief <span aria-hidden="true" class="ml-2">↗</span>
           </button>
         </div>
@@ -245,6 +256,7 @@ const fieldClass =
     const progressBar = document.querySelector("#progress-bar");
     const progressLabel = document.querySelector("#progress-label");
     const status = document.querySelector("#form-status");
+    const submitButton = document.querySelector("#submit-button");
 
     if (form instanceof HTMLFormElement) {
       const essentials = Array.from(form.querySelectorAll("[required]"));
@@ -268,51 +280,42 @@ const fieldClass =
         event.preventDefault();
         if (!form.reportValidity()) return;
 
-        const data = new FormData(form);
-        const tools = data.getAll("tools").join(", ") || "None selected";
-        const answer = (name) => String(data.get(name) || "Not provided").trim();
-        const body = [
-          "WORKFLOW DIAGNOSTIC",
-          "",
-          "CONTACT",
-          `Name: ${answer("name")}`,
-          `Email: ${answer("email")}`,
-          `Company: ${answer("company")}`,
-          `Role: ${answer("role")}`,
-          "",
-          "WHAT NEEDS TO CHANGE",
-          `What they are looking to do:\n${answer("goal")}`,
-          `\nBiggest pain points:\n${answer("pain_points")}`,
-          `\nRepetitive work to automate:\n${answer("repetitive_work")}`,
-          `\nSuccessful outcome:\n${answer("success")}`,
-          "",
-          "CURRENT TOOLKIT",
-          `Tools: ${tools}`,
-          `Other tools: ${answer("other_tools")}`,
-          `How work moves between tools:\n${answer("tool_handoffs")}`,
-          "",
-          "PRACTICAL DETAILS",
-          `Timeline: ${answer("timeline")}`,
-          `People involved: ${answer("stakeholders")}`,
-          `Constraints:\n${answer("constraints")}`,
-          `\nAnything else:\n${answer("anything_else")}`,
-        ].join("\n");
-
-        try {
-          await navigator.clipboard.writeText(body);
-        } catch {
-          // The email draft still contains the full brief if clipboard access is unavailable.
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Sending…";
         }
-
-        const recipient = form.dataset.email;
-        const subject = `Workflow diagnostic — ${answer("name")}${answer("company") !== "Not provided" ? ` / ${answer("company")}` : ""}`;
-        const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
         if (status) {
-          status.textContent = "Your brief is copied to your clipboard, and your email draft is opening now.";
+          status.textContent = "Sending your brief…";
           status.classList.remove("hidden");
         }
-        window.location.href = mailto;
+
+        const body = new URLSearchParams();
+        for (const [key, value] of new FormData(form).entries()) {
+          body.append(key, String(value));
+        }
+
+        try {
+          const response = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          });
+          if (!response.ok) throw new Error(`Submission failed: ${response.status}`);
+
+          form.reset();
+          updateProgress();
+          if (status) status.textContent = "Thanks — your project brief is in. I’ll review it and follow up by email.";
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.textContent = "Brief sent ✓";
+            submitButton.disabled = true;
+          }
+        } catch {
+          if (status) status.textContent = "Something went wrong while sending. Please try again, or email hello@dannysullivan.ai.";
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.textContent = "Try again";
+            submitButton.disabled = false;
+          }
+        }
       });
     }
   </script>
