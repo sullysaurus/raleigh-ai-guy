@@ -3,11 +3,12 @@
 import { Image } from "astro:assets";
 import Text from "@/components/fundations/elements/Text.astro";
 
-const { url, title, subtitle, image } = {
+const { url, title, subtitle, image, imageAlt } = {
   url: "/projects/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   subtitle: Astro.props.post.data.subtitle,
   image: Astro.props.post.data.image.url,
+  imageAlt: Astro.props.post.data.image.alt,
 };
 const imageWidth = typeof image === "string" ? 500 : image.width;
 const imageHeight = typeof image === "string" ? 500 : image.height;
@@ -32,7 +33,7 @@ const imageClass = isPortraitImage
       width={imageWidth}
       height={imageHeight}
       class={imageClass}
-      alt={title}
+      alt={imageAlt}
       src={image}
     />
   </div>
