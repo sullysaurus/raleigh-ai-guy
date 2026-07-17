@@ -1,5 +1,158 @@
 ---
-import AboutPage from "./about.astro";
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Hero from "@/components/landing/Hero.astro";
+import ProjectsEntries from "@/components/projects/ProjectsEntries.astro";
+
+const latestPosts = (await getCollection("posts"))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 2);
+
+const featuredProject = (await getCollection("projects"))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .at(0);
 ---
 
-<AboutPage />
+<BaseLayout
+  pageTitle="AI Product Engineer and Educator"
+  pageDescription="Danny Sullivan builds practical AI products, workflows, and learning experiences for teams and small businesses."
+>
+  <Hero />
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-20">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text
+          tag="p"
+          variant="textXS"
+          class="font-medium uppercase tracking-wide text-base-500 dark:text-base-400"
+        >
+          One practice, two ways to help
+        </Text>
+        <div class="mt-8 grid gap-px overflow-hidden rounded-2xl bg-black/10 dark:bg-white/10 sm:grid-cols-2">
+          <a
+            href="/projects/"
+            class="group bg-white p-6 transition hover:bg-base-50 dark:bg-base-900 dark:hover:bg-base-800 sm:p-8"
+          >
+            <span class="text-xs font-medium text-base-600 dark:text-base-400">01 / BUILD</span>
+            <Text
+              tag="h2"
+              variant="displayXS"
+              class="mt-8 text-balance font-medium text-black dark:text-white"
+            >
+              Products and systems for work that should feel easier.
+            </Text>
+            <Text
+              tag="p"
+              variant="textSM"
+              class="mt-4 text-base-500 dark:text-base-400"
+            >
+              AI-assisted product features, prototypes, internal tools, and
+              automations built around real user behavior.
+            </Text>
+            <span class="mt-8 block text-sm font-medium text-black transition group-hover:translate-x-1 dark:text-white">
+              View selected projects →
+            </span>
+          </a>
+
+          <a
+            href="/ai-workshops/"
+            class="group bg-white p-6 text-black transition hover:bg-base-50 dark:bg-base-900 dark:text-white dark:hover:bg-base-800 sm:p-8"
+          >
+            <span class="text-xs font-medium text-base-600 dark:text-base-400">02 / TEACH</span>
+            <Text
+              tag="h2"
+              variant="displayXS"
+              class="mt-8 text-balance font-medium text-black dark:text-white"
+            >
+              Practical AI education for small teams.
+            </Text>
+            <Text tag="p" variant="textSM" class="mt-4 text-base-500 dark:text-base-400">
+              Clear, hands-on sessions that help people understand what AI can
+              do, where it fits, and how to use it responsibly at work.
+            </Text>
+            <span class="mt-8 block text-sm font-medium text-black transition group-hover:translate-x-1 dark:text-white">
+              Explore the free lunch & learn →
+            </span>
+          </a>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  {
+    featuredProject && (
+      <section>
+        <Wrapper variant="standard" class="py-12 lg:py-20">
+          <div class="flex items-center justify-between gap-4 border-t border-black/10 pt-3 dark:border-white/10">
+            <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+              Featured project
+            </Text>
+            <Text
+              tag="a"
+              variant="textSM"
+              href="/projects/"
+              class="font-medium text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white"
+            >
+              See all projects →
+            </Text>
+          </div>
+          <ProjectsEntries post={featuredProject} />
+        </Wrapper>
+      </section>
+    )
+  }
+
+  <section>
+    <Wrapper variant="standard" class="py-12 lg:py-20">
+      <div class="flex items-center justify-between gap-4 border-t border-black/10 pt-3 dark:border-white/10">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          Latest writing
+        </Text>
+        <Text
+          tag="a"
+          variant="textSM"
+          href="/blog/"
+          class="font-medium text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white"
+        >
+          See all posts →
+        </Text>
+      </div>
+      <div class="mt-6 flex flex-col divide-y divide-black/10 dark:divide-white/10">
+        {latestPosts.map((post) => <BlogCard2 post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper variant="standard" class="pt-12 pb-24 lg:pt-20 lg:pb-32">
+      <div class="grid gap-8 border-t border-black/10 pt-6 dark:border-white/10 sm:grid-cols-[1fr_2fr]">
+        <Text tag="h2" variant="textBase" class="font-medium text-black dark:text-white">
+          A little about me
+        </Text>
+        <div>
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 dark:text-base-400 2xl:text-base"
+          >
+            I’m an AI Product Engineer at Gametime with a background in software,
+            generative AI education, content systems, and growth. Before building
+            AI product experiences for live events, I spent nearly five years at
+            Pluralsight creating hands-on technical education and internal AI tools.
+          </Text>
+          <div class="mt-6">
+            <Button href="/about/" variant="muted" size="medium">
+              Read my story
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
