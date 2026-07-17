@@ -15,7 +15,7 @@ AI automation is most useful when it is tied to a real business outcome: faster 
 
 That is where I like to help.
 
-My background sits across full-stack development, AI tooling, content strategy, growth marketing, and product work. I have built courses and labs that teach people how generative AI works, created internal AI tools for content teams, and now work as a Product Engineer at [Gametime](https://gametime.co), where I build AI tools and product systems for live event discovery.
+My background sits across full-stack development, AI tooling, content strategy, growth marketing, and product work. I have built courses and labs that teach people how generative AI works, created internal AI tools for content teams, and now work as an AI Product Engineer at [Gametime](https://gametime.co), where I build AI tools and product systems for live event discovery.
 
 The common thread is simple: take a messy, manual, ambiguous process and turn it into something useful.
 
