@@ -1,55 +1,68 @@
 ---
-pubDate: 2026-07-17
-title: Garden & Art Landscapes Growth System
-subtitle: A local marketing system that turns search demand and owner expertise into useful pages, reusable campaigns, and measurable inquiries.
-live: "https://www.landscapingraleigh.com"
+pubDate: 2026-07-18
+title: Garden & Art Landscapes Website
+subtitle: A distinctive local-service website that brings together landscape work, horticultural expertise, original art, and a clear path to new project inquiries.
+live: "https://www.landscapingraleigh.com/"
 image:
-  url: "/src/images/projects/garden-art-seo-dashboard.png"
-  alt: "Garden & Art Landscapes 90-day SEO dashboard showing its local search strategy and content production targets."
+  url: "/src/images/projects/garden-art-landscapes-website.png"
+  alt: "Garden & Art Landscapes homepage featuring a lush garden path and the headline Landscapes with a point of view."
 ---
 
 ## Overview
 
-[Garden & Art Landscapes](https://www.landscapingraleigh.com) is a Raleigh landscape design and installation company with deep horticultural expertise and years of finished work. I redesigned its website and built the foundation for a marketing system that can turn that expertise into qualified local inquiries.
+[Garden & Art Landscapes](https://www.landscapingraleigh.com/) is a Raleigh landscape design, installation, and garden-care company founded by horticulturist and artist Norman Rabins. I designed and built the complete website to give the business a digital presence as distinctive as the landscapes it creates.
 
-The work goes beyond a visual refresh. Search demand, service pages, owner knowledge, project media, campaign content, and conversion tracking are treated as parts of one operating system.
+The site brings together finished work, practical services, Norman's experience, original garden art, and a direct inquiry path. It presents the company as more than a landscaping contractor: a practice shaped by horticultural knowledge and an artist's eye.
 
 ## The Opportunity
 
-The business already had the hard parts: real expertise, local experience, and proof of its work. The missing piece was a repeatable way to package that evidence around what Raleigh homeowners actually search for, then measure whether the content creates useful conversations.
+Garden & Art already had the strongest raw materials for a compelling website: more than 20 years of local experience, deep plant knowledge, a broad range of built work, and an unusual creative point of view. The challenge was turning those strengths into a clear story that homeowners could understand quickly.
 
-The initial keyword baseline showed no relevant top-30 rankings. That made the goal clear: build local search visibility around the services the company wants to sell, without publishing thin or generic AI content.
+The website needed to feel elevated without becoming precious. It also had to explain a wide service offering, establish local credibility, show the quality of the work, and make it easy for a homeowner to start a conversation.
 
-## The System
+## The Experience
 
-### Search demand becomes the roadmap
+### Lead with a point of view
 
-Keyword research is mapped to the homepage, high-intent service pages, and a queue of useful supporting articles. The dashboard keeps the strategy visible: what people search for, which pages answer that demand, and what gets produced next.
+The opening pairs immersive garden photography with editorial typography and the line "Landscapes with a point of view." The art direction immediately distinguishes the company while concise supporting copy explains what it does and where it works.
 
-### Owner expertise stays in the loop
+### Let completed work build trust
 
-AI can speed up research, outlines, repurposing, and reporting. It does not replace Norman's horticultural judgment or the company's real project evidence. Each piece starts with owner input, customer questions, or project media and passes a quality check before publication.
+A visual portfolio shows retaining walls, ponds, gates, paths, patios, fireplaces, planting beds, and other finished landscapes. The imagery gives prospective clients tangible proof and helps them imagine the range of projects the company can take on.
 
-### One idea becomes a small campaign
+### Make a broad offering understandable
 
-The operating plan calls for at least two search-led articles per week. Each article can then be adapted for Facebook, Instagram, and Google Business Profile rather than creating every channel from scratch.
+Eight services—from landscape design and hardscapes to water systems, lighting, garden care, sod, seasonal cleanups, and tree work—are organized into a consistent, scannable system. Visitors can understand the whole practice without navigating a maze of pages.
 
-### Results connect to business value
+### Put expertise behind the work
 
-The measurement plan connects Google Analytics and Search Console to forms, phone taps, and email clicks. The live dashboard keeps the strategy, production targets, and scorecard visible without turning SEO into a black box.
+Norman's story connects his horticultural training, experience at the New York Botanical Garden, teaching, certifications, and artistic practice to the way he approaches a site. A dedicated gallery of original metalwork makes the creative dimension of the business visible rather than merely claiming it.
 
-## The 90-Day Operating Plan
+### Turn interest into a useful inquiry
 
-- Eight anchor website pages focused on the homepage and priority services
-- Twenty-four or more search-led posts built from real questions and project evidence
-- Four photo or video packages for use across the website, Google, and social channels
-- A lightweight email and review system that supports repeat business and local trust
-- A scorecard that tracks visibility, engagement, conversion, and business value
+Calls to action lead into a concise project form that asks for the information needed to begin a real conversation. Phone, email, location, license, and service-area details reinforce trust without interrupting the visual experience.
+
+## The Growth Foundation
+
+The website also serves as the foundation for a broader local marketing system. Service architecture, search metadata, real project imagery, and owner expertise can support search-led pages and useful content over time. The accompanying 90-day plan connects that foundation to ongoing publishing, campaign reuse, and inquiry measurement.
+
+The site comes first: a credible destination that future search, social, email, and local campaigns can confidently send people to.
+
+## What I Built
+
+- A custom responsive website and visual design system
+- Positioning and content architecture around the company's point of view
+- A project portfolio built from real landscape photography
+- Clear presentation of eight core service areas
+- Founder, experience, certification, and original-art storytelling
+- A focused project-inquiry experience with direct contact options
+- Accessibility, local SEO, structured metadata, and social sharing foundations
+- A content and measurement roadmap for continued growth
 
 ## My Role
 
-Product strategy, UX and visual design, website implementation, keyword research, content architecture, workflow design, and measurement planning.
+Product strategy, information architecture, UX and visual design, responsive frontend development, content structure, local SEO foundations, inquiry flow, growth planning, and launch.
 
 ## Why It Matters
 
-This is how I approach small-business marketing as an AI Product Engineer: not as a pile of disconnected posts, but as a product with inputs, workflows, quality gates, distribution, and feedback loops. AI handles more of the repetitive preparation. Human expertise and real-world proof remain the source of trust.
+The new site makes the business easier to understand without sanding away what makes it unusual. Garden & Art now has a digital home that shows the quality of its work, explains the expertise behind it, and gives local homeowners a clear reason—and a clear way—to get in touch.
