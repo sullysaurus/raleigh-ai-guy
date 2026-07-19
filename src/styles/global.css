@@ -5,7 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
   /* Typography */
-  --font-sans: Inter, sans-serif;
+  --font-sans: "Instrument Sans", sans-serif;
   /* colors */
   --color-white: #fafafa;
   --color-black: #12161d;
@@ -23,13 +23,6 @@
 
 }
 
-@supports (font-variation-settings: normal) {
-  /* Use variable font if supported */
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
-}
-
 :root {
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,
@@ -39,6 +32,39 @@
     /* Open six */ "cv04" 1, /* Open nine */ "cv01" 1,
     /* Alternate one */ "cv09", /* Flat-top three */ "cv02" 1; /* Open 4 */
 
-  
+  font-family: "Instrument Sans", sans-serif;
+  color-scheme: light;
 }
- 
+
+.dark { color-scheme: dark; }
+
+html { background: #f0ebdd; }
+html.dark { background: #11110f; }
+
+body {
+  font-family: "Instrument Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Anybody", sans-serif;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.prose h2 { margin-top: 3.5rem; }
+.prose h3 { margin-top: 2.5rem; }
+.prose a { text-decoration-color: #2947ff; text-decoration-thickness: 2px; }
+
+::selection {
+  color: #ffffff;
+  background: #2947ff;
+}
+
+a, button, summary { -webkit-tap-highlight-color: transparent; }

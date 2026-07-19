@@ -1,169 +1,68 @@
 ---
-// Assets
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
+
 const { frontmatter, readingTime, previous, next } = Astro.props;
-import { getCollection } from "astro:content";
-import BlogCard2 from "@/components/blog/BlogCard2.astro";
-const allPostsUnsorted = await getCollection("posts");
-const postImage = frontmatter.image.url;
-const postImageWidth = typeof postImage === "string" ? 1200 : postImage.width;
-const postImageHeight =
-  typeof postImage === "string" ? 675 : postImage.height;
-// Sort the posts in descending order by publication date (newest to oldest)
-const allPosts = allPostsUnsorted.sort(
-  (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
-const publishedDate = new Intl.DateTimeFormat("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "2-digit",
-  timeZone: "UTC",
-}).format(frontmatter.pubDate);
-const publishedDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
+const image = frontmatter.image.url;
+const date = frontmatter.pubDate.toLocaleDateString("en-US", { month:"long", day:"2-digit", year:"numeric", timeZone:"UTC" });
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description}>
-  <section>
-    <Wrapper variant="standard" class="pt-12 xl:pt-54">
-      <Text
-        tag="h1"
-        variant="textBase"
-        class="text-black dark:text-white font-medium"
-      >
-        {frontmatter.title}
-      </Text>
-      <Text
-        tag="p"
-        variant="textSM"
-        class="text-base-500 text-balance mt-4 dark:text-base-400"
-      >
-        {frontmatter.description}
-      </Text>
-      <Image
-        width={postImageWidth}
-        height={postImageHeight}
-        src={postImage}
-        alt={frontmatter.image.alt}
-        class="mt-2 h-auto w-full rounded-xl"
-      />
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="standard" class="pb-12">
-      <div class="border-t dark:border-white/10 border-black/10 pt-2 mt-2">
-        <div class="flex gap-4 items-start justify-between">
-          <div class="flex items-center gap-x-3">
-            <div class="flex flex-col text-base-500 dark:text-base-400">
-              <Text tag="span" variant="textXS" class="font-medium">
-                <time datetime={publishedDateTime}>
-                  Written on {publishedDate}
-                </time>
-                <span>·</span>
-                <span>{readingTime}</span>
-              </Text>
-              {
-                frontmatter.author && (
-                  <Text tag="span" variant="textXS" class="font-medium">
-                    by {frontmatter.author}
-                  </Text>
-                )
-              }
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-1">
-            {
-              frontmatter.tags.map((tag) => (
-                <>
-                  <Text
-                    tag="a"
-                    variant="textSM"
-                    title={tag}
-                    aria-label={tag}
-                    href={`/blog/tags/${tag}`}
-                    class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
-                  >
-                    {tag}
-                  </Text>
-                </>
-              ))
-            }
-          </div>
-        </div>
+  <article class="note-detail">
+    <header class="note-hero shell">
+      <p><span></span> Field note · {readingTime}</p>
+      <h1>{frontmatter.title}</h1>
+      <div>
+        <p>{frontmatter.description}</p>
+        <time datetime={frontmatter.pubDate.toISOString().slice(0,10)}>{date}</time>
+        <nav>{frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`}>#{tag}</a>)}</nav>
       </div>
-      <Wrapper variant="prose" class="mt-12">
-        <slot />
-      </Wrapper>
-      {
-        (previous || next) && (
-          <nav class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs mt-16">
-            <div>
-              {previous && (
-                <a
-                  href={`/blog/posts/${previous.id}`}
-                  class="hover:opacity-80 "
-                >
-                  <span class="block  text-black dark:text-white font-medium uppercase">
-                    Previous:
-                  </span>
-                  <span class="block  text-base-600 dark:text-base-400 text-balance">
-                    {previous.data.title}
-                  </span>
-                </a>
-              )}
-            </div>
+    </header>
 
-            <div>
-              {next && (
-                <a
-                  href={`/blog/posts/${next.id}`}
-                  class=" hover:opacity-80 text-right"
-                >
-                  <span class="block  text-black dark:text-white font-medium uppercase ">
-                    Next:
-                  </span>
-                  <span class="block  text-base-600 dark:text-base-400 text-balance">
-                    {next.data.title}
-                  </span>
-                </a>
-              )}
-            </div>
-          </nav>
-        )
-      }
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="standard" class="pt-8 pb-12 lg:pt-20 lg:pb-28">
-      <div
-        class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
-      >
-        <Text
-          tag="h3"
-          variant="textBase"
-          class="text-black dark:text-white font-medium"
-        >
-          Latest blog posts
-        </Text>
-        <div class="">
-          <Text
-            tag="a"
-            variant="textSM"
-            href="/blog/"
-            aria-label="See all blog posts"
-            title="See all blog posts"
-            class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
-            >See all posts
-          </Text>
-        </div>
-      </div>
-      <div class="mt-8 flex flex-col">
-        {allPosts.slice(0, 2).map((post) => <BlogCard2 post={post} />)}
-      </div>
-    </Wrapper>
-  </section>
+    <div class="note-art shell">
+      <Image src={image} alt={frontmatter.image.alt} width={image.width} height={image.height} loading="eager" />
+    </div>
+
+    <div class="note-body shell">
+      <aside><span>READING NOW</span><a href="/blog/">All notes ↗</a></aside>
+      <div class="prose"><slot /></div>
+    </div>
+
+    {(previous || next) && <nav class="note-nav shell">
+      {previous && <a href={`/blog/posts/${previous.id}`}>← {previous.data.title}</a>}
+      {next && <a href={`/blog/posts/${next.id}`}>{next.data.title} →</a>}
+    </nav>}
+  </article>
 </BaseLayout>
+
+<style>
+  .note-detail { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; color:var(--ink); }
+  :global(.dark) .note-detail { --ink:#f0ebdd; --paper:#11110f; }
+  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
+  .note-hero { min-height:65svh; display:grid; grid-template-columns:1fr minmax(260px,.34fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
+  .note-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .note-hero>p span { width:2.5rem; height:2px; background:#ff4b36; }
+  h1 { align-self:end; font-family:"Anybody"; font-size:clamp(4rem,8vw,8rem); font-weight:850; line-height:.82; letter-spacing:-.05em; text-transform:uppercase; }
+  .note-hero>div { align-self:end; }
+  .note-hero>div>p { font-size:1.05rem; line-height:1.6; }
+  time { display:block; margin:1.5rem 0; font-size:.65rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .note-hero nav { display:flex; gap:.4rem; flex-wrap:wrap; }
+  .note-hero nav a { padding:.35rem .55rem; border:1px solid currentColor; font-size:.6rem; }
+  .note-art { padding:clamp(1rem,3vw,3rem); background:#101114; box-shadow:12px 12px 0 var(--blue); }
+  .note-art img { width:100%; max-height:70svh; object-fit:cover; }
+  .note-body { display:grid; grid-template-columns:.25fr minmax(0,.75fr); gap:clamp(3rem,8vw,9rem); padding:clamp(6rem,10vw,10rem) 0; }
+  aside { display:flex; flex-direction:column; gap:1rem; align-items:flex-start; font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  aside span { color:var(--blue); }
+  aside a { border-bottom:1px solid currentColor; }
+  .prose { max-width:760px; padding:0; font-size:1rem; line-height:1.75; }
+  .prose :global(h2) { font-size:clamp(2.2rem,4vw,4rem); line-height:.95; }
+  .note-nav { display:flex; justify-content:space-between; gap:2rem; padding-bottom:8rem; font-size:.75rem; font-weight:800; text-transform:uppercase; }
+  .note-nav a { border-bottom:1px solid currentColor; }
+  @media(max-width:700px) {
+    .shell { width:min(100% - 28px,1320px); }
+    .note-hero,.note-body { grid-template-columns:1fr; min-height:auto; }
+    .note-hero { padding:4rem 0; }
+    .note-body { gap:2.5rem; }
+    aside { flex-direction:row; justify-content:space-between; }
+  }
+</style>

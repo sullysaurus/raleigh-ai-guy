@@ -1,67 +1,82 @@
 ---
-// Fundations
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Sections
-
-import BlogCard1 from "@/components/blog/BlogCard1.astro";
-// Components
-
-// Import the collection of all blog posts
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import readingTime from "reading-time";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const posts = await getCollection("posts");
-const sortedPosts = posts
-  .slice()
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
-const sortedTags: string[] = [
-  ...new Set(sortedPosts.flatMap((post) => post.data.tags || [])),
-].sort((a, b) => a.localeCompare(b));
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
 
-<BaseLayout
-  pageTitle="Blog"
-  pageDescription="Notes on AI automation, product work, and systems that help companies grow revenue."
->
-  <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
-      <Text
-        tag="h1"
-        variant="textBase"
-        class="text-black dark:text-white font-medium"
-      >
-        Notes on AI automation and product work
-      </Text>
-    </Wrapper>
-  </section>
+<BaseLayout pageTitle="Notes" pageDescription="Notes on AI, product work, automation, design, and building useful things.">
+  <div class="notes-page">
+    <header class="notes-hero shell">
+      <p><span></span> Field notes · Ideas in progress</p>
+      <h1>Thinking<br /><em>out loud.</em></h1>
+      <div>
+        <p>Notes on AI, product work, design, automation, and whatever I’m trying to understand by making it.</p>
+        <nav aria-label="Browse notes by topic">
+          {tags.map((tag) => <a href={`/blog/tags/${tag}`}>#{tag}</a>)}
+        </nav>
+      </div>
+    </header>
 
-  <section>
-    <Wrapper variant="standard" class="py-12">
-      <div class="mt-8 flex flex-wrap gap-1">
-        {
-          sortedTags.map((tag) => (
-            <>
-              <Button
-                size="small"
-                variant="muted"
-                title={tag}
-                aria-label={tag}
-                href={`/blog/tags/${tag}`}
-              >
-                {tag}
-              </Button>
-            </>
-          ))
-        }
-      </div>
-      <div
-        class="flex flex-col gap-8 mt-8 border-t dark:border-white/10 border-black/10 pt-4"
-      >
-        {sortedPosts.map((post) => <BlogCard1 post={post} />)}
-      </div>
-    </Wrapper>
-  </section>
+    <section class="notes-list shell" aria-label="All notes">
+      {posts.map((post, index) => {
+        const date = post.data.pubDate.toLocaleDateString("en-US", { month:"short", day:"2-digit", year:"numeric", timeZone:"UTC" });
+        const time = readingTime(post.body ?? "").text;
+        return (
+          <article>
+            <a href={`/blog/posts/${post.id}`}>
+              <span class="note-index">0{index + 1}</span>
+              <div class="note-image"><Image src={post.data.image.url} alt={post.data.image.alt} width={post.data.image.url.width} height={post.data.image.url.height} /></div>
+              <div class="note-copy">
+                <p>{date} · {time}</p>
+                <h2>{post.data.title}</h2>
+                <span>{post.data.description}</span>
+              </div>
+              <b>↗</b>
+            </a>
+          </article>
+        );
+      })}
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .notes-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; color:var(--ink); }
+  :global(.dark) .notes-page { --ink:#f0ebdd; --paper:#11110f; }
+  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
+  .notes-hero { min-height:68svh; display:grid; grid-template-columns:1fr minmax(260px,.35fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
+  .notes-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .notes-hero>p span { width:2.5rem; height:2px; background:#ff4b36; }
+  h1,h2 { font-family:"Anybody",sans-serif; text-transform:uppercase; }
+  h1 { font-size:clamp(5rem,12vw,12rem); font-weight:850; line-height:.76; letter-spacing:-.06em; }
+  h1 em { color:var(--blue); font-style:normal; }
+  .notes-hero>div { align-self:end; }
+  .notes-hero>div>p { line-height:1.6; }
+  .notes-hero nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
+  .notes-hero nav a { padding:.45rem .7rem; border:1px solid currentColor; font-size:.62rem; font-weight:800; text-transform:uppercase; }
+  .notes-list { padding:2rem 0 10rem; border-top:2px solid var(--ink); }
+  article a { display:grid; grid-template-columns:3rem 11rem 1fr auto; gap:clamp(1rem,3vw,3rem); align-items:center; padding:1.5rem 0; border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent); }
+  .note-index { align-self:start; font-family:"Anybody"; font-weight:800; }
+  .note-image { overflow:hidden; border:2px solid var(--ink); }
+  .note-image img { width:100%; aspect-ratio:1; object-fit:cover; transition:transform .4s; }
+  article:hover img { transform:scale(1.06); }
+  .note-copy>p { font-size:.6rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.6; }
+  .note-copy h2 { margin:.35rem 0 .6rem; font-size:clamp(1.8rem,4vw,4rem); font-weight:800; line-height:.9; }
+  .note-copy>span { max-width:40rem; display:block; font-size:.8rem; line-height:1.5; opacity:.68; }
+  article b { display:grid; place-items:center; width:3rem; height:3rem; background:#dcff45; color:#11110f; transition:transform .2s; }
+  article:hover b { transform:rotate(12deg); }
+  @media(max-width:700px) {
+    .shell { width:min(100% - 28px,1320px); }
+    .notes-hero { grid-template-columns:1fr; min-height:auto; padding:5rem 0; }
+    article a { grid-template-columns:2rem 5.5rem 1fr; align-items:start; }
+    article b { display:none; }
+    .note-copy h2 { font-size:1.7rem; }
+    .note-copy>span { display:none; }
+  }
+</style>

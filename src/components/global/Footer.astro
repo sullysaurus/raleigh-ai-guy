@@ -1,71 +1,42 @@
 ---
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-const navLinks = [
-  {
-    text: "Home",
-    href: "/",
-    classes: "hover:text-black duration-300 dark:hover:text-white/20",
-  },
-  {
-    text: "Blog",
-    href: "/blog/",
-    classes: "hover:text-black duration-300",
-  },
-  {
-    text: "Projects",
-    href: "/projects/",
-    classes: "hover:text-black duration-300",
-  },
-  {
-    text: "AI Workshops",
-    href: "/ai-workshops/",
-    classes: "hover:text-black duration-300",
-  },
-  {
-    text: "About",
-    href: "/about/",
-    classes: "hover:text-black duration-300",
-  },
-  {
-    text: "Start a project",
-    href: "/work-with-me/",
-    classes: "hover:text-black duration-300",
-  },
-  {
-    text: "LinkedIn",
-    href: "https://www.linkedin.com/in/danny-sullivan-raleigh/",
-    classes: "hover:text-black duration-300",
-  },
-];
-// Split the navLinks array into two columns
-const navLinksByColumn = [
-  navLinks.slice(Math.ceil(navLinks.length / 2)), // First column
-  navLinks.slice(0, Math.ceil(navLinks.length / 2)), // Second column
-];
+const year = new Date().getFullYear();
 ---
 
-<footer>
-  <Wrapper variant="standard" class="py-12">
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
-      {
-        navLinksByColumn.map((columnLinks) => (
-          <nav class="flex flex-col gap-y-2 text-base-500 dark:text-base-500">
-            {columnLinks.map((link) => (
-              <Text
-                tag="a"
-                variant="textSM"
-                href={link.href}
-                title={link.title}
-                aria-label={link.ariaLabel}
-                class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
-              >
-                {link.text}
-              </Text>
-            ))}
-          </nav>
-        ))
-      }
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span>DS</span>
+      <p>Independent product work<br />from Raleigh, North Carolina.</p>
     </div>
-  </Wrapper>
+    <nav aria-label="Footer navigation">
+      <div><small>Explore</small><a href="/projects/">Work</a><a href="/ventures/">Ventures</a><a href="/blog/">Notes</a><a href="/about/">About</a></div>
+      <div><small>Make contact</small><a href="/work-with-me/">Start something ↗</a><a href="https://www.linkedin.com/in/danny-sullivan-raleigh/">LinkedIn ↗</a></div>
+      <div><small>Also around here</small><a href="/ai-workshops/">AI workshops</a><span>Raleigh, NC</span></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>© {year} Danny Sullivan</span>
+    <span>Made with code, curiosity & volume</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
 </footer>
+
+<style>
+  .site-footer { margin-top:auto; padding:5rem max(20px,calc((100% - 1320px)/2)) 1.5rem; background:#101114; color:#f0ebdd; }
+  .footer-main { display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(4rem,10vw,10rem); padding-bottom:5rem; }
+  .footer-brand>span { display:grid; place-items:center; width:5rem; height:5rem; border:2px solid #f0ebdd; border-radius:50%; font-family:"Anybody",sans-serif; font-size:2rem; font-weight:900; transform:rotate(-8deg); }
+  .footer-brand p { margin-top:1.5rem; color:#aaa79f; font-size:.8rem; line-height:1.5; text-transform:uppercase; letter-spacing:.06em; }
+  nav { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  nav div { display:flex; flex-direction:column; gap:.7rem; }
+  nav small { margin-bottom:.5rem; color:#dcff45; font-size:.6rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  nav a,nav span { color:#b9b7af; font-size:.82rem; }
+  nav a:hover { color:white; }
+  .footer-bottom { display:flex; justify-content:space-between; gap:2rem; padding-top:1.25rem; border-top:1px solid #ffffff35; color:#817f79; font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .footer-bottom a:hover { color:white; }
+  @media (max-width:700px) {
+    .site-footer { padding-inline:14px; }
+    .footer-main,nav { grid-template-columns:1fr; }
+    nav { gap:2.5rem; }
+    .footer-bottom { flex-direction:column; gap:.7rem; }
+  }
+</style>

@@ -1,51 +1,12 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import { getCollection } from "astro:content";
-import BlogCard2 from "@/components/blog/BlogCard2.astro";
-export async function getStaticPaths() {
-  const allPosts = await getCollection("posts");
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
-  ];
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag)
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
-}
-const { tag } = Astro.params;
-const { posts } = Astro.props;
-const tagLabel =
-  tag === "ai" ? "AI" : tag ? tag.charAt(0).toUpperCase() + tag.slice(1) : "Tag";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+export async function getStaticPaths(){const all=await getCollection("posts");const tags=[...new Set(all.flatMap((p)=>p.data.tags))];return tags.map((tag)=>({params:{tag},props:{posts:all.filter((p)=>p.data.tags.includes(tag))}}));}
+const {tag}=Astro.params;const {posts}=Astro.props;const label=tag==="ai"?"AI":tag?tag.charAt(0).toUpperCase()+tag.slice(1):"Topic";
 ---
-
-<BaseLayout
-  pageTitle={`${tagLabel} Blog Posts`}
-  pageDescription={`Posts about ${tag} from Danny Sullivan.`}
-  noindex
->
-  <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
-      <Text
-        tag="h1"
-        variant="textBase"
-        class="text-black dark:text-white font-medium"
-      >
-        All posts about {tagLabel}
-      </Text>
-    </Wrapper>
-    <Wrapper variant="standard" class="py-12">
-      <div
-        class="flex flex-col border-t dark:border-white/10 border-black/10 pt-2"
-      >
-        {posts.map((post) => <BlogCard2 post={post} />)}
-      </div>
-    </Wrapper>
-  </section>
+<BaseLayout pageTitle={`${label} Notes`} pageDescription={`Notes about ${tag} from Danny Sullivan.`} noindex>
+  <section class="tag-results"><header><p><span></span> Filtered field notes</p><h1>Notes on<br /><em>{label}.</em></h1><a href="/blog/">All notes ↗</a></header><div class="results">{posts.map((post,index)=><a href={`/blog/posts/${post.id}`}><span>0{index+1}</span><div><small>{post.data.pubDate.toLocaleDateString("en-US",{month:"short",day:"2-digit",year:"numeric",timeZone:"UTC"})}</small><strong>{post.data.title}</strong><p>{post.data.description}</p></div><b>↗</b></a>)}</div></section>
 </BaseLayout>
+<style>
+  .tag-results{width:min(100% - 40px,1320px);min-height:75svh;margin:auto;padding:6rem 0;color:#11110f}.dark .tag-results{color:#f0ebdd}.tag-results header{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;margin-bottom:5rem}.tag-results header>p{grid-column:1/-1;display:flex;align-items:center;gap:.7rem;font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.tag-results header>p span{width:2.5rem;height:2px;background:#ff4b36}.tag-results h1{font-family:"Anybody";font-size:clamp(4.5rem,9vw,9rem);font-weight:850;line-height:.78;letter-spacing:-.06em;text-transform:uppercase}.tag-results h1 em{color:#2947ff;font-style:normal}.tag-results header>a{border-bottom:1px solid currentColor;font-size:.7rem;font-weight:800;text-transform:uppercase}.results{border-top:2px solid currentColor}.results>a{display:grid;grid-template-columns:3rem 1fr auto;gap:2rem;padding:1.5rem 0;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent)}.results>a>span{color:#2947ff;font-size:.65rem;font-weight:800}.results small{display:block;font-size:.6rem;text-transform:uppercase;opacity:.55}.results strong{display:block;margin:.4rem 0;font-family:"Anybody";font-size:clamp(1.8rem,3vw,3rem);line-height:.95;text-transform:uppercase}.results p{max-width:45rem;font-size:.78rem;line-height:1.5;opacity:.65}.results b{font-size:1.2rem}@media(max-width:650px){.tag-results{width:min(100% - 28px,1320px);padding:5rem 0}.tag-results header{grid-template-columns:1fr}.results>a{grid-template-columns:2rem 1fr}.results b{display:none}}
+</style>

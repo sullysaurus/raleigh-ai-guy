@@ -42,6 +42,7 @@ const fieldClass =
   pageTitle="Practical AI Workshops for Small Businesses"
   pageDescription="Request a free, practical AI lunch and learn for your small business or team. Clear examples, useful workflows, and responsible AI habits—without the hype."
 >
+  <div class="workshop-page">
   <section class="overflow-hidden">
     <Wrapper variant="standard" class="pt-12 pb-16 lg:pt-28 lg:pb-24">
       <div class="relative border-t border-black/10 pt-6 dark:border-white/10">
@@ -262,4 +263,21 @@ const fieldClass =
       </div>
     </Wrapper>
   </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .workshop-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --acid:#dcff45; color:var(--ink); }
+  :global(.dark) .workshop-page { --ink:#f0ebdd; --paper:#11110f; }
+  .workshop-page>section:first-child :global(.relative) { min-height:65svh; display:flex; flex-direction:column; justify-content:center; border-top:0!important; }
+  .workshop-page :global(h1) { max-width:1050px!important; font-size:clamp(4rem,8vw,8rem)!important; font-weight:850!important; line-height:.82!important; letter-spacing:-.05em!important; text-transform:uppercase; }
+  .workshop-page :global(h2) { font-family:"Anybody"; font-size:clamp(2rem,4vw,4rem)!important; font-weight:800!important; line-height:.95!important; text-transform:uppercase; }
+  .workshop-page :global(section>div>div.border-t) { border-top-width:2px!important; border-color:var(--ink)!important; }
+  .workshop-page :global(.rounded-2xl) { border-radius:0!important; }
+  .workshop-page :global(.grid.gap-px>div) { background:var(--paper)!important; }
+  .workshop-page :global(form) { border:2px solid var(--ink)!important; background:color-mix(in srgb,var(--paper) 84%,white 16%); box-shadow:8px 8px 0 var(--blue); }
+  :global(.dark) .workshop-page :global(form) { background:#161715; }
+  .workshop-page :global(input),.workshop-page :global(textarea) { border-radius:0!important; background:transparent!important; border-color:color-mix(in srgb,var(--ink) 35%,transparent)!important; }
+  .workshop-page :global(button[type="submit"]) { border-radius:0!important; background:var(--blue)!important; color:white!important; font-weight:800!important; letter-spacing:.07em; text-transform:uppercase; box-shadow:5px 5px 0 var(--ink); }
+  @media(max-width:700px){.workshop-page>section:first-child :global(.relative){min-height:auto}.workshop-page :global(h1){font-size:clamp(3.4rem,16vw,5rem)!important}}
+</style>

@@ -3,8 +3,8 @@ pubDate: 2026-05-31
 title: "How I help businesses automate the busy work"
 description: "A short intro to how I help teams use AI automations to save time, find revenue leaks, and turn messy workflows into systems that compound."
 image:
-  url: "./intro.png"
-  alt: "Illustration of a team using AI to turn manual busywork into completed summaries, reports, and action items."
+  url: "./intro-studio.png"
+  alt: "Three collaborators working through an automation workflow together in a gritty music studio."
 tags:
   - automation
   - ai

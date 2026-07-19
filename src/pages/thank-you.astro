@@ -1,29 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import Button from "@/components/fundations/elements/Button.astro";
 ---
-
-<BaseLayout
-  pageTitle="Project Brief Received"
-  pageDescription="Thanks for sharing your project brief with Danny Sullivan."
-  noindex={true}
->
-  <Wrapper variant="standard" class="py-24 lg:py-40">
-    <section class="border-t border-black/10 pt-6 dark:border-white/10">
-      <Text tag="p" variant="textXS" class="font-medium uppercase tracking-wide text-base-500 dark:text-base-400">
-        Brief received
-      </Text>
-      <Text tag="h1" variant="displayXS" class="mt-3 text-balance font-medium text-black dark:text-white">
-        Thanks. I’ll take a close look.
-      </Text>
-      <Text tag="p" variant="textSM" class="mt-6 max-w-lg text-base-500 dark:text-base-400 2xl:text-base">
-        Your project details are in. I’ll review the workflow, tools, and pain points you shared, then follow up by email with useful next steps.
-      </Text>
-      <div class="mt-8">
-        <Button href="/" variant="muted" size="medium">Back home</Button>
-      </div>
-    </section>
-  </Wrapper>
+<BaseLayout pageTitle="Project Brief Received" pageDescription="Thanks for sharing your project brief with Danny Sullivan." noindex>
+  <section class="received"><p><span></span> Brief received · Nice work</p><h1>It’s in.<br /><em>I’ll dig in.</em></h1><div><p>I’ll review the workflow, tools, and pain points you shared, then follow up by email with useful next steps.</p><a href="/">Back home <span>↗</span></a></div></section>
 </BaseLayout>
+<style>
+  .received{width:min(100% - 40px,1320px);min-height:75svh;margin:auto;display:grid;grid-template-columns:1fr minmax(260px,.35fr);gap:2rem 6rem;align-content:center;color:#11110f}.dark .received{color:#f0ebdd}.received>p{grid-column:1/-1;display:flex;align-items:center;gap:.7rem;font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.received>p span{width:2.5rem;height:2px;background:#ff4b36}.received h1{font-family:"Anybody";font-size:clamp(4.5rem,10vw,10rem);font-weight:850;line-height:.78;letter-spacing:-.06em;text-transform:uppercase}.received h1 em{color:#2947ff;font-style:normal}.received>div{align-self:end}.received>div p{line-height:1.6}.received a{display:flex;justify-content:space-between;margin-top:2rem;padding:1rem;background:#2947ff;color:white;box-shadow:5px 5px 0 #11110f;font-size:.7rem;font-weight:800;text-transform:uppercase}@media(max-width:650px){.received{width:min(100% - 28px,1320px);grid-template-columns:1fr;align-content:center}}
+</style>

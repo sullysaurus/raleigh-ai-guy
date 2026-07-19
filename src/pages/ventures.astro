@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.png";
+---
+
+<BaseLayout
+  pageTitle="Ventures"
+  pageDescription="Independent businesses and useful experiments built by Danny Sullivan in Raleigh, North Carolina."
+>
+  <div class="ventures-page">
+    <header class="ventures-hero shell">
+      <p><span></span> Independent businesses · Experiments with a pulse</p>
+      <h1>My ideas.<br /><em>Out in the wild.</em></h1>
+      <div>
+        <p>
+          Not client work. Not side-project purgatory. These are businesses and
+          experiments I own, operate, and keep pushing into the real world.
+        </p>
+        <small>Built in Raleigh<br />Made to earn its keep</small>
+      </div>
+    </header>
+
+    <section class="venture shell" aria-labelledby="rlr-title">
+      <div class="venture-number">01</div>
+      <a class="venture-image" href="https://raleighleadrecovery.com/" target="_blank" rel="noreferrer">
+        <Image
+          src={raleighLeadRecovery}
+          alt="Raleigh Lead Recovery website homepage"
+          width={raleighLeadRecovery.width}
+          height={raleighLeadRecovery.height}
+          loading="eager"
+        />
+        <span>LIVE NOW ↗</span>
+      </a>
+      <div class="venture-copy">
+        <p>LOCAL SERVICE / AI / AUTOMATION</p>
+        <h2 id="rlr-title">Raleigh Lead Recovery</h2>
+        <strong>Keep working. We’ll catch the call.</strong>
+        <p>
+          A missed-call recovery service for busy Raleigh businesses. Dana
+          answers the calls that would have gone to voicemail, captures what the
+          customer needs, and texts the opportunity to the team—without replacing
+          their existing phone system.
+        </p>
+        <ul>
+          <li>Missed-call capture</li>
+          <li>Custom caller intake</li>
+          <li>Fast team alerts</li>
+          <li>Seven-day lead report</li>
+        </ul>
+        <a class="visit" href="https://raleighleadrecovery.com/" target="_blank" rel="noreferrer">Visit Raleigh Lead Recovery <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="next shell">
+      <p>02 / NEXT SLOT</p>
+      <h2>Another useful idea<br /><em>goes here.</em></h2>
+      <span>This page is built to grow as the next venture gets real.</span>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(body) { background:#f0ebdd; }
+  :global(.dark body) { background:#11110f; }
+  .ventures-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --red:#ff4b36; --acid:#dcff45; color:var(--ink); overflow:hidden; }
+  :global(.dark) .ventures-page { --ink:#f0ebdd; --paper:#11110f; }
+  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
+  .ventures-hero { min-height:68svh; display:grid; grid-template-columns:1fr minmax(260px,.34fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
+  .ventures-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .ventures-hero>p span { width:2.5rem; height:2px; background:var(--red); }
+  h1,h2 { font-family:"Anybody",sans-serif; text-transform:uppercase; }
+  h1 { font-size:clamp(4.6rem,10.5vw,10.5rem); font-weight:850; line-height:.78; letter-spacing:-.055em; }
+  h1 em,h2 em { color:var(--blue); font-style:normal; }
+  .ventures-hero>div { align-self:end; }
+  .ventures-hero>div>p { font-size:1.08rem; line-height:1.65; }
+  .ventures-hero small { display:block; margin-top:2rem; font-size:.62rem; font-weight:800; letter-spacing:.12em; line-height:1.5; text-transform:uppercase; }
+  .venture { position:relative; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.68fr); gap:clamp(3rem,7vw,7rem); padding:clamp(5rem,9vw,9rem) 0; border-top:2px solid var(--ink); }
+  .venture-number { position:absolute; top:1.3rem; left:0; font-family:"Anybody"; font-size:.8rem; font-weight:850; }
+  .venture-image { position:relative; align-self:start; margin-top:1rem; padding:.8rem; background:#101114; border:2px solid var(--ink); box-shadow:14px 14px 0 var(--acid); transform:rotate(-1deg); transition:transform .3s; }
+  .venture-image:hover { transform:rotate(.4deg) translateY(-6px); }
+  .venture-image img { display:block; width:100%; height:auto; object-fit:contain; }
+  .venture-image span { position:absolute; right:-1rem; bottom:1.5rem; padding:.65rem 1rem; background:var(--red); color:white; font-size:.62rem; font-weight:850; letter-spacing:.1em; transform:rotate(5deg); }
+  .venture-copy>p:first-child { color:var(--blue); font-size:.62rem; font-weight:850; letter-spacing:.13em; }
+  .venture-copy h2 { margin:1rem 0 1.5rem; font-size:clamp(3.2rem,6vw,6rem); font-weight:850; line-height:.86; letter-spacing:-.045em; }
+  .venture-copy strong { display:block; max-width:26rem; font-family:"Instrument Serif",serif; font-size:clamp(1.6rem,2.8vw,2.6rem); font-weight:400; line-height:1.05; }
+  .venture-copy>p:nth-of-type(2) { margin:2rem 0; line-height:1.7; }
+  ul { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:2.2rem; border-top:1px solid currentColor; }
+  li { padding:.8rem 0; border-bottom:1px solid currentColor; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+  li:nth-child(odd) { padding-right:1rem; }
+  .visit { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; padding:1rem 1.15rem; background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); font-size:.72rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s; }
+  .visit:hover { transform:translate(-3px,-3px); }
+  .next { margin-bottom:5rem; padding:clamp(3rem,6vw,6rem); background:#101114; color:#f0ebdd; box-shadow:10px 10px 0 var(--blue); }
+  .next>p { color:var(--acid); font-size:.62rem; font-weight:850; letter-spacing:.14em; }
+  .next h2 { margin:1.25rem 0 2rem; font-size:clamp(3.2rem,7vw,7rem); font-weight:850; line-height:.85; letter-spacing:-.045em; }
+  .next h2 em { color:var(--acid); }
+  .next span { color:#a9a79f; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; }
+  @media(max-width:800px) {
+    .ventures-hero,.venture { grid-template-columns:1fr; }
+    .ventures-hero { min-height:auto; padding:5rem 0; }
+    .venture { padding-top:5rem; }
+  }
+  @media(max-width:620px) {
+    .shell { width:min(100% - 28px,1320px); }
+    h1 { font-size:clamp(3.8rem,17vw,5.8rem); }
+    ul { grid-template-columns:1fr; }
+    li:nth-child(odd) { padding-right:0; }
+    .venture-image span { right:-.3rem; }
+    .next { padding:2rem; }
+  }
+</style>

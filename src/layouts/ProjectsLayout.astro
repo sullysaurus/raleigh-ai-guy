@@ -1,117 +1,99 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { Image } from "astro:assets";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 const { frontmatter, previous, next } = Astro.props;
 const projectDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "2-digit",
   timeZone: "UTC",
 }).format(frontmatter.pubDate);
 const projectDateTime = frontmatter.pubDate.toISOString().slice(0, 10);
 const projectImage = frontmatter.image.url;
-const projectImageWidth =
-  typeof projectImage === "string" ? 1200 : projectImage.width;
-const projectImageHeight =
-  typeof projectImage === "string" ? 900 : projectImage.height;
-const isPortraitImage = projectImageHeight > projectImageWidth;
-const imageFrameClass = isPortraitImage
-  ? "mt-8 bg-black/5 dark:bg-white/5 p-6 sm:p-10 lg:p-14"
-  : "mt-8 bg-black/5 dark:bg-white/5 p-8 lg:p-16";
-const projectImageClass = isPortraitImage
-  ? "mx-auto max-h-[760px] w-auto max-w-full rounded-[2rem] object-contain shadow-sm"
-  : "mx-auto w-full rounded-xl object-contain";
+const projectImageWidth = typeof projectImage === "string" ? 1440 : projectImage.width;
+const projectImageHeight = typeof projectImage === "string" ? 1000 : projectImage.height;
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.subtitle}>
-  <section>
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
-      <Text
-        tag="h1"
-        variant="textBase"
-        class="text-black dark:text-white font-medium"
-      >
-        {frontmatter.title}
-      </Text>
-    </Wrapper>
-    <Wrapper variant="standard" class="py-12">
-      <div class="border-t dark:border-white/10 border-black/10 pt-2">
-        <Text
-          tag="p"
-          variant="textSM"
-          class="2xl:text-base mt-2 dark:text-base-400 text-base-500"
-        >
-          {frontmatter.subtitle}
-        </Text>
-        <div class="flex items-center justify-between mt-8">
-          <Text
-            tag="h1"
-            variant="textBase"
-            class="text-black dark:text-white font-medium"
-          >
-            Launched on <time datetime={projectDateTime}>{projectDate}</time>
-          </Text>
-          <Text
-            tag="a"
-            variant="textSM"
-            href={frontmatter.live}
-            title={frontmatter.title}
-            aria-label={frontmatter.title}
-            class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
-          >
-            Visit &nbsp; &rarr;
-          </Text>
-        </div>
+  <article class="case-study">
+    <header class="case-hero shell">
+      <p class="kicker"><span></span> Selected work · Case study</p>
+      <h1>{frontmatter.title}</h1>
+      <div class="case-intro">
+        <p>{frontmatter.subtitle}</p>
+        <dl>
+          <div><dt>Released</dt><dd><time datetime={projectDateTime}>{projectDate}</time></dd></div>
+          <div><dt>Discipline</dt><dd>Strategy / Design / Build</dd></div>
+        </dl>
+        <a class="visit" href={frontmatter.live} target="_blank" rel="noreferrer">Visit the live site <span>↗</span></a>
       </div>
-      <div class={imageFrameClass}>
-        <Image
-          width={projectImageWidth}
-          height={projectImageHeight}
-          src={projectImage}
-          alt={frontmatter.image.alt}
-          class={projectImageClass}
-        />
-      </div>
-      <Wrapper variant="prose" class="mt-8">
-        <slot />
-      </Wrapper>
-      <nav
-        class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs mt-24"
-      >
-        <div>
-          {
-            previous && (
-              <a href={`/projects/${previous.id}`} class="hover:opacity-80 ">
-                <span class="block  text-black dark:text-white font-medium uppercase">
-                  Previous:
-                </span>
-                <span class="block  text-base-600 dark:text-base-400 text-balance">
-                  {previous.data.title}
-                </span>
-              </a>
-            )
-          }
-        </div>
-        <div>
-          {
-            next && (
-              <a
-                href={`/projects/${next.id}`}
-                class=" hover:opacity-80 text-right"
-              >
-                <span class="block  text-black dark:text-white font-medium uppercase ">
-                  Next:
-                </span>
-                <span class="block  text-base-600 dark:text-base-400 text-balance">
-                  {next.data.title}
-                </span>
-              </a>
-            )
-          }
-        </div>
+    </header>
+
+    <div class="hero-image shell">
+      <span class="tape">THE FINISHED THING</span>
+      <Image
+        width={projectImageWidth}
+        height={projectImageHeight}
+        src={projectImage}
+        alt={frontmatter.image.alt}
+        loading="eager"
+      />
+    </div>
+
+    <div class="story-grid shell">
+      <aside>
+        <span>THE STORY</span>
+        <a href={frontmatter.live} target="_blank" rel="noreferrer">Open project ↗</a>
+      </aside>
+      <div class="prose case-prose"><slot /></div>
+    </div>
+
+    {(previous || next) && (
+      <nav class="case-nav shell" aria-label="More projects">
+        {previous ? <a href={`/projects/${previous.id}`}><small>Previous release</small><strong>{previous.data.title}</strong><span>←</span></a> : <span />}
+        {next && <a href={`/projects/${next.id}`}><small>Next release</small><strong>{next.data.title}</strong><span>→</span></a>}
       </nav>
-    </Wrapper>
-  </section>
+    )}
+  </article>
 </BaseLayout>
+
+<style>
+  .case-study { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --acid:#dcff45; color:var(--ink); }
+  :global(.dark) .case-study { --ink:#f0ebdd; --paper:#11110f; }
+  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
+  .case-hero { min-height:70svh; display:grid; grid-template-columns:1fr minmax(280px,.35fr); gap:2rem 5rem; align-content:center; padding:5rem 0; }
+  .kicker { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .kicker span { width:2.5rem; height:2px; background:#ff4b36; }
+  h1 { align-self:end; max-width:900px; font-size:clamp(4.5rem,9vw,9rem); font-weight:850; line-height:.8; letter-spacing:-.055em; text-transform:uppercase; }
+  .case-intro { align-self:end; }
+  .case-intro>p { font-size:clamp(1rem,1.4vw,1.2rem); line-height:1.55; }
+  dl { margin:2rem 0; border-top:1px solid currentColor; }
+  dl div { display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent); font-size:.65rem; text-transform:uppercase; letter-spacing:.07em; }
+  dt { font-weight:800; } dd { text-align:right; opacity:.65; }
+  .visit { display:flex; justify-content:space-between; padding:1rem; background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+  .hero-image { position:relative; padding:clamp(1rem,3vw,3rem); background:#101114; box-shadow:12px 12px 0 var(--blue); }
+  .hero-image img { width:100%; height:auto; border:1px solid #ffffff2c; }
+  .tape { position:absolute; z-index:1; top:-1rem; left:8%; padding:.55rem 1rem; background:var(--acid); color:#11110f; font-size:.6rem; font-weight:850; letter-spacing:.09em; transform:rotate(-3deg); }
+  .story-grid { display:grid; grid-template-columns:.25fr minmax(0,.75fr); gap:clamp(3rem,8vw,9rem); padding:clamp(6rem,10vw,10rem) 0; }
+  aside { display:flex; flex-direction:column; align-items:flex-start; gap:1rem; font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+  aside span { color:var(--blue); }
+  aside a { border-bottom:1px solid currentColor; }
+  .case-prose { max-width:760px; padding:0; font-size:1rem; line-height:1.75; }
+  .case-prose :global(h2) { font-size:clamp(2.2rem,4vw,4rem); line-height:.95; }
+  .case-prose :global(h3) { color:var(--blue); font-size:1.35rem; }
+  .case-nav { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding-bottom:8rem; }
+  .case-nav a { min-height:11rem; display:grid; grid-template-columns:1fr auto; align-content:space-between; gap:1rem; padding:1.5rem; border:2px solid var(--ink); transition:background .2s,color .2s; }
+  .case-nav a:hover { background:var(--ink); color:var(--paper); }
+  .case-nav small { grid-column:1/-1; font-size:.6rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; opacity:.6; }
+  .case-nav strong { font-family:"Anybody"; font-size:clamp(1.4rem,3vw,2.8rem); line-height:.95; text-transform:uppercase; }
+  .case-nav a:last-child { text-align:right; }
+  @media(max-width:760px) {
+    .shell { width:min(100% - 28px,1320px); }
+    .case-hero,.story-grid { grid-template-columns:1fr; min-height:auto; }
+    .case-hero { padding:4rem 0; }
+    .story-grid { gap:2.5rem; }
+    aside { flex-direction:row; justify-content:space-between; }
+    .case-nav { grid-template-columns:1fr; }
+  }
+</style>

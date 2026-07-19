@@ -30,6 +30,7 @@ const fieldClass =
   pageTitle="Start a Project with Danny Sullivan"
   pageDescription="Tell me about your business, workflow, and biggest operational pain points. I’ll look for practical ways AI, automation, or better systems could help."
 >
+  <div class="editorial-form-page">
   <Wrapper variant="standard" class="pt-12 pb-24 lg:pt-28 lg:pb-32">
     <header class="border-t border-black/10 pt-6 dark:border-white/10">
       <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
@@ -251,6 +252,7 @@ const fieldClass =
     </form>
   </Wrapper>
 
+  </div>
   <script>
     const form = document.querySelector("#intake-form");
     const progressBar = document.querySelector("#progress-bar");
@@ -320,3 +322,20 @@ const fieldClass =
     }
   </script>
 </BaseLayout>
+
+<style>
+  .editorial-form-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; color:var(--ink); }
+  :global(.dark) .editorial-form-page { --ink:#f0ebdd; --paper:#11110f; }
+  .editorial-form-page :global(header) { min-height:56svh; display:flex; align-items:center; border-top:0!important; }
+  .editorial-form-page :global(header>div) { width:100%; }
+  .editorial-form-page :global(header h1) { max-width:950px!important; margin-top:1rem; font-size:clamp(4rem,8vw,8rem)!important; font-weight:850!important; line-height:.82!important; letter-spacing:-.05em!important; text-transform:uppercase; }
+  .editorial-form-page :global(header h1::after) { content:""; display:inline-block; width:.42em; height:.12em; margin-left:.12em; background:var(--blue); }
+  .editorial-form-page :global(header p:first-child) { color:var(--blue)!important; font-weight:800!important; letter-spacing:.14em!important; }
+  .editorial-form-page :global(form>section) { border:2px solid var(--ink)!important; border-radius:0!important; background:color-mix(in srgb,var(--paper) 84%,white 16%); box-shadow:7px 7px 0 color-mix(in srgb,var(--ink) 16%,transparent); }
+  :global(.dark) .editorial-form-page :global(form>section) { background:#161715; }
+  .editorial-form-page :global(form legend) { font-family:"Anybody"; font-size:1.7rem!important; font-weight:800!important; text-transform:uppercase; }
+  .editorial-form-page :global(input),.editorial-form-page :global(textarea),.editorial-form-page :global(select) { border-radius:0!important; border-color:color-mix(in srgb,var(--ink) 35%,transparent)!important; background:transparent!important; }
+  .editorial-form-page :global(#progress-bar) { background:var(--blue)!important; }
+  .editorial-form-page :global(.sticky) { border-radius:0!important; border:2px solid var(--ink)!important; background:color-mix(in srgb,var(--paper) 92%,transparent)!important; }
+  @media(max-width:700px){.editorial-form-page :global(header){min-height:auto}.editorial-form-page :global(header h1){font-size:clamp(3.4rem,17vw,5rem)!important}}
+</style>
