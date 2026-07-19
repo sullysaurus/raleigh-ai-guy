@@ -279,5 +279,12 @@ const fieldClass =
   :global(.dark) .workshop-page :global(form) { background:#161715; }
   .workshop-page :global(input),.workshop-page :global(textarea) { border-radius:0!important; background:transparent!important; border-color:color-mix(in srgb,var(--ink) 35%,transparent)!important; }
   .workshop-page :global(button[type="submit"]) { border-radius:0!important; background:var(--blue)!important; color:white!important; font-weight:800!important; letter-spacing:.07em; text-transform:uppercase; box-shadow:5px 5px 0 var(--ink); }
-  @media(max-width:700px){.workshop-page>section:first-child :global(.relative){min-height:auto}.workshop-page :global(h1){font-size:clamp(3.4rem,16vw,5rem)!important}}
+  @media(max-width:700px){
+    .workshop-page>section:first-child :global(.relative){min-height:auto;padding-top:1rem}
+    .workshop-page :global(h1){max-width:100%!important;font-size:clamp(2.85rem,13vw,4.2rem)!important;line-height:.86!important;overflow-wrap:anywhere}
+    .workshop-page :global(h2){font-size:clamp(1.85rem,9vw,2.65rem)!important;line-height:.94!important;overflow-wrap:anywhere}
+    .workshop-page :global(p:not(.uppercase)){line-height:1.55}
+    .workshop-page :global(.mt-8.flex.flex-wrap){align-items:flex-start;flex-direction:column;gap:.75rem}
+    .workshop-page :global(form){box-shadow:5px 5px 0 var(--blue)}
+  }
 </style>
