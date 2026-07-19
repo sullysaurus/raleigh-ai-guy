@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import drumForFun from "@/images/ventures/drum-for-fun-concept.png";
 import popstarPhotoBooths from "@/images/ventures/popstar-photo-booths-hero.png";
+import prowl from "@/images/ventures/prowl-app-website.png";
 import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.png";
 ---
 
@@ -54,14 +56,47 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
       </div>
     </section>
 
-    <section class="venture venture-past shell" aria-labelledby="popstar-title">
+    <section class="venture venture-app shell" aria-labelledby="prowl-title">
       <div class="venture-number">02</div>
+      <a class="venture-image" href="https://prowl.fm/" target="_blank" rel="noreferrer">
+        <Image
+          src={prowl}
+          alt="Prowl live music discovery app website"
+          width={prowl.width}
+          height={prowl.height}
+          loading="eager"
+        />
+        <span>LIVE ON THE APP STORE</span>
+      </a>
+      <div class="venture-copy">
+        <p>MOBILE / MUSIC / DISCOVERY</p>
+        <h2 id="prowl-title">Prowl.fm</h2>
+        <strong>Find live music near you, right now.</strong>
+        <p>
+          A real-time map for finding nearby live music while it is still
+          happening. Fans and artists put the room on the map, listeners follow
+          the signal, and the city becomes the lineup. Prowl is live and free on
+          iPhone.
+        </p>
+        <ul>
+          <li>Real-time music map</li>
+          <li>Nearby live signals</li>
+          <li>Fan & artist posts</li>
+          <li>Free on iPhone</li>
+        </ul>
+        <a class="visit visit-app" href="https://apps.apple.com/us/app/prowl-96a41b/id6769466074" target="_blank" rel="noreferrer">Get Prowl on the App Store <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="venture venture-past shell" aria-labelledby="popstar-title">
+      <div class="venture-number">03</div>
       <a class="venture-image" href="https://popstarphotobooths.com/" target="_blank" rel="noreferrer">
         <Image
           src={popstarPhotoBooths}
           alt="Popstar Photo Booths website homepage"
           width={popstarPhotoBooths.width}
           height={popstarPhotoBooths.height}
+          loading="eager"
         />
         <span>BUILT → SOLD</span>
       </a>
@@ -85,8 +120,40 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
       </div>
     </section>
 
+    <section class="venture venture-concept shell" aria-labelledby="drum-title">
+      <div class="venture-number">04</div>
+      <a class="venture-image" href="https://drumforfun.netlify.app/" target="_blank" rel="noreferrer">
+        <Image
+          src={drumForFun}
+          alt="Drum for Fun adult drum studio concept website"
+          width={drumForFun.width}
+          height={drumForFun.height}
+          loading="eager"
+        />
+        <span>CONCEPT / NOT LIVE</span>
+      </a>
+      <div class="venture-copy">
+        <p>IDEA / MUSIC / MEMBERSHIP</p>
+        <h2 id="drum-title">Drum for Fun</h2>
+        <strong>Learn, restart, or just hit something in time.</strong>
+        <p>
+          An early concept for a private drum studio built specifically for
+          grown-ups. No kids, no recitals, no judgment—just private rooms,
+          ready-to-play gear, flexible memberships, and music people actually
+          want to learn. It is an idea and prototype, not an operating business.
+        </p>
+        <ul>
+          <li>Adults only</li>
+          <li>Private rooms</li>
+          <li>Gear included</li>
+          <li>Waitlist concept</li>
+        </ul>
+        <a class="visit visit-concept" href="https://drumforfun.netlify.app/" target="_blank" rel="noreferrer">View the concept <span>↗</span></a>
+      </div>
+    </section>
+
     <section class="next shell">
-      <p>03 / NEXT SLOT</p>
+      <p>05 / NEXT SLOT</p>
       <h2>Another useful idea<br /><em>goes here.</em></h2>
       <span>This page is built to grow as the next venture gets real.</span>
     </section>
@@ -114,10 +181,16 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
   .venture-image:hover { transform:rotate(.4deg) translateY(-6px); }
   .venture-image img { display:block; width:100%; height:auto; object-fit:contain; }
   .venture-image span { position:absolute; right:-1rem; bottom:1.5rem; padding:.65rem 1rem; background:var(--red); color:white; font-size:.62rem; font-weight:850; letter-spacing:.1em; transform:rotate(5deg); }
-  .venture-past .venture-image { grid-column:2; grid-row:1; box-shadow:14px 14px 0 var(--red); transform:rotate(1deg); }
+  .venture-app .venture-image { grid-column:2; grid-row:1; box-shadow:14px 14px 0 var(--blue); transform:rotate(1deg); }
+  .venture-app .venture-image:hover { transform:rotate(-.4deg) translateY(-6px); }
+  .venture-app .venture-image span { left:-1rem; right:auto; background:var(--acid); color:#11110f; transform:rotate(-5deg); }
+  .venture-app .venture-copy { grid-column:1; grid-row:1; }
+  .venture-past .venture-image { box-shadow:14px 14px 0 var(--red); transform:rotate(-1deg); }
   .venture-past .venture-image:hover { transform:rotate(-.4deg) translateY(-6px); }
   .venture-past .venture-image span { left:-1rem; right:auto; background:var(--acid); color:#11110f; transform:rotate(-5deg); }
-  .venture-past .venture-copy { grid-column:1; grid-row:1; }
+  .venture-concept .venture-image { grid-column:2; grid-row:1; box-shadow:14px 14px 0 var(--blue); transform:rotate(1deg); }
+  .venture-concept .venture-image span { background:var(--acid); color:#11110f; }
+  .venture-concept .venture-copy { grid-column:1; grid-row:1; }
   .venture-copy>p:first-child { color:var(--blue); font-size:.62rem; font-weight:850; letter-spacing:.13em; }
   .venture-copy h2 { margin:1rem 0 1.5rem; font-size:clamp(3.2rem,6vw,6rem); font-weight:850; line-height:.86; letter-spacing:-.045em; }
   .venture-copy strong { display:block; max-width:26rem; font-family:"Instrument Serif",serif; font-size:clamp(1.6rem,2.8vw,2.6rem); font-weight:400; line-height:1.05; }
@@ -128,6 +201,8 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
   .visit { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; padding:1rem 1.15rem; background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); font-size:.72rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s; }
   .visit:hover { transform:translate(-3px,-3px); }
   .visit-past { background:var(--red); }
+  .visit-app { background:var(--acid); color:#11110f; }
+  .visit-concept { background:#101114; color:#f0ebdd; }
   .next { margin-bottom:5rem; padding:clamp(3rem,6vw,6rem); background:#101114; color:#f0ebdd; box-shadow:10px 10px 0 var(--blue); }
   .next>p { color:var(--acid); font-size:.62rem; font-weight:850; letter-spacing:.14em; }
   .next h2 { margin:1.25rem 0 2rem; font-size:clamp(3.2rem,7vw,7rem); font-weight:850; line-height:.85; letter-spacing:-.045em; }
@@ -137,7 +212,7 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
     .ventures-hero,.venture { grid-template-columns:1fr; }
     .ventures-hero { min-height:auto; padding:5rem 0; }
     .venture { padding-top:5rem; }
-    .venture-past .venture-image,.venture-past .venture-copy { grid-column:auto; grid-row:auto; }
+    .venture-app .venture-image,.venture-app .venture-copy,.venture-concept .venture-image,.venture-concept .venture-copy { grid-column:auto; grid-row:auto; }
   }
   @media(max-width:620px) {
     .shell { width:min(100% - 28px,1320px); }
