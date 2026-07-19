@@ -10,6 +10,7 @@ const groups = [
     tools: [
       { name: "ChatGPT", use: "Research, rough thinking, writing, and working through ambiguity.", status: "Daily driver" },
       { name: "Claude", use: "Long-context synthesis, critique, and thoughtful second passes.", status: "In rotation" },
+      { name: "Gemini", use: "Multimodal research, fast comparisons, and another useful angle on the problem.", status: "In rotation" },
       { name: "Codex", use: "Turning plans into working software without losing momentum.", status: "On repeat" },
     ],
   },
@@ -146,10 +147,10 @@ const groups = [
   .marquee b { color:var(--acid); }
   @keyframes scroll { to { transform:translateX(-50%); } }
   .toolbox { padding:clamp(6rem,10vw,10rem) 0; }
-  .tool-group { display:grid; grid-template-columns:minmax(280px,.48fr) minmax(0,1fr); gap:clamp(2.5rem,5vw,5rem); padding:clamp(4rem,7vw,7rem) 0; border-top:2px solid var(--ink); }
+  .tool-group { display:grid; grid-template-columns:minmax(300px,.52fr) minmax(0,1fr); gap:clamp(2.5rem,5vw,5rem); padding:clamp(4rem,7vw,7rem) 0; border-top:2px solid var(--ink); }
   .tool-group>header { min-width:0; display:grid; grid-template-columns:2rem minmax(0,1fr); gap:1rem; align-content:start; align-self:start; }
   .tool-group>header>span { padding-top:.5rem; color:var(--red); font-size:.65rem; font-weight:900; }
-  .tool-group h2 { max-width:100%; font-size:clamp(2.5rem,3.6vw,3.9rem); font-weight:850; line-height:.88; letter-spacing:-.04em; }
+  .tool-group h2 { max-width:100%; font-size:clamp(2.4rem,3.2vw,3.4rem); font-weight:850; line-height:.88; letter-spacing:-.045em; }
   .tool-group header p { max-width:19rem; margin-top:1.2rem; font-size:.78rem; line-height:1.55; opacity:.68; }
   ol { border-top:1px solid color-mix(in srgb,currentColor 40%,transparent); }
   li { min-width:0; display:grid; grid-template-columns:2.3rem minmax(200px,.36fr) minmax(0,1fr) auto; gap:1.25rem; align-items:center; padding:1.6rem 0; border-bottom:1px solid color-mix(in srgb,currentColor 40%,transparent); transition:padding .22s,background .22s; }
@@ -159,7 +160,7 @@ const groups = [
   li>p { max-width:31rem; font-size:.82rem; line-height:1.55; opacity:.72; }
   li small { padding:.4rem .55rem; border:1px solid currentColor; font-size:.54rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
   .tone-red .tool-index,.tone-red>header>span { color:var(--red); }
-  .tone-acid { margin-inline:max(-20px,calc((1320px - 100vw)/2)); padding-inline:max(20px,calc((100vw - 1320px)/2)); background:#101114; color:#f0ebdd; }
+  .tone-acid { box-sizing:border-box; width:100vw; margin-left:calc(50% - 50vw); padding-inline:max(20px,calc((100vw - 1320px)/2)); background:#101114; color:#f0ebdd; }
   .tone-acid h2,.tone-acid .tool-index,.tone-acid>header>span { color:var(--acid); }
   .tone-acid li:hover { background:#ffffff0a; }
   .tone-paper h2 { color:var(--blue); }
@@ -169,10 +170,12 @@ const groups = [
   .uses-closing h2 em { color:#fff; }
   .uses-closing>p { font-size:1rem; line-height:1.65; }
   @media(prefers-reduced-motion:reduce) { .marquee div { animation:none; } }
+  @media(max-width:1100px) {
+    .tool-group { grid-template-columns:1fr; }
+  }
   @media(max-width:800px) {
     .uses-hero,.tool-group,.uses-closing { grid-template-columns:1fr; }
     .uses-hero { min-height:auto; padding:5rem 0; }
-    .tone-acid { margin-inline:-20px; padding-inline:20px; }
   }
   @media(max-width:620px) {
     .shell { width:min(100% - 28px,1320px); }
@@ -180,7 +183,6 @@ const groups = [
     li { grid-template-columns:2rem 1fr auto; gap:1rem; align-items:start; }
     li>p { grid-column:2/-1; }
     li small { grid-column:3; grid-row:1; }
-    .tone-acid { margin-inline:-14px; padding-inline:14px; }
     .uses-closing { padding:2rem; }
   }
 </style>
