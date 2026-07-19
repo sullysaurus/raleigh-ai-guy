@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import cineSponsor from "@/images/ventures/cinesponsor-marketplace.png";
 import drumForFun from "@/images/ventures/drum-for-fun-concept.png";
 import popstarPhotoBooths from "@/images/ventures/popstar-photo-booths-hero.png";
 import prowl from "@/images/ventures/prowl-app-website.png";
@@ -152,8 +153,40 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
       </div>
     </section>
 
+    <section class="venture venture-marketplace shell" aria-labelledby="cinesponsor-title">
+      <div class="venture-number">05</div>
+      <a class="venture-image" href="https://www.cinesponsor.com/" target="_blank" rel="noreferrer">
+        <Image
+          src={cineSponsor}
+          alt="CineSponsor pop-up cinema sponsorship marketplace website"
+          width={cineSponsor.width}
+          height={cineSponsor.height}
+          loading="eager"
+        />
+        <span>COMING SOON / WAITLIST</span>
+      </a>
+      <div class="venture-copy">
+        <p>MARKETPLACE / EVENTS / LOCAL SPONSORSHIP</p>
+        <h2 id="cinesponsor-title">Cine<wbr />Sponsor</h2>
+        <strong>Where local brands meet outdoor cinemas.</strong>
+        <p>
+          A marketplace built to connect pop-up cinema operators with local
+          businesses. Event organizers package sponsorship opportunities, brands
+          find engaged nearby audiences, and proposals, contracts, and payments
+          move through one focused platform. North Carolina is the first market.
+        </p>
+        <ul>
+          <li>Pop-up cinema listings</li>
+          <li>Hyperlocal sponsors</li>
+          <li>Clear sponsorship tiers</li>
+          <li>Waitlist open</li>
+        </ul>
+        <a class="visit visit-marketplace" href="https://www.cinesponsor.com/" target="_blank" rel="noreferrer">Visit CineSponsor <span>↗</span></a>
+      </div>
+    </section>
+
     <section class="next shell">
-      <p>05 / NEXT SLOT</p>
+      <p>06 / NEXT SLOT</p>
       <h2>Another useful idea<br /><em>goes here.</em></h2>
       <span>This page is built to grow as the next venture gets real.</span>
     </section>
@@ -201,6 +234,7 @@ import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.pn
   .visit { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; padding:1rem 1.15rem; background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); font-size:.72rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s; }
   .visit:hover { transform:translate(-3px,-3px); }
   .visit-past { background:var(--red); }
+  .visit-marketplace { background:var(--red); }
   .visit-app { background:var(--acid); color:#11110f; }
   .visit-concept { background:#101114; color:#f0ebdd; }
   .next { margin-bottom:5rem; padding:clamp(3rem,6vw,6rem); background:#101114; color:#f0ebdd; box-shadow:10px 10px 0 var(--blue); }
