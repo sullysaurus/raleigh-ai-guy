@@ -8,6 +8,8 @@ const navLinks = [
   { text: "Notes", href: "/blog/" },
   { text: "About", href: "/about/" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="site-header">
@@ -16,15 +18,118 @@ const navLinks = [
     <span><strong>Danny</strong><small>Sullivan · Raleigh, NC</small></span>
   </a>
 
-  <nav aria-label="Primary navigation">
-    {navLinks.map((link) => <a href={link.href}>{link.text}</a>)}
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    {navLinks.map((link) => (
+      <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined}>{link.text}</a>
+    ))}
   </nav>
 
   <div class="header-actions">
     <ThemeToggle class="theme-toggle" />
     <a class="start-link" href="/work-with-me/">Start something <span>↗</span></a>
+    <button class="menu-trigger" type="button" aria-haspopup="dialog" aria-controls="site-menu" aria-expanded="false" data-menu-open>
+      <span>Menu</span><i aria-hidden="true"></i>
+    </button>
   </div>
 </header>
+
+<div class="menu-curtain" id="site-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true" inert data-menu>
+  <div class="curtain-grid" aria-hidden="true"></div>
+  <header class="curtain-header">
+    <a class="curtain-brand" href="/" aria-label="Danny Sullivan home"><span>DS</span> Danny Sullivan</a>
+    <button class="menu-close" type="button" data-menu-close><span>Close</span><i aria-hidden="true"></i></button>
+  </header>
+
+  <div class="curtain-body">
+    <p class="curtain-kicker"><span></span> Choose a track</p>
+    <nav class="curtain-nav" aria-label="Menu navigation">
+      {navLinks.map((link, index) => (
+        <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} style={`--order:${index}`}>
+          <small>0{index + 1}</small>
+          <strong>{link.text}</strong>
+          <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </nav>
+
+    <a class="curtain-cta" href="/work-with-me/">
+      <small>Have a messy, ambitious idea?</small>
+      <strong>Start something</strong><span aria-hidden="true">↗</span>
+    </a>
+  </div>
+
+  <footer class="curtain-footer">
+    <p>Raleigh, NC <span>·</span> Building at full volume</p>
+    <div>
+      <a href="/ai-workshops/">AI workshops</a>
+      <a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+  const openButton = document.querySelector<HTMLButtonElement>("[data-menu-open]");
+  const closeButton = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+  let previouslyFocused: HTMLElement | null = null;
+
+  const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function openMenu() {
+    if (!menu || !openButton || !closeButton) return;
+    previouslyFocused = document.activeElement as HTMLElement;
+    menu.inert = false;
+    menu.setAttribute("aria-hidden", "false");
+    openButton.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("menu-is-open");
+    requestAnimationFrame(() => {
+      menu.classList.add("is-open");
+      closeButton.focus();
+    });
+  }
+
+  function closeMenu() {
+    if (!menu || !openButton) return;
+    menu.classList.remove("is-open");
+    openButton.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("menu-is-open");
+    window.setTimeout(() => {
+      menu.inert = true;
+      menu.setAttribute("aria-hidden", "true");
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 500);
+    previouslyFocused?.focus();
+  }
+
+  openButton?.addEventListener("click", openMenu);
+  closeButton?.addEventListener("click", closeMenu);
+
+  menu?.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest("a")) closeMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!menu?.classList.contains("is-open")) return;
+    if (event.key === "Escape") {
+      closeMenu();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const focusable = Array.from(menu.querySelectorAll<HTMLElement>(focusableSelector));
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    if (!first || !last) return;
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+</script>
 
 <style>
   .site-header { width:min(100% - 40px,1320px); min-height:90px; margin-inline:auto; display:grid; grid-template-columns:1fr auto 1fr; gap:2rem; align-items:center; border-bottom:1px solid color-mix(in srgb,currentColor 25%,transparent); color:#11110f; }
@@ -35,21 +140,73 @@ const navLinks = [
   .brand>span:last-child { display:flex; flex-direction:column; line-height:1; }
   .brand strong { font-family:"Anybody",sans-serif; font-size:1.05rem; font-weight:850; text-transform:uppercase; }
   .brand small { margin-top:.25rem; font-size:.52rem; font-weight:750; letter-spacing:.13em; text-transform:uppercase; }
-  nav { display:flex; gap:clamp(1.25rem,3vw,3rem); }
-  nav a { position:relative; font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-  nav a::after { content:""; position:absolute; left:0; right:100%; bottom:-.35rem; height:2px; background:#2947ff; transition:right .2s; }
-  nav a:hover::after { right:0; }
-  .header-actions { justify-self:end; display:flex; align-items:center; gap:1rem; }
+  .desktop-nav { display:flex; gap:clamp(1.25rem,3vw,3rem); }
+  .desktop-nav a { position:relative; font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+  .desktop-nav a::after { content:""; position:absolute; left:0; right:100%; bottom:-.35rem; height:2px; background:#2947ff; transition:right .2s; }
+  .desktop-nav a:hover::after,.desktop-nav a[aria-current="page"]::after { right:0; }
+  .header-actions { justify-self:end; display:flex; align-items:center; gap:.85rem; }
   .theme-toggle { display:grid; place-items:center; width:2.25rem; height:2.25rem; border:1px solid currentColor; border-radius:50%; cursor:pointer; }
   .theme-toggle :global(svg) { width:1rem; height:1rem; }
   .start-link { display:flex; align-items:center; gap:1rem; padding:.8rem 1rem; background:#11110f; color:#f0ebdd; font-size:.68rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; box-shadow:4px 4px 0 #2947ff; transition:transform .2s; }
   :global(.dark) .start-link { color:#11110f; background:#f0ebdd; }
   .start-link:hover { transform:translate(-2px,-2px); }
+  .menu-trigger,.menu-close { display:flex; align-items:center; gap:.65rem; padding:.65rem 0 .65rem .35rem; font-size:.66rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
+  .menu-trigger i { position:relative; width:1.35rem; height:.75rem; border-block:2px solid currentColor; }
+
+  .menu-curtain { --paper:#f0ebdd; --ink:#11110f; --blue:#2947ff; --red:#ff4b36; position:fixed; inset:0; z-index:100; display:grid; grid-template-rows:auto 1fr auto; overflow:auto; padding:0 max(20px,calc((100vw - 1320px)/2)); color:var(--paper); background:var(--ink); clip-path:inset(0 0 100% 0); visibility:hidden; transition:clip-path .5s cubic-bezier(.77,0,.18,1),visibility 0s .5s; }
+  .menu-curtain.is-open { clip-path:inset(0); visibility:visible; transition:clip-path .5s cubic-bezier(.77,0,.18,1),visibility 0s; }
+  .curtain-grid { position:absolute; inset:0; pointer-events:none; opacity:.18; background-image:linear-gradient(to right,transparent calc(100% - 1px),#f0ebdd 1px); background-size:25% 100%; }
+  .curtain-header,.curtain-footer { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; min-height:90px; border-bottom:1px solid color-mix(in srgb,var(--paper) 25%,transparent); }
+  .curtain-brand { display:flex; align-items:center; gap:.8rem; font-family:"Anybody",sans-serif; font-size:.75rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+  .curtain-brand span { display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:50%; color:#fff; background:var(--red); transform:rotate(-7deg); }
+  .menu-close { color:var(--paper); }
+  .menu-close i { position:relative; width:1.25rem; height:1.25rem; }
+  .menu-close i::before,.menu-close i::after { content:""; position:absolute; top:50%; left:0; width:100%; height:2px; background:currentColor; transform:rotate(45deg); }
+  .menu-close i::after { transform:rotate(-45deg); }
+  .curtain-body { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,.38fr); column-gap:clamp(3rem,8vw,9rem); align-items:end; padding:clamp(2.5rem,5vw,5rem) 0; }
+  .curtain-kicker { grid-column:1/-1; align-self:start; display:flex; align-items:center; gap:.7rem; margin-bottom:1.5rem; font-size:.65rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+  .curtain-kicker span { width:2.5rem; height:2px; background:var(--red); }
+  .curtain-nav { display:flex; flex-direction:column; }
+  .curtain-nav a { display:grid; grid-template-columns:3.25rem 1fr auto; align-items:center; border-top:1px solid color-mix(in srgb,var(--paper) 22%,transparent); color:var(--paper); transform:translateY(1rem); opacity:0; transition:color .2s,opacity .35s calc(.18s + var(--order)*.055s),transform .35s calc(.18s + var(--order)*.055s); }
+  .is-open .curtain-nav a { transform:none; opacity:1; }
+  .curtain-nav a:last-child { border-bottom:1px solid color-mix(in srgb,var(--paper) 22%,transparent); }
+  .curtain-nav small { font-size:.6rem; font-weight:800; color:var(--red); }
+  .curtain-nav strong { font-family:"Anybody",sans-serif; font-size:clamp(2.6rem,5.5vw,5.75rem); font-weight:850; line-height:.94; letter-spacing:-.055em; text-transform:uppercase; }
+  .curtain-nav a>span { font-size:1.5rem; transform:translate(-.5rem,.5rem); opacity:0; transition:.2s; }
+  .curtain-nav a:hover,.curtain-nav a[aria-current="page"] { color:var(--red); }
+  .curtain-nav a:hover>span { transform:none; opacity:1; }
+  .curtain-cta { position:relative; display:grid; grid-template-columns:1fr auto; align-items:end; padding:1.5rem; color:#fff; background:var(--blue); box-shadow:8px 8px 0 var(--red); transform:rotate(1.5deg); transition:transform .2s; }
+  .curtain-cta:hover { transform:rotate(0) translate(-3px,-3px); }
+  .curtain-cta small { grid-column:1/-1; margin-bottom:2.5rem; font-size:.68rem; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+  .curtain-cta strong { font-family:"Anybody",sans-serif; font-size:clamp(1.4rem,2.5vw,2.5rem); font-weight:850; line-height:.95; text-transform:uppercase; }
+  .curtain-cta>span { font-size:1.6rem; }
+  .curtain-footer { min-height:72px; border-top:1px solid color-mix(in srgb,var(--paper) 25%,transparent); border-bottom:0; font-size:.62rem; font-weight:750; letter-spacing:.11em; text-transform:uppercase; }
+  .curtain-footer p span { color:var(--red); }
+  .curtain-footer div { display:flex; gap:1.5rem; }
+  .curtain-footer a:hover { color:var(--red); }
+  :global(html.menu-is-open) { overflow:hidden; }
+
+  @media (max-width:1100px) {
+    .site-header { grid-template-columns:1fr auto; }
+    .desktop-nav { display:none; }
+  }
   @media (max-width:700px) {
-    .site-header { width:min(100% - 28px,1320px); min-height:76px; grid-template-columns:1fr auto; }
-    nav { display:none; }
-    .brand small { display:none; }
-    .start-link { padding:.7rem .8rem; }
-    .start-link span { display:none; }
+    .site-header { width:min(100% - 28px,1320px); min-height:76px; }
+    .brand small,.start-link,.menu-trigger span { display:none; }
+    .menu-trigger { padding:.65rem .1rem; }
+    .curtain-header { min-height:76px; }
+    .curtain-body { display:block; padding:2rem 0 3rem; }
+    .curtain-kicker { margin-bottom:1.25rem; }
+    .curtain-nav a { grid-template-columns:2.25rem 1fr auto; padding:.2rem 0; }
+    .curtain-nav strong { font-size:clamp(2.55rem,13vw,4.25rem); }
+    .curtain-cta { margin:2.5rem 4px 0 0; padding:1.25rem; }
+    .curtain-cta small { margin-bottom:1.5rem; }
+    .curtain-footer { align-items:flex-start; flex-direction:column; justify-content:center; gap:.6rem; padding:1rem 0; }
+    .curtain-footer p { display:none; }
+    .curtain-footer div { flex-wrap:wrap; gap:.8rem 1.25rem; }
+    .curtain-grid { background-size:50% 100%; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .menu-curtain,.curtain-nav a,.curtain-cta { transition:none; }
   }
 </style>
