@@ -6,254 +6,29 @@ import drumForFun from "@/images/ventures/drum-for-fun-concept.png";
 import popstarPhotoBooths from "@/images/ventures/popstar-photo-booths-hero.png";
 import prowl from "@/images/ventures/prowl-app-website.png";
 import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.png";
+
+const ventures = [
+  { title: "Raleigh Lead Recovery", category: "Local service · AI · Automation", tagline: "Keep working. We’ll catch the call.", description: "A missed-call recovery service for busy Raleigh businesses. Dana answers calls that would have gone to voicemail, captures what the customer needs, and texts the opportunity to the team.", image: raleighLeadRecovery, alt: "Raleigh Lead Recovery website homepage", href: "https://raleighleadrecovery.com/", cta: "Visit Raleigh Lead Recovery" },
+  { title: "Prowl.fm", category: "Mobile · Music · Discovery", tagline: "Find live music near you, right now.", description: "A real-time map for finding nearby live music while it is still happening. Fans and artists put the room on the map, listeners follow the signal, and the city becomes the lineup.", image: prowl, alt: "Prowl live music discovery app website", href: "https://prowl.fm/", cta: "Visit Prowl" },
+  { title: "Popstar Photo Booths", category: "Events · Photography · Built and sold", tagline: "A party business built to perform.", description: "I built and operated this Raleigh event business, pairing studio-quality photography with a technology-forward guest experience. After growing it across more than 200 events, I sold it to a new owner.", image: popstarPhotoBooths, alt: "Popstar Photo Booths website homepage", href: "https://popstarphotobooths.com/", cta: "Visit Popstar Photo Booths" },
+  { title: "Drum for Fun", category: "Concept · Music · Membership", tagline: "Learn, restart, or just hit something in time.", description: "An early concept for a private drum studio built specifically for grown-ups: private rooms, ready-to-play gear, flexible memberships, and music people actually want to learn.", image: drumForFun, alt: "Drum for Fun adult drum studio concept website", href: "https://drumforfun.netlify.app/", cta: "View the concept" },
+  { title: "CineSponsor", category: "Marketplace · Events · Local sponsorship", tagline: "Where local brands meet outdoor cinemas.", description: "A marketplace connecting pop-up cinema operators with local businesses. Organizers package sponsorships, brands find nearby audiences, and the deal moves through one focused platform.", image: cineSponsor, alt: "CineSponsor pop-up cinema sponsorship marketplace website", href: "https://www.cinesponsor.com/", cta: "Visit CineSponsor" },
+];
 ---
 
-<BaseLayout
-  pageTitle="Ventures"
-  pageDescription="Independent businesses and useful experiments built by Danny Sullivan in Raleigh, North Carolina."
->
-  <div class="ventures-page">
-    <header class="ventures-hero shell">
-      <p><span></span> Independent businesses · Experiments with a pulse</p>
-      <h1>My ideas.<br /><em>Out in the wild.</em></h1>
-      <div>
-        <p>
-          Not client work. Not side-project purgatory. These are businesses and
-          experiments I’ve built, operated, grown, and pushed into the real world.
-        </p>
-        <small>Built in Raleigh<br />Made to earn its keep</small>
-      </div>
-    </header>
+<BaseLayout pageTitle="Ventures" pageDescription="Independent businesses and useful experiments built by Danny Sullivan in Raleigh, North Carolina.">
+  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28"><div><p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Independent businesses · Raleigh, NC</p><h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">Ideas I have pushed into the real world.</h1></div><p class="text-base leading-7 text-base-600 dark:text-base-300">Businesses and experiments I have built, operated, grown, and tested with real customers.</p></header>
 
-    <section class="venture shell" aria-labelledby="rlr-title">
-      <div class="venture-number">01</div>
-      <a class="venture-image" href="https://raleighleadrecovery.com/" target="_blank" rel="noreferrer">
-        <Image
-          src={raleighLeadRecovery}
-          alt="Raleigh Lead Recovery website homepage"
-          width={raleighLeadRecovery.width}
-          height={raleighLeadRecovery.height}
-          loading="eager"
-        />
-        <span>LIVE NOW ↗</span>
-      </a>
-      <div class="venture-copy">
-        <p>LOCAL SERVICE / AI / AUTOMATION</p>
-        <h2 id="rlr-title">Raleigh Lead Recovery</h2>
-        <strong>Keep working. We’ll catch the call.</strong>
-        <p>
-          A missed-call recovery service for busy Raleigh businesses. Dana
-          answers the calls that would have gone to voicemail, captures what the
-          customer needs, and texts the opportunity to the team—without replacing
-          their existing phone system.
-        </p>
-        <ul>
-          <li>Missed-call capture</li>
-          <li>Custom caller intake</li>
-          <li>Fast team alerts</li>
-          <li>Seven-day lead report</li>
-        </ul>
-        <a class="visit" href="https://raleighleadrecovery.com/" target="_blank" rel="noreferrer">Visit Raleigh Lead Recovery <span>↗</span></a>
+    <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        {ventures.map((venture, index) => (
+          <article class="grid gap-8 border-b border-black/10 py-12 last:border-b-0 dark:border-white/10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:py-16">
+            <a href={venture.href} target="_blank" rel="noreferrer" class:list={["block overflow-hidden border border-black/10 bg-white p-3 dark:border-white/10 dark:bg-base-950", index % 2 === 1 && "lg:order-2"]}><Image src={venture.image} alt={venture.alt} width={venture.image.width} height={venture.image.height} class="aspect-[16/10] w-full object-cover object-top" loading={index < 2 ? "eager" : "lazy"} /></a>
+            <div><p class="text-xs font-medium uppercase tracking-wide text-base-400">{String(index + 1).padStart(2, "0")} · {venture.category}</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">{venture.title}</h2><strong class="mt-4 block text-base font-medium">{venture.tagline}</strong><p class="mt-4 max-w-xl text-sm leading-6 text-base-500 dark:text-base-400">{venture.description}</p><a href={venture.href} target="_blank" rel="noreferrer" class="mt-6 inline-block text-sm font-medium">{venture.cta} →</a></div>
+          </article>
+        ))}
       </div>
-    </section>
-
-    <section class="venture venture-app shell" aria-labelledby="prowl-title">
-      <div class="venture-number">02</div>
-      <a class="venture-image" href="https://prowl.fm/" target="_blank" rel="noreferrer">
-        <Image
-          src={prowl}
-          alt="Prowl live music discovery app website"
-          width={prowl.width}
-          height={prowl.height}
-          loading="eager"
-        />
-        <span>LIVE ON THE APP STORE</span>
-      </a>
-      <div class="venture-copy">
-        <p>MOBILE / MUSIC / DISCOVERY</p>
-        <h2 id="prowl-title">Prowl.fm</h2>
-        <strong>Find live music near you, right now.</strong>
-        <p>
-          A real-time map for finding nearby live music while it is still
-          happening. Fans and artists put the room on the map, listeners follow
-          the signal, and the city becomes the lineup. Prowl is live and free on
-          iPhone.
-        </p>
-        <ul>
-          <li>Real-time music map</li>
-          <li>Nearby live signals</li>
-          <li>Fan & artist posts</li>
-          <li>Free on iPhone</li>
-        </ul>
-        <a class="visit visit-app" href="https://apps.apple.com/us/app/prowl-96a41b/id6769466074" target="_blank" rel="noreferrer">Get Prowl on the App Store <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="venture venture-past shell" aria-labelledby="popstar-title">
-      <div class="venture-number">03</div>
-      <a class="venture-image" href="https://popstarphotobooths.com/" target="_blank" rel="noreferrer">
-        <Image
-          src={popstarPhotoBooths}
-          alt="Popstar Photo Booths website homepage"
-          width={popstarPhotoBooths.width}
-          height={popstarPhotoBooths.height}
-          loading="eager"
-        />
-        <span>BUILT → SOLD</span>
-      </a>
-      <div class="venture-copy">
-        <p>EVENTS / PHOTOGRAPHY / FORMER OWNER</p>
-        <h2 id="popstar-title">Popstar Photo Booths</h2>
-        <strong>A party business built to perform.</strong>
-        <p>
-          I built and operated Popstar Photo Booths as a Raleigh event business,
-          pairing studio-quality photography with a technology-forward guest
-          experience. After growing it across weddings, company events, schools,
-          and clubs, I sold the business to a new owner.
-        </p>
-        <ul>
-          <li>200+ events</li>
-          <li>20k+ photos</li>
-          <li>50+ five-star reviews</li>
-          <li>Built, grown & sold</li>
-        </ul>
-        <a class="visit visit-past" href="https://popstarphotobooths.com/" target="_blank" rel="noreferrer">Visit Popstar Photo Booths <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="venture venture-concept shell" aria-labelledby="drum-title">
-      <div class="venture-number">04</div>
-      <a class="venture-image" href="https://drumforfun.netlify.app/" target="_blank" rel="noreferrer">
-        <Image
-          src={drumForFun}
-          alt="Drum for Fun adult drum studio concept website"
-          width={drumForFun.width}
-          height={drumForFun.height}
-          loading="eager"
-        />
-        <span>CONCEPT / NOT LIVE</span>
-      </a>
-      <div class="venture-copy">
-        <p>IDEA / MUSIC / MEMBERSHIP</p>
-        <h2 id="drum-title">Drum for Fun</h2>
-        <strong>Learn, restart, or just hit something in time.</strong>
-        <p>
-          An early concept for a private drum studio built specifically for
-          grown-ups. No kids, no recitals, no judgment—just private rooms,
-          ready-to-play gear, flexible memberships, and music people actually
-          want to learn. It is an idea and prototype, not an operating business.
-        </p>
-        <ul>
-          <li>Adults only</li>
-          <li>Private rooms</li>
-          <li>Gear included</li>
-          <li>Waitlist concept</li>
-        </ul>
-        <a class="visit visit-concept" href="https://drumforfun.netlify.app/" target="_blank" rel="noreferrer">View the concept <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="venture venture-marketplace shell" aria-labelledby="cinesponsor-title">
-      <div class="venture-number">05</div>
-      <a class="venture-image" href="https://www.cinesponsor.com/" target="_blank" rel="noreferrer">
-        <Image
-          src={cineSponsor}
-          alt="CineSponsor pop-up cinema sponsorship marketplace website"
-          width={cineSponsor.width}
-          height={cineSponsor.height}
-          loading="eager"
-        />
-        <span>COMING SOON / WAITLIST</span>
-      </a>
-      <div class="venture-copy">
-        <p>MARKETPLACE / EVENTS / LOCAL SPONSORSHIP</p>
-        <h2 id="cinesponsor-title">Cine<wbr />Sponsor</h2>
-        <strong>Where local brands meet outdoor cinemas.</strong>
-        <p>
-          A marketplace built to connect pop-up cinema operators with local
-          businesses. Event organizers package sponsorship opportunities, brands
-          find engaged nearby audiences, and proposals, contracts, and payments
-          move through one focused platform. North Carolina is the first market.
-        </p>
-        <ul>
-          <li>Pop-up cinema listings</li>
-          <li>Hyperlocal sponsors</li>
-          <li>Clear sponsorship tiers</li>
-          <li>Waitlist open</li>
-        </ul>
-        <a class="visit visit-marketplace" href="https://www.cinesponsor.com/" target="_blank" rel="noreferrer">Visit CineSponsor <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="next shell">
-      <p>06 / NEXT SLOT</p>
-      <h2>Another useful idea<br /><em>goes here.</em></h2>
-      <span>This page is built to grow as the next venture gets real.</span>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  :global(body) { background:#f0ebdd; }
-  :global(.dark body) { background:#11110f; }
-  .ventures-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --red:#ff4b36; --acid:#dcff45; color:var(--ink); overflow:hidden; }
-  :global(.dark) .ventures-page { --ink:#f0ebdd; --paper:#11110f; }
-  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
-  .ventures-hero { min-height:68svh; display:grid; grid-template-columns:1fr minmax(260px,.34fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
-  .ventures-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-  .ventures-hero>p span { width:2.5rem; height:2px; background:var(--red); }
-  h1,h2 { font-family:"Anybody",sans-serif; text-transform:uppercase; }
-  h1 { font-size:clamp(4.6rem,10.5vw,10.5rem); font-weight:850; line-height:.78; letter-spacing:-.055em; }
-  h1 em,h2 em { color:var(--blue); font-style:normal; }
-  .ventures-hero>div { align-self:end; }
-  .ventures-hero>div>p { font-size:1.08rem; line-height:1.65; }
-  .ventures-hero small { display:block; margin-top:2rem; font-size:.62rem; font-weight:800; letter-spacing:.12em; line-height:1.5; text-transform:uppercase; }
-  .venture { position:relative; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.68fr); gap:clamp(3rem,7vw,7rem); padding:clamp(5rem,9vw,9rem) 0; border-top:2px solid var(--ink); }
-  .venture-number { position:absolute; top:1.3rem; left:0; font-family:"Anybody"; font-size:.8rem; font-weight:850; }
-  .venture-image { position:relative; align-self:start; margin-top:1rem; padding:.8rem; background:#101114; border:2px solid var(--ink); box-shadow:14px 14px 0 var(--acid); transform:rotate(-1deg); transition:transform .3s; }
-  .venture-image:hover { transform:rotate(.4deg) translateY(-6px); }
-  .venture-image img { display:block; width:100%; height:auto; object-fit:contain; }
-  .venture-image span { position:absolute; right:-1rem; bottom:1.5rem; padding:.65rem 1rem; background:var(--red); color:white; font-size:.62rem; font-weight:850; letter-spacing:.1em; transform:rotate(5deg); }
-  .venture-app .venture-image { grid-column:2; grid-row:1; box-shadow:14px 14px 0 var(--blue); transform:rotate(1deg); }
-  .venture-app .venture-image:hover { transform:rotate(-.4deg) translateY(-6px); }
-  .venture-app .venture-image span { left:-1rem; right:auto; background:var(--acid); color:#11110f; transform:rotate(-5deg); }
-  .venture-app .venture-copy { grid-column:1; grid-row:1; }
-  .venture-past .venture-image { box-shadow:14px 14px 0 var(--red); transform:rotate(-1deg); }
-  .venture-past .venture-image:hover { transform:rotate(-.4deg) translateY(-6px); }
-  .venture-past .venture-image span { left:-1rem; right:auto; background:var(--acid); color:#11110f; transform:rotate(-5deg); }
-  .venture-concept .venture-image { grid-column:2; grid-row:1; box-shadow:14px 14px 0 var(--blue); transform:rotate(1deg); }
-  .venture-concept .venture-image span { background:var(--acid); color:#11110f; }
-  .venture-concept .venture-copy { grid-column:1; grid-row:1; }
-  .venture-copy>p:first-child { color:var(--blue); font-size:.62rem; font-weight:850; letter-spacing:.13em; }
-  .venture-copy h2 { margin:1rem 0 1.5rem; font-size:clamp(3.2rem,6vw,6rem); font-weight:850; line-height:.86; letter-spacing:-.045em; }
-  .venture-copy strong { display:block; max-width:26rem; font-family:"Instrument Serif",serif; font-size:clamp(1.6rem,2.8vw,2.6rem); font-weight:400; line-height:1.05; }
-  .venture-copy>p:nth-of-type(2) { margin:2rem 0; line-height:1.7; }
-  ul { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:2.2rem; border-top:1px solid currentColor; }
-  li { padding:.8rem 0; border-bottom:1px solid currentColor; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
-  li:nth-child(odd) { padding-right:1rem; }
-  .visit { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; padding:1rem 1.15rem; background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); font-size:.72rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s; }
-  .visit:hover { transform:translate(-3px,-3px); }
-  .visit-past { background:var(--red); }
-  .visit-marketplace { background:var(--red); }
-  .visit-app { background:var(--acid); color:#11110f; }
-  .visit-concept { background:#101114; color:#f0ebdd; }
-  .next { margin-bottom:5rem; padding:clamp(3rem,6vw,6rem); background:#101114; color:#f0ebdd; box-shadow:10px 10px 0 var(--blue); }
-  .next>p { color:var(--acid); font-size:.62rem; font-weight:850; letter-spacing:.14em; }
-  .next h2 { margin:1.25rem 0 2rem; font-size:clamp(3.2rem,7vw,7rem); font-weight:850; line-height:.85; letter-spacing:-.045em; }
-  .next h2 em { color:var(--acid); }
-  .next span { color:#a9a79f; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; }
-  @media(max-width:800px) {
-    .ventures-hero,.venture { grid-template-columns:1fr; }
-    .ventures-hero { min-height:auto; padding:5rem 0; }
-    .venture { padding-top:5rem; }
-    .venture-app .venture-image,.venture-app .venture-copy,.venture-concept .venture-image,.venture-concept .venture-copy { grid-column:auto; grid-row:auto; }
-  }
-  @media(max-width:620px) {
-    .shell { width:min(100% - 28px,1320px); }
-    h1 { font-size:clamp(3.8rem,17vw,5.8rem); }
-    ul { grid-template-columns:1fr; }
-    li:nth-child(odd) { padding-right:0; }
-    .venture-image span { right:-.3rem; }
-    .next { padding:2rem; }
-  }
-</style>

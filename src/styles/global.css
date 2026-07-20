@@ -38,8 +38,8 @@
 
 .dark { color-scheme: dark; }
 
-html { background: #f0ebdd; }
-html.dark { background: #11110f; }
+html { background: #fafafa; }
+html.dark { background: var(--color-base-950); }
 
 body {
   font-family: "Instrument Sans", sans-serif;

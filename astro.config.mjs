@@ -22,7 +22,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
-        !page.endsWith("/404/") && !page.includes("/blog/tags/"),
+        !page.endsWith("/404/") &&
+        !page.includes("/blog/tags/") &&
+        !page.includes("/ops/") &&
+        !page.includes("/thank-you/"),
     }),
     mdx(),
   ],

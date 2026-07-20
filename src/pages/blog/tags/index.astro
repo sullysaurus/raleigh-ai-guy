@@ -2,11 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 const posts = await getCollection("posts");
-const tags = [...new Set(posts.flatMap((post)=>post.data.tags))].sort();
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
-<BaseLayout pageTitle="Note Topics" pageDescription="Browse notes by topic." noindex>
-  <section class="tag-page"><header><p><span></span> Notes by subject</p><h1>Pick a<br /><em>thread.</em></h1></header><div class="tags">{tags.map((tag,index)=><a href={`/blog/tags/${tag}`}><span>0{index+1}</span><strong>#{tag}</strong><b>↗</b></a>)}</div></section>
+<BaseLayout pageTitle="Blog Topics" pageDescription="Browse practical AI guides by topic." noindex>
+  <section class="min-h-[65svh] bg-white text-black dark:bg-base-950 dark:text-white"><div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24"><a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">← All guides</a><h1 class="mt-8 font-sans text-4xl font-semibold tracking-tight sm:text-6xl">Browse by topic.</h1><div class="mt-12 flex flex-wrap gap-3">{tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border border-black/10 px-4 py-3 text-sm text-base-500 transition hover:border-black hover:text-black dark:border-white/10 dark:text-base-400 dark:hover:border-white dark:hover:text-white">#{tag}</a>)}</div></div></section>
 </BaseLayout>
-<style>
-  .tag-page{width:min(100% - 40px,1320px);min-height:75svh;margin:auto;display:grid;grid-template-columns:.8fr 1fr;gap:6rem;align-items:center;color:#11110f}.dark .tag-page{color:#f0ebdd}.tag-page header p{display:flex;align-items:center;gap:.7rem;font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.tag-page header p span{width:2.5rem;height:2px;background:#ff4b36}.tag-page h1{margin-top:1rem;font-family:"Anybody";font-size:clamp(4.5rem,9vw,9rem);font-weight:850;line-height:.78;letter-spacing:-.06em;text-transform:uppercase}.tag-page h1 em{color:#2947ff;font-style:normal}.tags{border-top:2px solid currentColor}.tags a{display:grid;grid-template-columns:3rem 1fr auto;gap:1rem;align-items:center;padding:1.3rem 0;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent)}.tags a span{color:#2947ff;font-size:.65rem;font-weight:800}.tags strong{font-family:"Anybody";font-size:clamp(1.6rem,3vw,3rem);text-transform:uppercase}.tags b{font-size:1.2rem}@media(max-width:650px){.tag-page{width:min(100% - 28px,1320px);grid-template-columns:1fr;gap:3rem;padding:5rem 0}}
-</style>

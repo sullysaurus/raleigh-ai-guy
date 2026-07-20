@@ -1,108 +1,27 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ProjectsEntries from "@/components/projects/ProjectsEntries.astro";
+import { getCollection } from "astro:content";
 
-const preferredOrder = [
-  "zimzoom-photo-booth",
-  "back-to-the-start",
-  "oak-city-shuttle",
-  "elevated-photo-booths",
-  "capital-city-transportation",
-  "garden-art-landscapes",
-];
-
-const projects = await getCollection("projects");
-const orderedProjects = preferredOrder
-  .map((id) => projects.find((project) => project.id === id))
-  .filter(Boolean);
+const allProjects = (await getCollection("projects")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
 ---
 
-<BaseLayout
-  pageTitle="Selected Work"
-  pageDescription="Selected websites, AI products, automations, and growth systems designed and built by Danny Sullivan."
->
-  <div class="work-page">
-    <header class="work-hero shell">
-      <p><span></span> The archive · {String(orderedProjects.length).padStart(2, "0")} projects</p>
-      <h1>Things I’ve<br /><em>made real.</em></h1>
-      <div>
-        <p>Strategy, design, code, growth, and the useful version of a messy idea.</p>
-        <a href="/work-with-me/">Start something <span>↗</span></a>
+<BaseLayout pageTitle="Projects" pageDescription="Selected projects across AI, product, automation, content, and growth.">
+  <section class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-44">
+      <Text tag="h1" variant="displayXS" class="max-w-3xl text-balance font-medium text-black dark:text-white">Selected work across AI, product, and useful systems.</Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="pb-20 pt-12">
+      <div class="border-t border-black/10 pt-4 dark:border-white/10">
+        <Text tag="p" variant="textSM" class="max-w-2xl text-base-500 dark:text-base-400 2xl:text-base">A few projects across AI, product, automation, content, and growth. These are the kinds of problems I like: messy discovery workflows, useful tools, and product surfaces that make a real behavior easier.</Text>
       </div>
-    </header>
-
-    <section class="project-wall shell" aria-label="Project archive">
-      {orderedProjects.map((project, index) => (
-        <article>
-          <a href={`/projects/${project.id}`}>
-            <div class="image-wrap">
-              <Image
-                src={project.data.image.url}
-                alt={project.data.image.alt}
-                width={project.data.image.url.width}
-                height={project.data.image.url.height}
-                loading="eager"
-              />
-              <b>0{index + 1}</b>
-              <i>↗</i>
-            </div>
-            <div class="project-info">
-              <h2>{project.data.title}</h2>
-              <p>{project.data.subtitle}</p>
-            </div>
-          </a>
-        </article>
-      ))}
-    </section>
-
-    <section class="work-cta shell">
-      <p>Have a rough idea, an annoying workflow, or a business that deserves better?</p>
-      <a href="/work-with-me/">Bring me the messy part. <span>↗</span></a>
-    </section>
-  </div>
+      <div class="mt-8 flex flex-col divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+        {allProjects.map((post) => <ProjectsEntries post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
-
-<style>
-  :global(body) { background:#f0ebdd; }
-  :global(.dark body) { background:#11110f; }
-  .work-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --acid:#dcff45; color:var(--ink); overflow:hidden; }
-  :global(.dark) .work-page { --ink:#f0ebdd; --paper:#11110f; }
-  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
-  .work-hero { min-height:66svh; display:grid; grid-template-columns:1fr auto; align-content:center; gap:2rem 6rem; padding:6rem 0; }
-  .work-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-  .work-hero>p span { width:2.5rem; height:2px; background:#ff4b36; }
-  h1,h2 { font-family:"Anybody",sans-serif; text-transform:uppercase; }
-  h1 { font-size:clamp(5rem,12vw,12rem); font-weight:850; line-height:.76; letter-spacing:-.06em; }
-  h1 em { color:var(--blue); font-style:normal; }
-  .work-hero>div { width:19rem; align-self:end; padding-bottom:.5rem; }
-  .work-hero>div p { margin-bottom:2rem; line-height:1.55; }
-  .work-hero a,.work-cta a { display:inline-flex; gap:2rem; padding-bottom:.35rem; border-bottom:1px solid currentColor; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-  .project-wall { display:grid; grid-template-columns:repeat(12,1fr); gap:6rem 1.5rem; padding:3rem 0 10rem; }
-  article { grid-column:span 6; }
-  article:nth-child(2),article:nth-child(5) { grid-column:span 5; margin-top:8rem; }
-  article:nth-child(3) { grid-column:2/span 5; }
-  article:nth-child(4) { grid-column:7/span 6; margin-top:4rem; }
-  .image-wrap { position:relative; overflow:hidden; border:2px solid var(--ink); background:var(--ink); }
-  .image-wrap img { width:100%; aspect-ratio:1.44; object-fit:cover; transition:transform .55s cubic-bezier(.2,.8,.2,1); }
-  article:hover img { transform:scale(1.035); }
-  .image-wrap b,.image-wrap i { position:absolute; display:grid; place-items:center; width:3rem; height:3rem; font-style:normal; }
-  .image-wrap b { top:-2px; left:-2px; background:var(--paper); border:2px solid var(--ink); font-family:"Anybody"; }
-  .image-wrap i { top:1rem; right:1rem; background:var(--acid); color:#11110f; font-size:1.2rem; transition:transform .2s; }
-  article:hover .image-wrap i { transform:rotate(12deg); }
-  .project-info { display:grid; grid-template-columns:.55fr 1fr; gap:2rem; padding-top:1rem; border-top:2px solid var(--ink); margin-top:.6rem; }
-  .project-info h2 { font-size:clamp(1.4rem,2.5vw,2.5rem); line-height:.93; font-weight:800; }
-  .project-info p { max-width:28rem; color:color-mix(in srgb,currentColor 68%,transparent); font-size:.76rem; line-height:1.5; }
-  .work-cta { margin-bottom:3rem; padding:clamp(2rem,5vw,5rem); background:var(--blue); color:white; box-shadow:9px 9px 0 var(--ink); }
-  .work-cta p { max-width:33rem; font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
-  .work-cta a { margin-top:2rem; font-family:"Anybody"; font-size:clamp(2.5rem,6vw,6rem); line-height:.9; letter-spacing:-.04em; }
-  .work-cta a span { color:var(--acid); }
-  @media(max-width:760px) {
-    .shell { width:min(100% - 28px,1320px); }
-    .work-hero { grid-template-columns:1fr; min-height:auto; padding:5rem 0; }
-    .work-hero>div { width:auto; max-width:22rem; }
-    .project-wall { display:block; padding-top:1rem; }
-    article,article:nth-child(n) { margin:0 0 3.5rem; }
-    .project-info { grid-template-columns:1fr; gap:.7rem; }
-  }
-</style>

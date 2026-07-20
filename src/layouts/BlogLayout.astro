@@ -4,65 +4,41 @@ import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter, readingTime, previous, next } = Astro.props;
 const image = frontmatter.image.url;
-const date = frontmatter.pubDate.toLocaleDateString("en-US", { month:"long", day:"2-digit", year:"numeric", timeZone:"UTC" });
+const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description}>
-  <article class="note-detail">
-    <header class="note-hero shell">
-      <p><span></span> Field note · {readingTime}</p>
-      <h1>{frontmatter.title}</h1>
-      <div>
-        <p>{frontmatter.description}</p>
-        <time datetime={frontmatter.pubDate.toISOString().slice(0,10)}>{date}</time>
-        <nav>{frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`}>#{tag}</a>)}</nav>
+  <article class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <header class="mx-auto max-w-4xl px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24">
+      <a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">← Practical AI guides</a>
+      <h1 class="mt-8 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl">{frontmatter.title}</h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600 dark:text-base-300">{frontmatter.description}</p>
+      <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-base-400">
+        <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
+        {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black dark:hover:text-white">#{tag}</a>)}
       </div>
     </header>
 
-    <div class="note-art shell">
-      <Image src={image} alt={frontmatter.image.alt} width={image.width} height={image.height} loading="eager" />
+    <div class="mx-auto max-w-5xl px-5 sm:px-8">
+      <Image src={image} alt={frontmatter.image.alt} width={image.width} height={image.height} loading="eager" class="aspect-[16/9] w-full border border-black/10 bg-black object-cover dark:border-white/10" />
     </div>
 
-    <div class="note-body shell">
-      <aside><span>READING NOW</span><a href="/blog/">All notes ↗</a></aside>
-      <div class="prose"><slot /></div>
+    <div class="mx-auto grid max-w-4xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-16">
+      <aside class="text-xs leading-5 text-base-400"><span class="block font-medium uppercase tracking-wide">Written by</span><a href="/about/" class="mt-2 block text-black hover:underline dark:text-white">Danny Sullivan</a><span class="mt-1 block">AI Product Engineer<br />Raleigh, NC</span></aside>
+      <div class="prose post-body min-w-0 max-w-none prose-headings:font-sans prose-headings:font-semibold prose-headings:tracking-tight prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-base-300 prose-a:underline-offset-4 prose-strong:text-black dark:prose-invert dark:prose-a:text-white dark:prose-strong:text-white"><slot /></div>
     </div>
 
-    {(previous || next) && <nav class="note-nav shell">
-      {previous && <a href={`/blog/posts/${previous.id}`}>← {previous.data.title}</a>}
-      {next && <a href={`/blog/posts/${next.id}`}>{next.data.title} →</a>}
+    {(previous || next) && <nav class="mx-auto grid max-w-4xl gap-px border-x border-t border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2" aria-label="More articles">
+      {previous ? <a href={`/blog/posts/${previous.id}`} class="bg-white p-6 text-sm font-medium dark:bg-base-950">← {previous.data.title}</a> : <span class="bg-white dark:bg-base-950"></span>}
+      {next && <a href={`/blog/posts/${next.id}`} class="bg-white p-6 text-right text-sm font-medium dark:bg-base-950">{next.data.title} →</a>}
     </nav>}
+
+    <section class="mt-20 bg-black text-white dark:bg-white dark:text-black"><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Find the workflows most worth improving first.</h2><a href="/work-with-me/" class="mt-7 inline-flex min-h-12 items-center bg-[#ddff73] px-6 text-sm font-medium text-black">See the AI Tools Assessment →</a></div></section>
   </article>
 </BaseLayout>
 
 <style>
-  .note-detail { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; color:var(--ink); }
-  :global(.dark) .note-detail { --ink:#f0ebdd; --paper:#11110f; }
-  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
-  .note-hero { min-height:65svh; display:grid; grid-template-columns:1fr minmax(260px,.34fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
-  .note-hero>p { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-  .note-hero>p span { width:2.5rem; height:2px; background:#ff4b36; }
-  h1 { align-self:end; font-family:"Anybody"; font-size:clamp(4rem,8vw,8rem); font-weight:850; line-height:.82; letter-spacing:-.05em; text-transform:uppercase; }
-  .note-hero>div { align-self:end; }
-  .note-hero>div>p { font-size:1.05rem; line-height:1.6; }
-  time { display:block; margin:1.5rem 0; font-size:.65rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-  .note-hero nav { display:flex; gap:.4rem; flex-wrap:wrap; }
-  .note-hero nav a { padding:.35rem .55rem; border:1px solid currentColor; font-size:.6rem; }
-  .note-art { padding:clamp(1rem,3vw,3rem); background:#101114; box-shadow:12px 12px 0 var(--blue); }
-  .note-art img { width:100%; max-height:70svh; object-fit:cover; }
-  .note-body { display:grid; grid-template-columns:.25fr minmax(0,.75fr); gap:clamp(3rem,8vw,9rem); padding:clamp(6rem,10vw,10rem) 0; }
-  aside { display:flex; flex-direction:column; gap:1rem; align-items:flex-start; font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-  aside span { color:var(--blue); }
-  aside a { border-bottom:1px solid currentColor; }
-  .prose { max-width:760px; padding:0; font-size:1rem; line-height:1.75; }
-  .prose :global(h2) { font-size:clamp(2.2rem,4vw,4rem); line-height:.95; }
-  .note-nav { display:flex; justify-content:space-between; gap:2rem; padding-bottom:8rem; font-size:.75rem; font-weight:800; text-transform:uppercase; }
-  .note-nav a { border-bottom:1px solid currentColor; }
-  @media(max-width:700px) {
-    .shell { width:min(100% - 28px,1320px); }
-    .note-hero,.note-body { grid-template-columns:1fr; min-height:auto; }
-    .note-hero { padding:4rem 0; }
-    .note-body { gap:2.5rem; }
-    aside { flex-direction:row; justify-content:space-between; }
-  }
+  .post-body :global(h2),
+  .post-body :global(h3),
+  .post-body :global(h4) { text-transform: none; }
 </style>

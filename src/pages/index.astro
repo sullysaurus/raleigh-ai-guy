@@ -1,311 +1,136 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.png";
+import profileImage from "../../danny.jpeg";
 
-const projectOrder = [
-  "back-to-the-start",
-  "zimzoom-photo-booth",
-  "oak-city-shuttle",
-  "elevated-photo-booths",
+const recommendations = [
+  "The problem it solves in your business",
+  "The exact tool or workflow I recommend",
+  "What it costs and how hard it is to set up",
+  "How much weekly time it could reasonably reclaim",
+  "The first ten-minute action to take",
 ];
 
-const projectMeta = {
-  "zimzoom-photo-booth": { tag: "Brand / Web", note: "A photo booth brand turned all the way up." },
-  "back-to-the-start": { tag: "Music / Web", note: "A digital stage for a live Coldplay tribute." },
-  "oak-city-shuttle": { tag: "Strategy / Web", note: "The ride becomes part of the story." },
-  "elevated-photo-booths": { tag: "Brand / Web", note: "Premium pictures without the preciousness." },
-};
-
-const projects = await getCollection("projects");
-const featuredProjects = projectOrder
-  .map((id) => projects.find((project) => project.id === id))
-  .filter(Boolean);
-
-const leadProject = featuredProjects[0];
+const faqs = [
+  ["Do I need to know anything about AI?", "No. This is designed for business owners, not technical teams. I explain every recommendation in plain English."],
+  ["Is this just a list of AI apps?", "No. We start with your work and your bottlenecks. Sometimes the best answer is ordinary software or a simpler process—not more AI."],
+  ["Will you implement the recommendations?", "The assessment gives you a plan you can use yourself. If you want help afterward, we can scope that separately."],
+];
 ---
 
 <BaseLayout
-  pageTitle="AI Product Engineer, Designer & Builder"
-  pageDescription="Danny Sullivan builds AI products, expressive websites, automations, and practical systems for messy ideas."
+  pageTitle="AI Tools Assessment for Raleigh Small Businesses"
+  pageDescription="Find at least five hours of weekly time-saving opportunity in your Raleigh business with a practical, fixed-price AI Tools Assessment."
 >
-  <div class="home-page">
-    <section class="hero shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow reveal"><span></span> Raleigh, NC · Building at full volume</p>
-        <h1 id="hero-title" class="reveal reveal-1">
-          Useful things.<br />
-          <em>Made loud.</em>
-        </h1>
-        <div class="hero-bottom reveal reveal-2">
-          <p>
-            I’m Danny—an AI product engineer, designer, and restless builder. I
-            turn messy ideas into products, websites, automations, and systems
-            people actually want to use.
+  <div class="min-h-svh bg-white text-black dark:bg-base-950 dark:text-white">
+    <div>
+      <section class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-32">
+        <div>
+          <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">AI Tools Assessment · Raleigh small businesses</p>
+          <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-black dark:text-white sm:text-6xl lg:text-7xl">
+            Find at least five hours hiding in your workweek.
+          </h1>
+          <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">
+            I find the repetitive work slowing down your business and prescribe 3–7 practical AI or software tools that can give you time back—without changing everything about how your team works.
           </p>
-          <div class="hero-actions">
-            <a class="button button-blue" href="#selected-work">See the work <span>↘</span></a>
-            <a class="text-link" href="/work-with-me/">Start something <span>↗</span></a>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <a href="/work-with-me/" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Apply for the assessment <span class="ml-3">→</span></a>
+            <span class="text-sm text-base-500 dark:text-base-400">Fixed price: $999</span>
+          </div>
+          <p class="mt-4 max-w-xl text-xs leading-5 text-base-500 dark:text-base-400">If I cannot identify at least five hours per week of credible opportunity, I refund the assessment.</p>
+        </div>
+
+        <aside class="border border-black/10 bg-base-50 p-6 dark:border-white/10 dark:bg-base-900 sm:p-8">
+          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">You receive</p>
+          <ul class="mt-6 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">01</span><p class="text-sm font-medium">45-minute discovery call</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">02</span><p class="text-sm font-medium">3–7 researched recommendations</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">03</span><p class="text-sm font-medium">Four-day quick-start plan</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">04</span><p class="text-sm font-medium">Time and financial impact estimate</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">05</span><p class="text-sm font-medium">30-minute report review</p></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
+        <div class="mx-auto grid max-w-6xl divide-y divide-black/10 px-5 dark:divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
+          <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">$999</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">One fixed price</span></div>
+          <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">3–7</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Vetted recommendations</span></div>
+          <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">5+ hours</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Weekly opportunity guaranteed</span></div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+        <div class="grid gap-10 lg:grid-cols-[20rem_1fr] lg:gap-24">
+          <div>
+            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Why this exists</p>
+            <h2 class="mt-4 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">You do not need more AI news. You need a useful next move.</h2>
+          </div>
+          <div class="max-w-2xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300">
+            <p>You know AI is changing how businesses work. But you are also handling customers, email, estimates, follow-up, approvals, and a dozen other things that cannot wait while you research every new tool.</p>
+            <p>The assessment does that sorting for you. We look at a real day in your business, find where time is leaking, and match the most expensive friction with the simplest credible solution.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {leadProject && (
-        <a class="hero-art reveal reveal-2" href={`/projects/${leadProject.id}`} aria-label={`View ${leadProject.data.title}`}>
-          <div class="art-label"><span>NOW PLAYING</span><b>01</b></div>
-          <Image
-            src={leadProject.data.image.url}
-            alt={leadProject.data.image.alt}
-            width={leadProject.data.image.url.width}
-            height={leadProject.data.image.url.height}
-            loading="eager"
-          />
-          <div class="art-caption">
-            <strong>BACK TO THE START</strong>
-            <span>A full-volume home for a live Coldplay tribute</span>
+      <section class="border-y border-black/10 dark:border-white/10">
+        <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <div class="max-w-2xl">
+            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">How it works</p>
+            <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Two conversations. One clear plan.</h2>
           </div>
-          <i class="tape tape-one">SELECTED WORK</i>
-          <i class="tape tape-two">BUILT 2026</i>
-        </a>
-      )}
-    </section>
+          <ol class="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 lg:grid-cols-4">
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">01</span><h3 class="mt-8 font-sans text-lg font-semibold">Discover</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">A 45-minute recorded call about your day, your bottlenecks, and the work you wish would disappear.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">02</span><h3 class="mt-8 font-sans text-lg font-semibold">Research</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">I analyze the call, research the right-sized tools, verify the details, and calculate the opportunity.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">03</span><h3 class="mt-8 font-sans text-lg font-semibold">Prescribe</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">You receive a short report with priorities, recommendations, costs, expected impact, and a four-day plan.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">04</span><h3 class="mt-8 font-sans text-lg font-semibold">Review</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">We spend 30 minutes choosing the most urgent next move and answering every practical question.</p></li>
+          </ol>
+        </div>
+      </section>
 
-    <div class="ticker" aria-label="Areas of work">
-      <div>
-        <span>AI PRODUCTS</span><i>✦</i><span>WEBSITES</span><i>✦</i><span>AUTOMATIONS</span><i>✦</i><span>LIVE EVENTS</span><i>✦</i><span>STRANGE IDEAS</span><i>✦</i>
-        <span aria-hidden="true">AI PRODUCTS</span><i aria-hidden="true">✦</i><span aria-hidden="true">WEBSITES</span><i aria-hidden="true">✦</i><span aria-hidden="true">AUTOMATIONS</span><i aria-hidden="true">✦</i><span aria-hidden="true">LIVE EVENTS</span><i aria-hidden="true">✦</i><span aria-hidden="true">STRANGE IDEAS</span><i aria-hidden="true">✦</i>
-      </div>
+      <section class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:gap-24">
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The deliverable</p>
+          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Every recommendation answers the questions that matter.</h2>
+          <ul class="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+            {recommendations.map((item) => <li class="flex gap-3 py-4 text-sm"><span class="text-base-400">✓</span><span>{item}</span></li>)}
+          </ul>
+        </div>
+        <div class="self-start bg-black p-7 text-white dark:bg-white dark:text-black sm:p-10">
+          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">The guarantee</p>
+          <p class="mt-6 text-balance text-2xl font-medium leading-snug sm:text-3xl">If I cannot identify at least five hours of credible weekly opportunity, you get a full refund.</p>
+          <p class="mt-6 text-sm leading-6 text-white/60 dark:text-black/60">Every estimate is tied to a workflow you described and a recommendation I can defend. Your only risk is the time we spend talking.</p>
+        </div>
+      </section>
+
+      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
+        <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1fr_22rem] lg:items-center lg:gap-24">
+          <div>
+            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Who it is for</p>
+            <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Raleigh-area businesses where the owner or team is still doing too much by hand.</h2>
+            <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">The sweet spot is an owner-led business with roughly 2–20 employees, repeatable operational work, and an appetite for practical improvement. No AI strategy or technical employee required.</p>
+          </div>
+          <div class="flex items-center gap-5 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <Image src={profileImage} alt="Danny Sullivan" width={96} height={96} class="size-20 rounded-full object-cover grayscale" />
+            <div><strong class="block text-sm">Danny Sullivan</strong><span class="mt-1 block text-sm leading-5 text-base-500 dark:text-base-400">AI Product Engineer<br />Raleigh, North Carolina</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
+        <div><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Common questions</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Before you apply.</h2></div>
+        <div>{faqs.map(([question, answer]) => <details class="border-t border-black/10 py-5 last:border-b dark:border-white/10"><summary class="flex cursor-pointer list-none justify-between gap-6 text-sm font-medium">{question}<span class="text-base-400">+</span></summary><p class="mt-4 max-w-2xl pr-8 text-sm leading-6 text-base-500 dark:text-base-400">{answer}</p></details>)}</div>
+      </section>
+
+      <section class="bg-black text-white dark:bg-white dark:text-black">
+        <div class="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
+          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">One assessment · $999</p>
+          <h2 class="mt-5 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Let’s find five hours hiding in your workweek.</h2>
+          <a href="/work-with-me/" class="mt-8 inline-flex min-h-12 items-center justify-center bg-[#ddff73] px-6 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Apply for the assessment <span class="ml-3">→</span></a>
+          <p class="mt-4 text-xs text-white/50 dark:text-black/50">Applying does not commit you to purchase.</p>
+        </div>
+      </section>
     </div>
 
-    <section class="work shell" id="selected-work" aria-labelledby="work-title">
-      <header class="section-heading">
-        <div>
-          <p class="section-number">01 / RECENT RELEASES</p>
-          <h2 id="work-title">Selected work<br /><em>worth turning up.</em></h2>
-        </div>
-        <div class="heading-note">
-          <p>A few things I’ve designed, built, shaped, and shipped.</p>
-          <a class="text-link" href="/projects/">View the full archive <span>↗</span></a>
-        </div>
-      </header>
-
-      <div class="project-grid">
-        {featuredProjects.map((project, index) => {
-          const meta = projectMeta[project.id];
-          return (
-            <article class:list={["project-card", `project-${index + 1}`]}>
-              <a href={`/projects/${project.id}`}>
-                <div class="project-image">
-                  <Image
-                    src={project.data.image.url}
-                    alt={project.data.image.alt}
-                    width={project.data.image.url.width}
-                    height={project.data.image.url.height}
-                    loading="eager"
-                  />
-                  <span class="project-arrow" aria-hidden="true">↗</span>
-                  <span class="project-index">0{index + 1}</span>
-                </div>
-                <div class="project-copy">
-                  <div>
-                    <p>{meta?.tag}</p>
-                    <h3>{project.data.title.replace(" Website", "")}</h3>
-                  </div>
-                  <span>{meta?.note}</span>
-                </div>
-              </a>
-            </article>
-          );
-        })}
-      </div>
-    </section>
-
-    <section class="setlist" aria-labelledby="setlist-title">
-      <div class="shell setlist-inner">
-        <div class="setlist-intro">
-          <p class="section-number light">02 / THE SETLIST</p>
-          <h2 id="setlist-title">What I make<br /><em>when it matters.</em></h2>
-          <p>Strategy, design, code, and enough curiosity to find the real problem underneath the request.</p>
-        </div>
-        <ol class="setlist-list">
-          <li><span>01</span><strong>AI products & prototypes</strong><small>Make the fuzzy thing real</small></li>
-          <li><span>02</span><strong>Websites with a point of view</strong><small>Look good. Work hard.</small></li>
-          <li><span>03</span><strong>Workflow automation</strong><small>Delete the repetitive parts</small></li>
-          <li><span>04</span><strong>Content & growth systems</strong><small>Build the machine, not the pile</small></li>
-          <li><span>05</span><strong>Product strategy</strong><small>Find the useful version first</small></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="venture-peek shell" aria-labelledby="venture-title">
-      <div class="venture-art">
-        <Image
-          src={raleighLeadRecovery}
-          alt="Raleigh Lead Recovery website homepage"
-          width={raleighLeadRecovery.width}
-          height={raleighLeadRecovery.height}
-        />
-        <span>OWNER / OPERATOR</span>
-      </div>
-      <div class="venture-copy">
-        <p class="section-number">03 / OFF THE CLOCK</p>
-        <h2 id="venture-title">Ideas I’m<br /><em>building myself.</em></h2>
-        <p>
-          Raleigh Lead Recovery catches customer calls local service businesses
-          miss, sends the details to their team, and shows what those calls were worth.
-        </p>
-        <div>
-          <a class="button button-ink" href="/ventures/">See my ventures <span>↗</span></a>
-          <a class="text-link" href="https://raleighleadrecovery.com/" target="_blank" rel="noreferrer">Visit RLR <span>↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="liner-notes shell" aria-labelledby="notes-title">
-      <div class="notes-stamp" aria-hidden="true"><span>DS</span><small>RDU<br />2026</small></div>
-      <div class="notes-copy">
-        <p class="section-number">04 / LINER NOTES</p>
-        <h2 id="notes-title">Builder by trade.<br /><em>Curious by default.</em></h2>
-        <p>
-          Currently building AI products for live-event discovery at Gametime.
-          Previously Pluralsight. Before software: professional baseball and
-          special education. Based in Raleigh, usually working on something.
-        </p>
-        <div>
-          <a class="button button-ink" href="/about/">The longer story <span>↗</span></a>
-          <a class="text-link" href="/blog/">Read my notes <span>↗</span></a>
-        </div>
-      </div>
-      <blockquote>
-        “I like the point where a rough idea stops being a conversation and starts becoming a thing.”
-      </blockquote>
-    </section>
-
-    <section class="closing shell">
-      <p>Got something messy, ambitious, or slightly weird?</p>
-      <a href="/work-with-me/">Let’s make it real. <span>↗</span></a>
-    </section>
   </div>
 </BaseLayout>
-
-<style>
-  :global(body) { background: #f0ebdd; }
-  :global(.dark body) { background: #11110f; }
-  .home-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --red:#ff4b36; --acid:#dcff45; color:var(--ink); overflow:hidden; }
-  :global(.dark) .home-page { --ink:#f0ebdd; --paper:#11110f; }
-  .shell { width:min(100% - 40px, 1320px); margin-inline:auto; }
-  .hero { min-height:calc(100svh - 90px); display:grid; grid-template-columns:minmax(0,1.02fr) minmax(360px,.72fr); gap:clamp(2rem,6vw,7rem); align-items:center; padding:clamp(4rem,8vw,8rem) 0 5rem; }
-  .eyebrow,.section-number { display:flex; align-items:center; gap:.7rem; font-size:.7rem; font-weight:750; letter-spacing:.16em; text-transform:uppercase; }
-  .eyebrow span { width:2.4rem; height:2px; background:var(--red); }
-  h1,h2,h3 { font-family:"Anybody", sans-serif; font-stretch:condensed; text-transform:uppercase; }
-  h1 { margin-top:1.5rem; font-size:clamp(4.4rem,10vw,10rem); font-weight:800; font-stretch:92%; line-height:.86; letter-spacing:-.032em; }
-  h1 em,h2 em { color:var(--blue); font-style:normal; }
-  .hero-bottom { max-width:42rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:end; margin-top:2.75rem; }
-  .hero-bottom>p { max-width:34rem; font-size:clamp(1rem,1.5vw,1.22rem); line-height:1.55; }
-  .hero-actions { display:flex; flex-direction:column; gap:1rem; align-items:flex-start; }
-  .button { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-width:12rem; padding:1rem 1.15rem; font-size:.75rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; transition:transform .2s, background .2s; }
-  .button:hover { transform:translate(-3px,-3px); }
-  .button-blue { background:var(--blue); color:white; box-shadow:5px 5px 0 var(--ink); }
-  .button-ink { color:var(--paper); background:var(--ink); }
-  .text-link { font-size:.78rem; font-weight:750; letter-spacing:.06em; text-transform:uppercase; border-bottom:1px solid currentColor; padding-bottom:.3rem; }
-  .hero-art { position:relative; display:block; padding:1rem; color:#11110f; background:#fffdf5; transform:rotate(1.6deg); box-shadow:18px 18px 0 rgba(17,17,15,.16); transition:transform .35s cubic-bezier(.2,.8,.2,1); }
-  .hero-art:hover { transform:rotate(-.5deg) translateY(-8px); }
-  .hero-art img { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; filter:saturate(.94) contrast(1.04); }
-  .art-label,.art-caption { display:flex; justify-content:space-between; align-items:center; }
-  .art-label { margin-bottom:.65rem; font-size:.62rem; font-weight:800; letter-spacing:.13em; }
-  .art-caption { padding:.8rem .1rem .15rem; gap:1rem; }
-  .art-caption strong { max-width:70%; font-family:"Anybody",sans-serif; font-size:clamp(1.35rem,2.4vw,2.5rem); font-weight:800; line-height:.95; }
-  .art-caption span { max-width:10rem; font-size:.67rem; line-height:1.3; text-transform:uppercase; text-align:right; }
-  .tape { position:absolute; background:var(--acid); padding:.55rem 1rem; font-style:normal; font-size:.6rem; font-weight:850; letter-spacing:.08em; box-shadow:0 2px 7px #0003; }
-  .tape-one { top:16%; left:-2rem; transform:rotate(-7deg); }
-  .tape-two { right:-1.7rem; bottom:18%; transform:rotate(6deg); background:var(--red); color:white; }
-  .ticker { width:100%; overflow:hidden; background:var(--red); color:white; border-block:2px solid var(--ink); transform:rotate(-1deg) scale(1.02); }
-  .ticker div { width:max-content; display:flex; gap:2rem; align-items:center; padding:.8rem 0; animation:marquee 24s linear infinite; font-family:"Anybody",sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:.05em; }
-  .ticker i { color:var(--acid); font-style:normal; }
-  @keyframes marquee { to { transform:translateX(-50%); } }
-  .work { padding:clamp(7rem,12vw,11rem) 0; }
-  .section-heading { display:grid; grid-template-columns:1fr minmax(250px,.34fr); gap:3rem; align-items:end; margin-bottom:4rem; }
-  .section-heading h2,.setlist h2,.liner-notes h2 { margin-top:1rem; font-size:clamp(3.2rem,7vw,7rem); font-weight:800; line-height:.87; letter-spacing:-.045em; }
-  .heading-note { max-width:22rem; justify-self:end; }
-  .heading-note p { margin-bottom:1.6rem; line-height:1.5; }
-  .project-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(2rem,5vw,5rem) 1.5rem; }
-  .project-card { grid-column:span 6; }
-  .project-1 { grid-column:span 7; }
-  .project-2 { grid-column:9 / span 4; margin-top:10rem; }
-  .project-3 { grid-column:2 / span 4; }
-  .project-4 { grid-column:7 / span 6; margin-top:5rem; }
-  .project-card a { display:block; }
-  .project-image { position:relative; overflow:hidden; border:2px solid var(--ink); background:var(--ink); }
-  .project-image img { width:100%; aspect-ratio:1.44; object-fit:cover; transition:transform .6s cubic-bezier(.2,.8,.2,1), filter .35s; }
-  .project-card:hover img { transform:scale(1.035); filter:saturate(1.12); }
-  .project-index,.project-arrow { position:absolute; z-index:1; display:grid; place-items:center; background:var(--paper); color:var(--ink); border:2px solid var(--ink); }
-  .project-index { left:-2px; top:-2px; width:3rem; height:3rem; font-family:"Anybody"; font-weight:800; }
-  .project-arrow { right:1rem; top:1rem; width:3rem; height:3rem; border:0; background:var(--acid); font-size:1.25rem; transition:transform .25s; }
-  .project-card:hover .project-arrow { transform:rotate(12deg); }
-  .project-copy { display:grid; grid-template-columns:1fr minmax(120px,.4fr); gap:1rem; padding-top:1rem; border-top:2px solid var(--ink); margin-top:.6rem; }
-  .project-copy p { font-size:.62rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
-  .project-copy h3 { margin-top:.25rem; font-size:clamp(1.6rem,3vw,3rem); font-weight:800; line-height:.95; }
-  .project-copy>span { font-size:.78rem; line-height:1.4; align-self:end; }
-  .setlist { background:#101114; color:#f0ebdd; padding:clamp(6rem,10vw,10rem) 0; position:relative; }
-  .setlist::before { content:""; position:absolute; inset:0; opacity:.12; background-image:repeating-linear-gradient(0deg,transparent 0 5px,#fff 6px); pointer-events:none; }
-  .setlist-inner { position:relative; display:grid; grid-template-columns:.65fr 1fr; gap:clamp(4rem,10vw,10rem); }
-  .section-number.light { color:#dcff45; }
-  .setlist h2 em { color:#dcff45; }
-  .setlist-intro>p:last-child { max-width:28rem; margin-top:2rem; color:#bab7ae; line-height:1.6; }
-  .setlist-list { border-top:1px solid #ffffff3b; }
-  .setlist-list li { display:grid; grid-template-columns:2rem 1fr auto; gap:1.5rem; align-items:center; padding:1.55rem 0; border-bottom:1px solid #ffffff3b; transition:padding .25s,color .25s; }
-  .setlist-list li:hover { padding-left:1rem; color:#dcff45; }
-  .setlist-list span { color:#ff4b36; font-size:.68rem; font-weight:800; }
-  .setlist-list strong { font-family:"Anybody",sans-serif; font-size:clamp(1.4rem,2.5vw,2.5rem); line-height:1; text-transform:uppercase; }
-  .setlist-list small { color:#8f8e88; font-size:.68rem; text-transform:uppercase; text-align:right; }
-  .venture-peek { display:grid; grid-template-columns:1.05fr .75fr; gap:clamp(3rem,8vw,8rem); align-items:center; padding:clamp(7rem,12vw,12rem) 0 3rem; }
-  .venture-art { position:relative; padding:.75rem; background:#101114; border:2px solid var(--ink); box-shadow:12px 12px 0 var(--acid); transform:rotate(-1.5deg); }
-  .venture-art img { display:block; width:100%; height:auto; object-fit:contain; }
-  .venture-art span { position:absolute; right:-1rem; bottom:1.5rem; padding:.55rem .85rem; background:var(--red); color:white; font-size:.58rem; font-weight:850; letter-spacing:.1em; transform:rotate(5deg); }
-  .venture-copy h2 { margin-top:1rem; font-family:"Anybody",sans-serif; font-size:clamp(3rem,6vw,6rem); font-weight:800; line-height:.87; letter-spacing:-.045em; text-transform:uppercase; }
-  .venture-copy h2 em { color:var(--blue); font-style:normal; }
-  .venture-copy>p:not(.section-number) { max-width:34rem; margin:2rem 0; font-size:1.05rem; line-height:1.65; }
-  .venture-copy>div { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  .liner-notes { display:grid; grid-template-columns:.28fr .8fr .6fr; gap:clamp(2rem,6vw,6rem); align-items:center; padding:clamp(7rem,12vw,12rem) 0; }
-  .notes-stamp { aspect-ratio:1; border:3px solid var(--ink); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-8deg); }
-  .notes-stamp span { font-family:"Anybody"; font-size:clamp(3rem,6vw,6rem); font-weight:900; line-height:.8; }
-  .notes-stamp small { margin-top:1rem; font-size:.62rem; font-weight:800; letter-spacing:.13em; }
-  .notes-copy>p:not(.section-number) { max-width:39rem; margin:2rem 0; font-size:1.05rem; line-height:1.65; }
-  .notes-copy>div { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
-  blockquote { border-left:4px solid var(--blue); padding-left:1.5rem; font-family:"Instrument Serif",serif; font-size:clamp(1.5rem,3vw,2.65rem); line-height:1.12; }
-  .closing { margin-bottom:3rem; padding:clamp(3rem,6vw,6rem); background:var(--blue); color:white; display:grid; grid-template-columns:.55fr 1fr; gap:3rem; align-items:end; box-shadow:10px 10px 0 var(--ink); }
-  .closing p { font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-  .closing a { font-family:"Anybody"; font-size:clamp(3.2rem,7vw,7rem); font-weight:850; line-height:.85; letter-spacing:-.04em; text-transform:uppercase; }
-  .closing a span { color:var(--acid); }
-  .reveal { animation:rise .7s both cubic-bezier(.2,.8,.2,1); }
-  .reveal-1 { animation-delay:.08s; } .reveal-2 { animation-delay:.18s; }
-  @keyframes rise { from { opacity:0; transform:translateY(24px); } }
-  @media (prefers-reduced-motion:reduce) { .reveal,.ticker div { animation:none; } * { scroll-behavior:auto!important; } }
-  @media (max-width:900px) {
-    .hero { grid-template-columns:1fr; min-height:auto; }
-    .hero-copy { padding-top:2rem; }
-    .hero-art { width:min(90%,600px); margin:0 auto; }
-    .section-heading,.setlist-inner,.venture-peek,.liner-notes,.closing { grid-template-columns:1fr; }
-    .heading-note { justify-self:start; }
-    .project-1,.project-2,.project-3,.project-4 { grid-column:span 6; margin-top:0; }
-    .liner-notes { align-items:start; }
-    .notes-stamp { width:10rem; }
-  }
-  @media (max-width:620px) {
-    .shell { width:min(100% - 28px,1320px); }
-    .hero { padding-top:3rem; }
-    h1 { font-size:clamp(3.7rem,18vw,5.6rem); line-height:.88; letter-spacing:-.025em; }
-    .hero-bottom { grid-template-columns:1fr; }
-    .hero-actions { flex-direction:row; flex-wrap:wrap; align-items:center; }
-    .tape-two { right:-.5rem; }
-    .section-heading { margin-bottom:2.5rem; }
-    .project-grid { display:block; }
-    .project-card+.project-card { margin-top:3rem; }
-    .project-copy { grid-template-columns:1fr; }
-    .project-copy>span { max-width:17rem; }
-    .setlist-list li { grid-template-columns:1.5rem 1fr; gap:1rem; }
-    .setlist-list small { grid-column:2; text-align:left; }
-    .closing { padding:2rem; }
-  }
-</style>

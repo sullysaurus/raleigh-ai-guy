@@ -1,12 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-export async function getStaticPaths(){const all=await getCollection("posts");const tags=[...new Set(all.flatMap((p)=>p.data.tags))];return tags.map((tag)=>({params:{tag},props:{posts:all.filter((p)=>p.data.tags.includes(tag))}}));}
-const {tag}=Astro.params;const {posts}=Astro.props;const label=tag==="ai"?"AI":tag?tag.charAt(0).toUpperCase()+tag.slice(1):"Topic";
+export async function getStaticPaths() {
+  const all = await getCollection("posts");
+  const tags = [...new Set(all.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: all
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+    },
+  }));
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const label = tag === "ai" ? "AI" : tag ? tag.charAt(0).toUpperCase() + tag.slice(1) : "Topic";
 ---
-<BaseLayout pageTitle={`${label} Notes`} pageDescription={`Notes about ${tag} from Danny Sullivan.`} noindex>
-  <section class="tag-results"><header><p><span></span> Filtered field notes</p><h1>Notes on<br /><em>{label}.</em></h1><a href="/blog/">All notes ↗</a></header><div class="results">{posts.map((post,index)=><a href={`/blog/posts/${post.id}`}><span>0{index+1}</span><div><small>{post.data.pubDate.toLocaleDateString("en-US",{month:"short",day:"2-digit",year:"numeric",timeZone:"UTC"})}</small><strong>{post.data.title}</strong><p>{post.data.description}</p></div><b>↗</b></a>)}</div></section>
+<BaseLayout pageTitle={`${label} Guides`} pageDescription={`Practical guides about ${tag} from Danny Sullivan.`} noindex>
+  <section class="min-h-[65svh] bg-white text-black dark:bg-base-950 dark:text-white"><div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24"><a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">← All guides</a><h1 class="mt-8 font-sans text-4xl font-semibold tracking-tight sm:text-6xl">Guides about {label}.</h1><div class="mt-12 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">{posts.map((post) => <a href={`/blog/posts/${post.id}`} class="grid gap-3 py-6 sm:grid-cols-[8rem_1fr_auto] sm:items-start sm:gap-6"><time class="text-xs text-base-400">{post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time><div><strong class="block font-sans text-xl font-semibold">{post.data.title}</strong><p class="mt-2 text-sm leading-6 text-base-500 dark:text-base-400">{post.data.description}</p></div><span aria-hidden="true">→</span></a>)}</div></div></section>
 </BaseLayout>
-<style>
-  .tag-results{width:min(100% - 40px,1320px);min-height:75svh;margin:auto;padding:6rem 0;color:#11110f}.dark .tag-results{color:#f0ebdd}.tag-results header{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;margin-bottom:5rem}.tag-results header>p{grid-column:1/-1;display:flex;align-items:center;gap:.7rem;font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.tag-results header>p span{width:2.5rem;height:2px;background:#ff4b36}.tag-results h1{font-family:"Anybody";font-size:clamp(4.5rem,9vw,9rem);font-weight:850;line-height:.78;letter-spacing:-.06em;text-transform:uppercase}.tag-results h1 em{color:#2947ff;font-style:normal}.tag-results header>a{border-bottom:1px solid currentColor;font-size:.7rem;font-weight:800;text-transform:uppercase}.results{border-top:2px solid currentColor}.results>a{display:grid;grid-template-columns:3rem 1fr auto;gap:2rem;padding:1.5rem 0;border-bottom:1px solid color-mix(in srgb,currentColor 35%,transparent)}.results>a>span{color:#2947ff;font-size:.65rem;font-weight:800}.results small{display:block;font-size:.6rem;text-transform:uppercase;opacity:.55}.results strong{display:block;margin:.4rem 0;font-family:"Anybody";font-size:clamp(1.8rem,3vw,3rem);line-height:.95;text-transform:uppercase}.results p{max-width:45rem;font-size:.78rem;line-height:1.5;opacity:.65}.results b{font-size:1.2rem}@media(max-width:650px){.tag-results{width:min(100% - 28px,1320px);padding:5rem 0}.tag-results header{grid-template-columns:1fr}.results>a{grid-template-columns:2rem 1fr}.results b{display:none}}
-</style>

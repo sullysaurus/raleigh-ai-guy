@@ -10,9 +10,10 @@ interface Props {
   pageTitle?: string;
   pageDescription?: string;
   noindex?: boolean;
+  minimal?: boolean;
 }
 
-const { pageTitle, pageDescription, noindex } = Astro.props;
+const { pageTitle, pageDescription, noindex, minimal = false } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -23,9 +24,9 @@ const { pageTitle, pageDescription, noindex } = Astro.props;
       noindex={noindex}
     />
   </head>
-  <body class="bg-[#f0ebdd] dark:bg-[#11110f] flex flex-col min-h-svh">
-    <Navigation />
+  <body id="top" class="flex min-h-svh flex-col bg-white dark:bg-base-950">
+    {!minimal && <Navigation />}
     <main class="grow"><slot /></main>
-    <Footer />
+    {!minimal && <Footer />}
   </body>
 </html>

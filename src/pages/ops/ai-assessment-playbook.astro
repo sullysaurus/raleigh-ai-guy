@@ -1,0 +1,141 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const discoveryQuestions = [
+  "Walk me through yesterday from the moment you started work.",
+  "Which tasks do you dread doing—even when they are not difficult?",
+  "Where does work pile up, wait for approval, or get handed off badly?",
+  "What have you tried to automate or delegate before? Why did it fail?",
+  "If you could wave a magic wand and delete one process, what would it be?",
+  "Which questions, emails, or documents do you create over and over?",
+  "Where do you copy the same information between tools?",
+  "What work still depends entirely on you?",
+];
+
+const acquisition = [
+  ["Existing network", "List 50 Raleigh business owners, operators, vendors, and former colleagues. Send ten personal notes each week."],
+  ["Cold outreach", "Research one visible workflow problem before contacting a business. Offer one useful observation, not a generic AI pitch."],
+  ["Door knocking", "Visit owner-led local businesses with a one-page explanation and a relevant example for their industry."],
+  ["Referral partners", "Build reciprocal relationships with accountants, MSPs, fractional operators, agencies, and business brokers."],
+  ["Workshops", "Run a practical, co-branded AI session with a coworking space, chamber, trade group, or referral partner."],
+  ["AI office hours", "Host free monthly office hours. Answer real questions, record patterns, and invite qualified owners to an assessment."],
+  ["Post the wins", "Publish one useful answer, prompt, workflow, or anonymized result at a time. Build a Raleigh-specific body of proof."],
+];
+---
+
+<BaseLayout pageTitle="AI Assessment Operations Playbook" pageDescription="Internal fulfillment and growth playbook for Danny Sullivan's AI Tools Assessment." noindex minimal>
+  <div class="ops-page">
+    <header class="ops-header shell">
+      <p>Internal operations · Noindex</p>
+      <h1>AI Tools Assessment<br /><em>field manual.</em></h1>
+      <div><span>Offer</span><strong>$999</strong><span>Guarantee</span><strong>5+ hours/week</strong><span>Ideal client</span><strong>Raleigh · 2–20 employees</strong></div>
+    </header>
+
+    <nav class="jump-nav shell" aria-label="Playbook sections">
+      <a href="#pipeline">Pipeline</a><a href="#discovery">Discovery</a><a href="#analysis">Analysis</a><a href="#report">Report</a><a href="#review">Review</a><a href="#expansion">Expansion</a><a href="#growth">Growth</a>
+    </nav>
+
+    <main class="shell">
+      <section id="pipeline">
+        <div class="section-title"><span>01</span><div><p>Operating sequence</p><h2>One client. Four phases.</h2></div></div>
+        <ol class="pipeline">
+          <li><span>01</span><div><strong>Discovery call</strong><small>45 minutes · recorded and transcribed</small><p>Probe for pain. Do not prescribe yet.</p></div><input type="checkbox" aria-label="Discovery complete" /></li>
+          <li><span>02</span><div><strong>AI analysis + research</strong><small>60–90 minutes internal</small><p>Extract bottlenecks, research tools, verify fit, and quantify time.</p></div><input type="checkbox" aria-label="Analysis complete" /></li>
+          <li><span>03</span><div><strong>Assessment report</strong><small>Use the printable template</small><p>Package the quick wins, recommendations, four-day plan, and ROI.</p></div><input type="checkbox" aria-label="Report complete" /></li>
+          <li><span>04</span><div><strong>Review call</strong><small>30 minutes · report sent in advance</small><p>Walk through the prescription and ask the three closing questions.</p></div><input type="checkbox" aria-label="Review complete" /></li>
+        </ol>
+      </section>
+
+      <section id="discovery">
+        <div class="section-title"><span>02</span><div><p>Phase one</p><h2>Discovery script.</h2></div></div>
+        <div class="callout"><strong>Rule:</strong> Ask, probe, and quantify. Do not solve the problem live. Record only with explicit consent.</div>
+        <ol class="question-list">{discoveryQuestions.map((question, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></li>)}</ol>
+        <div class="probe-grid">
+          <article><h3>For every pain point, ask:</h3><ul><li>How often does this happen?</li><li>Who touches it?</li><li>How long does it take?</li><li>What happens when it is late or wrong?</li><li>Where does the source information live?</li></ul></article>
+          <article><h3>Before ending, confirm:</h3><ul><li>The top two pain points in their words</li><li>Current tools and constraints</li><li>Hourly value or cost assumption</li><li>Who can approve a tool</li><li>Review call date</li></ul></article>
+        </div>
+      </section>
+
+      <section id="analysis">
+        <div class="section-title"><span>03</span><div><p>Phase two</p><h2>Analysis prompt.</h2></div></div>
+        <div class="prompt-block">
+          <button type="button" data-copy="#analysis-prompt">Copy prompt</button>
+          <pre id="analysis-prompt">You are analyzing a discovery-call transcript for a small-business AI Tools Assessment.
+
+Business context:
+- Company: [COMPANY]
+- Industry: [INDUSTRY]
+- Team size: [TEAM SIZE]
+- Current tools: [TOOLS]
+- Constraints: [BUDGET / SECURITY / ADOPTION]
+
+Read the attached transcript and:
+1. Identify every repeated, manual, slow, error-prone, or owner-dependent workflow.
+2. Quote or closely paraphrase the evidence for each pain point.
+3. Estimate current weekly time using only transcript evidence. Mark assumptions clearly.
+4. Research off-the-shelf software or AI tools that fit this specific business size and tool stack.
+5. For each candidate, provide price, setup effort, integrations, privacy considerations, and source links.
+6. Rank options by impact and effort. Prefer simple tools the client can use immediately.
+7. Recommend 3–7 tools or workflows that together create at least five credible hours of weekly opportunity.
+8. Reject enterprise-scale, fragile, duplicative, or unjustifiably expensive solutions.
+9. Produce a four-day plan requiring no more than ten minutes per day.
+10. Calculate monthly value using documented time estimates and the agreed hourly-value assumption.
+
+Do not invent savings, features, prices, or integrations. Flag anything that requires human verification.</pre>
+        </div>
+        <div class="qa-list"><h3>Human QA before the report</h3><label><input type="checkbox" />Every tool still exists and is actively supported.</label><label><input type="checkbox" />Pricing and plan limits were checked at the primary source.</label><label><input type="checkbox" />The tool fits a 2–20 person team.</label><label><input type="checkbox" />Security and data-handling risks are named.</label><label><input type="checkbox" />No two recommendations solve the same problem unnecessarily.</label><label><input type="checkbox" />Every savings estimate traces back to the call.</label><label><input type="checkbox" />The total credible opportunity is at least five hours/week—or issue the refund.</label></div>
+      </section>
+
+      <section id="report">
+        <div class="section-title"><span>04</span><div><p>Phase three</p><h2>Build the report.</h2></div></div>
+        <div class="report-link"><div><strong>Six-page client template</strong><p>Fill it in, print it to PDF, and send it before the review call.</p></div><a href="/ops/assessment-report-template/">Open report builder <span>↗</span></a></div>
+        <ol class="report-pages"><li><span>01</span>Cover: client, date, business type, primary focus</li><li><span>02</span>Executive summary + effort/impact matrix</li><li><span>03</span>Three to seven recommendations</li><li><span>04</span>Four-day quick-start plan</li><li><span>05</span>Financial impact and calculation assumptions</li><li><span>06</span>Next steps and review-call decisions</li></ol>
+      </section>
+
+      <section id="review">
+        <div class="section-title"><span>05</span><div><p>Phase four</p><h2>Review and close.</h2></div></div>
+        <div class="review-grid">
+          <article><span>BEFORE</span><h3>Send the report early.</h3><p>Give the client enough time to scan it. Open the call by restating the two pains and the total opportunity.</p></article>
+          <article><span>DURING</span><h3>Walk through the logic.</h3><p>For each item: “You told me X. I recommend Y because Z. Here is the first step and the expected impact.”</p></article>
+          <article><span>AFTER</span><h3>Ask three questions.</h3><ol><li>Which recommendation feels most urgent?</li><li>Do you want to do this yourself or would you like my help?</li><li>What is your timeline?</li></ol></article>
+        </div>
+      </section>
+
+      <section id="expansion">
+        <div class="section-title"><span>06</span><div><p>Expansion menu</p><h2>$999 is the door.</h2></div></div>
+        <div class="expansion-grid">
+          <article><span>01</span><h3>Process redesign</h3><p>Map the current process, remove waste, and deliver a future-state blueprint before automating.</p><small>Podcast reference: $3K–$3.5K</small></article>
+          <article><span>02</span><h3>Simple automation</h3><p>Build a narrow, reliable Zapier, Make, or n8n flow with a clear input and output.</p><small>Podcast example: $1.5K</small></article>
+          <article><span>03</span><h3>Knowledge system</h3><p>Turn trusted company information into a searchable, governed assistant for staff or customers.</p></article>
+          <article><span>04</span><h3>Custom workflow</h3><p>Build and document a company-specific AI skill, reference set, and team workflow.</p></article>
+          <article><span>05</span><h3>Team training</h3><p>Train the team on the recommended tools, responsible usage, and the exact workflows chosen.</p></article>
+          <article class="featured"><span>06 · RECOMMENDED</span><h3>AI concierge</h3><p>Two 45-minute working sessions each month, async questions, and a visible inventory of completed improvements.</p><small>Use AOA: Audit → Optimize → Automate</small></article>
+        </div>
+        <div class="concierge-check"><h3>Concierge onboarding</h3><ol><li>Define the specific 90-day win.</li><li>Connect tools and create context files.</li><li>Set global instructions and safe-use rules.</li><li>Demonstrate scheduled tasks and reusable skills.</li><li>Maintain a client hub of every completed improvement.</li></ol></div>
+      </section>
+
+      <section id="growth">
+        <div class="section-title"><span>07</span><div><p>Client acquisition</p><h2>Become Raleigh’s AI guy.</h2></div></div>
+        <div class="growth-grid">{acquisition.map(([title, body], index) => <article><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+        <div class="weekly-cadence"><h3>Simple weekly scorecard</h3><div><label>Personal outreach <input type="number" min="0" placeholder="10" /></label><label>Cold/local outreach <input type="number" min="0" placeholder="10" /></label><label>Partner follow-ups <input type="number" min="0" placeholder="5" /></label><label>Useful public posts <input type="number" min="0" placeholder="3" /></label><label>Office hours/workshops <input type="number" min="0" placeholder="1" /></label><label>Assessments sold <input type="number" min="0" placeholder="1" /></label></div></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.querySelector(button.dataset.copy || "");
+        if (!target) return;
+        await navigator.clipboard.writeText(target.textContent || "");
+        button.textContent = "Copied";
+        window.setTimeout(() => (button.textContent = "Copy prompt"), 1500);
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  :global(body){background:#ece9df}.ops-page{--ink:#11120f;--paper:#ece9df;--orange:#f15a24;--green:#dfff54;color:var(--ink)}.dark .ops-page{--ink:#ece9df;--paper:#11120f}.shell{width:min(100% - 40px,1180px);margin-inline:auto}.ops-header{padding:6rem 0 4rem}.ops-header>p,.section-title p{font-size:.62rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.ops-header h1,h2,h3{font-family:"Anybody";text-transform:uppercase}.ops-header h1{margin:1rem 0 2.5rem;font-size:clamp(4rem,9vw,9rem);font-weight:880;line-height:.79;letter-spacing:-.06em}.ops-header h1 em{color:var(--orange);font-style:normal}.ops-header>div{display:flex;gap:.7rem 1rem;flex-wrap:wrap;align-items:center;padding-top:1rem;border-top:2px solid}.ops-header>div span{font-size:.58rem;font-weight:800;text-transform:uppercase;opacity:.55}.ops-header>div strong{margin-right:1rem;font-size:.72rem;text-transform:uppercase}.jump-nav{position:sticky;top:0;z-index:10;display:flex;gap:.2rem;overflow-x:auto;padding-block:.5rem;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px)}.jump-nav a{flex:0 0 auto;padding:.65rem .8rem;color:#fff;background:#111;font-size:.58rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.ops-page main>section{scroll-margin-top:5rem;padding:6rem 0;border-top:2px solid}.section-title{display:grid;grid-template-columns:3.5rem 1fr;gap:1rem;margin-bottom:3rem}.section-title>span{color:var(--orange);font-weight:900}.section-title h2{font-size:clamp(2.8rem,5vw,5rem);font-weight:870;line-height:.86}.pipeline{border-top:1px solid}.pipeline li{display:grid;grid-template-columns:3rem 1fr auto;gap:1rem;align-items:start;padding:1.25rem 0;border-bottom:1px solid}.pipeline li>span{color:var(--orange);font-size:.65rem;font-weight:850}.pipeline strong,.pipeline small,.pipeline p{display:block}.pipeline strong{font-family:"Anybody";font-size:1.55rem;text-transform:uppercase}.pipeline small{margin:.15rem 0 .5rem;font-size:.58rem;font-weight:800;text-transform:uppercase;opacity:.55}.pipeline p{font-size:.77rem}.pipeline input,.qa-list input{width:1.2rem;height:1.2rem;border:1px solid;border-radius:0;color:var(--orange)}.callout{padding:1rem;color:#111;background:var(--green);border:2px solid #111;font-size:.8rem}.question-list{margin-top:2rem;border-top:1px solid}.question-list li{display:grid;grid-template-columns:3rem 1fr;padding:1rem 0;border-bottom:1px solid}.question-list span{color:var(--orange);font-weight:850}.question-list p{font-family:"Anybody";font-size:1.4rem;font-weight:750;text-transform:uppercase}.probe-grid,.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}.probe-grid article,.review-grid article{padding:1.5rem;border:2px solid}.probe-grid h3,.review-grid h3,.qa-list h3,.concierge-check h3,.weekly-cadence h3{font-size:1.4rem;font-weight:850}.probe-grid ul,.review-grid ol,.concierge-check ol{margin-top:1rem}.probe-grid li,.review-grid li,.concierge-check li{padding:.45rem 0;border-top:1px solid;font-size:.75rem}.prompt-block{position:relative;color:#eee;background:#111}.prompt-block button{position:absolute;top:1rem;right:1rem;padding:.6rem .8rem;color:#111;background:var(--green);font-size:.58rem;font-weight:850;text-transform:uppercase}.prompt-block pre{overflow:auto;padding:4rem 1.5rem 1.5rem;font-size:.74rem;line-height:1.6;white-space:pre-wrap}.qa-list{display:grid;gap:.7rem;margin-top:1.5rem;padding:1.5rem;border:2px solid}.qa-list h3{margin-bottom:.5rem}.qa-list label{display:flex;gap:.7rem;align-items:start;font-size:.75rem}.report-link{display:flex;justify-content:space-between;gap:2rem;align-items:end;padding:2rem;color:#fff;background:#2348ff}.report-link strong{font-family:"Anybody";font-size:2rem;text-transform:uppercase}.report-link p{margin-top:.4rem;font-size:.75rem;opacity:.7}.report-link a{flex:0 0 auto;padding:1rem;color:#111;background:var(--green);box-shadow:4px 4px 0 #111;font-size:.65rem;font-weight:850;text-transform:uppercase}.report-pages{display:grid;grid-template-columns:1fr 1fr;margin-top:2rem;border-top:1px solid}.report-pages li{display:grid;grid-template-columns:2rem 1fr;gap:.5rem;padding:1rem;border-bottom:1px solid;font-size:.75rem}.report-pages li:nth-child(odd){border-right:1px solid}.report-pages span{color:var(--orange);font-weight:850}.review-grid{grid-template-columns:repeat(3,1fr)}.review-grid article>span{color:var(--orange);font-size:.58rem;font-weight:850}.review-grid h3{margin:2rem 0 1rem}.review-grid p{font-size:.76rem;line-height:1.5}.expansion-grid,.growth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.expansion-grid article,.growth-grid article{min-height:250px;padding:1.3rem;border:2px solid}.expansion-grid article>span,.growth-grid span{color:var(--orange);font-size:.58rem;font-weight:850}.expansion-grid h3,.growth-grid h3{margin:2.5rem 0 .7rem;font-size:1.55rem;font-weight:850}.expansion-grid p,.growth-grid p{font-size:.75rem;line-height:1.55}.expansion-grid small{display:block;margin-top:1rem;font-size:.58rem;opacity:.6}.expansion-grid .featured{color:#111;background:var(--green);border-color:#111;box-shadow:6px 6px 0 #111}.concierge-check,.weekly-cadence{margin-top:2rem;padding:1.5rem;color:#fff;background:#111}.concierge-check li{border-color:#ffffff45}.growth-grid article{min-height:220px}.weekly-cadence>div{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}.weekly-cadence label{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem;border:1px solid #ffffff45;font-size:.65rem;text-transform:uppercase}.weekly-cadence input{width:4rem;border:0;border-bottom:1px solid #fff;border-radius:0;background:transparent;color:#fff;text-align:right}
+  @media(max-width:760px){.shell{width:min(100% - 28px,1180px)}.probe-grid,.review-grid,.expansion-grid,.growth-grid,.weekly-cadence>div{grid-template-columns:1fr}.report-link{align-items:start;flex-direction:column}.report-pages{grid-template-columns:1fr}.report-pages li:nth-child(odd){border-right:0}.section-title{grid-template-columns:2rem 1fr}.ops-header h1{font-size:clamp(3.7rem,17vw,6rem)}}
+</style>

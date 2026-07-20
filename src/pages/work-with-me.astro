@@ -1,341 +1,93 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
-const toolGroups = [
-  {
-    label: "Communication",
-    tools: ["Slack", "Microsoft Teams", "Email", "iMessage / text", "Zoom"],
-  },
-  {
-    label: "Planning & knowledge",
-    tools: ["Notion", "Asana", "Trello", "Jira", "Monday.com"],
-  },
-  {
-    label: "Data & customers",
-    tools: ["Google Sheets", "Excel", "Airtable", "HubSpot", "Salesforce"],
-  },
-  {
-    label: "AI & automation",
-    tools: ["ChatGPT", "Claude", "Zapier", "Make", "Custom tools"],
-  },
-];
-
-const fieldClass =
-  "mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black shadow-none outline-none transition placeholder:text-base-400 hover:border-black/20 focus:border-black focus:ring-2 focus:ring-black/10 dark:border-white/10 dark:bg-base-900 dark:text-white dark:hover:border-white/20 dark:focus:border-white dark:focus:ring-white/10";
+const fieldClass = "mt-2 w-full rounded-none border border-black/15 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-base-400 hover:border-black/30 focus:border-black focus:ring-2 focus:ring-black/10 dark:border-white/15 dark:bg-base-950 dark:text-white dark:hover:border-white/30 dark:focus:border-white dark:focus:ring-white/10";
 ---
 
 <BaseLayout
-  pageTitle="Start a Project with Danny Sullivan"
-  pageDescription="Tell me about your business, workflow, and biggest operational pain points. I’ll look for practical ways AI, automation, or better systems could help."
+  pageTitle="Apply for a Raleigh AI Tools Assessment"
+  pageDescription="Apply for Danny Sullivan’s $999 AI Tools Assessment for Raleigh-area small businesses. Find at least five hours of weekly opportunity or receive a refund."
 >
-  <div class="editorial-form-page">
-  <Wrapper variant="standard" class="pt-12 pb-24 lg:pt-28 lg:pb-32">
-    <header class="border-t border-black/10 pt-6 dark:border-white/10">
-      <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
+  <div class="min-h-svh bg-base-50 text-black dark:bg-base-950 dark:text-white">
+    <div class="mx-auto max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
+      <div class="grid gap-10 lg:grid-cols-[1fr_17rem] lg:gap-20">
         <div>
-          <Text
-            tag="p"
-            variant="textXS"
-            class="mb-3 font-medium uppercase tracking-wide text-base-500 dark:text-base-400"
-          >
-            Workflow diagnostic · About 5 minutes
-          </Text>
-          <Text
-            tag="h1"
-            variant="displayXS"
-            class="max-w-xl text-balance font-medium text-black dark:text-white"
-          >
-            Let’s find the work that should feel easier.
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="mt-6 max-w-xl text-base-500 dark:text-base-400 2xl:text-base"
-          >
-            You don’t need to arrive with a solution. Tell me what feels slow,
-            repetitive, disconnected, or harder than it should be. I’ll use
-            the details to understand the real problem before suggesting what
-            to build.
-          </Text>
+          <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Assessment application · About 5 minutes</p>
+          <h1 class="mt-5 max-w-2xl font-sans text-4xl font-semibold leading-tight tracking-[-0.03em] sm:text-5xl">Tell me where the work piles up.</h1>
+          <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">You do not need to know which AI tool you want—or whether AI is even the answer. I will use these details to decide whether the assessment can create real value for your business.</p>
         </div>
-        <div class="hidden size-24 rotate-2 rounded-2xl bg-[#ddff73] p-4 text-black sm:flex sm:flex-col sm:justify-between">
-          <span class="text-xs font-medium uppercase">Start here</span>
-          <span class="text-2xl leading-none">↘</span>
-        </div>
+        <aside class="border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-base-900">
+          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The offer</p>
+          <strong class="mt-4 block text-3xl font-semibold">$999</strong>
+          <p class="mt-2 text-sm leading-6 text-base-500 dark:text-base-400">45-minute discovery, written recommendations, four-day plan, and 30-minute review.</p>
+          <p class="mt-4 border-t border-black/10 pt-4 text-xs leading-5 text-base-500 dark:border-white/10 dark:text-base-400">Five hours of weekly opportunity—or a full refund.</p>
+        </aside>
       </div>
-    </header>
 
-    <div class="sticky top-0 z-10 -mx-2 mt-12 rounded-xl border border-black/10 bg-white/90 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-base-900/90">
-      <div class="flex items-center justify-between gap-4 text-xs font-medium">
-        <span class="text-black dark:text-white">Your brief</span>
-        <span id="progress-label" class="text-base-500 dark:text-base-400">0 of 6 essentials</span>
-      </div>
-      <div class="mt-2 h-1 overflow-hidden rounded-full bg-base-100 dark:bg-base-800">
-        <div id="progress-bar" class="h-full w-0 rounded-full bg-black transition-all duration-300 dark:bg-white"></div>
-      </div>
+      <form name="ai-tools-assessment" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="mt-14 space-y-6">
+        <input type="hidden" name="form-name" value="ai-tools-assessment" />
+        <input type="hidden" name="subject" data-remove-prefix value="New AI assessment application from %{formName}" />
+        <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+        <section class="border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-base-900 sm:p-8">
+          <div class="grid gap-8 sm:grid-cols-[3rem_1fr]">
+            <span class="text-sm text-base-400">01</span>
+            <fieldset><legend class="text-lg font-medium">You and the business</legend><p class="mt-2 text-sm text-base-500 dark:text-base-400">Enough context to know whether the assessment fits.</p>
+              <div class="mt-7 grid gap-5 sm:grid-cols-2">
+                <label class="text-sm font-medium">Your name <span class="text-base-400">*</span><input class={fieldClass} type="text" name="name" autocomplete="name" required /></label>
+                <label class="text-sm font-medium">Work email <span class="text-base-400">*</span><input class={fieldClass} type="email" name="email" autocomplete="email" required /></label>
+                <label class="text-sm font-medium">Company <span class="text-base-400">*</span><input class={fieldClass} type="text" name="company" autocomplete="organization" required /></label>
+                <label class="text-sm font-medium">Your role <span class="text-base-400">*</span><input class={fieldClass} type="text" name="role" autocomplete="organization-title" required /></label>
+                <label class="text-sm font-medium">Team size <span class="text-base-400">*</span><select class={fieldClass} name="team_size" required><option value="">Choose one</option><option>Just me</option><option>2–5</option><option>6–10</option><option>11–20</option><option>21–50</option><option>51+</option></select></label>
+                <label class="text-sm font-medium">Business location <span class="text-base-400">*</span><input class={fieldClass} type="text" name="location" required placeholder="Raleigh, Cary, Durham…" /></label>
+              </div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-base-900 sm:p-8">
+          <div class="grid gap-8 sm:grid-cols-[3rem_1fr]">
+            <span class="text-sm text-base-400">02</span>
+            <fieldset><legend class="text-lg font-medium">Where the time goes</legend><p class="mt-2 text-sm text-base-500 dark:text-base-400">Plain language is perfect. Specific examples are most useful.</p>
+              <div class="mt-7 space-y-6">
+                <label class="block text-sm font-medium">Walk me through a typical workday. <span class="text-base-400">*</span><span class="mt-1 block font-normal text-base-500 dark:text-base-400">What do you touch, check, send, copy, approve, or chase?</span><textarea class={fieldClass} name="typical_day" rows="5" maxlength="1800" required></textarea></label>
+                <label class="block text-sm font-medium">Which tasks do you dread doing? <span class="text-base-400">*</span><textarea class={fieldClass} name="dreaded_tasks" rows="4" maxlength="1400" required></textarea></label>
+                <label class="block text-sm font-medium">Where does work pile up or wait on someone? <span class="text-base-400">*</span><textarea class={fieldClass} name="work_pileup" rows="4" maxlength="1400" required></textarea></label>
+                <label class="block text-sm font-medium">If you could delete one process, what would it be? <span class="text-base-400">*</span><textarea class={fieldClass} name="magic_wand" rows="4" maxlength="1400" required></textarea></label>
+              </div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-base-900 sm:p-8">
+          <div class="grid gap-8 sm:grid-cols-[3rem_1fr]">
+            <span class="text-sm text-base-400">03</span>
+            <fieldset><legend class="text-lg font-medium">What you have tried</legend><p class="mt-2 text-sm text-base-500 dark:text-base-400">This keeps the recommendations realistic.</p>
+              <div class="mt-7 space-y-6">
+                <label class="block text-sm font-medium">What have you already tried to automate or improve?<span class="mt-1 block font-normal text-base-500 dark:text-base-400">What worked, what failed, and why did it stall?</span><textarea class={fieldClass} name="past_attempts" rows="4" maxlength="1400"></textarea></label>
+                <label class="block text-sm font-medium">Which tools does your team use today?<span class="mt-1 block font-normal text-base-500 dark:text-base-400">Email, spreadsheets, CRM, project management, AI, industry software—everything counts.</span><textarea class={fieldClass} name="current_tools" rows="4" maxlength="1400"></textarea></label>
+                <label class="block text-sm font-medium">What would make this assessment an obvious win? <span class="text-base-400">*</span><textarea class={fieldClass} name="success" rows="4" maxlength="1400" required></textarea></label>
+              </div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-base-900 sm:p-8">
+          <div class="grid gap-8 sm:grid-cols-[3rem_1fr]">
+            <span class="text-sm text-base-400">04</span>
+            <fieldset><legend class="text-lg font-medium">Final details</legend>
+              <div class="mt-7 grid gap-5 sm:grid-cols-2"><label class="text-sm font-medium">Preferred timing<select class={fieldClass} name="timeline"><option>As soon as possible</option><option>Within 30 days</option><option>Within 2–3 months</option><option>Just exploring</option></select></label><label class="text-sm font-medium">Approximate annual revenue<select class={fieldClass} name="revenue"><option value="">Prefer not to say</option><option>Under $500K</option><option>$500K–$1M</option><option>$1M–$5M</option><option>$5M+</option></select></label></div>
+              <label class="mt-7 flex items-start gap-3 text-sm leading-6"><input type="checkbox" name="recording_consent" value="yes" required class="mt-1 rounded-none border-black/20 text-black focus:ring-black dark:border-white/20 dark:bg-base-950 dark:text-white" /><span>I understand the discovery call will be recorded and transcribed for the assessment. <span class="text-base-400">*</span></span></label>
+            </fieldset>
+          </div>
+        </section>
+
+        <div class="flex flex-col gap-6 bg-black p-6 text-white dark:bg-white dark:text-black sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div><strong class="text-base font-medium">Ready when you are.</strong><p class="mt-2 max-w-lg text-sm leading-6 text-white/60 dark:text-black/60">I will review the application personally and email you with the next step. Applying does not commit you to purchase.</p></div>
+          <button type="submit" class="min-h-12 shrink-0 bg-[#ddff73] px-5 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Send my application <span class="ml-2">→</span></button>
+        </div>
+      </form>
     </div>
 
-    <form
-      id="intake-form"
-      name="project-intake"
-      method="POST"
-      action="/thank-you/"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      class="mt-8 space-y-6"
-    >
-      <input type="hidden" name="form-name" value="project-intake" />
-      <input type="hidden" name="subject" data-remove-prefix value="New project brief from %{formName}" />
-      <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true">
-        <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
-      </p>
-      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
-        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
-          <div class="text-sm font-medium text-base-400">01</div>
-          <fieldset>
-            <legend class="text-lg font-medium text-black dark:text-white">A little context</legend>
-            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
-              Enough to know who I’m talking to and how the work fits your business.
-            </p>
-            <div class="mt-7 grid gap-5 sm:grid-cols-2">
-              <label class="text-sm font-medium text-black dark:text-white">
-                Your name <span class="text-base-400">*</span>
-                <input class={fieldClass} type="text" name="name" autocomplete="name" required placeholder="Jane Smith" />
-              </label>
-              <label class="text-sm font-medium text-black dark:text-white">
-                Work email <span class="text-base-400">*</span>
-                <input class={fieldClass} type="email" name="email" autocomplete="email" required placeholder="jane@company.com" />
-              </label>
-              <label class="text-sm font-medium text-black dark:text-white">
-                Company or organization
-                <input class={fieldClass} type="text" name="company" autocomplete="organization" placeholder="Acme, Inc." />
-              </label>
-              <label class="text-sm font-medium text-black dark:text-white">
-                Your role
-                <input class={fieldClass} type="text" name="role" autocomplete="organization-title" placeholder="Founder, operations lead…" />
-              </label>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-
-      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
-        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
-          <div class="text-sm font-medium text-base-400">02</div>
-          <fieldset>
-            <legend class="text-lg font-medium text-black dark:text-white">What needs to change?</legend>
-            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
-              Start with the situation as it is today. Plain language is perfect.
-            </p>
-            <div class="mt-7 space-y-6">
-              <label class="block text-sm font-medium text-black dark:text-white">
-                What are you looking to do? <span class="text-base-400">*</span>
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Describe the idea, goal, or change you have in mind—even if it’s still fuzzy.</span>
-                <textarea class={fieldClass} name="goal" rows="5" maxlength="1800" required placeholder="We want to improve…"></textarea>
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                What are your biggest pain points? <span class="text-base-400">*</span>
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Where do time, money, information, or customer experience currently fall through the cracks?</span>
-                <textarea class={fieldClass} name="pain_points" rows="5" maxlength="1800" required placeholder="The hardest part right now is…"></textarea>
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                What do you repeatedly do that you wish would just happen automatically? <span class="text-base-400">*</span>
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Think copying data, sending follow-ups, creating reports, finding information, approvals, scheduling, or handoffs.</span>
-                <textarea class={fieldClass} name="repetitive_work" rows="5" maxlength="1800" required placeholder="Every day or week, someone has to…"></textarea>
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                What would a successful outcome look like? <span class="text-base-400">*</span>
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">What becomes faster, clearer, cheaper, or possible?</span>
-                <textarea class={fieldClass} name="success" rows="4" maxlength="1400" required placeholder="We’d know this worked if…"></textarea>
-              </label>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-
-      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
-        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
-          <div class="text-sm font-medium text-base-400">03</div>
-          <fieldset>
-            <legend class="text-lg font-medium text-black dark:text-white">Your current toolkit</legend>
-            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
-              Select everything your team relies on. This helps reveal where information already lives—and where handoffs break.
-            </p>
-            <div class="mt-7 space-y-7">
-              {
-                toolGroups.map((group) => (
-                  <div>
-                    <p class="text-xs font-medium uppercase tracking-wide text-base-400">{group.label}</p>
-                    <div class="mt-3 flex flex-wrap gap-2">
-                      {group.tools.map((tool) => (
-                        <label class="cursor-pointer">
-                          <input class="peer sr-only" type="checkbox" name="tools" value={tool} />
-                          <span class="block rounded-full border border-black/10 px-3 py-2 text-sm text-base-500 transition hover:border-black/30 hover:text-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white dark:border-white/10 dark:text-base-400 dark:hover:border-white/30 dark:hover:text-white dark:peer-checked:border-white dark:peer-checked:bg-white dark:peer-checked:text-black">
-                            {tool}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                ))
-              }
-              <label class="block text-sm font-medium text-black dark:text-white">
-                Anything else in the mix?
-                <input class={fieldClass} type="text" name="other_tools" placeholder="Industry software, internal systems, paper processes…" />
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                How does work move between these tools today?
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">For example: “A request arrives in Slack, then we copy it into a spreadsheet and email an approval.”</span>
-                <textarea class={fieldClass} name="tool_handoffs" rows="4" maxlength="1400" placeholder="A typical workflow looks like…"></textarea>
-              </label>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-
-      <section class="rounded-2xl border border-black/10 p-5 dark:border-white/10 sm:p-8">
-        <div class="grid gap-8 sm:grid-cols-[4rem_1fr]">
-          <div class="text-sm font-medium text-base-400">04</div>
-          <fieldset>
-            <legend class="text-lg font-medium text-black dark:text-white">Practical details</legend>
-            <p class="mt-2 text-sm text-base-500 dark:text-base-400">
-              These don’t lock you into anything. They help me respond with something realistic.
-            </p>
-            <div class="mt-7 space-y-7">
-              <div>
-                <p class="text-sm font-medium text-black dark:text-white">When would you like to start?</p>
-                <div class="mt-3 grid gap-2 sm:grid-cols-2">
-                  {
-                    ["As soon as possible", "Within 1–2 months", "Later this year", "Just exploring"].map((option) => (
-                      <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-black/10 px-4 py-3 text-sm text-base-500 transition hover:border-black/30 dark:border-white/10 dark:text-base-400 dark:hover:border-white/30">
-                        <input type="radio" name="timeline" value={option} class="border-base-300 text-black focus:ring-black dark:border-base-600 dark:bg-base-900 dark:text-white dark:focus:ring-white" />
-                        {option}
-                      </label>
-                    ))
-                  }
-                </div>
-              </div>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                Who would be involved in making this work?
-                <input class={fieldClass} type="text" name="stakeholders" placeholder="Just me, our operations team, IT and leadership…" />
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                Are there constraints I should know about?
-                <span class="mt-1 block font-normal text-base-500 dark:text-base-400">Budget range, security or privacy requirements, existing contracts, technical limitations, or a firm deadline.</span>
-                <textarea class={fieldClass} name="constraints" rows="4" maxlength="1400" placeholder="We need to work within…"></textarea>
-              </label>
-              <label class="block text-sm font-medium text-black dark:text-white">
-                Anything else that would help me understand the situation?
-                <textarea class={fieldClass} name="anything_else" rows="4" maxlength="1400" placeholder="One more thing…"></textarea>
-              </label>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-
-      <div class="rounded-2xl bg-black p-6 text-white dark:bg-white dark:text-black sm:p-8">
-        <div class="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
-          <div>
-            <p class="text-lg font-medium">Ready when you are.</p>
-            <p class="mt-2 max-w-md text-sm text-white/60 dark:text-black/60">
-              Your answers are sent securely and saved with the project inquiry so I can respond with useful next steps.
-            </p>
-          </div>
-          <button id="submit-button" type="submit" class="flex min-h-11 items-center justify-center rounded-xl bg-[#ddff73] px-5 py-3 text-sm font-medium text-black transition hover:-translate-y-0.5 hover:bg-[#e6ff95] focus:outline-none focus:ring-2 focus:ring-[#ddff73] focus:ring-offset-2 focus:ring-offset-black disabled:cursor-wait disabled:opacity-60 dark:focus:ring-offset-white">
-            Send my brief <span aria-hidden="true" class="ml-2">↗</span>
-          </button>
-        </div>
-        <p id="form-status" class="mt-4 hidden text-sm text-white/70 dark:text-black/70" role="status"></p>
-      </div>
-    </form>
-  </Wrapper>
-
   </div>
-  <script>
-    const form = document.querySelector("#intake-form");
-    const progressBar = document.querySelector("#progress-bar");
-    const progressLabel = document.querySelector("#progress-label");
-    const status = document.querySelector("#form-status");
-    const submitButton = document.querySelector("#submit-button");
-
-    if (form instanceof HTMLFormElement) {
-      const essentials = Array.from(form.querySelectorAll("[required]"));
-
-      const updateProgress = () => {
-        const complete = essentials.filter((field) => {
-          if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
-            return field.value.trim().length > 0 && field.checkValidity();
-          }
-          return false;
-        }).length;
-        const percent = Math.round((complete / essentials.length) * 100);
-        if (progressBar instanceof HTMLElement) progressBar.style.width = `${percent}%`;
-        if (progressLabel) progressLabel.textContent = `${complete} of ${essentials.length} essentials`;
-      };
-
-      form.addEventListener("input", updateProgress);
-      updateProgress();
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-
-        if (submitButton instanceof HTMLButtonElement) {
-          submitButton.disabled = true;
-          submitButton.textContent = "Sending…";
-        }
-        if (status) {
-          status.textContent = "Sending your brief…";
-          status.classList.remove("hidden");
-        }
-
-        const body = new URLSearchParams();
-        for (const [key, value] of new FormData(form).entries()) {
-          body.append(key, String(value));
-        }
-
-        try {
-          const response = await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: body.toString(),
-          });
-          if (!response.ok) throw new Error(`Submission failed: ${response.status}`);
-
-          form.reset();
-          updateProgress();
-          if (status) status.textContent = "Thanks — your project brief is in. I’ll review it and follow up by email.";
-          if (submitButton instanceof HTMLButtonElement) {
-            submitButton.textContent = "Brief sent ✓";
-            submitButton.disabled = true;
-          }
-        } catch {
-          if (status) status.textContent = "Something went wrong while sending. Please try again, or email hello@dannysullivan.ai.";
-          if (submitButton instanceof HTMLButtonElement) {
-            submitButton.textContent = "Try again";
-            submitButton.disabled = false;
-          }
-        }
-      });
-    }
-  </script>
 </BaseLayout>
-
-<style>
-  .editorial-form-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; color:var(--ink); }
-  :global(.dark) .editorial-form-page { --ink:#f0ebdd; --paper:#11110f; }
-  .editorial-form-page :global(header) { min-height:56svh; display:flex; align-items:center; border-top:0!important; }
-  .editorial-form-page :global(header>div) { width:100%; }
-  .editorial-form-page :global(header h1) { max-width:950px!important; margin-top:1rem; font-size:clamp(4rem,8vw,8rem)!important; font-weight:850!important; line-height:.82!important; letter-spacing:-.05em!important; text-transform:uppercase; }
-  .editorial-form-page :global(header h1::after) { content:""; display:inline-block; width:.42em; height:.12em; margin-left:.12em; background:var(--blue); }
-  .editorial-form-page :global(header p:first-child) { color:var(--blue)!important; font-weight:800!important; letter-spacing:.14em!important; }
-  .editorial-form-page :global(form>section) { border:2px solid var(--ink)!important; border-radius:0!important; background:color-mix(in srgb,var(--paper) 84%,white 16%); box-shadow:7px 7px 0 color-mix(in srgb,var(--ink) 16%,transparent); }
-  :global(.dark) .editorial-form-page :global(form>section) { background:#161715; }
-  .editorial-form-page :global(form legend) { font-family:"Anybody"; font-size:1.7rem!important; font-weight:800!important; text-transform:uppercase; }
-  .editorial-form-page :global(input),.editorial-form-page :global(textarea),.editorial-form-page :global(select) { border-radius:0!important; border-color:color-mix(in srgb,var(--ink) 35%,transparent)!important; background:transparent!important; }
-  .editorial-form-page :global(#progress-bar) { background:var(--blue)!important; }
-  .editorial-form-page :global(.sticky) { border-radius:0!important; border:2px solid var(--ink)!important; background:color-mix(in srgb,var(--paper) 92%,transparent)!important; }
-  @media(max-width:700px){.editorial-form-page :global(header){min-height:auto}.editorial-form-page :global(header h1){font-size:clamp(3.4rem,17vw,5rem)!important}}
-</style>

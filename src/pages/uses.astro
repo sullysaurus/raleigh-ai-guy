@@ -3,10 +3,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const groups = [
   {
-    number: "01",
     title: "Think with",
     note: "AI collaborators for finding the useful version faster.",
-    tone: "blue",
     tools: [
       { name: "ChatGPT", use: "Research, rough thinking, writing, and working through ambiguity.", status: "Daily driver" },
       { name: "Claude", use: "Long-context synthesis, critique, and thoughtful second passes.", status: "In rotation" },
@@ -15,18 +13,16 @@ const groups = [
     ],
   },
   {
-    number: "02",
-    title: "Build & ship with",
+    title: "Build and ship with",
     note: "A modern product stack that stays quick and gets out of the way.",
-    tone: "red",
     tools: [
       { name: "Astro", use: "Fast, content-forward websites with just enough framework.", status: "This site" },
       { name: "Next.js", use: "Full-stack React products when the app needs more moving parts.", status: "App stack" },
-      { name: "Eve", use: "A Next.js-native framework for building durable, production-ready agents.", status: "Agents" },
+      { name: "Eve", use: "A Next.js-native framework for durable, production-ready agents.", status: "Agents" },
       { name: "Claude Managed Agents", use: "Hosted infrastructure for long-running Claude agents with sessions, tools, and sandboxes.", status: "Hosted agents" },
       { name: "Mastra", use: "A TypeScript framework for AI agents, workflows, memory, and observability.", status: "Agents" },
       { name: "Hermes Agent", use: "An open-source agent with persistent memory, reusable skills, tools, and scheduled jobs.", status: "24/7 agent" },
-      { name: "Orgo", use: "Always-on cloud computers for hosting Hermes and other agents that need a real desktop.", status: "Agent host" },
+      { name: "Orgo", use: "Always-on cloud computers for agents that need a real desktop.", status: "Agent host" },
       { name: "TypeScript", use: "Useful guardrails for products, prototypes, and integrations.", status: "Default" },
       { name: "Tailwind CSS", use: "Moving from visual idea to polished interface at speed.", status: "Workhorse" },
       { name: "Vercel", use: "Preview, deploy, and iterate on modern web products quickly.", status: "Ship" },
@@ -37,24 +33,20 @@ const groups = [
     ],
   },
   {
-    number: "03",
     title: "Automate with",
     note: "Connective tissue for deleting the repetitive parts of work.",
-    tone: "acid",
     tools: [
       { name: "n8n", use: "Flexible, inspectable workflows for serious multi-step automation.", status: "Favorite" },
       { name: "Vapi", use: "Voice-agent infrastructure for phone workflows that need to feel immediate.", status: "Voice" },
       { name: "ElevenLabs", use: "Natural voice generation for products, prototypes, and spoken experiences.", status: "Audio" },
       { name: "Zapier", use: "Fast, dependable connections for straightforward automations.", status: "Quick fix" },
       { name: "Netlify", use: "Simple deployments, previews, and forms for focused web projects.", status: "Ship it" },
-      { name: "Custom tools", use: "Small scripts and purpose-built systems when the standard tools stop fitting.", status: "Best answer" },
+      { name: "Custom tools", use: "Small scripts and purpose-built systems when standard tools stop fitting.", status: "Best answer" },
     ],
   },
   {
-    number: "04",
-    title: "Plan & design with",
+    title: "Plan and design with",
     note: "Enough structure to shape the work without turning process into the work.",
-    tone: "paper",
     tools: [
       { name: "Notion", use: "Notes, project context, loose plans, and a home for unfinished thinking.", status: "Workbench" },
       { name: "Figma", use: "Interface exploration, prototypes, and getting the visual idea aligned.", status: "Design" },
@@ -62,127 +54,34 @@ const groups = [
     ],
   },
 ];
-
 ---
 
-<BaseLayout
-  pageTitle="Uses"
-  pageDescription="The AI, development, automation, and thinking tools Danny Sullivan likes to use."
->
-  <div class="uses-page">
-    <header class="uses-hero shell">
-      <p class="eyebrow"><span></span> Current rotation · Updated when the work changes</p>
-      <h1>Tools I use<br /><em>to make things.</em></h1>
-      <div class="hero-note">
-        <p>
-          The software, systems, and shortcuts I reach for when I’m thinking,
-          building, automating, or trying to get a rough idea out of my head.
-        </p>
-        <span>NO AFFILIATE LINKS<br />JUST THE GEAR I LIKE</span>
-      </div>
+<BaseLayout pageTitle="Uses" pageDescription="The AI, development, automation, and thinking tools Danny Sullivan likes to use.">
+  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
+      <div><p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Uses · Current rotation</p><h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">The tools I use to think, build, and automate.</h1></div>
+      <div><p class="text-base leading-7 text-base-600 dark:text-base-300">The software and systems I reach for when I am trying to turn a rough idea into useful work.</p><p class="mt-4 text-xs uppercase tracking-wide text-base-400">No affiliate links. Just the gear I like.</p></div>
     </header>
 
-    <div class="marquee" aria-hidden="true">
-      <div>
-        <span>THINK</span><b>✦</b><span>BUILD</span><b>✦</b><span>AUTOMATE</span><b>✦</b><span>SHIP</span><b>✦</b>
-        <span>THINK</span><b>✦</b><span>BUILD</span><b>✦</b><span>AUTOMATE</span><b>✦</b><span>SHIP</span><b>✦</b>
+    <div class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        {groups.map((group, groupIndex) => (
+          <section class="grid gap-8 border-t border-black/10 py-12 first:pt-0 dark:border-white/10 lg:grid-cols-[15rem_1fr] lg:gap-16">
+            <header><span class="text-xs text-base-400">{String(groupIndex + 1).padStart(2, "0")}</span><h2 class="mt-4 font-sans text-2xl font-semibold tracking-tight">{group.title}</h2><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{group.note}</p></header>
+            <ol class="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+              {group.tools.map((tool) => (
+                <li class="grid gap-2 py-5 sm:grid-cols-[11rem_1fr_auto] sm:items-start sm:gap-6">
+                  <h3 class="font-sans text-base font-semibold">{tool.name}</h3>
+                  <p class="text-sm leading-6 text-base-500 dark:text-base-400">{tool.use}</p>
+                  <span class="justify-self-start border border-black/10 px-2 py-1 text-[0.65rem] uppercase tracking-wide text-base-400 dark:border-white/10 sm:justify-self-end">{tool.status}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
       </div>
     </div>
 
-    <main class="toolbox shell">
-      {groups.map((group) => (
-        <section class:list={["tool-group", `tone-${group.tone}`]} aria-labelledby={`group-${group.number}`}>
-          <header>
-            <span>{group.number}</span>
-            <div>
-              <h2 id={`group-${group.number}`}>{group.title}</h2>
-              <p>{group.note}</p>
-            </div>
-          </header>
-          <ol>
-            {group.tools.map((tool, index) => (
-              <li>
-                <span class="tool-index">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{tool.name}</h3>
-                <p>{tool.use}</p>
-                <small>{tool.status}</small>
-              </li>
-            ))}
-          </ol>
-        </section>
-      ))}
-    </main>
-
-    <section class="uses-closing shell">
-      <div>
-        <p>THE REAL RULE</p>
-        <h2>Use the tool.<br /><em>Don’t become the tool.</em></h2>
-      </div>
-      <p>
-        I like new software, but I like finished work more. The best stack is
-        usually the smallest one that can carry the idea all the way to real.
-      </p>
-    </section>
+    <section class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[15rem_1fr] lg:gap-16"><p class="text-xs font-medium uppercase tracking-wide text-base-400">The real rule</p><div><h2 class="font-sans text-3xl font-semibold tracking-tight">Use the tool. Do not become the tool.</h2><p class="mt-5 max-w-2xl text-base leading-7 text-base-500 dark:text-base-400">I like new software, but I like finished work more. The best stack is usually the smallest one that can carry the idea all the way to real.</p></div></section>
   </div>
 </BaseLayout>
-
-<style>
-  :global(body) { background:#f0ebdd; }
-  :global(.dark body) { background:#11110f; }
-  .uses-page { --ink:#11110f; --paper:#f0ebdd; --blue:#2947ff; --red:#ff4b36; --acid:#dcff45; color:var(--ink); overflow:hidden; }
-  :global(.dark) .uses-page { --ink:#f0ebdd; --paper:#11110f; }
-  .shell { width:min(100% - 40px,1320px); margin-inline:auto; }
-  .uses-hero { min-height:70svh; display:grid; grid-template-columns:1fr minmax(260px,.34fr); gap:2rem 6rem; align-content:center; padding:5rem 0; }
-  .eyebrow { grid-column:1/-1; display:flex; align-items:center; gap:.75rem; font-size:.67rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-  .eyebrow span { width:2.5rem; height:2px; background:var(--red); }
-  h1,h2,h3 { font-family:"Anybody",sans-serif; text-transform:uppercase; }
-  h1 { font-size:clamp(4.5rem,10.5vw,10.5rem); font-weight:850; line-height:.79; letter-spacing:-.055em; }
-  h1 em,h2 em { color:var(--blue); font-style:normal; }
-  .hero-note { align-self:end; }
-  .hero-note>p { font-size:1.08rem; line-height:1.65; }
-  .hero-note>span { display:block; margin-top:2rem; font-size:.6rem; font-weight:850; letter-spacing:.12em; line-height:1.5; }
-  .marquee { width:100%; overflow:hidden; background:var(--blue); color:white; border-block:2px solid var(--ink); transform:rotate(.65deg) scale(1.01); }
-  .marquee div { width:max-content; display:flex; align-items:center; gap:2.2rem; padding:.8rem 0; animation:scroll 22s linear infinite; }
-  .marquee span { font-family:"Anybody",sans-serif; font-size:1.05rem; font-weight:850; letter-spacing:.07em; }
-  .marquee b { color:var(--acid); }
-  @keyframes scroll { to { transform:translateX(-50%); } }
-  .toolbox { padding:clamp(6rem,10vw,10rem) 0; }
-  .tool-group { display:grid; grid-template-columns:minmax(300px,.52fr) minmax(0,1fr); gap:clamp(2.5rem,5vw,5rem); padding:clamp(4rem,7vw,7rem) 0; border-top:2px solid var(--ink); }
-  .tool-group>header { min-width:0; display:grid; grid-template-columns:2rem minmax(0,1fr); gap:1rem; align-content:start; align-self:start; }
-  .tool-group>header>span { padding-top:.5rem; color:var(--red); font-size:.65rem; font-weight:900; }
-  .tool-group h2 { max-width:100%; font-size:clamp(2.4rem,3.2vw,3.4rem); font-weight:850; line-height:.88; letter-spacing:-.045em; }
-  .tool-group header p { max-width:19rem; margin-top:1.2rem; font-size:.78rem; line-height:1.55; opacity:.68; }
-  ol { border-top:1px solid color-mix(in srgb,currentColor 40%,transparent); }
-  li { min-width:0; display:grid; grid-template-columns:2.3rem minmax(200px,.36fr) minmax(0,1fr) auto; gap:1.25rem; align-items:center; padding:1.6rem 0; border-bottom:1px solid color-mix(in srgb,currentColor 40%,transparent); transition:padding .22s,background .22s; }
-  li:hover { padding-left:1rem; padding-right:1rem; background:color-mix(in srgb,var(--blue) 7%,transparent); }
-  .tool-index { color:var(--blue); font-size:.6rem; font-weight:850; }
-  h3 { font-size:clamp(1.25rem,1.9vw,1.85rem); font-weight:820; line-height:.95; }
-  li>p { max-width:31rem; font-size:.82rem; line-height:1.55; opacity:.72; }
-  li small { padding:.4rem .55rem; border:1px solid currentColor; font-size:.54rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
-  .tone-red .tool-index,.tone-red>header>span { color:var(--red); }
-  .tone-acid { box-sizing:border-box; width:100vw; margin-left:calc(50% - 50vw); padding-inline:max(20px,calc((100vw - 1320px)/2)); background:#101114; color:#f0ebdd; }
-  .tone-acid h2,.tone-acid .tool-index,.tone-acid>header>span { color:var(--acid); }
-  .tone-acid li:hover { background:#ffffff0a; }
-  .tone-paper h2 { color:var(--blue); }
-  .uses-closing { margin-bottom:5rem; padding:clamp(3rem,6vw,6rem); display:grid; grid-template-columns:1fr minmax(260px,.36fr); gap:4rem; align-items:end; background:var(--red); color:white; box-shadow:10px 10px 0 var(--ink); }
-  .uses-closing>div>p { color:var(--acid); font-size:.62rem; font-weight:850; letter-spacing:.13em; }
-  .uses-closing h2 { margin-top:1rem; font-size:clamp(3.2rem,6vw,6.5rem); font-weight:850; line-height:.85; letter-spacing:-.045em; }
-  .uses-closing h2 em { color:#fff; }
-  .uses-closing>p { font-size:1rem; line-height:1.65; }
-  @media(prefers-reduced-motion:reduce) { .marquee div { animation:none; } }
-  @media(max-width:1100px) {
-    .tool-group { grid-template-columns:1fr; }
-  }
-  @media(max-width:800px) {
-    .uses-hero,.tool-group,.uses-closing { grid-template-columns:1fr; }
-    .uses-hero { min-height:auto; padding:5rem 0; }
-  }
-  @media(max-width:620px) {
-    .shell { width:min(100% - 28px,1320px); }
-    h1 { font-size:clamp(3.8rem,17vw,5.8rem); }
-    li { grid-template-columns:2rem 1fr auto; gap:1rem; align-items:start; }
-    li>p { grid-column:2/-1; }
-    li small { grid-column:3; grid-row:1; }
-    .uses-closing { padding:2rem; }
-  }
-</style>
