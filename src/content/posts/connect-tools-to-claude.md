@@ -3,7 +3,7 @@ pubDate: 2026-05-06T09:00:00-04:00
 title: "How to Connect Your Tools to Claude—and Why You Want To"
 description: "A practical guide to Claude connectors and MCP: what they unlock, how permissions work, and how to connect apps without giving away unnecessary access."
 image:
-  url: "/src/images/posts/claude-connectors.png"
+  url: "/src/images/posts/claude-connectors-v2.png"
   alt: "Connected tools and data sources converging into a central AI workspace"
 tags:
   - claude

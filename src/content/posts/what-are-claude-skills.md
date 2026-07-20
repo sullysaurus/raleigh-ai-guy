@@ -3,7 +3,7 @@ pubDate: 2026-05-20T09:00:00-04:00
 title: "What Are Claude Skills?"
 description: "Claude Skills explained in plain English: what they contain, when they load, and how they differ from Projects, connectors, and general instructions."
 image:
-  url: "/src/images/posts/claude-skills.png"
+  url: "/src/images/posts/claude-skills-v2.png"
   alt: "A modular set of AI instruction blocks arranged as a reusable system"
 tags:
   - claude
