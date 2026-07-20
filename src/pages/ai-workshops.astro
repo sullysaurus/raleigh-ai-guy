@@ -12,52 +12,67 @@ const outcomes = [
 
 const agenda = [
   ["00–10", "AI without the hype", "A clear mental model for generative AI, including its useful strengths and important limits."],
-  ["10–25", "Practical workflows", "Live examples shaped around the kind of work your team already handles."],
-  ["25–35", "Find your opportunities", "A guided exercise to identify repetitive work worth improving first."],
-  ["35–45", "Questions and next moves", "Direct answers grounded in your team, tools, and concerns."],
+  ["10–30", "Practical workflows", "Live examples shaped around the kind of work your team already handles."],
+  ["30–45", "Find your opportunities", "A guided exercise to identify repetitive work worth improving first."],
+  ["45–60", "Questions and next moves", "Direct answers grounded in your team, tools, and concerns."],
 ];
 
 const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-base text-black outline-none transition placeholder:text-base-400 hover:border-black/30 focus:border-black focus:ring-2 focus:ring-black/10";
 ---
 
 <BaseLayout
-  pageTitle="Free Practical AI Workshop for Raleigh Teams"
-  pageDescription="Request a free 45-minute AI workshop for your Raleigh business, nonprofit, or team. Practical workflows, plain English, and responsible next steps."
+  pageTitle="Practical AI Workshops for Raleigh Teams"
+  pageDescription="Book a practical 60-minute AI workshop for your Raleigh team. Private workshops start at $750, with limited complimentary sessions for business communities."
 >
   <div class="bg-white text-black dark:bg-base-950 dark:text-white">
     <section class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-32">
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Free AI workshop · Raleigh-area teams</p>
+        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI workshops · Raleigh-area teams</p>
         <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
           Help your team make AI useful—not overwhelming.
         </h1>
         <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">
-          A practical 45-minute session that shows your team what AI is good at, where it gets risky, and how to find the first workflows worth improving.
+          A practical 60-minute session that shows your team what AI is good at, where it gets risky, and how to find the first workflows worth improving.
         </p>
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <a href="#request" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Request a free workshop <span class="ml-3">→</span></a>
-          <span class="text-sm text-base-500 dark:text-base-400">No pitch deck. No AI hype.</span>
+          <a href="#request" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Request a team workshop <span class="ml-3">→</span></a>
+          <span class="text-sm text-base-500 dark:text-base-400">Private sessions start at $750</span>
         </div>
       </div>
 
       <aside class="border border-black/10 bg-base-50 p-6 dark:border-white/10 dark:bg-base-900 sm:p-8">
         <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The session</p>
         <ul class="mt-6 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-          <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Length</span><strong class="text-sm font-medium">45 minutes</strong></li>
+          <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Length</span><strong class="text-sm font-medium">60 minutes</strong></li>
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Format</span><strong class="text-sm font-medium">Live + Q&amp;A</strong></li>
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Location</span><strong class="text-sm font-medium">Raleigh or remote</strong></li>
-          <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Price</span><strong class="text-sm font-medium">Free</strong></li>
+          <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Private price</span><strong class="text-sm font-medium">From $750</strong></li>
         </ul>
-        <p class="mt-5 text-xs leading-5 text-base-500 dark:text-base-400">Best for small businesses, nonprofits, and local teams that want a clear starting point.</p>
+        <p class="mt-5 text-xs leading-5 text-base-500 dark:text-base-400">Includes a short preparation call, examples tailored to your team, live Q&amp;A, and a practical takeaway guide.</p>
       </aside>
     </section>
 
     <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
       <div class="mx-auto grid max-w-6xl divide-y divide-black/10 px-5 dark:divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
-        <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">Plain English</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Technical ideas made understandable</span></div>
-        <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">Real work</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Examples relevant to your team</span></div>
-        <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">Clear next step</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Know what to try after the session</span></div>
+        <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">60 minutes</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Live, practical, and tailored</span></div>
+        <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">Up to 20 people</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Included in the private workshop</span></div>
+        <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">From $750</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">One clear price for the team</span></div>
       </div>
+    </section>
+
+    <section class="mx-auto grid max-w-6xl gap-px overflow-hidden bg-black/10 px-5 py-20 dark:bg-white/10 sm:px-8 sm:py-28 lg:grid-cols-2">
+      <article class="bg-white p-7 dark:bg-base-950 sm:p-10">
+        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">For one organization</p>
+        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Private team workshop</h2>
+        <p class="mt-5 max-w-xl text-base leading-7 text-base-600 dark:text-base-300">A tailored session for your employees, leadership team, nonprofit, or board. We use examples tied to the work your people already do and leave time for direct questions.</p>
+        <p class="mt-7 text-sm font-medium">Starting at $750 · Up to 20 people</p>
+      </article>
+      <article class="bg-black p-7 text-white dark:bg-white dark:text-black sm:p-10">
+        <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">For Raleigh business communities</p>
+        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Complimentary community session</h2>
+        <p class="mt-5 max-w-xl text-base leading-7 text-white/70 dark:text-black/70">Hosting a business association, professional group, coworking community, or event-industry gathering? I reserve limited complimentary sessions for organizers who bring together a relevant local audience.</p>
+        <p class="mt-7 text-sm font-medium">Limited availability · Organizer provides the audience</p>
+      </article>
     </section>
 
     <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
@@ -93,7 +108,7 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
 
     <section class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
       <div>
-        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The 45-minute plan</p>
+        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The 60-minute plan</p>
         <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">One useful conversation.</h2>
         <p class="mt-5 text-sm leading-6 text-base-500 dark:text-base-400">I adjust the examples around your team’s roles, tools, and questions.</p>
       </div>
@@ -125,8 +140,8 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
         <div>
           <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Request a workshop</p>
-          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Tell me about your team.</h2>
-          <p class="mt-5 text-sm leading-6 text-white/60 dark:text-black/60">I’ll review your request and email you to confirm whether the free session is a good fit. Limited introductory availability.</p>
+          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Tell me about your team or community.</h2>
+          <p class="mt-5 text-sm leading-6 text-white/60 dark:text-black/60">I’ll review your request and follow up personally about private workshop availability or whether your community event fits a complimentary session.</p>
         </div>
 
         <form name="ai-lunch-and-learn" method="POST" action="/workshop-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="bg-white p-5 text-black sm:p-8">
@@ -137,11 +152,12 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
             <label class="text-sm font-medium">Work email <span class="text-base-400">*</span><input class={fieldClass} type="email" name="email" autocomplete="email" required placeholder="jane@company.com" /></label>
             <label class="text-sm font-medium">Organization <span class="text-base-400">*</span><input class={fieldClass} type="text" name="organization" autocomplete="organization" required placeholder="Your company or nonprofit" /></label>
             <label class="text-sm font-medium">Approximate team size<input class={fieldClass} type="text" name="team_size" placeholder="About 12 people" /></label>
+            <label class="text-sm font-medium sm:col-span-2">Workshop type <span class="text-base-400">*</span><select class={fieldClass} name="workshop_type" required><option value="">Choose one</option><option>Private team workshop — from $750</option><option>Community or professional group — complimentary request</option></select></label>
           </div>
           <label class="mt-5 block text-sm font-medium">What would make this useful for your team? <span class="text-base-400">*</span><textarea class={fieldClass} name="goals" rows="5" maxlength="1400" required placeholder="We are curious about AI, but our team needs help with…"></textarea></label>
           <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p class="max-w-sm text-xs leading-5 text-base-500">No mailing list. I’ll only use these details to respond to your request.</p>
-            <button type="submit" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800">Request my workshop <span class="ml-3">→</span></button>
+            <button type="submit" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800">Request workshop availability <span class="ml-3">→</span></button>
           </div>
         </form>
       </div>
