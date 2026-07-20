@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const groups = [
+  {
+    title: "Think with",
+    note: "AI collaborators for finding the useful version faster.",
+    tools: [
+      { name: "ChatGPT", use: "Research, rough thinking, writing, and working through ambiguity.", status: "Daily driver" },
+      { name: "Claude", use: "Long-context synthesis, critique, and thoughtful second passes.", status: "In rotation" },
+      { name: "Gemini", use: "Multimodal research, fast comparisons, and another useful angle on the problem.", status: "In rotation" },
+      { name: "Codex", use: "Turning plans into working software without losing momentum.", status: "On repeat" },
+      { name: "Obsidian", use: "A local Markdown knowledge base for durable notes, linked context, and AI-ready project files.", status: "Knowledge" },
+      { name: "Granola", use: "AI-enhanced meeting notes that combine a live transcript with the points I choose to capture.", status: "Meetings" },
+    ],
+  },
+  {
+    title: "Build and ship with",
+    note: "A modern product stack that stays quick and gets out of the way.",
+    tools: [
+      { name: "Astro", use: "Fast, content-forward websites with just enough framework.", status: "This site" },
+      { name: "Next.js", use: "Full-stack React products when the app needs more moving parts.", status: "App stack" },
+      { name: "Eve", use: "A Next.js-native framework for durable, production-ready agents.", status: "Agents" },
+      { name: "Claude Managed Agents", use: "Hosted infrastructure for long-running Claude agents with sessions, tools, and sandboxes.", status: "Hosted agents" },
+      { name: "Mastra", use: "A TypeScript framework for AI agents, workflows, memory, and observability.", status: "Agents" },
+      { name: "Hermes Agent", use: "An open-source agent with persistent memory, reusable skills, tools, and scheduled jobs.", status: "24/7 agent" },
+      { name: "OpenClaw", use: "A self-hosted assistant gateway for connecting models to messages, files, browsers, and tools.", status: "Self-hosted" },
+      { name: "Orgo", use: "Always-on cloud computers for agents that need a real desktop.", status: "Agent host" },
+      { name: "TypeScript", use: "Useful guardrails for products, prototypes, and integrations.", status: "Default" },
+      { name: "Tailwind CSS", use: "Moving from visual idea to polished interface at speed.", status: "Workhorse" },
+      { name: "Vercel", use: "Preview, deploy, and iterate on modern web products quickly.", status: "Ship" },
+      { name: "Supabase", use: "Postgres, auth, storage, and backend infrastructure without the ceremony.", status: "Backend" },
+      { name: "PostHog", use: "Product analytics, session replay, and evidence for what to improve next.", status: "Measure" },
+      { name: "Resend", use: "Product email with a developer-friendly setup and clean delivery workflow.", status: "Email" },
+      { name: "GitHub", use: "Source of truth, version history, and the road to production.", status: "Always on" },
+    ],
+  },
+  {
+    title: "Automate with",
+    note: "Connective tissue for deleting the repetitive parts of work.",
+    tools: [
+      { name: "n8n", use: "Flexible, inspectable workflows for serious multi-step automation.", status: "Favorite" },
+      { name: "Vapi", use: "Voice-agent infrastructure for phone workflows that need to feel immediate.", status: "Voice" },
+      { name: "Composio", use: "A controlled connection layer that gives agents access to approved business tools.", status: "Tool access" },
+      { name: "Zapier", use: "Fast, dependable connections for straightforward automations.", status: "Quick fix" },
+      { name: "AgentMail", use: "Dedicated programmatic inboxes for agents without handing over a personal mailbox.", status: "Agent email" },
+      { name: "AgentCard", use: "Limited virtual cards for tightly scoped, approval-gated agent purchases.", status: "Agent spend" },
+      { name: "Netlify", use: "Simple deployments, previews, and forms for focused web projects.", status: "Ship it" },
+      { name: "Custom tools", use: "Small scripts and purpose-built systems when standard tools stop fitting.", status: "Best answer" },
+    ],
+  },
+  {
+    title: "Create and communicate with",
+    note: "Tools for turning useful ideas into video, audio, messages, and calmer communication.",
+    tools: [
+      { name: "HeyGen", use: "Avatar-led videos, explainers, training, and translated versions without a full production crew.", status: "AI video" },
+      { name: "ElevenLabs", use: "Natural voice generation, voice cloning, dubbing, transcription, and conversational audio.", status: "AI audio" },
+      { name: "Wispr Flow", use: "Fast first drafts and detailed prompts by speaking instead of typing.", status: "Dictation" },
+      { name: "SaneBox", use: "Teaching a busy inbox which messages deserve attention now and which can wait.", status: "Email" },
+      { name: "Telegram", use: "A simple private control channel for reaching an always-on agent from anywhere.", status: "Messaging" },
+    ],
+  },
+  {
+    title: "Plan and design with",
+    note: "Enough structure to shape the work without turning process into the work.",
+    tools: [
+      { name: "Notion", use: "Notes, project context, loose plans, and a home for unfinished thinking.", status: "Workbench" },
+      { name: "Figma", use: "Interface exploration, prototypes, and getting the visual idea aligned.", status: "Design" },
+      { name: "Linear", use: "Focused product and engineering planning without project-management sprawl.", status: "Plan" },
+    ],
+  },
+];
+---
+
+<BaseLayout pageTitle="Tools" pageDescription="The AI, development, automation, and thinking tools Danny Sullivan likes to use.">
+  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
+      <div><p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Tools · Current rotation</p><h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">The tools I use to think, build, and automate.</h1></div>
+      <div><p class="text-base leading-7 text-base-600 dark:text-base-300">The software and systems I reach for when I am trying to turn a rough idea into useful work.</p><p class="mt-4 text-xs uppercase tracking-wide text-base-400">No affiliate links. Just the gear I like.</p></div>
+    </header>
+
+    <div class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        {groups.map((group, groupIndex) => (
+          <section class="grid gap-8 border-t border-black/10 py-12 first:pt-0 dark:border-white/10 lg:grid-cols-[15rem_1fr] lg:gap-16">
+            <header><span class="text-xs text-base-400">{String(groupIndex + 1).padStart(2, "0")}</span><h2 class="mt-4 font-sans text-2xl font-semibold tracking-tight">{group.title}</h2><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{group.note}</p></header>
+            <ol class="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+              {group.tools.map((tool) => (
+                <li class="grid gap-2 py-5 sm:grid-cols-[11rem_1fr_auto] sm:items-start sm:gap-6">
+                  <h3 class="font-sans text-base font-semibold">{tool.name}</h3>
+                  <p class="text-sm leading-6 text-base-500 dark:text-base-400">{tool.use}</p>
+                  <span class="justify-self-start border border-black/10 px-2 py-1 text-[0.65rem] uppercase tracking-wide text-base-400 dark:border-white/10 sm:justify-self-end">{tool.status}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </div>
+
+    <section class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[15rem_1fr] lg:gap-16"><p class="text-xs font-medium uppercase tracking-wide text-base-400">The real rule</p><div><h2 class="font-sans text-3xl font-semibold tracking-tight">Use the tool. Do not become the tool.</h2><p class="mt-5 max-w-2xl text-base leading-7 text-base-500 dark:text-base-400">I like new software, but I like finished work more. The best stack is usually the smallest one that can carry the idea all the way to real.</p></div></section>
+  </div>
+</BaseLayout>
