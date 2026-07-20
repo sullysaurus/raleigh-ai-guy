@@ -3,60 +3,59 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import profileImage from "../../danny.jpeg";
 
-const recommendations = [
-  "The problem it solves in your business",
-  "The exact tool or workflow I recommend",
-  "What it costs and how hard it is to set up",
-  "How much weekly time it could reasonably reclaim",
-  "The first ten-minute action to take",
+const opportunities = [
+  "Responding to new leads while they are still interested",
+  "Keeping email, scheduling, and customer details organized",
+  "Following up on quotes without another manual reminder",
+  "Turning repeated questions into faster, consistent answers",
+  "Removing copy-and-paste work from recurring admin",
 ];
 
 const faqs = [
   ["Do I need to know anything about AI?", "No. This is designed for business owners, not technical teams. I explain every recommendation in plain English."],
-  ["Is this just a list of AI apps?", "No. We start with your work and your bottlenecks. Sometimes the best answer is ordinary software or a simpler process—not more AI."],
-  ["Will you implement the recommendations?", "The assessment gives you a plan you can use yourself. If you want help afterward, we can scope that separately."],
+  ["Will we install something during the free call?", "Sometimes we can make a small change immediately, but I do not promise a rushed installation. The promise is one useful recommendation and a clear first step."],
+  ["What happens after the call?", "You can take the recommendation and run with it. If the problem deserves deeper analysis or implementation, I will explain the paid options. There is no obligation."],
 ];
 ---
 
 <BaseLayout
-  pageTitle="AI Tools Assessment for Raleigh Small Businesses"
-  pageDescription="Find at least five hours of weekly time-saving opportunity in your Raleigh business with a practical, fixed-price AI Tools Assessment."
+  pageTitle="Practical AI for Raleigh Service Businesses"
+  pageDescription="Find one practical way to save time, improve follow-up, or remove repetitive work in a free 30-minute AI workflow review with Danny Sullivan."
 >
   <div class="min-h-svh bg-white text-black dark:bg-base-950 dark:text-white">
     <div>
       <section class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-32">
         <div>
-          <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">AI Tools Assessment · Raleigh small businesses</p>
+          <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI · Raleigh service businesses</p>
           <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-black dark:text-white sm:text-6xl lg:text-7xl">
-            Find at least five hours hiding in your workweek.
+            Fix the work costing you time—and customers.
           </h1>
           <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">
-            I find the repetitive work slowing down your business and prescribe 3–7 practical AI or software tools that can give you time back—without changing everything about how your team works.
+            I help owner-led businesses improve lead follow-up, customer response, email, scheduling, and repetitive admin with practical AI and automation. Start by bringing me one process that is not working.
           </p>
           <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href="/work-with-me/" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Apply for the assessment <span class="ml-3">→</span></a>
-            <span class="text-sm text-base-500 dark:text-base-400">Fixed price: $999</span>
+            <a href="/free-ai-review/" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Get a free workflow review <span class="ml-3">→</span></a>
+            <span class="text-sm text-base-500 dark:text-base-400">30 minutes · No obligation</span>
           </div>
-          <p class="mt-4 max-w-xl text-xs leading-5 text-base-500 dark:text-base-400">If I cannot identify at least five hours per week of credible opportunity, I refund the assessment.</p>
+          <p class="mt-4 max-w-xl text-xs leading-5 text-base-500 dark:text-base-400">Leave with one practical recommendation and a specific first step—even if AI is not the answer.</p>
         </div>
 
         <aside class="border border-black/10 bg-base-50 p-6 dark:border-white/10 dark:bg-base-900 sm:p-8">
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">You receive</p>
+          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Bring one bottleneck</p>
           <ul class="mt-6 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">01</span><p class="text-sm font-medium">45-minute discovery call</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">02</span><p class="text-sm font-medium">3–7 researched recommendations</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">03</span><p class="text-sm font-medium">Four-day quick-start plan</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">04</span><p class="text-sm font-medium">Time and financial impact estimate</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">05</span><p class="text-sm font-medium">30-minute report review</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">01</span><p class="text-sm font-medium">Lead follow-up that keeps slipping</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">02</span><p class="text-sm font-medium">An inbox nobody can keep organized</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">03</span><p class="text-sm font-medium">Scheduling or customer-response delays</p></li>
+            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">04</span><p class="text-sm font-medium">A repetitive task you dread doing</p></li>
           </ul>
         </aside>
       </section>
 
       <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
         <div class="mx-auto grid max-w-6xl divide-y divide-black/10 px-5 dark:divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
-          <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">$999</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">One fixed price</span></div>
-          <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">3–7</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Vetted recommendations</span></div>
-          <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">5+ hours</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Weekly opportunity guaranteed</span></div>
+          <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">Free</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">No hidden commitment</span></div>
+          <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">30 minutes</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Focused on one workflow</span></div>
+          <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">One next move</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Useful before we hang up</span></div>
         </div>
       </section>
 
@@ -68,7 +67,7 @@ const faqs = [
           </div>
           <div class="max-w-2xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300">
             <p>You know AI is changing how businesses work. But you are also handling customers, email, estimates, follow-up, approvals, and a dozen other things that cannot wait while you research every new tool.</p>
-            <p>The assessment does that sorting for you. We look at a real day in your business, find where time is leaking, and match the most expensive friction with the simplest credible solution.</p>
+            <p>The free review does that first round of sorting with you. We look at one real workflow, find the friction, and match it with the smallest credible solution—not whichever AI tool is getting the most attention.</p>
           </div>
         </div>
       </section>
@@ -77,29 +76,29 @@ const faqs = [
         <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
           <div class="max-w-2xl">
             <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">How it works</p>
-            <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Two conversations. One clear plan.</h2>
+            <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Start small. Go deeper only when it is worth it.</h2>
           </div>
           <ol class="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 lg:grid-cols-4">
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">01</span><h3 class="mt-8 font-sans text-lg font-semibold">Discover</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">A 45-minute recorded call about your day, your bottlenecks, and the work you wish would disappear.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">02</span><h3 class="mt-8 font-sans text-lg font-semibold">Research</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">I analyze the call, research the right-sized tools, verify the details, and calculate the opportunity.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">03</span><h3 class="mt-8 font-sans text-lg font-semibold">Prescribe</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">You receive a short report with priorities, recommendations, costs, expected impact, and a four-day plan.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">04</span><h3 class="mt-8 font-sans text-lg font-semibold">Review</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">We spend 30 minutes choosing the most urgent next move and answering every practical question.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">01</span><h3 class="mt-8 font-sans text-lg font-semibold">Bring one problem</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">Tell me where leads, customer communication, or repetitive work is getting stuck.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">02</span><h3 class="mt-8 font-sans text-lg font-semibold">Get one next move</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">In 30 minutes, we identify a useful tool, workflow, or process change and the first step to take.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">03</span><h3 class="mt-8 font-sans text-lg font-semibold">Assess if needed</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">For a larger problem, a fixed-price assessment maps the opportunity, costs, risks, and implementation plan.</p></li>
+            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">04</span><h3 class="mt-8 font-sans text-lg font-semibold">Build what earns its keep</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">If the return is clear, I can help implement the workflow and make sure it works in the real business.</p></li>
           </ol>
         </div>
       </section>
 
       <section class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:gap-24">
         <div>
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The deliverable</p>
-          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Every recommendation answers the questions that matter.</h2>
+          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Good starting points</p>
+          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Look for friction close to time or revenue.</h2>
           <ul class="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            {recommendations.map((item) => <li class="flex gap-3 py-4 text-sm"><span class="text-base-400">✓</span><span>{item}</span></li>)}
+            {opportunities.map((item) => <li class="flex gap-3 py-4 text-sm"><span class="text-base-400">✓</span><span>{item}</span></li>)}
           </ul>
         </div>
         <div class="self-start bg-black p-7 text-white dark:bg-white dark:text-black sm:p-10">
-          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">The guarantee</p>
-          <p class="mt-6 text-balance text-2xl font-medium leading-snug sm:text-3xl">If I cannot identify at least five hours of credible weekly opportunity, you get a full refund.</p>
-          <p class="mt-6 text-sm leading-6 text-white/60 dark:text-black/60">Every estimate is tied to a workflow you described and a recommendation I can defend. Your only risk is the time we spend talking.</p>
+          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Current field work</p>
+          <p class="mt-6 text-balance text-2xl font-medium leading-snug sm:text-3xl">I am currently building an AI operations assistant with a Raleigh event company.</p>
+          <p class="mt-6 text-sm leading-6 text-white/60 dark:text-black/60">That work is sharpening my focus on inquiry response, follow-up, scheduling, and the admin that grows around a busy service business. I bring that practical perspective to every review without pretending one solution fits everyone.</p>
         </div>
       </section>
 
@@ -107,8 +106,8 @@ const faqs = [
         <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1fr_22rem] lg:items-center lg:gap-24">
           <div>
             <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Who it is for</p>
-            <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Raleigh-area businesses where the owner or team is still doing too much by hand.</h2>
-            <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">The sweet spot is an owner-led business with roughly 2–20 employees, repeatable operational work, and an appetite for practical improvement. No AI strategy or technical employee required.</p>
+            <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Raleigh-area service businesses where good leads and good work still depend on too much manual effort.</h2>
+            <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">The sweet spot is an owner-led business with roughly 2–20 employees, repeatable operational work, and customers who expect a timely response. I am especially interested in event businesses, but the problem matters more than the industry.</p>
           </div>
           <div class="flex items-center gap-5 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
             <Image src={profileImage} alt="Danny Sullivan" width={96} height={96} class="size-20 rounded-full object-cover grayscale" />
@@ -118,16 +117,16 @@ const faqs = [
       </section>
 
       <section class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
-        <div><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Common questions</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Before you apply.</h2></div>
+        <div><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Common questions</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Before we talk.</h2></div>
         <div>{faqs.map(([question, answer]) => <details class="border-t border-black/10 py-5 last:border-b dark:border-white/10"><summary class="flex cursor-pointer list-none justify-between gap-6 text-sm font-medium">{question}<span class="text-base-400">+</span></summary><p class="mt-4 max-w-2xl pr-8 text-sm leading-6 text-base-500 dark:text-base-400">{answer}</p></details>)}</div>
       </section>
 
       <section class="bg-black text-white dark:bg-white dark:text-black">
         <div class="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
-          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">One assessment · $999</p>
-          <h2 class="mt-5 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Let’s find five hours hiding in your workweek.</h2>
-          <a href="/work-with-me/" class="mt-8 inline-flex min-h-12 items-center justify-center bg-[#ddff73] px-6 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Apply for the assessment <span class="ml-3">→</span></a>
-          <p class="mt-4 text-xs text-white/50 dark:text-black/50">Applying does not commit you to purchase.</p>
+          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Free · 30 minutes · One focused workflow</p>
+          <h2 class="mt-5 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Bring me the process you wish would disappear.</h2>
+          <a href="/free-ai-review/" class="mt-8 inline-flex min-h-12 items-center justify-center bg-[#ddff73] px-6 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Request a free workflow review <span class="ml-3">→</span></a>
+          <p class="mt-4 text-xs text-white/50 dark:text-black/50">Leave with one practical recommendation. No obligation to continue.</p>
         </div>
       </section>
     </div>

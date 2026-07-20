@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const fieldClass = "mt-2 w-full rounded-none border border-black/15 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-base-400 hover:border-black/30 focus:border-black focus:ring-2 focus:ring-black/10 dark:border-white/15 dark:bg-base-950 dark:text-white dark:hover:border-white/30 dark:focus:border-white dark:focus:ring-white/10";
+
+const outcomes = [
+  "Clarify one workflow that is wasting time or losing opportunities",
+  "Identify one practical tool, automation, or process improvement",
+  "Leave with a specific first step—even if AI is not the answer",
+];
+---
+
+<BaseLayout
+  pageTitle="Free 30-Minute AI Workflow Review — Raleigh Businesses"
+  pageDescription="Bring Danny Sullivan one repetitive or frustrating business workflow. Leave with one practical recommendation and a clear first step in 30 minutes."
+>
+  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <section class="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_25rem] lg:items-start lg:gap-20 lg:py-24">
+      <div class="lg:sticky lg:top-8">
+        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Free 30-minute AI workflow review · Raleigh</p>
+        <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl">Bring me one process you wish would disappear.</h1>
+        <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">We will look at one frustrating part of your business—lead follow-up, email, scheduling, customer questions, reporting, or repetitive admin—and find the most useful next move.</p>
+
+        <div class="mt-10 border-y border-black/10 dark:border-white/10">
+          {outcomes.map((outcome, index) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-4 border-b border-black/10 py-5 last:border-b-0 dark:border-white/10">
+              <span class="text-xs text-base-400">0{index + 1}</span>
+              <p class="text-sm font-medium leading-6">{outcome}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-8 bg-black p-6 text-white dark:bg-white dark:text-black">
+          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">A useful conversation—not a disguised sales call</p>
+          <p class="mt-4 text-sm leading-6 text-white/75 dark:text-black/70">I will not force AI into the answer or promise a rushed installation. If the problem needs deeper analysis or implementation, I will explain the options. You are never obligated to continue.</p>
+        </div>
+      </div>
+
+      <div class="border border-black/10 bg-base-50 p-5 dark:border-white/10 dark:bg-base-900 sm:p-7">
+        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Request your free review</p>
+        <h2 class="mt-3 font-sans text-2xl font-semibold tracking-tight">What is eating your time?</h2>
+        <p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">Tell me enough to prepare. I will follow up personally to schedule the call.</p>
+
+        <form name="free-ai-workflow-review" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="mt-7 space-y-5">
+          <input type="hidden" name="form-name" value="free-ai-workflow-review" />
+          <input type="hidden" name="subject" data-remove-prefix value="New free AI workflow review request from %{formName}" />
+          <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+          <label class="block text-sm font-medium">Your name <span class="text-base-400">*</span><input class={fieldClass} type="text" name="name" autocomplete="name" required /></label>
+          <label class="block text-sm font-medium">Work email <span class="text-base-400">*</span><input class={fieldClass} type="email" name="email" autocomplete="email" required /></label>
+          <label class="block text-sm font-medium">Business <span class="text-base-400">*</span><input class={fieldClass} type="text" name="company" autocomplete="organization" required /></label>
+          <label class="block text-sm font-medium">What task, process, or problem should we look at? <span class="text-base-400">*</span><span class="mt-1 block font-normal leading-5 text-base-500 dark:text-base-400">A sentence or two is plenty.</span><textarea class={fieldClass} name="workflow" rows="5" maxlength="1000" required></textarea></label>
+          <label class="block text-sm font-medium">Who referred you?<span class="mt-1 block font-normal leading-5 text-base-500 dark:text-base-400">Optional, but I would like to thank them.</span><input class={fieldClass} type="text" name="referral" /></label>
+
+          <button type="submit" class="flex min-h-12 w-full items-center justify-center bg-[#ddff73] px-5 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Request my free review <span class="ml-3">→</span></button>
+          <p class="text-center text-xs leading-5 text-base-500 dark:text-base-400">Free · 30 minutes · No obligation</p>
+        </form>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
