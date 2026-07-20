@@ -3,8 +3,8 @@ pubDate: 2026-07-13T09:00:00-04:00
 title: "What Is ElevenLabs? AI Voice, Cloning, Dubbing, and More"
 description: "A practical ElevenLabs guide covering text to speech, voice cloning, dubbing, transcription, sound effects, voice agents, and responsible setup."
 image:
-  url: "/src/images/posts/elevenlabs-ai-audio.png"
-  alt: "A written script becoming an expressive waveform connected to narration, translated audio, and a phone conversation"
+  url: "/src/images/posts/elevenlabs-conversational-ai-product.png"
+  alt: "ElevenLabs conversational AI product interface with voice and chat controls"
 tags:
   - elevenlabs
   - ai-audio
@@ -132,4 +132,3 @@ Use it when producing or updating audio is the bottleneck: narration, accessible
 Skip it when text already communicates the idea better, when you lack rights to the voice or content, or when the generated voice would make the audience believe somebody personally said something they did not.
 
 The voice is the presentation layer. The value still comes from the script, the information, and what the listener can do next.
-

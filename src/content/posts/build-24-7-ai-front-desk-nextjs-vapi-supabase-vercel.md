@@ -3,8 +3,8 @@ pubDate: 2026-07-19T09:00:00-04:00
 title: "Build a 24/7 AI Front Desk with Next.js, Vapi, Supabase, and Vercel"
 description: "An advanced architecture guide for answering calls, capturing qualified leads, notifying a business, and operating an AI front desk safely."
 image:
-  url: "/src/images/posts/ai-front-desk-stack.png"
-  alt: "An incoming phone call moving through a guarded AI voice system into a lead dashboard and notification"
+  url: "/src/images/posts/vapi-voice-agents-product.png"
+  alt: "Vapi voice agent product page showing a person taking a customer call"
 tags:
   - advanced
   - voice-ai

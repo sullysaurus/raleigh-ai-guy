@@ -11,33 +11,33 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
 
 <BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English guides to Claude, AI workflows, automation, and using AI well at work.">
-  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
-    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
+  <div class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+    <header class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
       <div>
         <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI field guide</p>
         <h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">Use AI to get real work done.</h1>
       </div>
       <p class="text-base leading-7 text-base-600 dark:text-base-300">Clear explanations and step-by-step workflows for people who want useful results—not a daily stream of AI hype.</p>
-    </header>
+    </div></header>
 
     {tags.length > 0 && (
-      <nav class="mx-auto flex max-w-6xl flex-wrap gap-2 border-t border-black/10 px-5 py-5 dark:border-white/10 sm:px-8" aria-label="Browse by topic">
-        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border border-black/10 px-3 py-2 text-xs text-base-500 transition hover:border-black hover:text-black dark:border-white/15 dark:text-base-400 dark:hover:border-white dark:hover:text-white">{tag}</a>)}
+      <nav class="mx-auto flex max-w-6xl flex-wrap gap-2 px-5 py-5 sm:px-8" aria-label="Browse by topic">
+        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border-2 border-[#151515] bg-[#f0e4ff] px-3 py-2 text-xs font-semibold text-[#151515] shadow-[2px_2px_0_#151515] transition hover:-translate-y-0.5 dark:border-white dark:bg-[#302341] dark:text-white dark:shadow-[2px_2px_0_#f4f1e8]">{tag}</a>)}
       </nav>
     )}
 
-    <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900" aria-label="All articles">
+    <section class="border-y-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]" aria-label="All articles">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         {posts.length > 0 ? (
-          <div class="grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 md:grid-cols-2">
+          <div class="grid gap-5 md:grid-cols-2">
             {posts.map((post, index) => {
               const date = post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
               const time = readingTime(post.body ?? "").text;
               return (
-                <article class="group bg-white p-5 dark:bg-base-950 sm:p-7">
+                <article class="group border-2 border-[#151515] bg-[#fffdf8] p-5 shadow-[5px_5px_0_#151515] dark:border-white dark:bg-base-950 dark:shadow-[5px_5px_0_#f4f1e8] sm:p-7">
                   <a href={`/blog/posts/${post.id}`} class="block">
-                    <div class="overflow-hidden border border-black/10 bg-black dark:border-white/10">
-                      <Image src={post.data.image.url} alt={post.data.image.alt} width={post.data.image.url.width} height={post.data.image.url.height} class="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-[1.02]" loading={index < 2 ? "eager" : "lazy"} />
+                    <div class="overflow-hidden border-2 border-[#151515] bg-white dark:border-white">
+                      <Image src={post.data.image.url} alt={post.data.image.alt} width={post.data.image.url.width} height={post.data.image.url.height} class="aspect-[16/9] w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]" loading={index < 2 ? "eager" : "lazy"} />
                     </div>
                     <p class="mt-5 text-xs uppercase tracking-wide text-base-400">{date} · {time}</p>
                     <h2 class="mt-3 font-sans text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">{post.data.title}</h2>

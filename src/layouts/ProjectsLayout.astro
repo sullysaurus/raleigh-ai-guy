@@ -16,10 +16,10 @@ const projectImageClass = isPortraitImage ? "mx-auto max-h-[760px] w-auto max-w-
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.subtitle}>
-  <section class="bg-white text-black dark:bg-base-950 dark:text-white">
-    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-44">
+  <section class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+    <div class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]"><Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-44">
       <Text tag="h1" variant="displayXS" class="max-w-4xl text-balance font-medium text-black dark:text-white">{frontmatter.title}</Text>
-    </Wrapper>
+    </Wrapper></div>
     <Wrapper variant="standard" class="pb-20 pt-12">
       <div class="border-t border-black/10 pt-4 dark:border-white/10">
         <Text tag="p" variant="textSM" class="mt-2 max-w-2xl text-base-500 dark:text-base-400 2xl:text-base">{frontmatter.subtitle}</Text>

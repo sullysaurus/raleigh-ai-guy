@@ -1,135 +1,226 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import profileImage from "../../danny.jpeg";
+import raleighLeadRecovery from "@/images/ventures/raleigh-lead-recovery-hero.png";
+import prowl from "@/images/ventures/prowl-app-website.png";
+import popstarPhotoBooths from "@/images/ventures/popstar-photo-booths-hero.png";
 
-const opportunities = [
-  "Responding to new leads while they are still interested",
-  "Keeping email, scheduling, and customer details organized",
-  "Following up on quotes without another manual reminder",
-  "Turning repeated questions into faster, consistent answers",
-  "Removing copy-and-paste work from recurring admin",
+const experience = [
+  {
+    number: "01",
+    label: "Building now",
+    title: "AI products at Gametime",
+    body: "I build production AI systems for live-event discovery, venue imagery, and the decisions fans make before buying a ticket.",
+  },
+  {
+    number: "02",
+    label: "Teaching before that",
+    title: "AI education at Pluralsight",
+    body: "For nearly five years, I created hands-on AI and machine-learning education and built internal AI tools for content teams.",
+  },
+  {
+    number: "03",
+    label: "Before tech",
+    title: "Professional baseball",
+    body: "I played professional baseball before moving into business and technology. It taught me how to handle repetition, feedback, preparation, and the long gap between effort and results.",
+  },
 ];
 
-const faqs = [
-  ["Do I need to know anything about AI?", "No. This is designed for business owners, not technical teams. I explain every recommendation in plain English."],
-  ["Will we install something during the free call?", "Sometimes we can make a small change immediately, but I do not promise a rushed installation. The promise is one useful recommendation and a clear first step."],
-  ["What happens after the call?", "You can take the recommendation and run with it. If the problem deserves deeper analysis or implementation, I will explain the paid options. There is no obligation."],
+const ventures = [
+  {
+    title: "Raleigh Lead Recovery",
+    eyebrow: "AI · Local service",
+    description: "A missed-call recovery service that catches opportunities while busy teams keep working.",
+    image: raleighLeadRecovery,
+    alt: "Raleigh Lead Recovery website homepage",
+    href: "https://raleighleadrecovery.com/",
+    color: "bg-[#f7d6ca] dark:bg-[#3a211d]",
+  },
+  {
+    title: "Prowl.fm",
+    eyebrow: "Music · Discovery",
+    description: "A real-time map for finding nearby live music while it is still happening.",
+    image: prowl,
+    alt: "Prowl live music discovery app website",
+    href: "https://prowl.fm/",
+    color: "bg-[#dce8ff] dark:bg-[#19243b]",
+  },
+  {
+    title: "Popstar Photo Booths",
+    eyebrow: "Events · Built and sold",
+    description: "A technology-forward event business built in Raleigh and later sold to a new owner.",
+    image: popstarPhotoBooths,
+    alt: "Popstar Photo Booths website homepage",
+    href: "https://popstarphotobooths.com/",
+    color: "bg-[#eff5c7] dark:bg-[#293016]",
+  },
 ];
+
+const posts = (await getCollection("posts"))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 4);
 ---
 
 <BaseLayout
-  pageTitle="Practical AI for Raleigh Service Businesses"
-  pageDescription="Find one practical way to save time, improve follow-up, or remove repetitive work in a free 30-minute AI workflow review with Danny Sullivan."
+  pageTitle="Danny Sullivan — AI Product Engineer and Builder"
+  pageDescription="AI products, useful businesses, and practical guides from Danny Sullivan, an AI product engineer and small-business builder in Raleigh, North Carolina."
 >
-  <div class="min-h-svh bg-white text-black dark:bg-base-950 dark:text-white">
-    <div>
-      <section class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-32">
-        <div>
-          <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI · Raleigh service businesses</p>
-          <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-black dark:text-white sm:text-6xl lg:text-7xl">
-            Fix the work costing you time—and customers.
-          </h1>
-          <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">
-            I help owner-led businesses improve lead follow-up, customer response, email, scheduling, and repetitive admin with practical AI and automation. Start by bringing me one process that is not working.
-          </p>
-          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href="/free-ai-review/" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Get a free workflow review <span class="ml-3">→</span></a>
-            <span class="text-sm text-base-500 dark:text-base-400">30 minutes · No obligation</span>
+  <div class="home-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+    <section class="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end lg:gap-20 lg:pb-28 lg:pt-24">
+      <div>
+        <p class="site-eyebrow">Danny Sullivan · Raleigh, North Carolina</p>
+        <h1 class="mt-6 max-w-4xl font-sans text-[clamp(2.8rem,7.5vw,6.6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
+          I build
+          <span class="rotator-line mt-2 block" data-phrase-rotator data-tone="blue">AI products</span>
+          <span class="block">and explain what I learn.</span>
+        </h1>
+        <p class="mt-8 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
+          I’m an AI product engineer, educator, and small-business builder. This is where I share the products, businesses, experiments, and practical guides I’m putting into the world.
+        </p>
+        <nav class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium" aria-label="Homepage shortcuts">
+          <a href="#work" class="home-text-link">See what I’ve done ↓</a>
+          <a href="/blog/" class="home-text-link">Read the blog →</a>
+          <a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer" class="home-text-link">LinkedIn ↗</a>
+        </nav>
+      </div>
+
+      <aside class="profile-note bg-[#e9e4ff] p-5 text-[#151515] shadow-[7px_7px_0_#151515] dark:bg-[#30294a] dark:text-white dark:shadow-[7px_7px_0_#f4f1e8] sm:p-6">
+        <Image src={profileImage} alt="Danny Sullivan" width={128} height={128} loading="eager" class="size-20 rounded-full object-cover" />
+        <p class="mt-6 font-sans text-2xl font-semibold leading-tight">AI Product Engineer at Gametime.</p>
+        <p class="mt-3 text-sm leading-6 text-black/65 dark:text-white/65">Previously AI education and creative technology at Pluralsight. Always building something on the side.</p>
+      </aside>
+    </section>
+
+    <section id="work" class="border-y-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <div class="grid gap-6 sm:grid-cols-[1fr_1.2fr] sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em]">A short version of the about page</p>
+            <h2 class="mt-4 max-w-xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">What I’ve done so far.</h2>
           </div>
-          <p class="mt-4 max-w-xl text-xs leading-5 text-base-500 dark:text-base-400">Leave with one practical recommendation and a specific first step—even if AI is not the answer.</p>
+          <p class="max-w-xl text-base leading-7 text-black/70 dark:text-white/75 sm:justify-self-end">My work sits where product, AI, education, content, and small-business operations overlap. The thread is making complicated technology useful to real people.</p>
         </div>
 
-        <aside class="border border-black/10 bg-base-50 p-6 dark:border-white/10 dark:bg-base-900 sm:p-8">
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Bring one bottleneck</p>
-          <ul class="mt-6 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">01</span><p class="text-sm font-medium">Lead follow-up that keeps slipping</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">02</span><p class="text-sm font-medium">An inbox nobody can keep organized</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">03</span><p class="text-sm font-medium">Scheduling or customer-response delays</p></li>
-            <li class="flex gap-4 py-4"><span class="text-xs text-base-400">04</span><p class="text-sm font-medium">A repetitive task you dread doing</p></li>
-          </ul>
+        <div class="mt-12 grid gap-4 lg:grid-cols-3">
+          {experience.map((item) => (
+            <article class="flex min-h-72 flex-col border-2 border-[#151515] bg-[#fffdf8] p-6 text-[#151515] shadow-[6px_6px_0_#151515] dark:border-white dark:bg-base-950 dark:text-white dark:shadow-[6px_6px_0_#f4f1e8]">
+              <div class="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.12em]"><span>{item.label}</span><span>{item.number}</span></div>
+              <h3 class="mt-auto pt-12 font-sans text-2xl font-semibold leading-tight">{item.title}</h3>
+              <p class="mt-4 text-sm leading-6 text-black/65 dark:text-white/65">{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <a href="/about/" class="mt-10 inline-flex items-center border-b-2 border-current pb-1 text-sm font-semibold">The longer story →</a>
+      </div>
+    </section>
+
+    <section class="bg-[#dce8ff] text-[#151515] dark:bg-[#17233c] dark:text-white">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-black/55 dark:text-white/55">Independent ventures</p>
+            <h2 class="mt-4 font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Ideas pushed into the real world.</h2>
+          </div>
+          <a href="/ventures/" class="home-text-link shrink-0 text-sm font-semibold">See every venture →</a>
+        </div>
+
+        <div class="mt-12 grid gap-5 lg:grid-cols-3">
+          {ventures.map((venture) => (
+            <a href={venture.href} target="_blank" rel="noreferrer" class:list={["group block border-2 border-[#151515] p-3 text-[#151515] transition hover:-translate-y-1 hover:shadow-[7px_7px_0_#151515] dark:border-white dark:text-white dark:hover:shadow-[7px_7px_0_#f4f1e8]", venture.color]}>
+              <div class="overflow-hidden border-2 border-[#151515] bg-white dark:border-white">
+                <Image src={venture.image} alt={venture.alt} width={venture.image.width} height={venture.image.height} class="aspect-video w-full object-contain transition duration-500 group-hover:scale-[1.025]" />
+              </div>
+              <div class="p-4 pb-5 pt-5">
+                <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">{venture.eyebrow}</p>
+                <h3 class="mt-3 font-sans text-2xl font-semibold leading-tight">{venture.title}</h3>
+                <p class="mt-3 text-sm leading-6 opacity-70">{venture.description}</p>
+                <span class="mt-5 inline-block text-sm font-semibold">Visit project ↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="border-y-2 border-[#151515] bg-[#f0e4ff] text-[#151515] dark:border-white dark:bg-[#302341] dark:text-white">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <div class="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">Recent writing</p>
+            <h2 class="mt-4 max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Notes for making AI less mysterious.</h2>
+          </div>
+          <a href="/blog/" class="home-text-link text-sm font-semibold">Browse all guides →</a>
+        </div>
+
+        <div class="mt-12 grid gap-4 md:grid-cols-2">
+          {posts.map((post, index) => (
+            <article class="group border-2 border-[#151515] bg-[#fffdf8] p-4 text-[#151515] shadow-[5px_5px_0_#151515] dark:border-white dark:bg-base-950 dark:text-white dark:shadow-[5px_5px_0_#f4f1e8] sm:p-5">
+              <a href={`/blog/posts/${post.id}`} class="grid gap-5 sm:grid-cols-[10rem_1fr] sm:items-center">
+                <Image src={post.data.image.url} alt={post.data.image.alt} width={post.data.image.url.width} height={post.data.image.url.height} class="aspect-[16/9] w-full border-2 border-[#151515] object-cover object-top dark:border-white" loading={index < 2 ? "eager" : "lazy"} />
+                <div>
+                  <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">{post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</p>
+                  <h3 class="mt-2 font-sans text-xl font-semibold leading-tight group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4">{post.data.title}</h3>
+                  <p class="mt-2 line-clamp-2 text-sm leading-6 opacity-65">{post.data.description}</p>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+      <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.2fr_.8fr] lg:items-start lg:gap-24">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Find me</p>
+          <h2 class="mt-4 max-w-2xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">I’m sharing the work as I go.</h2>
+          <p class="mt-6 max-w-xl text-base leading-7 text-base-600 dark:text-base-300">LinkedIn is the main social account for now. The blog, tools, and ventures pages are where the more useful material lives.</p>
+          <nav class="mt-8 flex flex-wrap gap-3" aria-label="Find Danny online">
+            <a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer" class="social-chip bg-[#0a66c2] text-white">LinkedIn ↗</a>
+            <a href="/blog/" class="social-chip bg-[#ff6f4f] text-[#151515]">Blog →</a>
+            <a href="/ventures/" class="social-chip bg-[#d7ef6f] text-[#151515]">Ventures →</a>
+            <a href="/rss.xml" class="social-chip bg-[#f0e4ff] text-[#151515]">RSS ↗</a>
+          </nav>
+        </div>
+
+        <aside class="border-l-4 border-[#151515] pl-6 dark:border-white sm:pl-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Want to compare notes?</p>
+          <p class="mt-4 font-sans text-2xl font-semibold leading-snug">I occasionally help businesses and teams make AI more useful.</p>
+          <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">No giant transformation pitch. Start with a real problem, a workshop, or a conversation.</p>
+          <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold">
+            <a href="/free-ai-review/" class="home-text-link">Free AI review →</a>
+            <a href="/ai-workshops/" class="home-text-link">Workshops →</a>
+          </div>
         </aside>
-      </section>
-
-      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
-        <div class="mx-auto grid max-w-6xl divide-y divide-black/10 px-5 dark:divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
-          <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">Free</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">No hidden commitment</span></div>
-          <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">30 minutes</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Focused on one workflow</span></div>
-          <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">One next move</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Useful before we hang up</span></div>
-        </div>
-      </section>
-
-      <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <div class="grid gap-10 lg:grid-cols-[20rem_1fr] lg:gap-24">
-          <div>
-            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Why this exists</p>
-            <h2 class="mt-4 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">You do not need more AI news. You need a useful next move.</h2>
-          </div>
-          <div class="max-w-2xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300">
-            <p>You know AI is changing how businesses work. But you are also handling customers, email, estimates, follow-up, approvals, and a dozen other things that cannot wait while you research every new tool.</p>
-            <p>The free review does that first round of sorting with you. We look at one real workflow, find the friction, and match it with the smallest credible solution—not whichever AI tool is getting the most attention.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="border-y border-black/10 dark:border-white/10">
-        <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-          <div class="max-w-2xl">
-            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">How it works</p>
-            <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Start small. Go deeper only when it is worth it.</h2>
-          </div>
-          <ol class="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 lg:grid-cols-4">
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">01</span><h3 class="mt-8 font-sans text-lg font-semibold">Bring one problem</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">Tell me where leads, customer communication, or repetitive work is getting stuck.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">02</span><h3 class="mt-8 font-sans text-lg font-semibold">Get one next move</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">In 30 minutes, we identify a useful tool, workflow, or process change and the first step to take.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">03</span><h3 class="mt-8 font-sans text-lg font-semibold">Assess if needed</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">For a larger problem, a fixed-price assessment maps the opportunity, costs, risks, and implementation plan.</p></li>
-            <li class="bg-white p-6 dark:bg-base-950"><span class="text-xs text-base-400">04</span><h3 class="mt-8 font-sans text-lg font-semibold">Build what earns its keep</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">If the return is clear, I can help implement the workflow and make sure it works in the real business.</p></li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:gap-24">
-        <div>
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Good starting points</p>
-          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Look for friction close to time or revenue.</h2>
-          <ul class="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            {opportunities.map((item) => <li class="flex gap-3 py-4 text-sm"><span class="text-base-400">✓</span><span>{item}</span></li>)}
-          </ul>
-        </div>
-        <div class="self-start bg-black p-7 text-white dark:bg-white dark:text-black sm:p-10">
-          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Current field work</p>
-          <p class="mt-6 text-balance text-2xl font-medium leading-snug sm:text-3xl">I am currently building an AI operations assistant with a Raleigh event company.</p>
-          <p class="mt-6 text-sm leading-6 text-white/60 dark:text-black/60">That work is sharpening my focus on inquiry response, follow-up, scheduling, and the admin that grows around a busy service business. I bring that practical perspective to every review without pretending one solution fits everyone.</p>
-        </div>
-      </section>
-
-      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
-        <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1fr_22rem] lg:items-center lg:gap-24">
-          <div>
-            <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Who it is for</p>
-            <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Raleigh-area service businesses where good leads and good work still depend on too much manual effort.</h2>
-            <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">The sweet spot is an owner-led business with roughly 2–20 employees, repeatable operational work, and customers who expect a timely response. I am especially interested in event businesses, but the problem matters more than the industry.</p>
-          </div>
-          <div class="flex items-center gap-5 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-            <Image src={profileImage} alt="Danny Sullivan" width={96} height={96} class="size-20 rounded-full object-cover grayscale" />
-            <div><strong class="block text-sm">Danny Sullivan</strong><span class="mt-1 block text-sm leading-5 text-base-500 dark:text-base-400">AI Product Engineer<br />Raleigh, North Carolina</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
-        <div><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Common questions</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Before we talk.</h2></div>
-        <div>{faqs.map(([question, answer]) => <details class="border-t border-black/10 py-5 last:border-b dark:border-white/10"><summary class="flex cursor-pointer list-none justify-between gap-6 text-sm font-medium">{question}<span class="text-base-400">+</span></summary><p class="mt-4 max-w-2xl pr-8 text-sm leading-6 text-base-500 dark:text-base-400">{answer}</p></details>)}</div>
-      </section>
-
-      <section class="bg-black text-white dark:bg-white dark:text-black">
-        <div class="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
-          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Free · 30 minutes · One focused workflow</p>
-          <h2 class="mt-5 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Bring me the process you wish would disappear.</h2>
-          <a href="/free-ai-review/" class="mt-8 inline-flex min-h-12 items-center justify-center bg-[#ddff73] px-6 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Request a free workflow review <span class="ml-3">→</span></a>
-          <p class="mt-4 text-xs text-white/50 dark:text-black/50">Leave with one practical recommendation. No obligation to continue.</p>
-        </div>
-      </section>
-    </div>
-
+      </div>
+    </section>
   </div>
 </BaseLayout>
+
+<script>
+  const phrases = [
+    { text: "AI products", tone: "blue" },
+    { text: "businesses", tone: "orange" },
+    { text: "useful systems", tone: "green" },
+    { text: "clear guides", tone: "violet" },
+  ];
+
+  const rotator = document.querySelector<HTMLElement>("[data-phrase-rotator]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (rotator && !reduceMotion) {
+    let index = 0;
+    window.setInterval(() => {
+      rotator.classList.add("is-changing");
+      window.setTimeout(() => {
+        index = (index + 1) % phrases.length;
+        rotator.textContent = phrases[index].text;
+        rotator.dataset.tone = phrases[index].tone;
+        rotator.classList.remove("is-changing");
+      }, 180);
+    }, 2800);
+  }
+</script>

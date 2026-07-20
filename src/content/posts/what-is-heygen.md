@@ -3,8 +3,8 @@ pubDate: 2026-07-18T09:00:00-04:00
 title: "What Is HeyGen? AI Avatars, Video Translation, and Faster Video Production"
 description: "A practical guide to HeyGen: how AI avatar videos work, where translation helps, what to create first, and when real footage is still the better choice."
 image:
-  url: "/src/images/posts/heygen-ai-video.png"
-  alt: "A written script flowing into an AI presenter video with scenes, voice, captions, and translation"
+  url: "/src/images/posts/heygen-talking-head-product.png"
+  alt: "HeyGen talking-head video product page with an AI video example"
 tags:
   - heygen
   - ai-video
@@ -126,4 +126,3 @@ Use HeyGen when you have a clear script, repeatable communication, and a real re
 Skip it when the human moment is the point, when one authentic phone recording would be faster, or when your team is using the avatar to postpone writing a clear message.
 
 HeyGen can remove much of the production work. It cannot decide what is worth saying.
-

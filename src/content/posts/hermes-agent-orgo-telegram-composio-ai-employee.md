@@ -3,8 +3,8 @@ pubDate: 2026-07-15T09:00:00-04:00
 title: "Build a 24/7 AI Operator with Hermes, Orgo, Telegram, and Composio"
 description: "An advanced guide to running Hermes Agent on an isolated Orgo cloud computer, controlling it from Telegram, connecting tools through Composio, and adding agent-native email and payments safely."
 image:
-  url: "/src/images/posts/hermes-orgo-ai-employee.png"
-  alt: "An always-on AI operator inside an isolated cloud computer with guarded connections to messages, tools, email, and payments"
+  url: "/src/images/posts/orgo-cloud-computers-product.png"
+  alt: "Orgo product page for cloud computers built for AI agents"
 tags:
   - advanced
   - ai-agents

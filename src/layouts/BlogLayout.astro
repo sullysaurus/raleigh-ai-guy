@@ -8,8 +8,8 @@ const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", da
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description}>
-  <article class="bg-white text-black dark:bg-base-950 dark:text-white">
-    <header class="mx-auto max-w-4xl px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24">
+  <article class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+    <header class="border-b-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]"><div class="mx-auto max-w-4xl px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24">
       <a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">← Practical AI guides</a>
       <h1 class="mt-8 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl">{frontmatter.title}</h1>
       <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600 dark:text-base-300">{frontmatter.description}</p>
@@ -17,10 +17,10 @@ const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", da
         <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
         {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black dark:hover:text-white">#{tag}</a>)}
       </div>
-    </header>
+    </div></header>
 
     <div class="mx-auto max-w-5xl px-5 sm:px-8">
-      <Image src={image} alt={frontmatter.image.alt} width={image.width} height={image.height} loading="eager" class="aspect-[16/9] w-full border border-black/10 bg-black object-cover dark:border-white/10" />
+      <Image src={image} alt={frontmatter.image.alt} width={image.width} height={image.height} loading="eager" class="mt-10 aspect-[16/9] w-full border-2 border-[#151515] bg-white object-cover shadow-[7px_7px_0_#151515] dark:border-white dark:shadow-[7px_7px_0_#f4f1e8]" />
     </div>
 
     <div class="mx-auto grid max-w-4xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-16">
@@ -33,7 +33,7 @@ const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", da
       {next && <a href={`/blog/posts/${next.id}`} class="bg-white p-6 text-right text-sm font-medium dark:bg-base-950">{next.data.title} →</a>}
     </nav>}
 
-    <section class="mt-20 bg-black text-white dark:bg-white dark:text-black"><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Bring me one workflow that is wasting your time.</h2><a href="/free-ai-review/" class="mt-7 inline-flex min-h-12 items-center bg-[#ddff73] px-6 text-sm font-medium text-black">Get a free 30-minute review →</a></div></section>
+    <section class="mt-20 border-y-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white"><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-semibold uppercase tracking-wide opacity-55">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Bring me one workflow that is wasting your time.</h2><a href="/free-ai-review/" class="mt-7 inline-flex min-h-12 items-center border-2 border-[#151515] bg-[#d7ef6f] px-6 text-sm font-semibold text-[#151515] shadow-[4px_4px_0_#151515]">Get a free 30-minute review →</a></div></section>
   </article>
 </BaseLayout>
 
