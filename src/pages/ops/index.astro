@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const resources = [
+  {
+    number: "01",
+    eyebrow: "Fulfillment system",
+    title: "AI Assessment Playbook",
+    description: "Run discovery, analyze the transcript, build the recommendation set, lead the review call, and turn the assessment into the next engagement.",
+    href: "/ops/ai-assessment-playbook/",
+    action: "Open the playbook",
+    meta: "Process · prompts · QA · growth",
+    featured: false,
+  },
+  {
+    number: "02",
+    eyebrow: "Client deliverable",
+    title: "Assessment Report Builder",
+    description: "Edit the six-page client report in the browser, complete the recommendations and ROI assumptions, then print or save the finished document as a PDF.",
+    href: "/ops/assessment-report-template/",
+    action: "Build a report",
+    meta: "Editable · printable · six pages",
+    featured: true,
+  },
+];
+---
+
+<BaseLayout pageTitle="Operations Dashboard" pageDescription="Internal dashboard for Danny Sullivan's AI Tools Assessment workflow." noindex>
+  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
+    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Internal operations · Noindex</p>
+        <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">Run the assessment from one place.</h1>
+      </div>
+      <div>
+        <p class="text-base leading-7 text-base-600 dark:text-base-300">The working documents for selling, delivering, and reviewing the AI Tools Assessment.</p>
+        <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-black/10 pt-5 text-xs text-base-500 dark:border-white/10 dark:text-base-400">
+          <span>$999 offer</span><span>5+ hours/week</span><span>Raleigh · 2–20 employees</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900" aria-labelledby="resources-title">
+        <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+          <div class="grid gap-8 lg:grid-cols-[15rem_1fr] lg:gap-16">
+            <header>
+              <p class="text-xs font-medium uppercase tracking-wide text-base-400">Workspace</p>
+              <h2 id="resources-title" class="mt-4 font-sans text-2xl font-semibold tracking-tight">Core resources</h2>
+              <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Start with the playbook. Open the report builder once discovery and research are complete.</p>
+            </header>
+
+            <div class="grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 md:grid-cols-2">
+              {resources.map((resource) => (
+                <a href={resource.href} class:list={["group flex min-h-[25rem] flex-col p-6 transition sm:p-8", resource.featured ? "bg-black text-white dark:bg-white dark:text-black" : "bg-white text-black dark:bg-base-950 dark:text-white"]}>
+                  <div class="flex items-center justify-between gap-4">
+                    <span class:list={["grid size-9 place-items-center rounded-full text-xs font-semibold", resource.featured ? "bg-[#ddff73] text-black" : "bg-black text-white dark:bg-white dark:text-black"]}>{resource.number}</span>
+                    <span class:list={["text-xs uppercase tracking-wide", resource.featured ? "text-white/45 dark:text-black/45" : "text-base-400"]}>{resource.meta}</span>
+                  </div>
+                  <div class="mt-auto pt-16">
+                    <p class:list={["text-xs font-medium uppercase tracking-wide", resource.featured ? "text-[#ddff73] dark:text-base-500" : "text-base-400"]}>{resource.eyebrow}</p>
+                    <h3 class="mt-3 max-w-md font-sans text-3xl font-semibold leading-tight tracking-tight">{resource.title}</h3>
+                    <p class:list={["mt-4 max-w-lg text-sm leading-6", resource.featured ? "text-white/60 dark:text-black/60" : "text-base-500 dark:text-base-400"]}>{resource.description}</p>
+                    <span class:list={["mt-8 inline-flex min-h-11 items-center px-4 text-sm font-medium", resource.featured ? "bg-[#ddff73] text-black" : "bg-black text-white dark:bg-white dark:text-black"]}>{resource.action}<span class="ml-3 transition-transform group-hover:translate-x-1">→</span></span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[15rem_1fr] lg:gap-16">
+        <header>
+          <p class="text-xs font-medium uppercase tracking-wide text-base-400">Working order</p>
+          <h2 class="mt-4 font-sans text-2xl font-semibold tracking-tight">One client, four steps</h2>
+        </header>
+        <ol class="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">01</span><strong class="text-sm font-medium">Discover</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Run the 45-minute call and capture the business owner’s pain in their language.</p></li>
+          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">02</span><strong class="text-sm font-medium">Analyze</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Find the costly friction, verify the tools, and document every savings assumption.</p></li>
+          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">03</span><strong class="text-sm font-medium">Build</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Complete the six-page report and send it before the client review.</p></li>
+          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">04</span><strong class="text-sm font-medium">Review</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Choose the first move, establish ownership, and decide whether implementation needs help.</p></li>
+        </ol>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
