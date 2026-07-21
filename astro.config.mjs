@@ -11,7 +11,7 @@ export default defineConfig({
     "/blog/posts/hermes-agent-orgo-telegram-composio-ai-employee/":
       "/blog/posts/what-is-claude-and-cowork/",
     "/blog/posts/what-are-mcp-servers/":
-      "/blog/posts/connect-tools-to-claude/",
+      "/blog/posts/daily-calendar-briefing-claude/",
     "/blog/posts/what-is-elevenlabs/": "/blog/",
     "/blog/posts/what-is-granola-ai-meeting-notes/":
       "/blog/posts/what-is-claude-and-cowork/",
@@ -29,6 +29,8 @@ export default defineConfig({
     "/blog/posts/claude-workflows-small-business/": "/blog/",
     "/blog/posts/claude-projects-skills-connectors-cowork/":
       "/blog/posts/what-are-claude-skills/",
+    "/blog/posts/connect-tools-to-claude/":
+      "/blog/posts/daily-calendar-briefing-claude/",
   },
   markdown: {
     drafts: true,

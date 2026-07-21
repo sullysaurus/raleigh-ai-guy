@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" role="img" aria-label="Claude inbox triage workflow for small business">
+  <rect width="1672" height="941" fill="#f3e7d5"/>
+  <rect x="22" y="22" width="1628" height="897" fill="none" stroke="#151515" stroke-width="4"/>
+
+  <rect x="22" y="22" width="1628" height="118" fill="#151515"/>
+  <text x="70" y="77" fill="#f3e7d5" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="5">CLAUDE INBOX TRIAGE</text>
+  <text x="1600" y="79" text-anchor="end" fill="#d9fa67" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">READ FIRST. ACT SECOND.</text>
+
+  <rect x="70" y="190" width="370" height="510" fill="#dce8ff" stroke="#151515" stroke-width="4"/>
+  <text x="98" y="238" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">STEP 1</text>
+  <text x="98" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700">CONNECT</text>
+  <rect x="116" y="356" width="278" height="164" fill="#f3e7d5" stroke="#151515" stroke-width="6"/>
+  <path d="M120 362l135 105 135-105M120 514l92-90M390 514l-92-90" fill="none" stroke="#151515" stroke-width="6"/>
+  <circle cx="370" cy="350" r="34" fill="#ff6f4f" stroke="#151515" stroke-width="5"/>
+  <text x="98" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">Let Claude read</text>
+  <text x="98" y="655" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">your Gmail safely</text>
+
+  <rect x="470" y="166" width="650" height="558" fill="#d9fa67" stroke="#151515" stroke-width="6"/>
+  <rect x="488" y="184" width="614" height="522" fill="none" stroke="#151515" stroke-width="2"/>
+  <text x="516" y="232" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">STEP 2</text>
+  <text x="516" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">TEACH YOUR RULES</text>
+  <rect x="516" y="344" width="536" height="70" fill="#ff6f4f" stroke="#151515" stroke-width="4"/>
+  <circle cx="556" cy="379" r="16" fill="#f3e7d5" stroke="#151515" stroke-width="4"/>
+  <text x="592" y="387" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">ACTION TODAY</text>
+  <rect x="516" y="430" width="536" height="70" fill="#dce8ff" stroke="#151515" stroke-width="4"/>
+  <circle cx="556" cy="465" r="16" fill="#f3e7d5" stroke="#151515" stroke-width="4"/>
+  <text x="592" y="473" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">WAITING</text>
+  <rect x="516" y="516" width="536" height="70" fill="#e9e4ff" stroke="#151515" stroke-width="4"/>
+  <circle cx="556" cy="551" r="16" fill="#f3e7d5" stroke="#151515" stroke-width="4"/>
+  <text x="592" y="559" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">READ LATER</text>
+  <text x="516" y="646" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25">Your priorities become</text>
+  <text x="516" y="681" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25">a reusable Claude Skill</text>
+
+  <rect x="1150" y="190" width="452" height="510" fill="#e9e4ff" stroke="#151515" stroke-width="4"/>
+  <text x="1178" y="238" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">STEP 3</text>
+  <text x="1178" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700">REVIEW</text>
+  <rect x="1210" y="340" width="300" height="210" fill="#f3e7d5" stroke="#151515" stroke-width="6"/>
+  <path d="M1248 390l14 14 28-32M1248 444l14 14 28-32M1248 498l14 14 28-32" fill="none" stroke="#151515" stroke-width="7"/>
+  <path d="M1320 390h146M1320 444h120M1320 498h138" stroke="#151515" stroke-width="7"/>
+  <circle cx="1510" cy="340" r="34" fill="#ff6f4f" stroke="#151515" stroke-width="5"/>
+  <text x="1178" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">Get a short daily</text>
+  <text x="1178" y="655" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">action list to approve</text>
+
+  <rect x="70" y="766" width="1532" height="102" fill="#151515"/>
+  <text x="836" y="830" text-anchor="middle" fill="#f3e7d5" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">YOUR INBOX. YOUR RULES. YOUR APPROVAL.</text>
+</svg>

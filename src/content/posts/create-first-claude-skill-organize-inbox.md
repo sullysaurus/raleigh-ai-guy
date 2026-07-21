@@ -249,4 +249,4 @@ If it saves 15 minutes a day without hiding important work, keep it. If it creat
 
 The prompt above is complete and free to use. If you would rather have someone help connect the pieces, define the rules, and test the workflow with you, bring it to a [free 30-minute AI review](/free-ai-review/). We will first decide whether inbox triage is worth setting up for your business—then map the simplest safe version.
 
-Need help getting Gmail connected first? Read [How to Connect Claude to Gmail, Google Drive, and Calendar](/blog/posts/connect-tools-to-claude/).
+Want another practical daily workflow? Build a [morning calendar briefing with Claude](/blog/posts/daily-calendar-briefing-claude/).
