@@ -2,9 +2,9 @@
 
 Live web research, July 20, 2026. Facebook login-walls group metadata, so member counts and written rules for every FB group below require joining to confirm (flagged). All URLs verified live.
 
-## Market gap (validated)
+## Market gap (validated and narrowed)
 
-Every active AI group in the Triangle is technical or paid. All Things AI (Live) is 4,802 members but currently runs paid workshops ($297). Triangle AI Meetup (1,143 members) is dormant. The closest business-operator concept (LEAP Triangle) is dead. Meanwhile the Raleigh Small Business Owners Group on Meetup has 1,936 members and has been dormant since 2020: demand with no supplier. AI for Business Raleigh has no direct competitor.
+The Triangle has active technical AI communities, broad AI programs, and one-off owner workshops. It does **not** appear to have a durable recurring Raleigh series combining an owner/operator-only audience, nontechnical delivery, a real workflow built live, and monthly cadence. That is the opening—not an absence of competition. A canceled Raleigh Monthly AI Roundtable used a closely overlapping operator promise, and an RDU SMB AI panel drew 37 attendees. See [03b-competitive-meetups.md](03b-competitive-meetups.md) for the current competitive map and countermoves.
 
 ## Facebook groups (priority channel)
 
@@ -33,10 +33,12 @@ Posting calendar (repeat monthly, staggered so no two groups see the same copy i
 Cross-promo partners (not competitors):
 - **Triangle Startup Collective** (498 members, Mondays 6 PM at Raleigh Founded): best partner; attend one, meet the organizer, swap announcements. Bonus: proves Raleigh Founded hosts external evening meetups.
 - **1 Million Cups RTP** (Wednesday mornings, free): entrepreneur audience; ask to give a 1-minute community announcement.
-- **All Things AI (Live)** (4,802 members, paid workshops): organizers Mark Hinkle and Todd Lewis; complementary (technical/paid vs non-technical/free). Potential guest-speaker exchange.
+- **All Things AI (Live)** (3,626 members and 53 past events at the July 21 capture): broad talks/panels and technical learning. Potential guest-speaker exchange.
 - **Research Triangle AI Society**, **AI Tinkerers Raleigh**: technical crowds; low audience overlap, good speaker sourcing.
 
 Own listing: hold off on paying for a Meetup.com organizer account until after event #1; Luma + FB + LinkedIn should fill 15-20 seats. Revisit for event #3 (Meetup's discovery of the dormant 1,936-member small business group's audience is the argument for paying).
+
+Competitive positioning: do not claim “no competitors.” Claim the specific format—monthly, owner-only, nontechnical, one live operational workflow, with the business math shown. Recheck the [competitive watchlist](03b-competitive-meetups.md) at T-5 weeks each month.
 
 ## Community calendars and press (all free)
 

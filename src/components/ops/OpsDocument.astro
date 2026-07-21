@@ -1,0 +1,52 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<section class="ops-document-shell">
+  {label && <header><span>{label}</span><p>Canonical source: committed Markdown</p></header>}
+  <article class="ops-document"><slot /></article>
+</section>
+
+<style>
+  .ops-document-shell { border-top: 1px solid var(--ops-line-strong); }
+  .ops-document-shell > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; color: var(--ops-faint); font-size: .65rem; }
+  .ops-document-shell > header span { color: var(--ops-deadline); font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+
+  .ops-document { max-width: 59rem; padding: 3rem 0 2rem; color: var(--ops-ink); }
+  .ops-document :global(h1) { display: none; }
+  .ops-document :global(h2) { margin: 4rem 0 1.25rem; padding-top: 1rem; border-top: 1px solid var(--ops-line); font-family: "Anybody", sans-serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1; letter-spacing: -.035em; text-wrap: balance; }
+  .ops-document :global(h2:first-child) { margin-top: 0; }
+  .ops-document :global(h3) { margin: 2.5rem 0 .85rem; font-family: "Anybody", sans-serif; font-size: 1.2rem; font-weight: 680; line-height: 1.15; letter-spacing: -.02em; }
+  .ops-document :global(h4) { margin: 1.75rem 0 .6rem; font-size: .86rem; font-weight: 720; }
+  .ops-document :global(p), .ops-document :global(li) { color: var(--ops-muted); font-size: .88rem; line-height: 1.65; text-wrap: pretty; }
+  .ops-document :global(p + p) { margin-top: 1rem; }
+  .ops-document :global(strong) { color: var(--ops-ink); font-weight: 680; }
+  .ops-document :global(a) { color: var(--ops-ink); text-decoration: underline; text-decoration-color: var(--ops-deadline); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .ops-document :global(ul), .ops-document :global(ol) { display: grid; gap: .55rem; margin: 1rem 0 1.5rem; padding-left: 1.2rem; }
+  .ops-document :global(ul) { list-style: square; }
+  .ops-document :global(ol) { list-style: decimal; }
+  .ops-document :global(li::marker) { color: var(--ops-deadline); font-weight: 750; }
+  .ops-document :global(blockquote) { margin: 1.5rem 0; border-left: .3rem solid var(--ops-signal); padding: 1.2rem 1.4rem; background: var(--ops-sheet); }
+  .ops-document :global(blockquote p) { color: var(--ops-ink); }
+  .ops-document :global(pre) { overflow-x: auto; margin: .5rem 0 1.5rem; border: 1px solid var(--ops-line); padding: 1.25rem; color: #f7f7f2; background: #1c1e19; font-size: .76rem; line-height: 1.6; white-space: pre-wrap; }
+  .ops-document :global(code:not(pre code)) { padding: .12rem .3rem; background: rgb(23 25 20 / 6%); font-size: .82em; }
+  .ops-document :global(table) { width: 100%; margin: 1.5rem 0 2rem; border-collapse: collapse; font-size: .78rem; }
+  .ops-document :global(th) { border-bottom: 1px solid var(--ops-line-strong); padding: .65rem .75rem; color: var(--ops-faint); font-size: .62rem; font-weight: 720; letter-spacing: .08em; text-align: left; text-transform: uppercase; }
+  .ops-document :global(td) { border-bottom: 1px solid var(--ops-line); padding: .8rem .75rem; color: var(--ops-muted); line-height: 1.5; vertical-align: top; }
+  .ops-document :global(td strong) { display: inline-block; }
+  .ops-document :global(input[type="checkbox"]) { width: 1.05rem; height: 1.05rem; margin: 0 .55rem 0 -1.2rem; border: 1px solid var(--ops-line-strong); border-radius: 0; color: var(--ops-ink); background: var(--ops-sheet); vertical-align: -.18rem; }
+  .ops-document :global(input[type="checkbox"]:checked) { background-color: var(--ops-signal); background-image: none; box-shadow: inset 0 0 0 3px var(--ops-sheet); }
+  .ops-document :global(hr) { margin: 3rem 0; border: 0; border-top: 1px solid var(--ops-line); }
+
+  @media (max-width: 680px) {
+    .ops-document-shell > header p { display: none; }
+    .ops-document { padding-top: 2rem; }
+    .ops-document :global(h2) { margin-top: 3rem; }
+    .ops-document :global(table) { display: block; overflow-x: auto; white-space: normal; }
+    .ops-document :global(th), .ops-document :global(td) { min-width: 9rem; }
+  }
+</style>

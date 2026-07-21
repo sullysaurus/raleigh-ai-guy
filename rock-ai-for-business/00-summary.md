@@ -6,13 +6,14 @@ Operator: Danny Sullivan (dannysullivan.ai). All 8 phases delivered in this fold
 - 02-event-design.md — format, run of show, CTA script, dates, topic, speaker pipeline
 - 03-marketing.md — all copy: Luma page, FB posts (4), LinkedIn (3), short posts (5), newsletter, DM template, poster spec
 - 03a-channels-research.md — verified Raleigh channels, FB groups, calendars, competing events
+- 03b-competitive-meetups.md — current competitor map, positioning, countermoves, and monthly watchlist
 - 04-attribution.md — registration form, check-in, lead scoring, Notion logging
 - 05-followup-emails.md — HOT/WARM/NURTURE/no-show sequences, every email in full
 - 06-ops-sop.md — T-5 weeks to T+2 days solo-operator checklist + budget
 - 07-organizer-playbook-call.md — 12 questions for an established Triangle organizer
 - 08-scoreboard.md — weekly leading + monthly lagging metrics with milestones
 
-Market validation from live research: no active, free, non-technical AI-for-business meetup exists in the Triangle, and a dormant 1,936-member Raleigh small business Meetup group proves unserved demand.
+Market validation from live research: the Triangle has technical AI communities and one-off business workshops, but no durable recurring Raleigh series was found with this exact owner-only, nontechnical, live-workflow format. A canceled direct-overlap concept and a 37-person RDU SMB AI panel validate both demand and the need to win on execution.
 
 ## The 5 decisions to approve
 

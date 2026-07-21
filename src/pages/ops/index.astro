@@ -1,87 +1,122 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import OpsShell from "@/components/ops/OpsShell.astro";
 
-const resources = [
+const systems = [
   {
-    number: "01",
-    eyebrow: "Fulfillment system",
-    title: "AI Assessment Playbook",
-    description: "Run discovery, analyze the transcript, build the recommendation set, lead the review call, and turn the assessment into the next engagement.",
-    href: "/ops/ai-assessment-playbook/",
-    action: "Open the playbook",
-    meta: "Process · prompts · QA · growth",
-    featured: false,
+    code: "ROCK 01",
+    title: "AI for Business Raleigh",
+    description: "Launch three monthly rooms, generate qualified conversations, and close one measurable client by October 31.",
+    href: "/ops/ai-for-business/",
+    action: "Open launch cockpit",
+    status: "Venue pending",
+    tone: "deadline",
   },
   {
-    number: "02",
-    eyebrow: "Client deliverable",
-    title: "Assessment Report Builder",
-    description: "Edit the six-page client report in the browser, complete the recommendations and ROI assumptions, then print or save the finished document as a PDF.",
+    code: "OFFER 01",
+    title: "AI Assessment",
+    description: "Discover costly friction, verify tools, calculate credible opportunity, and turn the recommendation into a concrete first move.",
+    href: "/ops/ai-assessment-playbook/",
+    action: "Open field manual",
+    status: "Ready to deliver",
+    tone: "ready",
+  },
+  {
+    code: "OUTPUT 01",
+    title: "Client report builder",
+    description: "Complete the six-page assessment report in the browser, then print or save a clean client-ready PDF.",
     href: "/ops/assessment-report-template/",
     action: "Build a report",
-    meta: "Editable · printable · six pages",
-    featured: true,
+    status: "Template ready",
+    tone: "ready",
   },
 ];
 ---
 
-<BaseLayout pageTitle="Operations Dashboard" pageDescription="Internal dashboard for Danny Sullivan's AI Tools Assessment workflow." noindex>
-  <div class="bg-white text-black dark:bg-base-950 dark:text-white">
-    <header class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
-      <div>
-        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Internal operations · Noindex</p>
-        <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">Run the assessment from one place.</h1>
-      </div>
-      <div>
-        <p class="text-base leading-7 text-base-600 dark:text-base-300">The working documents for selling, delivering, and reviewing the AI Tools Assessment.</p>
-        <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-t border-black/10 pt-5 text-xs text-base-500 dark:border-white/10 dark:text-base-400">
-          <span>Internal offer</span><span>5+ hours/week</span><span>Raleigh · 2–20 employees</span>
-        </div>
-      </div>
-    </header>
+<OpsShell title="Operations" description="The internal field office for launching the Raleigh event series and delivering the AI Assessment offer." eyebrow="Danny Sullivan · Field office" current="overview">
+  <section class="ops-brief">
+    <div>
+      <p>Current operating constraint</p>
+      <h2>Secure the August 26 venue.</h2>
+    </div>
+    <p>Venue confirmation unlocks Luma, calendar submissions, public promotion, and the first registration milestone.</p>
+    <a href="/ops/ai-for-business/">Go to the Rock <span>→</span></a>
+  </section>
 
-    <main>
-      <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900" aria-labelledby="resources-title">
-        <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <div class="grid gap-8 lg:grid-cols-[15rem_1fr] lg:gap-16">
-            <header>
-              <p class="text-xs font-medium uppercase tracking-wide text-base-400">Workspace</p>
-              <h2 id="resources-title" class="mt-4 font-sans text-2xl font-semibold tracking-tight">Core resources</h2>
-              <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Start with the playbook. Open the report builder once discovery and research are complete.</p>
-            </header>
+  <section class="system-list" aria-labelledby="systems-title">
+    <header><p>Active systems</p><h2 id="systems-title">Run the work.</h2></header>
+    <div>
+      {systems.map((system, index) => (
+        <a href={system.href} class="system-row">
+          <span class="system-index">0{index + 1}</span>
+          <span class="system-copy"><small>{system.code}</small><strong>{system.title}</strong><p>{system.description}</p></span>
+          <span class:list={["system-state", system.tone]}><i></i>{system.status}</span>
+          <span class="system-action">{system.action} <i>→</i></span>
+        </a>
+      ))}
+    </div>
+  </section>
 
-            <div class="grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 md:grid-cols-2">
-              {resources.map((resource) => (
-                <a href={resource.href} class:list={["group flex min-h-[25rem] flex-col p-6 transition sm:p-8", resource.featured ? "bg-black text-white dark:bg-white dark:text-black" : "bg-white text-black dark:bg-base-950 dark:text-white"]}>
-                  <div class="flex items-center justify-between gap-4">
-                    <span class:list={["grid size-9 place-items-center rounded-full text-xs font-semibold", resource.featured ? "bg-[#ddff73] text-black" : "bg-black text-white dark:bg-white dark:text-black"]}>{resource.number}</span>
-                    <span class:list={["text-xs uppercase tracking-wide", resource.featured ? "text-white/45 dark:text-black/45" : "text-base-400"]}>{resource.meta}</span>
-                  </div>
-                  <div class="mt-auto pt-16">
-                    <p class:list={["text-xs font-medium uppercase tracking-wide", resource.featured ? "text-[#ddff73] dark:text-base-500" : "text-base-400"]}>{resource.eyebrow}</p>
-                    <h3 class="mt-3 max-w-md font-sans text-3xl font-semibold leading-tight tracking-tight">{resource.title}</h3>
-                    <p class:list={["mt-4 max-w-lg text-sm leading-6", resource.featured ? "text-white/60 dark:text-black/60" : "text-base-500 dark:text-base-400"]}>{resource.description}</p>
-                    <span class:list={["mt-8 inline-flex min-h-11 items-center px-4 text-sm font-medium", resource.featured ? "bg-[#ddff73] text-black" : "bg-black text-white dark:bg-white dark:text-black"]}>{resource.action}<span class="ml-3 transition-transform group-hover:translate-x-1">→</span></span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+  <section class="operating-loop" aria-labelledby="loop-title">
+    <header><p>Shared operating loop</p><h2 id="loop-title">Listen. Prescribe. Prove. Repeat.</h2></header>
+    <ol>
+      <li><span>01</span><strong>Listen in the room</strong><p>Use registration answers, share-outs, and review calls to capture the problem in the owner’s language.</p></li>
+      <li><span>02</span><strong>Prescribe the smallest move</strong><p>Start with one useful recommendation. Expand only when the broader assessment or implementation is justified.</p></li>
+      <li><span>03</span><strong>Prove the outcome</strong><p>Track booked reviews, assessments, workshops, client work, and the source that created each opportunity.</p></li>
+      <li><span>04</span><strong>Feed the next room</strong><p>Turn working examples, objections, and client results into the next event’s demo and promotion.</p></li>
+    </ol>
+  </section>
+</OpsShell>
 
-      <section class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[15rem_1fr] lg:gap-16">
-        <header>
-          <p class="text-xs font-medium uppercase tracking-wide text-base-400">Working order</p>
-          <h2 class="mt-4 font-sans text-2xl font-semibold tracking-tight">One client, four steps</h2>
-        </header>
-        <ol class="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">01</span><strong class="text-sm font-medium">Discover</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Run the 45-minute call and capture the business owner’s pain in their language.</p></li>
-          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">02</span><strong class="text-sm font-medium">Analyze</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Find the costly friction, verify the tools, and document every savings assumption.</p></li>
-          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">03</span><strong class="text-sm font-medium">Build</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Complete the six-page report and send it before the client review.</p></li>
-          <li class="grid gap-2 py-5 sm:grid-cols-[3rem_10rem_1fr] sm:gap-6"><span class="text-xs text-base-400">04</span><strong class="text-sm font-medium">Review</strong><p class="text-sm leading-6 text-base-500 dark:text-base-400">Choose the first move, establish ownership, and decide whether implementation needs help.</p></li>
-        </ol>
-      </section>
-    </main>
-  </div>
-</BaseLayout>
+<style>
+  .ops-brief { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(15rem, .8fr) auto; gap: 2rem; align-items: end; border-top: 1px solid var(--ops-line-strong); border-bottom: 1px solid var(--ops-line-strong); padding: 2rem; background: var(--ops-signal); }
+  .ops-brief > div > p, .system-list > header p, .operating-loop > header p { color: rgb(23 25 20 / 55%); font-size: .62rem; font-weight: 720; letter-spacing: .12em; text-transform: uppercase; }
+  .ops-brief h2 { margin-top: .5rem; font-family: "Anybody", sans-serif; font-size: clamp(1.8rem, 4vw, 3.25rem); font-weight: 710; line-height: .94; letter-spacing: -.045em; }
+  .ops-brief > p { color: rgb(23 25 20 / 68%); font-size: .78rem; line-height: 1.5; }
+  .ops-brief > a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 2rem; border: 1px solid rgb(23 25 20 / 22%); padding: .75rem 1rem; font-size: .72rem; font-weight: 680; transition: background-color 140ms ease, transform 120ms ease; }
+  .ops-brief > a:hover { background: var(--ops-sheet); }
+  .ops-brief > a:active { transform: scale(.97); }
+
+  .system-list, .operating-loop { padding: 4rem 0; }
+  .system-list > header, .operating-loop > header { display: grid; grid-template-columns: 12rem 1fr; align-items: end; margin-bottom: 2rem; }
+  .system-list > header p, .operating-loop > header p { color: var(--ops-faint); }
+  .system-list > header h2, .operating-loop > header h2 { font-family: "Anybody", sans-serif; font-size: 1.75rem; font-weight: 690; line-height: 1; letter-spacing: -.04em; }
+  .system-list > div { border-top: 1px solid var(--ops-line-strong); }
+  .system-row { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) 9rem 10rem; gap: 1.5rem; align-items: center; border-bottom: 1px solid var(--ops-line); padding: 1.5rem 0; transition: background-color 140ms ease; }
+  .system-row:hover { background: var(--ops-sheet); }
+  .system-index { color: var(--ops-faint); font-size: .65rem; font-weight: 700; }
+  .system-copy small, .system-copy strong, .system-copy p { display: block; }
+  .system-copy small { color: var(--ops-deadline); font-size: .58rem; font-weight: 720; letter-spacing: .1em; }
+  .system-copy strong { margin-top: .35rem; font-family: "Anybody", sans-serif; font-size: 1.25rem; font-weight: 680; letter-spacing: -.025em; }
+  .system-copy p { max-width: 43rem; margin-top: .45rem; color: var(--ops-muted); font-size: .74rem; line-height: 1.5; }
+  .system-state { display: flex; align-items: center; gap: .5rem; color: var(--ops-muted); font-size: .66rem; font-weight: 650; }
+  .system-state i { width: .45rem; height: .45rem; border-radius: 50%; background: var(--ops-faint); }
+  .system-state.ready i { background: #789d21; }
+  .system-state.deadline { color: var(--ops-deadline); }
+  .system-state.deadline i { background: var(--ops-deadline); }
+  .system-action { color: var(--ops-muted); font-size: .68rem; font-weight: 650; text-align: right; }
+  .system-action i { margin-left: .5rem; font-style: normal; }
+
+  .operating-loop { border-top: 1px solid var(--ops-line-strong); }
+  .operating-loop ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ops-line-strong); }
+  .operating-loop li { min-height: 14rem; padding: 1.25rem; background: var(--ops-sheet); }
+  .operating-loop li > span { color: var(--ops-deadline); font-size: .62rem; font-weight: 720; }
+  .operating-loop li > strong { display: block; margin-top: 3.5rem; font-family: "Anybody", sans-serif; font-size: 1.05rem; font-weight: 680; line-height: 1.1; }
+  .operating-loop li > p { margin-top: .75rem; color: var(--ops-muted); font-size: .7rem; line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .ops-brief { grid-template-columns: 1fr 1fr; }
+    .ops-brief > a { width: fit-content; }
+    .system-row { grid-template-columns: 2rem minmax(0, 1fr) 9rem; }
+    .system-action { display: none; }
+    .operating-loop ol { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 620px) {
+    .ops-brief { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
+    .system-list > header, .operating-loop > header { grid-template-columns: 1fr; gap: .5rem; }
+    .system-row { grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; }
+    .system-state { grid-column: 2; }
+    .operating-loop ol { grid-template-columns: 1fr; }
+    .operating-loop li { min-height: 11rem; }
+  }
+</style>
