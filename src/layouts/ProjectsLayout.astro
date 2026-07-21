@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
@@ -13,9 +13,24 @@ const projectImageHeight = typeof projectImage === "string" ? 900 : projectImage
 const isPortraitImage = projectImageHeight > projectImageWidth;
 const imageFrameClass = isPortraitImage ? "mt-8 bg-black/5 p-6 dark:bg-white/5 sm:p-10 lg:p-14" : "mt-8 bg-black/5 p-8 dark:bg-white/5 lg:p-16";
 const projectImageClass = isPortraitImage ? "mx-auto max-h-[760px] w-auto max-w-full rounded-[2rem] object-contain shadow-sm" : "mx-auto w-full rounded-xl object-contain";
+const socialImage = await getImage({
+  src: projectImage,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  format: "jpeg",
+  quality: 82,
+});
 ---
 
-<BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.subtitle}>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  pageDescription={frontmatter.subtitle}
+  socialImage={socialImage.src}
+  socialImageAlt={frontmatter.image.alt}
+  socialImageWidth={1200}
+  socialImageHeight={630}
+>
   <section class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
     <div class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]"><Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-44">
       <Text tag="h1" variant="displayXS" class="max-w-4xl text-balance font-medium text-black dark:text-white">{frontmatter.title}</Text>

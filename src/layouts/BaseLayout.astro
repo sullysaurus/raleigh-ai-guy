@@ -9,11 +9,24 @@ import Navigation from "@/components/global/Navigation.astro";
 interface Props {
   pageTitle?: string;
   pageDescription?: string;
+  socialImage?: string;
+  socialImageAlt?: string;
+  socialImageWidth?: number;
+  socialImageHeight?: number;
   noindex?: boolean;
   minimal?: boolean;
 }
 
-const { pageTitle, pageDescription, noindex, minimal = false } = Astro.props;
+const {
+  pageTitle,
+  pageDescription,
+  socialImage,
+  socialImageAlt,
+  socialImageWidth,
+  socialImageHeight,
+  noindex,
+  minimal = false,
+} = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -21,6 +34,10 @@ const { pageTitle, pageDescription, noindex, minimal = false } = Astro.props;
     <BaseHead
       pageTitle={pageTitle}
       pageDescription={pageDescription}
+      socialImage={socialImage}
+      socialImageAlt={socialImageAlt}
+      socialImageWidth={socialImageWidth}
+      socialImageHeight={socialImageHeight}
       noindex={noindex}
     />
   </head>

@@ -1,11 +1,27 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { getImage } from "astro:assets";
 
 const { frontmatter, readingTime, previous, next } = Astro.props;
 const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+const socialImage = await getImage({
+  src: frontmatter.image.url,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  format: "jpeg",
+  quality: 82,
+});
 ---
 
-<BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description}>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  pageDescription={frontmatter.description}
+  socialImage={socialImage.src}
+  socialImageAlt={frontmatter.image.alt}
+  socialImageWidth={1200}
+  socialImageHeight={630}
+>
   <article class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
     <header class="border-b-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]"><div class="mx-auto max-w-4xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
       <a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">← Practical AI guides</a>
