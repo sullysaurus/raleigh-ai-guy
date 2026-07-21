@@ -31,7 +31,7 @@ Once it is set up, Claude can review recent Gmail messages and prepare:
 
 Claude can also create draft replies when you ask. According to Anthropic's [Google Workspace connector guide](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors), Claude cannot send Gmail messages for you—you review and send them yourself.
 
-Already understand the basics? [Skip to the complete setup prompt](#copy-the-complete-setup-prompt).
+Already understand the basics? [Skip to the master setup prompt](#master-prompt-complete-inbox-setup).
 
 ## Step 1: Connect Gmail to Claude
 
@@ -138,7 +138,7 @@ Scheduled Cowork tasks run remotely, so this review can run while your computer 
 
 Keep the scheduled version read-only at first. Let it prepare the morning briefing automatically, then decide what to reply to, label, or archive when you review the result.
 
-## Copy the complete setup prompt
+## Master prompt: complete inbox setup
 
 If you want Claude to guide you through the complete setup, paste the prompt below into a new Claude conversation. It will take you through the connection, interview, Skill creation, testing, and scheduling one stage at a time.
 

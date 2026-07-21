@@ -125,6 +125,45 @@ Using both makes sense when they have distinct jobs. You might use ChatGPT as yo
 
 The point is not to collect subscriptions. Each tool needs a job.
 
+## Master prompt: compare ChatGPT and Claude on your real work
+
+Replace the bracketed sections, attach the same source material, and run this exact prompt in both tools. Compare the complete results rather than the most polished opening paragraph.
+
+```text
+Help me complete and evaluate a real business task.
+
+TASK
+[DESCRIBE ONE TASK YOU PERFORM REGULARLY]
+
+AUDIENCE
+[WHO WILL USE OR READ THE RESULT]
+
+SOURCE MATERIAL
+[PASTE OR ATTACH THE SAME MATERIAL IN BOTH TOOLS]
+
+CONSTRAINTS
+- Required format: [FORMAT]
+- Maximum length: [LENGTH]
+- Tone: [TONE]
+- Facts or rules that must not change: [LIST]
+- Actions requiring my approval: [LIST]
+
+PROCESS
+1. Identify missing information and ask no more than five necessary
+   questions. If the brief is sufficient, continue without questions.
+2. Complete the task using only the supplied material.
+3. Flag assumptions, uncertainty, and claims I should verify.
+4. Review your own output against every constraint and revise it once.
+
+FINISH WITH
+1. The final deliverable.
+2. A source and assumption checklist.
+3. The estimated amount of human review still required.
+4. Any limitation that prevented a better result.
+```
+
+Score both outputs for accuracy, editing required, constraint-following, speed, and confidence. The tool that produces better finished work for your task is the better tool for you.
+
 ## My recommendation
 
 If you are new to AI, choose either one and use it on real work for seven days. ChatGPT is a strong all-purpose starting point. Claude is a strong starting point for writing, analysis, and repeatable knowledge workflows.

@@ -108,10 +108,6 @@ Avoid starting with a giant “run my business” Skill. Small Skills are easier
 
 If Skills are available in your Claude account, ask Claude to help you build one through conversation. Anthropic's [conversation-based Skill tutorial](https://claude.com/resources/tutorials/how-to-create-a-skill-with-claude-through-conversation) shows this process: describe the workflow naturally, let Claude interview you, share useful examples, and ask it to package the finished Skill.
 
-Try this starter prompt:
-
-> I want to turn a repeated business task into a Claude Skill. Interview me about when I do it, the steps I follow, examples of a good result, common mistakes, and actions Claude should never take without approval. Then create the Skill and give me three test prompts.
-
 When Claude finishes, save and enable the Skill under **Settings → Capabilities → Skills** or **Customize → Skills**, depending on the version of Claude you use. Test it with old or low-risk work before trusting it on something important.
 
 ## The real value: captured judgment
@@ -121,5 +117,52 @@ The best Skills do more than save a prompt. They capture the little decisions an
 What counts as urgent? Which source wins when two reports disagree? What should never be published? When should the task stop and ask a human?
 
 Those details turn a generic AI response into a workflow your team can actually use.
+
+## Master prompt: turn a repeated task into a Claude Skill
+
+Run this in Claude with two or three safe examples of the task and finished output, if available.
+
+```text
+Help me turn a repeated business task into a reliable Claude Skill.
+
+TASK
+[DESCRIBE THE REPEATED TASK AND WHY IT MATTERS]
+
+EXAMPLES
+[ATTACH OR PASTE SAFE INPUTS AND GOOD FINISHED OUTPUTS]
+
+INTERVIEW ME FIRST
+Ask one focused question at a time until you understand:
+- when the Skill should and should not run
+- required inputs and trusted sources
+- the exact sequence of steps
+- how I make judgment calls and resolve conflicting information
+- the required output format
+- examples of good and bad results
+- common mistakes and edge cases
+- actions Claude must never take without approval
+- how a human will verify the result
+
+THEN CREATE
+1. A concise Skill description and trigger criteria.
+2. Complete Skill instructions with the workflow, decision rules, output
+   format, safety boundaries, and escalation conditions.
+3. Any reusable checklist or template the Skill needs.
+4. Five test cases: normal, incomplete input, conflicting sources, edge
+   case, and a request the Skill should refuse or escalate.
+5. Expected results and pass/fail criteria for every test.
+
+REVIEW
+Run the proposed Skill against the test cases without taking external or
+irreversible actions. Identify failures, revise the instructions once,
+and show me what changed.
+
+FINISH WITH
+1. The final Skill package.
+2. Installation or saving steps for the Claude interface I am using.
+3. A rollout plan that begins with old or low-risk work.
+```
+
+The best result is not the longest Skill. It is the smallest set of instructions that captures the decisions you repeat and knows when to stop for a human.
 
 Next: [How to Use Claude to Triage Your Gmail Inbox (No Code)](/blog/posts/create-first-claude-skill-organize-inbox/)

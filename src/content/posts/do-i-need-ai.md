@@ -95,6 +95,51 @@ Run the AI beside the current process. Review every result. At the end of two we
 
 “We learned this does not need AI” is a successful result.
 
+## Master prompt: decide whether a workflow needs AI
+
+Use this prompt before buying a tool or automating a process. Rough estimates are fine as long as you label them.
+
+```text
+Evaluate whether this business workflow needs AI, ordinary automation,
+a template, a process change, or no intervention.
+
+WORKFLOW
+[DESCRIBE THE CURRENT PROCESS STEP BY STEP]
+
+CURRENT BASELINE
+- People involved: [ROLES]
+- Times completed per week: [NUMBER]
+- Minutes per completion: [NUMBER]
+- Approximate hourly cost: [AMOUNT]
+- Error or rework rate: [NUMBER OR UNKNOWN]
+- Customer or revenue impact: [DESCRIBE]
+- Tools already available: [LIST]
+- Sensitive data involved: [DESCRIBE]
+
+EVALUATE IN THIS ORDER
+1. Can we stop doing any unnecessary step?
+2. Can we simplify the process?
+3. Would a checklist or template solve it?
+4. Would deterministic rules or existing software solve it?
+5. Does the remaining work require interpreting messy language, images,
+   documents, or variable inputs where AI may help?
+
+RETURN
+1. Your recommended solution and the simplest viable alternative.
+2. A weekly value estimate showing time saved, software cost, review time,
+   maintenance, and likely error cost. Label assumptions.
+3. The main privacy, security, accuracy, and approval risks.
+4. A two-week test with a baseline, success metric, sample size, human
+   review step, and stop condition.
+5. A final decision: test AI, use ordinary automation, simplify manually,
+   or leave the process alone.
+
+Do not recommend AI merely because it can perform part of the task.
+Prefer the simplest solution that can reliably produce the outcome.
+```
+
+The goal is not to receive permission to use AI. It is to make the cheapest reliable improvement and define how you will know whether it worked.
+
 ## So, do you need AI?
 
 Yes—when it creates a measurable advantage that a simpler approach cannot deliver economically.

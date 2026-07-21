@@ -142,6 +142,53 @@ You are still responsible for:
 
 For an important campaign or a complete brand identity, a professional designer is still worth the investment. Claude Design is especially useful for everyday materials, early concepts, and projects that otherwise might not get made.
 
+## Master prompt: create and review a Claude Design project
+
+Open Claude Design, attach your approved copy and brand assets, replace the bracketed sections, and paste this prompt:
+
+```text
+Create a polished visual design from the approved material attached to
+this project. Do not invent missing copy, dates, prices, links, claims,
+testimonials, logos, or contact information.
+
+PROJECT
+- Deliverable: [FLYER, SOCIAL CAROUSEL, PRESENTATION, ONE-PAGER, OR OTHER]
+- Goal: [WHAT THE DESIGN SHOULD HELP THE AUDIENCE DO]
+- Audience: [AUDIENCE]
+- Final size or format: [DIMENSIONS, PAGE SIZE, OR SLIDE RATIO]
+- Primary call to action: [CTA]
+- Required content: [LIST]
+- Brand assets: use only the attached approved assets
+- Visual direction: [THREE TO FIVE ADJECTIVES OR A REFERENCE]
+
+BEFORE DESIGNING
+1. Check whether the required copy, assets, dimensions, and call to action
+   are present.
+2. Ask no more than five necessary questions. If the brief is complete,
+   continue without questions.
+
+CREATE
+1. Two distinct visual directions with a short explanation of each.
+2. Build the stronger direction using clear hierarchy, readable type,
+   sufficient contrast, and appropriate spacing.
+3. Keep the most important message understandable within five seconds.
+4. Use editable text and elements whenever possible.
+
+REVIEW AND REVISE
+1. Verify every visible fact against the approved copy.
+2. Check readability, contrast, alignment, spacing, consistency, image
+   quality, and call-to-action prominence.
+3. Flag accessibility, licensing, print, export, or approval concerns.
+4. Revise the design once based on that review.
+
+FINISH WITH
+1. A final pre-publish checklist.
+2. The best export format for this use.
+3. Any element that may change when sent to Canva or another tool.
+```
+
+The prompt gets you from brief through first review. You still decide whether the result fits the audience and verify the exported file before publishing.
+
 ## Should you try it?
 
 Try Claude Design if you regularly have an idea for a flyer, presentation, social graphic, or webpage but struggle to turn that idea into a usable first draft.

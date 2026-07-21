@@ -112,11 +112,7 @@ That is not a weakness of Claude. It is the normal discipline required when soft
 
 Choose something that takes 30–90 minutes today, has a visible finished state, and is easy to verify.
 
-For example:
-
-> Review the documents in my `Meeting Notes` folder. Create a table listing the meeting date, participants, decisions, open questions, and action items. Do not modify the original files. Save the result as `meeting-action-register.md` and flag anything you are uncertain about.
-
-This request works because it defines:
+Reviewing a folder of meeting notes and producing an action register is a good first task. It works because the request can define:
 
 - The source
 - The output
@@ -137,6 +133,51 @@ Cowork becomes much more valuable when it knows your process and can reach the r
 Think of it this way: connectors provide access, Skills provide procedure, and Cowork provides execution.
 
 Next in this series: [Claude Skills Explained: A No-Code Guide for Small Business](/blog/posts/what-are-claude-skills/)
+
+## Master prompt: delegate a bounded Cowork task safely
+
+Replace the bracketed sections and run this in Cowork. Begin with read-only source material and a reversible output.
+
+```text
+Complete this bounded knowledge-work task using only the approved sources
+and access listed below.
+
+OUTCOME
+[DESCRIBE THE FINISHED RESULT]
+
+APPROVED SOURCES
+[FILES, FOLDERS, OR CONNECTED SERVICES CLAUDE MAY READ]
+
+DELIVERABLE
+- Format: [DOCUMENT, TABLE, SPREADSHEET, PRESENTATION, OR OTHER]
+- Save location: [EXACT APPROVED LOCATION]
+- Required sections or fields: [LIST]
+- Definition of done: [CLEAR COMPLETION CRITERIA]
+
+SAFETY BOUNDARIES
+- Do not modify, move, rename, or delete source material.
+- Do not send messages, publish content, make purchases, or change external
+  records without my explicit approval.
+- Do not access sources outside the approved list.
+- Do not guess when information is missing or conflicting.
+- Stop and ask before any action that is difficult to reverse.
+
+PROCESS
+1. Inspect the approved sources and summarize what is available.
+2. Identify missing information, conflicts, and access limitations.
+3. Propose a short plan and wait for my approval before creating or
+   changing files.
+4. Complete the approved plan.
+5. Check the deliverable against the definition of done.
+
+FINISH WITH
+1. The completed deliverable.
+2. A source list and uncertainty log.
+3. A summary of files created or changed.
+4. Items requiring human verification or approval.
+```
+
+Once the result is reliable on low-risk work, turn the procedure into a Skill or repeatable Project instruction rather than rebuilding the process each time.
 
 ## The takeaway
 

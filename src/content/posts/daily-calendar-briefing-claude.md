@@ -125,7 +125,7 @@ Use this scheduled-task prompt:
 
 Open **Scheduled** whenever you want to inspect past runs, change the time, pause the task, or run it immediately.
 
-## Copy the complete setup prompt
+## Master prompt: complete calendar briefing setup
 
 If you want Claude to walk you through everything, paste this into a new conversation:
 

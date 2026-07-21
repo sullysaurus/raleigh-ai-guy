@@ -210,6 +210,48 @@ Consider Fable if your plan includes it and the extra usage is justified.
 
 Do not switch models immediately. First add context, examples, constraints, and a clear definition of a good result. If the better prompt still fails, move up.
 
+## Master prompt: choose the right model before doing the work
+
+Run this in your normal Claude model. It will help you determine whether the task needs more speed, more judgment, or simply a better brief.
+
+```text
+Evaluate this business task before completing it.
+
+TASK
+[DESCRIBE THE OUTCOME YOU NEED]
+
+CONTEXT AND SOURCES
+[PASTE OR ATTACH RELEVANT MATERIAL]
+
+CONSTRAINTS
+- Audience: [AUDIENCE]
+- Deadline: [DEADLINE]
+- Required format: [FORMAT]
+- Cost of an incorrect result: [LOW, MEDIUM, OR HIGH — EXPLAIN]
+- Human review available: [DESCRIBE]
+
+FIRST, ASSESS THE TASK
+1. Rate its complexity, ambiguity, consequence, and ease of verification
+   from 1–5.
+2. Recommend the appropriate Claude model tier: fast/lightweight,
+   balanced/default, or highest-capability. Use the current model names
+   available in my account rather than assuming a specific name.
+3. Recommend whether additional thinking or research is justified.
+4. Explain the choice in plain English.
+
+THEN
+- If the current model is appropriate, complete the task.
+- If a different model is materially better, stop after creating a clean
+  handoff brief I can paste into that model.
+
+FINISH WITH
+1. The deliverable or handoff brief.
+2. Assumptions and unsupported claims.
+3. A human-review checklist proportional to the risk.
+```
+
+This avoids memorizing model names that may change. You are choosing based on the work: speed, complexity, consequence, and how easily a human can check the result.
+
 ## The model matters less than the working relationship
 
 People often spend too much time hunting for the “best” model and too little time explaining the work.
