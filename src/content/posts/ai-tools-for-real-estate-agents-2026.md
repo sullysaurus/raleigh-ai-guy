@@ -6,10 +6,9 @@ image:
   url: "/src/images/posts/real-estate-ai-tools-2026.png"
   alt: "A house surrounded by cards representing practical Claude workflows for real estate agents"
 tags:
-  - real-estate-ai
   - claude
-  - ai-tools
-  - productivity
+  - real-estate
+  - small-business
 ---
 
 Real estate agents do not need twenty AI subscriptions. They need one tool they understand and a few reliable workflows attached to work they already do.

@@ -7,9 +7,7 @@ image:
   alt: "A simple Claude Design workflow moving from an idea to a design and then to Canva"
 tags:
   - claude
-  - claude-design
-  - design
-  - ai-tools
+  - small-business
 ---
 
 Claude Design is a new visual workspace from Anthropic, the company behind Claude. You describe what you want, Claude creates a first version on a canvas, and you improve it by talking to Claude or editing the design directly.
@@ -142,7 +140,7 @@ You are still responsible for:
 
 For an important campaign or a complete brand identity, a professional designer is still worth the investment. Claude Design is especially useful for everyday materials, early concepts, and projects that otherwise might not get made.
 
-## Master prompt: create and review a Claude Design project
+## Main prompt: create and review a Claude Design project
 
 Open Claude Design, attach your approved copy and brand assets, replace the bracketed sections, and paste this prompt:
 

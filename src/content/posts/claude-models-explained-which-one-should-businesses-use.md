@@ -7,10 +7,7 @@ image:
   alt: "Four labeled work cards representing the Claude Haiku, Sonnet, Opus, and Fable models"
 tags:
   - claude
-  - ai-basics
   - small-business
-  - productivity
-  - ai-tools
 ---
 
 Claude gives you several models to choose from. Their names—Haiku, Sonnet, Opus, and now Fable—do not tell a new user much about which one should write an email, analyze a spreadsheet, or help plan a project.
@@ -210,7 +207,7 @@ Consider Fable if your plan includes it and the extra usage is justified.
 
 Do not switch models immediately. First add context, examples, constraints, and a clear definition of a good result. If the better prompt still fails, move up.
 
-## Master prompt: choose the right model before doing the work
+## Main prompt: choose the right model before doing the work
 
 Run this in your normal Claude model. It will help you determine whether the task needs more speed, more judgment, or simply a better brief.
 

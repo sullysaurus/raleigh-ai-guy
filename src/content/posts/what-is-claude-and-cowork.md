@@ -7,8 +7,7 @@ image:
   alt: "Abstract editorial workspace coordinating documents, files, and research streams"
 tags:
   - claude
-  - cowork
-  - ai-basics
+  - small-business
 ---
 
 Claude is an AI assistant made by Anthropic. You can use it to think through a problem, research a topic, analyze files, write and revise content, create documents, work with data, and help with code.
@@ -134,7 +133,7 @@ Think of it this way: connectors provide access, Skills provide procedure, and C
 
 Next in this series: [Claude Skills Explained: A No-Code Guide for Small Business](/blog/posts/what-are-claude-skills/)
 
-## Master prompt: delegate a bounded Cowork task safely
+## Main prompt: delegate a bounded Cowork task safely
 
 Replace the bracketed sections and run this in Cowork. Begin with read-only source material and a reversible output.
 
@@ -182,6 +181,8 @@ Once the result is reliable on low-risk work, turn the procedure into a Skill or
 ## The takeaway
 
 Claude is the assistant. Cowork is a way to delegate a larger outcome to that assistant.
+
+If Projects, instructions, Design, Skills, connectors, and Cowork are all new to you, start with [Claude for Business Owners: A Practical 60-Minute Bootcamp](/blog/posts/claude-for-business-owners-bootcamp/).
 
 Start with one bounded task. Make the finish line clear. Limit access. Review the result. Then decide whether the workflow is reliable enough to repeat.
 

@@ -7,8 +7,7 @@ image:
   alt: "A modular set of AI instruction blocks arranged as a reusable system"
 tags:
   - claude
-  - skills
-  - ai-basics
+  - small-business
 ---
 
 A Claude Skill is a reusable set of instructions that teaches Claude how to perform a particular kind of work.
@@ -118,7 +117,7 @@ What counts as urgent? Which source wins when two reports disagree? What should 
 
 Those details turn a generic AI response into a workflow your team can actually use.
 
-## Master prompt: turn a repeated task into a Claude Skill
+## Main prompt: turn a repeated task into a Claude Skill
 
 Run this in Claude with two or three safe examples of the task and finished output, if available.
 

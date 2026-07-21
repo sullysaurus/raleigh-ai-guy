@@ -8,9 +8,7 @@ image:
 tags:
   - chatgpt
   - claude
-  - ai-basics
-  - connectors
-  - productivity
+  - small-business
 ---
 
 ChatGPT or Claude?
@@ -125,7 +123,7 @@ Using both makes sense when they have distinct jobs. You might use ChatGPT as yo
 
 The point is not to collect subscriptions. Each tool needs a job.
 
-## Master prompt: compare ChatGPT and Claude on your real work
+## Main prompt: compare ChatGPT and Claude on your real work
 
 Replace the bracketed sections, attach the same source material, and run this exact prompt in both tools. Compare the complete results rather than the most polished opening paragraph.
 

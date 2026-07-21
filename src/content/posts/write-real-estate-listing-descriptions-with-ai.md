@@ -6,10 +6,9 @@ image:
   url: "/src/images/posts/ai-listing-descriptions.png"
   alt: "A checked property fact sheet becoming a reviewed real estate listing description in Claude"
 tags:
-  - real-estate-ai
   - claude
-  - writing
-  - marketing
+  - real-estate
+  - small-business
 ---
 
 Claude can draft a listing description in seconds. That does not mean its first draft should go into the MLS.
@@ -51,7 +50,7 @@ One “perfect” description is less useful than three honest options. Claude m
 - A flexible floor plan
 - Outdoor space
 
-You can choose the strongest opening and combine the best supported sentences. The master prompt at the end requests all three while enforcing your character limit.
+You can choose the strongest opening and combine the best supported sentences. The main prompt at the end requests all three while enforcing your character limit.
 
 ## Step 4: replace adjectives with evidence
 

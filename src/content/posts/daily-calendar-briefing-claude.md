@@ -7,8 +7,6 @@ image:
   alt: "A branded daily briefing timeline showing Claude preparing calendar meetings, email context, and documents"
 tags:
   - claude
-  - skills
-  - calendar
   - small-business
 ---
 
@@ -125,7 +123,7 @@ Use this scheduled-task prompt:
 
 Open **Scheduled** whenever you want to inspect past runs, change the time, pause the task, or run it immediately.
 
-## Master prompt: complete calendar briefing setup
+## Comprehensive prompt: complete calendar briefing setup
 
 If you want Claude to walk you through everything, paste this into a new conversation:
 

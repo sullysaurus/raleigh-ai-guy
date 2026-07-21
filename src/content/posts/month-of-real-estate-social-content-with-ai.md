@@ -6,10 +6,9 @@ image:
   url: "/src/images/posts/real-estate-social-content.png"
   alt: "A calendar beside a timer representing a fast real estate social-content workflow in Claude"
 tags:
-  - real-estate-ai
   - claude
-  - social-media
-  - content-marketing
+  - real-estate
+  - small-business
 ---
 
 Most real estate agents do not run out of things to say. They run out of time to turn what they know into finished posts.
@@ -47,7 +46,7 @@ AI should organize your information, not invent it.
 
 ## Step 3: let Claude build the monthly plan
 
-The master prompt at the end asks Claude to create twelve posts divided among buyers, sellers, the local market, and your work. It also asks Claude to choose the strongest format for each idea instead of forcing every topic into the same template.
+The main prompt at the end asks Claude to create twelve posts divided among buyers, sellers, the local market, and your work. It also asks Claude to choose the strongest format for each idea instead of forcing every topic into the same template.
 
 Review the plan before asking for finished copy. Delete repetitive ideas, anything unsupported by the source, and anything you would not naturally discuss with a client.
 

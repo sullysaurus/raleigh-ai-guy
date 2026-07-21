@@ -6,10 +6,7 @@ image:
   url: "/src/images/posts/do-i-need-ai-v2.png"
   alt: "A decision balance comparing a simple process with AI based on time and money saved"
 tags:
-  - ai-strategy
   - small-business
-  - productivity
-  - ai-basics
 ---
 
 AI is being added to everything: inboxes, browsers, CRMs, phones, meetings, accounting tools, and even products that were working perfectly well without it.
@@ -95,7 +92,7 @@ Run the AI beside the current process. Review every result. At the end of two we
 
 “We learned this does not need AI” is a successful result.
 
-## Master prompt: decide whether a workflow needs AI
+## Main prompt: decide whether a workflow needs AI
 
 Use this prompt before buying a tool or automating a process. Rough estimates are fine as long as you label them.
 
