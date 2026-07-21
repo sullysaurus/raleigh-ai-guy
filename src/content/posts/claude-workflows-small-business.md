@@ -3,8 +3,8 @@ pubDate: 2026-04-22T09:00:00-04:00
 title: "5 Claude Workflows a Small Business Can Use This Week"
 description: "Five bounded, practical Claude workflows for email, meetings, customer feedback, proposals, and weekly operations—plus the safety limits to keep."
 image:
-  url: "/src/images/posts/small-business-workflows-photo.jpg"
-  alt: "A bakery owner coordinating orders, schedules, notes, and a laptop during the workday"
+  url: "/src/images/posts/claude-small-business-workflows.png"
+  alt: "A streamlined small business workflow moving through an AI-assisted process"
 tags:
   - claude
   - small-business

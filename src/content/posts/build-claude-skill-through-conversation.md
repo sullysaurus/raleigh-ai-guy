@@ -3,8 +3,8 @@ pubDate: 2026-07-01T09:00:00-04:00
 title: "Build a Claude Skill by Talking It Through—No Coding Required"
 description: "Describe your workflow in a conversation and let Claude turn it into a reusable custom Skill, including instructions, references, tests, and scripts when needed."
 image:
-  url: "/src/images/posts/claude-skill-conversation-photo.jpg"
-  alt: "Two people talking through ideas while organizing reusable instruction cards"
+  url: "/src/images/posts/claude-build-skill.png"
+  alt: "A conversation transforming into an organized package of reusable AI instructions"
 tags:
   - claude
   - skills

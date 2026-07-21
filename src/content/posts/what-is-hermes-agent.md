@@ -3,8 +3,8 @@ pubDate: 2026-07-05T09:00:00-04:00
 title: "What Is Hermes Agent? A Personal AI That Learns How You Work"
 description: "A plain-English guide to Hermes Agent, including its tools, memory, Skills, messaging channels, best use cases, and operational risks."
 image:
-  url: "/src/images/posts/hermes-assistant-photo.jpg"
-  alt: "A personal assistant preparing a calendar, reminders, keys, folders, and tomorrow's checklist"
+  url: "/src/images/posts/hermes-agent-explained.png"
+  alt: "A persistent AI agent connected to tools, memory, skills, messages, and scheduled work"
 tags:
   - advanced
   - hermes

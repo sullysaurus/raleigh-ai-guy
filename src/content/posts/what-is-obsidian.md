@@ -3,8 +3,8 @@ pubDate: 2026-07-12T09:00:00-04:00
 title: "What Is Obsidian? A Local Knowledge Base for People Who Work with AI"
 description: "Learn how Obsidian turns local Markdown files into a connected knowledge base—and why that makes it especially useful for advanced AI workflows."
 image:
-  url: "/src/images/posts/obsidian-notes-photo.jpg"
-  alt: "A writer building a personal knowledge wall from connected paper notes and photographs"
+  url: "/src/images/posts/obsidian-knowledge-vault.png"
+  alt: "A local knowledge vault made from connected notes and folders"
 tags:
   - advanced
   - obsidian

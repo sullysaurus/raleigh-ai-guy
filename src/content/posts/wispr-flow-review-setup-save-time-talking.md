@@ -3,8 +3,8 @@ pubDate: 2026-06-10T09:00:00-04:00
 title: "Wispr Flow: Save Time by Talking Instead of Typing"
 description: "A practical Wispr Flow review and setup guide for writing email, notes, prompts, and first drafts faster with AI voice dictation."
 image:
-  url: "/src/images/posts/wispr-flow-dictation-photo.jpg"
-  alt: "A professional dictating ideas while walking through a sunny neighborhood park"
+  url: "/src/images/posts/wispr-flow-dictation.png"
+  alt: "A spoken waveform flowing into a clean, organized written document"
 tags:
   - wispr-flow
   - dictation

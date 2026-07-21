@@ -3,8 +3,8 @@ pubDate: 2026-06-28T09:00:00-04:00
 title: "What Is OpenClaw? The Self-Hosted AI Assistant Explained"
 description: "Understand what OpenClaw does, how it differs from an AI model, when self-hosting helps, and what you must secure before giving it tools."
 image:
-  url: "/src/images/posts/openclaw-home-server-photo.jpg"
-  alt: "A person tending a small private home server beside their everyday tools and notes"
+  url: "/src/images/posts/openclaw-explained.png"
+  alt: "A self-hosted AI gateway with controlled connections to files, messages, browser, and tools"
 tags:
   - advanced
   - openclaw

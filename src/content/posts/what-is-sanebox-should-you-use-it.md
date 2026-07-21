@@ -3,8 +3,8 @@ pubDate: 2026-06-17T09:00:00-04:00
 title: "What Is SaneBox—and Should You Use It?"
 description: "A practical SaneBox review and setup guide: how it filters email, who it is best for, what to configure first, and how to test it safely."
 image:
-  url: "/src/images/posts/sanebox-calm-inbox-photo.jpg"
-  alt: "A relaxed professional closing a laptop beside neatly sorted message trays"
+  url: "/src/images/posts/sanebox-guide.png"
+  alt: "An overflowing inbox becoming a calm set of neatly sorted message trays"
 tags:
   - sanebox
   - email

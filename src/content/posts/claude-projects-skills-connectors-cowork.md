@@ -3,8 +3,8 @@ pubDate: 2026-04-29T09:00:00-04:00
 title: "Claude Projects vs. Skills vs. Connectors vs. Cowork"
 description: "A simple decision guide for choosing the right Claude feature—and understanding how Projects, Skills, connectors, and Cowork work together."
 image:
-  url: "/src/images/posts/claude-features-photo.jpg"
-  alt: "A collaborative worktable organized into projects, reusable cards, adapters, and shared notes"
+  url: "/src/images/posts/claude-feature-guide-v2.png"
+  alt: "A visual map of coordinated AI features, files, instructions, and tools"
 tags:
   - claude
   - skills

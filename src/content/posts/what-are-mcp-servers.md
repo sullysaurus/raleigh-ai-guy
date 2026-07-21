@@ -3,8 +3,8 @@ pubDate: 2026-06-24T09:00:00-04:00
 title: "What Are MCP Servers? A Plain-English Guide"
 description: "Understand Model Context Protocol servers, how they connect AI to tools and data, what tools, resources, and prompts mean, and how to use MCP safely."
 image:
-  url: "/src/images/posts/mcp-servers-photo.jpg"
-  alt: "A traveler matching a universal adapter to several different plugs and devices"
+  url: "/src/images/posts/mcp-servers.png"
+  alt: "A universal protocol adapter connecting an AI workspace to several tools and data sources"
 tags:
   - mcp
   - connectors
