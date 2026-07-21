@@ -3,8 +3,8 @@ pubDate: 2026-06-28T09:00:00-04:00
 title: "What Is OpenClaw? The Self-Hosted AI Assistant Explained"
 description: "Understand what OpenClaw does, how it differs from an AI model, when self-hosting helps, and what you must secure before giving it tools."
 image:
-  url: "/src/images/posts/openclaw-explained.png"
-  alt: "A self-hosted AI gateway with controlled connections to files, messages, browser, and tools"
+  url: "/src/images/posts/openclaw-home-server-photo.jpg"
+  alt: "A person tending a small private home server beside their everyday tools and notes"
 tags:
   - advanced
   - openclaw
@@ -74,4 +74,3 @@ The [browser documentation](https://docs.openclaw.ai/browser) describes the cont
 OpenClaw is compelling if you enjoy operating software and want a personal agent you can shape around your systems. It is the wrong starting point if you only need help writing, researching, or organizing a few tasks.
 
 Begin with the outcome. If a managed AI product already delivers it safely, use the simpler option. Self-host when the added control and flexibility are worth the updates, monitoring, and security work that come with it.
-

@@ -3,8 +3,8 @@ pubDate: 2026-07-11T09:00:00-04:00
 title: "What Is Granola? (Hint: You Don’t Put It in Your Yogurt)"
 description: "A practical guide to Granola, the AI meeting notepad that combines your rough notes with a live transcript to create useful summaries and follow-up."
 image:
-  url: "/src/images/posts/granola-ai-meeting-notes.png"
-  alt: "A live meeting becoming organized notes and action items while a bowl of granola sits off to the side"
+  url: "/src/images/posts/granola-meeting-photo.jpg"
+  alt: "A relaxed team meeting with organized notes and a bowl of granola on the table"
 tags:
   - granola
   - meeting-notes

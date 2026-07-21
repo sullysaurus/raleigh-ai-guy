@@ -3,8 +3,8 @@ pubDate: 2026-07-12T09:00:00-04:00
 title: "What Is Obsidian? A Local Knowledge Base for People Who Work with AI"
 description: "Learn how Obsidian turns local Markdown files into a connected knowledge base—and why that makes it especially useful for advanced AI workflows."
 image:
-  url: "/src/images/posts/obsidian-knowledge-vault.png"
-  alt: "A local knowledge vault made from connected notes and folders"
+  url: "/src/images/posts/obsidian-notes-photo.jpg"
+  alt: "A writer building a personal knowledge wall from connected paper notes and photographs"
 tags:
   - advanced
   - obsidian
@@ -96,4 +96,3 @@ Finally, “local” does not mean an AI connection is local. If a cloud model r
 Use Obsidian if you want a long-lived knowledge base, enjoy working with files, and want your notes to move between tools. Skip it if your real need is simple shared documents or if maintaining a personal system will become another hobby.
 
 The advanced move is not installing fifty plugins. It is creating a small, understandable source of truth that makes every tool around it more useful.
-

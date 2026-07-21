@@ -3,8 +3,8 @@ pubDate: 2026-07-13T09:00:00-04:00
 title: "What Is ElevenLabs? AI Voice, Cloning, Dubbing, and More"
 description: "A practical ElevenLabs guide covering text to speech, voice cloning, dubbing, transcription, sound effects, voice agents, and responsible setup."
 image:
-  url: "/src/images/posts/elevenlabs-conversational-ai-product.png"
-  alt: "ElevenLabs conversational AI product interface with voice and chat controls"
+  url: "/src/images/posts/elevenlabs-voice-photo.jpg"
+  alt: "A voice artist recording naturally into a studio microphone while a producer listens"
 tags:
   - elevenlabs
   - ai-audio

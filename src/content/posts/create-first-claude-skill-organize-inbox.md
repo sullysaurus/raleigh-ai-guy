@@ -3,8 +3,8 @@ pubDate: 2026-05-13T09:00:00-04:00
 title: "How to Create Your First Claude Skill: Organize Your Inbox"
 description: "Build a practical Claude Skill that reviews Gmail, classifies messages, prepares a daily action list, and keeps a human approval step before changes."
 image:
-  url: "/src/images/posts/claude-inbox-skill.png"
-  alt: "An organized inbox workflow represented by sorted paper trays and message cards"
+  url: "/src/images/posts/inbox-skill-photo.jpg"
+  alt: "A person sorting a pile of messages into calm, organized wooden trays"
 tags:
   - claude
   - skills

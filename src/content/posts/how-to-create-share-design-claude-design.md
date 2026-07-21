@@ -3,8 +3,8 @@ pubDate: 2026-07-20T09:00:00-04:00
 title: "How to Create a Design in Claude Design and Share It with a Client"
 description: "Create a flyer in Claude Design, refine it, and hand it to a client—even when they use a separate Claude account."
 image:
-  url: "/src/images/posts/claude-design-client-handoff.png"
-  alt: "A flyer moving from one visual design workspace to another through an export package"
+  url: "/src/images/posts/claude-design-handoff-photo.jpg"
+  alt: "A designer handing a colorful printed flyer to a client across a studio table"
 tags:
   - claude
   - claude-design

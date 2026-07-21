@@ -3,8 +3,8 @@ pubDate: 2026-06-21T09:00:00-04:00
 title: "Do I Need AI? Start with Time and Money, Not the Technology"
 description: "A practical framework for deciding where AI belongs in your business—and where a checklist, template, or ordinary automation is the better answer."
 image:
-  url: "/src/images/posts/do-i-need-ai-v2.png"
-  alt: "A decision balance comparing a simple process with AI based on time and money saved"
+  url: "/src/images/posts/do-i-need-ai-photo.jpg"
+  alt: "A business owner considering time and money with a ledger, clock, receipts, and calculator"
 tags:
   - ai-strategy
   - small-business
@@ -103,4 +103,4 @@ No—when it exists to make the business sound current, replaces a reliable rule
 
 The goal is not an AI-powered company. The goal is a company that serves customers better and wastes less time.
 
-If you want help finding the few workflows where AI can actually pay for itself, [start with a free AI workflow review](/free-ai-review/).
+If you want help finding the few workflows where AI can actually pay for itself, [start with a free workflow review](/free-ai-review/).

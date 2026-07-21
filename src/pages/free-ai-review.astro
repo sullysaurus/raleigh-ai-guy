@@ -11,13 +11,13 @@ const outcomes = [
 ---
 
 <BaseLayout
-  pageTitle="Free 30-Minute AI Workflow Review — Raleigh Businesses"
+  pageTitle="Free 30-Minute Workflow Review — Raleigh Businesses"
   pageDescription="Bring Danny Sullivan one repetitive or frustrating business workflow. Leave with one practical recommendation and a clear first step in 30 minutes."
 >
   <div class="editorial-page bg-[#dce8ff] text-[#151515] dark:bg-[#17233c] dark:text-white">
     <section class="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_25rem] lg:items-start lg:gap-20 lg:py-24">
       <div class="lg:sticky lg:top-8">
-        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Free 30-minute AI workflow review · Raleigh</p>
+        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Free 30-minute workflow review · Raleigh</p>
         <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl">Bring me one process you wish would disappear.</h1>
         <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">We will look at one frustrating part of your business—lead follow-up, email, scheduling, customer questions, reporting, or repetitive admin—and find the most useful next move.</p>
 
@@ -43,7 +43,7 @@ const outcomes = [
 
         <form name="free-ai-workflow-review" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="mt-7 space-y-5">
           <input type="hidden" name="form-name" value="free-ai-workflow-review" />
-          <input type="hidden" name="subject" data-remove-prefix value="New free AI workflow review request from %{formName}" />
+          <input type="hidden" name="subject" data-remove-prefix value="New free workflow review request from %{formName}" />
           <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
 
           <label class="block text-sm font-medium">Your name <span class="text-base-400">*</span><input class={fieldClass} type="text" name="name" autocomplete="name" required /></label>
@@ -52,7 +52,7 @@ const outcomes = [
           <label class="block text-sm font-medium">What task, process, or problem should we look at? <span class="text-base-400">*</span><span class="mt-1 block font-normal leading-5 text-base-500 dark:text-base-400">A sentence or two is plenty.</span><textarea class={fieldClass} name="workflow" rows="5" maxlength="1000" required></textarea></label>
           <label class="block text-sm font-medium">Who referred you?<span class="mt-1 block font-normal leading-5 text-base-500 dark:text-base-400">Optional, but I would like to thank them.</span><input class={fieldClass} type="text" name="referral" /></label>
 
-          <button type="submit" class="flex min-h-12 w-full items-center justify-center bg-[#ddff73] px-5 text-sm font-medium text-black transition hover:bg-[#e6ff95]">Request my free review <span class="ml-3">→</span></button>
+          <button type="submit" class="editorial-button w-full">Request my free review <span class="ml-3">→</span></button>
           <p class="text-center text-xs leading-5 text-base-500 dark:text-base-400">Free · 30 minutes · No obligation</p>
         </form>
       </div>

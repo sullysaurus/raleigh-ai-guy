@@ -3,8 +3,8 @@ pubDate: 2026-05-27T09:00:00-04:00
 title: "What Is Claude—and What Is Claude Cowork?"
 description: "A plain-English guide to Claude, Claude Cowork, and the difference between asking an AI a question and delegating a complete piece of work."
 image:
-  url: "/src/images/posts/claude-cowork.png"
-  alt: "Abstract editorial workspace coordinating documents, files, and research streams"
+  url: "/src/images/posts/claude-cowork-photo.jpg"
+  alt: "Three collaborators reviewing and organizing research around a shared studio table"
 tags:
   - claude
   - cowork

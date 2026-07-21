@@ -124,30 +124,60 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 #151515;
   }
+
+  .editorial-button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #151515;
+    padding-inline: 1.5rem;
+    color: #151515;
+    background: #d7ef6f;
+    box-shadow: 4px 4px 0 #151515;
+    font-size: .875rem;
+    font-weight: 700;
+    transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  }
+
+  .editorial-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #151515;
+    background: #e1f58b;
+  }
+
+  .editorial-button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 #151515;
+  }
+
+  .editorial-button:focus-visible {
+    outline: 3px solid #2947ff;
+    outline-offset: 4px;
+  }
+
+  .dark .editorial-button {
+    border-color: #fafafa;
+    box-shadow: 4px 4px 0 #fafafa;
+  }
+
+  .dark .editorial-button:hover { box-shadow: 6px 6px 0 #fafafa; }
+  .dark .editorial-button:active { box-shadow: 2px 2px 0 #fafafa; }
 }
 
-.rotator-line {
-  --rotator-color: #8bb8ff;
+.headline-highlight {
   width: fit-content;
-  min-height: 1.04em;
   padding: .02em .12em .08em;
   color: #151515;
-  background: var(--rotator-color);
+  background: #d7ef6f;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   transform: rotate(-1deg);
   transform-origin: left center;
-  transition: opacity 180ms ease, transform 180ms ease, background-color 220ms ease;
 }
 
-.rotator-line[data-tone="orange"] { --rotator-color: #ff8a65; }
-.rotator-line[data-tone="green"] { --rotator-color: #d7ef6f; }
-.rotator-line[data-tone="violet"] { --rotator-color: #cbb5ff; }
-.rotator-line.is-changing { opacity: 0; transform: translateY(.12em) rotate(-1deg); }
-
 @media (max-width: 639px) {
-  .rotator-line {
-    min-height: 1.04em;
+  .headline-highlight {
     max-width: 100%;
   }
 
@@ -155,7 +185,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rotator-line,
   .social-chip,
+  .editorial-button,
   .home-page a { transition: none !important; }
 }

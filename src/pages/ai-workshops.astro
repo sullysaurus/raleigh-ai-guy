@@ -4,101 +4,64 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import profileImage from "../../danny.jpeg";
 
 const outcomes = [
-  ["Understand", "A plain-English model of what today’s AI can—and cannot—do."],
-  ["Recognize", "Real examples tied to email, research, writing, customer work, and operations."],
-  ["Prioritize", "A simple way to spot the work where AI could save meaningful time."],
-  ["Use safely", "Practical habits for privacy, accuracy, permissions, and human review."],
+  ["See it clearly", "Understand where AI helps, where it fails, and what still needs human judgment."],
+  ["Spot the opportunity", "Find the repetitive or messy work worth improving first."],
+  ["Start responsibly", "Leave with a practical next step and safer habits for using AI at work."],
 ];
 
 const agenda = [
-  ["00–10", "AI without the hype", "A clear mental model for generative AI, including its useful strengths and important limits."],
-  ["10–30", "Practical workflows", "Live examples shaped around the kind of work your team already handles."],
-  ["30–45", "Find your opportunities", "A guided exercise to identify repetitive work worth improving first."],
-  ["45–60", "Questions and next moves", "Direct answers grounded in your team, tools, and concerns."],
+  ["00–10", "AI without the hype", "What it does well, where it breaks, and what has changed."],
+  ["10–30", "Useful examples", "Live workflows shaped around work your team recognizes."],
+  ["30–45", "Find the friction", "Identify one process worth improving first."],
+  ["45–60", "Questions + next step", "Apply the ideas to your team, tools, and concerns."],
 ];
 
-const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-base text-black outline-none transition placeholder:text-base-400 hover:border-black/30 focus:border-black focus:ring-2 focus:ring-black/10";
+const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3 text-base text-black outline-none transition placeholder:text-base-400 focus:bg-white focus:shadow-[3px_3px_0_#151515]";
 ---
 
 <BaseLayout
   pageTitle="Practical AI Workshops for Raleigh Teams"
-  pageDescription="Book a practical 60-minute AI workshop for your Raleigh team. Private workshops start at $750, with limited complimentary sessions for business communities."
+  pageDescription="A practical 60-minute AI workshop that helps Raleigh teams find useful workflows, understand the risks, and choose a clear first step."
 >
   <div class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
-    <section class="border-b-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]"><div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-32">
+    <section class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]"><div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_21rem] lg:items-end lg:py-28">
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI workshops · Raleigh-area teams</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Practical AI workshop · Raleigh or remote</p>
         <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
-          Help your team make AI useful—not overwhelming.
+          Make AI useful for the work your team already does.
         </h1>
         <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">
-          A practical 60-minute session that shows your team what AI is good at, where it gets risky, and how to find the first workflows worth improving.
+          Bring the messy workflows and honest questions. In 60 minutes, your team will see what is useful, what is risky, and where to start.
         </p>
         <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <a href="#request" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800 dark:bg-white dark:text-black dark:hover:bg-base-200">Request a team workshop <span class="ml-3">→</span></a>
+          <a href="#request" class="editorial-button">Request a team workshop <span class="ml-3">→</span></a>
           <span class="text-sm text-base-500 dark:text-base-400">Private sessions start at $750</span>
         </div>
       </div>
 
-      <aside class="border-2 border-[#151515] bg-[#eff5c7] p-6 shadow-[6px_6px_0_#151515] dark:border-white dark:bg-[#293016] dark:shadow-[6px_6px_0_#f4f1e8] sm:p-8">
-        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The session</p>
+      <aside class="border-2 border-[#151515] bg-[#f0e4ff] p-6 shadow-[7px_7px_0_#151515] dark:border-white dark:bg-[#302341] dark:shadow-[7px_7px_0_#f4f1e8] sm:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">At a glance</p>
         <ul class="mt-6 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Length</span><strong class="text-sm font-medium">60 minutes</strong></li>
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Format</span><strong class="text-sm font-medium">Live + Q&amp;A</strong></li>
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Location</span><strong class="text-sm font-medium">Raleigh or remote</strong></li>
           <li class="flex items-baseline justify-between gap-5 py-4"><span class="text-sm text-base-500 dark:text-base-400">Private price</span><strong class="text-sm font-medium">From $750</strong></li>
         </ul>
-        <p class="mt-5 text-xs leading-5 text-base-500 dark:text-base-400">Includes a short preparation call, examples tailored to your team, live Q&amp;A, and a practical takeaway guide.</p>
+        <p class="mt-5 text-xs leading-5 text-base-500 dark:text-base-400">Includes a short prep call, tailored examples, live Q&amp;A, and a takeaway guide.</p>
       </aside>
     </div></section>
 
-    <section class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]">
-      <div class="mx-auto grid max-w-6xl divide-y divide-black/10 px-5 dark:divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8">
-        <div class="py-7 sm:pr-8"><strong class="block text-2xl font-semibold">60 minutes</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Live, practical, and tailored</span></div>
-        <div class="py-7 sm:px-8"><strong class="block text-2xl font-semibold">Up to 20 people</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">Included in the private workshop</span></div>
-        <div class="py-7 sm:pl-8"><strong class="block text-2xl font-semibold">From $750</strong><span class="mt-1 block text-sm text-base-500 dark:text-base-400">One clear price for the team</span></div>
-      </div>
-    </section>
-
-    <section class="mx-auto grid max-w-6xl gap-5 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2">
-      <article class="border-2 border-[#151515] bg-[#fffdf8] p-7 shadow-[5px_5px_0_#151515] dark:border-white dark:bg-base-950 dark:shadow-[5px_5px_0_#f4f1e8] sm:p-10">
-        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">For one organization</p>
-        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Private team workshop</h2>
-        <p class="mt-5 max-w-xl text-base leading-7 text-base-600 dark:text-base-300">A tailored session for your employees, leadership team, nonprofit, or board. We use examples tied to the work your people already do and leave time for direct questions.</p>
-        <p class="mt-7 text-sm font-medium">Starting at $750 · Up to 20 people</p>
-      </article>
-      <article class="border-2 border-[#151515] bg-[#ff6f4f] p-7 text-[#151515] shadow-[5px_5px_0_#151515] dark:border-white dark:bg-[#b64934] dark:text-white dark:shadow-[5px_5px_0_#f4f1e8] sm:p-10">
-        <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">For Raleigh business communities</p>
-        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Complimentary community session</h2>
-        <p class="mt-5 max-w-xl text-base leading-7 text-white/70 dark:text-black/70">Hosting a business association, professional group, coworking community, or event-industry gathering? I reserve limited complimentary sessions for organizers who bring together a relevant local audience.</p>
-        <p class="mt-7 text-sm font-medium">Limited availability · Organizer provides the audience</p>
-      </article>
-    </section>
-
-    <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <div class="grid gap-10 lg:grid-cols-[20rem_1fr] lg:gap-24">
-        <div>
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Why this workshop</p>
-          <h2 class="mt-4 font-sans text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">Your team does not need more AI news.</h2>
-        </div>
-        <div class="max-w-2xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300">
-          <p>They need to understand where AI can help, what should still be handled by a person, and how to experiment without putting private information or customer trust at risk.</p>
-          <p>This workshop gives everyone the same foundation. The examples are practical, the limitations are honest, and the conversation stays focused on work your team already recognizes.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-y border-black/10 dark:border-white/10">
-      <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+    <section class="border-b-2 border-[#151515] bg-[#fffdf8] dark:border-white dark:bg-base-950">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="max-w-2xl">
-          <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">What they leave with</p>
-          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Confidence, examples, and a responsible first move.</h2>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">What your team leaves with</p>
+          <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Less hype. More clarity.</h2>
         </div>
-        <div class="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-10 grid gap-4 lg:grid-cols-3">
           {outcomes.map(([title, description], index) => (
-            <article class="bg-white p-6 dark:bg-base-950">
-              <span class="text-xs text-base-400">0{index + 1}</span>
-              <h3 class="mt-8 font-sans text-lg font-semibold">{title}</h3>
+            <article class:list={["border-2 border-[#151515] p-6 text-[#151515] shadow-[5px_5px_0_#151515] dark:border-white dark:text-white dark:shadow-[5px_5px_0_#f4f1e8]", index === 0 ? "bg-[#eff5c7] dark:bg-[#293016]" : index === 1 ? "bg-[#f7d6ca] dark:bg-[#3a211d]" : "bg-[#f0e4ff] dark:bg-[#302341]"]}>
+              <span class="text-xs font-semibold opacity-45">0{index + 1}</span>
+              <h3 class="mt-10 font-sans text-xl font-semibold">{title}</h3>
               <p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{description}</p>
             </article>
           ))}
@@ -106,28 +69,43 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
       </div>
     </section>
 
-    <section class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
+    <section class="border-b-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[18rem_1fr] lg:gap-20">
       <div>
-        <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">The 60-minute plan</p>
-        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">One useful conversation.</h2>
-        <p class="mt-5 text-sm leading-6 text-base-500 dark:text-base-400">I adjust the examples around your team’s roles, tools, and questions.</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The 60-minute plan</p>
+        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">One useful conversation.</h2>
+        <p class="mt-5 text-sm leading-6 opacity-70">Examples adjust to your team’s work and questions.</p>
       </div>
-      <ol class="divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+      <ol class="divide-y-2 divide-[#151515] border-y-2 border-[#151515] dark:divide-white dark:border-white">
         {agenda.map(([time, title, description]) => (
           <li class="grid gap-3 py-6 sm:grid-cols-[5rem_1fr]">
-            <span class="text-xs font-medium text-base-400">{time} min</span>
-            <div><h3 class="font-sans text-base font-semibold">{title}</h3><p class="mt-2 max-w-2xl text-sm leading-6 text-base-500 dark:text-base-400">{description}</p></div>
+            <span class="text-xs font-semibold opacity-50">{time}</span>
+            <div><h3 class="font-sans text-base font-semibold">{title}</h3><p class="mt-1 max-w-2xl text-sm leading-6 opacity-70">{description}</p></div>
           </li>
         ))}
       </ol>
+    </div></section>
+
+    <section class="mx-auto grid max-w-6xl gap-5 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2">
+      <article class="border-2 border-[#151515] bg-[#fffdf8] p-7 shadow-[5px_5px_0_#151515] dark:border-white dark:bg-base-950 dark:shadow-[5px_5px_0_#f4f1e8] sm:p-9">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">For one organization</p>
+        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Private team workshop</h2>
+        <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">A tailored session for employees, leaders, nonprofits, or boards.</p>
+        <p class="mt-7 text-sm font-semibold">From $750 · Up to 20 people</p>
+      </article>
+      <article class="border-2 border-[#151515] bg-[#eff5c7] p-7 shadow-[5px_5px_0_#151515] dark:border-white dark:bg-[#293016] dark:shadow-[5px_5px_0_#f4f1e8] sm:p-9">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">For Raleigh communities</p>
+        <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Community session</h2>
+        <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Limited complimentary sessions for business associations, professional groups, and coworking communities.</p>
+        <p class="mt-7 text-sm font-semibold">Limited availability · Organizer provides the audience</p>
+      </article>
     </section>
 
-    <section class="border-y border-black/10 bg-base-50 dark:border-white/10 dark:bg-base-900">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_22rem] lg:items-center lg:gap-24">
+    <section class="border-y-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]">
+      <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1fr_20rem] lg:items-center lg:gap-20">
         <div>
           <p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Your facilitator</p>
-          <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Technical enough to answer the hard questions. Clear enough to bring everyone along.</h2>
-          <p class="mt-6 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">I’m Danny Sullivan, an AI Product Engineer at Gametime. Before that, I spent nearly five years at Pluralsight creating hands-on AI and machine-learning education, shaping content strategy, and building internal AI tools.</p>
+          <h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Built by someone who teaches and ships AI.</h2>
+          <p class="mt-5 max-w-2xl text-sm leading-6 text-base-600 dark:text-base-300">I’m Danny Sullivan, an AI Product Engineer at Gametime. I previously spent nearly five years creating AI education and internal tools at Pluralsight.</p>
         </div>
         <div class="flex items-center gap-5 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
           <Image src={profileImage} alt="Danny Sullivan" width={96} height={96} class="size-20 rounded-full object-cover grayscale" />
@@ -136,15 +114,16 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
       </div>
     </section>
 
-    <section id="request" class="scroll-mt-8 bg-black text-white dark:bg-white dark:text-black">
+    <section id="request" class="scroll-mt-8 border-b-2 border-[#151515] bg-[#dce8ff] text-[#151515] dark:border-white dark:bg-[#17233c] dark:text-white">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
         <div>
-          <p class="text-xs font-medium uppercase tracking-wide text-white/50 dark:text-black/50">Request a workshop</p>
-          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Tell me about your team or community.</h2>
-          <p class="mt-5 text-sm leading-6 text-white/60 dark:text-black/60">I’ll review your request and follow up personally about private workshop availability or whether your community event fits a complimentary session.</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Request a workshop</p>
+          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Bring one messy workflow.</h2>
+          <p class="mt-5 max-w-xs text-sm leading-6 text-base-600 dark:text-base-300">Tell me where your team gets stuck. I’ll follow up personally about availability and fit.</p>
+          <div class="mt-10 hidden h-3 w-32 -rotate-2 bg-[#ff6f4f] lg:block" aria-hidden="true"></div>
         </div>
 
-        <form name="ai-lunch-and-learn" method="POST" action="/workshop-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="bg-white p-5 text-black sm:p-8">
+        <form name="ai-lunch-and-learn" method="POST" action="/workshop-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="border-2 border-[#151515] bg-[#fffdf8] p-5 text-black shadow-[7px_7px_0_#151515] dark:border-white dark:shadow-[7px_7px_0_#f4f1e8] sm:p-8">
           <input type="hidden" name="form-name" value="ai-lunch-and-learn" />
           <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
           <div class="grid gap-5 sm:grid-cols-2">
@@ -157,7 +136,7 @@ const fieldClass = "mt-2 w-full border border-black/15 bg-white px-4 py-3 text-b
           <label class="mt-5 block text-sm font-medium">What would make this useful for your team? <span class="text-base-400">*</span><textarea class={fieldClass} name="goals" rows="5" maxlength="1400" required placeholder="We are curious about AI, but our team needs help with…"></textarea></label>
           <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p class="max-w-sm text-xs leading-5 text-base-500">No mailing list. I’ll only use these details to respond to your request.</p>
-            <button type="submit" class="inline-flex min-h-12 items-center justify-center bg-black px-6 text-sm font-medium text-white transition hover:bg-base-800">Request workshop availability <span class="ml-3">→</span></button>
+            <button type="submit" class="editorial-button">Request workshop availability <span class="ml-3">→</span></button>
           </div>
         </form>
       </div>

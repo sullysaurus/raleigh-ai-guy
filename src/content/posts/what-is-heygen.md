@@ -3,8 +3,8 @@ pubDate: 2026-07-18T09:00:00-04:00
 title: "What Is HeyGen? AI Avatars, Video Translation, and Faster Video Production"
 description: "A practical guide to HeyGen: how AI avatar videos work, where translation helps, what to create first, and when real footage is still the better choice."
 image:
-  url: "/src/images/posts/heygen-talking-head-product.png"
-  alt: "HeyGen talking-head video product page with an AI video example"
+  url: "/src/images/posts/heygen-video-photo.jpg"
+  alt: "A small creative team preparing a presenter in a colorful video studio"
 tags:
   - heygen
   - ai-video
