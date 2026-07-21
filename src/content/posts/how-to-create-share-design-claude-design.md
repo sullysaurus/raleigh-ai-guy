@@ -1,180 +1,153 @@
 ---
 pubDate: 2026-07-20T09:00:00-04:00
-title: "Claude Design Tutorial: Create and Share a Client Flyer"
-description: "Create a flyer in Claude Design, refine it, and share an editable handoff with a client—even when they use a separate Claude account."
+title: "What Is Claude Design? A Beginner's Guide for Small Business"
+description: "Learn what Claude Design is, what it can create, and how to send your work to Canva for easy editing and sharing."
 image:
   url: "/src/images/posts/claude-design-client-handoff.png"
-  alt: "A flyer moving from one visual design workspace to another through an export package"
+  alt: "A simple Claude Design workflow moving from an idea to a design and then to Canva"
 tags:
   - claude
   - claude-design
   - design
-  - tutorial
+  - ai-tools
 ---
 
-Claude Design can turn a written idea into a flyer, one-pager, presentation, social graphic, or interactive prototype. You describe what you need, Claude builds a first draft on a canvas, and you refine it through chat, comments, or direct editing.
+Claude Design is a new visual workspace from Anthropic, the company behind Claude. You describe what you want, Claude creates a first version on a canvas, and you improve it by talking to Claude or editing the design directly.
 
-But sharing the finished design with a client has one important limitation: **a Claude Design editing link works within your Claude organization, not across unrelated Claude accounts.**
+Think of it as a place to turn a rough idea into something you can see and react to. It can help you make a flyer, presentation, one-pager, social graphic, webpage concept, or interactive prototype without starting from a blank page.
 
-If your client belongs to the same Team or Enterprise organization, you can give them view, comment, or edit access. If they use their own separate Claude account, you need to export the work and hand off the files instead.
-
-This guide walks through both options using a client flyer as the example.
+You do not need to be a designer or know how to code. You do still need to provide the right information, check the result, and decide what looks good.
 
 ## What is Claude Design?
 
-Claude Design is an Anthropic beta product for creating designs, decks, prototypes, and other visual work through conversation. It is available on Claude Pro, Max, Team, and Enterprise plans at [claude.ai/design](https://claude.ai/design).
+Claude Design combines two things:
 
-The workspace has two main areas:
+- A chat where you explain what you want and request changes
+- A visual canvas where Claude builds the design and you review it
 
-- A chat where you describe the design and request changes
-- A canvas where you review and directly adjust the result
+For example, you could say:
 
-Anthropic says Claude Design can export work as a ZIP project, PDF, PowerPoint file, or standalone HTML file. It can also send designs to tools such as Canva and Adobe. See Anthropic's current [Claude Design overview](https://claude.com/product/design) and [getting-started guide](https://support.claude.com/en/articles/14604416-get-started-with-claude-design) for the latest availability and export options.
+> Create a one-page flyer for a beginner AI workshop for local business owners. Use the attached logo, make the date easy to find, and include a clear registration button.
 
-## Step 1: Start a Claude Design project
+Claude creates a draft. You can then ask it to make the headline larger, simplify the wording, try a different layout, or use your brand colors.
 
-Go to [claude.ai/design](https://claude.ai/design) and create a new project.
+Claude Design is currently a beta product included with Claude Pro, Max, Team, and Enterprise plans. It works on the web at [claude.ai/design](https://claude.ai/design) and in the Claude desktop app. Anthropic's [Claude Design overview](https://claude.com/product/design) has the latest availability details.
 
-Before asking Claude to design the flyer, collect the material it needs:
+## What can a small business make with it?
 
-- The exact headline and supporting copy
-- The event date, time, location, price, and call to action
-- Your logo and approved photos
-- Brand colors and fonts
-- The intended size, such as US Letter, A4, or a social-media format
-- Examples of designs you like
+Claude Design is most useful when you have the content or idea but need help turning it into a visual first draft.
 
-Specific inputs produce a more useful first draft. Do not make Claude guess at important client information.
+Practical examples include:
 
-## Step 2: Prompt Claude to create the flyer
+- A flyer for an event or seasonal promotion
+- A simple sales presentation
+- A one-page overview of a service
+- Social-media graphics for a campaign
+- A proposal or client presentation
+- A mockup of a new webpage
+- An interactive example of a new customer experience
 
-Your prompt should name the audience, purpose, content, format, and visual direction.
+The real benefit is speed at the beginning. Instead of staring at a blank Canva page, you can describe the audience, message, and goal and get something concrete to improve.
 
-Try this:
+## Is Claude Design the same as Canva?
 
-> Create a one-page US Letter flyer for a small-business AI workshop. The audience is local business owners who are curious about AI but not technical. Use the attached logo and brand colors. Put the headline and workshop benefit at the top, the date and location in the middle, and a clear registration call to action at the bottom. Keep the design professional, friendly, and easy to read when printed. Do not invent any details. Ask me about missing information before designing.
+Not exactly.
 
-If you already have a rough flyer, upload it as a reference and say what should stay and what should change.
+Claude Design is strongest at turning a written brief into a visual concept through conversation. Canva is stronger for template libraries, brand kits, resizing graphics, team collaboration, and ongoing production work.
 
-## Step 3: Refine the design
+For many small businesses, the two tools work well together:
 
-The first result is a draft. Review the actual flyer rather than accepting it because it looks polished.
-
-Check:
-
-- Is every date, price, URL, and phone number correct?
-- Can someone understand the offer in a few seconds?
-- Is the smallest text readable at the final size?
-- Does the call to action stand out?
-- Are the logo, colors, and images approved for client use?
-- Does the printed version still work without animation or interaction?
-
-Use chat for broad changes:
-
-> Give the headline more emphasis, reduce the amount of body copy, and make the registration section easier to find.
-
-Use a comment for a change to one element:
-
-> Increase the contrast of this date block and give it more space from the section above.
-
-You can also move, resize, and align elements directly on the canvas. Anthropic recommends chat for structural changes, comments for targeted feedback, and direct editing for quick visual adjustments.
-
-## Step 4: Choose the right sharing method
-
-This is where the client's account matters.
-
-### Option A: The client is in your Claude organization
-
-Use Claude Design's built-in sharing controls.
-
-1. Open the design project.
-2. Click **Share**.
-3. Choose view, comment, or edit access.
-4. Copy the link and send it to the client.
-
-Claude Design sharing is organization-scoped. Anthropic documents the available permissions as view-only, comment, and edit. It also warns that simultaneous multi-person editing is still basic because the product is in beta.
-
-This is the best option when you and the client are members of the same Claude Team or Enterprise organization.
-
-### Option B: The client uses a separate Claude account
-
-Do not rely on the Share link. An unrelated account outside your organization will not receive the same live editing access.
-
-Instead, create a handoff package:
-
-1. Click **Export** in Claude Design.
-2. Download the project as a **ZIP**.
-3. Export a **PDF** for an easy visual reference.
-4. If the design is interactive, also export **standalone HTML**.
-5. Include the source logo, images, copy, and brand notes the client is allowed to use.
-6. Send the files with a short handoff prompt.
-
-The client can create a new project in their own Claude Design account, attach the exported files and reference material, and ask Claude to continue from them. If Claude Design does not accept the ZIP directly, the client can unzip it and upload the relevant HTML, images, and source files.
-
-This creates a new project in the client's account. It does **not** transfer your original chat history, permissions, or live project as a shared editable document. The client should compare the imported result with the PDF before making changes.
-
-Use this handoff prompt:
-
-> I received this flyer project from my designer. Use the attached exported files and PDF as the source of truth. Recreate the design in a new Claude Design project while preserving the wording, dimensions, colors, spacing, and image placement. Do not rewrite the copy or replace the images unless I approve it. First compare the editable result with the PDF and list any differences.
-
-## A simpler option: Send it to Canva
-
-If the real goal is collaborative client editing rather than keeping the work inside Claude, sending the design to Canva may be easier.
-
-Claude Design lists Canva as an export destination. Once the design is in Canva, you can use Canva's normal client-sharing and permission controls. This avoids asking the client to reconstruct the project in a separate Claude account.
-
-For many flyer projects, the practical workflow is:
-
-1. Create the first concept in Claude Design.
-2. Refine the message and layout with Claude.
+1. Start the idea in Claude Design.
+2. Ask Claude to explore the layout and improve the message.
 3. Send the design to Canva.
-4. Invite the client to review or edit it there.
-5. Export the approved flyer for print or distribution.
+4. Make final edits, resize it, and share it with your team or client.
 
-Use the ZIP handoff when the client specifically wants to continue working with Claude. Use Canva when both parties mainly need dependable visual collaboration.
+You do not have to choose one forever. Use Claude to get past the blank page, then use Canva for the finishing work you already know.
 
-## What to send the client
+## How Claude Design works
 
-A complete handoff should include:
+### 1. Tell Claude what you are making
 
-- The exported Claude Design ZIP
-- A PDF showing the approved visual reference
-- Standalone HTML if the design includes interactions
-- Original images and logos the client may reuse
-- The exact approved copy in a separate document
-- Font names and brand colors
-- Final dimensions and print requirements
-- A note explaining what the client may change
-- The handoff prompt above
+Start with the goal, audience, format, required content, and visual direction.
 
-Keep sensitive source material out of the package. Only send files the client is authorized to receive.
+A useful beginner prompt looks like this:
 
-## Common mistakes
+> Create a one-page US Letter flyer for a small-business AI workshop. The audience is local business owners who are curious about AI but not technical. Use the attached logo and brand colors. Put the main benefit at the top, the date and location in the middle, and a clear registration call to action at the bottom. Keep it friendly, professional, and easy to read when printed. Do not invent missing details. Ask me questions before designing if you need more information.
 
-### Sending only the Claude Design link
+Attach your logo, approved photos, exact wording, and examples you like. Claude can make better choices when it has real material to work with.
 
-A client on a separate account may not be part of your organization. Test access in a private browser window or ask the client to confirm before treating the link as the handoff.
+### 2. Review the first draft
 
-### Sending only a PDF
+The first result is a starting point, not a finished design.
 
-A PDF is useful for review and printing, but it is not a complete editable Claude Design project. Include the ZIP and source assets when the client needs to continue editing.
+Check the basics:
 
-### Expecting a perfect cross-account transfer
+- Are the dates, prices, links, and contact details correct?
+- Can someone understand the message in a few seconds?
+- Is the smallest text easy to read?
+- Does the call to action stand out?
+- Does it feel like your business?
 
-Claude Design currently documents organization-scoped sharing, not a one-click transfer between unrelated organizations. Treat the exported package as a handoff to a new project and verify the result against the PDF.
+### 3. Ask for changes in plain English
 
-### Forgetting usage and plan requirements
+Use chat for larger changes:
 
-Claude Design is currently available on Pro, Max, Team, and Enterprise plans. A client without access may need the final PDF, HTML file, PowerPoint file, or a version shared through another design tool instead.
+> Make the headline more direct, reduce the body copy, and give the registration section more emphasis.
 
-### Letting Claude rewrite approved details
+Use an inline comment when one specific element needs attention:
 
-Tell Claude that the copy and facts are locked. Ask it to list proposed changes before applying them.
+> Increase the contrast here and add more space above this section.
 
-## The short version
+You can also move, resize, and align elements directly on the canvas. Anthropic's [beginner guide to Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design) explains the current editing controls.
 
-If your client is in the same Claude organization, share the Claude Design project and give them view, comment, or edit access.
+## How to send a Claude Design project to Canva
 
-If your client uses a separate Claude account, export the ZIP plus a PDF, send the files, and have the client start a new Claude Design project from that package. For smoother collaborative editing, send the design to Canva instead.
+Once the design is close, Canva can be a practical place to finish and share it.
 
-Claude Design can make the first draft much faster. A careful handoff is what makes the design useful after it leaves your account.
+1. Open your project in Claude Design.
+2. Select **Export** in the upper-right corner.
+3. Choose **Send to Canva**.
+4. Follow the connection prompts if Claude asks you to sign in or authorize Canva.
+5. Open the design in Canva and check every element before sharing or publishing it.
+
+Once it is in Canva, you can use Canva's familiar tools to adjust the text, apply your brand kit, invite a client, duplicate the design, or resize it for other channels.
+
+Always compare the Canva version with the approved Claude draft. Fonts, spacing, images, or interactive elements may not transfer exactly, so expect to do a final review.
+
+## What other export options are available?
+
+Claude Design currently supports several ways to take your work elsewhere:
+
+- **PDF:** Good for review, printing, or sending a finished document
+- **PowerPoint:** Useful when the design is a presentation your team will continue editing
+- **Standalone HTML:** Best when the design includes interactions or animations
+- **ZIP:** A package of the project files for a more technical handoff
+- **Canva:** A practical choice for visual editing and collaboration
+- **Other connected tools:** Anthropic also lists destinations such as Adobe, Gamma, Miro, Wix, and Vercel
+
+Export choices may change while Claude Design is in beta, so check the Export menu in your project for the current list.
+
+## What Claude Design does not replace
+
+Claude Design can help you get to a strong first draft faster. It does not replace good judgment.
+
+You are still responsible for:
+
+- Checking every fact and detail
+- Making sure photos, logos, and fonts are licensed for your use
+- Reviewing accessibility and readability
+- Confirming print dimensions and bleed requirements
+- Getting approval before publishing client work
+- Deciding whether the design actually fits your audience
+
+For an important campaign or a complete brand identity, a professional designer is still worth the investment. Claude Design is especially useful for everyday materials, early concepts, and projects that otherwise might not get made.
+
+## Should you try it?
+
+Try Claude Design if you regularly have an idea for a flyer, presentation, social graphic, or webpage but struggle to turn that idea into a usable first draft.
+
+Start with one real project you already need. Give Claude the actual copy and brand assets, spend 15 minutes refining the result, and send it to Canva if that is where you prefer to finish your work.
+
+If it saves you time and produces something you can confidently improve, keep using it. If you spend longer correcting the output than you would building it yourself, it may not be the right tool for that job.
+
+Claude Design is not magic, and it is not a replacement for taste. It is a faster way to move from **“I have an idea”** to **“now I have something to work with.”**

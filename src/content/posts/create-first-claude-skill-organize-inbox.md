@@ -1,6 +1,6 @@
 ---
 pubDate: 2026-05-13T09:00:00-04:00
-title: "How to Use Claude to Triage Your Gmail Inbox (No Code)"
+title: "How to Use Claude to Triage Your Gmail Inbox"
 description: "Create a no-code Claude Skill that triages Gmail, prepares a daily action list, and runs automatically at a time you choose."
 image:
   url: "/src/images/posts/claude-inbox-skill.png"
