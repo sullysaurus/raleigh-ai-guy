@@ -1,0 +1,60 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  pageTitle="ZimZoom consulting payment"
+  pageDescription="Secure monthly payment for Frame Game LLC (DBA ZimZoom)."
+  noindex
+  minimal
+>
+  <div class="min-h-svh bg-[#f2efe6] px-5 py-8 text-[#151515] sm:px-8 sm:py-12">
+    <main class="mx-auto w-full max-w-5xl">
+      <header class="flex items-center justify-between border-b-2 border-[#151515] pb-5">
+        <a href="/" class="text-sm font-semibold">Daniel Sullivan</a>
+        <span class="text-xs font-semibold uppercase tracking-[0.14em]">Secure client payment</span>
+      </header>
+
+      <section class="grid gap-10 py-12 lg:grid-cols-[1.15fr_.85fr] lg:items-start lg:py-20">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#66645f]">Frame Game LLC · DBA ZimZoom</p>
+          <h1 class="mt-5 max-w-3xl text-5xl font-semibold leading-[.94] tracking-[-.045em] sm:text-7xl">
+            AI consulting, billed monthly.
+          </h1>
+          <p class="mt-7 max-w-xl text-lg leading-8 text-[#54534f]">
+            Ongoing AI consulting and implementation support under the signed consulting agreement.
+          </p>
+        </div>
+
+        <aside class="border-2 border-[#151515] bg-[#fffdf8] p-6 shadow-[8px_8px_0_#151515] sm:p-8" aria-labelledby="payment-summary">
+          <p id="payment-summary" class="text-xs font-semibold uppercase tracking-[0.14em] text-[#66645f]">Payment summary</p>
+          <div class="mt-6 flex items-end justify-between gap-5 border-b border-black/15 pb-6">
+            <div>
+              <h2 class="text-xl font-semibold">Monthly consulting</h2>
+              <p class="mt-1 text-sm text-[#66645f]">Renews monthly until canceled</p>
+            </div>
+            <p class="shrink-0 text-right"><strong class="text-3xl">$500</strong><span class="block text-xs text-[#66645f]">per month</span></p>
+          </div>
+
+          <ul class="my-6 space-y-3 text-sm leading-6 text-[#54534f]">
+            <li class="flex gap-3"><span aria-hidden="true">✓</span><span>Secure checkout and receipts provided by Stripe</span></li>
+            <li class="flex gap-3"><span aria-hidden="true">✓</span><span>Payment method saved for monthly billing</span></li>
+            <li class="flex gap-3"><span aria-hidden="true">✓</span><span>Cancel according to the consulting agreement</span></li>
+          </ul>
+
+          <form action="/.netlify/functions/create-zimzoom-checkout" method="POST">
+            <button type="submit" class="editorial-button w-full">Continue to secure checkout →</button>
+          </form>
+          <p class="mt-5 text-center text-xs leading-5 text-[#77746e]">
+            By continuing, you confirm that the consulting agreement has been signed by both parties.
+          </p>
+        </aside>
+      </section>
+
+      <footer class="flex flex-col gap-2 border-t border-black/15 pt-5 text-xs text-[#66645f] sm:flex-row sm:items-center sm:justify-between">
+        <span>Questions about this payment?</span>
+        <a class="font-semibold text-[#151515] underline underline-offset-4" href="mailto:hello@dannysullivan.ai">hello@dannysullivan.ai</a>
+      </footer>
+    </main>
+  </div>
+</BaseLayout>
