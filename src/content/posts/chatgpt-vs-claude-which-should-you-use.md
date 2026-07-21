@@ -1,7 +1,7 @@
 ---
 pubDate: 2026-07-08T09:00:00-04:00
-title: "ChatGPT or Claude: Which Should You Use?"
-description: "An honest comparison of ChatGPT and Claude for everyday work, including connectors, projects, research, writing, automation, and the reasons you may want both."
+title: "ChatGPT vs. Claude: Which Is Better for Small Business?"
+description: "An honest ChatGPT vs. Claude comparison for small-business work, including writing, research, projects, connectors, and when using both makes sense."
 image:
   url: "/src/images/posts/chatgpt-vs-claude.png"
   alt: "Two equally capable AI workstations taking different paths to the same finished result"

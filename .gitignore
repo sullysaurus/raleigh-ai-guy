@@ -33,6 +33,7 @@ pnpm-debug.log*
 *.swp
 *.tmp
 .astro/settings.json
+.seo-cache/
 Thumbs.db
 
 # Local Netlify folder

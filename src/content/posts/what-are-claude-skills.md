@@ -1,7 +1,7 @@
 ---
 pubDate: 2026-05-20T09:00:00-04:00
-title: "What Are Claude Skills?"
-description: "Claude Skills explained in plain English: what they contain, when they load, and how they differ from Projects, connectors, and general instructions."
+title: "Claude Skills Explained: A No-Code Guide for Small Business"
+description: "Learn what Claude Skills are, where they save time, and how to turn a repeated small-business task into a reusable workflow without coding."
 image:
   url: "/src/images/posts/claude-skills-v2.png"
   alt: "A modular set of AI instruction blocks arranged as a reusable system"
@@ -15,9 +15,7 @@ A Claude Skill is a reusable set of instructions that teaches Claude how to perf
 
 If you repeatedly explain the same process—how to format a client brief, review an invoice, triage an inbox, prepare a presentation, or write in your company's voice—you may have the beginnings of a Skill.
 
-Anthropic defines Skills as folders containing instructions, scripts, and resources that Claude loads when they are relevant. A simple Skill may contain only one Markdown file. A more advanced Skill can include templates, examples, reference material, or executable scripts.
-
-The important idea is not the folder. It is the repeatability.
+Behind the scenes, a Skill is a set of instructions and optional reference materials. You do not need to understand its file structure or write code to create a useful one. The important idea is repeatability.
 
 ## What problem do Skills solve?
 
@@ -34,49 +32,20 @@ Without a Skill, you may repeat instructions like:
 
 A Skill packages those expectations once so Claude can apply them consistently when the matching task appears.
 
-## What is inside a Claude Skill?
+## What goes into a useful Skill?
 
-At minimum, a Skill is a folder with a `SKILL.md` file. That file begins with a small YAML metadata block and then contains the actual instructions.
+A useful Skill captures the decisions you repeat when doing a task:
 
-```markdown
----
-name: weekly-client-brief
-description: Create a concise weekly client brief from project notes, including progress, risks, decisions, and next actions. Use for weekly account updates.
----
+- When should Claude use this process?
+- What information should it start with?
+- What steps should it follow?
+- What should the finished result look like?
+- What must it never do without asking?
+- What should happen when information is missing or uncertain?
 
-# Weekly client brief
+For a weekly client update, you might tell Claude to organize the report into progress, decisions, risks, and next actions. You might also tell it never to invent a status and to label unclear items **Needs confirmation**.
 
-Create the brief in this order:
-
-1. Progress this week
-2. Decisions needed
-3. Risks or blockers
-4. Next actions with owner and due date
-
-Never invent a status. If the source material is unclear, label the item "Needs confirmation."
-```
-
-The `name` identifies the Skill. The `description` tells Claude what it does and when it should load. The Markdown body provides the detailed procedure.
-
-Anthropic's current [custom Skill guide](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills) says the best Skills solve one repeatable task, clearly define when they apply, and include examples when those examples make the result easier to understand.
-
-## How Claude decides to use a Skill
-
-Claude uses a pattern called progressive disclosure.
-
-It first sees the short metadata for available Skills. When your request matches a Skill's description, Claude can load the full instructions and any additional resources it needs. It does not need to stuff every instruction from every Skill into every conversation.
-
-This is why the description matters so much.
-
-Weak description:
-
-> Helps with email.
-
-Stronger description:
-
-> Triage a Gmail inbox into Action Today, Waiting, Read Later, and Archive. Use when reviewing unread mail or preparing a daily inbox summary.
-
-The stronger version names both the job and the moments when the Skill should activate.
+That is the real substance of the Skill. Anthropic's [guide to teaching Claude your way of working](https://claude.com/resources/tutorials/teach-claude-your-way-of-working-using-skills) recommends using a Skill for a repeatable procedure, a Project for accumulating context, and a normal prompt for one-off work.
 
 ## Skills versus prompts
 
@@ -112,8 +81,6 @@ A connector gives Claude access to an outside tool or data source. A Skill tells
 - The Gmail connector can let Claude search and organize email.
 - An inbox-triage Skill can define your labels, priorities, exceptions, and approval rules.
 
-Anthropic's [overview of Skills](https://support.claude.com/en/articles/12512176-what-are-skills) summarizes the difference well: MCP and connectors provide access; Skills provide procedural knowledge.
-
 They become more useful together.
 
 ## What makes a good first Skill?
@@ -137,17 +104,15 @@ Good first Skills include:
 
 Avoid starting with a giant “run my business” Skill. Small Skills are easier to test, improve, and trust.
 
-## How do you add a custom Skill to Claude?
+## How do you create one without coding?
 
-As of July 2026, Anthropic's consumer workflow is:
+If Skills are available in your Claude account, ask Claude to help you build one through conversation. Anthropic's [conversation-based Skill tutorial](https://claude.com/resources/tutorials/how-to-create-a-skill-with-claude-through-conversation) shows this process: describe the workflow naturally, let Claude interview you, share useful examples, and ask it to package the finished Skill.
 
-1. Create the Skill folder and `SKILL.md` file.
-2. Package the folder as a ZIP file.
-3. In Claude, open **Customize → Skills**.
-4. Choose **Create skill**, then upload the ZIP.
-5. Enable the Skill and test requests that should—and should not—trigger it.
+Try this starter prompt:
 
-Skills require code execution and file creation to be enabled. Team and Enterprise settings may be controlled by an organization owner. Check [Anthropic's Skill usage guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) for the latest plan and interface details.
+> I want to turn a repeated business task into a Claude Skill. Interview me about when I do it, the steps I follow, examples of a good result, common mistakes, and actions Claude should never take without approval. Then create the Skill and give me three test prompts.
+
+When Claude finishes, save and enable the Skill under **Settings → Capabilities → Skills** or **Customize → Skills**, depending on the version of Claude you use. Test it with old or low-risk work before trusting it on something important.
 
 ## The real value: captured judgment
 
@@ -157,4 +122,4 @@ What counts as urgent? Which source wins when two reports disagree? What should 
 
 Those details turn a generic AI response into a workflow your team can actually use.
 
-Next: [How to Create Your First Claude Skill: Organize Your Inbox](/blog/posts/create-first-claude-skill-organize-inbox)
+Next: [How to Use Claude to Triage Your Gmail Inbox (No Code)](/blog/posts/create-first-claude-skill-organize-inbox/)

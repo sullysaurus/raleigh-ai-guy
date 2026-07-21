@@ -1,7 +1,7 @@
 ---
 pubDate: 2026-06-21T09:00:00-04:00
-title: "Do I Need AI? Start with Time and Money, Not the Technology"
-description: "A practical framework for deciding where AI belongs in your business—and where a checklist, template, or ordinary automation is the better answer."
+title: "Does Your Small Business Need AI? Use This Practical Test"
+description: "Decide where AI can save your small business time or money—and when a checklist, template, or ordinary automation is the better answer."
 image:
   url: "/src/images/posts/do-i-need-ai-v2.png"
   alt: "A decision balance comparing a simple process with AI based on time and money saved"
