@@ -3,15 +3,6 @@ import OpsShell from "@/components/ops/OpsShell.astro";
 
 const systems = [
   {
-    code: "ROCK 01",
-    title: "AI for Business Raleigh",
-    description: "Launch three monthly rooms, generate qualified conversations, and close one measurable client by October 31.",
-    href: "/ops/ai-for-business/",
-    action: "Open launch cockpit",
-    status: "Venue pending",
-    tone: "deadline",
-  },
-  {
     code: "OFFER 01",
     title: "AI Assessment",
     description: "Discover costly friction, verify tools, calculate credible opportunity, and turn the recommendation into a concrete first move.",
@@ -32,16 +23,7 @@ const systems = [
 ];
 ---
 
-<OpsShell title="Operations" description="The internal field office for launching the Raleigh event series and delivering the AI Assessment offer." eyebrow="Danny Sullivan · Field office" current="overview">
-  <section class="ops-brief">
-    <div>
-      <p>Current operating constraint</p>
-      <h2>Secure the August 26 venue.</h2>
-    </div>
-    <p>Venue confirmation unlocks Luma, calendar submissions, public promotion, and the first registration milestone.</p>
-    <a href="/ops/ai-for-business/">Go to the Rock <span>→</span></a>
-  </section>
-
+<OpsShell title="Operations" description="The internal field office for delivering the AI Assessment offer and producing client-ready reports." eyebrow="Danny Sullivan · Field office" current="overview">
   <section class="system-list" aria-labelledby="systems-title">
     <header><p>Active systems</p><h2 id="systems-title">Run the work.</h2></header>
     <div>
@@ -68,13 +50,7 @@ const systems = [
 </OpsShell>
 
 <style>
-  .ops-brief { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(15rem, .8fr) auto; gap: 2rem; align-items: end; border-top: 1px solid var(--ops-line-strong); border-bottom: 1px solid var(--ops-line-strong); padding: 2rem; background: var(--ops-signal); }
-  .ops-brief > div > p, .system-list > header p, .operating-loop > header p { color: rgb(23 25 20 / 55%); font-size: .62rem; font-weight: 720; letter-spacing: .12em; text-transform: uppercase; }
-  .ops-brief h2 { margin-top: .5rem; font-family: "Anybody", sans-serif; font-size: clamp(1.8rem, 4vw, 3.25rem); font-weight: 710; line-height: .94; letter-spacing: -.045em; }
-  .ops-brief > p { color: rgb(23 25 20 / 68%); font-size: .78rem; line-height: 1.5; }
-  .ops-brief > a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 2rem; border: 1px solid rgb(23 25 20 / 22%); padding: .75rem 1rem; font-size: .72rem; font-weight: 680; transition: background-color 140ms ease, transform 120ms ease; }
-  .ops-brief > a:hover { background: var(--ops-sheet); }
-  .ops-brief > a:active { transform: scale(.97); }
+  .system-list > header p, .operating-loop > header p { color: rgb(23 25 20 / 55%); font-size: .62rem; font-weight: 720; letter-spacing: .12em; text-transform: uppercase; }
 
   .system-list, .operating-loop { padding: 4rem 0; }
   .system-list > header, .operating-loop > header { display: grid; grid-template-columns: 12rem 1fr; align-items: end; margin-bottom: 2rem; }
@@ -104,15 +80,12 @@ const systems = [
   .operating-loop li > p { margin-top: .75rem; color: var(--ops-muted); font-size: .7rem; line-height: 1.5; }
 
   @media (max-width: 900px) {
-    .ops-brief { grid-template-columns: 1fr 1fr; }
-    .ops-brief > a { width: fit-content; }
     .system-row { grid-template-columns: 2rem minmax(0, 1fr) 9rem; }
     .system-action { display: none; }
     .operating-loop ol { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 620px) {
-    .ops-brief { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
     .system-list > header, .operating-loop > header { grid-template-columns: 1fr; gap: .5rem; }
     .system-row { grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; }
     .system-state { grid-column: 2; }
