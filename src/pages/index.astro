@@ -34,7 +34,7 @@ const posts = (await getCollection("posts"))
   pageTitle="Danny Sullivan — AI Product Engineer and Builder"
   pageDescription="AI products, creative experiments, and practical guides from Danny Sullivan, an AI product engineer and builder in Raleigh, North Carolina."
 >
-  <div class="home-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+  <div class="home-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
     <section class="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end lg:gap-20 lg:pb-28 lg:pt-24">
       <div>
         <p class="site-eyebrow">Danny Sullivan · Raleigh, North Carolina</p>
@@ -52,14 +52,14 @@ const posts = (await getCollection("posts"))
         </nav>
       </div>
 
-      <aside class="profile-note bg-[#e9e4ff] p-5 text-[#151515] shadow-[7px_7px_0_#151515] dark:bg-[#30294a] dark:text-white dark:shadow-[7px_7px_0_#f4f1e8] sm:p-6">
+      <aside class="profile-note bg-[var(--editorial-lavender)] p-5 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)]    sm:p-6">
         <Image src={profileImage} alt="Danny Sullivan" width={128} height={128} loading="eager" class="size-20 rounded-full object-cover" />
         <p class="mt-6 font-sans text-2xl font-semibold leading-tight">AI Product Engineer at Gametime.</p>
         <p class="mt-3 text-sm leading-6 text-black/65 dark:text-white/65">Previously AI education and creative technology at Pluralsight. Always building something on the side.</p>
       </aside>
     </section>
 
-    <section id="work" class="border-y-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white">
+    <section id="work" class="border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]   ">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="grid gap-6 sm:grid-cols-[1fr_1.2fr] sm:items-end">
           <div>
@@ -71,7 +71,7 @@ const posts = (await getCollection("posts"))
 
         <div class="mt-12 grid gap-4 lg:grid-cols-3">
           {experience.map((item) => (
-            <article class="flex min-h-72 flex-col border-2 border-[#151515] bg-[#fffdf8] p-6 text-[#151515] shadow-[6px_6px_0_#151515] dark:border-white dark:bg-base-950 dark:text-white dark:shadow-[6px_6px_0_#f4f1e8]">
+            <article class="flex min-h-72 flex-col border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-6 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)]    ">
               <div class="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.12em]"><span>{item.label}</span><span>{item.number}</span></div>
               <h3 class="mt-auto pt-12 font-sans text-2xl font-semibold leading-tight">{item.title}</h3>
               <p class="mt-4 text-sm leading-6 text-black/65 dark:text-white/65">{item.body}</p>
@@ -83,7 +83,7 @@ const posts = (await getCollection("posts"))
       </div>
     </section>
 
-    <section id="writing" class="border-y-2 border-[#151515] bg-[#f0e4ff] text-[#151515] dark:border-white dark:bg-[#302341] dark:text-white">
+    <section id="writing" class="border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)] text-[var(--editorial-ink)]   ">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
@@ -95,7 +95,7 @@ const posts = (await getCollection("posts"))
 
         <div class="mt-12 grid gap-4 md:grid-cols-2">
           {posts.map((post, index) => (
-            <article class:list={["group border-2 border-[#151515] p-5 text-[#151515] shadow-[5px_5px_0_#151515] dark:border-white dark:text-white dark:shadow-[5px_5px_0_#f4f1e8] sm:p-6", index === 0 ? "bg-[#eff5c7] dark:bg-[#293016]" : index === 1 ? "bg-[#dce8ff] dark:bg-[#17233c]" : index === 2 ? "bg-[#f7d6ca] dark:bg-[#3a211d]" : "bg-[#fffdf8] dark:bg-base-950"]}>
+            <article class:list={["group border-2 border-[var(--editorial-line-strong)] p-5 text-[var(--editorial-ink)] shadow-[5px_5px_0_var(--editorial-shadow)]    sm:p-6", index === 0 ? "bg-[var(--editorial-green)] " : index === 1 ? "bg-[var(--editorial-blue)] " : index === 2 ? "bg-[var(--editorial-rust)] " : "bg-[var(--editorial-canvas)] "]}>
               <a href={`/blog/posts/${post.id}`} class="flex min-h-52 flex-col">
                 <div class="flex items-start justify-between gap-5 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-45">
                   <span>{post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
@@ -111,7 +111,7 @@ const posts = (await getCollection("posts"))
       </div>
     </section>
 
-    <section class="bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
+    <section class="bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.2fr_.8fr] lg:items-start lg:gap-24">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Find me</p>
@@ -124,7 +124,7 @@ const posts = (await getCollection("posts"))
           </nav>
         </div>
 
-        <aside class="border-l-4 border-[#151515] pl-6 dark:border-white sm:pl-8">
+        <aside class="border-l-4 border-[var(--editorial-line-strong)] pl-6  sm:pl-8">
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Want to compare notes?</p>
           <p class="mt-4 font-sans text-2xl font-semibold leading-snug">I like to help businesses and teams make AI more useful.</p>
           <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">No giant transformation pitch. Start with a real problem, a workshop, or a conversation.</p>

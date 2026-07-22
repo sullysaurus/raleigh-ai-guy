@@ -73,18 +73,18 @@ const groups = [
 ---
 
 <BaseLayout pageTitle="Tools" pageDescription="The AI, development, automation, and thinking tools Danny Sullivan likes to use.">
-  <div class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
-    <header class="border-b-2 border-[#151515] bg-[#eff5c7] dark:border-white dark:bg-[#293016]"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
+  <div class="editorial-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
+    <header class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-green)]  "><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
       <div><p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Tools · Current rotation</p><h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">The tools I use to think, build, and automate.</h1></div>
       <div><p class="text-base leading-7 text-base-600 dark:text-base-300">The software and systems I reach for when I am trying to turn a rough idea into useful work.</p><p class="mt-4 text-xs uppercase tracking-wide text-base-400">No affiliate links. Just the gear I like.</p></div>
     </div></header>
 
-    <div class="border-b-2 border-[#151515] bg-[#dce8ff] dark:border-white dark:bg-[#17233c]">
+    <div class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)]  ">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         {groups.map((group, groupIndex) => (
           <section class="grid gap-8 border-t border-black/10 py-12 first:pt-0 dark:border-white/10 lg:grid-cols-[15rem_1fr] lg:gap-16">
             <header><span class="text-xs text-base-400">{String(groupIndex + 1).padStart(2, "0")}</span><h2 class="mt-4 font-sans text-2xl font-semibold tracking-tight">{group.title}</h2><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{group.note}</p></header>
-            <ol class="border-2 border-[#151515] bg-[#fffdf8] px-5 shadow-[5px_5px_0_#151515] dark:border-white dark:bg-base-950 dark:shadow-[5px_5px_0_#f4f1e8]">
+            <ol class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] px-5 shadow-[5px_5px_0_var(--editorial-shadow)]   ">
               {group.tools.map((tool) => (
                 <li class="grid gap-2 border-b border-black/10 py-5 last:border-b-0 dark:border-white/10 sm:grid-cols-[11rem_1fr_auto] sm:items-start sm:gap-6">
                   <h3 class="font-sans text-base font-semibold">{tool.name}</h3>

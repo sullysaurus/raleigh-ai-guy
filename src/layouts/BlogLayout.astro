@@ -22,8 +22,8 @@ const socialImage = await getImage({
   socialImageWidth={1200}
   socialImageHeight={630}
 >
-  <article class="editorial-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
-    <header class="border-b-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]"><div class="mx-auto max-w-4xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
+  <article class="editorial-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
+    <header class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)]  "><div class="mx-auto max-w-4xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
       <a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">← Practical AI guides</a>
       <h1 class="mt-8 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl">{frontmatter.title}</h1>
       <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600 dark:text-base-300">{frontmatter.description}</p>
@@ -39,11 +39,11 @@ const socialImage = await getImage({
     </div>
 
     {(previous || next) && <nav class="mx-auto grid max-w-4xl gap-px border-x border-t border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2" aria-label="More articles">
-      {previous ? <a href={`/blog/posts/${previous.id}`} class="bg-white p-6 text-sm font-medium dark:bg-base-950">← {previous.data.title}</a> : <span class="bg-white dark:bg-base-950"></span>}
-      {next && <a href={`/blog/posts/${next.id}`} class="bg-white p-6 text-right text-sm font-medium dark:bg-base-950">{next.data.title} →</a>}
+      {previous ? <a href={`/blog/posts/${previous.id}`} class="bg-[var(--editorial-canvas)] p-6 text-sm font-medium ">← {previous.data.title}</a> : <span class="bg-[var(--editorial-canvas)] "></span>}
+      {next && <a href={`/blog/posts/${next.id}`} class="bg-[var(--editorial-canvas)] p-6 text-right text-sm font-medium ">{next.data.title} →</a>}
     </nav>}
 
-    <section class="mt-20 border-y-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white"><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-semibold uppercase tracking-wide opacity-55">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Bring me one workflow that is wasting your time.</h2><a href="/free-ai-review/" class="editorial-button mt-7">Get a free 30-minute review →</a></div></section>
+    <section class="mt-20 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]   "><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-semibold uppercase tracking-wide opacity-55">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Bring me one workflow that is wasting your time.</h2><a href="/free-ai-review/" class="editorial-button mt-7">Get a free 30-minute review →</a></div></section>
   </article>
 </BaseLayout>
 

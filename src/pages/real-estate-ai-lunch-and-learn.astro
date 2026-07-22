@@ -47,12 +47,12 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
   pageTitle="Complimentary AI Lunch & Learn for Real Estate Offices"
   pageDescription="A practical, complimentary 45-minute AI Lunch & Learn for Raleigh-area real estate agents covering Claude, listing descriptions, social content, follow-up, market videos, and safer AI use."
 >
-  <div class="re-lunch-page bg-[#fffdf8] text-[#151515] dark:bg-base-950 dark:text-white">
-    <section class="relative overflow-hidden border-b-2 border-[#151515] bg-[#ff6f4f] text-[#151515] dark:border-white dark:bg-[#b64934] dark:text-white">
+  <div class="re-lunch-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
+    <section class="relative overflow-hidden border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]   ">
       <div class="re-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
       <div class="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-28">
         <div>
-          <p class="inline-flex border-2 border-[#151515] bg-[#d7ef6f] px-3 py-2 text-xs font-semibold uppercase tracking-[0.15em] shadow-[3px_3px_0_#151515] dark:border-white dark:text-[#151515]">
+          <p class="inline-flex border-2 border-[var(--editorial-line-strong)] bg-[#d7ef6f] px-3 py-2 text-xs font-semibold uppercase tracking-[0.15em] shadow-[3px_3px_0_#151515]  dark:text-[#151515]">
             Complimentary for qualifying real estate offices
           </p>
           <h1 class="mt-7 max-w-4xl text-balance font-sans text-4xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
@@ -67,8 +67,8 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
           </div>
         </div>
 
-        <aside class="relative border-2 border-[#151515] bg-[#fffdf8] p-7 text-[#151515] shadow-[9px_9px_0_#151515] dark:border-white dark:shadow-[9px_9px_0_#f4f1e8] sm:p-8">
-          <div class="absolute -right-3 -top-3 rotate-3 border-2 border-[#151515] bg-[#2947ff] px-3 py-2 text-xs font-semibold text-white dark:border-white">FIELD GUIDE</div>
+        <aside class="relative border-2 border-[var(--editorial-line-strong)] bg-[#fffdf8] p-7 text-[#151515] shadow-[9px_9px_0_var(--editorial-shadow)]   sm:p-8">
+          <div class="absolute -right-3 -top-3 rotate-3 border-2 border-[var(--editorial-line-strong)] bg-[#2947ff] px-3 py-2 text-xs font-semibold text-white ">FIELD GUIDE</div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500">The useful version</p>
           <p class="mt-4 font-sans text-6xl font-semibold tracking-[-0.06em]">45</p>
           <p class="-mt-2 text-sm font-semibold uppercase tracking-[0.18em]">minutes</p>
@@ -83,7 +83,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] dark:border-white">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] ">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
           <div>
@@ -94,8 +94,8 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
           <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {workflows.map(([number, title, description], index) => (
               <article class:list={[
-                "min-h-64 border-2 border-[#151515] p-5 text-[#151515] shadow-[5px_5px_0_#151515] dark:border-white dark:text-white dark:shadow-[5px_5px_0_#f4f1e8]",
-                index % 3 === 0 ? "bg-[#dce8ff] dark:bg-[#17233c]" : index % 3 === 1 ? "bg-[#eff5c7] dark:bg-[#293016]" : "bg-[#f0e4ff] dark:bg-[#302341]",
+                "min-h-64 border-2 border-[var(--editorial-line-strong)] p-5 text-[var(--editorial-ink)] shadow-[5px_5px_0_var(--editorial-shadow)]   ",
+                index % 3 === 0 ? "bg-[var(--editorial-blue)] " : index % 3 === 1 ? "bg-[var(--editorial-green)] " : "bg-[var(--editorial-purple)] ",
               ]}>
                 <span class="text-xs font-semibold opacity-45">{number}</span>
                 <h3 class="mt-12 font-sans text-xl font-semibold leading-tight">{title}</h3>
@@ -107,7 +107,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] bg-[#151515] text-white dark:border-white dark:bg-black">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] bg-[#151515] text-white  dark:bg-black">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[20rem_1fr] lg:gap-20">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">The agenda</p>
@@ -128,7 +128,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] bg-[#d7ef6f] text-[#151515] dark:border-white dark:bg-[#8da52f] dark:text-white">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lime)] text-[#151515]   dark:text-[#151515]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="max-w-3xl">
           <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">Try the material before we meet</p>
@@ -148,9 +148,9 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] dark:border-white">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] ">
       <div class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-16">
-        <div class="border-2 border-[#151515] bg-[#dce8ff] p-7 text-[#151515] shadow-[6px_6px_0_#151515] dark:border-white dark:bg-[#17233c] dark:text-white dark:shadow-[6px_6px_0_#f4f1e8] sm:p-9">
+        <div class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] p-7 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)]     sm:p-9">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-50">Why it is complimentary</p>
           <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Your office brings the audience. I bring the session.</h2>
           <p class="mt-5 text-sm leading-6 opacity-70">The introductory Lunch &amp; Learn uses a proven format with limited custom preparation. That keeps it practical for agents and sustainable for me to offer to qualifying local offices.</p>
@@ -170,7 +170,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] bg-[#fffdf8] dark:border-white dark:bg-base-950">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)]  ">
       <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-16">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">A good fit</p>
@@ -182,7 +182,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
             <li class="grid grid-cols-[1.5rem_1fr] gap-3"><span class="font-semibold text-[#2947ff] dark:text-[#8ca0ff]">04</span><span>Your office can provide the room or virtual meeting link and a screen for an in-person presentation.</span></li>
           </ul>
         </div>
-        <aside class="border-2 border-[#151515] bg-[#f7d6ca] p-7 text-[#151515] shadow-[6px_6px_0_#151515] dark:border-white dark:bg-[#3a211d] dark:text-white dark:shadow-[6px_6px_0_#f4f1e8] sm:p-9">
+        <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-rust)] p-7 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)]     sm:p-9">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-50">Probably a different conversation</p>
           <h3 class="mt-4 font-sans text-2xl font-semibold tracking-tight">You need something more tailored.</h3>
           <p class="mt-5 text-sm leading-6 opacity-70">A private workshop or implementation conversation may fit better if you need custom brokerage procedures, hands-on setup, software integration, one-on-one training, or help using sensitive internal information.</p>
@@ -191,7 +191,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] bg-[#f0e4ff] dark:border-white dark:bg-[#302341]">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)]  ">
       <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_20rem] lg:items-center">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Your facilitator</p>
@@ -199,17 +199,17 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
           <p class="mt-5 max-w-2xl text-sm leading-6 text-base-600 dark:text-base-300">I’m Danny Sullivan, an AI Product Engineer at Gametime. I previously spent nearly five years creating AI education and internal tools at Pluralsight. I live in Raleigh and focus on practical adoption—not hype.</p>
         </div>
         <div class="flex items-center gap-5 border-t-2 border-black/10 pt-6 dark:border-white/10 lg:border-l-2 lg:border-t-0 lg:pl-8 lg:pt-0">
-          <Image src={profileImage} alt="Danny Sullivan" width={112} height={112} class="size-24 rounded-full border-2 border-[#151515] object-cover grayscale dark:border-white" />
+          <Image src={profileImage} alt="Danny Sullivan" width={112} height={112} class="size-24 rounded-full border-2 border-[var(--editorial-line-strong)] object-cover grayscale " />
           <div><strong class="block text-sm">Danny Sullivan</strong><span class="mt-1 block text-sm leading-5 text-base-500 dark:text-base-400">AI Product Engineer<br />Raleigh, NC</span></div>
         </div>
       </div>
     </section>
 
-    <section class="border-b-2 border-[#151515] dark:border-white">
+    <section class="border-b-2 border-[var(--editorial-line-strong)] ">
       <div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Common questions</p>
         <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Before you put it on the calendar.</h2>
-        <div class="mt-10 divide-y-2 divide-[#151515] border-y-2 border-[#151515] dark:divide-white dark:border-white">
+        <div class="mt-10 divide-y-2 divide-[var(--editorial-line-strong)] border-y-2 border-[var(--editorial-line-strong)]  ">
           <details class="group py-5"><summary class="cursor-pointer list-none font-sans text-lg font-semibold">Is the session really free?<span class="float-right transition group-open:rotate-45">+</span></summary><p class="mt-4 max-w-2xl text-sm leading-6 text-base-500 dark:text-base-400">Yes. The introductory 45-minute session is complimentary for qualifying real estate offices and groups. Availability is limited, and your office assembles the audience.</p></details>
           <details class="group py-5"><summary class="cursor-pointer list-none font-sans text-lg font-semibold">Do agents need a paid Claude account?<span class="float-right transition group-open:rotate-45">+</span></summary><p class="mt-4 max-w-2xl text-sm leading-6 text-base-500 dark:text-base-400">No. Agents can follow the session without an account. Some features shown may require a particular Claude plan, but the core prompting and review practices apply broadly.</p></details>
           <details class="group py-5"><summary class="cursor-pointer list-none font-sans text-lg font-semibold">Is this approved continuing education?<span class="float-right transition group-open:rotate-45">+</span></summary><p class="mt-4 max-w-2xl text-sm leading-6 text-base-500 dark:text-base-400">No. This is an educational technology session, not licensed continuing education, legal guidance, or brokerage compliance training.</p></details>
@@ -219,7 +219,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
       </div>
     </section>
 
-    <section id="request" class="scroll-mt-8 border-b-2 border-[#151515] bg-[#dce8ff] text-[#151515] dark:border-white dark:bg-[#17233c] dark:text-white">
+    <section id="request" class="scroll-mt-8 border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] text-[var(--editorial-ink)]   ">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Request a session</p>
@@ -228,7 +228,7 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
           <div class="mt-10 hidden h-3 w-32 -rotate-2 bg-[#ff6f4f] lg:block" aria-hidden="true"></div>
         </div>
 
-        <form name="real-estate-ai-lunch-and-learn" method="POST" action="/workshop-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="border-2 border-[#151515] bg-[#fffdf8] p-5 text-black shadow-[7px_7px_0_#151515] dark:border-white dark:shadow-[7px_7px_0_#f4f1e8] sm:p-8">
+        <form name="real-estate-ai-lunch-and-learn" method="POST" action="/workshop-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="border-2 border-[var(--editorial-line-strong)] bg-[#fffdf8] p-5 text-black shadow-[7px_7px_0_var(--editorial-shadow)]   sm:p-8">
           <input type="hidden" name="form-name" value="real-estate-ai-lunch-and-learn" />
           <input type="hidden" name="subject" data-remove-prefix value="New real estate AI Lunch & Learn request from %{formName}" />
           <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
