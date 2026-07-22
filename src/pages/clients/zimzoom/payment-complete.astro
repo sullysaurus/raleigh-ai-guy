@@ -20,3 +20,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </main>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.posthog?.capture('consulting_payment_completed', {
+      client: 'zimzoom'
+    });
+  });
+</script>

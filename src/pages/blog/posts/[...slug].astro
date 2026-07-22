@@ -21,3 +21,13 @@ const stats = readingTime(entry.body ?? "");
 <BlogLayout frontmatter={entry.data} readingTime={stats.text}>
   <Content />
 </BlogLayout>
+
+<script is:inline define:vars={{ postTitle: entry.data.title, postTags: entry.data.tags, postSlug: entry.id }}>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.posthog?.capture('blog_post_viewed', {
+      post_title: postTitle,
+      post_slug: postSlug,
+      post_tags: postTags
+    });
+  });
+</script>

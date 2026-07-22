@@ -129,11 +129,22 @@ const posts = (await getCollection("posts"))
           <p class="mt-4 font-sans text-2xl font-semibold leading-snug">I like to help businesses and teams make AI more useful.</p>
           <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">No giant transformation pitch. Start with a real problem, a workshop, or a conversation.</p>
           <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold">
-            <a href="/free-ai-review/" class="home-text-link">Free AI review →</a>
-            <a href="/ai-workshops/" class="home-text-link">Workshops →</a>
+            <a href="/free-ai-review/" class="home-text-link" id="cta-free-review">Free AI review →</a>
+            <a href="/ai-workshops/" class="home-text-link" id="cta-workshops">Workshops →</a>
           </div>
         </aside>
       </div>
     </section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('cta-free-review')?.addEventListener('click', function () {
+      window.posthog?.capture('free_review_cta_clicked', { source: 'home_page' });
+    });
+    document.getElementById('cta-workshops')?.addEventListener('click', function () {
+      window.posthog?.capture('workshop_cta_clicked', { source: 'home_page' });
+    });
+  });
+</script>
