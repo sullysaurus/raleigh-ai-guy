@@ -161,4 +161,4 @@ FINISH WITH:
 
 That one prompt creates the working campaign. Your remaining jobs are to verify it, add your perspective, finish any video, and publish.
 
-For more Claude workflows, see [7 practical ways real estate agents can use Claude](/blog/posts/ai-tools-for-real-estate-agents-2026/). If your office wants to build this process together, [request a complimentary AI Lunch & Learn](/ai-workshops/#request).
+For more Claude workflows, see [7 practical ways real estate agents can use Claude](/blog/posts/ai-tools-for-real-estate-agents-2026/). If your office wants to build this process together, [request a complimentary real estate AI Lunch & Learn](/real-estate-ai-lunch-and-learn/#request).
