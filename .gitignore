@@ -1,5 +1,6 @@
 # Build output
 dist/
+.astro/
 
 # Dependencies
 node_modules/
@@ -32,9 +33,11 @@ pnpm-debug.log*
 # Temporary/system files
 *.swp
 *.tmp
-.astro/settings.json
 .seo-cache/
 Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Local client deliverables
+deliverables/
