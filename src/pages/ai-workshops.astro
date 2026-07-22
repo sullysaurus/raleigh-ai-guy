@@ -143,3 +143,18 @@ const fieldClass = "mt-2 w-full border-2 border-[#151515] bg-[#fffdf8] px-4 py-3
     </section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener(‘DOMContentLoaded’, function () {
+    var form = document.querySelector(‘form[name="ai-lunch-and-learn"]’);
+    if (form) {
+      form.addEventListener(‘submit’, function () {
+        var workshopType = form.querySelector(‘[name="workshop_type"]’)?.value || ‘’;
+        window.posthog?.capture(‘workshop_form_submitted’, {
+          form_name: ‘ai-lunch-and-learn’,
+          workshop_type: workshopType
+        });
+      });
+    }
+  });
+</script>

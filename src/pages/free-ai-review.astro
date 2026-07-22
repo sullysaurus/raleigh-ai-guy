@@ -59,3 +59,18 @@ const outcomes = [
     </section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector('form[name="free-ai-workflow-review"]');
+    if (form) {
+      form.addEventListener('submit', function () {
+        var hasReferral = (form.querySelector('[name="referral"]')?.value || '').trim().length > 0;
+        window.posthog?.capture('review_form_submitted', {
+          form_name: 'free-ai-workflow-review',
+          has_referral: hasReferral
+        });
+      });
+    }
+  });
+</script>
