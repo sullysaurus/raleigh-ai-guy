@@ -1,138 +1,185 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { homepageCaseStudy } from "@/data/homepageCaseStudy";
 import profileImage from "../../danny.jpeg";
 
-const experience = [
+const services = [
   {
     number: "01",
-    label: "Building now",
-    title: "AI products at Gametime",
-    body: "I build production AI systems at scale for live-event discovery and venue imagery—not isolated demos. Shipping them has taught me what works in the real world and what does not.",
+    name: "AI Review",
+    price: "$500 · one-time",
+    tagline: "Find out what's actually worth doing.",
+    description:
+      "A focused look at how your business runs today: where time gets lost, what's repetitive, and where AI can realistically help — versus where it's hype. You'll walk away with a short, plain-English roadmap, not a stack of jargon.",
+    footnote: "If you move forward on a build, this fee applies toward it.",
+    color: "bg-[var(--editorial-green)]",
   },
   {
     number: "02",
-    label: "Teaching before that",
-    title: "AI education at Pluralsight",
-    body: "For nearly five years, I created hands-on AI and machine-learning training for teams at major companies including Amazon, Red Hat, and IBM, while building internal AI tools for content teams.",
+    name: "AI Employee Build",
+    price: "starting at $2,500 · one-time project",
+    tagline: "Get the system running.",
+    description:
+      "I design and set up the actual workflow: connecting your email, calendar, docs, and the AI tools that make sense for your business — most often existing platforms glued together and pointed in the right direction, not code built from scratch. You get something working, not a demo.",
+    color: "bg-[var(--editorial-blue)]",
   },
   {
     number: "03",
-    label: "Before tech",
-    title: "Special education + professional baseball",
-    body: "I worked in special education and played professional baseball before moving into technology. Both taught me patience, preparation, and how to keep making progress when the path is not obvious. Those lessons still shape how I build and teach today.",
+    name: "Ongoing Partner",
+    price: "$500–1,000/mo · retainer",
+    tagline: "Someone who keeps it working and keeps you current.",
+    description:
+      "AI tools change monthly. This is me staying on as your AI person — tuning what's already running, folding in new capabilities as they become useful, and telling you honestly when something's not worth adopting yet. You get a partner who filters the noise, not another subscription to manage.",
+    color: "bg-[var(--editorial-rust)]",
   },
 ];
 
-const posts = (await getCollection("posts"))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 4);
 ---
 
 <BaseLayout
-  pageTitle="Danny Sullivan — AI Product Engineer and Builder"
-  pageDescription="AI products, creative experiments, and practical guides from Danny Sullivan, an AI product engineer and builder in Raleigh, North Carolina."
+  pageTitle="Danny Sullivan — Practical AI Systems for Small Businesses"
+  pageDescription="Danny Sullivan stress-tests, builds, and maintains practical AI systems for small and local businesses."
 >
   <div class="home-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
-    <section class="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end lg:gap-20 lg:pb-28 lg:pt-24">
+    <section class="mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
       <div>
         <p class="site-eyebrow">Danny Sullivan · Raleigh, North Carolina</p>
-        <h1 class="mt-6 max-w-4xl font-sans text-[clamp(2.8rem,7.5vw,6.6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
-          I build things that
-          <span class="headline-highlight mt-2 block">help you win.</span>
+        <h1 class="mt-6 max-w-5xl font-sans text-[clamp(2.8rem,7vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
+          I stress-test AI so your business doesn’t have to
+          <span class="headline-highlight mt-2 block">gamble on it.</span>
         </h1>
-        <p class="mt-8 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
-          I’m an AI product engineer, educator, and small-business builder. I build useful systems and share what I learn along the way.
+        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--editorial-ink)] sm:text-xl sm:leading-9">
+          I help small businesses replace repetitive work with practical AI systems that save time, reduce admin, and fit the tools they already use.
         </p>
-        <nav class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium" aria-label="Homepage shortcuts">
-          <a href="#work" class="home-text-link">See what I’ve done ↓</a>
-          <a href="/blog/" class="home-text-link">Read the blog →</a>
-          <a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer" class="home-text-link">LinkedIn ↗</a>
-        </nav>
-      </div>
 
-      <aside class="profile-note bg-[var(--editorial-lavender)] p-5 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)]    sm:p-6">
-        <Image src={profileImage} alt="Danny Sullivan" width={128} height={128} loading="eager" class="size-20 rounded-full object-cover" />
-        <p class="mt-6 font-sans text-2xl font-semibold leading-tight">AI Product Engineer at Gametime.</p>
-        <p class="mt-3 text-sm leading-6 text-black/65 dark:text-white/65">Previously AI education and creative technology at Pluralsight. Always building something on the side.</p>
-      </aside>
+        <div class="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
+          <div>
+            <div class="max-w-3xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
+              <p>At Gametime, I run the AI systems behind a product with millions of dollars in GMV riding on it — wrangling thousands of images, testing hundreds of tools and workflows, and prototyping, demoing, and iterating until something actually holds up in production, not just in a demo.</p>
+              <p>Before that, I spent five years at Pluralsight teaching the real concepts behind AI and machine learning — not just how to use the latest tool, but how it actually works. I bring both to every business I work with: the judgment to tell what’s real from what’s hype, and the grounding to explain why.</p>
+            </div>
+            <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
+              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Systems Builder</li>
+              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Educator</li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="/free-ai-review/" class="editorial-button" data-posthog-event="free_review_cta_clicked">Free AI review <span class="ml-3">→</span></a>
+              <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↓</span></a>
+            </div>
+          </div>
+
+          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-4 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-5">
+            <Image src={profileImage} alt="Danny Sullivan" width={512} height={512} loading="eager" class="aspect-square w-full border-2 border-[var(--editorial-line-strong)] object-cover" />
+            <p class="mt-5 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">About Danny</p>
+            <p class="mt-3 font-sans text-2xl font-semibold leading-tight">You work directly with me.</p>
+            <p class="mt-3 text-sm leading-6 opacity-65">From the first workflow review through launch and ongoing tuning—no handoff to a junior team.</p>
+            <a href="/about/" class="home-text-link mt-5 inline-flex text-sm font-semibold">The longer story →</a>
+          </aside>
+        </div>
+      </div>
     </section>
 
-    <section id="work" class="border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]   ">
+    <section id="recent-work" class="scroll-mt-6 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <div class="grid gap-6 sm:grid-cols-[1fr_1.2fr] sm:items-end">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,.55fr)] lg:gap-16">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.16em]">A short version of the about page</p>
-            <h2 class="mt-4 max-w-xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">What I’ve done so far.</h2>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em]">{homepageCaseStudy.eyebrow}</p>
+            <h2 class="mt-4 max-w-4xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">{homepageCaseStudy.heading}</h2>
+            <div class="mt-8 max-w-3xl space-y-5 text-base leading-7 text-black/75 dark:text-white/85">
+              {homepageCaseStudy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              <p>
+                {homepageCaseStudy.emailSkill.description}
+                <a href={homepageCaseStudy.emailSkill.href} class="home-text-link ml-1 font-semibold">
+                  {homepageCaseStudy.emailSkill.linkLabel} →
+                </a>
+              </p>
+              <p>{homepageCaseStudy.roadmap}</p>
+            </div>
           </div>
-          <p class="max-w-xl text-base leading-7 text-black/70 dark:text-white/75 sm:justify-self-end">My work sits where product, AI, education, content, and small-business operations overlap. The thread is making complicated technology useful to real people.</p>
+          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-7">
+            <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Anonymized case study</p>
+            <p class="mt-8 font-sans text-2xl font-semibold leading-tight">{homepageCaseStudy.clientName || homepageCaseStudy.clientDescription}</p>
+            {homepageCaseStudy.clientName && <p class="mt-2 text-sm leading-6 opacity-60">{homepageCaseStudy.clientDescription}</p>}
+            <div class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">In use now</p>
+              <ul class="mt-4 space-y-3">
+                {homepageCaseStudy.inUse.map((item) => (
+                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
+                    <span aria-hidden="true">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="mt-7 border-t border-current/20 pt-6">
+              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Building next</p>
+              <ul class="mt-4 space-y-3">
+                {homepageCaseStudy.buildingNext.map((item) => (
+                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
+                    <span aria-hidden="true">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {homepageCaseStudy.quote && (
+              <blockquote class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+                <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Client quote</p>
+                <p class="mt-3 text-sm font-semibold leading-6">“{homepageCaseStudy.quote}”</p>
+              </blockquote>
+            )}
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="scroll-mt-6 bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Services</p>
+        <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <h2 class="max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Three ways to work together</h2>
+          <p class="max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">I’m not selling you custom software you’ll be stuck maintaining. Most of the time, the right tools already exist — the value I add is knowing which ones, wiring them into how you actually work, and keeping it running as things change.</p>
         </div>
 
-        <div class="mt-12 grid gap-4 lg:grid-cols-3">
-          {experience.map((item) => (
-            <article class="flex min-h-72 flex-col border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-6 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)]    ">
-              <div class="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.12em]"><span>{item.label}</span><span>{item.number}</span></div>
-              <h3 class="mt-auto pt-12 font-sans text-2xl font-semibold leading-tight">{item.title}</h3>
-              <p class="mt-4 text-sm leading-6 text-black/65 dark:text-white/65">{item.body}</p>
+        <div class="mt-12 grid gap-5 lg:grid-cols-3">
+          {services.map((service) => (
+            <article class:list={["flex min-h-full flex-col border-2 border-[var(--editorial-line-strong)] p-6 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)] sm:p-7", service.color]}>
+              <div class="flex items-start justify-between gap-4 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">
+                <span>{service.name}</span>
+                <span>{service.number}</span>
+              </div>
+              <p class="mt-8 text-sm font-semibold leading-5">{service.price}</p>
+              <h3 class="mt-4 font-sans text-2xl font-semibold leading-tight">{service.tagline}</h3>
+              <p class="mt-5 text-sm leading-6 opacity-70">{service.description}</p>
+              {service.footnote && <p class="mt-auto border-t border-current/20 pt-5 text-xs font-semibold leading-5 opacity-65">{service.footnote}</p>}
             </article>
           ))}
         </div>
 
-        <a href="/about/" class="mt-10 inline-flex items-center border-b-2 border-current pb-1 text-sm font-semibold">The longer story →</a>
-      </div>
-    </section>
-
-    <section id="writing" class="border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)] text-[var(--editorial-ink)]   ">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <div class="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
+        <article class="mt-6 grid gap-8 border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">Recent writing</p>
-            <h2 class="mt-4 max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Notes for making AI less mysterious.</h2>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-55">Beyond the retainer</p>
+            <p class="mt-4 text-sm font-semibold">starting at $1,500/mo, custom-scoped</p>
           </div>
-          <a href="/blog/" class="home-text-link text-sm font-semibold">Browse all guides →</a>
-        </div>
-
-        <div class="mt-12 grid gap-4 md:grid-cols-2">
-          {posts.map((post, index) => (
-            <article class:list={["group border-2 border-[var(--editorial-line-strong)] p-5 text-[var(--editorial-ink)] shadow-[5px_5px_0_var(--editorial-shadow)]    sm:p-6", index === 0 ? "bg-[var(--editorial-green)] " : index === 1 ? "bg-[var(--editorial-blue)] " : index === 2 ? "bg-[var(--editorial-rust)] " : "bg-[var(--editorial-canvas)] "]}>
-              <a href={`/blog/posts/${post.id}`} class="flex min-h-52 flex-col">
-                <div class="flex items-start justify-between gap-5 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-45">
-                  <span>{post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
-                  <span>0{index + 1}</span>
-                </div>
-                <h3 class="mt-8 font-sans text-xl font-semibold leading-tight group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4 sm:text-2xl">{post.data.title}</h3>
-                <p class="mt-3 line-clamp-2 text-sm leading-6 opacity-65">{post.data.description}</p>
-                <span class="mt-auto pt-6 text-sm font-semibold">Read →</span>
-              </a>
-            </article>
-          ))}
-        </div>
+          <div>
+            <h3 class="font-sans text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">Outgrowing the basics?</h3>
+            <p class="mt-5 max-w-3xl text-sm leading-6 opacity-70">Some businesses need more than a monthly check-in — a team with multiple people to onboard, active monthly build-out instead of maintenance, or a bigger system to manage. If that’s you, we scope it together rather than force it into a fixed tier.</p>
+            <a href="mailto:hello@dannysullivan.ai?subject=Custom%20AI%20engagement" class="editorial-button mt-7">Let’s talk about what you need <span class="ml-3">→</span></a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
-      <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.2fr_.8fr] lg:items-start lg:gap-24">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Find me</p>
-          <h2 class="mt-4 max-w-2xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">I’m sharing the work as I go.</h2>
-          <p class="mt-6 max-w-xl text-base leading-7 text-base-600 dark:text-base-300">LinkedIn is the main social account for now. The blog and tools are where I share useful work and practical ideas.</p>
-          <nav class="mt-8 flex flex-wrap gap-3" aria-label="Find Danny online">
-            <a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer" class="social-chip bg-[#0a66c2] text-white">LinkedIn ↗</a>
-            <a href="/blog/" class="social-chip bg-[#ff6f4f] text-[#151515]">Blog →</a>
-            <a href="/rss.xml" class="social-chip bg-[#f0e4ff] text-[#151515]">RSS ↗</a>
-          </nav>
+    <section class="border-t-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] text-[var(--editorial-ink)]">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">A simple place to start</p>
+        <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Not sure which one you need?</h2>
+        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">Start with the free version of the review — a shorter conversation, no cost, no pitch. If there’s a real opportunity, I’ll tell you plainly what it would take.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/free-ai-review/" class="editorial-button" data-posthog-event="free_review_cta_clicked">Free AI review <span class="ml-3">→</span></a>
+          <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↑</span></a>
         </div>
-
-        <aside class="border-l-4 border-[var(--editorial-line-strong)] pl-6  sm:pl-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Want to compare notes?</p>
-          <p class="mt-4 font-sans text-2xl font-semibold leading-snug">I like to help businesses and teams make AI more useful.</p>
-          <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">No giant transformation pitch. Start with a real problem, a workshop, or a conversation.</p>
-          <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold">
-            <a href="/free-ai-review/" class="home-text-link" id="cta-free-review">Free AI review →</a>
-            <a href="/ai-workshops/" class="home-text-link" id="cta-workshops">Workshops →</a>
-          </div>
-        </aside>
       </div>
     </section>
   </div>
@@ -140,11 +187,10 @@ const posts = (await getCollection("posts"))
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('cta-free-review')?.addEventListener('click', function () {
-      window.posthog?.capture('free_review_cta_clicked', { source: 'home_page' });
-    });
-    document.getElementById('cta-workshops')?.addEventListener('click', function () {
-      window.posthog?.capture('workshop_cta_clicked', { source: 'home_page' });
+    document.querySelectorAll('[data-posthog-event]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page' });
+      });
     });
   });
 </script>
