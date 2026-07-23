@@ -279,4 +279,4 @@ connectors, Skills, Design, or Cowork merely because they are available.
 
 The goal of this bootcamp is not to master Claude in an hour. It is to leave with one useful system you understand well enough to supervise.
 
-If you want help building that first system with your own business examples, [request a practical AI workshop](/ai-workshops/#request) or [start with a free workflow review](/free-ai-review/).
+If you want help building that first system with your own business examples, [request a practical AI workshop](/ai-workshops/#request) or [send me your biggest AI question](/ai-answers/#ask) for a personalized two-minute answer.

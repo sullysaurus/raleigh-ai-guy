@@ -245,6 +245,6 @@ If it saves 15 minutes a day without hiding important work, keep it. If it creat
 
 ## Want help setting it up?
 
-The prompt above is complete and free to use. If you would rather have someone help connect the pieces, define the rules, and test the workflow with you, bring it to a [free 30-minute AI review](/free-ai-review/). We will first decide whether inbox triage is worth setting up for your business—then map the simplest safe version.
+The prompt above is complete and free to use. If you are stuck on your rules, permissions, or first test, [send me your biggest AI question](/ai-answers/#ask). I will record a personalized two-minute answer and send it directly to you.
 
 Want another practical daily workflow? Build a [morning calendar briefing with Claude](/blog/posts/daily-calendar-briefing-claude/).

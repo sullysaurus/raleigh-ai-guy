@@ -167,6 +167,6 @@ Create the Skill when your process includes judgment worth saving: which custome
 
 ## Want help setting it up?
 
-If you would rather have someone connect the pieces, define your preparation rules, and test the workflow with you, bring it to a [free 30-minute AI review](/free-ai-review/). We will first decide whether a daily briefing would save enough time to be worth maintaining.
+If you are stuck deciding how this should work for your business, [send me your biggest AI question](/ai-answers/#ask). I will record a personalized two-minute answer and send it directly to you.
 
 Looking for another practical workflow? Build a [Claude Skill that triages your Gmail inbox every morning](/blog/posts/create-first-claude-skill-organize-inbox/).

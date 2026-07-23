@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="AI Question Received" pageDescription="Danny Sullivan received your AI question and will send a personalized video answer." noindex>
+  <div class="grid min-h-[70svh] place-items-center bg-[var(--editorial-blue)] px-5 text-[var(--editorial-ink)]">
+    <section class="w-full max-w-2xl border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-7 text-center shadow-[8px_8px_0_var(--editorial-shadow)] sm:p-12">
+      <span class="mx-auto grid size-14 place-items-center border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lime)] text-2xl">✓</span>
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.14em] opacity-50">Question received</p>
+      <h1 class="mt-4 text-balance font-sans text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">I’ll work through it personally.</h1>
+      <p class="mx-auto mt-6 max-w-xl text-base leading-7 opacity-70">I’ll record a concise answer and send the video to the email address you provided. If your question needs more context, I’ll ask before making assumptions.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/ai-answers/" class="editorial-button">See the answer library →</a>
+        <a href="/blog/" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]">Read practical guides</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

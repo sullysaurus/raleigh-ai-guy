@@ -145,4 +145,4 @@ No—when it exists to make the business sound current, replaces a reliable rule
 
 The goal is not an AI-powered company. The goal is a company that serves customers better and wastes less time.
 
-If you want help finding the few workflows where AI can actually pay for itself, [start with a free workflow review](/free-ai-review/).
+If you are unsure whether a specific workflow needs AI, [send me the question](/ai-answers/#ask). I will record a personalized two-minute answer and tell you what I would test first.

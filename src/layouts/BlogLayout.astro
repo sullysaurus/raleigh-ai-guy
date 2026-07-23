@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { getImage } from "astro:assets";
+import AiQuestionForm from "@/components/global/AiQuestionForm.astro";
 
 const { frontmatter, readingTime, previous, next } = Astro.props;
 const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
@@ -43,17 +44,21 @@ const socialImage = await getImage({
       {next && <a href={`/blog/posts/${next.id}`} class="bg-[var(--editorial-canvas)] p-6 text-right text-sm font-medium ">{next.data.title} →</a>}
     </nav>}
 
-    <section class="mt-20 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]   "><div class="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20"><p class="text-xs font-semibold uppercase tracking-wide opacity-55">Make AI useful in your business</p><h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight">Bring me one workflow that is wasting your time.</h2><a href="/free-ai-review/" class="editorial-button mt-7" id="blog-review-cta">Get a free 30-minute review →</a></div></section>
+    <section class="mt-20 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]">
+      <div class="mx-auto grid max-w-4xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-12">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide opacity-55">Two-Minute AI Answers</p>
+          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Send me the part that is stuck.</h2>
+          <p class="mt-5 text-sm leading-6 opacity-70">I will record a personalized two-minute answer today and send it directly to you.</p>
+          <a href="/ai-answers/" class="mt-5 inline-flex text-sm font-semibold underline decoration-2 underline-offset-4">Browse the answer library →</a>
+        </div>
+        <div class="border-2 border-[var(--editorial-line-strong)] bg-[#fffdf8] p-5 shadow-[6px_6px_0_var(--editorial-shadow)] sm:p-6">
+          <AiQuestionForm source="blog_post_footer" compact />
+        </div>
+      </div>
+    </section>
   </article>
 </BaseLayout>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('blog-review-cta')?.addEventListener('click', function () {
-      window.posthog?.capture('blog_review_cta_clicked', { source: 'blog_post_footer' });
-    });
-  });
-</script>
 
 <style>
   .post-body :global(h2),
