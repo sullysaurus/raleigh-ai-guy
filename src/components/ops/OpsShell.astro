@@ -17,15 +17,8 @@ const {
 
 const groups = [
   {
-    label: "Workspace",
-    links: [{ id: "overview", label: "Operations home", href: "/ops/" }],
-  },
-  {
-    label: "AI Assessment",
-    links: [
-      { id: "assessment", label: "Assessment playbook", href: "/ops/ai-assessment-playbook/" },
-      { id: "report", label: "Report builder", href: "/ops/assessment-report-template/" },
-    ],
+    label: "Pipeline",
+    links: [{ id: "outreach", label: "Outreach CRM", href: "/ops/outreach-crm/" }],
   },
 ];
 ---
@@ -33,7 +26,7 @@ const groups = [
 <BaseLayout pageTitle={`${title} — Operations`} pageDescription={description} noindex minimal>
   <div class="ops-app">
     <aside class="ops-rail" aria-label="Operations navigation">
-      <a class="ops-mark" href="/ops/" aria-label="Operations home">
+      <a class="ops-mark" href="/ops/outreach-crm/" aria-label="Outreach CRM">
         <span>DS</span>
         <strong>Field<br />Office</strong>
       </a>
@@ -59,7 +52,7 @@ const groups = [
 
     <div class="ops-workspace">
       <header class="ops-mobile-bar">
-        <a href="/ops/" class="ops-mobile-mark">DS / Field Office</a>
+        <a href="/ops/outreach-crm/" class="ops-mobile-mark">DS / Field Office</a>
         <details>
           <summary>Navigate</summary>
           <nav>
@@ -82,31 +75,6 @@ const groups = [
     </div>
   </div>
 
-  <script>
-    const pageKey = `ops:${window.location.pathname}`;
-
-    document.querySelectorAll<HTMLInputElement>(".ops-app input[type='checkbox']").forEach((checkbox, index) => {
-      checkbox.disabled = false;
-      const key = `${pageKey}:check:${index}`;
-      checkbox.checked = window.localStorage.getItem(key) === "1";
-      checkbox.addEventListener("change", () => {
-        window.localStorage.setItem(key, checkbox.checked ? "1" : "0");
-      });
-    });
-
-    document.querySelectorAll<HTMLElement>(".ops-document pre").forEach((pre) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "ops-copy-button";
-      button.textContent = "Copy";
-      button.addEventListener("click", async () => {
-        await navigator.clipboard.writeText(pre.textContent || "");
-        button.textContent = "Copied";
-        window.setTimeout(() => (button.textContent = "Copy"), 1400);
-      });
-      pre.before(button);
-    });
-  </script>
 </BaseLayout>
 
 <style>
@@ -164,9 +132,6 @@ const groups = [
   .ops-content { max-width: 76rem; margin-inline: auto; padding: 0 3rem 5rem; }
   .ops-mobile-bar { display: none; }
 
-  :global(.ops-copy-button) { display: block; min-height: 2.25rem; margin: 1rem 0 -.5rem auto; border: 1px solid var(--ops-line-strong); padding: .45rem .8rem; color: var(--ops-muted); background: var(--ops-sheet); font-size: .68rem; font-weight: 700; transition: color 140ms ease, background-color 140ms ease, transform 120ms ease; }
-  :global(.ops-copy-button:hover) { color: var(--ops-ink); background: var(--ops-signal); }
-  :global(.ops-copy-button:active) { transform: scale(.97); }
   :global(.ops-app a:focus-visible), :global(.ops-app button:focus-visible), :global(.ops-app summary:focus-visible), :global(.ops-app input:focus-visible) { outline: 2px solid #2947ff; outline-offset: 3px; }
 
   @media (max-width: 960px) {

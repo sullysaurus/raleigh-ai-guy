@@ -27,16 +27,14 @@ An event producer's run sheet rather than a public marketing site: warm paper, g
 
 ## Reusable patterns
 
-- `OpsShell.astro`: navigation, page heading, noindex warning, persisted checkboxes, and copy controls.
-- `OpsDocument.astro`: readable treatment for canonical Markdown plans; source documents remain the single source of truth.
+- `OpsShell.astro`: navigation, page heading, and the noindex warning shared by internal tools.
 - Active navigation uses a sheet surface and orange status dot.
 - Lime means ready/positive/actionable. Orange means deadline, risk, or critical path.
-- Checklists persist by path and item index in local storage.
-- Copy buttons belong on reusable scripts and templates, not ordinary prose.
+- Browser-local tools should state clearly that their records stay in the current browser.
 
 ## Interaction rules
 
 - All interactive targets need visible keyboard focus.
 - Respect reduced-motion preferences.
-- Prefer immediate local feedback: copied state, checked state, and obvious current-page state.
+- Prefer immediate local feedback: saved state, validation messages, and obvious current-page state.
 - Do not add public-site navigation or decorative marketing modules inside the ops shell.
