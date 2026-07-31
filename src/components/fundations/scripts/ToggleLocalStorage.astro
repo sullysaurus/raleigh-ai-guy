@@ -1,22 +1,17 @@
 <script is:inline>
     (function () {
-      // Use the saved theme, or start new visitors in light mode.
-      let theme = "light";
-      try {
-        theme = localStorage.getItem("theme") || "light";
-      } catch {
-        // Keep the light default when browser storage is unavailable.
-      }
+      // Get the saved theme from localStorage or system preference
+      const theme =
+        localStorage.getItem("theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
 
       // Apply the theme immediately
       document.documentElement.classList.toggle("dark", theme === "dark");
-  
+
       // Set the toggle state correctly based on the theme
-      document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
-        toggle.setAttribute(
-          "aria-checked",
-          theme === "dark" ? "true" : "false"
-        );
-      });
+      const toggle = document.getElementById("theme-toggle");
+      toggle.setAttribute("aria-checked", theme === "dark" ? "true" : "false");
     })();
   </script>

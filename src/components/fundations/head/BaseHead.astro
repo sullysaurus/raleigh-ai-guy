@@ -11,76 +11,27 @@ import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStora
 interface Props {
   pageTitle?: string;
   pageDescription?: string;
-  socialImage?: string;
-  socialImageAlt?: string;
-  socialImageWidth?: number;
-  socialImageHeight?: number;
-  noindex?: boolean;
 }
 
-const {
-  pageTitle,
-  pageDescription,
-  socialImage,
-  socialImageAlt,
-  socialImageWidth = 1200,
-  socialImageHeight = 630,
-  noindex,
-} = Astro.props;
+const { pageTitle, pageDescription } = Astro.props;
 const siteName = "Danny Sullivan";
-const defaultDescription =
-  "I build products that streamline work and help companies grow revenue.";
 const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
-const description = pageDescription ?? defaultDescription;
+const description =
+  pageDescription ??
+  "I build products that streamline work and help companies grow revenue.";
 const canonical = new URL(
   Astro.url.pathname,
   Astro.site ?? "https://dannysullivan.ai"
 ).toString();
-const siteUrl = new URL("/", Astro.site ?? "https://dannysullivan.ai").toString();
-const image = new URL(socialImage ?? "/og-image.png", siteUrl).toString();
-const imageType = image.endsWith(".webp")
-  ? "image/webp"
-  : image.endsWith(".jpg") || image.endsWith(".jpeg")
-    ? "image/jpeg"
-    : "image/png";
-const schema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": `${siteUrl}#person`,
-      name: siteName,
-      url: siteUrl,
-      email: "mailto:hello@dannysullivan.ai",
-      sameAs: ["https://www.linkedin.com/in/danny-sullivan-raleigh/"],
-      jobTitle: "AI Product Engineer",
-      description: defaultDescription,
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}#website`,
-      name: siteName,
-      url: siteUrl,
-      publisher: { "@id": `${siteUrl}#person` },
-    },
-  ],
-};
 ---
 
-<Meta author={siteName} />
 <Seo
   title={title}
   description={description}
   canonical={canonical}
   siteName={siteName}
-  image={image}
-  imageAlt={socialImageAlt ?? "Danny Sullivan — AI product engineer and builder"}
-  imageWidth={socialImageWidth}
-  imageHeight={socialImageHeight}
-  imageType={imageType}
-  noindex={noindex}
 />
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Meta description={description} author={siteName} />
 <Fonts />
 <Favicons />
 <!-- Scripts -->

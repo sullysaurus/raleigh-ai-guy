@@ -1,6 +1,64 @@
 ---
+// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const links = [
+  {
+    text: "Go back to the homepage",
+    href: "/",
+  },
+  {
+    text: "Read the latest blog posts ",
+    href: "/blog/",
+  },
+  {
+    text: "Contact me if you think this is an error.",
+    href: "/forms/contact",
+  },
+];
 ---
-<BaseLayout pageTitle="Page Not Found" pageDescription="The page you were looking for does not exist." noindex>
-  <section class="grid min-h-[65svh] place-items-center bg-[var(--editorial-purple)] px-5 text-center text-[var(--editorial-ink)]  "><div class="max-w-2xl"><p class="text-xs font-medium uppercase tracking-wide text-base-400">Error 404</p><h1 class="mt-5 font-sans text-4xl font-semibold tracking-tight sm:text-6xl">That page is not here.</h1><p class="mt-5 text-base leading-7 text-base-500 dark:text-base-400">The link may be old, or the page may have moved.</p><a href="/" class="editorial-button mt-8">Back home →</a></div></section>
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        404 Page not found
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="p"
+          variant="textSM"
+          class="2xl:text-base dark:text-base-400 text-base-500"
+        >
+          It seems you've wandered off the beaten path.
+        </Text>
+        <ul
+          class="mt-4 flex flex-col gap-y-2 list-disc text-black dark:text-white font-medium list-inside"
+          role="list"
+        >
+          {
+            links.map((link) => (
+              <li>
+                <Text
+                  tag="a"
+                  variant="textSM"
+                  href={link.href}
+                  class="hover:text-base-500 dark:hover:text-base-400"
+                >
+                  {link.text}
+                </Text>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>

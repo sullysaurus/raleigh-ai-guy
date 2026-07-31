@@ -2,6 +2,24 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+const store = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/store" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      price: z.number(),
+      preview: z.string(),
+      checkout: z.string(),
+      license: z.string(),
+      highlights: z.array(z.string()),
+      description: z.string(),
+      image: z.object({
+        url: image(),
+        alt: z.string(),
+      }),
+    }),
+});
+
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: ({ image }) =>
@@ -14,6 +32,22 @@ const projects = defineCollection({
         url: image(),
         alt: z.string(),
       }),
+    }),
+});
+
+const authors = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/authors" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      images: z.array(
+        z.object({
+          url: image(),
+          alt: z.string(),
+          name: z.string(),
+          description: z.string(),
+        })
+      ),
     }),
 });
 
@@ -33,6 +67,8 @@ const posts = defineCollection({
 });
 
 export const collections = {
+  store,
   projects,
+  authors,
   posts,
 };

@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 export default defineConfig({
+  // Pagination redirects removed
   markdown: {
     drafts: true,
     shikiConfig: {
@@ -18,15 +19,5 @@ export default defineConfig({
     drafts: true,
   },
   site: "https://dannysullivan.ai",
-  integrations: [
-    sitemap({
-      filter: (page) =>
-        !page.endsWith("/404/") &&
-        !page.includes("/blog/tags/") &&
-        !page.includes("/clients/") &&
-        !page.includes("/ops/") &&
-        !page.includes("/thank-you/"),
-    }),
-    mdx(),
-  ],
+  integrations: [sitemap(), mdx()],
 });

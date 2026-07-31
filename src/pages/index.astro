@@ -1,196 +1,47 @@
 ---
-import { Image } from "astro:assets";
+// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { homepageCaseStudy } from "@/data/homepageCaseStudy";
-import profileImage from "../../danny.jpeg";
-
-const services = [
-  {
-    number: "01",
-    name: "AI Review",
-    price: "$500 · one-time",
-    tagline: "Find out what's actually worth doing.",
-    description:
-      "A focused look at how your business runs today: where time gets lost, what's repetitive, and where AI can realistically help — versus where it's hype. You'll walk away with a short, plain-English roadmap, not a stack of jargon.",
-    footnote: "If you move forward on a build, this fee applies toward it.",
-    color: "bg-[var(--editorial-green)]",
-  },
-  {
-    number: "02",
-    name: "AI Employee Build",
-    price: "starting at $2,500 · one-time project",
-    tagline: "Get the system running.",
-    description:
-      "I design and set up the actual workflow: connecting your email, calendar, docs, and the AI tools that make sense for your business — most often existing platforms glued together and pointed in the right direction, not code built from scratch. You get something working, not a demo.",
-    color: "bg-[var(--editorial-blue)]",
-  },
-  {
-    number: "03",
-    name: "Ongoing Partner",
-    price: "$500–1,000/mo · retainer",
-    tagline: "Someone who keeps it working and keeps you current.",
-    description:
-      "AI tools change monthly. This is me staying on as your AI person — tuning what's already running, folding in new capabilities as they become useful, and telling you honestly when something's not worth adopting yet. You get a partner who filters the noise, not another subscription to manage.",
-    color: "bg-[var(--editorial-rust)]",
-  },
-];
-
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Sections
+import Hero from "@/components/landing/Hero.astro";
+// Components
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
+// Blog contet
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
 ---
 
-<BaseLayout
-  pageTitle="Danny Sullivan — Practical AI Systems for Small Businesses"
-  pageDescription="Danny Sullivan stress-tests, builds, and maintains practical AI systems for small and local businesses."
->
-  <div class="home-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
-    <section class="mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
-      <div>
-        <p class="site-eyebrow">Danny Sullivan · Raleigh, North Carolina</p>
-        <h1 class="mt-6 max-w-5xl font-sans text-[clamp(2.8rem,7vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
-          Practical AI for
-          <span class="headline-highlight mt-2 block">Raleigh businesses.</span>
-        </h1>
-        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--editorial-ink)] sm:text-xl sm:leading-9">
-          I build and test AI systems that save time, reduce costs, and eliminate repetitive work—without forcing AI where it does not belong.
-        </p>
-
-        <div class="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
-          <div>
-            <div class="max-w-3xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
-              <p>At Gametime, I run the AI systems behind a product with millions of dollars in GMV riding on it — wrangling thousands of images, testing hundreds of tools and workflows, and prototyping, demoing, and iterating until something actually holds up in production, not just in a demo.</p>
-              <p>Before that, I spent five years at Pluralsight teaching the real concepts behind AI and machine learning — not just how to use the latest tool, but how it actually works. I bring both to every business I work with: the judgment to tell what’s real from what’s hype, and the grounding to explain why.</p>
-            </div>
-            <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
-              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Systems Builder</li>
-              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Educator</li>
-            </ul>
-            <div class="mt-8 flex flex-wrap gap-4">
-              <a href="/ai-answers/#ask" class="editorial-button" data-posthog-event="ai_question_cta_clicked">Ask me an AI question <span class="ml-3">→</span></a>
-              <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↓</span></a>
-            </div>
-          </div>
-
-          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-4 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-5">
-            <Image src={profileImage} alt="Danny Sullivan" width={512} height={512} loading="eager" class="aspect-square w-full border-2 border-[var(--editorial-line-strong)] object-cover" />
-            <p class="mt-5 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">About Danny</p>
-            <p class="mt-3 font-sans text-2xl font-semibold leading-tight">You work directly with me.</p>
-            <p class="mt-3 text-sm leading-6 opacity-65">From the first workflow review through launch and ongoing tuning—no handoff to a junior team.</p>
-            <a href="/about/" class="home-text-link mt-5 inline-flex text-sm font-semibold">The longer story →</a>
-          </aside>
+<BaseLayout>
+  <Hero />
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:pt-74 xl:pb-50">
+      <div
+        class="gap-2 sm:flex sm:items-center sm:justify-between border-t dark:border-white/10 border-black/10 pt-2"
+      >
+        <Text
+          tag="h3"
+          variant="textBase"
+          class="text-black dark:text-white font-medium"
+        >
+          Latest blog posts
+        </Text>
+        <div class="">
+          <Text
+            tag="a"
+            variant="textSM"
+            href="/blog/"
+            aria-label="your label"
+            title="link to your page"
+            class="text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white font-medium"
+          >
+            &rarr; See all posts
+          </Text>
         </div>
       </div>
-    </section>
-
-    <section id="recent-work" class="scroll-mt-6 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,.55fr)] lg:gap-16">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.16em]">{homepageCaseStudy.eyebrow}</p>
-            <h2 class="mt-4 max-w-4xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">{homepageCaseStudy.heading}</h2>
-            <div class="mt-8 max-w-3xl space-y-5 text-base leading-7 text-black/75 dark:text-white/85">
-              {homepageCaseStudy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-              <p>
-                {homepageCaseStudy.emailSkill.description}
-                <a href={homepageCaseStudy.emailSkill.href} class="home-text-link ml-1 font-semibold">
-                  {homepageCaseStudy.emailSkill.linkLabel} →
-                </a>
-              </p>
-              <p>{homepageCaseStudy.roadmap}</p>
-            </div>
-          </div>
-          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-7">
-            <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Anonymized case study</p>
-            <p class="mt-8 font-sans text-2xl font-semibold leading-tight">{homepageCaseStudy.clientName || homepageCaseStudy.clientDescription}</p>
-            {homepageCaseStudy.clientName && <p class="mt-2 text-sm leading-6 opacity-60">{homepageCaseStudy.clientDescription}</p>}
-            <div class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
-              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">In use now</p>
-              <ul class="mt-4 space-y-3">
-                {homepageCaseStudy.inUse.map((item) => (
-                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
-                    <span aria-hidden="true">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div class="mt-7 border-t border-current/20 pt-6">
-              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Building next</p>
-              <ul class="mt-4 space-y-3">
-                {homepageCaseStudy.buildingNext.map((item) => (
-                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
-                    <span aria-hidden="true">→</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {homepageCaseStudy.quote && (
-              <blockquote class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
-                <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Client quote</p>
-                <p class="mt-3 text-sm font-semibold leading-6">“{homepageCaseStudy.quote}”</p>
-              </blockquote>
-            )}
-          </aside>
-        </div>
+      <div class="mt-8 flex flex-col">
+        {allPosts.slice(0, 2).map((post) => <BlogCard2 post={post} />)}
       </div>
-    </section>
-
-    <section id="services" class="scroll-mt-6 bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Services</p>
-        <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
-          <h2 class="max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Three ways to work together</h2>
-          <p class="max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">I’m not selling you custom software you’ll be stuck maintaining. Most of the time, the right tools already exist — the value I add is knowing which ones, wiring them into how you actually work, and keeping it running as things change.</p>
-        </div>
-
-        <div class="mt-12 grid gap-5 lg:grid-cols-3">
-          {services.map((service) => (
-            <article class:list={["flex min-h-full flex-col border-2 border-[var(--editorial-line-strong)] p-6 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)] sm:p-7", service.color]}>
-              <div class="flex items-start justify-between gap-4 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">
-                <span>{service.name}</span>
-                <span>{service.number}</span>
-              </div>
-              <p class="mt-8 text-sm font-semibold leading-5">{service.price}</p>
-              <h3 class="mt-4 font-sans text-2xl font-semibold leading-tight">{service.tagline}</h3>
-              <p class="mt-5 text-sm leading-6 opacity-70">{service.description}</p>
-              {service.footnote && <p class="mt-auto border-t border-current/20 pt-5 text-xs font-semibold leading-5 opacity-65">{service.footnote}</p>}
-            </article>
-          ))}
-        </div>
-
-        <article class="mt-6 grid gap-8 border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-55">Beyond the retainer</p>
-            <p class="mt-4 text-sm font-semibold">starting at $1,500/mo, custom-scoped</p>
-          </div>
-          <div>
-            <h3 class="font-sans text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">Outgrowing the basics?</h3>
-            <p class="mt-5 max-w-3xl text-sm leading-6 opacity-70">Some businesses need more than a monthly check-in — a team with multiple people to onboard, active monthly build-out instead of maintenance, or a bigger system to manage. If that’s you, we scope it together rather than force it into a fixed tier.</p>
-            <a href="mailto:hello@dannysullivan.ai?subject=Custom%20AI%20engagement" class="editorial-button mt-7">Let’s talk about what you need <span class="ml-3">→</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="border-t-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] text-[var(--editorial-ink)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">A simple place to start</p>
-        <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Stuck on an AI problem?</h2>
-        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">Send me the task that keeps stalling, the problem you cannot solve, or the question you cannot get a straight answer to. I will record a personalized two-minute video today and send it back to you.</p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/ai-answers/#ask" class="editorial-button" data-posthog-event="ai_question_cta_clicked">Send me your question <span class="ml-3">→</span></a>
-          <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↑</span></a>
-        </div>
-      </div>
-    </section>
-  </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[data-posthog-event]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page' });
-      });
-    });
-  });
-</script>

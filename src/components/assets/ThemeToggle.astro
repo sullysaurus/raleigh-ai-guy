@@ -7,7 +7,6 @@ const { class: className = "", ...rest } = Astro.props;
   {...rest}
   role="switch"
   aria-checked="false"
-  aria-label="Toggle color theme"
   data-theme-toggle
 >
   <!-- Single SVG Icon -->
@@ -26,11 +25,7 @@ const { class: className = "", ...rest } = Astro.props;
 <script>
   function updateTheme(isDark) {
     document.documentElement.classList.toggle("dark", isDark);
-    try {
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch {
-      // The visual toggle still works when browser storage is unavailable.
-    }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 
     // Update all theme toggles
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
@@ -39,13 +34,9 @@ const { class: className = "", ...rest } = Astro.props;
   }
 
   function initializeTheme() {
-    let savedTheme = null;
-    try {
-      savedTheme = localStorage.getItem("theme");
-    } catch {
-      // New visitors and storage-restricted browsers both start in light mode.
-    }
-    const isDark = savedTheme === "dark";
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = savedTheme ? savedTheme === "dark" : systemPrefersDark;
     updateTheme(isDark);
   }
 

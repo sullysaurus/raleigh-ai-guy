@@ -1,0 +1,41 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        Forgot your password?
+      </Text>
+
+      <form class="mt-2" action="#" method="POST">
+        <div class="flex flex-col gap-1 max-w-xs">
+          <div class="md:col-span-2">
+            <label for="email" class="sr-only">Email address</label>
+            <div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="email@example.com"
+                aria-placeholder="email@example.com"
+                required
+                class="block w-full rounded-lg border h-9 dark:bg-white/5 border-black/10 px-4 py-2 font-spline text-sm font-medium text-base-800 placeholder-base-400 focus:border-base-500 focus:outline-none focus:ring-2 lg:px-6 focus:ring-base-600/50 disabled:opacity-50"
+              />
+            </div>
+          </div>
+          <Button size="medium" variant="default">Submit</Button>
+        </div>
+      </form>
+    </Wrapper>
+  </section>
+</BaseLayout>

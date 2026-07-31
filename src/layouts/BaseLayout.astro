@@ -5,47 +5,22 @@ import BaseHead from "@/components/fundations/head/BaseHead.astro";
 // Components
 import Footer from "@/components/global/Footer.astro";
 import Navigation from "@/components/global/Navigation.astro";
-import PostHog from "@/components/posthog.astro";
 
 interface Props {
   pageTitle?: string;
   pageDescription?: string;
-  socialImage?: string;
-  socialImageAlt?: string;
-  socialImageWidth?: number;
-  socialImageHeight?: number;
-  noindex?: boolean;
-  minimal?: boolean;
 }
 
-const {
-  pageTitle,
-  pageDescription,
-  socialImage,
-  socialImageAlt,
-  socialImageWidth,
-  socialImageHeight,
-  noindex,
-  minimal = false,
-} = Astro.props;
+const { pageTitle, pageDescription } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead
-      pageTitle={pageTitle}
-      pageDescription={pageDescription}
-      socialImage={socialImage}
-      socialImageAlt={socialImageAlt}
-      socialImageWidth={socialImageWidth}
-      socialImageHeight={socialImageHeight}
-      noindex={noindex}
-    />
-    <PostHog />
+    <BaseHead pageTitle={pageTitle} pageDescription={pageDescription} />
   </head>
-  <body id="top" class="flex min-h-svh flex-col bg-[var(--editorial-canvas)] ">
-    {!minimal && <Navigation />}
+  <body class="bg-white dark:bg-base-900 flex flex-col min-h-svh">
+    <Navigation />
     <main class="grow"><slot /></main>
-    {!minimal && <Footer />}
+    <Footer />
   </body>
 </html>

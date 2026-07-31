@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        Buttons
+      </Text>
+    </Wrapper>
+    <Wrapper variant="standard" class="py-12">
+      <div class="border-t dark:border-white/10 border-black/10 pt-2">
+        <Text
+          tag="h1"
+          variant="textBase"
+          class="text-black dark:text-white font-medium"
+        >
+          All variants
+        </Text>
+      </div>
+      <div
+        class="flex flex-col divide-y divide-base-200 dark:divide-white/10 mt-8"
+      >
+        <!-- Default Variant -->
+        <div class="py-4 flex flex-wrap items-center gap-4">
+          <Button size="small" variant="default">Default small</Button>
+          <Button size="medium" variant="default">Default medium</Button>
+        </div>
+
+        <!-- Muted Variant -->
+        <div class="py-4 flex flex-wrap items-center gap-4">
+          <Button size="small" variant="muted">Muted small</Button>
+          <Button size="medium" variant="muted">Medium Muted</Button>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
