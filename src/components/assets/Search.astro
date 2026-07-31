@@ -6,9 +6,6 @@ const condense = (value: string | undefined | null) =>
   value ? value.replace(/\s+/g, " ").trim() : "";
 
 const postsCollection = await getCollection("posts");
-const projectsCollection = await getCollection("projects");
-const storeCollection = await getCollection("store");
-const authorsCollection = await getCollection("authors");
 
 const items = [
   ...postsCollection.map((post) => ({
@@ -17,30 +14,6 @@ const items = [
     url: `/blog/posts/${post.id}`,
     type: "Post",
   })),
-  ...projectsCollection.map((project) => ({
-    title: project.data.title,
-    description: condense(project.data.subtitle),
-    url: `/projects/${project.id}`,
-    type: "Project",
-  })),
-  ...storeCollection.map((entry) => ({
-    title: entry.data.title,
-    description: condense(entry.data.description),
-    url: `/store/${entry.id}`,
-    type: "Store",
-  })),
-  ...authorsCollection.map((author) => {
-    const imagesSummary = author.data.images
-      ?.map((image) => `${image.name}: ${image.description}`)
-      .join(" ");
-
-    return {
-      title: author.data.title,
-      description: condense(imagesSummary || (author.body ?? "")),
-      url: `/authors/${author.id}`,
-      type: "Author",
-    };
-  }),
 ];
 ---
 
@@ -110,7 +83,7 @@ const items = [
         <input
           type="text"
           id="searchInput"
-          placeholder="Search posts, projects, store, authors..."
+          placeholder="Search writing..."
           class="block w-full rounded-lg border h-10 dark:bg-white/5 dark:text-base-400 border-black/10 px-4 py-2 font-spline text-sm font-medium text-base-800 placeholder-base-400 focus:border-base-500 focus:outline-none focus:ring-2 lg:px-6 focus:ring-base-600/50 disabled:opacity-50 dark:focus:border-base-900"
         />
         <div
