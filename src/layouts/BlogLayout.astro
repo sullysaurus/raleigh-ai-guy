@@ -23,11 +23,11 @@ const socialImage = await getImage({
   socialImageWidth={1200}
   socialImageHeight={630}
 >
-  <article class="editorial-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
-    <header class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)]  "><div class="mx-auto max-w-4xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
-      <a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">← Practical AI guides</a>
-      <h1 class="mt-8 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-6xl">{frontmatter.title}</h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600 dark:text-base-300">{frontmatter.description}</p>
+  <article class="brand-page">
+    <header class="brand-page-header"><div class="mx-auto max-w-4xl px-5 pb-16 pt-16 sm:px-8 sm:pb-24 sm:pt-24">
+      <a href="/blog/" class="brand-back-link">← Practical AI guides</a>
+      <h1 class="brand-display mt-8">{frontmatter.title}</h1>
+      <p class="brand-copy brand-copy-lead mt-6 max-w-3xl">{frontmatter.description}</p>
       <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-base-400">
         <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
         {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black dark:hover:text-white">#{tag}</a>)}
@@ -39,29 +39,23 @@ const socialImage = await getImage({
       <div class="prose post-body min-w-0 max-w-none prose-headings:font-sans prose-headings:font-semibold prose-headings:tracking-tight prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-base-300 prose-a:underline-offset-4 prose-strong:text-black dark:prose-invert dark:prose-a:text-white dark:prose-strong:text-white"><slot /></div>
     </div>
 
-    {(previous || next) && <nav class="mx-auto grid max-w-4xl gap-px border-x border-t border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/10 sm:grid-cols-2" aria-label="More articles">
-      {previous ? <a href={`/blog/posts/${previous.id}`} class="bg-[var(--editorial-canvas)] p-6 text-sm font-medium ">← {previous.data.title}</a> : <span class="bg-[var(--editorial-canvas)] "></span>}
-      {next && <a href={`/blog/posts/${next.id}`} class="bg-[var(--editorial-canvas)] p-6 text-right text-sm font-medium ">{next.data.title} →</a>}
+    {(previous || next) && <nav class="mx-auto grid max-w-4xl gap-4 px-5 sm:grid-cols-2 sm:px-8" aria-label="More articles">
+      {previous ? <a href={`/blog/posts/${previous.id}`} class="brand-panel brand-card-interactive flex min-h-24 items-center p-6 text-sm font-medium">← {previous.data.title}</a> : <span></span>}
+      {next && <a href={`/blog/posts/${next.id}`} class="brand-panel brand-card-interactive flex min-h-24 items-center justify-end p-6 text-right text-sm font-medium">{next.data.title} →</a>}
     </nav>}
 
-    <section class="mt-20 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]">
+    <section class="brand-dark-section mt-20 border-y">
       <div class="mx-auto grid max-w-4xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-12">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wide opacity-55">Two-Minute AI Answers</p>
-          <h2 class="mt-4 text-balance font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Send me the part that is stuck.</h2>
-          <p class="mt-5 text-sm leading-6 opacity-70">I will record a personalized two-minute answer today and send it directly to you.</p>
-          <a href="/ai-answers/" class="mt-5 inline-flex text-sm font-semibold underline decoration-2 underline-offset-4">Browse the answer library →</a>
+          <p class="brand-eyebrow">Two-Minute AI Answers</p>
+          <h2 class="brand-section-title mt-4">Send me the part that is stuck.</h2>
+          <p class="brand-copy mt-5">I will record a personalized two-minute answer today and send it directly to you.</p>
+          <a href="/ai-answers/" class="brand-text-link mt-5">Browse the answer library →</a>
         </div>
-        <div class="border-2 border-[var(--editorial-line-strong)] bg-[#fffdf8] p-5 shadow-[6px_6px_0_var(--editorial-shadow)] sm:p-6">
+        <div class="brand-form-panel p-5 sm:p-6">
           <AiQuestionForm source="blog_post_footer" compact />
         </div>
       </div>
     </section>
   </article>
 </BaseLayout>
-
-<style>
-  .post-body :global(h2),
-  .post-body :global(h3),
-  .post-body :global(h4) { text-transform: none; }
-</style>

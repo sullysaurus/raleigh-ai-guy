@@ -5,5 +5,18 @@ const posts = await getCollection("posts");
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 <BaseLayout pageTitle="Blog Topics" pageDescription="Browse practical AI guides by topic." noindex>
-  <section class="min-h-[65svh] bg-[var(--editorial-canvas)] text-black  dark:text-white"><div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24"><a href="/blog/" class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">← All guides</a><h1 class="mt-8 font-sans text-4xl font-semibold tracking-tight sm:text-6xl">Browse by topic.</h1><div class="mt-12 flex flex-wrap gap-3">{tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border border-black/10 px-4 py-3 text-sm text-base-500 transition hover:border-black hover:text-black dark:border-white/10 dark:text-base-400 dark:hover:border-white dark:hover:text-white">#{tag}</a>)}</div></div></section>
+  <section class="brand-page min-h-[65svh]">
+    <header class="brand-page-header">
+      <div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24">
+        <a href="/blog/" class="brand-back-link">← All guides</a>
+        <h1 class="brand-display mt-8">Browse by topic.</h1>
+        <p class="brand-copy mt-6">Choose a subject and jump straight to the practical guides.</p>
+      </div>
+    </header>
+    <div class="mx-auto max-w-4xl px-5 py-12 sm:px-8 sm:py-16">
+      <div class="flex flex-wrap gap-3">
+        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="brand-chip">{tag.replaceAll("-", " ")}</a>)}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
