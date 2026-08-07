@@ -6,9 +6,27 @@ interface Props {
   description: string;
   canonical: string;
   siteName: string;
+  image: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageType?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical, siteName } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  siteName,
+  image,
+  imageAlt = `${siteName} social preview`,
+  imageWidth = 1200,
+  imageHeight = 630,
+  imageType = "image/png",
+  noindex,
+} = Astro.props;
+const robots = noindex ? "noindex, nofollow" : "index, follow";
 ---
 
 <AstroSeo
@@ -19,15 +37,29 @@ const { title, description, canonical, siteName } = Astro.props;
     url: canonical,
     title,
     description,
+    images: [
+      {
+        url: image,
+        width: imageWidth,
+        height: imageHeight,
+        alt: imageAlt,
+        type: imageType,
+      },
+    ],
     site_name: siteName,
     type: "website",
     locale: "en_US",
   }}
   twitter={{
-    cardType: "summary",
+    cardType: "summary_large_image",
   }}
 />
 
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={imageAlt} />
+
 <!-- Additional SEO -->
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
+<meta name="robots" content={robots} />
+<meta name="googlebot" content={robots} />

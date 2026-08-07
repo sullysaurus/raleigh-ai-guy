@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" role="img" aria-label="Claude model field guide for business">
+  <rect width="1672" height="941" fill="#f3e7d5"/>
+  <rect x="22" y="22" width="1628" height="897" fill="none" stroke="#151515" stroke-width="4"/>
+
+  <rect x="22" y="22" width="1628" height="118" fill="#151515"/>
+  <text x="70" y="77" fill="#f3e7d5" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="5">CLAUDE MODEL FIELD GUIDE</text>
+  <text x="1600" y="79" text-anchor="end" fill="#d9fa67" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">START WITH SONNET</text>
+
+  <rect x="70" y="190" width="328" height="510" fill="#dce8ff" stroke="#151515" stroke-width="4"/>
+  <text x="98" y="238" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">FAST</text>
+  <text x="98" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="45" font-weight="700">HAIKU</text>
+  <path d="M108 410h170M235 370l43 40-43 40" fill="none" stroke="#151515" stroke-width="12" stroke-linecap="square"/>
+  <circle cx="148" cy="410" r="34" fill="#ff6f4f" stroke="#151515" stroke-width="5"/>
+  <text x="98" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">Simple, repeatable</text>
+  <text x="98" y="655" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">high-volume work</text>
+
+  <rect x="426" y="166" width="400" height="558" fill="#d9fa67" stroke="#151515" stroke-width="6"/>
+  <rect x="444" y="184" width="364" height="522" fill="none" stroke="#151515" stroke-width="2"/>
+  <text x="468" y="232" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">DEFAULT</text>
+  <text x="468" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">SONNET</text>
+  <circle cx="626" cy="430" r="116" fill="#f3e7d5" stroke="#151515" stroke-width="6"/>
+  <circle cx="626" cy="430" r="42" fill="#ff6f4f" stroke="#151515" stroke-width="6"/>
+  <path d="M626 314v-42M626 588v-42M510 430h-42M784 430h-42" stroke="#151515" stroke-width="8"/>
+  <text x="468" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25">Most everyday</text>
+  <text x="468" y="658" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="25">business work</text>
+
+  <rect x="854" y="190" width="328" height="510" fill="#ff6f4f" stroke="#151515" stroke-width="4"/>
+  <text x="882" y="238" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">DEEP</text>
+  <text x="882" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="45" font-weight="700">OPUS</text>
+  <rect x="910" y="382" width="188" height="120" fill="#f3e7d5" stroke="#151515" stroke-width="5"/>
+  <rect x="930" y="362" width="188" height="120" fill="#e9e4ff" stroke="#151515" stroke-width="5"/>
+  <rect x="950" y="342" width="188" height="120" fill="#dce8ff" stroke="#151515" stroke-width="5"/>
+  <text x="882" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">Difficult work</text>
+  <text x="882" y="655" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">requiring judgment</text>
+
+  <rect x="1210" y="190" width="392" height="510" fill="#e9e4ff" stroke="#151515" stroke-width="4"/>
+  <text x="1238" y="238" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">AMBITIOUS</text>
+  <text x="1238" y="302" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="45" font-weight="700">FABLE</text>
+  <circle cx="1294" cy="418" r="37" fill="#d9fa67" stroke="#151515" stroke-width="5"/>
+  <circle cx="1410" cy="370" r="37" fill="#ff6f4f" stroke="#151515" stroke-width="5"/>
+  <circle cx="1518" cy="430" r="37" fill="#dce8ff" stroke="#151515" stroke-width="5"/>
+  <circle cx="1410" cy="508" r="37" fill="#f3e7d5" stroke="#151515" stroke-width="5"/>
+  <path d="M1330 404l44-20M1445 383l37 29M1490 455l-49 35M1378 490l-50-49" stroke="#151515" stroke-width="7"/>
+  <text x="1238" y="620" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">Exceptionally large</text>
+  <text x="1238" y="655" fill="#151515" font-family="Arial, Helvetica, sans-serif" font-size="24">multi-stage projects</text>
+
+  <rect x="70" y="766" width="1532" height="102" fill="#151515"/>
+  <text x="836" y="830" text-anchor="middle" fill="#f3e7d5" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">USE SONNET FIRST. SWITCH FOR A REASON.</text>
+</svg>

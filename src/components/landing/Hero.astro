@@ -1,76 +1,52 @@
 ---
-import { Image } from "astro:assets";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import profileImage from "../../../danny.jpeg";
 ---
 
 <section>
-  <Wrapper variant="standard" class="pt-12 pb-16 lg:pt-28 lg:pb-24">
-    <div
-      class="grid gap-8 border-t border-black/10 pt-6 dark:border-white/10 sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-start lg:gap-12"
+  <Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-54">
+    <Text
+      tag="h1"
+      variant="textBase"
+      class="text-black dark:text-white font-medium"
     >
-      <Image
-        src={profileImage}
-        alt="Danny Sullivan"
-        width={615}
-        height={615}
-        loading="eager"
-        class="size-32 rounded-xl object-cover sm:size-36"
-      />
-
-      <div class="max-w-3xl">
-        <Text
-          tag="p"
-          variant="textXS"
-          class="mb-3 font-medium uppercase tracking-wide text-base-500 dark:text-base-400"
-        >
-          Danny Sullivan · Raleigh, North Carolina
-        </Text>
-        <Text
-          tag="h1"
-          variant="displayXS"
-          class="text-balance font-medium text-black dark:text-white"
-        >
-          I turn messy problems into useful products and systems.
-        </Text>
-        <div class="mt-6 space-y-5">
-          <Text
-            tag="p"
-            variant="textSM"
-            class="text-base-500 dark:text-base-400 2xl:text-base"
-          >
-            I’m a Product Engineer at
-            <a
-              href="https://gametime.co"
-              class="text-black underline decoration-black/20 underline-offset-4 hover:decoration-black dark:text-white dark:decoration-white/20 dark:hover:decoration-white"
-              >Gametime</a
-            >, where I work on AI tools and product systems for live event
-            discovery. Before that, I spent nearly five years at Pluralsight
-            creating hands-on technical education and building internal AI tools
-            for content teams.
-          </Text>
-          <Text
-            tag="p"
-            variant="textSM"
-            class="text-base-500 dark:text-base-400 2xl:text-base"
-          >
-            My background spans software, curriculum, growth, and product. This
-            is where I share what I’m learning, what I’m making, and the ideas I
-            keep coming back to.
-          </Text>
-        </div>
-        <div class="mt-7 flex flex-wrap gap-x-5 gap-y-2">
-          <Text
-            tag="a"
-            variant="textSM"
-            href="https://www.linkedin.com/in/danny-sullivan-raleigh/"
-            class="font-medium text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white"
-          >
-            LinkedIn ↗
-          </Text>
-        </div>
-      </div>
+      I build products that streamline work
+      <br />
+      and help companies grow revenue
+    </Text>
+  </Wrapper>
+  <Wrapper variant="standard" class="py-12">
+    <div class="border-t dark:border-white/10 border-black/10 pt-2">
+      <Text
+        tag="h1"
+        variant="textBase"
+        class="text-black dark:text-white font-medium"
+      >
+        Intro
+      </Text>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="2xl:text-base mt-8 dark:text-base-400 text-base-500"
+      >
+        I build at the intersection of AI, product, and content. I’m an AI Product
+        Engineer at
+        <a
+          href="https://gametime.co"
+          class="text-black underline decoration-black/20 underline-offset-4 hover:decoration-black dark:text-white dark:decoration-white/20 dark:hover:decoration-white"
+          >Gametime</a
+        >, where I build AI tools and product systems that help fans better
+        understand venues, seats, and live event experiences before they buy.
+        Before that, I spent nearly five years at Pluralsight across content
+        strategy, AI tooling, and generative AI education, creating hands-on
+        courses and labs before moving into a Creative Technologist role building
+        internal AI tools for content teams. My background spans full-stack
+        development, curriculum engineering, growth marketing, and product
+        strategy, so I think about AI as both a technical system and a user
+        experience. Based in Raleigh, NC, I help businesses turn ambiguous ideas
+        and manual workflows into practical automations, tools, pipelines, and
+        product features.
+      </Text>
     </div>
   </Wrapper>
 </section>

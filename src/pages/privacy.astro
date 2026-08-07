@@ -1,0 +1,104 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  pageTitle="Privacy Policy"
+  pageDescription="How Danny Sullivan collects, uses, and protects information submitted through dannysullivan.ai."
+>
+  <div class="bg-[#f2efe6] text-[var(--editorial-ink)] dark:bg-base-950 ">
+    <header class="border-b border-black/10 dark:border-white/10">
+      <div class="site-shell py-14 sm:py-20">
+        <p class="site-eyebrow">Legal · Effective July 21, 2026</p>
+        <h1 class="mt-5 max-w-4xl text-5xl font-semibold leading-[.95] tracking-[-.045em] sm:text-7xl">Privacy Policy</h1>
+        <p class="mt-7 max-w-2xl text-base leading-7 text-[#5f5d57] dark:text-base-300">
+          This policy explains what information I collect through dannysullivan.ai, why I use it, and the choices available to you.
+        </p>
+      </div>
+    </header>
+
+    <main class="site-shell grid gap-12 py-14 sm:py-20 lg:grid-cols-[14rem_minmax(0,46rem)] lg:gap-20">
+      <aside>
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#77746e] dark:text-base-400">Contact</p>
+        <p class="mt-3 text-sm leading-6">Daniel Sullivan<br />Raleigh, North Carolina</p>
+        <a class="mt-3 inline-block text-sm font-semibold underline underline-offset-4" href="mailto:hello@dannysullivan.ai">hello@dannysullivan.ai</a>
+      </aside>
+
+      <article class="privacy-copy">
+        <section>
+          <h2>1. Scope</h2>
+          <p>This Privacy Policy applies to this website, its contact and workshop forms, and client payment pages operated by Daniel Sullivan. It does not control the privacy practices of websites or services that I link to.</p>
+        </section>
+
+        <section>
+          <h2>2. Information I collect</h2>
+          <p><strong>Information you provide.</strong> When you submit a form, contact me, request a workshop, or become a client, I may receive your name, email address, company or organization, team size, referral source, and the project, workflow, or business information you choose to provide.</p>
+          <p><strong>Payment information.</strong> Payments are processed by Stripe. Stripe may collect your contact, billing, payment-method, device, and transaction information. I receive transaction details and limited billing information, but I do not directly receive or store your complete card or bank-account number.</p>
+          <p><strong>Technical information.</strong> My hosting provider may process routine technical information such as IP address, browser or device type, request time, referring page, and security or performance logs. The site also stores your light-or-dark theme preference in your browser’s local storage.</p>
+        </section>
+
+        <section>
+          <h2>3. How I use information</h2>
+          <ul>
+            <li>Respond to inquiries and schedule requested conversations or workshops.</li>
+            <li>Evaluate, provide, support, and bill for consulting services.</li>
+            <li>Send transactional messages, invoices, receipts, and service-related updates.</li>
+            <li>Operate, troubleshoot, secure, and improve the website and my services.</li>
+            <li>Maintain business, tax, accounting, and legal records and enforce agreements.</li>
+          </ul>
+          <p>I do not use form submissions to add you to a marketing list unless you separately ask or consent. I do not sell personal information or use it for cross-context behavioral advertising.</p>
+        </section>
+
+        <section>
+          <h2>4. Service providers and disclosures</h2>
+          <p>I share information only as reasonably necessary to operate the website and provide services, including with:</p>
+          <ul>
+            <li><a href="https://www.netlify.com/privacy/" target="_blank" rel="noreferrer">Netlify</a>, which hosts the site and processes website form submissions and technical logs.</li>
+            <li><a href="https://stripe.com/privacy" target="_blank" rel="noreferrer">Stripe</a>, which provides Checkout, subscription billing, fraud prevention, and payment processing.</li>
+            <li>Professional advisers or authorities when reasonably necessary for accounting, legal compliance, fraud prevention, safety, or protecting rights.</li>
+          </ul>
+          <p>These providers process information under their own terms and privacy practices. Information may be processed in the United States or other countries where they operate.</p>
+        </section>
+
+        <section>
+          <h2>5. Retention and security</h2>
+          <p>I retain inquiries only as long as reasonably useful for responding and managing the potential relationship. Client agreements, invoices, payment records, and related correspondence may be retained longer when needed for service delivery, accounting, tax, dispute-resolution, or legal obligations.</p>
+          <p>I use reasonable administrative and technical safeguards, but no internet transmission or storage system can be guaranteed completely secure. Please do not submit passwords, payment-card numbers, health information, or other highly sensitive information through a general website form.</p>
+        </section>
+
+        <section>
+          <h2>6. Your choices and rights</h2>
+          <p>You may ask to access, correct, or delete personal information that I control, or object to certain uses, by emailing <a href="mailto:hello@dannysullivan.ai">hello@dannysullivan.ai</a>. I may need to verify your identity, and some records may be retained where required or permitted by law.</p>
+          <p>You can clear the site’s saved theme preference through your browser settings. Payment and Link privacy choices can be managed directly through Stripe’s services.</p>
+        </section>
+
+        <section>
+          <h2>7. Children</h2>
+          <p>This website and my consulting services are intended for businesses and adults. They are not directed to children under 13, and I do not knowingly collect personal information from children under 13.</p>
+        </section>
+
+        <section>
+          <h2>8. Changes to this policy</h2>
+          <p>I may update this policy as the website, service providers, or legal requirements change. The effective date at the top of this page will show when the current version took effect.</p>
+        </section>
+
+        <section>
+          <h2>9. Contact</h2>
+          <p>For privacy questions or requests, email <a href="mailto:hello@dannysullivan.ai">hello@dannysullivan.ai</a>.</p>
+        </section>
+      </article>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy-copy section + section { margin-top: 3rem; }
+  .privacy-copy h2 { font-size: 1.35rem; font-weight: 750; letter-spacing: -.02em; }
+  .privacy-copy p, .privacy-copy li { color: #5f5d57; font-size: .95rem; line-height: 1.8; }
+  .privacy-copy p { margin-top: 1rem; }
+  .privacy-copy ul { margin-top: 1rem; padding-left: 1.2rem; list-style: square; }
+  .privacy-copy li + li { margin-top: .5rem; }
+  .privacy-copy a { color: #151515; font-weight: 650; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .dark .privacy-copy p, .dark .privacy-copy li { color: var(--color-base-300); }
+  .dark .privacy-copy a { color: #fafafa; }
+</style>
