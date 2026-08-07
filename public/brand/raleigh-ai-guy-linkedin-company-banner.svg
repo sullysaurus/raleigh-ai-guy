@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4200 700" role="img" aria-labelledby="title desc">
   <title id="title">Raleigh AI Guy LinkedIn company Page banner</title>
-  <desc id="desc">Less admin. Better follow-through. Practical AI systems for Raleigh businesses.</desc>
+  <desc id="desc">Practical AI for Raleigh businesses.</desc>
   <rect width="4200" height="700" fill="#050617"/>
   <path d="M3 3h4194v694H3z" fill="none" stroke="#1b1e2e" stroke-width="6"/>
   <circle cx="3970" cy="30" r="480" fill="#0b0d1e"/>
@@ -9,8 +9,7 @@
     <path d="M11.5 4h25C42.85 4 48 9.15 48 15.5v16C48 37.85 42.85 43 36.5 43H27l-9 5v-5h-6.5C5.15 43 0 37.85 0 31.5v-16C0 9.15 5.15 4 11.5 4Z" fill="#1dce8d"/>
     <path d="m24 12 3.55 9.45L37 25l-9.45 3.55L24 38l-3.55-9.45L11 25l9.45-3.55L24 12Z" fill="#050617"/>
   </g>
-  <text x="1215" y="327" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" letter-spacing="-6">Less admin. Better follow-through.</text>
-  <text x="1224" y="425" fill="#9b9da8" font-family="Arial, Helvetica, sans-serif" font-size="56">Practical AI systems for Raleigh businesses.</text>
-  <rect x="1224" y="486" width="310" height="14" rx="7" fill="#1dce8d"/>
-  <text x="1224" y="570" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" letter-spacing="4">RALEIGH AI GUY</text>
+  <text x="1215" y="352" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" letter-spacing="-6">Practical AI for Raleigh businesses.</text>
+  <rect x="1224" y="420" width="310" height="14" rx="7" fill="#1dce8d"/>
+  <text x="1224" y="515" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" letter-spacing="4">RALEIGH AI GUY</text>
 </svg>
