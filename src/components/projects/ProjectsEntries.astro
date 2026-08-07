@@ -14,8 +14,8 @@ const imageWidth = typeof image === "string" ? 500 : image.width;
 const imageHeight = typeof image === "string" ? 500 : image.height;
 const isPortraitImage = imageHeight > imageWidth;
 const imageFrameClass = isPortraitImage
-  ? "border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-6 shadow-[6px_6px_0_var(--editorial-shadow)]    sm:p-8 lg:p-10"
-  : "border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] p-8 shadow-[6px_6px_0_var(--editorial-shadow)]    lg:p-12";
+  ? "brand-panel bg-[var(--brand-surface-soft)] p-6 sm:p-8 lg:p-10"
+  : "brand-panel bg-[var(--brand-surface-cool)] p-8 lg:p-12";
 const imageClass = isPortraitImage
   ? "mx-auto max-h-[420px] w-auto max-w-full rounded-2xl object-contain"
   : "w-full rounded object-cover";

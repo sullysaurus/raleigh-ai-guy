@@ -12,7 +12,7 @@ const links = [
 ];
 ---
 
-<header class="site-header mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-5 border-b border-black/10 bg-[var(--editorial-canvas)] px-5 text-black dark:border-white/10  dark:text-white sm:px-8">
+<header class="site-header mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-5 border-b border-black/10 bg-[var(--brand-bg)] px-5 text-black dark:border-white/10 dark:text-white sm:px-8">
   <a href="/" class="flex min-h-12 shrink-0 items-center gap-3" aria-label="Raleigh AI Guy home">
     <BrandMark class="size-10 text-[var(--brand-mint)]" />
     <span class="text-sm font-semibold tracking-[-0.01em]">Raleigh AI Guy</span>
@@ -24,10 +24,10 @@ const links = [
 
   <div class="flex items-center gap-2 sm:gap-3">
     <ThemeToggle class="grid size-11 place-items-center rounded-full border border-black/10 dark:border-white/15 [&_svg]:size-4" />
-    <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="editorial-button min-h-11 px-4 text-xs"><span class="hidden sm:inline">Start with a diagnosis</span><span class="sm:hidden">Diagnosis</span></a>
+    <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="brand-button min-h-11 px-4 text-xs"><span class="hidden sm:inline">Start with a diagnosis</span><span class="sm:hidden">Diagnosis</span></a>
   </div>
 </header>
 
-<nav class="mx-auto flex w-full max-w-6xl gap-5 overflow-x-auto border-b border-black/10 bg-[var(--editorial-canvas)] px-5 py-3 text-sm text-base-600 dark:border-white/10  dark:text-base-300 md:hidden" aria-label="Mobile navigation">
+<nav class="mx-auto flex w-full max-w-6xl gap-5 overflow-x-auto border-b border-black/10 bg-[var(--brand-bg)] px-5 py-3 text-sm text-base-600 dark:border-white/10 dark:text-base-300 md:hidden" aria-label="Mobile navigation">
   {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="-my-3 shrink-0 py-3 aria-[current=page]:text-black dark:aria-[current=page]:text-white">{link.text}</a>)}
 </nav>

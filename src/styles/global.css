@@ -32,6 +32,7 @@
   --brand-surface-soft: #eef1f0;
   --brand-surface-cool: #e8eef1;
   --brand-surface-mint: #dff7ed;
+  --brand-surface-accent: var(--brand-mint);
   --brand-text: var(--brand-ink);
   --brand-muted: #686b75;
   --brand-line: rgb(5 6 23 / 12%);
@@ -42,26 +43,6 @@
   --brand-radius: 1.25rem;
   --brand-shell: 72rem;
   --focus-ring: #087a59;
-  --site-bg: var(--brand-bg);
-  --site-surface: var(--brand-surface);
-  --site-ink: var(--brand-text);
-  --site-muted: var(--brand-muted);
-  --site-line: var(--brand-line);
-  --site-accent: var(--brand-mint);
-  /* Backward-compatible aliases while older pages move to brand primitives. */
-  --editorial-canvas: var(--brand-bg);
-  --editorial-ink: var(--brand-text);
-  --editorial-line-strong: var(--brand-line-strong);
-  --editorial-shadow: var(--brand-shadow);
-  --editorial-blue: var(--brand-surface-cool);
-  --editorial-orange: var(--brand-mint);
-  --editorial-purple: var(--brand-surface-soft);
-  --editorial-green: var(--brand-surface-mint);
-  --editorial-rust: #e3e8e6;
-  --editorial-lavender: #e9eeec;
-  --editorial-lime: var(--brand-mint);
-  --editorial-lime-hover: var(--brand-mint-hover);
-  --editorial-form: var(--brand-form);
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,
     /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
@@ -82,14 +63,12 @@
   --brand-surface-soft: #080a1a;
   --brand-surface-cool: #090c1c;
   --brand-surface-mint: #0b101f;
+  --brand-surface-accent: #0d1022;
   --brand-text: #f7f7f4;
   --brand-muted: #9b9da8;
   --brand-line: rgb(255 255 255 / 16%);
   --brand-line-strong: #24283b;
   --brand-shadow: #000000;
-  --editorial-orange: #0d1022;
-  --editorial-rust: #0d1020;
-  --editorial-lavender: #0b0d1e;
   color-scheme: dark;
 }
 
@@ -97,8 +76,8 @@ html { background: var(--brand-bg); }
 html.dark { background: var(--brand-ink); }
 
 body {
-  color: var(--site-ink);
-  background: var(--site-bg);
+  color: var(--brand-text);
+  background: var(--brand-bg);
   font-family: "Instrument Sans", sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -142,12 +121,12 @@ summary:focus-visible {
 @layer components {
   .site-shell,
   .brand-shell { width: min(calc(100% - 2.5rem), var(--brand-shell)); margin-inline: auto; }
-  .site-eyebrow { color: var(--site-muted); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
-  .site-section { padding-block: 4rem; border-top: 1px solid var(--site-line); }
-  .site-panel { border: 1px solid var(--site-line); border-radius: var(--brand-radius); background: var(--site-surface); }
+  .site-eyebrow { color: var(--brand-muted); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .site-section { padding-block: 4rem; border-top: 1px solid var(--brand-line); }
+  .site-panel { border: 1px solid var(--brand-line); border-radius: var(--brand-radius); background: var(--brand-surface); }
   .site-button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; border-radius: 9999px; padding-inline: 1.5rem; color: #fff; background: #12161d; font-size: .875rem; font-weight: 600; }
   .dark .site-button { color: #12161d; background: #fafafa; }
-  .site-button-accent { color: #12161d; background: var(--site-accent); }
+  .site-button-accent { color: #12161d; background: var(--brand-mint); }
 }
 
 @media (max-width: 640px) {
@@ -169,7 +148,7 @@ summary:focus-visible {
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
-    border: 1px solid var(--editorial-line-strong);
+    border: 1px solid var(--brand-line-strong);
     border-radius: 9999px;
     padding-inline: 1rem;
     font-size: .875rem;
@@ -188,7 +167,7 @@ summary:focus-visible {
     outline-offset: 4px;
   }
 
-  .editorial-button {
+  .brand-button {
     display: inline-flex;
     min-height: 3rem;
     align-items: center;
@@ -197,41 +176,41 @@ summary:focus-visible {
     border-radius: 9999px;
     padding-inline: 1.5rem;
     color: var(--brand-ink);
-    background: var(--editorial-lime);
+    background: var(--brand-mint);
     box-shadow: none;
     font-size: .875rem;
     font-weight: 700;
     transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
   }
 
-  .editorial-button:hover {
+  .brand-button:hover {
     transform: translateY(-2px);
     box-shadow: none;
-    background: var(--editorial-lime-hover);
+    background: var(--brand-mint-hover);
   }
 
-  .editorial-button:active {
+  .brand-button:active {
     transform: translateY(0);
     box-shadow: none;
   }
 
-  .editorial-button:focus-visible {
+  .brand-button:focus-visible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 4px;
   }
 
-  .dark .editorial-button {
+  .dark .brand-button {
     border-color: transparent;
     box-shadow: none;
   }
 
-  .dark .editorial-button:hover,
-  .dark .editorial-button:active { box-shadow: none; }
+  .dark .brand-button:hover,
+  .dark .brand-button:active { box-shadow: none; }
 
   .brand-card {
-    border: 1px solid var(--site-line);
+    border: 1px solid var(--brand-line);
     border-radius: var(--brand-radius);
-    box-shadow: 0 16px 40px var(--editorial-shadow);
+    box-shadow: 0 16px 40px var(--brand-shadow);
   }
 
   .brand-card-interactive {
@@ -241,7 +220,7 @@ summary:focus-visible {
   .brand-card-interactive:hover {
     transform: translateY(-3px);
     border-color: var(--brand-mint);
-    box-shadow: 0 20px 48px var(--editorial-shadow);
+    box-shadow: 0 20px 48px var(--brand-shadow);
   }
 
   .brand-page {
@@ -400,7 +379,7 @@ summary:focus-visible {
   width: fit-content;
   padding: .02em .12em .08em;
   color: var(--brand-ink);
-  background: var(--editorial-lime);
+  background: var(--brand-mint);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   border-radius: .18em;
@@ -418,7 +397,7 @@ summary:focus-visible {
   html { scroll-behavior: auto !important; }
 
   .social-chip,
-  .editorial-button,
+  .brand-button,
   .brand-card-interactive,
   .brand-chip,
   .brand-field,

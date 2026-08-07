@@ -6,12 +6,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   pageTitle="Privacy Policy"
   pageDescription="How Danny Sullivan collects, uses, and protects information submitted through dannysullivan.ai."
 >
-  <div class="bg-[#f2efe6] text-[var(--editorial-ink)] dark:bg-base-950 ">
+  <div class="bg-[var(--brand-bg)] text-[var(--brand-text)]">
     <header class="border-b border-black/10 dark:border-white/10">
       <div class="site-shell py-14 sm:py-20">
         <p class="site-eyebrow">Legal · Effective July 21, 2026</p>
         <h1 class="mt-5 max-w-4xl text-5xl font-semibold leading-[.95] tracking-[-.045em] sm:text-7xl">Privacy Policy</h1>
-        <p class="mt-7 max-w-2xl text-base leading-7 text-[#5f5d57] dark:text-base-300">
+        <p class="mt-7 max-w-2xl text-base leading-7 text-[var(--brand-muted)]">
           This policy explains what information I collect through dannysullivan.ai, why I use it, and the choices available to you.
         </p>
       </div>
@@ -19,7 +19,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
     <main class="site-shell grid gap-12 py-14 sm:py-20 lg:grid-cols-[14rem_minmax(0,46rem)] lg:gap-20">
       <aside>
-        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#77746e] dark:text-base-400">Contact</p>
+        <p class="brand-eyebrow">Contact</p>
         <p class="mt-3 text-sm leading-6">Daniel Sullivan<br />Raleigh, North Carolina</p>
         <a class="mt-3 inline-block text-sm font-semibold underline underline-offset-4" href="mailto:hello@dannysullivan.ai">hello@dannysullivan.ai</a>
       </aside>
@@ -94,11 +94,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <style>
   .privacy-copy section + section { margin-top: 3rem; }
   .privacy-copy h2 { font-size: 1.35rem; font-weight: 750; letter-spacing: -.02em; }
-  .privacy-copy p, .privacy-copy li { color: #5f5d57; font-size: .95rem; line-height: 1.8; }
+  .privacy-copy p, .privacy-copy li { color: var(--brand-muted); font-size: .95rem; line-height: 1.8; }
   .privacy-copy p { margin-top: 1rem; }
   .privacy-copy ul { margin-top: 1rem; padding-left: 1.2rem; list-style: square; }
   .privacy-copy li + li { margin-top: .5rem; }
-  .privacy-copy a { color: #151515; font-weight: 650; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .privacy-copy a { color: var(--brand-text); font-weight: 650; text-decoration: underline; text-decoration-color: var(--brand-mint); text-decoration-thickness: 1px; text-underline-offset: 4px; }
   .dark .privacy-copy p, .dark .privacy-copy li { color: var(--color-base-300); }
   .dark .privacy-copy a { color: #fafafa; }
 </style>

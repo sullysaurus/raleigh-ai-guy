@@ -14,7 +14,7 @@ const services = [
       "I find where time gets lost and give you a short, practical AI roadmap.",
     cta: "Start with a diagnosis",
     href: "mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis",
-    color: "bg-[var(--editorial-green)]",
+    color: "bg-[var(--brand-surface-mint)]",
   },
   {
     number: "02",
@@ -26,7 +26,7 @@ const services = [
     footnote: "I take on a small number of ongoing clients.",
     cta: "Discuss a partnership",
     href: "mailto:hello@dannysullivan.ai?subject=AI%20Partnership",
-    color: "bg-[var(--editorial-blue)]",
+    color: "bg-[var(--brand-surface-cool)]",
   },
 ];
 
@@ -40,7 +40,7 @@ const services = [
   socialImageWidth={1840}
   socialImageHeight={1208}
 >
-  <div class="home-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
+  <div class="home-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
     <section class="mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
       <div>
         <p class="site-eyebrow">Raleigh AI Guy · Raleigh, North Carolina</p>
@@ -48,7 +48,7 @@ const services = [
           Practical AI for
           <span class="headline-highlight mt-2 block">Raleigh businesses.</span>
         </h1>
-        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--editorial-ink)] sm:text-xl sm:leading-9">
+        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--brand-text)] sm:text-xl sm:leading-9">
           Practical AI systems for service businesses and small teams that want less admin and better follow-through.
         </p>
 
@@ -58,16 +58,16 @@ const services = [
               <p>I build production AI systems at Gametime and previously taught AI at Pluralsight. Now I bring that experience to local businesses that want useful systems, not hype.</p>
             </div>
             <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
-              <li class="rounded-full border border-[var(--site-line)] bg-[var(--editorial-lavender)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Systems Builder</li>
-              <li class="rounded-full border border-[var(--site-line)] bg-[var(--editorial-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Educator</li>
+              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Systems Builder</li>
+              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-mint)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Educator</li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-4">
-              <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="editorial-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
-              <a href="/ai-answers/#ask" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
+              <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
+              <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
             </div>
           </div>
 
-          <aside class="brand-card bg-[var(--editorial-lavender)] p-4 text-[var(--editorial-ink)] sm:p-5">
+          <aside class="brand-card bg-[var(--brand-surface-soft)] p-4 text-[var(--brand-text)] sm:p-5">
             <Image src={profileImage} alt="Danny Sullivan" width={512} height={512} loading="eager" class="aspect-square w-full rounded-[1rem] object-cover" />
             <p class="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">About Danny</p>
             <p class="mt-3 font-sans text-2xl font-semibold leading-tight">Work directly with me.</p>
@@ -99,7 +99,7 @@ const services = [
             <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">Anonymized case study</p>
             <p class="mt-8 font-sans text-2xl font-semibold leading-tight">{homepageCaseStudy.clientName || homepageCaseStudy.clientDescription}</p>
             {homepageCaseStudy.clientName && <p class="mt-2 text-sm leading-6 opacity-60">{homepageCaseStudy.clientDescription}</p>}
-            <div class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+            <div class="mt-8 border-t border-[var(--brand-line)] pt-6">
               <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">In use now</p>
               <ul class="mt-4 space-y-3">
                 {homepageCaseStudy.inUse.map((item) => (
@@ -122,7 +122,7 @@ const services = [
               </ul>
             </div>
             {homepageCaseStudy.quote && (
-              <blockquote class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+              <blockquote class="mt-8 border-t border-[var(--brand-line)] pt-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">Client quote</p>
                 <p class="mt-3 text-sm font-semibold leading-6">“{homepageCaseStudy.quote}”</p>
               </blockquote>
@@ -132,7 +132,7 @@ const services = [
       </div>
     </section>
 
-    <section id="services" class="scroll-mt-6 bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]">
+    <section id="services" class="scroll-mt-6 bg-[var(--brand-bg)] text-[var(--brand-text)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Services</p>
         <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
@@ -142,7 +142,7 @@ const services = [
 
         <div class="mt-12 grid gap-5 lg:grid-cols-2">
           {services.map((service) => (
-            <article class:list={["brand-card flex min-h-full flex-col p-6 text-[var(--editorial-ink)] sm:p-7", service.color]}>
+            <article class:list={["brand-card flex min-h-full flex-col p-6 text-[var(--brand-text)] sm:p-7", service.color]}>
               <div class="flex items-start justify-between gap-4 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">
                 <span>{service.name}</span>
                 <span>{service.number}</span>
@@ -161,14 +161,14 @@ const services = [
       </div>
     </section>
 
-    <section class="border-t-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] text-[var(--editorial-ink)]">
+    <section class="border-t border-[var(--brand-line)] bg-[var(--brand-surface-cool)] text-[var(--brand-text)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The practical first step</p>
         <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Find the AI work worth paying for.</h2>
         <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">The $500 diagnosis gives you a focused roadmap before you commit to a larger build.</p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="editorial-button" data-posthog-event="ai_diagnosis_cta_clicked">Start your diagnosis <span class="ml-3">→</span></a>
-          <a href="/ai-answers/#ask" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
+          <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start your diagnosis <span class="ml-3">→</span></a>
+          <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
         </div>
       </div>
     </section>
