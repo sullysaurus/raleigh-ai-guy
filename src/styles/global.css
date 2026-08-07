@@ -123,7 +123,7 @@ h1, h2, h3, h4 {
 .post-body a:visited { color: var(--brand-muted); }
 
 /* Keep prose readable while allowing examples, media, and tables more room. */
-.post-body > :where(p, ul, ol, blockquote) { max-width: 46rem; }
+.post-body > :where(p, ul, ol, blockquote) { max-width: 50rem; }
 
 ::selection {
   color: var(--brand-ink);
