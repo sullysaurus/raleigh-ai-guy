@@ -6,10 +6,12 @@ const currentPath = Astro.url.pathname;
 const links = [
   { text: "Services", href: "/#services" },
   { text: "Recent work", href: "/#recent-work" },
-  { text: "AI Answers", href: "/ai-answers/" },
+  { text: "Workshops", href: "/ai-workshops/" },
   { text: "About", href: "/about/" },
   { text: "Blog", href: "/blog/" },
 ];
+
+const mobileLinks = links.filter((link) => ["Services", "Recent work", "Workshops", "Blog"].includes(link.text));
 ---
 
 <header class="site-header mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-5 border-b border-black/10 bg-[var(--brand-bg)] px-5 text-black dark:border-white/10 dark:text-white sm:px-8">
@@ -18,7 +20,7 @@ const links = [
     <span class="text-sm font-semibold tracking-[-0.01em]">Raleigh AI Guy</span>
   </a>
 
-  <nav class="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+  <nav class="hidden items-center gap-5 lg:flex" aria-label="Main navigation">
     {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="text-sm text-base-600 transition hover:text-black aria-[current=page]:font-medium aria-[current=page]:text-black dark:text-base-300 dark:hover:text-white dark:aria-[current=page]:text-white">{link.text}</a>)}
   </nav>
 
@@ -28,6 +30,6 @@ const links = [
   </div>
 </header>
 
-<nav class="mx-auto flex w-full max-w-6xl gap-5 overflow-x-auto border-b border-black/10 bg-[var(--brand-bg)] px-5 py-3 text-sm text-base-600 dark:border-white/10 dark:text-base-300 md:hidden" aria-label="Mobile navigation">
-  {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="-my-3 shrink-0 py-3 aria-[current=page]:text-black dark:aria-[current=page]:text-white">{link.text}</a>)}
+<nav class="mx-auto grid w-full max-w-6xl grid-cols-4 border-b border-black/10 bg-[var(--brand-bg)] px-3 text-center text-xs text-base-600 dark:border-white/10 dark:text-base-300 lg:hidden" aria-label="Mobile navigation">
+  {mobileLinks.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="flex min-h-12 items-center justify-center px-1 aria-[current=page]:font-medium aria-[current=page]:text-black dark:aria-[current=page]:text-white">{link.text}</a>)}
 </nav>
