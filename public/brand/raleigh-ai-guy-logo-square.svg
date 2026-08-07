@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Raleigh AI Guy logo</title>
+  <desc id="desc">A mint speech bubble with a star on a deep navy background.</desc>
+  <rect width="400" height="400" rx="72" fill="#050617"/>
+  <rect x="2" y="2" width="396" height="396" rx="70" fill="none" stroke="#1b1e2e" stroke-width="4"/>
+  <g transform="translate(104 100) scale(4)">
+    <path d="M11.5 4h25C42.85 4 48 9.15 48 15.5v16C48 37.85 42.85 43 36.5 43H27l-9 5v-5h-6.5C5.15 43 0 37.85 0 31.5v-16C0 9.15 5.15 4 11.5 4Z" fill="#1dce8d"/>
+    <path d="m24 12 3.55 9.45L37 25l-9.45 3.55L24 38l-3.55-9.45L11 25l9.45-3.55L24 12Z" fill="#050617"/>
+  </g>
+</svg>
