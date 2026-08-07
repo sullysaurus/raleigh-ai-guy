@@ -26,27 +26,42 @@
 :root {
   --brand-ink: #050617;
   --brand-mint: #1dce8d;
+  --brand-mint-hover: #28dfa0;
+  --brand-bg: #f7f8f5;
+  --brand-surface: #ffffff;
+  --brand-surface-soft: #eef1f0;
+  --brand-surface-cool: #e8eef1;
+  --brand-surface-mint: #dff7ed;
+  --brand-text: var(--brand-ink);
+  --brand-muted: #686b75;
+  --brand-line: rgb(5 6 23 / 12%);
+  --brand-line-strong: #1b1e2e;
+  --brand-shadow: rgb(5 6 23 / 18%);
+  --brand-form: #ffffff;
+  --brand-radius-sm: .75rem;
+  --brand-radius: 1.25rem;
+  --brand-shell: 72rem;
   --focus-ring: #087a59;
-  --site-bg: #f7f8f5;
-  --site-surface: #ffffff;
-  --site-ink: var(--brand-ink);
-  --site-muted: #686b75;
-  --site-line: rgb(5 6 23 / 12%);
+  --site-bg: var(--brand-bg);
+  --site-surface: var(--brand-surface);
+  --site-ink: var(--brand-text);
+  --site-muted: var(--brand-muted);
+  --site-line: var(--brand-line);
   --site-accent: var(--brand-mint);
-  --editorial-canvas: #f7f8f5;
-  --editorial-ink: var(--brand-ink);
-  --editorial-line-strong: #1b1e2e;
-  --editorial-shadow: rgb(5 6 23 / 18%);
-  --editorial-blue: #e8eef1;
+  /* Backward-compatible aliases while older pages move to brand primitives. */
+  --editorial-canvas: var(--brand-bg);
+  --editorial-ink: var(--brand-text);
+  --editorial-line-strong: var(--brand-line-strong);
+  --editorial-shadow: var(--brand-shadow);
+  --editorial-blue: var(--brand-surface-cool);
   --editorial-orange: var(--brand-mint);
-  --editorial-purple: #eef1f0;
-  --editorial-green: #dff7ed;
+  --editorial-purple: var(--brand-surface-soft);
+  --editorial-green: var(--brand-surface-mint);
   --editorial-rust: #e3e8e6;
   --editorial-lavender: #e9eeec;
   --editorial-lime: var(--brand-mint);
-  --editorial-lime-hover: #28dfa0;
-  --editorial-form: #ffffff;
-  --brand-radius: 1.25rem;
+  --editorial-lime-hover: var(--brand-mint-hover);
+  --editorial-form: var(--brand-form);
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,
     /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
@@ -61,28 +76,24 @@
 
 .dark {
   --focus-ring: var(--brand-mint);
-  --site-bg: var(--brand-ink);
-  --site-surface: #0b0d1e;
-  --site-ink: #f7f7f4;
-  --site-muted: #9b9da8;
-  --site-line: rgb(255 255 255 / 16%);
-  --editorial-canvas: var(--brand-ink);
-  --editorial-ink: #f7f7f4;
-  --editorial-line-strong: #24283b;
-  --editorial-shadow: #000000;
-  --editorial-blue: #090c1c;
+  --brand-mint-hover: #2de4a4;
+  --brand-bg: var(--brand-ink);
+  --brand-surface: #0b0d1e;
+  --brand-surface-soft: #080a1a;
+  --brand-surface-cool: #090c1c;
+  --brand-surface-mint: #0b101f;
+  --brand-text: #f7f7f4;
+  --brand-muted: #9b9da8;
+  --brand-line: rgb(255 255 255 / 16%);
+  --brand-line-strong: #24283b;
+  --brand-shadow: #000000;
   --editorial-orange: #0d1022;
-  --editorial-purple: #080a1a;
-  --editorial-green: #0b101f;
   --editorial-rust: #0d1020;
   --editorial-lavender: #0b0d1e;
-  --editorial-lime: var(--brand-mint);
-  --editorial-lime-hover: #2de4a4;
-  --editorial-form: #ffffff;
   color-scheme: dark;
 }
 
-html { background: #f7f8f5; }
+html { background: var(--brand-bg); }
 html.dark { background: var(--brand-ink); }
 
 body {
@@ -108,6 +119,8 @@ h1, h2, h3, h4 {
 .prose h3 { margin-top: 2.5rem; }
 .prose a { text-decoration-color: var(--brand-mint); text-decoration-thickness: 2px; }
 .dark .prose a { text-decoration-color: var(--brand-mint); }
+.post-body :is(h2, h3, h4) { text-transform: none; }
+.post-body a:visited { color: var(--brand-muted); }
 
 ::selection {
   color: var(--brand-ink);
@@ -124,7 +137,8 @@ summary:focus-visible {
 }
 
 @layer components {
-  .site-shell { width: min(calc(100% - 2.5rem), 72rem); margin-inline: auto; }
+  .site-shell,
+  .brand-shell { width: min(calc(100% - 2.5rem), var(--brand-shell)); margin-inline: auto; }
   .site-eyebrow { color: var(--site-muted); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   .site-section { padding-block: 4rem; border-top: 1px solid var(--site-line); }
   .site-panel { border: 1px solid var(--site-line); border-radius: var(--brand-radius); background: var(--site-surface); }
@@ -134,7 +148,8 @@ summary:focus-visible {
 }
 
 @media (max-width: 640px) {
-  .site-shell { width: min(calc(100% - 2rem), 72rem); }
+  .site-shell,
+  .brand-shell { width: min(calc(100% - 2rem), var(--brand-shell)); }
 }
 
 @layer components {
@@ -225,6 +240,157 @@ summary:focus-visible {
     border-color: var(--brand-mint);
     box-shadow: 0 20px 48px var(--editorial-shadow);
   }
+
+  .brand-page {
+    color: var(--brand-text);
+    background: var(--brand-bg);
+  }
+
+  .brand-section {
+    border-block-start: 1px solid var(--brand-line);
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+
+  .brand-page-header {
+    border-block-end: 1px solid var(--brand-line);
+    background: var(--brand-surface-cool);
+  }
+
+  .brand-dark-section {
+    color: #f7f7f4;
+    background: var(--brand-ink);
+    border-color: rgb(255 255 255 / 12%);
+  }
+
+  .brand-eyebrow {
+    color: var(--brand-muted);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .brand-dark-section .brand-eyebrow { color: rgb(255 255 255 / 56%); }
+
+  .brand-display {
+    font-family: "Anybody", sans-serif;
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -.05em;
+    line-height: .98;
+    text-wrap: balance;
+  }
+
+  .brand-section-title {
+    font-family: "Anybody", sans-serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .brand-copy {
+    max-width: 42rem;
+    color: var(--brand-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .brand-copy-lead { font-size: 1.125rem; line-height: 1.75; }
+  .brand-dark-section .brand-copy { color: rgb(255 255 255 / 70%); }
+
+  .brand-panel {
+    color: var(--brand-text);
+    background: var(--brand-surface);
+    border: 1px solid var(--brand-line);
+    border-radius: var(--brand-radius);
+    box-shadow: 0 16px 40px var(--brand-shadow);
+  }
+
+  .brand-form-panel {
+    color: var(--brand-ink);
+    background: var(--brand-form);
+    border: 1px solid rgb(5 6 23 / 14%);
+    border-radius: var(--brand-radius);
+    box-shadow: 0 16px 40px var(--brand-shadow);
+  }
+
+  .brand-field {
+    width: 100%;
+    min-height: 3rem;
+    margin-block-start: .5rem;
+    border: 1px solid rgb(5 6 23 / 24%);
+    border-radius: var(--brand-radius-sm);
+    padding: .75rem 1rem;
+    color: var(--brand-ink);
+    background: #fff;
+    font-size: .875rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  }
+
+  .brand-field::placeholder { color: rgb(5 6 23 / 42%); }
+  .brand-field:hover { border-color: rgb(5 6 23 / 48%); }
+  .brand-field:focus {
+    border-color: var(--brand-mint);
+    outline: none;
+    box-shadow: 0 0 0 4px rgb(29 206 141 / 18%);
+  }
+
+  .brand-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-block-start: .125rem;
+    border: 1px solid rgb(5 6 23 / 40%);
+    border-radius: .25rem;
+    color: var(--brand-ink);
+    accent-color: var(--brand-mint);
+  }
+
+  .brand-chip {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    border: 1px solid var(--brand-line);
+    border-radius: 9999px;
+    padding-inline: 1rem;
+    color: var(--brand-text);
+    background: var(--brand-surface-soft);
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+
+  .brand-chip:hover { transform: translateY(-2px); border-color: var(--brand-mint); }
+
+  .brand-back-link,
+  .brand-text-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    color: var(--brand-muted);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: color 160ms ease;
+  }
+
+  .brand-text-link {
+    color: inherit;
+    font-size: .875rem;
+    letter-spacing: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--brand-mint);
+    text-decoration-thickness: 2px;
+    text-transform: none;
+    text-underline-offset: 5px;
+  }
+
+  .brand-back-link:hover,
+  .brand-text-link:hover { color: var(--brand-mint); }
 }
 
 .headline-highlight {
@@ -251,5 +417,9 @@ summary:focus-visible {
   .social-chip,
   .editorial-button,
   .brand-card-interactive,
+  .brand-chip,
+  .brand-field,
+  .brand-back-link,
+  .brand-text-link,
   .home-page a { transition: none !important; }
 }
