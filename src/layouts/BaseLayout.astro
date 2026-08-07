@@ -44,8 +44,9 @@ const {
     <PostHog />
   </head>
   <body id="top" class="flex min-h-svh flex-col bg-[var(--editorial-canvas)] ">
+    <a href="#main-content" class="fixed left-4 top-4 z-50 -translate-y-24 bg-[var(--editorial-lime)] px-4 py-3 text-sm font-semibold text-[var(--brand-ink)] transition-transform focus:translate-y-0">Skip to content</a>
     {!minimal && <Navigation />}
-    <main class="grow"><slot /></main>
+    <main id="main-content" class="grow"><slot /></main>
     {!minimal && <Footer />}
   </body>
 </html>

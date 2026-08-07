@@ -26,6 +26,7 @@
 :root {
   --brand-ink: #050617;
   --brand-mint: #1dce8d;
+  --focus-ring: #087a59;
   --site-bg: #f7f8f5;
   --site-surface: #ffffff;
   --site-ink: var(--brand-ink);
@@ -58,6 +59,7 @@
 }
 
 .dark {
+  --focus-ring: var(--brand-mint);
   --site-bg: var(--brand-ink);
   --site-surface: #0b0d1e;
   --site-ink: #f7f7f4;
@@ -113,6 +115,13 @@ h1, h2, h3, h4 {
 
 a, button, summary { -webkit-tap-highlight-color: transparent; }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
 @layer components {
   .site-shell { width: min(calc(100% - 2.5rem), 72rem); margin-inline: auto; }
   .site-eyebrow { color: var(--site-muted); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
@@ -156,7 +165,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   }
 
   .social-chip:focus-visible {
-    outline: 3px solid #2947ff;
+    outline: 3px solid var(--focus-ring);
     outline-offset: 4px;
   }
 
@@ -188,7 +197,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   }
 
   .editorial-button:focus-visible {
-    outline: 3px solid #2947ff;
+    outline: 3px solid var(--focus-ring);
     outline-offset: 4px;
   }
 
@@ -220,6 +229,8 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+
   .social-chip,
   .editorial-button,
   .home-page a { transition: none !important; }

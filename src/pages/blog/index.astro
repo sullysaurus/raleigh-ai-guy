@@ -36,7 +36,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
               return (
                 <article class:list={["group border-2 border-[var(--editorial-line-strong)] p-6 shadow-[5px_5px_0_var(--editorial-shadow)]   sm:p-8", cardColor]}>
                   <a href={`/blog/posts/${post.id}`} class="flex h-full min-h-64 flex-col">
-                    <div class="flex items-start justify-between gap-6 text-xs font-semibold uppercase tracking-[0.12em] opacity-45">
+                    <div class="flex items-start justify-between gap-6 text-xs font-semibold uppercase tracking-[0.12em] text-base-500 dark:text-base-400">
                       <span>{date} · {time}</span>
                       <span>{String(index + 1).padStart(2, "0")}</span>
                     </div>
