@@ -13,7 +13,7 @@ const links = [
 ];
 ---
 
-<header class="site-header mx-auto flex min-h-20 w-full max-w-[1320px] items-center justify-between gap-5 border-b border-black/10 bg-[var(--editorial-canvas)] px-5 text-black dark:border-white/10  dark:text-white sm:px-8">
+<header class="site-header mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-5 border-b border-black/10 bg-[var(--editorial-canvas)] px-5 text-black dark:border-white/10  dark:text-white sm:px-8">
   <a href="/" class="flex shrink-0 items-center gap-3" aria-label="Danny Sullivan home">
     <Image src={profileImage} alt="" width={72} height={72} loading="eager" class="size-9 rounded-full border-2 border-[var(--editorial-line-strong)] object-cover " />
     <span class="text-sm font-medium">Danny Sullivan <span class="hidden text-base-500 lg:inline dark:text-base-400">· Raleigh, NC</span></span>
@@ -29,6 +29,6 @@ const links = [
   </div>
 </header>
 
-<nav class="mx-auto flex w-full max-w-[1320px] gap-5 overflow-x-auto border-b border-black/10 bg-[var(--editorial-canvas)] px-5 py-3 text-sm text-base-600 dark:border-white/10  dark:text-base-300 md:hidden" aria-label="Mobile navigation">
+<nav class="mx-auto flex w-full max-w-6xl gap-5 overflow-x-auto border-b border-black/10 bg-[var(--editorial-canvas)] px-5 py-3 text-sm text-base-600 dark:border-white/10  dark:text-base-300 md:hidden" aria-label="Mobile navigation">
   {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="shrink-0 aria-[current=page]:text-black dark:aria-[current=page]:text-white">{link.text}</a>)}
 </nav>
