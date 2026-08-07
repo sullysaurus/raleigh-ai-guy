@@ -6,39 +6,55 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
+const featuredPost = posts.find((post) => !post.data.tags.includes("real-estate")) ?? posts[0];
+const remainingPosts = posts.filter((post) => post.id !== featuredPost?.id);
 const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
+const formatDate = (date: Date) => date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 ---
 
-<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English guides to Claude, AI workflows, automation, and using AI well at work.">
+<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for Realtors, service businesses, and small teams that want useful results at work.">
   <div class="editorial-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
     <header class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)]  "><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
       <div>
         <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Practical AI field guide</p>
         <h1 class="mt-5 max-w-3xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">Use AI to get real work done.</h1>
       </div>
-      <p class="text-base leading-7 text-base-600 dark:text-base-300">Clear explanations and step-by-step workflows for people who want useful results—not a daily stream of AI hype.</p>
+      <p class="text-base leading-7 text-base-600 dark:text-base-300">Clear workflows for Realtors, service businesses, and small teams that want useful results—not a daily stream of AI hype.</p>
     </div></header>
 
     {tags.length > 0 && (
       <nav class="mx-auto flex max-w-6xl flex-wrap gap-2 px-5 py-5 sm:px-8" aria-label="Browse by topic">
-        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)] px-3 py-2 text-xs font-semibold text-[var(--editorial-ink)] shadow-[2px_2px_0_var(--editorial-shadow)] transition hover:-translate-y-0.5    ">{tag}</a>)}
+        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="inline-flex min-h-11 items-center rounded-full border border-[var(--site-line)] bg-[var(--editorial-purple)] px-4 text-xs font-semibold capitalize text-[var(--editorial-ink)] transition hover:border-[var(--brand-mint)] hover:-translate-y-0.5">{tag.replaceAll("-", " ")}</a>)}
       </nav>
     )}
 
-    <section class="border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-purple)]  " aria-label="All articles">
+    <section class="border-y border-[var(--site-line)] bg-[var(--editorial-purple)]" aria-label="All articles">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-        {posts.length > 0 ? (
-          <div class="grid gap-5 md:grid-cols-2">
-            {posts.map((post, index) => {
-              const date = post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+        {featuredPost ? (
+          <div>
+            <article class="brand-card brand-card-interactive overflow-hidden border-white/12 bg-[var(--brand-ink)] text-white">
+              <a href={`/blog/posts/${featuredPost.id}`} class="grid min-h-80 gap-10 p-7 sm:p-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end lg:p-12">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-mint)]">Featured guide · {formatDate(featuredPost.data.pubDate)}</p>
+                  <h2 class="mt-6 max-w-3xl font-sans text-3xl font-semibold leading-[1.02] tracking-[-0.035em] sm:text-5xl">{featuredPost.data.title}</h2>
+                </div>
+                <div class="lg:border-l lg:border-white/15 lg:pl-10">
+                  <p class="text-base leading-7 text-white/68">{featuredPost.data.description}</p>
+                  <span class="mt-8 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--brand-mint)]">Read the featured guide →</span>
+                </div>
+              </a>
+            </article>
+
+            <div class="mt-6 grid gap-5 md:grid-cols-2">
+            {remainingPosts.map((post, index) => {
+              const date = formatDate(post.data.pubDate);
               const time = readingTime(post.body ?? "").text;
-              const cardColor = ["bg-[var(--editorial-canvas)] ", "bg-[var(--editorial-green)] ", "bg-[var(--editorial-blue)] ", "bg-[var(--editorial-rust)] "][index % 4];
               return (
-                <article class:list={["group border-2 border-[var(--editorial-line-strong)] p-6 shadow-[5px_5px_0_var(--editorial-shadow)]   sm:p-8", cardColor]}>
+                <article class="brand-card brand-card-interactive group bg-[var(--editorial-canvas)] p-6 sm:p-8">
                   <a href={`/blog/posts/${post.id}`} class="flex h-full min-h-64 flex-col">
                     <div class="flex items-start justify-between gap-6 text-xs font-semibold uppercase tracking-[0.12em] text-base-500 dark:text-base-400">
                       <span>{date} · {time}</span>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <span>{String(index + 2).padStart(2, "0")}</span>
                     </div>
                     <h2 class="mt-10 font-sans text-2xl font-semibold leading-tight tracking-tight group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl">{post.data.title}</h2>
                     <p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{post.data.description}</p>
@@ -47,6 +63,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
                 </article>
               );
             })}
+            </div>
           </div>
         ) : (
           <div class="max-w-2xl py-12">
@@ -58,9 +75,9 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
       </div>
     </section>
 
-    <section class="border-b-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-rust)] text-[var(--editorial-ink)]   "><div class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end">
-      <div><p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Need a practical next step?</p><h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Send me the AI problem that keeps stalling.</h2></div>
-      <a href="/ai-answers/#ask" class="editorial-button">Get a two-minute answer →</a>
+    <section class="border-b border-[var(--site-line)] bg-[var(--editorial-rust)] text-[var(--editorial-ink)]"><div class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div><p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Need a practical next step?</p><h2 class="mt-4 max-w-2xl font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Find the AI work worth paying for.</h2><p class="mt-5 max-w-xl text-base leading-7 text-base-600 dark:text-base-300">Start with a $500 diagnosis and leave with a focused roadmap.</p></div>
+      <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="editorial-button">Start with a diagnosis →</a>
     </div></section>
   </div>
 </BaseLayout>

@@ -27,9 +27,10 @@ const {
   socialImageHeight = 630,
   noindex,
 } = Astro.props;
-const siteName = "Danny Sullivan";
+const siteName = "Raleigh AI Guy";
+const personName = "Danny Sullivan";
 const defaultDescription =
-  "I build products that streamline work and help companies grow revenue.";
+  "Practical AI systems for Raleigh Realtors, service businesses, and small teams.";
 const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
 const description = pageDescription ?? defaultDescription;
 const canonical = new URL(
@@ -49,7 +50,7 @@ const schema = {
     {
       "@type": "Person",
       "@id": `${siteUrl}#person`,
-      name: siteName,
+      name: personName,
       url: siteUrl,
       email: "mailto:hello@dannysullivan.ai",
       sameAs: ["https://www.linkedin.com/in/danny-sullivan-raleigh/"],
@@ -60,6 +61,7 @@ const schema = {
       "@type": "WebSite",
       "@id": `${siteUrl}#website`,
       name: siteName,
+      alternateName: "Raleigh AI Guy by Danny Sullivan",
       url: siteUrl,
       publisher: { "@id": `${siteUrl}#person` },
     },
@@ -67,14 +69,14 @@ const schema = {
 };
 ---
 
-<Meta author={siteName} />
+<Meta author={personName} />
 <Seo
   title={title}
   description={description}
   canonical={canonical}
   siteName={siteName}
   image={image}
-  imageAlt={socialImageAlt ?? "Danny Sullivan — AI product engineer and builder"}
+  imageAlt={socialImageAlt ?? "Raleigh AI Guy — practical AI help in plain English"}
   imageWidth={socialImageWidth}
   imageHeight={socialImageHeight}
   imageType={imageType}

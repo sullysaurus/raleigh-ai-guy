@@ -46,6 +46,7 @@
   --editorial-lime: var(--brand-mint);
   --editorial-lime-hover: #28dfa0;
   --editorial-form: #ffffff;
+  --brand-radius: 1.25rem;
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,
     /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
@@ -126,8 +127,8 @@ summary:focus-visible {
   .site-shell { width: min(calc(100% - 2.5rem), 72rem); margin-inline: auto; }
   .site-eyebrow { color: var(--site-muted); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   .site-section { padding-block: 4rem; border-top: 1px solid var(--site-line); }
-  .site-panel { border: 1px solid var(--site-line); background: var(--site-surface); }
-  .site-button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; padding-inline: 1.5rem; color: #fff; background: #12161d; font-size: .875rem; font-weight: 600; }
+  .site-panel { border: 1px solid var(--site-line); border-radius: var(--brand-radius); background: var(--site-surface); }
+  .site-button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; border-radius: 9999px; padding-inline: 1.5rem; color: #fff; background: #12161d; font-size: .875rem; font-weight: 600; }
   .dark .site-button { color: #12161d; background: #fafafa; }
   .site-button-accent { color: #12161d; background: var(--site-accent); }
 }
@@ -208,6 +209,22 @@ summary:focus-visible {
 
   .dark .editorial-button:hover,
   .dark .editorial-button:active { box-shadow: none; }
+
+  .brand-card {
+    border: 1px solid var(--site-line);
+    border-radius: var(--brand-radius);
+    box-shadow: 0 16px 40px var(--editorial-shadow);
+  }
+
+  .brand-card-interactive {
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .brand-card-interactive:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-mint);
+    box-shadow: 0 20px 48px var(--editorial-shadow);
+  }
 }
 
 .headline-highlight {
@@ -233,5 +250,6 @@ summary:focus-visible {
 
   .social-chip,
   .editorial-button,
+  .brand-card-interactive,
   .home-page a { transition: none !important; }
 }
