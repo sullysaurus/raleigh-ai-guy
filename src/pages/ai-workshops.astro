@@ -24,7 +24,7 @@ const fieldClass = "brand-field text-base";
   pageDescription="A practical 60-minute AI workshop that helps Raleigh teams find useful workflows, understand the risks, and choose a clear first step."
 >
   <div class="brand-page">
-    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-cool)]"><div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_21rem] lg:items-end lg:py-28">
+    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)]"><div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_21rem] lg:items-end lg:py-28">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Practical AI workshop · Raleigh or remote</p>
         <h1 class="mt-5 max-w-3xl text-balance font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
@@ -59,7 +59,7 @@ const fieldClass = "brand-field text-base";
         </div>
         <div class="mt-10 grid gap-4 lg:grid-cols-3">
           {outcomes.map(([title, description], index) => (
-            <article class:list={["brand-panel p-6 text-[var(--brand-text)]", index === 0 ? "bg-[var(--brand-surface-mint)]" : index === 1 ? "bg-[var(--brand-surface-cool)]" : "bg-[var(--brand-surface-soft)]"]}>
+            <article class="brand-panel bg-[var(--brand-surface-soft)] p-6 text-[var(--brand-text)]">
               <span class="text-xs font-semibold opacity-45">0{index + 1}</span>
               <h3 class="mt-10 font-sans text-xl font-semibold">{title}</h3>
               <p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{description}</p>
@@ -69,7 +69,7 @@ const fieldClass = "brand-field text-base";
       </div>
     </section>
 
-    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-accent)] text-[var(--brand-text)]"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[18rem_1fr] lg:gap-20">
+    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[18rem_1fr] lg:gap-20">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The 60-minute plan</p>
         <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">One useful conversation.</h2>
@@ -92,7 +92,7 @@ const fieldClass = "brand-field text-base";
         <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">A tailored session for employees, leaders, nonprofits, or boards.</p>
         <p class="mt-7 text-sm font-semibold">From $1,500 · Up to 20 people</p>
       </article>
-      <article class="brand-panel bg-[var(--brand-surface-mint)] p-7 sm:p-9">
+      <article class="brand-panel bg-[var(--brand-surface-soft)] p-7 sm:p-9">
         <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">For Raleigh communities</p>
         <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Community session</h2>
         <p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Limited complimentary sessions for business associations, professional groups, and coworking communities.</p>
@@ -114,7 +114,7 @@ const fieldClass = "brand-field text-base";
       </div>
     </section>
 
-    <section id="request" class="scroll-mt-8 border-b border-[var(--brand-line)] bg-[var(--brand-surface-cool)] text-[var(--brand-text)]">
+    <section id="request" class="scroll-mt-8 border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Request a workshop</p>

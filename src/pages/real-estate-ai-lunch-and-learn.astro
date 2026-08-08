@@ -48,7 +48,7 @@ const fieldClass = "brand-field text-base";
   pageDescription="A practical, complimentary 45-minute AI Lunch & Learn for Raleigh-area real estate agents covering Claude, listing descriptions, social content, follow-up, market videos, and safer AI use."
 >
   <div class="re-lunch-page brand-page">
-    <section class="relative overflow-hidden border-b border-[var(--brand-line)] bg-[var(--brand-surface-accent)] text-[var(--brand-text)]">
+    <section class="relative overflow-hidden border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
       <div class="re-grid absolute inset-0 opacity-20" aria-hidden="true"></div>
       <div class="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-28">
         <div>
@@ -92,11 +92,8 @@ const fieldClass = "brand-field text-base";
             <p class="mt-5 text-sm leading-6 text-base-500 dark:text-base-400">The examples can adjust to the questions in the room, but the session stays focused enough to remain useful.</p>
           </div>
           <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {workflows.map(([number, title, description], index) => (
-              <article class:list={[
-                "brand-panel min-h-64 p-5 text-[var(--brand-text)]",
-                index % 3 === 0 ? "bg-[var(--brand-surface-cool)]" : index % 3 === 1 ? "bg-[var(--brand-surface-mint)]" : "bg-[var(--brand-surface-soft)]",
-              ]}>
+            {workflows.map(([number, title, description]) => (
+              <article class="brand-panel min-h-64 bg-[var(--brand-surface-soft)] p-5 text-[var(--brand-text)]">
                 <span class="text-xs font-semibold opacity-45">{number}</span>
                 <h3 class="mt-12 font-sans text-xl font-semibold leading-tight">{title}</h3>
                 <p class="mt-3 text-sm leading-6 opacity-65">{description}</p>
@@ -128,7 +125,7 @@ const fieldClass = "brand-field text-base";
       </div>
     </section>
 
-    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-accent)] text-[var(--brand-text)]">
+    <section class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <div class="max-w-3xl">
           <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">Try the material before we meet</p>
@@ -150,7 +147,7 @@ const fieldClass = "brand-field text-base";
 
     <section class="border-b border-[var(--brand-line)]">
       <div class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-16">
-        <div class="brand-panel bg-[var(--brand-surface-cool)] p-7 sm:p-9">
+        <div class="brand-panel bg-[var(--brand-surface-soft)] p-7 sm:p-9">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-50">Why it is complimentary</p>
           <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Your office brings the audience. I bring the session.</h2>
           <p class="mt-5 text-sm leading-6 opacity-70">The introductory Lunch &amp; Learn uses a proven format with limited custom preparation. That keeps it practical for agents and sustainable for me to offer to qualifying local offices.</p>
@@ -219,7 +216,7 @@ const fieldClass = "brand-field text-base";
       </div>
     </section>
 
-    <section id="request" class="scroll-mt-8 border-b border-[var(--brand-line)] bg-[var(--brand-surface-cool)] text-[var(--brand-text)]">
+    <section id="request" class="scroll-mt-8 border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
       <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[20rem_1fr] lg:gap-24">
         <div>
           <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-50">Request a session</p>

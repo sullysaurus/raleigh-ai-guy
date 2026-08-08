@@ -14,7 +14,6 @@ const services = [
       "I find where time gets lost and give you a short, practical AI roadmap.",
     cta: "Start with a diagnosis",
     href: "mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis",
-    color: "bg-[var(--brand-surface-mint)]",
   },
   {
     number: "02",
@@ -26,7 +25,6 @@ const services = [
     footnote: "I take on a small number of ongoing clients.",
     cta: "Discuss a partnership",
     href: "mailto:hello@raleighaiguy.com?subject=AI%20Partnership",
-    color: "bg-[var(--brand-surface-cool)]",
   },
 ];
 
@@ -59,7 +57,7 @@ const services = [
             </div>
             <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
               <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Systems Builder</li>
-              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-mint)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Educator</li>
+              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Educator</li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-4">
               <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
@@ -142,7 +140,7 @@ const services = [
 
         <div class="mt-12 grid gap-5 lg:grid-cols-2">
           {services.map((service) => (
-            <article class:list={["brand-card flex min-h-full flex-col p-6 text-[var(--brand-text)] sm:p-7", service.color]}>
+            <article class="brand-card flex min-h-full flex-col bg-[var(--brand-surface-soft)] p-6 text-[var(--brand-text)] sm:p-7">
               <div class="flex items-start justify-between gap-4 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">
                 <span>{service.name}</span>
                 <span>{service.number}</span>
@@ -161,7 +159,7 @@ const services = [
       </div>
     </section>
 
-    <section class="border-t border-[var(--brand-line)] bg-[var(--brand-surface-cool)] text-[var(--brand-text)]">
+    <section class="border-t border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The practical first step</p>
         <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Find the AI work worth paying for.</h2>
