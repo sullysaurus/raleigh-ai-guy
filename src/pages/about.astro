@@ -24,41 +24,69 @@ const principles = [
   pageTitle="About Danny Sullivan — Raleigh AI Guy"
   pageDescription="Danny Sullivan is Raleigh AI Guy, helping small businesses find practical AI tools, improve workflows, and avoid expensive distractions."
 >
-  <div class="brand-page">
-    <section class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-center lg:py-28">
-      <div>
-        <p class="text-xs font-medium uppercase tracking-[0.14em] text-base-500 dark:text-base-400">About Danny Sullivan · Raleigh, NC</p>
-        <h1 class="mt-5 max-w-4xl font-sans text-4xl font-semibold leading-[1.04] tracking-[-0.04em] sm:text-6xl lg:text-7xl">I make AI useful for people who have a business to run.</h1>
-        <p class="mt-7 max-w-2xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg">I’m an AI product engineer, educator, and small-business builder. I help teams find the few AI opportunities worth acting on, choose tools that fit, and turn the useful ones into everyday workflows.</p>
-        <div class="mt-8 flex flex-wrap items-center gap-5"><a href="/ai-answers/#ask" class="brand-button">Ask me an AI question <span class="ml-3">→</span></a><a href="#experience" class="text-sm text-base-500 hover:text-black dark:text-base-400 dark:hover:text-white">See my experience ↓</a></div>
+  <div class="brand-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
+    <section class="mx-auto max-w-[96rem] px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12 lg:pb-28 lg:pt-20">
+      <div class="grid gap-14 lg:grid-cols-[minmax(0,1.55fr)_minmax(19rem,.58fr)] lg:items-end lg:gap-16 xl:gap-20">
+        <div>
+          <p class="inline-flex items-center gap-3 rounded-full border border-[var(--brand-line)] px-4 py-2 text-xs font-semibold text-[var(--brand-muted)]">
+            <span class="size-2 rounded-full bg-[var(--brand-mint)]" aria-hidden="true"></span>
+            About Danny Sullivan · Raleigh, NC
+          </p>
+          <h1 class="mt-9 max-w-5xl font-sans text-[clamp(3.2rem,6vw,6.5rem)] font-extrabold leading-[0.91] tracking-[-0.075em]">
+            I make AI <span class="text-[var(--brand-mint)]">useful</span> for
+            <span class="block">people with a</span>
+            <em class="mt-2 block font-serif font-normal tracking-[-0.055em]">business to run.</em>
+          </h1>
+          <p class="mt-10 max-w-2xl text-lg font-semibold leading-8 sm:text-xl sm:leading-9">The person you talk to is the person who studies the work, builds the system, and helps your team use it.</p>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-[var(--brand-muted)] sm:text-lg sm:leading-8">I’m an AI product engineer, educator, and small-business builder. I help teams find the few AI opportunities worth acting on, choose tools that fit, and turn the useful ones into everyday workflows.</p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button">Start with a $500 diagnosis <span class="ml-3">→</span></a>
+            <a href="#experience" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]">See my experience ↓</a>
+          </div>
+        </div>
+
+        <figure class="mx-auto w-full max-w-[24rem] overflow-hidden rounded-[1.5rem] border border-[var(--brand-line)] bg-[var(--brand-surface)] p-3 shadow-[0_24px_60px_var(--brand-shadow)] lg:mx-0 lg:justify-self-end">
+          <div class="overflow-hidden rounded-t-[999px] rounded-b-[1rem] bg-[var(--brand-ink)]">
+            <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" class="aspect-[.94/1] w-full scale-[1.08] object-cover object-[50%_43%]" />
+          </div>
+          <figcaption class="flex items-end justify-between gap-4 px-2 pb-1 pt-4">
+            <strong class="text-sm font-bold">Danny Sullivan</strong>
+            <span class="text-right text-xs leading-5 text-[var(--brand-muted)]">Raleigh AI Guy<br />Raleigh, North Carolina</span>
+          </figcaption>
+        </figure>
       </div>
-      <figure class="brand-panel p-3"><Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" class="w-full rounded-[calc(var(--brand-radius)-.5rem)]" /><figcaption class="flex items-end justify-between gap-4 px-2 pb-1 pt-4"><strong class="text-sm font-medium">Danny Sullivan</strong><span class="text-right text-xs leading-5 opacity-60">Raleigh AI Guy<br />Raleigh, North Carolina</span></figcaption></figure>
+    </section>
+
+    <section class="border-y border-white/10 bg-[var(--brand-ink)] text-white">
+      <div class="mx-auto grid max-w-[96rem] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[.7fr_1.3fr] lg:gap-20 lg:px-12">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">Why work with me</p>
+          <h2 class="mt-5 max-w-xl font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Technical depth, explained clearly.</h2>
+        </div>
+        <div class="max-w-2xl space-y-5 text-base leading-7 text-white/65 sm:text-lg sm:leading-8"><p>I work with AI every day, but I do not believe every business needs custom software, an “AI transformation,” or another subscription.</p><p>Before moving into technology, I taught students with emotional disabilities and played professional baseball in the Tampa Bay Rays organization. Both experiences taught me to prepare carefully, communicate clearly, and keep improving when the path is not obvious.</p><p>My job is to understand how your business actually works, recognize where AI has leverage, and explain the recommendation clearly enough that you can make a confident decision. If AI is the wrong answer, I will say so.</p></div>
+      </div>
+    </section>
+
+    <section id="experience" class="scroll-mt-6 mx-auto max-w-[96rem] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <div class="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end lg:gap-20">
+        <div><p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">Experience</p><h2 class="mt-5 max-w-xl font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Different careers. One practical way of working.</h2></div>
+        <p class="max-w-2xl text-base leading-7 text-[var(--brand-muted)] sm:text-lg sm:leading-8">Engineering gives me the technical depth. Teaching and running a business shape how I communicate, prioritize, and build around the people doing the work.</p>
+      </div>
+      <div class="mt-14 divide-y divide-[var(--brand-line)] border-y border-[var(--brand-line)]">{experience.map((item) => <article class="grid gap-4 py-7 lg:grid-cols-[8rem_19rem_1fr] lg:gap-10"><span class="text-xs font-bold uppercase tracking-[0.14em] text-[var(--brand-mint)]">{item.label}</span><h3 class="font-sans text-lg font-bold leading-tight">{item.title}</h3><p class="max-w-2xl text-sm leading-6 text-[var(--brand-muted)] sm:text-base sm:leading-7">{item.body}</p></article>)}</div>
     </section>
 
     <section class="border-y border-[var(--brand-line)] bg-[var(--brand-surface-soft)]">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[18rem_1fr] lg:gap-24">
-        <div><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Why work with me</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Technical depth, explained clearly.</h2></div>
-        <div class="max-w-2xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300"><p>I work with AI every day, but I do not believe every business needs custom software, an “AI transformation,” or another subscription.</p><p>Before moving into technology, I taught students with emotional disabilities and played professional baseball in the Tampa Bay Rays organization. Both experiences taught me to prepare carefully, communicate clearly, and keep improving when the path is not obvious.</p><p>My job is to understand how your business actually works, recognize where AI has leverage, and explain the recommendation clearly enough that you can make a confident decision. If AI is the wrong answer, I will say so.</p></div>
+      <div class="mx-auto max-w-[96rem] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20"><div><p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">How I work</p><h2 class="mt-5 max-w-md font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Practical by default.</h2></div><div class="grid gap-4 sm:grid-cols-2">{principles.map(([title, body]) => <article class="rounded-[1.25rem] border border-[var(--brand-line)] bg-[var(--brand-bg)] p-6 sm:p-7"><span class="mb-7 block size-2 rounded-full bg-[var(--brand-mint)]" aria-hidden="true"></span><h3 class="font-sans text-xl font-bold tracking-[-0.03em]">{title}</h3><p class="mt-3 text-sm leading-6 text-[var(--brand-muted)]">{body}</p></article>)}</div></div>
       </div>
     </section>
 
-    <section id="experience" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <div class="max-w-2xl"><p class="text-xs font-medium uppercase tracking-wide text-base-500 dark:text-base-400">Experience</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">Different careers. One practical way of working.</h2></div>
-      <div class="mt-12 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">{experience.map((item) => <article class="grid gap-4 py-7 lg:grid-cols-[8rem_17rem_1fr] lg:gap-8"><span class="text-xs font-medium uppercase tracking-wide text-base-400">{item.label}</span><h3 class="font-sans text-lg font-semibold">{item.title}</h3><p class="max-w-xl text-sm leading-6 text-base-500 dark:text-base-400">{item.body}</p></article>)}</div>
+    <section class="mx-auto grid max-w-[96rem] gap-8 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-3 lg:px-12">
+      <article class="border-t border-[var(--brand-line)] pt-6"><p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--brand-mint)]">Start here</p><h2 class="mt-5 font-sans text-2xl font-bold tracking-[-0.03em]">AI diagnosis</h2><p class="mt-4 text-sm leading-6 text-[var(--brand-muted)]">A focused review of the work, the bottlenecks, and the few AI opportunities worth paying for.</p><a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="home-text-link mt-5 inline-flex min-h-11 items-center text-sm font-bold">Start a $500 diagnosis →</a></article>
+      <article class="border-t border-[var(--brand-line)] pt-6"><p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--brand-mint)]">For teams</p><h2 class="mt-5 font-sans text-2xl font-bold tracking-[-0.03em]">Practical AI workshops</h2><p class="mt-4 text-sm leading-6 text-[var(--brand-muted)]">Hands-on training built around useful workflows, limitations, privacy, and better judgment.</p><a href="/ai-workshops/" class="home-text-link mt-5 inline-flex min-h-11 items-center text-sm font-bold">See the workshops →</a></article>
+      <article class="border-t border-[var(--brand-line)] pt-6"><p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--brand-mint)]">After the plan</p><h2 class="mt-5 font-sans text-2xl font-bold tracking-[-0.03em]">Implementation help</h2><p class="mt-4 text-sm leading-6 text-[var(--brand-muted)]">Focused help redesigning a process, building the workflow, and making sure your team can use it.</p><a href="mailto:hello@raleighaiguy.com?subject=AI%20Implementation" class="home-text-link mt-5 inline-flex min-h-11 items-center text-sm font-bold">Discuss an implementation →</a></article>
     </section>
 
-    <section class="border-y border-[var(--brand-line)] bg-[var(--brand-surface-soft)]">
-      <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <div class="grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-24"><div><p class="brand-eyebrow">How I work</p><h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">Practical by default.</h2></div><div class="grid gap-4 sm:grid-cols-2">{principles.map(([title, body]) => <article class="brand-panel p-6"><h3 class="font-sans text-base font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-base-500 dark:text-base-400">{body}</p></article>)}</div></div>
-      </div>
-    </section>
-
-    <section class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-3">
-      <article><p class="text-xs font-medium uppercase tracking-wide text-base-400">Start here</p><h2 class="mt-4 font-sans text-2xl font-semibold">Two-minute AI answer</h2><p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Send me the AI task, problem, or question that keeps stalling. I will record a personalized answer and send it directly to you.</p><a href="/ai-answers/#ask" class="mt-5 inline-block text-sm font-medium">Send me your question →</a></article>
-      <article><p class="text-xs font-medium uppercase tracking-wide text-base-400">For teams</p><h2 class="mt-4 font-sans text-2xl font-semibold">Practical AI workshops</h2><p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">A plain-English introduction to useful AI workflows, limitations, privacy, and better judgment.</p><a href="/ai-workshops/" class="mt-5 inline-block text-sm font-medium">See the workshop →</a></article>
-      <article><p class="text-xs font-medium uppercase tracking-wide text-base-400">After the plan</p><h2 class="mt-4 font-sans text-2xl font-semibold">Implementation help</h2><p class="mt-4 text-sm leading-6 text-base-500 dark:text-base-400">Focused help redesigning a process, building a workflow, or teaching your team to use it well.</p><a href="/ai-answers/#ask" class="mt-5 inline-block text-sm font-medium">Tell me what is stuck →</a></article>
-    </section>
-
-    <section class="border-y border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]"><div class="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="brand-eyebrow">A useful place to start</p><h2 class="mt-5 max-w-3xl text-balance font-sans text-3xl font-semibold tracking-tight sm:text-5xl">Bring me the AI problem you want unstuck.</h2></div><a href="/ai-answers/#ask" class="brand-button">Get a two-minute answer <span class="ml-3">→</span></a></div></section>
+    <section class="border-y border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]"><div class="mx-auto grid max-w-[96rem] gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end lg:px-12"><div><p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">A useful place to start</p><h2 class="mt-5 max-w-4xl text-balance font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Find the AI work worth paying for.</h2><p class="mt-5 max-w-2xl text-base leading-7 text-[var(--brand-muted)]">The $500 diagnosis gives you a focused roadmap before you commit to a larger build.</p></div><a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button">Start with a diagnosis <span class="ml-3">→</span></a></div></section>
   </div>
 </BaseLayout>
