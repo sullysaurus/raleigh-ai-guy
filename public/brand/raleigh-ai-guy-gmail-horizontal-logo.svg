@@ -1,11 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 132" role="img" aria-labelledby="title desc">
-  <title id="title">Raleigh AI Guy Gmail horizontal logo</title>
-  <desc id="desc">A compact, high-contrast Raleigh AI Guy logo for the Google Workspace header.</desc>
-  <rect width="320" height="132" rx="22" fill="#050617"/>
-  <rect x="2" y="2" width="316" height="128" rx="20" fill="none" stroke="#1b1e2e" stroke-width="4"/>
-  <g transform="translate(24 37) scale(.92)">
-    <path d="M15.3 0h33.4C57.2 0 64 6.8 64 15.3v21.4C64 45.2 57.2 52 48.7 52H36l-12 8v-8h-8.7C6.8 52 0 45.2 0 36.7V15.3C0 6.8 6.8 0 15.3 0Z" fill="#1dce8d"/>
-    <path d="m32 10.6 4.7 12.6 12.7 4.7-12.7 4.8L32 45.3l-4.7-12.6-12.7-4.8 12.7-4.7L32 10.6Z" fill="#050617"/>
-  </g>
-  <text x="98" y="78" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="-1.2">Raleigh AI Guy</text>
+  <title id="title">Raleigh AI Guy email logo</title>
+  <desc id="desc">Raleigh AI Guy, practical AI for Raleigh businesses.</desc>
+  <rect width="320" height="132" fill="#f8f3ea"/>
+  <path d="M61 22a39 39 0 0 1 39 39v39H61A39 39 0 0 1 22 61 39 39 0 0 1 61 22Z" fill="#e8562d"/>
+  <text x="120" y="59" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" letter-spacing="-.8">Raleigh AI Guy</text>
+  <text x="121" y="83" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing=".8">PRACTICAL AI · RALEIGH, NC</text>
 </svg>

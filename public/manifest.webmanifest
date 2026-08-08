@@ -1,10 +1,10 @@
 {
-  "name": "Danny Sullivan",
-  "short_name": "Danny Sullivan",
+  "name": "Raleigh AI Guy",
+  "short_name": "Raleigh AI Guy",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f0ebdd",
-  "theme_color": "#0b0c0e",
+  "background_color": "#f8f3ea",
+  "theme_color": "#e8562d",
   "icons": [
     {
       "src": "/apple-touch-icon.png",

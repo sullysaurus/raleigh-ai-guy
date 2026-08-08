@@ -2,15 +2,15 @@
 pubDate: 2026-07-19
 title: ZimZoom Photo Booth Website
 subtitle: A colorful, conversion-focused website that turns six photo experiences, statewide reach, and a remarkable event history into one unmistakably energetic brand.
-live: "https://zimzoom.netlify.app/"
+live: "https://zimzoomphotobooth.com/"
 image:
-  url: "/src/images/projects/zimzoom-photo-booth-website.png"
-  alt: "ZimZoom Photo Booth homepage featuring celebrating guests and the headline Extraordinary Photo Booth Experiences."
+  url: "/src/images/projects/zimzoom-homepage-live.png"
+  alt: "Live ZimZoom Photo Booth homepage featuring four guests and the headline Extraordinary Photo Booth Experiences."
 ---
 
 ## Overview
 
-[ZimZoom Photo Booth](https://zimzoom.netlify.app/) creates photo booth experiences for weddings, parties, university events, and brand activations across North Carolina. I designed and built a complete website that captures the energy of the events while giving customers a clear way to compare experiences, see the work, and check their date.
+[ZimZoom Photo Booth](https://zimzoomphotobooth.com/) creates photo booth experiences for weddings, parties, university events, and brand activations across North Carolina. I designed and built a complete website that captures the energy of the events while giving customers a clear way to compare experiences, see the work, and check their date.
 
 The site brings six services, real event photography, customization options, statewide locations, reviews, FAQs, and booking into one bold visual system. It presents ZimZoom as more than a booth rental: an experienced creative partner that knows how to make a room come alive.
 

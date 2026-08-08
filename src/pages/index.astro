@@ -1,8 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { homepageCaseStudy } from "@/data/homepageCaseStudy";
 import profileImage from "../../danny.jpeg";
+import seoDashboardImage from "@/images/projects/garden-art-seo-dashboard-live.png";
+import zimZoomImage from "@/images/projects/zimzoom-homepage-live.png";
 
 const services = [
   {
@@ -28,6 +29,37 @@ const services = [
   },
 ];
 
+const caseStudies = [
+  {
+    eyebrow: "Automated SEO growth",
+    title: "An SEO system that researches, drafts, measures, and keeps moving.",
+    description:
+      "For Garden & Art Landscapes, I connected keyword research, content planning, Google Analytics, and Search Console in one dashboard. It automatically tracks what is published, what is gaining visibility, and what deserves attention next.",
+    detail:
+      "The system also drafts useful local content and checks each article against Google's people-first content guidance before it reaches the owner. Instead of managing SEO tools, they can open one dashboard and make the few decisions that still need their expertise.",
+    proof: ["18 useful pages published", "Live Analytics + Search Console data", "Early rankings at #4, #14, and #28"],
+    image: seoDashboardImage,
+    imageAlt: "Garden & Art Landscapes SEO content tracker showing website activity, published pages, keyword rankings, search volume, and Search Console performance.",
+    href: "https://www.landscapingraleigh.com/seo-dashboard/",
+    cta: "Explore the live dashboard",
+    external: true,
+  },
+  {
+    eyebrow: "Custom Claude skills",
+    title: "Turning an overloaded inbox into a repeatable operating system.",
+    description:
+      "ZimZoom Photo Booth handles a constant stream of leads, customer replies, payment questions, and event details. I have been teaching the team how to turn that knowledge into custom Claude skills instead of sorting every message from scratch.",
+    detail:
+      "The inbox workflow identifies what each message is about, surfaces the next action, and keeps the team in control of every response. The bigger win is transferable: once the team understands how to build a skill, they can apply the same approach to other repetitive parts of the business.",
+    proof: ["Lead and customer-message triage", "Payment and follow-up prioritization", "Hands-on skill-building training"],
+    image: zimZoomImage,
+    imageAlt: "Live ZimZoom Photo Booth homepage featuring four guests and the headline Extraordinary Photo Booth Experiences.",
+    href: "/blog/posts/create-first-claude-skill-organize-inbox/",
+    cta: "See how to build the inbox skill",
+    external: false,
+  },
+];
+
 ---
 
 <BaseLayout
@@ -35,97 +67,84 @@ const services = [
   pageDescription="Practical AI workflows that help Raleigh businesses spend less time on email, marketing, follow-up, and admin."
   socialImage="/raleigh-ai-guy.png"
   socialImageAlt="Raleigh AI Guy — AI help for small business, in plain English"
-  socialImageWidth={1840}
-  socialImageHeight={1208}
+  socialImageWidth={1200}
+  socialImageHeight={630}
 >
   <div class="home-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
-    <section class="mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
-      <div>
-        <p class="site-eyebrow">Raleigh AI Guy · Raleigh, North Carolina</p>
-        <h1 class="mt-6 max-w-5xl font-sans text-[clamp(2.8rem,7vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
-          Practical AI for
-          <span class="headline-highlight mt-2 block">Raleigh businesses.</span>
-        </h1>
-        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--brand-text)] sm:text-xl sm:leading-9">
-          Practical AI systems for service businesses and small teams that want less admin and better follow-through.
-        </p>
-
-        <div class="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
-          <div>
-            <div class="max-w-3xl text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
-              <p>I build production AI systems at Gametime and previously taught AI at Pluralsight. Now I bring that experience to local businesses that want useful systems, not hype.</p>
-            </div>
-            <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
-              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Systems Builder</li>
-              <li class="rounded-full border border-[var(--brand-line)] bg-[var(--brand-surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em]">AI Educator</li>
-            </ul>
-            <div class="mt-8 flex flex-wrap gap-4">
-              <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
-              <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
-            </div>
+    <section class="hero-shell mx-auto max-w-[96rem] px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12 lg:pb-28 lg:pt-20">
+      <div class="grid gap-14 lg:grid-cols-[minmax(0,1.7fr)_minmax(18rem,.55fr)] lg:items-end lg:gap-16 xl:gap-20">
+        <div class="hero-copy">
+          <p class="location-pill inline-flex items-center gap-3 rounded-full border border-[var(--brand-line)] px-4 py-2 text-xs font-semibold text-[var(--brand-muted)]">
+            <span class="size-2 rounded-full bg-[var(--brand-mint)]" aria-hidden="true"></span>
+            Raleigh, North Carolina
+          </p>
+          <h1 class="mt-9 max-w-4xl font-sans text-[clamp(3.2rem,6.2vw,6.65rem)] font-extrabold leading-[0.91] tracking-[-0.075em]">
+            Practical AI for
+            <span class="mt-2 block text-[var(--brand-mint)]">Raleigh <em class="font-serif font-normal text-[var(--brand-text)]">businesses.</em></span>
+          </h1>
+          <p class="mt-10 max-w-2xl text-lg font-semibold leading-8 text-[var(--brand-text)] sm:text-xl sm:leading-9">
+            Practical AI systems for service businesses and small teams that want less admin and better follow-through.
+          </p>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-[var(--brand-muted)] sm:text-lg sm:leading-8">
+            I build production AI systems at Gametime and previously taught AI at Pluralsight. Now I bring that experience to local businesses that want useful systems, not hype.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
+            <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question</a>
           </div>
-
-          <aside class="brand-card bg-[var(--brand-surface-soft)] p-4 text-[var(--brand-text)] sm:p-5">
-            <Image src={profileImage} alt="Danny Sullivan" width={512} height={512} loading="eager" class="aspect-square w-full rounded-[1rem] object-cover" />
-            <p class="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">About Danny</p>
-            <p class="mt-3 font-sans text-2xl font-semibold leading-tight">Work directly with me.</p>
-            <p class="mt-3 text-sm leading-6 opacity-65">I review the workflow, build the system, and help you keep it useful.</p>
-            <a href="/about/" class="home-text-link mt-5 inline-flex text-sm font-semibold">The longer story →</a>
-          </aside>
+          <ul class="mt-9 flex flex-wrap gap-3" aria-label="Areas of expertise">
+            <li class="hero-tag rounded-full bg-[var(--brand-surface-soft)] px-4 py-2 text-[.68rem] font-bold uppercase tracking-[0.12em]">AI Systems Builder</li>
+            <li class="hero-tag rounded-full bg-[var(--brand-surface-soft)] px-4 py-2 text-[.68rem] font-bold uppercase tracking-[0.12em]">AI Educator</li>
+          </ul>
         </div>
+
+        <aside class="hero-profile mx-auto w-full max-w-[22rem] lg:mx-0 lg:justify-self-end">
+          <a href="/about/" class="group block" aria-label="Learn more about Danny Sullivan">
+            <div class="overflow-hidden rounded-t-[999px] rounded-b-[1.35rem] bg-[var(--brand-ink)]">
+              <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" class="aspect-[.92/1] w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]" />
+            </div>
+            <div class="mt-7 grid grid-cols-[1fr_auto] items-center gap-6">
+              <div>
+                <p class="text-[.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">About Danny</p>
+                <p class="mt-3 max-w-sm font-sans text-xl font-bold leading-[1.1] tracking-[-0.03em] sm:text-2xl">Work directly with the person who builds it.</p>
+              </div>
+              <span class="grid size-12 place-items-center rounded-full bg-[var(--brand-ink)] text-lg text-[var(--brand-bg)] transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </div>
+          </a>
+        </aside>
       </div>
     </section>
 
     <section id="recent-work" class="scroll-mt-6 border-y border-white/10 bg-[var(--brand-ink)] text-white">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,.55fr)] lg:gap-16">
+      <div class="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
+        <div class="grid gap-6 lg:grid-cols-[.65fr_1.35fr] lg:items-end lg:gap-16">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.16em]">{homepageCaseStudy.eyebrow}</p>
-            <h2 class="mt-4 max-w-4xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">{homepageCaseStudy.heading}</h2>
-            <div class="mt-8 max-w-3xl space-y-5 text-base leading-7 text-white/72">
-              {homepageCaseStudy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-              <p>
-                {homepageCaseStudy.emailSkill.description}
-                <a href={homepageCaseStudy.emailSkill.href} class="home-text-link ml-1 font-semibold">
-                  {homepageCaseStudy.emailSkill.linkLabel} →
-                </a>
-              </p>
-              <p>{homepageCaseStudy.roadmap}</p>
-            </div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">Recent work</p>
+            <h2 class="mt-5 max-w-xl font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Automation people can actually use.</h2>
           </div>
-          <aside class="brand-card bg-white p-6 text-[var(--brand-ink)] sm:p-7">
-            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">Anonymized case study</p>
-            <p class="mt-8 font-sans text-2xl font-semibold leading-tight">{homepageCaseStudy.clientName || homepageCaseStudy.clientDescription}</p>
-            {homepageCaseStudy.clientName && <p class="mt-2 text-sm leading-6 opacity-60">{homepageCaseStudy.clientDescription}</p>}
-            <div class="mt-8 border-t border-[var(--brand-line)] pt-6">
-              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">In use now</p>
-              <ul class="mt-4 space-y-3">
-                {homepageCaseStudy.inUse.map((item) => (
-                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
-                    <span aria-hidden="true">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div class="mt-7 border-t border-current/20 pt-6">
-              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">Building next</p>
-              <ul class="mt-4 space-y-3">
-                {homepageCaseStudy.buildingNext.map((item) => (
-                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
-                    <span aria-hidden="true">→</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {homepageCaseStudy.quote && (
-              <blockquote class="mt-8 border-t border-[var(--brand-line)] pt-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-black/55">Client quote</p>
-                <p class="mt-3 text-sm font-semibold leading-6">“{homepageCaseStudy.quote}”</p>
-              </blockquote>
-            )}
-          </aside>
+          <p class="max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">The best system does the repetitive work, shows what is happening, and leaves the important decisions with the people who know the business.</p>
+        </div>
+
+        <div class="mt-14 grid gap-7 xl:grid-cols-2">
+          {caseStudies.map((study) => (
+            <article class="overflow-hidden rounded-[1.5rem] bg-[var(--brand-bg)] text-[var(--brand-ink)]">
+              <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class="group block overflow-hidden border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)]">
+                <Image src={study.image} alt={study.imageAlt} class="aspect-[16/9] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]" widths={[640, 960, 1280]} sizes="(min-width: 1280px) 46vw, 92vw" />
+              </a>
+              <div class="p-6 sm:p-8">
+                <p class="text-[.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">{study.eyebrow}</p>
+                <h3 class="mt-4 max-w-2xl font-sans text-3xl font-bold leading-[1.02] tracking-[-0.04em]">{study.title}</h3>
+                <div class="mt-6 space-y-4 text-sm leading-6 text-[var(--brand-muted)] sm:text-base sm:leading-7">
+                  <p>{study.description}</p>
+                  <p>{study.detail}</p>
+                </div>
+                <ul class="mt-7 grid gap-3 border-y border-[var(--brand-line)] py-6 sm:grid-cols-3" aria-label={`${study.eyebrow} outcomes`}>
+                  {study.proof.map((item) => <li class="text-xs font-bold leading-5"><span class="mr-2 text-[var(--brand-mint)]" aria-hidden="true">●</span>{item}</li>)}
+                </ul>
+                <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class="mt-6 inline-flex min-h-11 items-center text-sm font-bold underline decoration-[var(--brand-mint)] decoration-2 underline-offset-4">{study.cta} <span class="ml-2" aria-hidden="true">{study.external ? "↗" : "→"}</span></a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

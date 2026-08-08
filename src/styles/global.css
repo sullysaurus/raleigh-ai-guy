@@ -24,22 +24,22 @@
 }
 
 :root {
-  --brand-ink: #050617;
-  --brand-mint: #1dce8d;
-  --brand-mint-hover: #28dfa0;
-  --brand-bg: #f7f8f5;
-  --brand-surface: #ffffff;
-  --brand-surface-soft: #eef1f0;
+  --brand-ink: #292219;
+  --brand-mint: #e8562d;
+  --brand-mint-hover: #cf4520;
+  --brand-bg: #f8f3ea;
+  --brand-surface: #fffaf2;
+  --brand-surface-soft: #eee4d2;
   --brand-text: var(--brand-ink);
-  --brand-muted: #686b75;
-  --brand-line: rgb(5 6 23 / 12%);
-  --brand-line-strong: #1b1e2e;
-  --brand-shadow: rgb(5 6 23 / 18%);
+  --brand-muted: #827462;
+  --brand-line: rgb(72 54 36 / 17%);
+  --brand-line-strong: #332b22;
+  --brand-shadow: rgb(61 43 24 / 14%);
   --brand-form: #ffffff;
   --brand-radius-sm: .75rem;
   --brand-radius: 1.25rem;
   --brand-shell: 72rem;
-  --focus-ring: #087a59;
+  --focus-ring: #b73718;
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,
     /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
@@ -54,12 +54,12 @@
 
 .dark {
   --focus-ring: var(--brand-mint);
-  --brand-mint-hover: #2de4a4;
+  --brand-mint-hover: #ff744d;
   --brand-bg: var(--brand-ink);
-  --brand-surface: #0b0d1e;
+  --brand-surface: #352c23;
   --brand-surface-soft: var(--brand-surface);
   --brand-text: #f7f7f4;
-  --brand-muted: #9b9da8;
+  --brand-muted: #c5b8a7;
   --brand-line: rgb(255 255 255 / 16%);
   --brand-line-strong: #24283b;
   --brand-shadow: rgb(5 6 23 / 55%);
@@ -384,6 +384,26 @@ summary:focus-visible {
   border-radius: .18em;
 }
 
+.brand-monogram {
+  border-radius: 999px 999px 0 999px;
+}
+
+.font-serif {
+  font-family: "Instrument Serif", serif;
+}
+
+.hero-copy,
+.hero-profile {
+  animation: hero-rise 650ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.hero-profile { animation-delay: 110ms; }
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 639px) {
   .headline-highlight {
     max-width: 100%;
@@ -403,4 +423,6 @@ summary:focus-visible {
   .brand-back-link,
   .brand-text-link,
   .home-page a { transition: none !important; }
+  .hero-copy,
+  .hero-profile { animation: none !important; }
 }

@@ -1,15 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4200 700" role="img" aria-labelledby="title desc">
-  <title id="title">Raleigh AI Guy LinkedIn company Page banner</title>
-  <desc id="desc">Practical AI for Raleigh businesses.</desc>
-  <rect width="4200" height="700" fill="#050617"/>
-  <path d="M3 3h4194v694H3z" fill="none" stroke="#1b1e2e" stroke-width="6"/>
-  <circle cx="3970" cy="30" r="480" fill="#0b0d1e"/>
-  <circle cx="3970" cy="30" r="340" fill="none" stroke="#1dce8d" stroke-opacity=".18" stroke-width="4"/>
-  <g transform="translate(820 205) scale(6)">
-    <path d="M11.5 4h25C42.85 4 48 9.15 48 15.5v16C48 37.85 42.85 43 36.5 43H27l-9 5v-5h-6.5C5.15 43 0 37.85 0 31.5v-16C0 9.15 5.15 4 11.5 4Z" fill="#1dce8d"/>
-    <path d="m24 12 3.55 9.45L37 25l-9.45 3.55L24 38l-3.55-9.45L11 25l9.45-3.55L24 12Z" fill="#050617"/>
-  </g>
-  <text x="1215" y="352" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" letter-spacing="-6">Practical AI for Raleigh businesses.</text>
-  <rect x="1224" y="420" width="310" height="14" rx="7" fill="#1dce8d"/>
-  <text x="1224" y="515" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" letter-spacing="4">RALEIGH AI GUY</text>
+  <title id="title">Raleigh AI Guy LinkedIn company banner</title>
+  <desc id="desc">Practical AI systems for service businesses and small teams.</desc>
+  <rect width="4200" height="700" fill="#f8f3ea"/>
+  <circle cx="4010" cy="650" r="520" fill="#e8562d"/>
+  <rect x="3500" y="90" width="280" height="280" fill="#eee4d2"/>
+  <path d="M470 146a104 104 0 0 1 104 104v104H470A104 104 0 0 1 366 250 104 104 0 0 1 470 146Z" fill="#e8562d"/>
+  <text x="680" y="300" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="178" font-weight="800" letter-spacing="-8">Practical AI for Raleigh</text>
+  <text x="690" y="475" fill="#292219" font-family="Georgia, serif" font-size="185" font-style="italic">businesses.</text>
+  <text x="695" y="565" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="8">RALEIGH AI GUY · DANNY SULLIVAN</text>
 </svg>
