@@ -14,12 +14,12 @@ export const handler = async (event) => {
 
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   const priceId = process.env.STRIPE_ZIMZOOM_PRICE_ID;
-  const siteUrl = (process.env.URL || "https://dannysullivan.ai").replace(/\/$/, "");
+  const siteUrl = (process.env.URL || "https://raleighaiguy.com").replace(/\/$/, "");
 
   if (!stripeSecretKey || !priceId) {
     console.error("Stripe Checkout is missing STRIPE_SECRET_KEY or STRIPE_ZIMZOOM_PRICE_ID");
     return json(503, {
-      error: "Checkout is not configured yet. Please email hello@dannysullivan.ai.",
+      error: "Checkout is not configured yet. Please email hello@raleighaiguy.com.",
     });
   }
 
@@ -51,7 +51,7 @@ export const handler = async (event) => {
     if (!response.ok || !session.url) {
       console.error("Stripe Checkout Session creation failed", response.status, session?.error?.type);
       return json(502, {
-        error: "Checkout could not be started. Please email hello@dannysullivan.ai.",
+        error: "Checkout could not be started. Please email hello@raleighaiguy.com.",
       });
     }
 
@@ -66,7 +66,7 @@ export const handler = async (event) => {
   } catch (error) {
     console.error("Stripe Checkout request failed", error instanceof Error ? error.message : "Unknown error");
     return json(502, {
-      error: "Checkout could not be started. Please email hello@dannysullivan.ai.",
+      error: "Checkout could not be started. Please email hello@raleighaiguy.com.",
     });
   }
 };

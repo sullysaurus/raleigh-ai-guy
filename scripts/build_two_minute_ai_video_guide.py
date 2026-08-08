@@ -416,7 +416,7 @@ def add_cover(document):
     set_run_font(run, size=10.5, color=INK, bold=True)
     meta2 = document.add_paragraph()
     meta2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = meta2.add_run("Instagram + dannysullivan.ai answer library  |  July 2026")
+    run = meta2.add_run("Instagram + raleighaiguy.com answer library  |  July 2026")
     set_run_font(run, size=9.5, color=MUTED)
 
     document.add_page_break()

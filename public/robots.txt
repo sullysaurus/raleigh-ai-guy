@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dannysullivan.ai/sitemap-index.xml
+Sitemap: https://raleighaiguy.com/sitemap-index.xml

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" role="img" aria-labelledby="title desc">
   <title id="title">Raleigh AI Guy LinkedIn personal profile banner</title>
-  <desc id="desc">Practical AI systems for Raleigh businesses.</desc>
+  <desc id="desc">Practical AI for Raleigh businesses.</desc>
   <rect width="1584" height="396" fill="#050617"/>
   <path d="M0 0h1584v396H0z" fill="none" stroke="#1b1e2e" stroke-width="6"/>
   <circle cx="1438" cy="-8" r="206" fill="#0b0d1e"/>
@@ -10,7 +10,7 @@
     <path d="m24 12 3.55 9.45L37 25l-9.45 3.55L24 38l-3.55-9.45L11 25l9.45-3.55L24 12Z" fill="#050617"/>
   </g>
   <text x="600" y="142" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" letter-spacing="-2.5">Raleigh AI Guy</text>
-  <text x="600" y="202" fill="#9b9da8" font-family="Arial, Helvetica, sans-serif" font-size="30">Practical AI systems for Raleigh businesses.</text>
+  <text x="600" y="202" fill="#9b9da8" font-family="Arial, Helvetica, sans-serif" font-size="30">Practical AI for Raleigh businesses.</text>
   <line x1="600" y1="247" x2="1350" y2="247" stroke="#24283b" stroke-width="2"/>
   <text x="600" y="302" fill="#f7f7f4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">AI DIAGNOSIS</text>
   <circle cx="821" cy="294" r="5" fill="#1dce8d"/>

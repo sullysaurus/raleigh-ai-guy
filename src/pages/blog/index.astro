@@ -12,14 +12,14 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 const formatDate = (date: Date) => date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 ---
 
-<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for Realtors, service businesses, and small teams that want useful results at work.">
+<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for Raleigh businesses and small teams that want useful results at work.">
   <div class="brand-page">
     <header class="brand-page-header"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
       <div>
         <p class="brand-eyebrow">Practical AI field guide</p>
         <h1 class="brand-display mt-5 max-w-3xl">Use AI to get real work done.</h1>
       </div>
-      <p class="brand-copy">Clear workflows for Realtors, service businesses, and small teams that want useful results—not a daily stream of AI hype.</p>
+      <p class="brand-copy">Clear workflows for Raleigh businesses and small teams that want useful results—not a daily stream of AI hype.</p>
     </div></header>
 
     {tags.length > 0 && (
@@ -77,7 +77,7 @@ const formatDate = (date: Date) => date.toLocaleDateString("en-US", { month: "sh
 
     <section class="brand-section bg-[var(--brand-surface-cool)]"><div class="mx-auto grid max-w-6xl gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-end">
       <div><p class="brand-eyebrow">Need a practical next step?</p><h2 class="brand-section-title mt-4 max-w-2xl">Find the AI work worth paying for.</h2><p class="brand-copy mt-5 max-w-xl">Start with a $500 diagnosis and leave with a focused roadmap.</p></div>
-      <a href="mailto:hello@dannysullivan.ai?subject=AI%20Diagnosis" class="brand-button">Start with a diagnosis →</a>
+      <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button">Start with a diagnosis →</a>
     </div></section>
   </div>
 </BaseLayout>

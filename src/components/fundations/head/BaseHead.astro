@@ -30,15 +30,15 @@ const {
 const siteName = "Raleigh AI Guy";
 const personName = "Danny Sullivan";
 const defaultDescription =
-  "Practical AI systems for Raleigh Realtors, service businesses, and small teams.";
+  "Practical AI for Raleigh businesses, with clear guidance and useful systems.";
 const title = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
 const description = pageDescription ?? defaultDescription;
 const canonical = new URL(
   Astro.url.pathname,
-  Astro.site ?? "https://dannysullivan.ai"
+  Astro.site ?? "https://raleighaiguy.com"
 ).toString();
-const siteUrl = new URL("/", Astro.site ?? "https://dannysullivan.ai").toString();
-const image = new URL(socialImage ?? "/og-image.png", siteUrl).toString();
+const siteUrl = new URL("/", Astro.site ?? "https://raleighaiguy.com").toString();
+const image = new URL(socialImage ?? "/brand/raleigh-ai-guy-social-card.png", siteUrl).toString();
 const imageType = image.endsWith(".webp")
   ? "image/webp"
   : image.endsWith(".jpg") || image.endsWith(".jpeg")
@@ -52,7 +52,7 @@ const schema = {
       "@id": `${siteUrl}#person`,
       name: personName,
       url: siteUrl,
-      email: "mailto:hello@dannysullivan.ai",
+      email: "mailto:hello@raleighaiguy.com",
       sameAs: ["https://www.linkedin.com/in/danny-sullivan-raleigh/"],
       jobTitle: "AI Product Engineer",
       description: defaultDescription,

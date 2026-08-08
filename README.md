@@ -1,4 +1,4 @@
-# dannysullivan.ai
+# Raleigh AI Guy
 
 Personal site for Danny Sullivan, built with Astro and Tailwind CSS.
 
@@ -23,7 +23,7 @@ npm run build
 npm run preview
 ```
 
-The production site is configured for `https://dannysullivan.ai`.
+The production site is configured for `https://raleighaiguy.com`.
 
 ## Stripe Checkout
 

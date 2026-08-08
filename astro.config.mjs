@@ -17,7 +17,7 @@ export default defineConfig({
     skipInline: false,
     drafts: true,
   },
-  site: "https://dannysullivan.ai",
+  site: "https://raleighaiguy.com",
   integrations: [
     sitemap({
       filter: (page) =>
