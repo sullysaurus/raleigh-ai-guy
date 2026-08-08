@@ -85,6 +85,14 @@ const schema = {
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 <Fonts />
 <Favicons />
+<!-- Google Analytics -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XZ80SZT0ZW"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-XZ80SZT0ZW');
+</script>
 <!-- Scripts -->
 <FuseJS/>
 <ToggleLocalStorage/>

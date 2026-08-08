@@ -12,20 +12,31 @@ const services = [
     price: "$500 · one-time",
     tagline: "Find out what's actually worth doing.",
     description:
-      "I find where time gets lost and give you a short, practical AI roadmap.",
+      "A personal workflow review, three ranked opportunities, and a written 30-day roadmap.",
     cta: "Start with a diagnosis",
-    href: "mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis",
+    href: "/ai-diagnosis/",
   },
   {
     number: "02",
+    name: "Implementation Sprint",
+    price: "$3,000–$7,500 · typical range",
+    tagline: "Build one useful system well.",
+    description:
+      "Turn the best opportunity into a focused, measurable workflow your team can review and use.",
+    footnote: "Quoted after the diagnosis. Fixed scope before work begins.",
+    cta: "See how implementation works",
+    href: "/ai-diagnosis/#apply",
+  },
+  {
+    number: "03",
     name: "AI Partnership",
-    price: "starting at $2,000/mo · based on scope",
+    price: "from $2,000/mo · based on scope",
     tagline: "I build it, run it, and improve it.",
     description:
-      "We turn the diagnosis into working systems, then keep them useful as your business and the tools change.",
-    footnote: "I take on a small number of ongoing clients.",
+      "Ongoing operation, improvements, training, and accountability when the system needs active ownership.",
+    footnote: "Usually follows a diagnosis or build. Limited client capacity.",
     cta: "Discuss a partnership",
-    href: "mailto:hello@raleighaiguy.com?subject=AI%20Partnership",
+    href: "/ai-diagnosis/#apply",
   },
 ];
 
@@ -89,8 +100,8 @@ const caseStudies = [
             I build production AI systems at Gametime and previously taught AI at Pluralsight. Now I bring that experience to local businesses that want useful systems, not hype.
           </p>
           <div class="mt-9 flex flex-wrap gap-4">
-            <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
-            <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question</a>
+            <a href="/ai-diagnosis/" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
+            <a href="/ai-opportunity-scorecard/" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard</a>
           </div>
           <ul class="mt-9 flex flex-wrap gap-3" aria-label="Areas of expertise">
             <li class="hero-tag rounded-full bg-[var(--brand-surface-soft)] px-4 py-2 text-[.68rem] font-bold uppercase tracking-[0.12em]">AI Systems Builder</li>
@@ -153,13 +164,18 @@ const caseStudies = [
 
     <section id="services" class="scroll-mt-6 bg-[var(--brand-bg)] text-[var(--brand-text)]">
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Services</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-mint)]">Ways to work together</p>
         <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
-          <h2 class="max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Two ways to work together</h2>
-          <p class="max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">Start with a focused diagnosis. Continue with a hands-on partnership when there is something valuable to build.</p>
+          <h2 class="max-w-2xl font-sans text-4xl font-bold leading-none tracking-[-0.05em] sm:text-5xl">A clear path from question to working system.</h2>
+          <p class="max-w-2xl text-base leading-7 text-[var(--brand-muted)]">Start free when you are exploring. Pay for a diagnosis when the workflow deserves personal attention. Build or continue only when the expected value supports it.</p>
         </div>
 
-        <div class="mt-12 grid gap-5 lg:grid-cols-2">
+        <a href="/ai-opportunity-scorecard/" class="group mt-12 grid gap-8 rounded-[1.5rem] bg-[var(--brand-ink)] p-6 text-white sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div><p class="text-[.68rem] font-bold uppercase tracking-[.18em] text-[var(--brand-mint)]">Free first step · about 7 minutes</p><h3 class="mt-4 max-w-3xl font-sans text-3xl font-bold leading-[1.02] tracking-[-.04em] sm:text-4xl">Score one repetitive workflow before you buy anything.</h3><p class="mt-5 max-w-2xl text-sm leading-6 text-white/60 sm:text-base sm:leading-7">See whether the work is ready for AI, needs a little definition, or should be improved as an ordinary process first.</p></div>
+          <span class="grid size-12 place-items-center rounded-full bg-[var(--brand-mint)] text-lg text-[var(--brand-ink)] transition-transform group-hover:translate-x-1">→</span>
+        </a>
+
+        <div class="mt-5 grid gap-5 lg:grid-cols-3">
           {services.map((service) => (
             <article class="brand-card flex min-h-full flex-col bg-[var(--brand-surface-soft)] p-6 text-[var(--brand-text)] sm:p-7">
               <div class="flex items-start justify-between gap-4 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">
@@ -184,10 +200,10 @@ const caseStudies = [
       <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
         <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The practical first step</p>
         <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Find the AI work worth paying for.</h2>
-        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">The $500 diagnosis gives you a focused roadmap before you commit to a larger build.</p>
+        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">The $500 diagnosis gives you a focused roadmap before you commit to a $3,000–$7,500 build or ongoing support.</p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start your diagnosis <span class="ml-3">→</span></a>
-          <a href="/ai-answers/#ask" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_question_cta_clicked">Ask a quick question <span class="ml-3">→</span></a>
+          <a href="/ai-diagnosis/" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start your diagnosis <span class="ml-3">→</span></a>
+          <a href="/ai-opportunity-scorecard/" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard <span class="ml-3">→</span></a>
         </div>
       </div>
     </section>

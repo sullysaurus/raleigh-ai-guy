@@ -21,7 +21,7 @@ const mobileLinks = links.filter((link) => ["Services", "Recent work", "Workshop
     {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="nav-link text-sm font-semibold text-[var(--brand-muted)] transition-colors hover:text-[var(--brand-text)] aria-[current=page]:text-[var(--brand-text)]">{link.text}</a>)}
   </nav>
 
-  <a href="mailto:hello@raleighaiguy.com?subject=AI%20Diagnosis" class="header-cta inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--brand-ink)] px-5 text-xs font-bold text-[var(--brand-bg)] transition-transform hover:-translate-y-0.5 sm:px-7 sm:text-sm"><span class="hidden sm:inline">Start with a diagnosis</span><span class="sm:hidden">Diagnosis</span></a>
+  <a href="/ai-diagnosis/" class="header-cta inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--brand-ink)] px-5 text-xs font-bold text-[var(--brand-bg)] transition-transform hover:-translate-y-0.5 sm:px-7 sm:text-sm"><span class="hidden sm:inline">Start with a diagnosis</span><span class="sm:hidden">Diagnosis</span></a>
 </header>
 
 <nav class="mx-auto grid w-full max-w-[96rem] grid-cols-4 border-y border-[var(--brand-line)] bg-[var(--brand-bg)] px-3 text-center text-[.7rem] font-semibold text-[var(--brand-muted)] lg:hidden" aria-label="Mobile navigation">
