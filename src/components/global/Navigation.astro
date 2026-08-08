@@ -8,10 +8,12 @@ const links = [
   { text: "Blog", href: "/blog/" },
 ];
 
-const mobileLinks = links.filter((link) => ["Services", "Recent work", "Workshops", "Blog"].includes(link.text));
+const mobileLinks = links
+  .filter((link) => ["Services", "Recent work", "Workshops", "Blog"].includes(link.text))
+  .map((link) => ({ ...link, mobileText: link.text === "Recent work" ? "Work" : link.text }));
 ---
 
-<header class="site-header mx-auto flex min-h-24 w-full max-w-[96rem] items-center justify-between gap-5 bg-[var(--brand-bg)] px-5 text-[var(--brand-text)] sm:px-8 lg:min-h-28 lg:px-12">
+<header class="site-header mx-auto flex min-h-20 w-full max-w-[96rem] items-center justify-between gap-3 bg-[var(--brand-bg)] px-4 text-[var(--brand-text)] sm:min-h-24 sm:gap-5 sm:px-8 lg:min-h-28 lg:px-12">
   <a href="/" class="group flex min-h-12 shrink-0 items-center gap-3" aria-label="Raleigh AI Guy home">
     <span class="brand-monogram block size-8 bg-[var(--brand-mint)] transition-transform duration-200 group-hover:-rotate-6" aria-hidden="true"></span>
     <span class="text-base font-bold tracking-[-0.025em] sm:text-lg">Raleigh AI Guy</span>
@@ -24,6 +26,6 @@ const mobileLinks = links.filter((link) => ["Services", "Recent work", "Workshop
   <a href="/ai-diagnosis/" class="header-cta inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--brand-ink)] px-5 text-xs font-bold text-[var(--brand-bg)] transition-transform hover:-translate-y-0.5 sm:px-7 sm:text-sm"><span class="hidden sm:inline">Start with a diagnosis</span><span class="sm:hidden">Diagnosis</span></a>
 </header>
 
-<nav class="mx-auto grid w-full max-w-[96rem] grid-cols-4 border-y border-[var(--brand-line)] bg-[var(--brand-bg)] px-3 text-center text-[.7rem] font-semibold text-[var(--brand-muted)] lg:hidden" aria-label="Mobile navigation">
-  {mobileLinks.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="flex min-h-12 items-center justify-center px-1 aria-[current=page]:text-[var(--brand-text)]">{link.text}</a>)}
+<nav class="mx-auto grid w-full max-w-[96rem] grid-cols-4 border-y border-[var(--brand-line)] bg-[var(--brand-bg)] px-2 text-center text-xs font-bold text-[var(--brand-muted)] lg:hidden" aria-label="Mobile navigation">
+  {mobileLinks.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="flex min-h-12 items-center justify-center rounded-md px-1 transition-colors hover:bg-[var(--brand-surface-soft)] hover:text-[var(--brand-text)] aria-[current=page]:text-[var(--brand-text)]">{link.mobileText}</a>)}
 </nav>

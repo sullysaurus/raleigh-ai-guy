@@ -409,6 +409,15 @@ summary:focus-visible {
     max-width: 100%;
   }
 
+  .brand-field {
+    font-size: 1rem;
+  }
+
+  .brand-button,
+  .social-chip {
+    width: 100%;
+  }
+
   .profile-note { transform: rotate(.7deg); }
 }
 
