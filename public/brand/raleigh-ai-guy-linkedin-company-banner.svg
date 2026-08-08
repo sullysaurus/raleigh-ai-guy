@@ -4,8 +4,9 @@
   <rect width="4200" height="700" fill="#f8f3ea"/>
   <circle cx="4010" cy="650" r="520" fill="#e8562d"/>
   <rect x="3500" y="90" width="280" height="280" fill="#eee4d2"/>
-  <path d="M470 146a104 104 0 0 1 104 104v104H470A104 104 0 0 1 366 250 104 104 0 0 1 470 146Z" fill="#e8562d"/>
-  <text x="680" y="300" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="178" font-weight="800" letter-spacing="-8">Practical AI for Raleigh</text>
-  <text x="690" y="475" fill="#292219" font-family="Georgia, serif" font-size="185" font-style="italic">businesses.</text>
-  <text x="695" y="565" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="8">RALEIGH AI GUY · DANNY SULLIVAN</text>
+  <!-- LinkedIn overlays the lower-left of company banners with the profile logo. -->
+  <path d="M1104 146a104 104 0 0 1 104 104v104H1104A104 104 0 0 1 1000 250 104 104 0 0 1 1104 146Z" fill="#e8562d"/>
+  <text x="1320" y="300" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="178" font-weight="800" letter-spacing="-8">Practical AI for Raleigh</text>
+  <text x="1330" y="475" fill="#292219" font-family="Georgia, serif" font-size="185" font-style="italic">businesses.</text>
+  <text x="1335" y="565" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="8">RALEIGH AI GUY · DANNY SULLIVAN</text>
 </svg>
