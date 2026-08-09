@@ -1,20 +1,61 @@
 ---
 import OpsShell from "@/components/ops/OpsShell.astro";
+import { realtorProspects } from "@/data/realtorProspects";
+
+const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
 ---
 
 <OpsShell
-  title="Outreach CRM"
-  description="A browser-local contact ledger for keeping every introduction, reply, and next move visible."
-  eyebrow="Growth · Relationship pipeline"
+  title="Realtor Outreach"
+  description="A focused Raleigh pipeline for finding one painful workflow, earning a reply, and turning the right conversation into a useful free build."
+  eyebrow="Growth · Free automation pipeline"
   current="outreach"
 >
+  <script id="seed-contacts" type="application/json" set:html={seedJson}></script>
+
   <section class="crm-status" aria-labelledby="crm-status-title">
     <div>
       <p>Next-action queue</p>
-      <h2 id="crm-status-title"><span id="attention-count">0</span> contacts need attention.</h2>
+      <h2 id="crm-status-title"><span id="attention-count">0</span> people are ready for a move.</h2>
     </div>
-    <p id="pipeline-summary">Add or import contacts to start the pipeline.</p>
+    <p id="pipeline-summary">Loading the Raleigh realtor pipeline…</p>
   </section>
+
+  <section class="crm-scoreboard" aria-label="Outreach scoreboard">
+    <article><span>Priority targets</span><strong id="priority-count">0</strong><p>Fit score 88+</p></article>
+    <article><span>DMs sent</span><strong id="sent-count">0</strong><p>Target: 5 / week</p></article>
+    <article><span>Replies</span><strong id="reply-count">0</strong><p>Useful pain named</p></article>
+    <article><span>Free builds</span><strong id="build-count">0</strong><p>One at a time</p></article>
+  </section>
+
+  <details class="outreach-playbook">
+    <summary><span>Outreach playbook</span><strong>Who to contact, what to send, and when to build</strong></summary>
+    <div class="playbook-grid">
+      <article>
+        <p>01 · Target</p>
+        <h2>Founder-led teams with visible repetition.</h2>
+        <ul>
+          <li>3–15 agents or a small operating team</li>
+          <li>Active listings, content, reviews, or hiring</li>
+          <li>Team leader still close to day-to-day work</li>
+          <li>Enough volume to repeat; small enough to decide</li>
+        </ul>
+      </article>
+      <article class="pitch-card">
+        <div><p>02 · Connection DM</p><button type="button" data-copy-target="dm-copy">Copy</button></div>
+        <blockquote id="dm-copy">Hi [First name]—thanks for connecting. I noticed [specific observation about their team]. Quick, genuine cold pitch: I build AI automations used in startup workflows that support millions in GMV, and I’m spending time with Raleigh business owners to learn which repetitive work is actually worth removing. In real estate, what’s one task you wish were already handled every week—lead follow-up, listing prep, client updates, admin, or something else? If one comes to mind, I’d be happy to build a small version for free. No catch—I’m looking for a real workflow and honest feedback on whether the result is useful.</blockquote>
+      </article>
+      <article>
+        <p>03 · Cadence</p>
+        <ol><li><strong>Day 0</strong> Connect with a real observation.</li><li><strong>Day 1</strong> Send the question-led DM.</li><li><strong>Day 5</strong> Offer 2–3 examples, not “checking in.”</li><li><strong>Day 12</strong> Close the loop politely.</li></ol>
+      </article>
+      <article>
+        <p>04 · Free-build gate</p>
+        <h2>Build only when the workflow is narrow.</h2>
+        <ul><li>Occurs at least weekly</li><li>Has a clear input and output</li><li>Can be tested without sensitive client data</li><li>Has one owner and a 7-day validation path</li></ul>
+      </article>
+    </div>
+  </details>
 
   <section class="crm-controls" aria-label="CRM controls">
     <label class="crm-search">
@@ -25,10 +66,14 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       <span>Show</span>
       <select id="status-filter">
         <option value="all">All statuses</option>
-        <option value="Emailed">Emailed</option>
+        <option value="Research">Research</option>
+        <option value="Ready to DM">Ready to DM</option>
+        <option value="Connected">Connected</option>
+        <option value="DM sent">DM sent</option>
         <option value="Follow-up due">Follow-up due</option>
         <option value="Replied">Replied</option>
-        <option value="Meeting booked">Meeting booked</option>
+        <option value="Discovery booked">Discovery booked</option>
+        <option value="Free build">Free build</option>
         <option value="Nurture">Nurture</option>
         <option value="Not a fit">Not a fit</option>
       </select>
@@ -48,7 +93,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       <span id="visible-count">0 contacts</span>
     </header>
     <div class="ledger-head" aria-hidden="true">
-      <span>Contact</span><span>Status</span><span>Last touch</span><span>Next follow-up</span><span></span>
+      <span>Contact</span><span>Fit</span><span>Status</span><span>Next move</span><span></span>
     </div>
     <div id="contact-list" class="contact-list"></div>
     <div id="empty-state" class="empty-state">
@@ -65,8 +110,10 @@ import OpsShell from "@/components/ops/OpsShell.astro";
         <label><span>Contact name *</span><input name="name" required autocomplete="name" /></label>
         <label><span>Role</span><input name="role" autocomplete="organization-title" /></label>
         <label><span>Email</span><input name="email" type="email" autocomplete="email" /></label>
-        <label><span>Last contacted</span><input name="lastContact" type="date" /></label>
-        <label><span>Next follow-up</span><input name="nextFollowUp" type="date" /></label>
+        <label><span>LinkedIn URL</span><input name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/…" /></label>
+        <label><span>Fit score</span><input name="fitScore" type="number" min="0" max="100" value="70" /></label>
+        <label class="span-two"><span>Personalization hook</span><textarea name="personalization" rows="3" placeholder="The specific observation that earns the DM…"></textarea></label>
+        <label class="span-two"><span>Automation hypothesis</span><textarea name="automationIdea" rows="3" placeholder="A narrow workflow worth asking about—not a promised solution…"></textarea></label>
         <label class="span-two"><span>Notes</span><textarea name="notes" rows="4" placeholder="Context, source, or what to remember next time…"></textarea></label>
       </div>
       <footer><button type="button" data-close-dialog class="secondary-action">Cancel</button><button type="submit" class="primary-action">Add to pipeline</button></footer>
@@ -76,7 +123,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   <dialog id="import-dialog" class="crm-dialog import-dialog">
     <form id="import-form" method="dialog">
       <header><div><p>Private browser data</p><h2>Import contacts</h2></div><button type="button" data-close-import aria-label="Close">×</button></header>
-      <p class="dialog-intro">Paste a JSON array. Imported contacts are merged with the current list by email and organization.</p>
+      <p class="dialog-intro">Paste a JSON array. Imported prospects are merged by LinkedIn URL, email, or organization and name.</p>
       <label class="import-field"><span>Contact JSON</span><textarea id="import-json" rows="12" spellcheck="false" placeholder='[{"organization":"Example Realty","name":"Alex Rivera","email":"alex@example.com"}]'></textarea></label>
       <p id="import-error" class="import-error" role="alert"></p>
       <footer><button type="button" data-close-import class="secondary-action">Cancel</button><button type="submit" class="primary-action">Import and merge</button></footer>
@@ -87,21 +134,29 @@ import OpsShell from "@/components/ops/OpsShell.astro";
 </OpsShell>
 
 <script>
-  type ContactStatus = "Emailed" | "Follow-up due" | "Replied" | "Meeting booked" | "Nurture" | "Not a fit";
+  type ContactStatus = "Research" | "Ready to DM" | "Connected" | "DM sent" | "Follow-up due" | "Replied" | "Discovery booked" | "Free build" | "Nurture" | "Not a fit";
   type Contact = {
     id: string;
     organization: string;
     name: string;
     role: string;
     email: string;
+    linkedinUrl: string;
+    websiteUrl: string;
+    sourceUrl: string;
     status: ContactStatus;
+    fitScore: number;
+    segment: string;
     lastContact: string;
     nextFollowUp: string;
+    personalization: string;
+    automationIdea: string;
     notes: string;
   };
 
-  const storageKey = "ops:outreach-crm:v1";
-  const statuses: ContactStatus[] = ["Emailed", "Follow-up due", "Replied", "Meeting booked", "Nurture", "Not a fit"];
+  const storageKey = "ops:realtor-outreach:v2";
+  const legacyStorageKey = "ops:outreach-crm:v1";
+  const statuses: ContactStatus[] = ["Research", "Ready to DM", "Connected", "DM sent", "Follow-up due", "Replied", "Discovery booked", "Free build", "Nurture", "Not a fit"];
   const list = document.querySelector<HTMLDivElement>("#contact-list")!;
   const emptyState = document.querySelector<HTMLDivElement>("#empty-state")!;
   const searchInput = document.querySelector<HTMLInputElement>("#contact-search")!;
@@ -119,7 +174,11 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   function loadContacts(): Contact[] {
     try {
       const stored = window.localStorage.getItem(storageKey);
-      return stored ? JSON.parse(stored) : [];
+      if (stored) return JSON.parse(stored).map(normalizeContact);
+      const legacy = window.localStorage.getItem(legacyStorageKey);
+      if (legacy) return JSON.parse(legacy).map(normalizeContact);
+      const seed = document.querySelector<HTMLScriptElement>("#seed-contacts")?.textContent || "[]";
+      return JSON.parse(seed).map(normalizeContact);
     } catch {
       return [];
     }
@@ -130,16 +189,25 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   }
 
   function normalizeContact(value: Partial<Contact>): Contact {
-    const status = statuses.includes(value.status as ContactStatus) ? value.status as ContactStatus : "Emailed";
+    const legacyStatus = String(value.status || "");
+    const mappedStatus = legacyStatus === "Emailed" ? "DM sent" : legacyStatus === "Meeting booked" ? "Discovery booked" : legacyStatus;
+    const status = statuses.includes(mappedStatus as ContactStatus) ? mappedStatus as ContactStatus : "Research";
     return {
       id: value.id || makeId(),
       organization: String(value.organization || "").trim(),
       name: String(value.name || "").trim(),
       role: String(value.role || "").trim(),
       email: String(value.email || "").trim(),
+      linkedinUrl: String(value.linkedinUrl || "").trim(),
+      websiteUrl: String(value.websiteUrl || "").trim(),
+      sourceUrl: String(value.sourceUrl || "").trim(),
       status,
+      fitScore: Math.min(100, Math.max(0, Number(value.fitScore || 0))),
+      segment: String(value.segment || "Unclassified").trim(),
       lastContact: String(value.lastContact || ""),
       nextFollowUp: String(value.nextFollowUp || ""),
+      personalization: String(value.personalization || "").trim(),
+      automationIdea: String(value.automationIdea || "").trim(),
       notes: String(value.notes || "").trim(),
     };
   }
@@ -148,6 +216,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     const incoming = values.map(normalizeContact).filter((contact) => contact.organization && contact.name);
     incoming.forEach((contact) => {
       const existingIndex = contacts.findIndex((item) =>
+        (contact.linkedinUrl && item.linkedinUrl.toLowerCase() === contact.linkedinUrl.toLowerCase()) ||
         (contact.email && item.email.toLowerCase() === contact.email.toLowerCase()) ||
         (!contact.email && item.organization.toLowerCase() === contact.organization.toLowerCase() && item.name.toLowerCase() === contact.name.toLowerCase())
       );
@@ -195,7 +264,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   }
 
   function isDue(contact: Contact) {
-    if (!contact.nextFollowUp || ["Meeting booked", "Not a fit"].includes(contact.status)) return false;
+    if (!contact.nextFollowUp || ["Discovery booked", "Free build", "Not a fit"].includes(contact.status)) return false;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return new Date(`${contact.nextFollowUp}T00:00:00`) <= today;
@@ -207,44 +276,59 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       .filter((contact) => statusFilter.value === "all" || contact.status === statusFilter.value)
       .filter((contact) => !query || [contact.name, contact.organization, contact.email, contact.role, contact.notes].join(" ").toLowerCase().includes(query))
       .sort((a, b) => {
+        const actionRank = (contact: Contact) => isDue(contact) ? 0 : contact.status === "Ready to DM" ? 1 : contact.status === "Research" ? 2 : 3;
+        const rankDifference = actionRank(a) - actionRank(b);
+        if (rankDifference) return rankDifference;
         const aDate = a.nextFollowUp || "9999-12-31";
         const bDate = b.nextFollowUp || "9999-12-31";
-        return aDate.localeCompare(bDate) || a.organization.localeCompare(b.organization);
+        return aDate.localeCompare(bDate) || b.fitScore - a.fitScore || a.organization.localeCompare(b.organization);
       });
   }
 
   function render() {
     const visible = filteredContacts();
     const due = contacts.filter(isDue).length;
-    const replies = contacts.filter((contact) => contact.status === "Replied").length;
-    const meetings = contacts.filter((contact) => contact.status === "Meeting booked").length;
-    document.querySelector("#attention-count")!.textContent = String(due);
+    const ready = contacts.filter((contact) => contact.status === "Ready to DM").length;
+    const replies = contacts.filter((contact) => ["Replied", "Discovery booked", "Free build"].includes(contact.status)).length;
+    const meetings = contacts.filter((contact) => contact.status === "Discovery booked").length;
+    const sent = contacts.filter((contact) => ["DM sent", "Follow-up due", "Replied", "Discovery booked", "Free build", "Nurture"].includes(contact.status)).length;
+    const builds = contacts.filter((contact) => contact.status === "Free build").length;
+    document.querySelector("#attention-count")!.textContent = String(due + ready);
+    document.querySelector("#priority-count")!.textContent = String(contacts.filter((contact) => contact.fitScore >= 88 && contact.status !== "Not a fit").length);
+    document.querySelector("#sent-count")!.textContent = String(sent);
+    document.querySelector("#reply-count")!.textContent = String(replies);
+    document.querySelector("#build-count")!.textContent = String(builds);
     document.querySelector("#pipeline-summary")!.textContent = contacts.length
-      ? `${contacts.length} total · ${replies} replied · ${meetings} meetings booked`
+      ? `${contacts.length} targets · ${ready} ready to DM · ${due} follow-ups due · ${meetings} discovery calls`
       : "Add or import contacts to start the pipeline.";
     document.querySelector("#visible-count")!.textContent = `${visible.length} ${visible.length === 1 ? "contact" : "contacts"}`;
     emptyState.hidden = visible.length > 0;
 
     list.innerHTML = visible.map((contact) => {
       const dueClass = isDue(contact) ? " due" : "";
-      const email = contact.email
-        ? `<a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a>`
-        : `<span class="missing-email">Email not added</span>`;
+      const profile = contact.linkedinUrl
+        ? `<a class="profile-link" href="${escapeHtml(contact.linkedinUrl)}" target="_blank" rel="noreferrer">Open LinkedIn ↗</a>`
+        : `<span class="missing-email">LinkedIn not added</span>`;
       return `
         <article class="contact-row${dueClass}" data-contact-id="${escapeHtml(contact.id)}">
           <div class="contact-identity">
             <span class="contact-initial">${escapeHtml((contact.name || contact.organization).charAt(0).toUpperCase())}</span>
-            <div><strong>${escapeHtml(contact.name)}</strong><p>${escapeHtml(contact.organization)}</p><small>${escapeHtml(contact.role)}</small>${email}</div>
+            <div><strong>${escapeHtml(contact.name)}</strong><p>${escapeHtml(contact.organization)}</p><small>${escapeHtml(contact.role)}</small>${profile}</div>
           </div>
+          <div class="fit-score" aria-label="Fit score ${contact.fitScore} out of 100"><strong>${contact.fitScore}</strong><span>${escapeHtml(contact.segment)}</span></div>
           <label class="row-field status-field"><span>Status</span><select data-field="status">${statuses.map((status) => `<option value="${status}"${status === contact.status ? " selected" : ""}>${status}</option>`).join("")}</select></label>
-          <label class="row-field"><span>Last touch</span><input data-field="lastContact" type="date" value="${escapeHtml(contact.lastContact)}" /><small>${formatDate(contact.lastContact)}</small></label>
-          <label class="row-field${dueClass}"><span>Next follow-up</span><input data-field="nextFollowUp" type="date" value="${escapeHtml(contact.nextFollowUp)}" /><small>${isDue(contact) ? "Due now" : formatDate(contact.nextFollowUp)}</small></label>
+          <label class="row-field${dueClass}"><span>Next move</span><input data-field="nextFollowUp" type="date" value="${escapeHtml(contact.nextFollowUp)}" /><small>${contact.status === "Ready to DM" ? "Send personalized DM" : isDue(contact) ? "Follow up now" : formatDate(contact.nextFollowUp)}</small></label>
           <details class="contact-more">
-            <summary>Notes</summary>
+            <summary>Brief</summary>
             <div>
               <label><span>Role</span><input data-field="role" value="${escapeHtml(contact.role)}" /></label>
               <label><span>Email</span><input data-field="email" type="email" value="${escapeHtml(contact.email)}" /></label>
+              <label><span>LinkedIn</span><input data-field="linkedinUrl" type="url" value="${escapeHtml(contact.linkedinUrl)}" /></label>
+              <label><span>Fit score</span><input data-field="fitScore" type="number" min="0" max="100" value="${contact.fitScore}" /></label>
+              <label class="notes-field"><span>Personalization hook</span><textarea data-field="personalization" rows="3">${escapeHtml(contact.personalization)}</textarea></label>
+              <label class="notes-field"><span>Automation hypothesis</span><textarea data-field="automationIdea" rows="3">${escapeHtml(contact.automationIdea)}</textarea></label>
               <label class="notes-field"><span>Notes</span><textarea data-field="notes" rows="3">${escapeHtml(contact.notes)}</textarea></label>
+              ${contact.sourceUrl ? `<a class="source-link" href="${escapeHtml(contact.sourceUrl)}" target="_blank" rel="noreferrer">Verify source ↗</a>` : ""}
               <button type="button" data-archive>Archive as not a fit</button>
             </div>
           </details>
@@ -255,7 +339,16 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   function updateContact(id: string, field: keyof Contact, value: string) {
     const contact = contacts.find((item) => item.id === id);
     if (!contact) return;
-    (contact[field] as string) = value;
+    if (field === "fitScore") contact.fitScore = Math.min(100, Math.max(0, Number(value || 0)));
+    else (contact[field] as string) = value;
+    if (field === "status" && value === "DM sent") {
+      const touched = new Date();
+      const followUp = new Date(touched);
+      followUp.setDate(followUp.getDate() + 5);
+      contact.lastContact = touched.toISOString().slice(0, 10);
+      contact.nextFollowUp = followUp.toISOString().slice(0, 10);
+    }
+    if (field === "status" && ["Replied", "Discovery booked", "Free build", "Not a fit"].includes(value)) contact.nextFollowUp = "";
     saveContacts();
   }
 
@@ -297,10 +390,12 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       name: String(data.get("name") || ""),
       role: String(data.get("role") || ""),
       email: String(data.get("email") || ""),
-      lastContact: String(data.get("lastContact") || ""),
-      nextFollowUp: String(data.get("nextFollowUp") || ""),
+      linkedinUrl: String(data.get("linkedinUrl") || ""),
+      fitScore: Number(data.get("fitScore") || 70),
+      personalization: String(data.get("personalization") || ""),
+      automationIdea: String(data.get("automationIdea") || ""),
       notes: String(data.get("notes") || ""),
-      status: "Emailed",
+      status: "Research",
     }));
     contactDialog.close();
     saveContacts("Contact added");
@@ -321,7 +416,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   });
 
   document.querySelector("#export-contacts")!.addEventListener("click", () => {
-    const columns: (keyof Contact)[] = ["organization", "name", "role", "email", "status", "lastContact", "nextFollowUp", "notes"];
+    const columns: (keyof Contact)[] = ["organization", "name", "role", "email", "linkedinUrl", "websiteUrl", "sourceUrl", "status", "fitScore", "segment", "lastContact", "nextFollowUp", "personalization", "automationIdea", "notes"];
     const quote = (value: string) => `"${value.replaceAll('"', '""')}"`;
     const csv = [columns.join(","), ...contacts.map((contact) => columns.map((column) => quote(String(contact[column] || ""))).join(","))].join("\n");
     const link = document.createElement("a");
@@ -332,6 +427,13 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   });
 
   importFromPrivateHash();
+  document.querySelectorAll<HTMLButtonElement>("[data-copy-target]").forEach((button) => button.addEventListener("click", async () => {
+    const target = document.querySelector<HTMLElement>(`#${button.dataset.copyTarget}`);
+    if (!target) return;
+    await navigator.clipboard.writeText(target.textContent?.trim() || "");
+    button.textContent = "Copied";
+    window.setTimeout(() => { button.textContent = "Copy"; }, 1400);
+  }));
   render();
 </script>
 
@@ -341,6 +443,33 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .crm-status h2 { margin-top: .5rem; font-family: "Anybody", sans-serif; font-size: clamp(1.7rem, 4vw, 3.1rem); font-weight: 690; line-height: 1; letter-spacing: -.04em; }
   .crm-status h2 span { color: var(--ops-deadline); font-variant-numeric: tabular-nums; }
   .crm-status > p { color: var(--ops-muted); font-size: .75rem; font-variant-numeric: tabular-nums; }
+
+  .crm-scoreboard { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ops-line-strong); }
+  .crm-scoreboard article { min-width: 0; padding: 1.2rem 1.25rem 1.35rem 0; }
+  .crm-scoreboard article + article { border-left: 1px solid var(--ops-line); padding-left: 1.25rem; }
+  .crm-scoreboard span { display: block; color: var(--ops-faint); font-size: .58rem; font-weight: 720; letter-spacing: .1em; text-transform: uppercase; }
+  .crm-scoreboard strong { display: block; margin-top: .45rem; font-family: "Anybody", sans-serif; font-size: 2rem; font-weight: 710; line-height: 1; font-variant-numeric: tabular-nums; }
+  .crm-scoreboard p { margin-top: .35rem; color: var(--ops-muted); font-size: .64rem; }
+
+  .outreach-playbook { border-bottom: 1px solid var(--ops-line-strong); }
+  .outreach-playbook > summary { display: grid; grid-template-columns: 10rem 1fr auto; gap: 1.5rem; align-items: center; min-height: 4.5rem; cursor: pointer; list-style: none; }
+  .outreach-playbook > summary::-webkit-details-marker { display: none; }
+  .outreach-playbook > summary::after { color: var(--ops-deadline); content: "+"; font-size: 1.25rem; }
+  .outreach-playbook[open] > summary::after { content: "−"; }
+  .outreach-playbook > summary span { color: var(--ops-deadline); font-size: .6rem; font-weight: 740; letter-spacing: .12em; text-transform: uppercase; }
+  .outreach-playbook > summary strong { font-family: "Anybody", sans-serif; font-size: 1rem; font-weight: 670; letter-spacing: -.015em; }
+  .playbook-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border-top: 1px solid var(--ops-line-strong); background: var(--ops-line-strong); }
+  .playbook-grid article { min-width: 0; padding: 1.5rem; background: var(--ops-sheet); }
+  .playbook-grid article > p, .pitch-card > div p { color: var(--ops-deadline); font-size: .58rem; font-weight: 740; letter-spacing: .11em; text-transform: uppercase; }
+  .playbook-grid h2 { max-width: 26rem; margin-top: .65rem; font-family: "Anybody", sans-serif; font-size: 1.35rem; font-weight: 680; line-height: 1.05; letter-spacing: -.03em; }
+  .playbook-grid ul, .playbook-grid ol { display: grid; gap: .45rem; margin-top: 1rem; color: var(--ops-muted); font-size: .72rem; line-height: 1.45; }
+  .playbook-grid li { position: relative; padding-left: 1rem; }
+  .playbook-grid li::before { position: absolute; left: 0; color: var(--ops-deadline); content: "•"; }
+  .playbook-grid ol { counter-reset: none; }
+  .playbook-grid ol li strong { display: inline-block; min-width: 3.75rem; color: var(--ops-ink); }
+  .pitch-card > div { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+  .pitch-card button { min-height: 2rem; border: 1px solid var(--ops-line-strong); padding-inline: .65rem; color: var(--ops-muted); background: var(--ops-paper); font-size: .62rem; font-weight: 700; }
+  .pitch-card blockquote { margin-top: .9rem; color: var(--ops-muted); font-size: .74rem; line-height: 1.6; white-space: pre-line; }
 
   .crm-controls { display: grid; grid-template-columns: minmax(15rem, 1fr) 12rem auto; gap: .75rem; align-items: end; padding: 1.5rem 0 .75rem; }
   .crm-controls label, .form-grid label, .import-field, .contact-more label { display: grid; gap: .4rem; }
@@ -361,7 +490,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .crm-ledger > header { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 1.5rem; }
   .crm-ledger > header h2 { margin-top: .4rem; font-family: "Anybody", sans-serif; font-size: 1.75rem; font-weight: 690; letter-spacing: -.04em; }
   .crm-ledger > header > span { color: var(--ops-faint); font-size: .65rem; font-variant-numeric: tabular-nums; }
-  .ledger-head, .contact-row { display: grid; grid-template-columns: minmax(16rem, 1.8fr) 9rem 8.5rem 9.5rem 4rem; gap: 1rem; align-items: center; }
+  .ledger-head, .contact-row { display: grid; grid-template-columns: minmax(16rem, 1.8fr) 5rem 9rem 10rem 4rem; gap: 1rem; align-items: center; }
   .ledger-head { min-height: 2.5rem; border-block: 1px solid var(--ops-line-strong); color: var(--ops-faint); font-size: .58rem; font-weight: 720; letter-spacing: .1em; text-transform: uppercase; }
   .contact-row { position: relative; border-bottom: 1px solid var(--ops-line); padding: 1rem 0; }
   .contact-row.due::before { position: absolute; inset: 0 auto 0 -.75rem; width: .22rem; background: var(--ops-deadline); content: ""; }
@@ -373,6 +502,10 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .contact-identity small { margin-top: .2rem; color: var(--ops-faint); font-size: .62rem; }
   .contact-identity a, .missing-email { margin-top: .35rem; color: var(--ops-muted); font-size: .64rem; text-decoration: underline; text-underline-offset: 2px; }
   .missing-email { color: var(--ops-faint); text-decoration: none; }
+  .contact-identity .profile-link { color: var(--ops-ink); font-weight: 650; }
+  .fit-score { display: grid; gap: .2rem; }
+  .fit-score strong { font-family: "Anybody", sans-serif; font-size: 1.3rem; font-weight: 710; line-height: 1; font-variant-numeric: tabular-nums; }
+  .fit-score span { color: var(--ops-faint); font-size: .55rem; line-height: 1.25; }
   .row-field { display: grid; gap: .25rem; }
   .row-field > span { display: none; }
   .row-field input, .row-field select { width: 100%; min-height: 2.25rem; border: 0; border-bottom: 1px solid var(--ops-line); border-radius: 0; padding: .35rem .1rem; color: var(--ops-ink); background: transparent; font-size: .68rem; }
@@ -386,6 +519,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .contact-more .notes-field { grid-column: 1 / -1; }
   .contact-more textarea { resize: vertical; }
   .contact-more button { justify-self: start; min-height: 2.5rem; color: var(--ops-deadline); font-size: .65rem; font-weight: 680; text-decoration: underline; text-underline-offset: 3px; }
+  .contact-more .source-link { justify-self: start; color: var(--ops-muted); font-size: .65rem; font-weight: 680; text-decoration: underline; text-underline-offset: 3px; }
   .empty-state { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; padding: 3rem 0; }
   .empty-state[hidden] { display: none; }
   .empty-state > span { color: var(--ops-deadline); font-size: .7rem; font-weight: 720; }
@@ -417,6 +551,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     .contact-row { grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; border: 0; padding: 1.25rem; background: var(--ops-sheet); }
     .contact-row.due::before { left: 0; }
     .contact-identity { grid-column: 1 / -1; }
+    .fit-score { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: baseline; }
     .row-field > span { display: block; color: var(--ops-faint); font-size: .56rem; font-weight: 720; letter-spacing: .08em; text-transform: uppercase; }
     .status-field { grid-column: 1 / -1; }
     .contact-more { grid-column: 1 / -1; }
@@ -425,6 +560,12 @@ import OpsShell from "@/components/ops/OpsShell.astro";
 
   @media (max-width: 680px) {
     .crm-status { grid-template-columns: 1fr; gap: .75rem; }
+    .crm-scoreboard { grid-template-columns: 1fr 1fr; }
+    .crm-scoreboard article:nth-child(3) { border-top: 1px solid var(--ops-line); border-left: 0; padding-left: 0; }
+    .crm-scoreboard article:nth-child(4) { border-top: 1px solid var(--ops-line); }
+    .outreach-playbook > summary { grid-template-columns: 1fr auto; gap: .5rem; padding-block: 1rem; }
+    .outreach-playbook > summary span { grid-column: 1 / -1; }
+    .playbook-grid { grid-template-columns: 1fr; }
     .crm-controls { grid-template-columns: 1fr; }
     .crm-actions { grid-column: auto; flex-wrap: wrap; }
     .crm-actions button { flex: 1 1 auto; }
