@@ -4,8 +4,8 @@ title: Inbox Triage Workflow
 subtitle: A human-reviewed system that reads incoming messages, applies the owner’s priorities, and prepares a short daily action list.
 live: "/blog/posts/create-first-claude-skill-organize-inbox/"
 image:
-  url: "/src/images/posts/claude-inbox-skill.png"
-  alt: "Diagram of an inbox triage workflow that connects email, applies business rules, and prepares messages for review."
+  url: "/src/images/projects/case-study-inbox-triage.png"
+  alt: "Editorial diagram showing incoming email sorted into priorities and prepared for human review."
 ---
 
 ## Overview

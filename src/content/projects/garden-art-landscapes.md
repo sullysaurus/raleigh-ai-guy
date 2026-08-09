@@ -4,8 +4,8 @@ title: Raleigh Landscaping SEO System
 subtitle: A practical local-search system that turns real landscaping expertise into useful pages, measurable rankings, and a repeatable publishing workflow.
 live: "https://www.landscapingraleigh.com/seo-dashboard/"
 image:
-  url: "/src/images/projects/garden-art-seo-dashboard-live.png"
-  alt: "Garden and Art Landscapes SEO dashboard showing published Raleigh landscaping topics and early search rankings."
+  url: "/src/images/projects/case-study-landscaping-seo.png"
+  alt: "Editorial diagram showing Raleigh landscaping expertise becoming useful web pages and measurable search growth."
 ---
 
 ## Overview

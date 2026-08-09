@@ -3,7 +3,8 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import gardenImage from "@/images/projects/garden-art-seo-dashboard-live.png";
+import gardenImage from "@/images/projects/case-study-landscaping-seo.png";
+import inboxImage from "@/images/projects/case-study-inbox-triage.png";
 
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -16,7 +17,6 @@ const caseStudies = [
     description: "A new website and practical SEO system that turns real expertise, project photos, and local search data into a repeatable path to new inquiries.",
     result: "18 useful pages published, live measurement in place, and early rankings moving into view.",
     href: "/projects/garden-art-landscapes/",
-    kind: "image",
     image: gardenImage,
     alt: "Garden & Art Landscapes SEO reporting dashboard",
   },
@@ -26,8 +26,7 @@ const caseStudies = [
     description: "A reusable workflow that reads incoming messages, applies the business owner’s own priorities, and prepares a short action list for review.",
     result: "Less time scanning the inbox, clearer follow-up, and a human approval step before anything changes.",
     href: "/projects/inbox-triage-workflow/",
-    kind: "inbox",
-    image: null,
+    image: inboxImage,
     alt: "A simple inbox triage workflow",
   },
 ];
@@ -46,7 +45,7 @@ const caseStudies = [
       <p class="mt-8 max-w-2xl text-lg leading-8 text-base-500">
         I study how the work gets done, find the few opportunities worth acting on, and build practical systems that save time without creating more complexity.
       </p>
-      <a href="mailto:hello@raleighaiguy.com" class="mt-8 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me</a>
+      <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-8">Email me</a>
     </Wrapper>
   </section>
 
@@ -73,25 +72,11 @@ const caseStudies = [
         {caseStudies.map((study) => (
           <article>
             <a href={study.href} class="group block">
-              <div class="overflow-hidden rounded-xl border border-black/10 bg-base-100">
-                {study.kind === "image" && study.image ? (
-                  <Image src={study.image} alt={study.alt} widths={[640, 960, 1280]} sizes="(min-width: 768px) 768px, 100vw" loading="eager" class="aspect-[16/10] w-full object-cover transition duration-300 group-hover:scale-[1.01]" />
-                ) : (
-                  <div class="grid aspect-[16/10] place-items-center p-6 sm:p-10">
-                    <div class="w-full max-w-xl rounded-xl border border-black/10 bg-white p-5 shadow-sm sm:p-7">
-                      <div class="flex items-center justify-between border-b border-black/10 pb-4"><strong class="text-sm font-medium">Inbox triage</strong><span class="text-xs text-base-400">Today</span></div>
-                      <div class="divide-y divide-black/10">
-                        <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full bg-black"></span><span class="text-sm font-medium">Needs action</span><span class="text-xs text-base-400">4 messages</span></div>
-                        <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full border border-black/30"></span><span class="text-sm font-medium">Waiting on reply</span><span class="text-xs text-base-400">7 messages</span></div>
-                        <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full bg-base-200"></span><span class="text-sm font-medium">Read later</span><span class="text-xs text-base-400">12 messages</span></div>
-                      </div>
-                      <p class="border-t border-black/10 pt-4 text-xs leading-5 text-base-500">Prepared for review. Nothing sends or moves without approval.</p>
-                    </div>
-                  </div>
-                )}
+              <div class="overflow-hidden rounded-xl border border-black/10 bg-[var(--brand-surface)]">
+                <Image src={study.image} alt={study.alt} widths={[640, 960, 1280]} sizes="(min-width: 768px) 768px, 100vw" loading="eager" class="aspect-[3/2] w-full object-cover transition duration-300 group-hover:scale-[1.01]" />
               </div>
               <div class="mt-5 grid gap-4 sm:grid-cols-[12rem_1fr]">
-                <div><p class="text-xs font-medium uppercase tracking-[.08em] text-base-400">{study.label}</p><h3 class="mt-2 text-lg font-medium tracking-tight">{study.title}</h3></div>
+                <div><p class="accent-label text-xs font-medium uppercase tracking-[.08em]">{study.label}</p><h3 class="mt-2 text-lg font-medium tracking-tight">{study.title}</h3></div>
                 <div><p class="text-sm leading-6 text-base-500">{study.description}</p><p class="mt-3 text-sm font-medium text-black">{study.result}</p><span class="mt-4 inline-flex text-sm text-base-500 group-hover:text-black">Read the case study →</span></div>
               </div>
             </a>
@@ -123,7 +108,7 @@ const caseStudies = [
       <div class="border-t border-black/10 pt-8">
         <h2 class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.035em]">Have a repetitive process you wish would disappear?</h2>
         <p class="mt-5 max-w-xl text-base leading-7 text-base-500">Tell me what is getting in the way. I’ll give you an honest read on whether AI can help.</p>
-        <a href="mailto:hello@raleighaiguy.com" class="mt-7 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me</a>
+        <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-7">Email me</a>
       </div>
     </Wrapper>
   </section>

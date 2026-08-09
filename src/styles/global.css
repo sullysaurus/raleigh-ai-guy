@@ -5,7 +5,7 @@
 
 @theme {
   --font-sans: Inter, sans-serif;
-  --color-white: #fafafa;
+  --color-white: #fffaf1;
   --color-black: #12161d;
   --color-base-50: oklch(0.985 0 0);
   --color-base-100: oklch(0.967 0.001 286.375);
@@ -27,19 +27,19 @@
 :root {
   --brand-ink: #12161d;
   --brand-text: #12161d;
-  --brand-bg: #fafafa;
-  --brand-surface: #fafafa;
-  --brand-surface-soft: #f1f1f1;
-  --brand-muted: #6b7280;
-  --brand-line: rgb(18 22 29 / 12%);
-  --brand-line-strong: rgb(18 22 29 / 22%);
-  --brand-form: #ffffff;
-  --brand-orange: #12161d;
-  --brand-yellow: #f1f1f1;
-  --brand-acid: #fafafa;
-  --brand-pink: #f1f1f1;
-  --brand-blue: #f1f1f1;
-  --focus-ring: #12161d;
+  --brand-bg: #f7f1e7;
+  --brand-surface: #fffaf1;
+  --brand-surface-soft: #e7eadf;
+  --brand-muted: #6d6a63;
+  --brand-line: rgb(38 39 35 / 13%);
+  --brand-line-strong: rgb(38 39 35 / 26%);
+  --brand-form: #fffaf1;
+  --brand-orange: #cf6a43;
+  --brand-yellow: #f3eadc;
+  --brand-acid: #f7f1e7;
+  --brand-pink: #e7eadf;
+  --brand-blue: #e7eadf;
+  --focus-ring: #cf6a43;
   --site-shell: 48rem;
   font-feature-settings: "liga" 1, "calt" 1, "dlig" 1, "ss07" 1,
     "ss08" 1, "zero" 1, "tnum" 1, "cv03" 1, "cv04" 1, "cv01" 1,
@@ -59,7 +59,7 @@ body {
 
 h1, h2, h3, h4 { text-wrap: balance; }
 
-::selection { color: white; background: var(--brand-ink); }
+::selection { color: var(--brand-ink); background: #e8a187; }
 
 a, button, summary { -webkit-tap-highlight-color: transparent; }
 
@@ -196,6 +196,25 @@ textarea:focus-visible {
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
+
+  .site-cta {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(18 22 29 / 18%);
+    border-radius: .5rem;
+    padding-inline: 1rem;
+    color: var(--brand-ink);
+    background: var(--brand-orange);
+    font-size: .875rem;
+    font-weight: 600;
+    transition: background-color 160ms ease, transform 160ms ease;
+  }
+
+  .site-cta:hover { background: #dc7a52; transform: translateY(-1px); }
+
+  .accent-label { color: var(--brand-orange); }
 
   .brand-dark-section {
     color: var(--brand-text);
