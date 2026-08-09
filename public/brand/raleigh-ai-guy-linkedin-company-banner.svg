@@ -2,10 +2,10 @@
   <title id="title">Raleigh AI Guy LinkedIn company banner</title>
   <desc id="desc">Practical AI systems for service businesses and small teams.</desc>
   <rect width="4200" height="700" fill="#f8f3ea"/>
-  <circle cx="4010" cy="650" r="520" fill="#ff5a1f"/>
+  <circle cx="4010" cy="650" r="520" fill="#ff6f4f"/>
   <rect x="3500" y="90" width="280" height="280" fill="#eee4d2"/>
   <!-- LinkedIn overlays the lower-left of company banners with the profile logo. -->
-  <path d="M1104 146a104 104 0 0 1 104 104v104H1104A104 104 0 0 1 1000 250 104 104 0 0 1 1104 146Z" fill="#ff5a1f"/>
+  <path d="M1104 146a104 104 0 0 1 104 104v104H1104A104 104 0 0 1 1000 250 104 104 0 0 1 1104 146Z" fill="#ff6f4f"/>
   <text x="1320" y="300" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="178" font-weight="800" letter-spacing="-8">Practical AI for Raleigh</text>
   <text x="1330" y="475" fill="#292219" font-family="Georgia, serif" font-size="185" font-style="italic">businesses.</text>
   <text x="1335" y="565" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="8">RALEIGH AI GUY · DANNY SULLIVAN</text>

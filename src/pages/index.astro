@@ -1,150 +1,195 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { homepageCaseStudy } from "@/data/homepageCaseStudy";
 import profileImage from "../../danny.jpeg";
-import seoDashboardImage from "@/images/projects/garden-art-seo-dashboard-live.png";
-import zimZoomImage from "@/images/projects/zimzoom-homepage-live.png";
+
+const services = [
+  {
+    number: "01",
+    name: "AI Review",
+    price: "$500 · one-time",
+    tagline: "Find out what's actually worth doing.",
+    description:
+      "A focused look at how your business runs today: where time gets lost, what's repetitive, and where AI can realistically help — versus where it's hype. You'll walk away with a short, plain-English roadmap, not a stack of jargon.",
+    footnote: "If you move forward on a build, this fee applies toward it.",
+    color: "bg-[var(--editorial-green)]",
+  },
+  {
+    number: "02",
+    name: "AI Employee Build",
+    price: "starting at $2,500 · one-time project",
+    tagline: "Get the system running.",
+    description:
+      "I design and set up the actual workflow: connecting your email, calendar, docs, and the AI tools that make sense for your business — most often existing platforms glued together and pointed in the right direction, not code built from scratch. You get something working, not a demo.",
+    color: "bg-[var(--editorial-blue)]",
+  },
+  {
+    number: "03",
+    name: "Ongoing Partner",
+    price: "$500–1,000/mo · retainer",
+    tagline: "Someone who keeps it working and keeps you current.",
+    description:
+      "AI tools change monthly. This is me staying on as your AI person — tuning what's already running, folding in new capabilities as they become useful, and telling you honestly when something's not worth adopting yet. You get a partner who filters the noise, not another subscription to manage.",
+    color: "bg-[var(--editorial-rust)]",
+  },
+];
+
 ---
 
 <BaseLayout
-  pageTitle="Practical AI for Raleigh Businesses"
-  pageDescription="Practical AI workflows that help Raleigh businesses spend less time on email, marketing, follow-up, and admin."
-  socialImage="/raleigh-ai-guy.png"
-  socialImageAlt="Raleigh AI Guy — AI help for small business, in plain English"
-  socialImageWidth={1200}
-  socialImageHeight={630}
-  minimal={true}
+  pageTitle="Danny Sullivan — Practical AI Systems for Small Businesses"
+  pageDescription="Danny Sullivan stress-tests, builds, and maintains practical AI systems for small and local businesses."
 >
-  <div class="broadcast-page">
-    <header class="broadcast-nav">
-      <a class="broadcast-logo" href="/" aria-label="Raleigh AI Guy home">
-        <span class="logo-bug">RAI</span>
-        <span>Raleigh AI Guy</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="#proof">Proof</a>
-        <a href="#offers">Ways to work</a>
-        <a href="/ai-workshops/">Workshops</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-      </nav>
-      <a class="nav-cta" href="/ai-diagnosis/">Start here →</a>
-    </header>
-
-    <div class="news-ticker" aria-label="Raleigh AI Guy services">
+  <div class="home-page bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]  ">
+    <section class="mx-auto max-w-6xl px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
       <div>
-        <span>LOCAL AI, NO HYPE</span><i>✦</i><span>WORKFLOW DIAGNOSIS</span><i>✦</i><span>AUTOMATION BUILDS</span><i>✦</i><span>TEAM WORKSHOPS</span><i>✦</i><span>RALEIGH, NC</span><i>✦</i>
-        <span aria-hidden="true">LOCAL AI, NO HYPE</span><i aria-hidden="true">✦</i><span aria-hidden="true">WORKFLOW DIAGNOSIS</span><i aria-hidden="true">✦</i><span aria-hidden="true">AUTOMATION BUILDS</span><i aria-hidden="true">✦</i><span aria-hidden="true">TEAM WORKSHOPS</span><i aria-hidden="true">✦</i><span aria-hidden="true">RALEIGH, NC</span><i aria-hidden="true">✦</i>
-      </div>
-    </div>
+        <p class="site-eyebrow">Danny Sullivan · Raleigh, North Carolina</p>
+        <h1 class="mt-6 max-w-5xl font-sans text-[clamp(2.8rem,7vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em]">
+          I stress-test AI so your business doesn’t have to
+          <span class="headline-highlight mt-2 block">gamble on it.</span>
+        </h1>
+        <p class="mt-8 max-w-3xl text-lg font-medium leading-8 text-[var(--editorial-ink)] sm:text-xl sm:leading-9">
+          I help small businesses replace repetitive work with practical AI systems that save time, reduce admin, and fit the tools they already use.
+        </p>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="channel-label"><span></span> Broadcasting practical AI from Raleigh, NC</p>
-          <h1 id="hero-title">AI that does<br />the <em>boring</em><br /><strong>stuff.</strong></h1>
-          <p class="hero-lede">Useful systems for local businesses that want less admin, better follow-through, and zero robot theater.</p>
-          <div class="hero-actions">
-            <a class="brutal-button primary" href="/ai-diagnosis/" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span>↗</span></a>
-            <a class="brutal-button secondary" href="/ai-opportunity-scorecard/" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard <span>→</span></a>
-          </div>
-          <div class="credential-bar">
-            <span>BUILD</span><b>Production AI at Gametime</b>
-            <span>TEACH</span><b>Former Pluralsight instructor</b>
-          </div>
-        </div>
-
-        <aside class="hero-visual" aria-label="About Danny Sullivan">
-          <div class="static-noise" aria-hidden="true"></div>
-          <div class="portrait-frame">
-            <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" />
-            <span class="live-bug"><i></i> LIVE</span>
-          </div>
-          <div class="name-card">
-            <div><small>YOUR HOST / BUILDER</small><strong>DANNY<br />SULLIVAN</strong></div>
-            <span>919</span>
-          </div>
-          <p class="tape-note">I study the work.<br />I build the system.<br />I help your team use it.</p>
-          <span class="star-burst" aria-hidden="true">NO<br />HYPE!</span>
-        </aside>
-      </section>
-
-      <div class="station-break" aria-hidden="true">
-        <span>YOU ARE WATCHING</span><strong>RALEIGH AI GUY</strong><span>CH. 919</span>
-      </div>
-
-      <section id="proof" class="proof-section" aria-labelledby="proof-title">
-        <header class="section-heading">
-          <p>Season 01 / Recent work</p>
-          <h2 id="proof-title">Proof, not<br /><em>promises.</em></h2>
-          <span class="scribble">REAL WORK<br />IN THE WILD ↓</span>
-        </header>
-
-        <div class="proof-grid">
-          <article class="case-card case-yellow">
-            <div class="case-image"><Image src={seoDashboardImage} alt="Garden and Art Landscapes SEO dashboard" widths={[640, 960]} sizes="(min-width: 900px) 50vw, 100vw" /></div>
-            <div class="case-copy">
-              <span class="episode">EP. 01</span>
-              <p>Automated SEO growth</p>
-              <h3>One dashboard that researches, drafts, measures, and keeps moving.</h3>
-              <ul><li>18 useful pages published</li><li>Live Analytics + Search Console</li><li>Early rankings at #4, #14, and #28</li></ul>
-              <a href="https://www.landscapingraleigh.com/seo-dashboard/" target="_blank" rel="noreferrer">See the live system ↗</a>
+        <div class="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
+          <div>
+            <div class="max-w-3xl space-y-5 text-base leading-7 text-base-600 dark:text-base-300 sm:text-lg sm:leading-8">
+              <p>At Gametime, I run the AI systems behind a product with millions of dollars in GMV riding on it — wrangling thousands of images, testing hundreds of tools and workflows, and prototyping, demoing, and iterating until something actually holds up in production, not just in a demo.</p>
+              <p>Before that, I spent five years at Pluralsight teaching the real concepts behind AI and machine learning — not just how to use the latest tool, but how it actually works. I bring both to every business I work with: the judgment to tell what’s real from what’s hype, and the grounding to explain why.</p>
             </div>
-          </article>
-
-          <article class="case-card case-orange">
-            <div class="case-image"><Image src={zimZoomImage} alt="ZimZoom Photo Booth website" widths={[640, 960]} sizes="(min-width: 900px) 50vw, 100vw" /></div>
-            <div class="case-copy">
-              <span class="episode">EP. 02</span>
-              <p>Custom Claude skills</p>
-              <h3>Turning an overloaded inbox into a repeatable operating system.</h3>
-              <ul><li>Lead and customer-message triage</li><li>Payment and follow-up priority</li><li>Hands-on team training</li></ul>
-              <a href="/blog/posts/create-first-claude-skill-organize-inbox/">Build the inbox skill →</a>
+            <ul class="mt-8 flex flex-wrap gap-3" aria-label="Areas of expertise">
+              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Systems Builder</li>
+              <li class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-green)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] shadow-[3px_3px_0_var(--editorial-shadow)]">AI Educator</li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="/free-ai-review/" class="editorial-button" data-posthog-event="free_review_cta_clicked">Free AI review <span class="ml-3">→</span></a>
+              <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↓</span></a>
             </div>
-          </article>
-        </div>
-      </section>
+          </div>
 
-      <section id="offers" class="offers-section" aria-labelledby="offers-title">
-        <div class="offers-intro">
-          <p>Choose your own adventure</p>
-          <h2 id="offers-title">Three ways to make work run better.</h2>
+          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-4 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-5">
+            <Image src={profileImage} alt="Danny Sullivan" width={512} height={512} loading="eager" class="aspect-square w-full border-2 border-[var(--editorial-line-strong)] object-cover" />
+            <p class="mt-5 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">About Danny</p>
+            <p class="mt-3 font-sans text-2xl font-semibold leading-tight">You work directly with me.</p>
+            <p class="mt-3 text-sm leading-6 opacity-65">From the first workflow review through launch and ongoing tuning—no handoff to a junior team.</p>
+            <a href="/about/" class="home-text-link mt-5 inline-flex text-sm font-semibold">The longer story →</a>
+          </aside>
         </div>
-        <div class="offer-stack">
-          <a href="/ai-opportunity-scorecard/" class="offer offer-yellow" data-posthog-event="ai_scorecard_cta_clicked">
-            <span>00</span><div><small>FREE · 7 MINUTES</small><h3>Score one annoying workflow.</h3><p>See if the work is ready for AI before buying anything.</p></div><b>→</b>
-          </a>
-          <a href="/ai-diagnosis/" class="offer offer-orange" data-posthog-event="ai_diagnosis_cta_clicked">
-            <span>01</span><div><small>$500 · ONE TIME</small><h3>Find the work worth fixing.</h3><p>A personal review, three ranked opportunities, and a 30-day roadmap.</p></div><b>→</b>
-          </a>
-          <a href="/ai-workshops/" class="offer offer-pink" data-posthog-event="ai_workshops_cta_clicked">
-            <span>02</span><div><small>FOR REAL ESTATE TEAMS</small><h3>Book a free lunch-and-learn.</h3><p>Thirty practical minutes. No sales deck. Bring the repetitive work.</p></div><b>→</b>
-          </a>
+      </div>
+    </section>
+
+    <section id="recent-work" class="scroll-mt-6 border-y-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-orange)] text-[var(--editorial-ink)]">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,.55fr)] lg:gap-16">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em]">{homepageCaseStudy.eyebrow}</p>
+            <h2 class="mt-4 max-w-4xl font-sans text-4xl font-semibold leading-[1] tracking-[-0.04em] sm:text-5xl">{homepageCaseStudy.heading}</h2>
+            <div class="mt-8 max-w-3xl space-y-5 text-base leading-7 text-black/75 dark:text-white/85">
+              {homepageCaseStudy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              <p>
+                {homepageCaseStudy.emailSkill.description}
+                <a href={homepageCaseStudy.emailSkill.href} class="home-text-link ml-1 font-semibold">
+                  {homepageCaseStudy.emailSkill.linkLabel} →
+                </a>
+              </p>
+              <p>{homepageCaseStudy.roadmap}</p>
+            </div>
+          </div>
+          <aside class="border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-canvas)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-7">
+            <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Anonymized case study</p>
+            <p class="mt-8 font-sans text-2xl font-semibold leading-tight">{homepageCaseStudy.clientName || homepageCaseStudy.clientDescription}</p>
+            {homepageCaseStudy.clientName && <p class="mt-2 text-sm leading-6 opacity-60">{homepageCaseStudy.clientDescription}</p>}
+            <div class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">In use now</p>
+              <ul class="mt-4 space-y-3">
+                {homepageCaseStudy.inUse.map((item) => (
+                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
+                    <span aria-hidden="true">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="mt-7 border-t border-current/20 pt-6">
+              <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Building next</p>
+              <ul class="mt-4 space-y-3">
+                {homepageCaseStudy.buildingNext.map((item) => (
+                  <li class="grid grid-cols-[1rem_1fr] gap-3 text-sm font-semibold leading-5">
+                    <span aria-hidden="true">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {homepageCaseStudy.quote && (
+              <blockquote class="mt-8 border-t-2 border-[var(--editorial-line-strong)] pt-6">
+                <p class="text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-50">Client quote</p>
+                <p class="mt-3 text-sm font-semibold leading-6">“{homepageCaseStudy.quote}”</p>
+              </blockquote>
+            )}
+          </aside>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="closing-cta">
-        <p>Transmission ends soon</p>
-        <h2>Bring me the task<br />everyone <em>hates.</em></h2>
-        <a class="brutal-button primary" href="/ai-diagnosis/" data-posthog-event="ai_diagnosis_cta_clicked">Let’s diagnose it <span>↗</span></a>
-        <div class="closing-stamp">USEFUL<br />SINCE<br />2026</div>
-      </section>
-    </main>
+    <section id="services" class="scroll-mt-6 bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-base-500 dark:text-base-400">Services</p>
+        <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <h2 class="max-w-2xl font-sans text-4xl font-semibold leading-none tracking-[-0.04em] sm:text-5xl">Three ways to work together</h2>
+          <p class="max-w-2xl text-base leading-7 text-base-600 dark:text-base-300">I’m not selling you custom software you’ll be stuck maintaining. Most of the time, the right tools already exist — the value I add is knowing which ones, wiring them into how you actually work, and keeping it running as things change.</p>
+        </div>
 
-    <footer class="broadcast-footer">
-      <strong>RALEIGH AI GUY</strong>
-      <span>Danny Sullivan · Raleigh, North Carolina</span>
-      <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a><a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer">LinkedIn ↗</a></nav>
-    </footer>
+        <div class="mt-12 grid gap-5 lg:grid-cols-3">
+          {services.map((service) => (
+            <article class:list={["flex min-h-full flex-col border-2 border-[var(--editorial-line-strong)] p-6 text-[var(--editorial-ink)] shadow-[6px_6px_0_var(--editorial-shadow)] sm:p-7", service.color]}>
+              <div class="flex items-start justify-between gap-4 text-[.68rem] font-semibold uppercase tracking-[0.14em] opacity-55">
+                <span>{service.name}</span>
+                <span>{service.number}</span>
+              </div>
+              <p class="mt-8 text-sm font-semibold leading-5">{service.price}</p>
+              <h3 class="mt-4 font-sans text-2xl font-semibold leading-tight">{service.tagline}</h3>
+              <p class="mt-5 text-sm leading-6 opacity-70">{service.description}</p>
+              {service.footnote && <p class="mt-auto border-t border-current/20 pt-5 text-xs font-semibold leading-5 opacity-65">{service.footnote}</p>}
+            </article>
+          ))}
+        </div>
+
+        <article class="mt-6 grid gap-8 border-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-lavender)] p-6 text-[var(--editorial-ink)] shadow-[7px_7px_0_var(--editorial-shadow)] sm:p-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] opacity-55">Beyond the retainer</p>
+            <p class="mt-4 text-sm font-semibold">starting at $1,500/mo, custom-scoped</p>
+          </div>
+          <div>
+            <h3 class="font-sans text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">Outgrowing the basics?</h3>
+            <p class="mt-5 max-w-3xl text-sm leading-6 opacity-70">Some businesses need more than a monthly check-in — a team with multiple people to onboard, active monthly build-out instead of maintenance, or a bigger system to manage. If that’s you, we scope it together rather than force it into a fixed tier.</p>
+            <a href="mailto:hello@dannysullivan.ai?subject=Custom%20AI%20engagement" class="editorial-button mt-7">Let’s talk about what you need <span class="ml-3">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="border-t-2 border-[var(--editorial-line-strong)] bg-[var(--editorial-blue)] text-[var(--editorial-ink)]">
+      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">A simple place to start</p>
+        <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Not sure which one you need?</h2>
+        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">Start with the free version of the review — a shorter conversation, no cost, no pitch. If there’s a real opportunity, I’ll tell you plainly what it would take.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/free-ai-review/" class="editorial-button" data-posthog-event="free_review_cta_clicked">Free AI review <span class="ml-3">→</span></a>
+          <a href="#recent-work" class="social-chip bg-[var(--editorial-canvas)] text-[var(--editorial-ink)]" data-posthog-event="recent_work_cta_clicked">See recent work <span class="ml-3">↑</span></a>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
-
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-posthog-event]').forEach(function (link) {
       link.addEventListener('click', function () {
-        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page_broadcast' });
+        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page' });
       });
     });
   });
