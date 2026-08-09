@@ -24,18 +24,18 @@ const principles = [
   pageTitle="About Danny Sullivan — Raleigh AI Guy"
   pageDescription="Danny Sullivan is Raleigh AI Guy, helping small businesses find practical AI tools, improve workflows, and avoid expensive distractions."
 >
-  <div class="brand-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
-    <section class="mx-auto max-w-[96rem] px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12 lg:pb-28 lg:pt-20">
-      <div class="grid gap-14 lg:grid-cols-[minmax(0,1.55fr)_minmax(19rem,.58fr)] lg:items-end lg:gap-16 xl:gap-20">
-        <div>
-          <p class="inline-flex items-center gap-3 rounded-full border border-[var(--brand-line)] px-4 py-2 text-xs font-semibold text-[var(--brand-muted)]">
+  <div class="brand-page about-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
+    <section class="about-hero border-y-[3px] border-[var(--brand-ink)]">
+      <div class="about-hero-grid mx-auto grid max-w-[96rem] gap-14 px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16 lg:grid-cols-[minmax(0,1.55fr)_minmax(19rem,.58fr)] lg:items-end lg:gap-16 lg:px-12 lg:pb-28 lg:pt-20 xl:gap-20">
+        <div class="about-hero-copy">
+          <p class="about-kicker inline-flex items-center gap-3 px-4 py-2 text-xs font-black uppercase tracking-[.1em]">
             <span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-            About Danny Sullivan · Raleigh, NC
+            Field report 919 · Danny Sullivan
           </p>
-          <h1 class="mt-9 max-w-5xl font-sans text-[clamp(3.2rem,6vw,6.5rem)] font-extrabold leading-[0.91] tracking-[-0.075em]">
-            I make AI <span class="text-[var(--brand-orange)]">useful</span> for
+          <h1 class="about-title mt-9 max-w-5xl font-sans text-[clamp(3.2rem,6vw,6.5rem)] font-black leading-[0.86] tracking-[-0.075em]">
+            I make AI <span class="about-title-orange">useful</span> for
             <span class="block">people with a</span>
-            <em class="mt-2 block font-serif font-normal tracking-[-0.055em]">business to run.</em>
+            <em class="about-title-script mt-3 block font-serif font-normal tracking-[-0.055em]">business to run.</em>
           </h1>
           <p class="mt-10 max-w-2xl text-lg font-semibold leading-8 sm:text-xl sm:leading-9">The person you talk to is the person who studies the work, builds the system, and helps your team use it.</p>
           <p class="mt-5 max-w-2xl text-base leading-7 text-[var(--brand-muted)] sm:text-lg sm:leading-8">I’m an AI product engineer, educator, and small-business builder. I help teams find the few AI opportunities worth acting on, choose tools that fit, and turn the useful ones into everyday workflows.</p>
@@ -45,13 +45,14 @@ const principles = [
           </div>
         </div>
 
-        <figure class="brand-card mx-auto w-full max-w-[24rem] overflow-hidden bg-[var(--brand-surface)] p-3 lg:mx-0 lg:justify-self-end">
+        <figure class="about-portrait brand-card relative mx-auto w-full max-w-[24rem] bg-[var(--brand-pink)] p-3 lg:mx-0 lg:justify-self-end">
+          <span class="about-sticker about-sticker-top" aria-hidden="true">NO<br />HYPE</span>
           <div class="overflow-hidden rounded-t-[999px] rounded-b-[1rem] bg-[var(--brand-ink)]">
             <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" class="aspect-[.94/1] w-full scale-[1.08] object-cover object-[50%_43%]" />
           </div>
-          <figcaption class="flex items-end justify-between gap-4 px-2 pb-1 pt-4">
-            <strong class="text-sm font-bold">Danny Sullivan</strong>
-            <span class="text-right text-xs leading-5 text-[var(--brand-muted)]">Raleigh AI Guy<br />Raleigh, North Carolina</span>
+          <figcaption class="about-caption mt-3 flex items-end justify-between gap-4 px-3 py-3">
+            <strong class="font-sans text-lg font-black uppercase leading-none">Danny<br />Sullivan</strong>
+            <span class="text-right text-xs font-bold leading-5">Your host / builder<br />Raleigh · CH. 919</span>
           </figcaption>
         </figure>
       </div>
