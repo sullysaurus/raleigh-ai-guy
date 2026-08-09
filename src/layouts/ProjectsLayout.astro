@@ -11,7 +11,7 @@ const projectImage = frontmatter.image.url;
 const projectImageWidth = typeof projectImage === "string" ? 1200 : projectImage.width;
 const projectImageHeight = typeof projectImage === "string" ? 900 : projectImage.height;
 const isPortraitImage = projectImageHeight > projectImageWidth;
-const imageFrameClass = isPortraitImage ? "mt-8 bg-black/5 p-6 dark:bg-white/5 sm:p-10 lg:p-14" : "mt-8 bg-black/5 p-8 dark:bg-white/5 lg:p-16";
+const imageFrameClass = isPortraitImage ? "mt-8 bg-black/5 p-6 sm:p-10 lg:p-14" : "mt-8 bg-black/5 p-8 lg:p-16";
 const projectImageClass = isPortraitImage ? "mx-auto max-h-[760px] w-auto max-w-full rounded-[2rem] object-contain shadow-sm" : "mx-auto w-full rounded-xl object-contain";
 const socialImage = await getImage({
   src: projectImage,
@@ -33,18 +33,18 @@ const socialImage = await getImage({
 >
   <section class="brand-page">
     <div class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)]"><Wrapper variant="standard" class="pt-12 lg:py-32 xl:py-44">
-      <Text tag="h1" variant="displayXS" class="max-w-4xl text-balance font-medium text-black dark:text-white">{frontmatter.title}</Text>
+      <Text tag="h1" variant="displayXS" class="max-w-4xl text-balance font-medium text-black">{frontmatter.title}</Text>
     </Wrapper></div>
     <Wrapper variant="standard" class="pb-20 pt-12">
-      <div class="border-t border-black/10 pt-4 dark:border-white/10">
-        <Text tag="p" variant="textSM" class="mt-2 max-w-2xl text-base-500 dark:text-base-400 2xl:text-base">{frontmatter.subtitle}</Text>
-        <div class="mt-8 flex items-center justify-between gap-6"><Text tag="p" variant="textXS" class="text-base-500 dark:text-base-400">Launched <time datetime={projectDateTime}>{projectDate}</time></Text><Text tag="a" variant="textSM" href={frontmatter.live} class="font-medium text-black hover:text-base-500 dark:text-white dark:hover:text-base-400">Visit project →</Text></div>
+      <div class="border-t border-black/10 pt-4">
+        <Text tag="p" variant="textSM" class="mt-2 max-w-2xl text-base-500 2xl:text-base">{frontmatter.subtitle}</Text>
+        <div class="mt-8 flex items-center justify-between gap-6"><Text tag="p" variant="textXS" class="text-base-500">Launched <time datetime={projectDateTime}>{projectDate}</time></Text><Text tag="a" variant="textSM" href={frontmatter.live} class="font-medium text-black hover:text-base-500">Visit project →</Text></div>
       </div>
       <div class={imageFrameClass}><Image width={projectImageWidth} height={projectImageHeight} src={projectImage} alt={frontmatter.image.alt} class={projectImageClass} /></div>
       <Wrapper variant="prose" class="mt-12"><slot /></Wrapper>
-      {(previous || next) && <nav class="mt-24 flex flex-col gap-6 border-t border-black/10 pt-6 text-xs dark:border-white/10 md:flex-row md:justify-between">
-        <div>{previous && <a href={`/projects/${previous.id}`} class="hover:opacity-70"><span class="block font-medium uppercase text-black dark:text-white">Previous</span><span class="mt-1 block text-base-500 dark:text-base-400">{previous.data.title}</span></a>}</div>
-        <div>{next && <a href={`/projects/${next.id}`} class="text-right hover:opacity-70"><span class="block font-medium uppercase text-black dark:text-white">Next</span><span class="mt-1 block text-base-500 dark:text-base-400">{next.data.title}</span></a>}</div>
+      {(previous || next) && <nav class="mt-24 flex flex-col gap-6 border-t border-black/10 pt-6 text-xs md:flex-row md:justify-between">
+        <div>{previous && <a href={`/projects/${previous.id}`} class="hover:opacity-70"><span class="block font-medium uppercase text-black">Previous</span><span class="mt-1 block text-base-500">{previous.data.title}</span></a>}</div>
+        <div>{next && <a href={`/projects/${next.id}`} class="text-right hover:opacity-70"><span class="block font-medium uppercase text-black">Next</span><span class="mt-1 block text-base-500">{next.data.title}</span></a>}</div>
       </nav>}
     </Wrapper>
   </section>

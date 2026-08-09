@@ -23,7 +23,7 @@ const timeToRead = readingTime(Astro.props.post.body);
       <Text
         tag="span"
         variant="textXS"
-        class="font-medium text-base-500 dark:text-base-400 uppercase order-first"
+        class="font-medium text-base-500 uppercase order-first"
       >
         <time datetime={pubDate}>{pubDate}</time>
         <span>·</span>
@@ -32,7 +32,7 @@ const timeToRead = readingTime(Astro.props.post.body);
       <Text
         tag="h4"
         variant="textBase"
-        class="text-black dark:text-white font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+        class="text-black font-medium group-hover:text-black/70"
       >
         {title}
       </Text>

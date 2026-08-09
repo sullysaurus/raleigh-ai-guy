@@ -7,7 +7,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   pageDescription="How Danny Sullivan collects, uses, and protects information submitted through raleighaiguy.com."
 >
   <div class="bg-[var(--brand-bg)] text-[var(--brand-text)]">
-    <header class="border-b border-black/10 dark:border-white/10">
+    <header class="border-b border-black/10">
       <div class="site-shell py-14 sm:py-20">
         <p class="site-eyebrow">Legal · Effective August 8, 2026</p>
         <h1 class="mt-5 max-w-4xl text-5xl font-semibold leading-[.95] tracking-[-.045em] sm:text-7xl">Privacy Policy</h1>
@@ -93,15 +93,3 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </main>
   </div>
 </BaseLayout>
-
-<style>
-  .privacy-copy section + section { margin-top: 3rem; }
-  .privacy-copy h2 { font-size: 1.35rem; font-weight: 750; letter-spacing: -.02em; }
-  .privacy-copy p, .privacy-copy li { color: var(--brand-muted); font-size: .95rem; line-height: 1.8; }
-  .privacy-copy p { margin-top: 1rem; }
-  .privacy-copy ul { margin-top: 1rem; padding-left: 1.2rem; list-style: square; }
-  .privacy-copy li + li { margin-top: .5rem; }
-  .privacy-copy a { color: var(--brand-text); font-weight: 650; text-decoration: underline; text-decoration-color: var(--brand-mint); text-decoration-thickness: 1px; text-underline-offset: 4px; }
-  .dark .privacy-copy p, .dark .privacy-copy li { color: var(--color-base-300); }
-  .dark .privacy-copy a { color: #fafafa; }
-</style>

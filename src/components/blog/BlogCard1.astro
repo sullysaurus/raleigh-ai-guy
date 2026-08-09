@@ -33,7 +33,7 @@ const timeToRead = readingTime(Astro.props.post.body);
       height="400"
       src={image}
       alt={title}
-      class="size-16 lg:size-28 object-cover rounded-lg dark:opacity-70"
+      class="size-16 lg:size-28 object-cover rounded-lg"
     />
   </div>
   <div>
@@ -45,14 +45,14 @@ const timeToRead = readingTime(Astro.props.post.body);
     <Text
       tag="h4"
       variant="textBase"
-      class="text-black dark:text-white mt-1 font-medium group-hover:text-black/70 dark:group-hover:text-white/70"
+      class="text-black mt-1 font-medium group-hover:text-black/70"
     >
       {title}
     </Text>
     <Text
       tag="p"
       variant="textXS"
-      class="text-base-500 dark:text-base-400 mt-1 line-clamp-2"
+      class="text-base-500 mt-1 line-clamp-2"
     >
       {description}
     </Text>

@@ -13,14 +13,14 @@ const allProjects = (await getCollection("projects")).sort(
 <BaseLayout pageTitle="Projects" pageDescription="Selected projects across AI, product, automation, content, and growth.">
   <section class="brand-page">
     <div class="border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)]"><Wrapper variant="standard" class="py-16 sm:py-24 lg:py-28">
-      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Projects</p>
-      <h1 class="mt-5 max-w-4xl text-balance font-sans text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-black dark:text-white sm:text-6xl">Selected work across AI, product, and useful systems.</h1>
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-base-500">Projects</p>
+      <h1 class="mt-5 max-w-4xl text-balance font-sans text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-black sm:text-6xl">Selected work across AI, product, and useful systems.</h1>
     </Wrapper></div>
     <Wrapper variant="standard" class="pb-20 pt-12">
-      <div class="border-t border-black/10 pt-4 dark:border-white/10">
-        <Text tag="p" variant="textSM" class="max-w-2xl text-base-500 dark:text-base-400 2xl:text-base">A few projects across AI, product, automation, content, and growth. These are the kinds of problems I like: messy discovery workflows, useful tools, and product surfaces that make a real behavior easier.</Text>
+      <div class="border-t border-black/10 pt-4">
+        <Text tag="p" variant="textSM" class="max-w-2xl text-base-500 2xl:text-base">A few projects across AI, product, automation, content, and growth. These are the kinds of problems I like: messy discovery workflows, useful tools, and product surfaces that make a real behavior easier.</Text>
       </div>
-      <div class="mt-8 flex flex-col divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+      <div class="mt-8 flex flex-col divide-y divide-black/10 border-y border-black/10">
         {allProjects.map((post) => <ProjectsEntries post={post} />)}
       </div>
     </Wrapper>

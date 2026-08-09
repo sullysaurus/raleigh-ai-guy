@@ -30,13 +30,13 @@ const socialImage = await getImage({
       <p class="brand-copy brand-copy-lead mt-6 max-w-3xl">{frontmatter.description}</p>
       <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-base-400">
         <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
-        {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black dark:hover:text-white">#{tag}</a>)}
+        {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black">#{tag}</a>)}
       </div>
     </div></header>
 
     <div class="mx-auto grid max-w-7xl justify-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[9rem_minmax(0,60rem)] lg:gap-16">
-      <aside class="text-xs leading-5 text-base-400"><span class="block font-medium uppercase tracking-wide">Written by</span><a href="/about/" class="mt-2 block text-black hover:underline dark:text-white">Danny Sullivan</a><span class="mt-1 block">Raleigh AI Guy<br />Raleigh, NC</span></aside>
-      <div class="prose post-body min-w-0 max-w-none prose-headings:font-sans prose-headings:font-semibold prose-headings:tracking-tight prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-base-300 prose-a:underline-offset-4 prose-strong:text-black dark:prose-invert dark:prose-a:text-white dark:prose-strong:text-white"><slot /></div>
+      <aside class="text-xs leading-5 text-base-400"><span class="block font-medium uppercase tracking-wide">Written by</span><a href="/about/" class="mt-2 block text-black hover:underline">Danny Sullivan</a><span class="mt-1 block">Raleigh AI Guy<br />Raleigh, NC</span></aside>
+      <div class="prose post-body min-w-0 max-w-none prose-headings:font-sans prose-headings:font-semibold prose-headings:tracking-tight prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-base-300 prose-a:underline-offset-4 prose-strong:text-black"><slot /></div>
     </div>
 
     {(previous || next) && <nav class="mx-auto grid max-w-5xl gap-4 px-5 sm:grid-cols-2 sm:px-8" aria-label="More articles">
