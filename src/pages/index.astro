@@ -4,73 +4,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import profileImage from "../../danny.jpeg";
 import seoDashboardImage from "@/images/projects/garden-art-seo-dashboard-live.png";
 import zimZoomImage from "@/images/projects/zimzoom-homepage-live.png";
-
-const services = [
-  {
-    number: "01",
-    name: "AI Diagnosis",
-    price: "$500 · one-time",
-    tagline: "Find out what's actually worth doing.",
-    description:
-      "A personal workflow review, three ranked opportunities, and a written 30-day roadmap.",
-    cta: "Start with a diagnosis",
-    href: "/ai-diagnosis/",
-  },
-  {
-    number: "02",
-    name: "Implementation Sprint",
-    price: "$3,000–$7,500 · typical range",
-    tagline: "Build one useful system well.",
-    description:
-      "Turn the best opportunity into a focused, measurable workflow your team can review and use.",
-    footnote: "Quoted after the diagnosis. Fixed scope before work begins.",
-    cta: "See how implementation works",
-    href: "/ai-diagnosis/#apply",
-  },
-  {
-    number: "03",
-    name: "AI Partnership",
-    price: "from $2,000/mo · based on scope",
-    tagline: "I build it, run it, and improve it.",
-    description:
-      "Ongoing operation, improvements, training, and accountability when the system needs active ownership.",
-    footnote: "Usually follows a diagnosis or build. Limited client capacity.",
-    cta: "Discuss a partnership",
-    href: "/ai-diagnosis/#apply",
-  },
-];
-
-const caseStudies = [
-  {
-    eyebrow: "Automated SEO growth",
-    title: "An SEO system that researches, drafts, measures, and keeps moving.",
-    description:
-      "For Garden & Art Landscapes, I connected keyword research, content planning, Google Analytics, and Search Console in one dashboard. It automatically tracks what is published, what is gaining visibility, and what deserves attention next.",
-    detail:
-      "The system also drafts useful local content and checks each article against Google's people-first content guidance before it reaches the owner. Instead of managing SEO tools, they can open one dashboard and make the few decisions that still need their expertise.",
-    proof: ["18 useful pages published", "Live Analytics + Search Console data", "Early rankings at #4, #14, and #28"],
-    image: seoDashboardImage,
-    imageAlt: "Garden & Art Landscapes SEO content tracker showing website activity, published pages, keyword rankings, search volume, and Search Console performance.",
-    href: "https://www.landscapingraleigh.com/seo-dashboard/",
-    cta: "Explore the live dashboard",
-    external: true,
-  },
-  {
-    eyebrow: "Custom Claude skills",
-    title: "Turning an overloaded inbox into a repeatable operating system.",
-    description:
-      "ZimZoom Photo Booth handles a constant stream of leads, customer replies, payment questions, and event details. I have been teaching the team how to turn that knowledge into custom Claude skills instead of sorting every message from scratch.",
-    detail:
-      "The inbox workflow identifies what each message is about, surfaces the next action, and keeps the team in control of every response. The bigger win is transferable: once the team understands how to build a skill, they can apply the same approach to other repetitive parts of the business.",
-    proof: ["Lead and customer-message triage", "Payment and follow-up prioritization", "Hands-on skill-building training"],
-    image: zimZoomImage,
-    imageAlt: "Live ZimZoom Photo Booth homepage featuring four guests and the headline Extraordinary Photo Booth Experiences.",
-    href: "/blog/posts/create-first-claude-skill-organize-inbox/",
-    cta: "See how to build the inbox skill",
-    external: false,
-  },
-];
-
 ---
 
 <BaseLayout
@@ -80,141 +13,285 @@ const caseStudies = [
   socialImageAlt="Raleigh AI Guy — AI help for small business, in plain English"
   socialImageWidth={1200}
   socialImageHeight={630}
+  minimal={true}
 >
-  <div class="home-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
-    <section class="hero-shell mx-auto max-w-[96rem] px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16 lg:px-12 lg:pb-28 lg:pt-20">
-      <div class="grid gap-14 lg:grid-cols-[minmax(0,1.55fr)_minmax(19rem,.58fr)] lg:items-end lg:gap-16 xl:gap-20">
+  <div class="broadcast-page">
+    <header class="broadcast-nav">
+      <a class="broadcast-logo" href="/" aria-label="Raleigh AI Guy home">
+        <span class="logo-bug">RAI</span>
+        <span>Raleigh AI Guy</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#proof">Proof</a>
+        <a href="#offers">Ways to work</a>
+        <a href="/ai-workshops/">Workshops</a>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+      <a class="nav-cta" href="/ai-diagnosis/">Start here →</a>
+    </header>
+
+    <div class="news-ticker" aria-label="Raleigh AI Guy services">
+      <div>
+        <span>LOCAL AI, NO HYPE</span><i>✦</i><span>WORKFLOW DIAGNOSIS</span><i>✦</i><span>AUTOMATION BUILDS</span><i>✦</i><span>TEAM WORKSHOPS</span><i>✦</i><span>RALEIGH, NC</span><i>✦</i>
+        <span aria-hidden="true">LOCAL AI, NO HYPE</span><i aria-hidden="true">✦</i><span aria-hidden="true">WORKFLOW DIAGNOSIS</span><i aria-hidden="true">✦</i><span aria-hidden="true">AUTOMATION BUILDS</span><i aria-hidden="true">✦</i><span aria-hidden="true">TEAM WORKSHOPS</span><i aria-hidden="true">✦</i><span aria-hidden="true">RALEIGH, NC</span><i aria-hidden="true">✦</i>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="location-pill inline-flex items-center gap-3 rounded-full border border-[var(--brand-line)] px-4 py-2 text-xs font-semibold text-[var(--brand-muted)]">
-            <span class="size-2 rounded-full bg-[var(--brand-mint)]" aria-hidden="true"></span>
-            Raleigh, North Carolina
-          </p>
-          <h1 class="mt-9 max-w-4xl font-sans text-[clamp(3.2rem,6vw,6.5rem)] font-extrabold leading-[0.91] tracking-[-0.075em]">
-            Practical AI for
-            <span class="mt-2 block text-[var(--brand-mint)]">Raleigh <em class="font-serif font-normal text-[var(--brand-text)]">businesses.</em></span>
-          </h1>
-          <p class="mt-10 max-w-2xl text-lg font-semibold leading-8 text-[var(--brand-text)] sm:text-xl sm:leading-9">
-            Practical AI systems for service businesses and small teams that want less admin and better follow-through.
-          </p>
-          <p class="mt-5 max-w-2xl text-base leading-7 text-[var(--brand-muted)] sm:text-lg sm:leading-8">
-            I build production AI systems at Gametime and previously taught AI at Pluralsight. Now I bring that experience to local businesses that want useful systems, not hype.
-          </p>
-          <div class="mt-9 flex flex-wrap gap-4">
-            <a href="/ai-diagnosis/" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span class="ml-3">→</span></a>
-            <a href="/ai-opportunity-scorecard/" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard</a>
+          <p class="channel-label"><span></span> Broadcasting practical AI from Raleigh, NC</p>
+          <h1 id="hero-title">AI that does<br />the <em>boring</em><br /><strong>stuff.</strong></h1>
+          <p class="hero-lede">Useful systems for local businesses that want less admin, better follow-through, and zero robot theater.</p>
+          <div class="hero-actions">
+            <a class="brutal-button primary" href="/ai-diagnosis/" data-posthog-event="ai_diagnosis_cta_clicked">Start with a $500 diagnosis <span>↗</span></a>
+            <a class="brutal-button secondary" href="/ai-opportunity-scorecard/" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard <span>→</span></a>
           </div>
-          <ul class="mt-9 flex flex-wrap gap-3" aria-label="Areas of expertise">
-            <li class="hero-tag rounded-full bg-[var(--brand-surface-soft)] px-4 py-2 text-[.68rem] font-bold uppercase tracking-[0.12em]">AI Systems Builder</li>
-            <li class="hero-tag rounded-full bg-[var(--brand-surface-soft)] px-4 py-2 text-[.68rem] font-bold uppercase tracking-[0.12em]">AI Educator</li>
-          </ul>
+          <div class="credential-bar">
+            <span>BUILD</span><b>Production AI at Gametime</b>
+            <span>TEACH</span><b>Former Pluralsight instructor</b>
+          </div>
         </div>
 
-        <aside class="hero-profile mx-auto w-full max-w-[24rem] lg:mx-0 lg:justify-self-end">
-          <a href="/about/" class="group block" aria-label="Learn more about Danny Sullivan">
-            <div class="overflow-hidden rounded-[1.5rem] border border-[var(--brand-line)] bg-[var(--brand-surface)] p-3 shadow-[0_24px_60px_var(--brand-shadow)]">
-              <div class="overflow-hidden rounded-t-[999px] rounded-b-[1rem] bg-[var(--brand-ink)]">
-                <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" class="aspect-[.94/1] w-full scale-[1.08] object-cover object-[50%_43%] transition-transform duration-500 group-hover:scale-[1.105]" />
-              </div>
-            </div>
-            <div class="mt-7 grid grid-cols-[1fr_auto] items-center gap-6">
-              <div>
-                <p class="text-[.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">About Danny</p>
-                <p class="mt-3 max-w-sm font-sans text-xl font-bold leading-[1.1] tracking-[-0.03em] sm:text-2xl">Work directly with the person who builds it.</p>
-              </div>
-              <span class="grid size-12 place-items-center rounded-full bg-[var(--brand-ink)] text-lg text-[var(--brand-bg)] transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-            </div>
-          </a>
+        <aside class="hero-visual" aria-label="About Danny Sullivan">
+          <div class="static-noise" aria-hidden="true"></div>
+          <div class="portrait-frame">
+            <Image src={profileImage} alt="Danny Sullivan" width={615} height={615} loading="eager" />
+            <span class="live-bug"><i></i> LIVE</span>
+          </div>
+          <div class="name-card">
+            <div><small>YOUR HOST / BUILDER</small><strong>DANNY<br />SULLIVAN</strong></div>
+            <span>919</span>
+          </div>
+          <p class="tape-note">I study the work.<br />I build the system.<br />I help your team use it.</p>
+          <span class="star-burst" aria-hidden="true">NO<br />HYPE!</span>
         </aside>
+      </section>
+
+      <div class="station-break" aria-hidden="true">
+        <span>YOU ARE WATCHING</span><strong>RALEIGH AI GUY</strong><span>CH. 919</span>
       </div>
-    </section>
 
-    <section id="recent-work" class="scroll-mt-6 border-y border-white/10 bg-[var(--brand-ink)] text-white">
-      <div class="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
-        <div class="grid gap-6 lg:grid-cols-[.65fr_1.35fr] lg:items-end lg:gap-16">
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">Recent work</p>
-            <h2 class="mt-5 max-w-xl font-sans text-4xl font-bold leading-[.98] tracking-[-0.05em] sm:text-5xl">Automation people can actually use.</h2>
-          </div>
-          <p class="max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">The best system does the repetitive work, shows what is happening, and leaves the important decisions with the people who know the business.</p>
+      <section id="proof" class="proof-section" aria-labelledby="proof-title">
+        <header class="section-heading">
+          <p>Season 01 / Recent work</p>
+          <h2 id="proof-title">Proof, not<br /><em>promises.</em></h2>
+          <span class="scribble">REAL WORK<br />IN THE WILD ↓</span>
+        </header>
+
+        <div class="proof-grid">
+          <article class="case-card case-lime">
+            <div class="case-image"><Image src={seoDashboardImage} alt="Garden and Art Landscapes SEO dashboard" widths={[640, 960]} sizes="(min-width: 900px) 50vw, 100vw" /></div>
+            <div class="case-copy">
+              <span class="episode">EP. 01</span>
+              <p>Automated SEO growth</p>
+              <h3>One dashboard that researches, drafts, measures, and keeps moving.</h3>
+              <ul><li>18 useful pages published</li><li>Live Analytics + Search Console</li><li>Early rankings at #4, #14, and #28</li></ul>
+              <a href="https://www.landscapingraleigh.com/seo-dashboard/" target="_blank" rel="noreferrer">See the live system ↗</a>
+            </div>
+          </article>
+
+          <article class="case-card case-blue">
+            <div class="case-image"><Image src={zimZoomImage} alt="ZimZoom Photo Booth website" widths={[640, 960]} sizes="(min-width: 900px) 50vw, 100vw" /></div>
+            <div class="case-copy">
+              <span class="episode">EP. 02</span>
+              <p>Custom Claude skills</p>
+              <h3>Turning an overloaded inbox into a repeatable operating system.</h3>
+              <ul><li>Lead and customer-message triage</li><li>Payment and follow-up priority</li><li>Hands-on team training</li></ul>
+              <a href="/blog/posts/create-first-claude-skill-organize-inbox/">Build the inbox skill →</a>
+            </div>
+          </article>
         </div>
+      </section>
 
-        <div class="mt-14 grid gap-7 xl:grid-cols-2">
-          {caseStudies.map((study) => (
-            <article class="overflow-hidden rounded-[1.5rem] bg-[var(--brand-bg)] text-[var(--brand-ink)]">
-              <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class="group block overflow-hidden border-b border-[var(--brand-line)] bg-[var(--brand-surface-soft)]">
-                <Image src={study.image} alt={study.imageAlt} class="aspect-[16/9] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]" widths={[640, 960, 1280]} sizes="(min-width: 1280px) 46vw, 92vw" />
-              </a>
-              <div class="p-6 sm:p-8">
-                <p class="text-[.68rem] font-bold uppercase tracking-[0.18em] text-[var(--brand-mint)]">{study.eyebrow}</p>
-                <h3 class="mt-4 max-w-2xl font-sans text-3xl font-bold leading-[1.02] tracking-[-0.04em]">{study.title}</h3>
-                <div class="mt-6 space-y-4 text-sm leading-6 text-[var(--brand-muted)] sm:text-base sm:leading-7">
-                  <p>{study.description}</p>
-                  <p>{study.detail}</p>
-                </div>
-                <ul class="mt-7 grid gap-3 border-y border-[var(--brand-line)] py-6 sm:grid-cols-3" aria-label={`${study.eyebrow} outcomes`}>
-                  {study.proof.map((item) => <li class="text-xs font-bold leading-5"><span class="mr-2 text-[var(--brand-mint)]" aria-hidden="true">●</span>{item}</li>)}
-                </ul>
-                <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class="mt-6 inline-flex min-h-11 items-center text-sm font-bold underline decoration-[var(--brand-mint)] decoration-2 underline-offset-4">{study.cta} <span class="ml-2" aria-hidden="true">{study.external ? "↗" : "→"}</span></a>
-              </div>
-            </article>
-          ))}
+      <section id="offers" class="offers-section" aria-labelledby="offers-title">
+        <div class="offers-intro">
+          <p>Choose your own adventure</p>
+          <h2 id="offers-title">Three ways to make work suck less.</h2>
         </div>
-      </div>
-    </section>
-
-    <section id="services" class="scroll-mt-6 bg-[var(--brand-bg)] text-[var(--brand-text)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-mint)]">Ways to work together</p>
-        <div class="mt-4 grid gap-6 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
-          <h2 class="max-w-2xl font-sans text-4xl font-bold leading-none tracking-[-0.05em] sm:text-5xl">A clear path from question to working system.</h2>
-          <p class="max-w-2xl text-base leading-7 text-[var(--brand-muted)]">Start free when you are exploring. Pay for a diagnosis when the workflow deserves personal attention. Build or continue only when the expected value supports it.</p>
+        <div class="offer-stack">
+          <a href="/ai-opportunity-scorecard/" class="offer offer-yellow" data-posthog-event="ai_scorecard_cta_clicked">
+            <span>00</span><div><small>FREE · 7 MINUTES</small><h3>Score one annoying workflow.</h3><p>See if the work is ready for AI before buying anything.</p></div><b>→</b>
+          </a>
+          <a href="/ai-diagnosis/" class="offer offer-orange" data-posthog-event="ai_diagnosis_cta_clicked">
+            <span>01</span><div><small>$500 · ONE TIME</small><h3>Find the work worth fixing.</h3><p>A personal review, three ranked opportunities, and a 30-day roadmap.</p></div><b>→</b>
+          </a>
+          <a href="/ai-workshops/" class="offer offer-pink" data-posthog-event="ai_workshops_cta_clicked">
+            <span>02</span><div><small>FOR REAL ESTATE TEAMS</small><h3>Book a free lunch-and-learn.</h3><p>Thirty practical minutes. No sales deck. Bring the repetitive work.</p></div><b>→</b>
+          </a>
         </div>
+      </section>
 
-        <a href="/ai-opportunity-scorecard/" class="group mt-12 grid gap-8 rounded-[1.5rem] bg-[var(--brand-ink)] p-6 text-white sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div><p class="text-[.68rem] font-bold uppercase tracking-[.18em] text-[var(--brand-mint)]">Free first step · about 7 minutes</p><h3 class="mt-4 max-w-3xl font-sans text-3xl font-bold leading-[1.02] tracking-[-.04em] sm:text-4xl">Score one repetitive workflow before you buy anything.</h3><p class="mt-5 max-w-2xl text-sm leading-6 text-white/60 sm:text-base sm:leading-7">See whether the work is ready for AI, needs a little definition, or should be improved as an ordinary process first.</p></div>
-          <span class="grid size-12 place-items-center rounded-full bg-[var(--brand-mint)] text-lg text-[var(--brand-ink)] transition-transform group-hover:translate-x-1">→</span>
-        </a>
+      <section class="closing-cta">
+        <p>Transmission ends soon</p>
+        <h2>Bring me the task<br />everyone <em>hates.</em></h2>
+        <a class="brutal-button primary" href="/ai-diagnosis/" data-posthog-event="ai_diagnosis_cta_clicked">Let’s diagnose it <span>↗</span></a>
+        <div class="closing-stamp">USEFUL<br />SINCE<br />2026</div>
+      </section>
+    </main>
 
-        <div class="mt-5 grid gap-5 lg:grid-cols-3">
-          {services.map((service) => (
-            <article class="brand-card flex min-h-full flex-col bg-[var(--brand-surface-soft)] p-6 text-[var(--brand-text)] sm:p-7">
-              <div class="flex items-start justify-between gap-4 text-xs font-semibold uppercase tracking-[0.14em] text-black/60 dark:text-base-400">
-                <span>{service.name}</span>
-                <span>{service.number}</span>
-              </div>
-              <p class="mt-8 text-sm font-semibold leading-5">{service.price}</p>
-              <h3 class="mt-4 font-sans text-2xl font-semibold leading-tight">{service.tagline}</h3>
-              <p class="mt-5 text-sm leading-6 opacity-70">{service.description}</p>
-              <div class="mt-auto pt-7">
-                {service.footnote && <p class="mb-5 border-t border-current/20 pt-5 text-xs font-semibold leading-5 opacity-65">{service.footnote}</p>}
-                <a href={service.href} class="home-text-link inline-flex min-h-11 items-center text-sm font-semibold">{service.cta} →</a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-      </div>
-    </section>
-
-    <section class="border-t border-[var(--brand-line)] bg-[var(--brand-surface-soft)] text-[var(--brand-text)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] opacity-55">The practical first step</p>
-        <h2 class="mt-4 max-w-3xl font-sans text-4xl font-semibold leading-[1.03] tracking-[-0.04em] sm:text-5xl">Find the AI work worth paying for.</h2>
-        <p class="mt-6 max-w-2xl text-base leading-7 opacity-70 sm:text-lg">The $500 diagnosis gives you a focused roadmap before you commit to a $3,000–$7,500 build or ongoing support.</p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/ai-diagnosis/" class="brand-button" data-posthog-event="ai_diagnosis_cta_clicked">Start your diagnosis <span class="ml-3">→</span></a>
-          <a href="/ai-opportunity-scorecard/" class="social-chip bg-[var(--brand-bg)] text-[var(--brand-text)]" data-posthog-event="ai_scorecard_cta_clicked">Take the free scorecard <span class="ml-3">→</span></a>
-        </div>
-      </div>
-    </section>
+    <footer class="broadcast-footer">
+      <strong>RALEIGH AI GUY</strong>
+      <span>Danny Sullivan · Raleigh, North Carolina</span>
+      <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a><a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer">LinkedIn ↗</a></nav>
+    </footer>
   </div>
 </BaseLayout>
+
+<style is:global>
+  .broadcast-page {
+    --ink: #171310;
+    --cream: #f5efdc;
+    --paper: #fff9e8;
+    --acid: #dfff35;
+    --orange: #ff542e;
+    --blue: #3154ff;
+    --pink: #ff8bb4;
+    min-height: 100svh;
+    overflow: hidden;
+    color: var(--ink);
+    background-color: var(--cream);
+    background-image: radial-gradient(rgb(23 19 16 / 12%) .7px, transparent .7px);
+    background-size: 6px 6px;
+  }
+  .broadcast-page * { box-sizing: border-box; }
+  .broadcast-page a { color: inherit; text-decoration: none; }
+  .broadcast-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 5.75rem; border-bottom: 3px solid var(--ink); padding: 1rem clamp(1rem, 4vw, 4rem); background: var(--paper); }
+  .broadcast-logo { display: flex; align-items: center; gap: .8rem; font-family: "Anybody", sans-serif; font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 850; text-transform: uppercase; }
+  .logo-bug { display: grid; width: 3.25rem; height: 3.25rem; place-items: center; border: 3px solid var(--ink); background: var(--orange); box-shadow: 4px 4px 0 var(--ink); font-size: .75rem; transform: rotate(-4deg); }
+  .broadcast-nav nav { display: flex; gap: clamp(1rem, 2vw, 2rem); font-size: .7rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+  .broadcast-nav nav a:hover { text-decoration: underline 3px var(--orange); text-underline-offset: 5px; }
+  .nav-cta { justify-self: end; border: 3px solid var(--ink); padding: .75rem 1rem; background: var(--acid); box-shadow: 4px 4px 0 var(--ink); font-size: .75rem; font-weight: 850; text-transform: uppercase; transition: transform 120ms, box-shadow 120ms; }
+  .nav-cta:hover, .brutal-button:hover { box-shadow: 1px 1px 0 var(--ink); transform: translate(3px, 3px); }
+
+  .news-ticker { overflow: hidden; border-bottom: 3px solid var(--ink); background: var(--ink); color: var(--acid); }
+  .news-ticker div { display: flex; width: max-content; align-items: center; gap: 2rem; padding: .65rem 0; animation: crawl 28s linear infinite; }
+  .news-ticker span { font-family: "Anybody", sans-serif; font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+  .news-ticker i { color: var(--orange); font-style: normal; }
+
+  .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(20rem, .75fr); min-height: calc(100svh - 8.5rem); border-bottom: 3px solid var(--ink); }
+  .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 7vw, 7rem) clamp(1.25rem, 6vw, 6.5rem); }
+  .channel-label { display: flex; align-items: center; gap: .65rem; font-size: .7rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+  .channel-label span { width: .65rem; height: .65rem; border-radius: 50%; background: var(--orange); animation: blink 1.4s steps(2) infinite; }
+  .hero h1 { margin-top: 1.5rem; font-family: "Anybody", sans-serif; font-size: clamp(4rem, 9vw, 9.5rem); font-stretch: expanded; font-weight: 900; line-height: .72; letter-spacing: -.085em; text-transform: uppercase; }
+  .hero h1 em { display: inline-block; padding: .05em .08em .12em; color: var(--paper); background: var(--blue); font-family: "Instrument Serif", serif; font-weight: 400; text-transform: none; transform: rotate(-2deg); text-shadow: 4px 4px 0 var(--ink); }
+  .hero h1 strong { color: var(--orange); font-weight: 900; -webkit-text-stroke: 3px var(--ink); text-shadow: 6px 6px 0 var(--acid); }
+  .hero-lede { max-width: 42rem; margin-top: 2.5rem; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.45; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  .brutal-button { display: inline-flex; min-height: 3.5rem; align-items: center; justify-content: space-between; gap: 2rem; border: 3px solid var(--ink); padding: .85rem 1.2rem; box-shadow: 5px 5px 0 var(--ink); font-size: .78rem; font-weight: 850; text-transform: uppercase; transition: transform 120ms, box-shadow 120ms; }
+  .brutal-button.primary { background: var(--orange); }
+  .brutal-button.secondary { background: var(--paper); }
+  .credential-bar { display: flex; flex-wrap: wrap; gap: .5rem 1rem; max-width: 45rem; align-items: center; margin-top: 2.5rem; border-top: 3px solid var(--ink); padding-top: 1rem; font-size: .72rem; }
+  .credential-bar span { padding: .2rem .4rem; color: var(--paper); background: var(--ink); font-weight: 900; }
+  .credential-bar b { margin-right: 1rem; }
+
+  .hero-visual { position: relative; min-height: 42rem; border-left: 3px solid var(--ink); padding: clamp(2rem, 4vw, 4rem); background: var(--pink); }
+  .static-noise { position: absolute; inset: 0; opacity: .23; background-image: repeating-linear-gradient(0deg, transparent 0 3px, rgb(23 19 16 / 25%) 3px 4px); pointer-events: none; }
+  .portrait-frame { position: relative; z-index: 1; border: 4px solid var(--ink); padding: .75rem; background: var(--paper); box-shadow: 10px 10px 0 var(--ink); transform: rotate(1.5deg); }
+  .portrait-frame img { display: block; width: 100%; aspect-ratio: .86 / 1; object-fit: cover; object-position: 50% 38%; filter: grayscale(1) contrast(1.25); background: var(--ink); }
+  .live-bug { position: absolute; top: 1.3rem; left: 1.3rem; display: flex; align-items: center; gap: .4rem; padding: .4rem .55rem; color: var(--paper); background: var(--ink); font-size: .65rem; font-weight: 900; letter-spacing: .12em; }
+  .live-bug i { width: .55rem; height: .55rem; border-radius: 50%; background: var(--orange); }
+  .name-card { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: end; margin: -1rem -1rem 0 1.5rem; border: 4px solid var(--ink); padding: 1.1rem 1.25rem; background: var(--acid); box-shadow: 7px 7px 0 var(--ink); transform: rotate(-2deg); }
+  .name-card small { display: block; font-size: .57rem; font-weight: 900; letter-spacing: .13em; }
+  .name-card strong { display: block; margin-top: .35rem; font-family: "Anybody", sans-serif; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 900; line-height: .8; }
+  .name-card > span { font-family: "Anybody", sans-serif; font-size: 2rem; font-weight: 900; }
+  .tape-note { position: relative; z-index: 3; width: max-content; max-width: 85%; margin: 2.25rem auto 0; padding: 1rem 1.4rem; background: #fff7b0; box-shadow: 3px 4px 0 rgb(23 19 16 / 28%); font-family: "Instrument Serif", serif; font-size: 1.25rem; font-style: italic; line-height: 1.25; transform: rotate(2deg); }
+  .tape-note::before { position: absolute; top: -.55rem; left: 30%; width: 4.5rem; height: 1.2rem; background: rgb(255 255 255 / 65%); content: ""; transform: rotate(-4deg); }
+  .star-burst { position: absolute; top: 2rem; right: 1rem; z-index: 4; display: grid; width: 6rem; height: 6rem; place-items: center; border: 3px solid var(--ink); border-radius: 50%; background: var(--orange); box-shadow: 4px 4px 0 var(--ink); font-size: .7rem; font-weight: 950; line-height: .9; text-align: center; transform: rotate(12deg); }
+
+  .station-break { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 3px solid var(--ink); padding: 1.2rem clamp(1rem, 4vw, 4rem); color: var(--paper); background: var(--blue); font-size: .65rem; font-weight: 900; letter-spacing: .15em; }
+  .station-break strong { padding: .3rem 1rem; color: var(--ink); background: var(--acid); font-family: "Anybody", sans-serif; font-size: clamp(1rem, 2.2vw, 2rem); letter-spacing: -.03em; transform: rotate(-1deg); }
+  .station-break span:last-child { justify-self: end; }
+
+  .proof-section { padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 5rem); }
+  .section-heading { position: relative; display: grid; grid-template-columns: .45fr 1fr .45fr; align-items: end; margin-bottom: 3rem; }
+  .section-heading > p, .offers-intro > p, .closing-cta > p { font-size: .7rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+  .section-heading h2, .offers-intro h2, .closing-cta h2 { font-family: "Anybody", sans-serif; font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 900; line-height: .8; letter-spacing: -.07em; text-transform: uppercase; }
+  .section-heading h2 em, .closing-cta h2 em { color: var(--orange); font-family: "Instrument Serif", serif; font-weight: 400; text-transform: none; }
+  .scribble { justify-self: end; font-family: "Instrument Serif", serif; font-size: 1.2rem; font-style: italic; line-height: 1.1; transform: rotate(-7deg); }
+  .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem; }
+  .case-card { position: relative; border: 4px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+  .case-lime { background: var(--acid); transform: rotate(-.5deg); }
+  .case-blue { background: var(--blue); color: var(--paper); transform: translateY(2.75rem) rotate(.7deg); }
+  .case-image { overflow: hidden; border-bottom: 4px solid var(--ink); background: var(--paper); }
+  .case-image img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top; filter: saturate(.65) contrast(1.05); transition: transform 350ms; }
+  .case-card:hover .case-image img { transform: scale(1.025); }
+  .case-copy { position: relative; padding: clamp(1.4rem, 3vw, 2.5rem); }
+  .episode { position: absolute; top: -2rem; right: 1rem; border: 3px solid var(--ink); padding: .5rem .7rem; color: var(--ink); background: var(--pink); box-shadow: 3px 3px 0 var(--ink); font-size: .65rem; font-weight: 900; transform: rotate(4deg); }
+  .case-copy > p { font-size: .68rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+  .case-copy h3 { max-width: 38rem; margin-top: .8rem; font-size: clamp(1.8rem, 3.5vw, 3.25rem); font-weight: 900; line-height: .92; letter-spacing: -.045em; }
+  .case-copy ul { display: grid; gap: .45rem; margin-top: 1.5rem; border-top: 3px solid currentColor; padding-top: 1rem; font-size: .78rem; font-weight: 700; }
+  .case-copy li::before { content: "▶ "; }
+  .case-copy a { display: inline-block; margin-top: 1.5rem; border-bottom: 3px solid currentColor; font-size: .78rem; font-weight: 900; text-transform: uppercase; }
+
+  .offers-section { border-block: 3px solid var(--ink); padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 5rem); background: var(--ink); color: var(--paper); }
+  .offers-intro { display: grid; grid-template-columns: .5fr 1.5fr; gap: 2rem; align-items: start; margin-bottom: 3rem; }
+  .offers-intro h2 { max-width: 70rem; color: var(--acid); }
+  .offer-stack { display: grid; gap: 1rem; color: var(--ink); }
+  .offer { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: clamp(1rem, 3vw, 3rem); align-items: center; border: 4px solid var(--paper); padding: clamp(1.25rem, 3vw, 2.25rem); box-shadow: 7px 7px 0 var(--paper); transition: transform 150ms; }
+  .offer:hover { transform: translateX(8px); }
+  .offer-yellow { background: var(--acid); }
+  .offer-orange { background: var(--orange); }
+  .offer-pink { background: var(--pink); }
+  .offer > span { font-family: "Anybody", sans-serif; font-size: clamp(2rem, 5vw, 5rem); font-weight: 900; }
+  .offer small { font-size: .64rem; font-weight: 900; letter-spacing: .12em; }
+  .offer h3 { margin-top: .35rem; font-size: clamp(1.6rem, 3.5vw, 3.25rem); font-weight: 900; line-height: .95; letter-spacing: -.04em; }
+  .offer p { max-width: 42rem; margin-top: .65rem; font-size: .85rem; font-weight: 650; }
+  .offer > b { font-size: 2rem; }
+
+  .closing-cta { position: relative; min-height: 38rem; padding: clamp(5rem, 10vw, 10rem) clamp(1rem, 7vw, 7rem); background: var(--paper); }
+  .closing-cta h2 { max-width: 75rem; margin: 1.5rem 0 2.5rem; }
+  .closing-stamp { position: absolute; right: 8%; bottom: 18%; display: grid; width: 8rem; height: 8rem; place-items: center; border: 4px solid var(--ink); border-radius: 50%; color: var(--paper); background: var(--blue); box-shadow: 6px 6px 0 var(--orange); font-size: .7rem; font-weight: 950; line-height: 1; text-align: center; transform: rotate(10deg); }
+  .broadcast-footer { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; border-top: 3px solid var(--ink); padding: 2rem clamp(1rem, 4vw, 4rem); color: var(--paper); background: var(--ink); font-size: .7rem; }
+  .broadcast-footer strong { font-family: "Anybody", sans-serif; font-size: 1.2rem; }
+  .broadcast-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .6rem 1rem; }
+  .broadcast-footer a { text-decoration: underline; }
+
+  @keyframes crawl { to { transform: translateX(-50%); } }
+  @keyframes blink { 50% { opacity: .25; } }
+
+  @media (max-width: 900px) {
+    .broadcast-nav { grid-template-columns: 1fr auto; }
+    .broadcast-nav nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: auto; border-top: 3px solid var(--ink); border-left: 0; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .case-blue { transform: rotate(.7deg); }
+    .section-heading { grid-template-columns: 1fr; gap: 1.5rem; }
+    .scribble { justify-self: start; }
+    .offers-intro { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .broadcast-nav { min-height: 4.75rem; padding-inline: .8rem; }
+    .logo-bug { width: 2.6rem; height: 2.6rem; box-shadow: 3px 3px 0 var(--ink); }
+    .broadcast-logo > span:last-child { font-size: .85rem; }
+    .nav-cta { padding: .65rem .7rem; font-size: .62rem; }
+    .hero h1 { font-size: clamp(3.5rem, 19vw, 5.5rem); }
+    .hero h1 strong { -webkit-text-stroke-width: 2px; text-shadow: 4px 4px 0 var(--acid); }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .credential-bar { align-items: flex-start; flex-direction: column; }
+    .hero-visual { padding: 1.5rem; }
+    .star-burst { top: .5rem; right: .35rem; width: 4.75rem; height: 4.75rem; }
+    .station-break { grid-template-columns: 1fr auto; }
+    .station-break span:first-child { display: none; }
+    .section-heading h2, .offers-intro h2, .closing-cta h2 { font-size: clamp(3rem, 16vw, 5rem); }
+    .offer { grid-template-columns: 3.5rem 1fr; }
+    .offer > b { display: none; }
+    .closing-stamp { position: static; margin-top: 3rem; }
+    .broadcast-footer { grid-template-columns: 1fr; }
+    .broadcast-footer nav { justify-content: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .news-ticker div, .channel-label span { animation: none; }
+  }
+</style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-posthog-event]').forEach(function (link) {
       link.addEventListener('click', function () {
-        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page' });
+        window.posthog?.capture(link.dataset.posthogEvent, { source: 'home_page_broadcast' });
       });
     });
   });
