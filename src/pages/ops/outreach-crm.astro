@@ -68,6 +68,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
         <option value="all">All statuses</option>
         <option value="Research">Research</option>
         <option value="Ready to DM">Ready to DM</option>
+        <option value="Invite sent">Invite sent</option>
         <option value="Connected">Connected</option>
         <option value="DM sent">DM sent</option>
         <option value="Follow-up due">Follow-up due</option>
@@ -93,7 +94,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
       <span id="visible-count">0 contacts</span>
     </header>
     <div class="ledger-head" aria-hidden="true">
-      <span>Contact</span><span>Fit</span><span>Status</span><span>Next move</span><span></span>
+      <span>Contact</span><span>Fit</span><span>Status</span><span>Next move</span><span>Message</span>
     </div>
     <div id="contact-list" class="contact-list"></div>
     <div id="empty-state" class="empty-state">
@@ -114,6 +115,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
         <label><span>Fit score</span><input name="fitScore" type="number" min="0" max="100" value="70" /></label>
         <label class="span-two"><span>Personalization hook</span><textarea name="personalization" rows="3" placeholder="The specific observation that earns the DM…"></textarea></label>
         <label class="span-two"><span>Automation hypothesis</span><textarea name="automationIdea" rows="3" placeholder="A narrow workflow worth asking about—not a promised solution…"></textarea></label>
+        <label class="span-two"><span>Custom LinkedIn message</span><textarea name="customMessage" rows="8" placeholder="A paste-ready message written specifically for this person…"></textarea></label>
         <label class="span-two"><span>Notes</span><textarea name="notes" rows="4" placeholder="Context, source, or what to remember next time…"></textarea></label>
       </div>
       <footer><button type="button" data-close-dialog class="secondary-action">Cancel</button><button type="submit" class="primary-action">Add to pipeline</button></footer>
@@ -134,7 +136,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
 </OpsShell>
 
 <script>
-  type ContactStatus = "Research" | "Ready to DM" | "Connected" | "DM sent" | "Follow-up due" | "Replied" | "Discovery booked" | "Free build" | "Nurture" | "Not a fit";
+  type ContactStatus = "Research" | "Ready to DM" | "Invite sent" | "Connected" | "DM sent" | "Follow-up due" | "Replied" | "Discovery booked" | "Free build" | "Nurture" | "Not a fit";
   type Contact = {
     id: string;
     organization: string;
@@ -151,12 +153,13 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
     nextFollowUp: string;
     personalization: string;
     automationIdea: string;
+    customMessage: string;
     notes: string;
   };
 
   const storageKey = "ops:realtor-outreach:v2";
   const legacyStorageKey = "ops:outreach-crm:v1";
-  const statuses: ContactStatus[] = ["Research", "Ready to DM", "Connected", "DM sent", "Follow-up due", "Replied", "Discovery booked", "Free build", "Nurture", "Not a fit"];
+  const statuses: ContactStatus[] = ["Research", "Ready to DM", "Invite sent", "Connected", "DM sent", "Follow-up due", "Replied", "Discovery booked", "Free build", "Nurture", "Not a fit"];
   const list = document.querySelector<HTMLDivElement>("#contact-list")!;
   const emptyState = document.querySelector<HTMLDivElement>("#empty-state")!;
   const searchInput = document.querySelector<HTMLInputElement>("#contact-search")!;
@@ -173,12 +176,18 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
 
   function loadContacts(): Contact[] {
     try {
-      const stored = window.localStorage.getItem(storageKey);
-      if (stored) return JSON.parse(stored).map(normalizeContact);
-      const legacy = window.localStorage.getItem(legacyStorageKey);
-      if (legacy) return JSON.parse(legacy).map(normalizeContact);
       const seed = document.querySelector<HTMLScriptElement>("#seed-contacts")?.textContent || "[]";
-      return JSON.parse(seed).map(normalizeContact);
+      const seededContacts = JSON.parse(seed).map(normalizeContact) as Contact[];
+      const hydrateMessages = (savedContacts: Contact[]) => savedContacts.map((contact) => {
+        if (contact.customMessage) return contact;
+        const seeded = seededContacts.find((item) => item.id === contact.id);
+        return seeded?.customMessage ? { ...contact, customMessage: seeded.customMessage } : contact;
+      });
+      const stored = window.localStorage.getItem(storageKey);
+      if (stored) return hydrateMessages(JSON.parse(stored).map(normalizeContact));
+      const legacy = window.localStorage.getItem(legacyStorageKey);
+      if (legacy) return hydrateMessages(JSON.parse(legacy).map(normalizeContact));
+      return seededContacts;
     } catch {
       return [];
     }
@@ -208,6 +217,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
       nextFollowUp: String(value.nextFollowUp || ""),
       personalization: String(value.personalization || "").trim(),
       automationIdea: String(value.automationIdea || "").trim(),
+      customMessage: String(value.customMessage || "").trim(),
       notes: String(value.notes || "").trim(),
     };
   }
@@ -274,7 +284,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
     const query = searchInput.value.trim().toLowerCase();
     return contacts
       .filter((contact) => statusFilter.value === "all" || contact.status === statusFilter.value)
-      .filter((contact) => !query || [contact.name, contact.organization, contact.email, contact.role, contact.notes].join(" ").toLowerCase().includes(query))
+      .filter((contact) => !query || [contact.name, contact.organization, contact.email, contact.role, contact.personalization, contact.automationIdea, contact.customMessage, contact.notes].join(" ").toLowerCase().includes(query))
       .sort((a, b) => {
         const actionRank = (contact: Contact) => isDue(contact) ? 0 : contact.status === "Ready to DM" ? 1 : contact.status === "Research" ? 2 : 3;
         const rankDifference = actionRank(a) - actionRank(b);
@@ -317,21 +327,25 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
           </div>
           <div class="fit-score" aria-label="Fit score ${contact.fitScore} out of 100"><strong>${contact.fitScore}</strong><span>${escapeHtml(contact.segment)}</span></div>
           <label class="row-field status-field"><span>Status</span><select data-field="status">${statuses.map((status) => `<option value="${status}"${status === contact.status ? " selected" : ""}>${status}</option>`).join("")}</select></label>
-          <label class="row-field${dueClass}"><span>Next move</span><input data-field="nextFollowUp" type="date" value="${escapeHtml(contact.nextFollowUp)}" /><small>${contact.status === "Ready to DM" ? "Send personalized DM" : isDue(contact) ? "Follow up now" : formatDate(contact.nextFollowUp)}</small></label>
-          <details class="contact-more">
-            <summary>Brief</summary>
-            <div>
-              <label><span>Role</span><input data-field="role" value="${escapeHtml(contact.role)}" /></label>
-              <label><span>Email</span><input data-field="email" type="email" value="${escapeHtml(contact.email)}" /></label>
-              <label><span>LinkedIn</span><input data-field="linkedinUrl" type="url" value="${escapeHtml(contact.linkedinUrl)}" /></label>
-              <label><span>Fit score</span><input data-field="fitScore" type="number" min="0" max="100" value="${contact.fitScore}" /></label>
-              <label class="notes-field"><span>Personalization hook</span><textarea data-field="personalization" rows="3">${escapeHtml(contact.personalization)}</textarea></label>
-              <label class="notes-field"><span>Automation hypothesis</span><textarea data-field="automationIdea" rows="3">${escapeHtml(contact.automationIdea)}</textarea></label>
-              <label class="notes-field"><span>Notes</span><textarea data-field="notes" rows="3">${escapeHtml(contact.notes)}</textarea></label>
-              ${contact.sourceUrl ? `<a class="source-link" href="${escapeHtml(contact.sourceUrl)}" target="_blank" rel="noreferrer">Verify source ↗</a>` : ""}
-              <button type="button" data-archive>Archive as not a fit</button>
-            </div>
-          </details>
+          <label class="row-field${dueClass}"><span>Next move</span><input data-field="nextFollowUp" type="date" value="${escapeHtml(contact.nextFollowUp)}" /><small>${contact.status === "Ready to DM" ? "Send personalized DM" : contact.status === "Invite sent" ? "Wait for acceptance" : isDue(contact) ? "Follow up now" : formatDate(contact.nextFollowUp)}</small></label>
+          <div class="contact-actions">
+            <button type="button" data-copy-message${contact.customMessage ? "" : " disabled"}>Copy DM</button>
+            <details class="contact-more">
+              <summary>Brief</summary>
+              <div>
+                <label><span>Role</span><input data-field="role" value="${escapeHtml(contact.role)}" /></label>
+                <label><span>Email</span><input data-field="email" type="email" value="${escapeHtml(contact.email)}" /></label>
+                <label><span>LinkedIn</span><input data-field="linkedinUrl" type="url" value="${escapeHtml(contact.linkedinUrl)}" /></label>
+                <label><span>Fit score</span><input data-field="fitScore" type="number" min="0" max="100" value="${contact.fitScore}" /></label>
+                <label class="notes-field"><span>Personalization hook</span><textarea data-field="personalization" rows="3">${escapeHtml(contact.personalization)}</textarea></label>
+                <label class="notes-field"><span>Automation hypothesis</span><textarea data-field="automationIdea" rows="3">${escapeHtml(contact.automationIdea)}</textarea></label>
+                <label class="notes-field"><span>Custom LinkedIn message</span><textarea data-field="customMessage" rows="9">${escapeHtml(contact.customMessage)}</textarea></label>
+                <label class="notes-field"><span>Notes</span><textarea data-field="notes" rows="3">${escapeHtml(contact.notes)}</textarea></label>
+                ${contact.sourceUrl ? `<a class="source-link" href="${escapeHtml(contact.sourceUrl)}" target="_blank" rel="noreferrer">Verify source ↗</a>` : ""}
+                <button type="button" data-archive>Archive as not a fit</button>
+              </div>
+            </details>
+          </div>
         </article>`;
     }).join("");
   }
@@ -359,7 +373,17 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
     if (row && field) updateContact(row.dataset.contactId!, field, target.value);
   });
 
-  list.addEventListener("click", (event) => {
+  list.addEventListener("click", async (event) => {
+    const copyButton = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-copy-message]");
+    if (copyButton) {
+      const row = copyButton.closest<HTMLElement>("[data-contact-id]");
+      const contact = contacts.find((item) => item.id === row?.dataset.contactId);
+      if (!contact?.customMessage) return;
+      await navigator.clipboard.writeText(contact.customMessage);
+      copyButton.textContent = "Copied";
+      window.setTimeout(() => { copyButton.textContent = "Copy DM"; }, 1400);
+      return;
+    }
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-archive]");
     if (!button) return;
     const row = button.closest<HTMLElement>("[data-contact-id]");
@@ -394,6 +418,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
       fitScore: Number(data.get("fitScore") || 70),
       personalization: String(data.get("personalization") || ""),
       automationIdea: String(data.get("automationIdea") || ""),
+      customMessage: String(data.get("customMessage") || ""),
       notes: String(data.get("notes") || ""),
       status: "Research",
     }));
@@ -416,7 +441,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
   });
 
   document.querySelector("#export-contacts")!.addEventListener("click", () => {
-    const columns: (keyof Contact)[] = ["organization", "name", "role", "email", "linkedinUrl", "websiteUrl", "sourceUrl", "status", "fitScore", "segment", "lastContact", "nextFollowUp", "personalization", "automationIdea", "notes"];
+    const columns: (keyof Contact)[] = ["organization", "name", "role", "email", "linkedinUrl", "websiteUrl", "sourceUrl", "status", "fitScore", "segment", "lastContact", "nextFollowUp", "personalization", "automationIdea", "customMessage", "notes"];
     const quote = (value: string) => `"${value.replaceAll('"', '""')}"`;
     const csv = [columns.join(","), ...contacts.map((contact) => columns.map((column) => quote(String(contact[column] || ""))).join(","))].join("\n");
     const link = document.createElement("a");
@@ -490,7 +515,7 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
   .crm-ledger > header { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: 1.5rem; }
   .crm-ledger > header h2 { margin-top: .4rem; font-family: "Anybody", sans-serif; font-size: 1.75rem; font-weight: 690; letter-spacing: -.04em; }
   .crm-ledger > header > span { color: var(--ops-faint); font-size: .65rem; font-variant-numeric: tabular-nums; }
-  .ledger-head, .contact-row { display: grid; grid-template-columns: minmax(16rem, 1.8fr) 5rem 9rem 10rem 4rem; gap: 1rem; align-items: center; }
+  .ledger-head, .contact-row { display: grid; grid-template-columns: minmax(16rem, 1.8fr) 5rem 9rem 10rem 7rem; gap: 1rem; align-items: center; }
   .ledger-head { min-height: 2.5rem; border-block: 1px solid var(--ops-line-strong); color: var(--ops-faint); font-size: .58rem; font-weight: 720; letter-spacing: .1em; text-transform: uppercase; }
   .contact-row { position: relative; border-bottom: 1px solid var(--ops-line); padding: 1rem 0; }
   .contact-row.due::before { position: absolute; inset: 0 auto 0 -.75rem; width: .22rem; background: var(--ops-deadline); content: ""; }
@@ -512,6 +537,10 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
   .row-field small { color: var(--ops-faint); font-size: .58rem; }
   .row-field.due small { color: var(--ops-deadline); font-weight: 720; }
   .status-field select { border: 1px solid var(--ops-line); padding-inline: .45rem 1.5rem; background: var(--ops-sheet); font-weight: 650; }
+  .contact-actions { position: relative; display: grid; gap: .15rem; }
+  .contact-actions > button { min-height: 2.25rem; border: 1px solid var(--ops-line-strong); color: var(--ops-ink); background: var(--ops-signal); font-size: .62rem; font-weight: 720; }
+  .contact-actions > button:hover { background: var(--ops-sheet); }
+  .contact-actions > button:disabled { cursor: not-allowed; opacity: .42; }
   .contact-more { position: relative; }
   .contact-more summary { display: grid; min-height: 2.5rem; cursor: pointer; place-items: center; color: var(--ops-muted); font-size: .64rem; font-weight: 680; list-style: none; }
   .contact-more summary::-webkit-details-marker { display: none; }
@@ -554,7 +583,8 @@ const seedJson = JSON.stringify(realtorProspects).replaceAll("<", "\\u003c");
     .fit-score { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: baseline; }
     .row-field > span { display: block; color: var(--ops-faint); font-size: .56rem; font-weight: 720; letter-spacing: .08em; text-transform: uppercase; }
     .status-field { grid-column: 1 / -1; }
-    .contact-more { grid-column: 1 / -1; }
+    .contact-actions { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .contact-more { grid-column: auto; }
     .contact-more summary { justify-content: start; border-top: 1px solid var(--ops-line); }
   }
 
