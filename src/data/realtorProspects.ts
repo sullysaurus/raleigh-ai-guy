@@ -16,6 +16,9 @@ export type RealtorProspect = {
   automationIdea: string;
   customMessage: string;
   notes: string;
+  researchedAt?: string;
+  outreachOffer?: "Free automation" | "Lunch and learn";
+  sourceUrls?: string[];
 };
 
 export const realtorProspects: RealtorProspect[] = [
@@ -43,6 +46,9 @@ What’s one repetitive task your team wishes were already handled—listing int
 
 If one comes to mind, I’d be happy to build a small version for free. No catch—I’m looking for a real problem and honest feedback.`,
     notes: "Best first target: enough repeated work to matter, but a team leader can still approve a small experiment quickly.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Free automation",
+    sourceUrls: ["https://hregsells.com/about/"],
   },
   {
     id: "courtney-whalen",
@@ -68,6 +74,9 @@ Is there one part of listing prep, client follow-up, or team coordination you wi
 
 If so, I’d be happy to build a small version for free. No catch—I’m looking for a useful problem and honest feedback.`,
     notes: "Strong brand and visible activity create natural personalization hooks. Ask about listing-launch coordination, not generic content generation.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Free automation",
+    sourceUrls: ["https://whalenandco.com/about"],
   },
   {
     id: "annmarie-janni-williams",
@@ -93,6 +102,9 @@ What’s one recurring task you wish were already handled—new-client intake, f
 
 If one comes to mind, I’d be happy to build a small version for free. No catch—just looking for honest feedback.`,
     notes: "A practical operations question should resonate better than an AI-forward pitch.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Free automation",
+    sourceUrls: ["https://elementrealtygroup.net/the-element-team/annmarie-janni/"],
   },
   {
     id: "jennifer-patterson",
@@ -118,6 +130,9 @@ What’s one task you wish were already handled each week—showing feedback, cl
 
 If one comes to mind, I’d be happy to build a small version for free. No catch—I’m looking for a real workflow and honest feedback.`,
     notes: "Frame automation as protecting the personal service model, not replacing it.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Free automation",
+    sourceUrls: ["https://jpattersonrealty.com/", "https://www.linkedin.com/in/jennifer-patterson"],
   },
   {
     id: "rebekah-lindsey",
@@ -143,6 +158,9 @@ What’s one recurring task your team wishes would just disappear—property upd
 
 If you have one, I’d be happy to build a small version for free in exchange for honest feedback.`,
     notes: "Confirm decision authority or ask for an introduction to the person who owns team operations.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Free automation",
+    sourceUrls: ["https://carolinacollectiverealty.com/", "https://www.linkedin.com/company/carolina-collective-realty"],
   },
   {
     id: "ryan-fitzgerald",
@@ -162,12 +180,13 @@ If you have one, I’d be happy to build a small version for free in exchange fo
     automationIdea: "Audit one lead handoff or content-production bottleneck that remains manual despite an already mature tech stack.",
     customMessage: `Hi Ryan, thanks for connecting! Raleigh Realty already seems unusually strong on technology—between the website, CRM, automated follow-up, and content engine. That made me curious about what still stays stubbornly manual between those systems.
 
-Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which operational problems Raleigh business owners still consider worth solving.
+Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which operational problems Raleigh real-estate teams still consider worth solving.
 
-Is there one repetitive handoff or exception your team wishes were already handled?
-
-If so, I’d be happy to build a small version for free. No catch—I’m looking for a real edge case and candid feedback on whether the result is useful.`,
+Would a free 30-minute lunch-and-learn for your team be useful? I’d make it practical—three workflows agents can use now, plus a working session to identify one repetitive handoff worth improving. No sales deck or catch; I’m looking for candid feedback on what is actually useful.`,
     notes: "Good learning partner, but not the first free build: existing systems increase integration and approval complexity.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Lunch and learn",
+    sourceUrls: ["https://raleighrealty.com/agents/ryan-fitzgerald"],
   },
   {
     id: "marti-hampton",
@@ -185,14 +204,15 @@ If so, I’d be happy to build a small version for free. No catch—I’m lookin
     nextFollowUp: "",
     personalization: "High-volume 11–50 person team with 10,000+ closings, active content, experienced agents, and transaction coordinators.",
     automationIdea: "Triage incoming transaction and listing requests into owner, priority, missing data, and due-date queues.",
-    customMessage: `Hi Marti, thanks for connecting! I saw that your team is hiring experienced agents and transaction coordinators. At your volume, I imagine the hard part isn’t finding more software—it’s keeping requests, missing details, and next actions from getting buried.
+    customMessage: `Hi Marti, thanks for connecting! I saw that your team is hiring experienced agents and transaction coordinators. At your volume, I imagine the hard part isn’t finding more software—it’s knowing which AI workflows are genuinely useful to the team.
 
-Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which real operational problems Raleigh business owners want solved.
+Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which real operational problems Raleigh real-estate teams want solved.
 
-What’s one repetitive task your team wishes were already handled?
-
-If there’s a narrow one, I’d be happy to build a small version for free. No catch—I’m looking for honest feedback on what actually helps a working team.`,
+Would a free 30-minute lunch-and-learn be useful for your team? I’d cover three practical workflows agents can use now, then help the group identify one repetitive process worth improving. No sales deck or catch—I’m looking for honest feedback on what actually helps a working team.`,
     notes: "The pain is likely real, but start only if a narrow workflow owner is identified; enterprise-like coordination can expand scope fast.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Lunch and learn",
+    sourceUrls: ["https://martihampton.com/", "https://www.linkedin.com/company/marti-hampton-team"],
   },
   {
     id: "linda-craft",
@@ -210,13 +230,14 @@ If there’s a narrow one, I’d be happy to build a small version for free. No 
     nextFollowUp: "",
     personalization: "Long-running Raleigh team with a visible relationship-led brand and substantial process maturity.",
     automationIdea: "Build a daily exception digest that surfaces only stalled leads, missing transaction details, and overdue client updates.",
-    customMessage: `Hi Linda, thanks for connecting! Your team has built a long-running Raleigh reputation around relationships and thorough service. With that history and volume, I imagine the real burden is often the small exceptions—stalled follow-ups, missing details, and updates that need someone’s attention.
+    customMessage: `Hi Linda, thanks for connecting! Your team has built a long-running Raleigh reputation around relationships and thorough service. With that history and volume, I imagine the useful AI conversation is less about hype and more about protecting that service while reducing repetitive work.
 
-Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which repetitive problems local business owners actually want solved.
+Quick, genuine cold pitch: I build AI automations that support millions in GMV at startups, and I’m learning which workflows local real-estate teams actually find useful.
 
-What’s one recurring task your team wishes were already handled?
-
-If one comes to mind, I’d be happy to build a small version for free. No catch—just looking for a useful problem and honest feedback.`,
+Would a free 30-minute lunch-and-learn be helpful for your team? I’d cover three practical workflows agents can use now and facilitate a short exercise to surface one process worth improving. No sales deck or catch—just looking for honest feedback.`,
     notes: "Credible target for discovery, but likely slower to approve a free experiment than a founder-led boutique team.",
+    researchedAt: "2026-08-09",
+    outreachOffer: "Lunch and learn",
+    sourceUrls: ["https://www.lindacraft.com/", "https://www.linkedin.com/in/raleighrealestate"],
   },
 ];
