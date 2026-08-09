@@ -1,83 +1,47 @@
 ---
 import { getCollection } from "astro:content";
-import readingTime from "reading-time";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
 
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
-const featuredPost = posts.find((post) => !post.data.tags.includes("real-estate")) ?? posts[0];
-const remainingPosts = posts.filter((post) => post.id !== featuredPost?.id);
 const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
-const formatDate = (date: Date) => date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 ---
 
-<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for Raleigh businesses and small teams that want useful results at work.">
-  <div class="brand-page">
-    <header class="brand-page-header"><div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_22rem] lg:items-end lg:py-28">
-      <div>
-        <p class="brand-eyebrow">Practical AI field guide</p>
-        <h1 class="brand-display mt-5 max-w-3xl">Use AI to get real work done.</h1>
-      </div>
-      <p class="brand-copy">Clear workflows for Raleigh businesses and small teams that want useful results—not a daily stream of AI hype.</p>
-    </div></header>
+<BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for small businesses and teams that want useful results at work.">
+  <section>
+    <Wrapper class="py-16 sm:py-24 lg:py-32">
+      <p class="text-sm font-medium text-base-500">Writing</p>
+      <h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Practical notes about using AI at work.</h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">Clear workflows, honest tool comparisons, and small systems you can actually put to use.</p>
+    </Wrapper>
+  </section>
 
-    {tags.length > 0 && (
-      <nav class="mx-auto flex max-w-6xl flex-wrap gap-2 px-5 py-5 sm:px-8" aria-label="Browse by topic">
-        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="brand-chip">{tag.replaceAll("-", " ")}</a>)}
+  {tags.length > 0 && (
+    <Wrapper class="pb-8">
+      <nav class="flex flex-wrap gap-x-4 gap-y-2 border-t border-black/10 pt-4" aria-label="Browse writing by topic">
+        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="text-sm text-base-500 hover:text-black">{tag.replaceAll("-", " ")}</a>)}
       </nav>
-    )}
+    </Wrapper>
+  )}
 
-    <section class="border-y-4 border-[var(--brand-ink)] bg-[var(--brand-pink)]" aria-label="All articles">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-        {featuredPost ? (
-          <div>
-            <article class="brand-panel brand-card-interactive overflow-hidden border-white/12 bg-[var(--brand-ink)] text-white">
-              <a href={`/blog/posts/${featuredPost.id}`} class="grid min-h-80 gap-10 p-7 sm:p-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end lg:p-12">
-                <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-orange)]">Featured guide · {formatDate(featuredPost.data.pubDate)}</p>
-                  <h2 class="mt-6 max-w-3xl font-sans text-3xl font-semibold leading-[1.02] tracking-[-0.035em] sm:text-5xl">{featuredPost.data.title}</h2>
-                </div>
-                <div class="lg:border-l lg:border-white/15 lg:pl-10">
-                  <p class="text-base leading-7 text-white/68">{featuredPost.data.description}</p>
-                  <span class="mt-8 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--brand-orange)]">Read the featured guide →</span>
-                </div>
-              </a>
-            </article>
-
-            <div class="mt-6 grid gap-5 md:grid-cols-2">
-            {remainingPosts.map((post, index) => {
-              const date = formatDate(post.data.pubDate);
-              const time = readingTime(post.body ?? "").text;
-              return (
-                <article class="brand-panel brand-card-interactive group p-6 sm:p-8">
-                  <a href={`/blog/posts/${post.id}`} class="flex h-full min-h-64 flex-col">
-                    <div class="flex items-start justify-between gap-6 text-xs font-semibold uppercase tracking-[0.12em] text-base-500">
-                      <span>{date} · {time}</span>
-                      <span>{String(index + 2).padStart(2, "0")}</span>
-                    </div>
-                    <h2 class="mt-10 font-sans text-2xl font-semibold leading-tight tracking-tight group-hover:underline group-hover:decoration-2 group-hover:underline-offset-4 sm:text-3xl">{post.data.title}</h2>
-                    <p class="mt-3 text-sm leading-6 text-base-500">{post.data.description}</p>
-                    <span class="mt-auto pt-7 text-sm font-semibold">Read the guide →</span>
-                  </a>
-                </article>
-              );
-            })}
-            </div>
-          </div>
-        ) : (
-          <div class="max-w-2xl py-12">
-            <p class="text-xs font-medium uppercase tracking-wide text-base-400">New writing is coming</p>
-            <h2 class="mt-4 font-sans text-3xl font-semibold tracking-tight">The archive is intentionally empty.</h2>
-            <p class="mt-5 text-base leading-7 text-base-500">I’m rebuilding this collection around practical AI guides for business owners and teams. Check back soon.</p>
-          </div>
-        )}
+  <section>
+    <Wrapper class="pb-16 sm:pb-24">
+      <div class="divide-y divide-black/10 border-y border-black/10">
+        {posts.map((post) => <div class="py-3"><BlogCard2 post={post} /></div>)}
       </div>
-    </section>
+    </Wrapper>
+  </section>
 
-    <section class="brand-section bg-[var(--brand-yellow)]"><div class="mx-auto grid max-w-6xl gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-end">
-      <div><p class="brand-eyebrow">Need a practical next step?</p><h2 class="brand-section-title mt-4 max-w-2xl">Find the AI work worth paying for.</h2><p class="brand-copy mt-5 max-w-xl">Start with a $500 diagnosis and leave with a focused roadmap.</p></div>
-      <a href="/ai-diagnosis/" class="brand-button">Start with a diagnosis →</a>
-    </div></section>
-  </div>
+  <section>
+    <Wrapper class="pb-16 sm:pb-24">
+      <div class="border-t border-black/10 pt-8">
+        <h2 class="text-2xl font-medium tracking-tight">Have a question about AI and your work?</h2>
+        <p class="mt-4 text-sm leading-6 text-base-500">Email me the situation and I’ll point you toward the most useful next step.</p>
+        <a href="mailto:hello@raleighaiguy.com" class="mt-6 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me</a>
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>

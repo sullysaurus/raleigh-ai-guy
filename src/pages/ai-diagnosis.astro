@@ -1,120 +1,47 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const deliverables = [
-  ["Workflow interview", "A focused 60–90 minute conversation about the work, the people involved, and where time or opportunities are being lost."],
-  ["Three ranked opportunities", "The best places to use AI, automation, ordinary software, or a better process—ordered by likely value and effort."],
-  ["Value and risk review", "A practical estimate of time saved, what still needs human judgment, and what could make the system fail."],
-  ["Written action plan", "A concise 30-day roadmap you can use with me, your team, or another provider."],
-];
-
-const nextSteps = [
-  ["Use the roadmap yourself", "The diagnosis stands on its own. There is no obligation to continue."],
-  ["Implementation sprint", "Build one valuable workflow. Most focused projects fall between $3,000 and $7,500."],
-  ["Ongoing partnership", "For systems that need operation, iteration, training, and accountability. From $2,000/month, usually after a diagnosis or build."],
+  ["Understand the workflow", "A focused conversation about the work, the people involved, and where time or opportunities are being lost."],
+  ["Rank the opportunities", "A short list of the best places to use AI, automation, ordinary software, or a clearer process."],
+  ["Review value and risk", "An honest view of what could improve, what still needs human judgment, and what could make the system fail."],
+  ["Choose a next step", "A practical recommendation you can use with me, your team, or another provider."],
 ];
 ---
 
-<BaseLayout
-  pageTitle="$500 AI Diagnosis for Raleigh Businesses"
-  pageDescription="A focused AI workflow diagnosis for service businesses and small teams. Leave with ranked opportunities, risks, and a practical 30-day roadmap."
->
-  <div class="brand-page bg-[var(--brand-bg)] text-[var(--brand-text)]">
-    <section class="border-b-4 border-[var(--brand-ink)] bg-[var(--brand-yellow)]">
-      <div class="mx-auto grid max-w-[96rem] gap-14 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.35fr_.65fr] lg:items-end lg:gap-20 lg:px-12">
-        <div>
-          <p class="inline-flex items-center gap-3 rounded-full border border-[var(--brand-line)] px-4 py-2 text-xs font-bold text-[var(--brand-muted)]"><span class="size-2 rounded-full bg-[var(--brand-orange)]"></span>AI diagnosis · Raleigh or remote</p>
-          <h1 class="mt-8 max-w-5xl font-sans text-[clamp(3.3rem,6.3vw,6.7rem)] font-extrabold leading-[.91] tracking-[-.075em]">Find the AI work <em class="font-serif font-normal text-[var(--brand-orange)]">worth paying for.</em></h1>
-          <p class="mt-9 max-w-2xl text-lg font-semibold leading-8 sm:text-xl sm:leading-9">Before you buy tools or commission a build, get a clear view of where AI can create value—and where it cannot.</p>
-          <a href="#apply" class="brand-button mt-8">Apply for a diagnosis <span class="ml-3">↓</span></a>
-        </div>
-        <aside class="rounded-[1.5rem] border border-[var(--brand-line)] bg-[var(--brand-surface)] p-7 sm:p-8">
-          <p class="text-xs font-bold uppercase tracking-[.16em] text-[var(--brand-orange)]">Fixed scope</p>
-          <p class="mt-5 font-sans text-6xl font-extrabold tracking-[-.07em]">$500</p>
-          <p class="mt-3 text-sm font-bold">One-time investment</p>
-          <ul class="mt-7 divide-y divide-[var(--brand-line)] border-y border-[var(--brand-line)] text-sm text-[var(--brand-muted)]">
-            <li class="py-4">60–90 minute working session</li>
-            <li class="py-4">Personal review by Danny</li>
-            <li class="py-4">Written roadmap within five business days</li>
-          </ul>
-          <p class="mt-5 text-xs leading-5 text-[var(--brand-muted)]">I review every application first. If the diagnosis is not the right next step, I’ll tell you before you pay.</p>
-        </aside>
-      </div>
-    </section>
+<BaseLayout pageTitle="AI Workflow Diagnosis — Raleigh AI Guy" pageDescription="A focused review of a business workflow to find the useful AI opportunities and avoid unnecessary complexity.">
+  <section>
+    <Wrapper class="py-16 sm:py-24 lg:py-32">
+      <p class="text-sm font-medium text-base-500">AI workflow diagnosis</p>
+      <h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Find the work worth improving.</h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">Before buying tools or commissioning a build, get a clear view of where AI can help, where it cannot, and what the smallest useful next step looks like.</p>
+      <a href="mailto:hello@raleighaiguy.com?subject=AI%20workflow%20diagnosis" class="mt-8 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me about a workflow</a>
+    </Wrapper>
+  </section>
 
-    <section class="border-b border-white/10 bg-[var(--brand-ink)] text-white">
-      <div class="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
-        <div class="grid gap-6 lg:grid-cols-[.65fr_1.35fr] lg:items-end lg:gap-20">
-          <div><p class="text-xs font-bold uppercase tracking-[.18em] text-[var(--brand-orange)]">What you leave with</p><h2 class="mt-5 font-sans text-4xl font-bold leading-[.98] tracking-[-.05em] sm:text-5xl">Clarity before complexity.</h2></div>
-          <p class="max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">The deliverable is a decision-ready plan, not a long strategy deck and not a disguised sales proposal.</p>
-        </div>
-        <div class="mt-14 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 sm:grid-cols-2">
-          {deliverables.map(([title, body], index) => (
-            <article class="bg-[var(--brand-ink)] p-6 sm:p-8">
-              <span class="text-xs font-bold text-[var(--brand-orange)]">0{index + 1}</span>
-              <h3 class="mt-8 font-sans text-2xl font-bold tracking-[-.03em]">{title}</h3>
-              <p class="mt-4 max-w-xl text-sm leading-6 text-white/60">{body}</p>
-            </article>
-          ))}
-        </div>
+  <section>
+    <Wrapper class="py-12 sm:py-16">
+      <div class="border-t border-black/10 pt-3"><h2 class="text-sm font-medium">What the conversation covers</h2></div>
+      <div class="mt-8 divide-y divide-black/10 border-y border-black/10">
+        {deliverables.map(([title, body], index) => (
+          <article class="grid gap-3 py-6 sm:grid-cols-[3rem_13rem_1fr] sm:gap-6">
+            <span class="text-xs font-medium text-base-400">0{index + 1}</span>
+            <h3 class="text-sm font-medium">{title}</h3>
+            <p class="text-sm leading-6 text-base-500">{body}</p>
+          </article>
+        ))}
       </div>
-    </section>
+    </Wrapper>
+  </section>
 
-    <section class="border-b-4 border-[var(--brand-ink)] bg-[var(--brand-pink)]">
-      <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
-        <div><p class="text-xs font-bold uppercase tracking-[.18em] text-[var(--brand-orange)]">Is it a fit?</p><h2 class="mt-5 font-sans text-4xl font-bold leading-[.98] tracking-[-.05em]">Bring a real workflow, not an AI shopping list.</h2></div>
-        <div class="grid gap-5 sm:grid-cols-2">
-          <article class="rounded-[1.25rem] border border-[var(--brand-line)] bg-[var(--brand-surface)] p-6"><h3 class="font-sans text-xl font-bold">Good fit</h3><ul class="mt-5 space-y-3 text-sm leading-6 text-[var(--brand-muted)]"><li>• Repetitive admin or communication</li><li>• A workflow involving email, forms, documents, or reporting</li><li>• A team willing to explain how the work happens now</li><li>• A result that can be reviewed and measured</li></ul></article>
-          <article class="rounded-[1.25rem] border border-[var(--brand-line)] bg-[var(--brand-surface)] p-6"><h3 class="font-sans text-xl font-bold">Probably not yet</h3><ul class="mt-5 space-y-3 text-sm leading-6 text-[var(--brand-muted)]"><li>• “We need an AI strategy” with no business problem</li><li>• A fully autonomous system with no human owner</li><li>• A request for guaranteed revenue or rankings</li><li>• An emergency build that must launch tomorrow</li></ul></article>
-        </div>
+  <section>
+    <Wrapper class="py-16 sm:py-24">
+      <div class="border-t border-black/10 pt-8">
+        <h2 class="text-2xl font-medium tracking-tight">Bring a real workflow, not an AI shopping list.</h2>
+        <p class="mt-5 max-w-2xl text-sm leading-6 text-base-500">The best starting point is repetitive work involving email, forms, documents, reporting, customer follow-up, or information that has to move between people and tools.</p>
+        <a href="mailto:hello@raleighaiguy.com?subject=AI%20workflow%20diagnosis" class="mt-7 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me</a>
       </div>
-    </section>
-
-    <section class="border-b-4 border-[var(--brand-ink)] bg-[var(--brand-yellow)]">
-      <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <div class="grid gap-6 lg:grid-cols-[.65fr_1.35fr] lg:items-end lg:gap-20"><div><p class="text-xs font-bold uppercase tracking-[.18em] text-[var(--brand-orange)]">After the diagnosis</p><h2 class="mt-5 font-sans text-4xl font-bold leading-[.98] tracking-[-.05em]">The plan is yours.</h2></div><p class="max-w-2xl text-base leading-7 text-[var(--brand-muted)]">Continue only when the expected value justifies the investment.</p></div>
-        <div class="mt-12 grid gap-5 lg:grid-cols-3">{nextSteps.map(([title, body], index) => <article class="rounded-[1.25rem] border border-[var(--brand-line)] bg-[var(--brand-bg)] p-6 sm:p-7"><span class="text-xs font-bold text-[var(--brand-orange)]">0{index + 1}</span><h3 class="mt-8 font-sans text-xl font-bold tracking-[-.03em]">{title}</h3><p class="mt-4 text-sm leading-6 text-[var(--brand-muted)]">{body}</p></article>)}</div>
-      </div>
-    </section>
-
-    <section id="apply" class="scroll-mt-6 bg-[var(--brand-orange)]">
-      <div class="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[19rem_1fr] lg:gap-20">
-        <div>
-          <p class="text-xs font-bold uppercase tracking-[.18em] text-[var(--brand-orange)]">Apply for a diagnosis</p>
-          <h2 class="mt-5 font-sans text-4xl font-bold leading-[.98] tracking-[-.05em]">Tell me where the work gets stuck.</h2>
-          <p class="mt-6 text-sm leading-6 text-[var(--brand-muted)]">I’ll review this personally and reply with the next step. If it is a fit, I’ll send a payment link and scheduling options. If not, I’ll point you toward the more useful option.</p>
-          <a href="/ai-opportunity-scorecard/" class="home-text-link mt-6 inline-flex min-h-11 items-center text-sm font-bold">Not ready? Take the free scorecard →</a>
-        </div>
-
-        <form name="ai-diagnosis-application" method="POST" action="/diagnosis-thank-you/" data-netlify="true" data-netlify-honeypot="bot-field" class="brand-form-panel p-5 sm:p-8">
-          <input type="hidden" name="form-name" value="ai-diagnosis-application" />
-          <p class="absolute -left-[10000px] size-px overflow-hidden" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-          <div class="grid gap-5 sm:grid-cols-2">
-            <label class="text-sm font-bold">Your name <span class="text-[var(--brand-orange)]">*</span><input class="brand-field" type="text" name="name" autocomplete="name" required /></label>
-            <label class="text-sm font-bold">Work email <span class="text-[var(--brand-orange)]">*</span><input class="brand-field" type="email" name="email" autocomplete="email" required /></label>
-            <label class="text-sm font-bold">Business <span class="text-[var(--brand-orange)]">*</span><input class="brand-field" type="text" name="company" autocomplete="organization" required /></label>
-            <label class="text-sm font-bold">Website <span class="font-normal text-[var(--brand-muted)]">(optional)</span><input class="brand-field" type="url" name="website" inputmode="url" placeholder="https://" /></label>
-            <label class="text-sm font-bold sm:col-span-2">What workflow or problem should we diagnose? <span class="text-[var(--brand-orange)]">*</span><span class="mt-1 block font-normal leading-5 text-[var(--brand-muted)]">Describe what happens today and where it breaks down.</span><textarea class="brand-field" name="workflow" rows="5" maxlength="1400" required></textarea></label>
-            <label class="text-sm font-bold">How often does it happen? <span class="text-[var(--brand-orange)]">*</span><select class="brand-field" name="frequency" required><option value="">Choose one</option><option>Several times a day</option><option>Several times a week</option><option>Several times a month</option><option>Occasionally, but high-value</option></select></label>
-            <label class="text-sm font-bold">How many people touch the workflow?<select class="brand-field" name="team_size"><option value="">Choose one</option><option>Just me</option><option>2–5 people</option><option>6–20 people</option><option>More than 20 people</option></select></label>
-            <label class="text-sm font-bold sm:col-span-2">If the diagnosis finds a strong opportunity, what would you consider next? <span class="text-[var(--brand-orange)]">*</span><select class="brand-field" name="next_step" required><option value="">Choose one</option><option>Use the roadmap with my own team</option><option>A focused implementation sprint ($3,000–$7,500)</option><option>Ongoing help (from $2,000/month)</option><option>I am not sure yet</option></select></label>
-            <label class="text-sm font-bold sm:col-span-2">Timing <span class="text-[var(--brand-orange)]">*</span><select class="brand-field" name="timing" required><option value="">Choose one</option><option>As soon as there is a good fit</option><option>Within the next month</option><option>Within the next quarter</option><option>Just exploring</option></select></label>
-          </div>
-          <div class="mt-7 flex flex-col gap-4 border-t border-[var(--brand-line)] pt-7 sm:flex-row sm:items-center sm:justify-between"><p class="max-w-sm text-xs leading-5 text-[var(--brand-muted)]">Submitting does not charge you or commit you to a project.</p><button type="submit" class="brand-button shrink-0">Submit my diagnosis request <span class="ml-3">→</span></button></div>
-        </form>
-      </div>
-    </section>
-  </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    var form = document.querySelector('form[name="ai-diagnosis-application"]');
-    form?.addEventListener('submit', function () {
-      window.posthog?.capture('ai_diagnosis_application_submitted', {
-        next_step: form.querySelector('[name="next_step"]')?.value || '',
-        timing: form.querySelector('[name="timing"]')?.value || ''
-      });
-    });
-  });
-</script>

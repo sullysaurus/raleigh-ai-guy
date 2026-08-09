@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { getImage } from "astro:assets";
-import AiQuestionForm from "@/components/global/AiQuestionForm.astro";
 
 const { frontmatter, readingTime, previous, next } = Astro.props;
 const date = frontmatter.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
@@ -44,17 +43,12 @@ const socialImage = await getImage({
       {next && <a href={`/blog/posts/${next.id}`} class="brand-panel brand-card-interactive flex min-h-24 items-center justify-end p-6 text-right text-sm font-medium">{next.data.title} →</a>}
     </nav>}
 
-    <section class="brand-dark-section mt-20 border-y">
-      <div class="mx-auto grid max-w-5xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-14">
-        <div>
-          <p class="brand-eyebrow">Two-Minute AI Answers</p>
-          <h2 class="brand-section-title mt-4">Send me the part that is stuck.</h2>
-          <p class="brand-copy mt-5">I will record a personalized two-minute answer today and send it directly to you.</p>
-          <a href="/ai-answers/" class="brand-text-link mt-5">Browse the answer library →</a>
-        </div>
-        <div class="brand-form-panel p-5 sm:p-6">
-          <AiQuestionForm source="blog_post_footer" compact />
-        </div>
+    <section class="mt-20 border-y border-black/10">
+      <div class="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+        <p class="text-sm font-medium text-base-500">Have a question?</p>
+        <h2 class="mt-4 text-2xl font-medium tracking-tight">Send me the part that is stuck.</h2>
+        <p class="mt-4 max-w-xl text-sm leading-6 text-base-500">I’ll reply personally with the most useful next step I can offer.</p>
+        <a href="mailto:hello@raleighaiguy.com" class="mt-6 inline-flex min-h-11 items-center rounded-lg bg-black px-4 text-sm font-medium text-white hover:bg-base-800">Email me</a>
       </div>
     </section>
   </article>

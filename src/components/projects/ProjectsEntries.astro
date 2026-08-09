@@ -12,10 +12,11 @@ const { url, title, subtitle, image, imageAlt } = {
 };
 const imageWidth = typeof image === "string" ? 500 : image.width;
 const imageHeight = typeof image === "string" ? 500 : image.height;
+const isInboxProject = Astro.props.post.id === "inbox-triage-workflow";
 const isPortraitImage = imageHeight > imageWidth;
 const imageFrameClass = isPortraitImage
-  ? "brand-panel bg-[var(--brand-surface-soft)] p-6 sm:p-8 lg:p-10"
-  : "brand-panel bg-[var(--brand-surface-soft)] p-8 lg:p-12";
+  ? "overflow-hidden rounded-xl border border-black/10 bg-base-100 p-6 sm:p-8 lg:p-10"
+  : "overflow-hidden rounded-xl border border-black/10 bg-base-100 p-8 lg:p-12";
 const imageClass = isPortraitImage
   ? "mx-auto max-h-[420px] w-auto max-w-full rounded-2xl object-contain"
   : "w-full rounded object-cover";
@@ -28,15 +29,23 @@ const imageClass = isPortraitImage
     aria-label={`Read project: ${title}`}
     class="absolute inset-0 z-10"></a>
 
-  <div class={imageFrameClass}>
-    <Image
-      width={imageWidth}
-      height={imageHeight}
-      class={imageClass}
-      alt={imageAlt}
-      src={image}
-    />
-  </div>
+  {isInboxProject ? (
+    <div class="grid aspect-[16/10] place-items-center rounded-xl border border-black/10 bg-base-100 p-6 sm:p-10">
+      <div class="w-full max-w-xl rounded-xl border border-black/10 bg-white p-5 shadow-sm sm:p-7">
+        <div class="flex items-center justify-between border-b border-black/10 pb-4"><strong class="text-sm font-medium">Inbox triage</strong><span class="text-xs text-base-400">Today</span></div>
+        <div class="divide-y divide-black/10">
+          <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full bg-black"></span><span class="text-sm font-medium">Needs action</span><span class="text-xs text-base-400">4 messages</span></div>
+          <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full border border-black/30"></span><span class="text-sm font-medium">Waiting on reply</span><span class="text-xs text-base-400">7 messages</span></div>
+          <div class="grid grid-cols-[.7rem_1fr_auto] items-center gap-3 py-4"><span class="size-2 rounded-full bg-base-200"></span><span class="text-sm font-medium">Read later</span><span class="text-xs text-base-400">12 messages</span></div>
+        </div>
+        <p class="border-t border-black/10 pt-4 text-xs leading-5 text-base-500">Prepared for review. Nothing sends or moves without approval.</p>
+      </div>
+    </div>
+  ) : (
+    <div class={imageFrameClass}>
+      <Image width={imageWidth} height={imageHeight} class={imageClass} alt={imageAlt} src={image} />
+    </div>
+  )}
 
   <div
     class="grid grid-cols-1 gap-4 md:grid-cols-3 justify-between h-full mt-4 relative z-0"

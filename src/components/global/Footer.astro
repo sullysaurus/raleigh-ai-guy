@@ -1,11 +1,29 @@
 ---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 const year = new Date().getFullYear();
+const links = [
+  { text: "About", href: "/about/" },
+  { text: "Work", href: "/projects/" },
+  { text: "Writing", href: "/blog/" },
+  { text: "Workshops", href: "/ai-workshops/" },
+  { text: "Privacy", href: "/privacy/" },
+  { text: "LinkedIn", href: "https://www.linkedin.com/in/danny-sullivan-raleigh/" },
+];
 ---
 
-<footer class="site-footer mt-auto border-t-[3px] border-[var(--brand-ink)] bg-[var(--brand-ink)] text-[var(--brand-bg)]">
-  <div class="mx-auto grid max-w-[96rem] gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-end lg:px-12">
-    <div><strong class="font-sans text-2xl font-black uppercase tracking-[-.04em] text-[var(--brand-acid)]">Raleigh AI Guy</strong><p class="mt-2 text-[.65rem] font-black uppercase tracking-[0.14em] text-white/55">Danny Sullivan · Channel 919 · Raleigh, NC</p><p class="mt-4 max-w-md text-sm font-medium leading-6 text-white/65">Practical AI systems that save time, reduce admin, and fit how your business already works.</p></div>
-    <nav class="grid grid-cols-2 items-center gap-x-5 text-[.7rem] font-black uppercase tracking-[.06em] text-white/70 sm:flex sm:flex-wrap sm:gap-y-2 [&_a:not(.brand-button)]:inline-flex [&_a:not(.brand-button)]:min-h-11 [&_a:not(.brand-button)]:items-center [&_a:not(.brand-button)]:underline-offset-4" aria-label="Footer navigation"><a href="/about/" class="hover:text-[var(--brand-acid)] hover:underline">About</a><a href="/blog/" class="hover:text-[var(--brand-acid)] hover:underline">Blog</a><a href="/ai-opportunity-scorecard/" class="hover:text-[var(--brand-acid)] hover:underline">Free Scorecard</a><a href="/ai-answers/" class="hover:text-[var(--brand-acid)] hover:underline">AI Answers</a><a href="/ai-workshops/" class="hover:text-[var(--brand-acid)] hover:underline">Workshops</a><a href="/privacy/" class="hover:text-[var(--brand-acid)] hover:underline">Privacy</a><a href="mailto:hello@raleighaiguy.com" class="hover:text-[var(--brand-acid)] hover:underline">Email</a><a href="https://www.linkedin.com/in/danny-sullivan-raleigh/" target="_blank" rel="noreferrer" class="hover:text-[var(--brand-acid)] hover:underline">LinkedIn ↗</a><a href="/ai-diagnosis/" class="brand-button col-span-2 mt-3 min-h-11 px-4 text-xs sm:col-auto sm:mt-0">Start a diagnosis →</a></nav>
-  </div>
-  <div class="mx-auto flex max-w-[96rem] items-center justify-between border-t border-white/15 px-5 py-3 text-[.62rem] font-bold uppercase tracking-[.08em] text-white/45 sm:px-8 lg:px-12"><span>© {year} Danny Sullivan</span><a href="#top" class="inline-flex min-h-11 items-center hover:text-[var(--brand-acid)]">Back to top ↑</a></div>
+<footer class="mt-auto">
+  <Wrapper class="py-12 sm:py-16">
+    <div class="grid gap-10 border-t border-black/10 pt-6 sm:grid-cols-[1fr_auto]">
+      <div>
+        <p class="text-sm font-semibold">Raleigh AI Guy</p>
+        <p class="mt-2 max-w-sm text-sm leading-6 text-base-500">Practical AI systems for small businesses and teams in Raleigh.</p>
+        <a href="mailto:hello@raleighaiguy.com" class="mt-4 inline-block text-sm font-medium underline decoration-black/20 underline-offset-4 hover:decoration-black">hello@raleighaiguy.com</a>
+      </div>
+      <nav class="grid grid-cols-2 gap-x-8 gap-y-2" aria-label="Footer navigation">
+        {links.map((link) => <a href={link.href} class="text-sm text-base-500 hover:text-black">{link.text}</a>)}
+      </nav>
+    </div>
+    <p class="mt-10 text-xs text-base-400">© {year} Danny Sullivan · Raleigh, North Carolina</p>
+  </Wrapper>
 </footer>

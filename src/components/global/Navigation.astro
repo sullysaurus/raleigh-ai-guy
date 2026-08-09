@@ -1,31 +1,33 @@
 ---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 const currentPath = Astro.url.pathname;
 const links = [
-  { text: "Services", href: "/#services" },
-  { text: "Recent work", href: "/#recent-work" },
-  { text: "Workshops", href: "/ai-workshops/" },
   { text: "About", href: "/about/" },
-  { text: "Blog", href: "/blog/" },
+  { text: "Work", href: "/projects/" },
+  { text: "Writing", href: "/blog/" },
+  { text: "Workshops", href: "/ai-workshops/" },
 ];
-
-const mobileLinks = links
-  .filter((link) => ["Services", "Recent work", "Workshops", "Blog"].includes(link.text))
-  .map((link) => ({ ...link, mobileText: link.text === "Recent work" ? "Work" : link.text }));
 ---
 
-<header class="site-header mx-auto flex min-h-20 w-full max-w-[96rem] items-center justify-between gap-3 border-x-[3px] border-b-[3px] border-[var(--brand-ink)] bg-[var(--brand-surface)] px-4 text-[var(--brand-text)] sm:min-h-24 sm:gap-5 sm:px-8 lg:px-12">
-  <a href="/" class="group flex min-h-12 shrink-0 items-center gap-3 font-sans uppercase" aria-label="Raleigh AI Guy home">
-    <span class="grid size-10 -rotate-3 place-items-center border-[3px] border-[var(--brand-ink)] bg-[var(--brand-orange)] text-[.58rem] font-black shadow-[3px_3px_0_var(--brand-ink)] transition-transform group-hover:rotate-2" aria-hidden="true">RAI</span>
-    <span class="text-sm font-black tracking-[-0.035em] sm:text-lg">Raleigh AI Guy</span>
-  </a>
-
-  <nav class="hidden items-center gap-9 lg:flex" aria-label="Main navigation">
-    {links.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="nav-link text-[.68rem] font-black uppercase tracking-[.08em] text-[var(--brand-muted)] transition-colors hover:text-[var(--brand-text)] hover:underline hover:decoration-[3px] hover:decoration-[var(--brand-orange)] hover:underline-offset-[5px] aria-[current=page]:text-[var(--brand-text)]">{link.text}</a>)}
-  </nav>
-
-  <a href="/ai-diagnosis/" class="header-cta inline-flex min-h-12 items-center justify-center border-[3px] border-[var(--brand-ink)] bg-[var(--brand-orange)] px-4 text-[.65rem] font-black uppercase text-[var(--brand-ink)] shadow-[4px_4px_0_var(--brand-ink)] transition hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[1px_1px_0_var(--brand-ink)] sm:px-6 sm:text-xs"><span class="hidden sm:inline">Start with a diagnosis →</span><span class="sm:hidden">Start →</span></a>
+<header>
+  <Wrapper class="pt-8 sm:pt-12">
+    <div class="flex items-center justify-between gap-5 border-b border-black/10 pb-5">
+      <a href="/" class="text-sm font-semibold tracking-tight" aria-label="Raleigh AI Guy home">Raleigh AI Guy</a>
+      <div class="flex items-center gap-4">
+        <a href="mailto:hello@raleighaiguy.com" class="hidden text-sm font-medium text-base-500 hover:text-black sm:block">Email me</a>
+        <details class="group relative">
+          <summary class="cursor-pointer list-none text-sm font-medium text-base-500 hover:text-black">Menu</summary>
+          <nav class="absolute right-0 top-full z-40 mt-3 w-40 rounded-xl border border-black/10 bg-white p-4 shadow-sm" aria-label="Main navigation">
+            <div class="space-y-3">
+              {links.map((link) => (
+                <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="block text-sm font-medium text-base-500 hover:text-black aria-[current=page]:text-black">{link.text}</a>
+              ))}
+              <a href="mailto:hello@raleighaiguy.com" class="block text-sm font-medium text-base-500 hover:text-black sm:hidden">Email me</a>
+            </div>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </Wrapper>
 </header>
-
-<nav class="mx-auto grid w-full max-w-[96rem] grid-cols-4 border-x-[3px] border-b-[3px] border-[var(--brand-ink)] bg-[var(--brand-ink)] px-2 text-center text-[.62rem] font-black uppercase tracking-[.07em] text-[var(--brand-acid)] lg:hidden" aria-label="Mobile navigation">
-  {mobileLinks.map((link) => <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="flex min-h-12 items-center justify-center border-x border-white/10 px-1 transition-colors hover:bg-[var(--brand-pink)] hover:text-[var(--brand-ink)] aria-[current=page]:bg-[var(--brand-orange)] aria-[current=page]:text-[var(--brand-ink)]">{link.mobileText}</a>)}
-</nav>
