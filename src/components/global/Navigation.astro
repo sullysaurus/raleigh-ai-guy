@@ -21,7 +21,7 @@ const links = [
         {links.slice(0, -1).map((link) => (
           <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="text-sm font-medium text-base-500 transition-colors hover:text-black aria-[current=page]:text-black">{link.text}</a>
         ))}
-        <a href="/ai-opportunity-scorecard/" aria-current={currentPath.startsWith("/ai-opportunity-scorecard/") ? "page" : undefined} class="site-cta">Free scorecard →</a>
+        <a href="/ai-opportunity-scorecard/" aria-current={currentPath.startsWith("/ai-opportunity-scorecard/") ? "page" : undefined} class="site-cta">What’s your AIQ? →</a>
       </nav>
       <div class="md:hidden">
         <details class="group relative">
@@ -31,7 +31,7 @@ const links = [
               {links.map((link) => (
                 <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="block text-sm font-medium text-base-500 hover:text-black aria-[current=page]:text-black">{link.text}</a>
               ))}
-              <a href="/ai-opportunity-scorecard/" aria-current={currentPath.startsWith("/ai-opportunity-scorecard/") ? "page" : undefined} class="site-cta mt-2 w-full">Free scorecard →</a>
+              <a href="/ai-opportunity-scorecard/" aria-current={currentPath.startsWith("/ai-opportunity-scorecard/") ? "page" : undefined} class="site-cta mt-2 w-full">What’s your AIQ? →</a>
             </div>
           </nav>
         </details>

@@ -4,149 +4,193 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const questions = [
   {
-    legend: "How often does this workflow happen?",
-    name: "frequency",
-    options: [["A few times a month", "1"], ["A few times a week", "2"], ["Every day", "3"]],
+    legend: "Which best describes how AI shows up in your business today?",
+    prompt: "Choose what is consistently true—not the experiment that went best.",
+    name: "current_use",
+    dimension: "practice",
+    options: [["Mostly conversation and curiosity", "0"], ["A few people experiment occasionally", "1"], ["We use it repeatedly for certain tasks", "2"], ["It is built into important workflows", "3"]],
   },
   {
-    legend: "How much team time does it consume each week?",
-    name: "hours",
-    options: [["Less than 2 hours", "1"], ["2–5 hours", "2"], ["More than 5 hours", "3"]],
+    legend: "When work feels slow or repetitive, what usually happens?",
+    prompt: "This reveals whether AI starts with a tool or a real business problem.",
+    name: "problem_selection",
+    dimension: "direction",
+    options: [["We live with it", "0"], ["Someone tries a new tool or prompt", "1"], ["We examine the process and test an improvement", "2"], ["We systematically improve and measure it", "3"]],
   },
   {
-    legend: "How consistent is the process?",
-    name: "repeatability",
-    options: [["It changes every time", "0"], ["Some steps repeat", "2"], ["Mostly the same steps", "3"]],
+    legend: "How does your team know what AI is allowed to help with?",
+    prompt: "Useful adoption needs boundaries people can understand and follow.",
+    name: "guidance",
+    dimension: "judgment",
+    options: [["We haven’t discussed it", "0"], ["Everyone makes their own decisions", "1"], ["We have some shared expectations", "2"], ["We have clear rules and approval points", "3"]],
   },
   {
-    legend: "Where does the information live?",
-    name: "inputs",
-    options: [["Mostly paper or conversations", "0"], ["A mix of places", "1"], ["Mostly email, forms, or software", "2"]],
-  },
-  {
-    legend: "How easy would it be for a person to review the output?",
+    legend: "What happens when AI produces a confident but incorrect answer?",
+    prompt: "Good judgment means deciding how mistakes get caught before they matter.",
     name: "review",
-    options: [["Difficult or high-risk", "0"], ["Possible with careful review", "1"], ["Quick and straightforward", "2"]],
+    dimension: "judgment",
+    options: [["It might go unnoticed", "0"], ["Someone usually catches it", "1"], ["Important outputs require human review", "2"], ["We use risk-based checks and escalation rules", "3"]],
   },
-];
-
-const reviewPoints = [
-  { number: "01", title: "Honest fit check", body: "AI, ordinary software, or a clearer process?" },
-  { number: "02", title: "A useful next step", body: "Start small enough to learn something real." },
-  { number: "03", title: "Teaching, not dependency", body: "Your team understands and owns the result." },
+  {
+    legend: "How easy is it for AI to access the right business context?",
+    prompt: "AI is more useful when it can work from information your team already trusts.",
+    name: "context",
+    dimension: "practice",
+    options: [["Most knowledge lives in people’s heads", "0"], ["Information is scattered across many places", "1"], ["We have organized material for a few workflows", "2"], ["We maintain clear, current sources of truth", "3"]],
+  },
+  {
+    legend: "When someone finds a useful AI workflow, what happens next?",
+    prompt: "Individual wins become business capability only when they can spread.",
+    name: "knowledge_sharing",
+    dimension: "practice",
+    options: [["It stays with that person", "0"], ["They share the prompt informally", "1"], ["We document useful processes", "2"], ["We train the team and improve the process over time", "3"]],
+  },
+  {
+    legend: "How do you know whether AI is helping?",
+    prompt: "A useful AI practice should create an outcome the business can recognize.",
+    name: "measurement",
+    dimension: "results",
+    options: [["It feels interesting, but we don’t measure it", "0"], ["We notice occasional time savings", "1"], ["We measure results for specific tasks", "2"], ["We track effects on time, quality, customers, or revenue", "3"]],
+  },
+  {
+    legend: "What is keeping you from taking the next useful step?",
+    prompt: "The obstacle often says more than the number of tools you have tried.",
+    name: "next_step",
+    dimension: "direction",
+    options: [["We don’t know where to begin", "0"], ["There are too many tools and possibilities", "1"], ["We need more structure, ownership, or confidence", "2"], ["We are ready to test or scale something specific", "3"]],
+  },
 ];
 ---
 
 <BaseLayout
-  pageTitle="Free AI Opportunity Scorecard"
-  pageDescription="Score one repetitive workflow and get a free personal review from Danny Sullivan within two business days."
+  pageTitle="What’s Your AIQ? — Free AI Opportunity Quiz"
+  pageDescription="Answer eight questions to discover how well your business turns AI curiosity into useful, repeatable work."
 >
-  <section class="border-b border-black/10">
-    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
-      <div class="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-16">
+  <section class="aiq-hero overflow-hidden border-b border-black/10">
+    <Wrapper variant="wide" class="relative py-14 sm:py-20 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div class="field-reveal lg:col-span-7">
-          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Free AI opportunity scorecard</p>
-          <h1 class="font-editorial mt-6 max-w-4xl text-[clamp(3.5rem,7vw,6.8rem)] font-medium leading-[.88] tracking-[-.055em] text-black">
-            Is this workflow<br /><em class="font-normal text-[var(--brand-orange)]">ready for AI?</em>
+          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>AI Opportunity Quotient</p>
+          <h1 class="font-editorial mt-6 max-w-4xl text-[clamp(4.3rem,9vw,8.5rem)] font-medium leading-[.82] tracking-[-.065em] text-black">
+            What’s your<br /><em class="font-normal text-[var(--brand-orange)]">AIQ?</em>
           </h1>
-          <p class="mt-8 max-w-xl text-lg leading-8 text-base-600 sm:text-xl">Most businesses don’t need another tool. They need an honest diagnosis.</p>
+          <p class="mt-8 max-w-xl text-lg leading-8 text-base-600 sm:text-xl">Not how much AI you know. How well your business turns AI curiosity into useful, repeatable work.</p>
           <div class="mt-8 flex flex-wrap items-center gap-5">
-            <a href="#scorecard" class="site-cta">Take the free scorecard →</a>
-            <span class="text-xs leading-5 text-base-500">About 5 minutes · No generic demo</span>
+            <a href="#quiz" class="site-cta" data-start-quiz>Find my AIQ →</a>
+            <span class="font-utility text-[.62rem] uppercase tracking-[.08em] text-base-500">8 questions · About 3 minutes</span>
           </div>
         </div>
 
-        <aside class="field-reveal field-reveal-delay border-t border-black/15 pt-6 lg:col-span-5">
-          <p class="field-label">A free personal workflow review</p>
-          <h2 class="font-editorial mt-4 text-4xl leading-none">Bring me one process you wish would disappear.</h2>
-          <p class="mt-5 text-sm leading-6 text-base-600">I’ll tell you whether AI is the right tool, the smallest useful next step, and what your team should learn so the improvement stays yours.</p>
-          <p class="font-utility mt-6 text-[.64rem] uppercase tracking-[.08em] text-base-500">Personal reply within 2 business days</p>
+        <aside class="field-reveal field-reveal-delay lg:col-span-5 lg:justify-self-end">
+          <div class="aiq-ticket relative max-w-md border border-black/15 bg-[var(--brand-paper)] p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-6 border-b border-black/10 pb-6">
+              <div><p class="field-label">Your AIQ</p><p class="font-editorial mt-2 text-7xl leading-none text-[var(--brand-orange)]">??</p></div>
+              <span class="font-utility rounded-full border border-black/15 px-3 py-1 text-[.58rem] uppercase tracking-[.1em] text-base-500">Out of 100</span>
+            </div>
+            <ol class="mt-6 grid gap-4 text-sm sm:grid-cols-2">
+              <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="field-label text-[var(--brand-orange)]">01</span><span><strong class="block">Direction</strong><span class="text-base-500">Do you know where AI matters?</span></span></li>
+              <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="field-label text-[var(--brand-orange)]">02</span><span><strong class="block">Practice</strong><span class="text-base-500">Can useful work spread?</span></span></li>
+              <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="field-label text-[var(--brand-orange)]">03</span><span><strong class="block">Judgment</strong><span class="text-base-500">Can the team use it safely?</span></span></li>
+              <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="field-label text-[var(--brand-orange)]">04</span><span><strong class="block">Results</strong><span class="text-base-500">Can you prove it helps?</span></span></li>
+            </ol>
+            <p class="font-utility mt-7 border-t border-black/10 pt-5 text-[.6rem] uppercase leading-5 tracking-[.08em] text-base-500">The score inside the free AI Opportunity Scorecard</p>
+          </div>
         </aside>
       </div>
     </Wrapper>
   </section>
 
-  <section class="bg-[var(--brand-paper)]">
-    <Wrapper variant="wide" class="py-12 sm:py-16">
-      <ol class="grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
-        {reviewPoints.map((point) => (
-          <li class="bg-[var(--brand-paper)] p-6 sm:p-8">
-            <span class="field-label text-[var(--brand-orange)]">{point.number}</span>
-            <h2 class="mt-8 text-lg font-semibold">{point.title}</h2>
-            <p class="mt-2 text-sm leading-6 text-base-600">{point.body}</p>
-          </li>
-        ))}
-      </ol>
-    </Wrapper>
-  </section>
-
-  <section id="scorecard" class="scroll-mt-6 bg-[var(--brand-surface-soft)]">
-    <Wrapper variant="wide" class="py-16 sm:py-24">
-      <div class="grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-16">
-        <div>
-          <p class="field-label">Score one workflow</p>
-          <h2 class="font-editorial mt-5 text-4xl leading-[.98] sm:text-5xl">Start with the work, not the tool.</h2>
-          <p class="mt-5 text-sm leading-6 text-base-600">You’ll get an immediate readiness score. I’ll also read what you share and reply personally within two business days with the most useful next step I can offer.</p>
-          <ul class="font-utility mt-7 space-y-3 text-[.64rem] uppercase tracking-[.07em] text-base-500">
-            <li>✓ Free personal review</li>
-            <li>✓ No sales sequence</li>
-            <li>✓ No sensitive information</li>
-          </ul>
+  <section id="quiz" class="scroll-mt-6 bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-4xl">
+        <div class="mb-7 flex items-end justify-between gap-6">
+          <div>
+            <p class="field-label" data-progress-label>Question 1 of {questions.length}</p>
+            <p class="mt-2 text-sm text-base-500">Answer for your business today—not where you hope to be.</p>
+          </div>
+          <p class="font-editorial text-3xl text-[var(--brand-orange)]" aria-hidden="true"><span data-progress-number>01</span><span class="text-base-400">/{String(questions.length).padStart(2, "0")}</span></p>
         </div>
+        <div class="h-1 overflow-hidden bg-black/10" aria-hidden="true"><div class="h-full bg-[var(--brand-orange)] transition-[width] duration-300" data-progress-bar style={`width: ${100 / questions.length}%`}></div></div>
 
-        <form id="scorecard-form" name="ai-opportunity-scorecard" method="POST" action="/scorecard-thank-you/" data-netlify="true" netlify-honeypot="website" class="border-y border-black/15 py-7 sm:py-9">
+        <form id="aiq-form" name="ai-opportunity-scorecard" method="POST" action="/scorecard-thank-you/" data-netlify="true" netlify-honeypot="website" class="mt-8">
           <input type="hidden" name="form-name" value="ai-opportunity-scorecard" />
           <input type="hidden" name="score" value="" />
           <input type="hidden" name="result" value="" />
+          <input type="hidden" name="recommendation" value="" />
           <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
 
-          <div class="grid gap-5 sm:grid-cols-2">
-            <label class="intake-label">First name<input class="intake-field" type="text" name="first_name" autocomplete="given-name" placeholder="Your first name" required /></label>
-            <label class="intake-label">Work email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
-            <label class="intake-label sm:col-span-2">Business or organization <span class="font-normal text-base-500">(optional)</span><input class="intake-field" type="text" name="company" autocomplete="organization" placeholder="Your business" /></label>
-            <label class="intake-label sm:col-span-2">What workflow are you scoring?
-              <span class="mt-1 block font-normal leading-5 text-base-500">For example: sorting leads, drafting estimates, following up after appointments, or preparing weekly reports.</span>
-              <textarea class="intake-field intake-textarea" name="workflow" rows="4" maxlength="1000" placeholder="Describe what happens today and where it gets stuck…" required></textarea>
-            </label>
-          </div>
-
-          <div class="mt-9 space-y-8 border-t border-black/15 pt-8">
-            {questions.map((question, questionIndex) => (
-              <fieldset>
-                <legend class="text-sm font-semibold"><span class="field-label mr-3 text-[var(--brand-orange)]">0{questionIndex + 1}</span>{question.legend}</legend>
-                <div class="mt-4 grid gap-2 sm:grid-cols-3">
+          {questions.map((question, questionIndex) => (
+            <fieldset data-quiz-step data-dimension={question.dimension} class:list={["aiq-step", questionIndex > 0 && "hidden"]}>
+              <legend class="sr-only">{question.legend}</legend>
+              <div class="min-h-[28rem] border border-black/15 bg-[var(--brand-paper)] p-6 sm:min-h-[30rem] sm:p-10">
+                <p class="field-label text-[var(--brand-orange)]">Question {String(questionIndex + 1).padStart(2, "0")}</p>
+                <h2 class="font-editorial mt-5 max-w-3xl text-4xl leading-[.98] sm:text-5xl">{question.legend}</h2>
+                <p class="mt-4 max-w-xl text-sm leading-6 text-base-500">{question.prompt}</p>
+                <div class="mt-8 grid gap-3 sm:grid-cols-2">
                   {question.options.map(([label, value]) => (
-                    <label class="intake-choice">
+                    <label class="aiq-answer">
                       <input class="peer sr-only" type="radio" name={question.name} value={value} required />
-                      <span>{label}</span>
+                      <span><span>{label}</span><span class="aiq-answer-mark" aria-hidden="true"></span></span>
                     </label>
                   ))}
                 </div>
-              </fieldset>
-            ))}
-          </div>
+              </div>
+            </fieldset>
+          ))}
 
-          <div class="mt-9 flex flex-col gap-4 border-t border-black/15 pt-7 sm:flex-row sm:items-center sm:justify-between">
-            <p class="max-w-md text-xs leading-5 text-base-500">Your score appears immediately. Please don’t include passwords, customer records, financial details, or other sensitive information.</p>
-            <button type="submit" class="site-cta shrink-0">Get my score + review →</button>
+          <fieldset data-lead-step class="aiq-step hidden">
+            <legend class="sr-only">Your contact information</legend>
+            <div class="border border-black/15 bg-[var(--brand-paper)] p-6 sm:p-10">
+              <p class="field-label text-[var(--brand-orange)]">Your AIQ is calculated</p>
+              <h2 class="font-editorial mt-5 max-w-2xl text-4xl leading-[.98] sm:text-5xl">Where should I send your AIQ follow-up?</h2>
+              <p class="mt-4 max-w-xl text-sm leading-6 text-base-500">See your result immediately. I’ll also review your answers and reply personally within two business days with the next step I would take.</p>
+              <div class="mt-8 grid gap-5 sm:grid-cols-2">
+                <label class="intake-label">Email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
+                <label class="intake-label">First name <span class="font-normal text-base-500">(optional)</span><input class="intake-field" type="text" name="first_name" autocomplete="given-name" placeholder="Your first name" /></label>
+                <label class="intake-label sm:col-span-2">What part of your business would you most like AI to improve?
+                  <span class="mt-1 block font-normal leading-5 text-base-500">A short phrase is enough. Don’t include confidential or sensitive information.</span>
+                  <input class="intake-field" type="text" name="workflow" maxlength="300" placeholder="For example: following up with new leads" required />
+                </label>
+              </div>
+              <p class="font-utility mt-7 text-[.6rem] uppercase leading-5 tracking-[.07em] text-base-500">No spam · No generic demo · Your information is never sold</p>
+            </div>
+          </fieldset>
+
+          <div class="mt-5 flex items-center justify-between gap-4">
+            <button type="button" data-back class="invisible min-h-11 text-sm font-semibold underline decoration-black/20 underline-offset-4">← Back</button>
+            <button type="button" data-next class="site-cta disabled:cursor-not-allowed disabled:opacity-35" disabled>Next question →</button>
+            <button type="submit" data-submit class="site-cta hidden">Reveal my AIQ →</button>
           </div>
-          <p id="scorecard-status" class="mt-4 hidden text-sm text-base-600" role="status"></p>
+          <p data-form-status class="mt-4 hidden text-right text-sm text-base-600" role="status"></p>
         </form>
+
+        <noscript><p class="mt-8 border border-black/15 bg-[var(--brand-paper)] p-5 text-sm leading-6">This interactive quiz requires JavaScript. You can still request an honest workflow review by emailing <a class="font-semibold underline" href="mailto:hello@raleighaiguy.com?subject=AIQ%20workflow%20review">hello@raleighaiguy.com</a>.</p></noscript>
       </div>
     </Wrapper>
   </section>
 
-  <section id="scorecard-result" class="hidden scroll-mt-6 bg-[var(--brand-forest)] text-[var(--brand-paper)]" tabindex="-1">
-    <Wrapper variant="wide" class="grid gap-10 py-16 sm:py-24 lg:grid-cols-[.6fr_1.4fr] lg:items-end lg:gap-16">
-      <div>
-        <p class="field-label text-white/55">Your readiness score</p>
-        <p class="font-editorial mt-5 text-8xl leading-none"><span data-score>0</span><span class="text-3xl text-white/30">/13</span></p>
-      </div>
-      <div>
-        <h2 data-result-title class="font-editorial text-4xl leading-none sm:text-5xl"></h2>
-        <p data-result-copy class="mt-5 max-w-2xl text-base leading-7 text-white/65"></p>
-        <p class="mt-6 border-l-2 border-[var(--brand-orange)] pl-4 text-sm font-semibold leading-6">I’ll review what you shared and reply personally within two business days.</p>
-        <button type="button" data-score-again class="mt-7 text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">Score another workflow</button>
+  <section id="aiq-result" class="hidden scroll-mt-6 bg-[var(--brand-forest)] text-[var(--brand-paper)]" tabindex="-1">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-4">
+          <p class="field-label text-white/55">Your AIQ</p>
+          <p class="font-editorial mt-5 text-[8rem] leading-[.7] tracking-[-.07em] text-[var(--brand-orange)]"><span data-result-score>0</span></p>
+          <p class="font-utility mt-5 text-[.65rem] uppercase tracking-[.1em] text-white/40">Out of 100</p>
+        </div>
+        <div class="lg:col-span-8">
+          <p class="field-label text-white/55">What it means</p>
+          <h2 data-result-title class="font-editorial mt-5 text-5xl leading-[.95] sm:text-6xl"></h2>
+          <p data-result-copy class="mt-6 max-w-2xl text-base leading-7 text-white/65"></p>
+          <div class="mt-8 border-l-2 border-[var(--brand-orange)] pl-5">
+            <p class="field-label text-white/45">Your most useful next step</p>
+            <p data-result-recommendation class="mt-3 max-w-2xl text-lg leading-7"></p>
+          </div>
+          <p class="mt-8 max-w-2xl text-sm leading-6 text-white/50">I’ll review the answers you shared, then reply personally within two business days. Your AIQ is a practical snapshot of how your business currently uses AI—not a judgment of your team’s intelligence or potential.</p>
+          <div class="mt-8 flex flex-wrap gap-6">
+            <a href="/blog/" class="site-cta">Explore practical AI guides →</a>
+            <button type="button" data-retake class="min-h-11 text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">Score another workflow</button>
+          </div>
+        </div>
       </div>
     </Wrapper>
   </section>
@@ -154,44 +198,115 @@ const reviewPoints = [
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('scorecard-form');
-    var resultSection = document.getElementById('scorecard-result');
-    var status = document.getElementById('scorecard-status');
-    if (!form || !resultSection || !status) return;
+    var form = document.getElementById('aiq-form');
+    var steps = Array.from(document.querySelectorAll('[data-quiz-step]'));
+    var leadStep = document.querySelector('[data-lead-step]');
+    var nextButton = document.querySelector('[data-next]');
+    var backButton = document.querySelector('[data-back]');
+    var submitButton = document.querySelector('[data-submit]');
+    var progressLabel = document.querySelector('[data-progress-label]');
+    var progressNumber = document.querySelector('[data-progress-number]');
+    var progressBar = document.querySelector('[data-progress-bar]');
+    var status = document.querySelector('[data-form-status]');
+    var resultSection = document.getElementById('aiq-result');
+    if (!form || !leadStep || !nextButton || !backButton || !submitButton || !resultSection) return;
 
-    var results = [
-      {
-        max: 6,
-        title: 'Improve the process first.',
-        copy: 'This workflow may still be worth improving, but it is not a strong automation candidate yet. Clarify the steps, put key information in a consistent place, and make human ownership explicit before adding AI.'
-      },
-      {
-        max: 10,
-        title: 'Promising—with a little definition.',
-        copy: 'There is likely useful leverage here. A small test could help, but the workflow needs clearer inputs, review rules, or success measures before it becomes a dependable system.'
-      },
-      {
-        max: 13,
-        title: 'Strong automation candidate.',
-        copy: 'This work happens often, follows repeatable steps, and can be reviewed by a person. It is a good candidate for a focused, measurable test.'
-      }
-    ];
+    var currentStep = 0;
+    var onLeadStep = false;
+    var totalQuestions = steps.length;
+
+    function selectedAnswer(step) {
+      return step?.querySelector('input[type="radio"]:checked');
+    }
+
+    function updateControls() {
+      steps.forEach(function (step, index) { step.classList.toggle('hidden', index !== currentStep || onLeadStep); });
+      leadStep.classList.toggle('hidden', !onLeadStep);
+      backButton.classList.toggle('invisible', currentStep === 0 && !onLeadStep);
+      nextButton.classList.toggle('hidden', onLeadStep);
+      submitButton.classList.toggle('hidden', !onLeadStep);
+      nextButton.disabled = !onLeadStep && !selectedAnswer(steps[currentStep]);
+      nextButton.textContent = currentStep === totalQuestions - 1 ? 'Calculate my AIQ →' : 'Next question →';
+
+      var completed = onLeadStep ? totalQuestions : currentStep + 1;
+      if (progressLabel) progressLabel.textContent = onLeadStep ? 'Final step' : 'Question ' + (currentStep + 1) + ' of ' + totalQuestions;
+      if (progressNumber) progressNumber.textContent = onLeadStep ? '✓' : String(currentStep + 1).padStart(2, '0');
+      if (progressBar) progressBar.style.width = ((completed / totalQuestions) * 100) + '%';
+    }
+
+    steps.forEach(function (step, index) {
+      step.querySelectorAll('input[type="radio"]').forEach(function (input) {
+        input.addEventListener('change', function () {
+          if (index === currentStep) nextButton.disabled = false;
+          window.posthog?.capture?.('aiq_question_answered', { question: index + 1 });
+        });
+      });
+    });
+
+    document.querySelector('[data-start-quiz]')?.addEventListener('click', function () {
+      window.posthog?.capture?.('aiq_started');
+    });
+
+    nextButton.addEventListener('click', function () {
+      if (!selectedAnswer(steps[currentStep])) return;
+      if (currentStep < totalQuestions - 1) currentStep += 1;
+      else onLeadStep = true;
+      updateControls();
+      document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    backButton.addEventListener('click', function () {
+      if (onLeadStep) onLeadStep = false;
+      else if (currentStep > 0) currentStep -= 1;
+      updateControls();
+    });
 
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       if (!form.reportValidity()) return;
 
       var formData = new FormData(form);
-      var score = ['frequency', 'hours', 'repeatability', 'inputs', 'review'].reduce(function (total, name) {
+      var rawScore = steps.reduce(function (total, step) {
+        var name = step.querySelector('input[type="radio"]')?.name;
         return total + Number(formData.get(name) || 0);
       }, 0);
-      var result = results.find(function (item) { return score <= item.max; }) || results[2];
+      var score = Math.round((rawScore / (totalQuestions * 3)) * 100);
+      var result = score < 25
+        ? { title: 'AI Curious', copy: 'Your next step is choosing one real business problem—not another tool. Curiosity becomes useful when it has a specific job to do.' }
+        : score < 50
+          ? { title: 'AI Experimenter', copy: 'You have activity, but useful experiments still depend on individuals. The next gain comes from turning one promising test into a repeatable practice.' }
+          : score < 75
+            ? { title: 'AI Operator', copy: 'You have promising practices. Stronger measurement, shared standards, and clearer ownership can turn scattered wins into business capability.' }
+            : { title: 'AI Builder', copy: 'You are ready to scale proven workflows with stronger systems and oversight. Keep the focus on measurable outcomes and team ownership.' };
+
+      var dimensions = { direction: { score: 0, max: 0 }, practice: { score: 0, max: 0 }, judgment: { score: 0, max: 0 }, results: { score: 0, max: 0 } };
+      steps.forEach(function (step) {
+        var dimension = step.dataset.dimension;
+        var name = step.querySelector('input[type="radio"]')?.name;
+        dimensions[dimension].score += Number(formData.get(name) || 0);
+        dimensions[dimension].max += 3;
+      });
+      var weakestDimension = Object.keys(dimensions).sort(function (a, b) {
+        return (dimensions[a].score / dimensions[a].max) - (dimensions[b].score / dimensions[b].max);
+      })[0];
+      var recommendations = {
+        direction: 'Choose one frequent, frustrating business problem and define what better would look like before comparing tools or prompts.',
+        practice: 'Turn one useful experiment into a documented workflow another person can follow, test, and improve.',
+        judgment: 'Define what AI may help with, what always requires human review, and what should happen when the system is uncertain.',
+        results: 'Choose one baseline—time, quality, response speed, customer experience, or revenue—and measure it before and after the next test.'
+      };
+      var recommendation = recommendations[weakestDimension];
 
       form.querySelector('[name="score"]').value = String(score);
       form.querySelector('[name="result"]').value = result.title;
+      form.querySelector('[name="recommendation"]').value = recommendation;
       formData = new FormData(form);
-      status.textContent = 'Calculating and saving your result…';
-      status.classList.remove('hidden');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Calculating…';
+      if (status) {
+        status.textContent = 'Saving your answers…';
+        status.classList.remove('hidden');
+      }
 
       try {
         await fetch('/', {
@@ -199,25 +314,84 @@ const reviewPoints = [
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams(formData).toString()
         });
-        status.textContent = 'Your result is ready below.';
       } catch (error) {
-        status.textContent = 'Your result is ready below. Your details may not save while viewing the site locally.';
+        if (status) status.textContent = 'Your result is ready. Your answers may not save while viewing the site locally.';
       }
 
-      resultSection.querySelector('[data-score]').textContent = String(score);
+      resultSection.querySelector('[data-result-score]').textContent = String(score);
       resultSection.querySelector('[data-result-title]').textContent = result.title;
       resultSection.querySelector('[data-result-copy]').textContent = result.copy;
+      resultSection.querySelector('[data-result-recommendation]').textContent = recommendation;
       resultSection.classList.remove('hidden');
       resultSection.focus({ preventScroll: true });
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.posthog?.capture('ai_scorecard_completed', { score: score, result: result.title });
+      submitButton.disabled = false;
+      submitButton.textContent = 'Reveal my AIQ →';
+      window.posthog?.capture?.('aiq_completed', { score: score, result: result.title, weakest_dimension: weakestDimension });
     });
 
-    resultSection.querySelector('[data-score-again]')?.addEventListener('click', function () {
+    resultSection.querySelector('[data-retake]')?.addEventListener('click', function () {
       form.reset();
+      currentStep = 0;
+      onLeadStep = false;
       resultSection.classList.add('hidden');
-      status.classList.add('hidden');
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (status) status.classList.add('hidden');
+      updateControls();
+      document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    updateControls();
   });
 </script>
+
+<style>
+  .aiq-hero {
+    background-image:
+      radial-gradient(circle at 84% 22%, rgb(230 95 54 / 10%) 0 1px, transparent 1.5px),
+      linear-gradient(115deg, transparent 0 72%, rgb(22 61 50 / 4%) 72% 72.15%, transparent 72.15%);
+    background-size: 18px 18px, 100% 100%;
+  }
+
+  .aiq-ticket::before {
+    position: absolute;
+    inset: .65rem -.65rem -.65rem .65rem;
+    z-index: -1;
+    background: var(--brand-orange);
+    content: "";
+  }
+
+  .aiq-answer { display: block; cursor: pointer; }
+
+  .aiq-answer > span {
+    display: flex;
+    min-height: 4.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--brand-line-strong);
+    padding: 1rem;
+    color: var(--brand-muted);
+    background: transparent;
+    font-size: .9rem;
+    font-weight: 550;
+    transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .aiq-answer:hover > span { border-color: var(--brand-ink); color: var(--brand-text); transform: translateY(-1px); }
+  .aiq-answer .peer:checked + span { border-color: var(--brand-ink); color: var(--brand-text); background: var(--brand-surface-soft); }
+  .aiq-answer .peer:focus-visible + span { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+  .aiq-answer-mark {
+    width: .75rem;
+    height: .75rem;
+    flex: 0 0 auto;
+    border: 1px solid var(--brand-line-strong);
+    border-radius: 999px;
+  }
+
+  .aiq-answer .peer:checked + span .aiq-answer-mark { border: 2px solid var(--brand-paper); background: var(--brand-orange); outline: 1px solid var(--brand-orange); }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-progress-bar], .aiq-answer > span { transition: none; }
+  }
+</style>
