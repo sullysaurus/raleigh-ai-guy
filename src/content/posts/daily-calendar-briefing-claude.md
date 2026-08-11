@@ -165,8 +165,4 @@ Create the Skill when your process includes judgment worth saving: which custome
 - Use **Uncertain** instead of inventing a meeting purpose.
 - Review the first week of scheduled results before relying on the briefing.
 
-## Want help setting it up?
-
-If you are stuck deciding how this should work for your business, [send me your biggest AI question](/ai-answers/#ask). I will record a personalized two-minute answer and send it directly to you.
-
 Looking for another practical workflow? Build a [Claude Skill that triages your Gmail inbox every morning](/blog/posts/create-first-claude-skill-organize-inbox/).

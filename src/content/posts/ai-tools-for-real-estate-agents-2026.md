@@ -146,5 +146,3 @@ FINISH WITH:
 ```
 
 Claude will do most of the production, but the safest instruction in the prompt is also the simplest: **do not invent missing information.**
-
-If your office wants to build this workflow together using real examples, [request a complimentary real estate AI Lunch & Learn](/real-estate-ai-lunch-and-learn/#request).

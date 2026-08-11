@@ -225,10 +225,4 @@ Let Claude handle repetitive browser checking—not your professional judgment.
 
 Start with public listing pages, keep manual approval turned on, and stop at a discrepancy report. You remain responsible for confirming the facts, following advertising rules, and correcting information through the proper channel.
 
-## What is your biggest AI bottleneck?
-
-Message me right now with the AI task that keeps stalling, the problem you cannot solve, or the question you cannot get a straight answer to. I will record a personalized two-minute video today and send it back to you.
-
-[Send me your AI question](/ai-answers/#ask)
-
 Want another practical real estate workflow? Learn how to [write real estate listing descriptions with AI](/blog/posts/write-real-estate-listing-descriptions-with-ai/).

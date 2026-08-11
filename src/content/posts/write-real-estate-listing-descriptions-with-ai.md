@@ -167,4 +167,4 @@ personally verify before publishing.
 
 That prompt handles the first draft, alternate angles, source comparison, revision, and basic marketing versions. Your final job is the important one: verify every detail and approve what goes public.
 
-For the broader system, read [7 practical ways real estate agents can use Claude](/blog/posts/ai-tools-for-real-estate-agents-2026/). If your office wants to practice this workflow together, [request a complimentary real estate AI Lunch & Learn](/real-estate-ai-lunch-and-learn/#request).
+For the broader system, read [7 practical ways real estate agents can use Claude](/blog/posts/ai-tools-for-real-estate-agents-2026/).

@@ -243,8 +243,4 @@ Use the workflow for one week. Track how long inbox review took before and after
 
 If it saves 15 minutes a day without hiding important work, keep it. If it creates another list you have to babysit, simplify the rules.
 
-## Want help setting it up?
-
-The prompt above is complete and free to use. If you are stuck on your rules, permissions, or first test, [send me your biggest AI question](/ai-answers/#ask). I will record a personalized two-minute answer and send it directly to you.
-
 Want another practical daily workflow? Build a [morning calendar briefing with Claude](/blog/posts/daily-calendar-briefing-claude/).

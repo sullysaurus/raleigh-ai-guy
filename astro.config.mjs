@@ -25,7 +25,7 @@ export default defineConfig({
         !page.includes("/blog/tags/") &&
         !page.includes("/clients/") &&
         !page.includes("/ops/") &&
-        !page.includes("/thank-you/"),
+        !page.includes("thank-you/"),
     }),
     mdx(),
   ],

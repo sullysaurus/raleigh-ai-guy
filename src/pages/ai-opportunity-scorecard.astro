@@ -1,20 +1,223 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageIntro from "@/components/global/PageIntro.astro";
-import EditorialList from "@/components/global/EditorialList.astro";
-import ContactBand from "@/components/global/ContactBand.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
-const checks = [
-  { title: "It repeats", body: "The work happens often enough for improvement to matter." },
-  { title: "It costs something", body: "The current process takes meaningful time or causes delays." },
-  { title: "It can be explained", body: "The inputs and desired output are clear enough to describe." },
-  { title: "A person can review it", body: "Human judgment can catch problems before the result matters." },
-  { title: "Progress is measurable", body: "You can see improvement in time, response speed, quality, or revenue." },
+const questions = [
+  {
+    legend: "How often does this workflow happen?",
+    name: "frequency",
+    options: [["A few times a month", "1"], ["A few times a week", "2"], ["Every day", "3"]],
+  },
+  {
+    legend: "How much team time does it consume each week?",
+    name: "hours",
+    options: [["Less than 2 hours", "1"], ["2–5 hours", "2"], ["More than 5 hours", "3"]],
+  },
+  {
+    legend: "How consistent is the process?",
+    name: "repeatability",
+    options: [["It changes every time", "0"], ["Some steps repeat", "2"], ["Mostly the same steps", "3"]],
+  },
+  {
+    legend: "Where does the information live?",
+    name: "inputs",
+    options: [["Mostly paper or conversations", "0"], ["A mix of places", "1"], ["Mostly email, forms, or software", "2"]],
+  },
+  {
+    legend: "How easy would it be for a person to review the output?",
+    name: "review",
+    options: [["Difficult or high-risk", "0"], ["Possible with careful review", "1"], ["Quick and straightforward", "2"]],
+  },
+];
+
+const reviewPoints = [
+  { number: "01", title: "Honest fit check", body: "AI, ordinary software, or a clearer process?" },
+  { number: "02", title: "A useful next step", body: "Start small enough to learn something real." },
+  { number: "03", title: "Teaching, not dependency", body: "Your team understands and owns the result." },
 ];
 ---
 
-<BaseLayout pageTitle="AI Opportunity Checklist — Raleigh AI Guy" pageDescription="A short checklist for deciding whether a business workflow is a useful AI opportunity.">
-  <PageIntro eyebrow="AI opportunity checklist" title="Is this workflow worth improving?" description="A promising opportunity usually has most of these characteristics." />
-  <EditorialList eyebrow="Five useful signals" title="Look for work that can prove its value." items={checks} surface="soft" />
-  <ContactBand eyebrow="Does your workflow fit?" title="Send me a short description and I’ll give you an honest read." ctaLabel="Describe the workflow" />
+<BaseLayout
+  pageTitle="Free AI Opportunity Scorecard"
+  pageDescription="Score one repetitive workflow and get a free personal review from Danny Sullivan within two business days."
+>
+  <section class="border-b border-black/10">
+    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-16">
+        <div class="field-reveal lg:col-span-7">
+          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Free AI opportunity scorecard</p>
+          <h1 class="font-editorial mt-6 max-w-4xl text-[clamp(3.5rem,7vw,6.8rem)] font-medium leading-[.88] tracking-[-.055em] text-black">
+            Is this workflow<br /><em class="font-normal text-[var(--brand-orange)]">ready for AI?</em>
+          </h1>
+          <p class="mt-8 max-w-xl text-lg leading-8 text-base-600 sm:text-xl">Most businesses don’t need another tool. They need an honest diagnosis.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-5">
+            <a href="#scorecard" class="site-cta">Take the free scorecard →</a>
+            <span class="text-xs leading-5 text-base-500">About 5 minutes · No generic demo</span>
+          </div>
+        </div>
+
+        <aside class="field-reveal field-reveal-delay border-t border-black/15 pt-6 lg:col-span-5">
+          <p class="field-label">A free personal workflow review</p>
+          <h2 class="font-editorial mt-4 text-4xl leading-none">Bring me one process you wish would disappear.</h2>
+          <p class="mt-5 text-sm leading-6 text-base-600">I’ll tell you whether AI is the right tool, the smallest useful next step, and what your team should learn so the improvement stays yours.</p>
+          <p class="font-utility mt-6 text-[.64rem] uppercase tracking-[.08em] text-base-500">Personal reply within 2 business days</p>
+        </aside>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-12 sm:py-16">
+      <ol class="grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
+        {reviewPoints.map((point) => (
+          <li class="bg-[var(--brand-paper)] p-6 sm:p-8">
+            <span class="field-label text-[var(--brand-orange)]">{point.number}</span>
+            <h2 class="mt-8 text-lg font-semibold">{point.title}</h2>
+            <p class="mt-2 text-sm leading-6 text-base-600">{point.body}</p>
+          </li>
+        ))}
+      </ol>
+    </Wrapper>
+  </section>
+
+  <section id="scorecard" class="scroll-mt-6 bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-10 lg:grid-cols-[18rem_1fr] lg:gap-16">
+        <div>
+          <p class="field-label">Score one workflow</p>
+          <h2 class="font-editorial mt-5 text-4xl leading-[.98] sm:text-5xl">Start with the work, not the tool.</h2>
+          <p class="mt-5 text-sm leading-6 text-base-600">You’ll get an immediate readiness score. I’ll also read what you share and reply personally within two business days with the most useful next step I can offer.</p>
+          <ul class="font-utility mt-7 space-y-3 text-[.64rem] uppercase tracking-[.07em] text-base-500">
+            <li>✓ Free personal review</li>
+            <li>✓ No sales sequence</li>
+            <li>✓ No sensitive information</li>
+          </ul>
+        </div>
+
+        <form id="scorecard-form" name="ai-opportunity-scorecard" method="POST" action="/scorecard-thank-you/" data-netlify="true" netlify-honeypot="website" class="border-y border-black/15 py-7 sm:py-9">
+          <input type="hidden" name="form-name" value="ai-opportunity-scorecard" />
+          <input type="hidden" name="score" value="" />
+          <input type="hidden" name="result" value="" />
+          <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="intake-label">First name<input class="intake-field" type="text" name="first_name" autocomplete="given-name" placeholder="Your first name" required /></label>
+            <label class="intake-label">Work email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
+            <label class="intake-label sm:col-span-2">Business or organization <span class="font-normal text-base-500">(optional)</span><input class="intake-field" type="text" name="company" autocomplete="organization" placeholder="Your business" /></label>
+            <label class="intake-label sm:col-span-2">What workflow are you scoring?
+              <span class="mt-1 block font-normal leading-5 text-base-500">For example: sorting leads, drafting estimates, following up after appointments, or preparing weekly reports.</span>
+              <textarea class="intake-field intake-textarea" name="workflow" rows="4" maxlength="1000" placeholder="Describe what happens today and where it gets stuck…" required></textarea>
+            </label>
+          </div>
+
+          <div class="mt-9 space-y-8 border-t border-black/15 pt-8">
+            {questions.map((question, questionIndex) => (
+              <fieldset>
+                <legend class="text-sm font-semibold"><span class="field-label mr-3 text-[var(--brand-orange)]">0{questionIndex + 1}</span>{question.legend}</legend>
+                <div class="mt-4 grid gap-2 sm:grid-cols-3">
+                  {question.options.map(([label, value]) => (
+                    <label class="intake-choice">
+                      <input class="peer sr-only" type="radio" name={question.name} value={value} required />
+                      <span>{label}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+
+          <div class="mt-9 flex flex-col gap-4 border-t border-black/15 pt-7 sm:flex-row sm:items-center sm:justify-between">
+            <p class="max-w-md text-xs leading-5 text-base-500">Your score appears immediately. Please don’t include passwords, customer records, financial details, or other sensitive information.</p>
+            <button type="submit" class="site-cta shrink-0">Get my score + review →</button>
+          </div>
+          <p id="scorecard-status" class="mt-4 hidden text-sm text-base-600" role="status"></p>
+        </form>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="scorecard-result" class="hidden scroll-mt-6 bg-[var(--brand-forest)] text-[var(--brand-paper)]" tabindex="-1">
+    <Wrapper variant="wide" class="grid gap-10 py-16 sm:py-24 lg:grid-cols-[.6fr_1.4fr] lg:items-end lg:gap-16">
+      <div>
+        <p class="field-label text-white/55">Your readiness score</p>
+        <p class="font-editorial mt-5 text-8xl leading-none"><span data-score>0</span><span class="text-3xl text-white/30">/13</span></p>
+      </div>
+      <div>
+        <h2 data-result-title class="font-editorial text-4xl leading-none sm:text-5xl"></h2>
+        <p data-result-copy class="mt-5 max-w-2xl text-base leading-7 text-white/65"></p>
+        <p class="mt-6 border-l-2 border-[var(--brand-orange)] pl-4 text-sm font-semibold leading-6">I’ll review what you shared and reply personally within two business days.</p>
+        <button type="button" data-score-again class="mt-7 text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">Score another workflow</button>
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('scorecard-form');
+    var resultSection = document.getElementById('scorecard-result');
+    var status = document.getElementById('scorecard-status');
+    if (!form || !resultSection || !status) return;
+
+    var results = [
+      {
+        max: 6,
+        title: 'Improve the process first.',
+        copy: 'This workflow may still be worth improving, but it is not a strong automation candidate yet. Clarify the steps, put key information in a consistent place, and make human ownership explicit before adding AI.'
+      },
+      {
+        max: 10,
+        title: 'Promising—with a little definition.',
+        copy: 'There is likely useful leverage here. A small test could help, but the workflow needs clearer inputs, review rules, or success measures before it becomes a dependable system.'
+      },
+      {
+        max: 13,
+        title: 'Strong automation candidate.',
+        copy: 'This work happens often, follows repeatable steps, and can be reviewed by a person. It is a good candidate for a focused, measurable test.'
+      }
+    ];
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      var formData = new FormData(form);
+      var score = ['frequency', 'hours', 'repeatability', 'inputs', 'review'].reduce(function (total, name) {
+        return total + Number(formData.get(name) || 0);
+      }, 0);
+      var result = results.find(function (item) { return score <= item.max; }) || results[2];
+
+      form.querySelector('[name="score"]').value = String(score);
+      form.querySelector('[name="result"]').value = result.title;
+      formData = new FormData(form);
+      status.textContent = 'Calculating and saving your result…';
+      status.classList.remove('hidden');
+
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        status.textContent = 'Your result is ready below.';
+      } catch (error) {
+        status.textContent = 'Your result is ready below. Your details may not save while viewing the site locally.';
+      }
+
+      resultSection.querySelector('[data-score]').textContent = String(score);
+      resultSection.querySelector('[data-result-title]').textContent = result.title;
+      resultSection.querySelector('[data-result-copy]').textContent = result.copy;
+      resultSection.classList.remove('hidden');
+      resultSection.focus({ preventScroll: true });
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.posthog?.capture('ai_scorecard_completed', { score: score, result: result.title });
+    });
+
+    resultSection.querySelector('[data-score-again]')?.addEventListener('click', function () {
+      form.reset();
+      resultSection.classList.add('hidden');
+      status.classList.add('hidden');
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
