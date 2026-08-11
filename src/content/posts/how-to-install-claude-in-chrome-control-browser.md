@@ -1,7 +1,7 @@
 ---
 pubDate: 2026-07-23T09:00:00-04:00
-title: "Let Claude Check Websites for You"
-description: "Install Claude in Chrome safely and use it to check an active real estate listing for inconsistent information across public websites."
+title: "Find Listing Errors Before Your Clients Do"
+description: "Use Claude in Chrome to compare an active real estate listing across public websites, flag inconsistencies, and keep final review in your hands."
 image:
   url: "/src/images/posts/claude-in-chrome-browser-work.png"
   alt: "An AI assistant checking a real estate listing across browser tabs while waiting for human approval"

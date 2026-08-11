@@ -19,16 +19,35 @@ const section = (label, value) => ({
 export default {
   async formSubmitted(event) {
     const data = event.data ?? {};
+    const formName = clean(data["form-name"] ?? data.form_name, "");
+    const isWorkWithMe = formName === "work-with-me" || Boolean(data.service && data.goal && data.email);
+    const isAssessment = Boolean(data.typical_day && data.magic_wand && data.email);
 
-    // Only assessment applications belong in this notification workflow.
-    if (!data.typical_day || !data.magic_wand || !data.email) return;
+    if (!isWorkWithMe && !isAssessment) return;
 
     const webhookUrl = process.env.SLACK_INTAKE_WEBHOOK_URL;
     if (!webhookUrl) throw new Error("SLACK_INTAKE_WEBHOOK_URL is not configured");
 
     const name = clean(data.name, "Someone");
     const company = clean(data.company, "No company provided");
-    const payload = {
+    const payload = isWorkWithMe ? {
+      text: `New work-with-me inquiry from ${name} (${company})`,
+      blocks: [
+        { type: "header", text: { type: "plain_text", text: "New work-with-me inquiry", emoji: true } },
+        {
+          type: "section",
+          fields: [
+            { type: "mrkdwn", text: `*From*\n${truncate(name, 250)}` },
+            { type: "mrkdwn", text: `*Company*\n${truncate(company, 250)}` },
+            { type: "mrkdwn", text: `*Email*\n${truncate(data.email, 250)}` },
+            { type: "mrkdwn", text: `*Interested in*\n${truncate(data.service, 250)}` },
+          ],
+        },
+        { type: "divider" },
+        section("What they want the team to get better at", data.goal),
+        section("What they have tried", data.past_attempts),
+      ],
+    } : {
       text: `New AI assessment application from ${name} (${company})`,
       blocks: [
         { type: "header", text: { type: "plain_text", text: "New AI assessment application", emoji: true } },

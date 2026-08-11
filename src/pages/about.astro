@@ -2,71 +2,40 @@
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import EditorialList from "@/components/global/EditorialList.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 import profileImage from "../../danny.jpeg";
 
 const experience = [
-  ["Now", "AI Product Engineer · Gametime", "I build production AI systems for live-event discovery and venue imagery. The work has millions of dollars in GMV riding on it, so usefulness and reliability matter more than a good demo."],
-  ["Previously", "AI education · Pluralsight", "For nearly five years, I created hands-on AI and machine-learning training and built internal tools for content teams."],
-  ["Before Pluralsight", "Software developer · healthcare, fintech, and media", "I worked as a software developer across companies in healthcare, financial technology, and media, building digital products and learning how different organizations turn complex requirements into dependable software."],
-  ["Earlier", "Teacher and professional baseball player", "I taught students with emotional disabilities and played professional baseball in the Tampa Bay Rays organization. Both taught me to prepare carefully, explain clearly, and keep improving."],
-  ["Also", "Small-business builder", "I have built, operated, and sold a Raleigh service business. I understand the difference between an interesting idea and something that earns its keep."],
+  { label: "Now", title: "AI Product Engineer · Gametime", body: "I build production AI systems for live-event discovery and venue imagery, with millions of dollars in GMV riding on their reliability." },
+  { label: "Previously", title: "AI and software education · Pluralsight + 2U", body: "I created 28 Pluralsight courses and labs, developed curriculum, and taught software development at 2U." },
+  { label: "Growth", title: "Growth marketing · Stash", body: "I worked where messaging, customer journeys, product decisions, and acquisition meet." },
+  { label: "Before Pluralsight", title: "Software developer", body: "I built digital products across healthcare, financial technology, and media." },
+  { label: "Earlier", title: "Teacher and professional baseball player", body: "I taught students with emotional disabilities and played professional baseball in the Tampa Bay Rays organization." },
+  { label: "Also", title: "Small-business builder", body: "I built, operated, and sold a Raleigh service business. I know the difference between an interesting idea and something that earns its keep." },
 ];
 ---
 
-<BaseLayout
-  pageTitle="About Danny Sullivan — Raleigh AI Guy"
-  pageDescription="Danny Sullivan helps Raleigh businesses build practical AI systems and improve everyday workflows."
->
+<BaseLayout pageTitle="About Danny Sullivan — Raleigh AI Guy" pageDescription="Danny Sullivan helps Raleigh businesses build practical AI systems and improve everyday workflows.">
   <section>
-    <Wrapper class="py-16 sm:py-24 lg:py-32">
-      <p class="text-sm font-medium text-base-500">About</p>
-      <div class="mt-8 grid gap-10 sm:grid-cols-[1fr_13rem] sm:items-start">
-        <div>
-          <h1 class="text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">I make AI useful for people with a business to run.</h1>
-          <p class="mt-7 text-lg leading-8 text-base-500">I’m Danny Sullivan, an AI product engineer, educator, and small-business builder based in Raleigh, North Carolina.</p>
+    <Wrapper variant="wide" class="py-14 sm:py-20">
+      <div class="grid items-center gap-10 border-t border-black/10 pt-6 lg:grid-cols-12 lg:gap-14">
+        <div class="lg:col-span-9">
+          <p class="field-label">About Danny Sullivan</p>
+          <h1 class="font-editorial mt-5 max-w-5xl text-5xl font-medium leading-[.94] tracking-[-.045em] sm:text-7xl">I make AI useful for people with a business to run.</h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-base-600">I’m an AI product engineer, educator, and small-business builder based in Raleigh, North Carolina.</p>
         </div>
-        <Image src={profileImage} alt="Danny Sullivan" width={400} height={400} loading="eager" class="aspect-square w-full rounded-xl border border-black/10 object-cover grayscale" />
+        <div class="relative w-40 lg:col-span-3 lg:w-full lg:max-w-[15rem] lg:justify-self-end"><div class="absolute -right-3 -top-3 h-full w-full bg-[var(--brand-orange)]" aria-hidden="true"></div><Image src={profileImage} alt="Danny Sullivan" widths={[160, 320, 480]} sizes="(min-width: 1024px) 240px, 160px" loading="eager" class="relative aspect-square w-full object-cover grayscale" /></div>
       </div>
     </Wrapper>
   </section>
 
-  <section>
-    <Wrapper class="py-12 sm:py-16">
-      <div class="border-t border-black/10 pt-3">
-        <h2 class="text-sm font-medium">How I work</h2>
-        <div class="mt-8 space-y-5 text-base leading-7 text-base-500">
-          <p>I start with the work itself: where time gets lost, what repeats, and what customers or employees are waiting on. Then I look for the smallest useful answer.</p>
-          <p>Sometimes that answer involves AI. Sometimes ordinary software or a clearer process is better. My job is to tell the difference, build what is worth building, and explain it well enough that your team can use it confidently.</p>
-          <p>You work directly with me from the first conversation through implementation. There is no handoff to a junior team.</p>
-        </div>
-      </div>
+  <section class="bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-14 sm:py-20">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16"><div class="lg:col-span-4"><p class="field-label">How I work</p><h2 class="font-editorial mt-4 text-4xl leading-[1.02] sm:text-5xl">Start with the work itself.</h2></div><div class="space-y-5 text-base leading-7 text-base-600 lg:col-span-8"><p>I look for where time gets lost, what repeats, and what customers or employees are waiting on. Then I find the smallest useful answer.</p><p>Sometimes that answer involves AI. Sometimes ordinary software or a clearer process is better. My job is to tell the difference, build what is worth building, and explain it well enough that your team can use it confidently.</p><p>You work directly with me from the first conversation through implementation. There is no handoff to a junior team.</p></div></div>
     </Wrapper>
   </section>
 
-  <section id="experience">
-    <Wrapper class="py-12 sm:py-20">
-      <div class="border-t border-black/10 pt-3">
-        <h2 class="text-sm font-medium">Experience</h2>
-        <div class="mt-8 divide-y divide-black/10 border-y border-black/10">
-          {experience.map(([label, title, body]) => (
-            <article class="grid gap-3 py-6 sm:grid-cols-[7rem_14rem_1fr] sm:gap-6">
-              <span class="text-xs font-medium uppercase tracking-[.08em] text-base-400">{label}</span>
-              <h3 class="text-sm font-medium">{title}</h3>
-              <p class="text-sm leading-6 text-base-500">{body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </Wrapper>
-  </section>
-
-  <section>
-    <Wrapper class="py-16 sm:py-24">
-      <div class="border-t border-black/10 pt-8">
-        <h2 class="text-3xl font-medium tracking-[-0.035em]">Tell me what is taking too much time.</h2>
-        <p class="mt-5 max-w-xl text-base leading-7 text-base-500">I’ll give you an honest read on whether AI is the right tool for it.</p>
-        <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-7">Email me</a>
-      </div>
-    </Wrapper>
-  </section>
+  <EditorialList eyebrow="Experience" title="An unusual path. A practical point of view." items={experience} surface="paper" />
+  <ContactBand eyebrow="Have a workflow in mind?" title="Tell me what is taking too much time." description="I’ll give you an honest read on whether AI is the right tool for it." />
 </BaseLayout>

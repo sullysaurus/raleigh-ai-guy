@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PageIntro from "@/components/global/PageIntro.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 ---
 
 <BaseLayout pageTitle="Workflow Review — Raleigh AI Guy" pageDescription="Bring one repetitive or frustrating workflow and get an honest read on the most useful next step.">
-  <section><Wrapper class="py-16 sm:py-24 lg:py-32"><p class="text-sm font-medium text-base-500">Workflow review</p><h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Bring me one process you wish would disappear.</h1><p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">Email me a short description of what happens today, where it gets stuck, and who is involved. I’ll reply personally with the most useful next step I can offer.</p><a href="mailto:hello@raleighaiguy.com?subject=Workflow%20review" class="site-cta mt-8">Email me</a></Wrapper></section>
+  <PageIntro eyebrow="Workflow review" title="Bring me one process you wish would disappear." description="Share what happens today, where it gets stuck, and who is involved. I’ll reply personally with the most useful next step I can offer." ctaHref="/contact/" ctaLabel="Describe the workflow" />
+  <ContactBand eyebrow="One process is enough" title="Start small enough to learn something useful." ctaLabel="Request a review" />
 </BaseLayout>

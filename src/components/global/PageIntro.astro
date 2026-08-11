@@ -1,0 +1,30 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const { eyebrow, title, description, ctaHref, ctaLabel } = Astro.props;
+---
+
+<section>
+  <Wrapper variant="wide" class="py-14 sm:py-20">
+    <div class="grid gap-7 border-t border-black/10 pt-6 lg:grid-cols-12 lg:items-end lg:gap-14">
+      <div class="lg:col-span-8">
+        <p class="field-label">{eyebrow}</p>
+        <h1 class="font-editorial mt-5 max-w-4xl text-5xl font-medium leading-[.94] tracking-[-.045em] text-black sm:text-7xl">{title}</h1>
+      </div>
+      {(description || (ctaHref && ctaLabel)) && (
+        <div class="lg:col-span-4">
+          {description && <p class="text-base leading-7 text-base-600">{description}</p>}
+          {ctaHref && ctaLabel && <a href={ctaHref} class="site-cta mt-6">{ctaLabel} →</a>}
+        </div>
+      )}
+    </div>
+  </Wrapper>
+</section>

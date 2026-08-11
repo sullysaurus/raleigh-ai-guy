@@ -10,6 +10,7 @@ const projects = defineCollection({
       title: z.string(),
       subtitle: z.string(),
       live: z.string(),
+      status: z.enum(["ongoing", "completed"]).default("completed"),
       image: z.object({
         url: image(),
         alt: z.string(),

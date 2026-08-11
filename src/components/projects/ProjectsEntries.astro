@@ -3,25 +3,26 @@
 import { Image } from "astro:assets";
 import Text from "@/components/fundations/elements/Text.astro";
 
-const { url, title, subtitle, image, imageAlt } = {
+const { url, title, subtitle, image, imageAlt, status } = {
   url: "/projects/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   subtitle: Astro.props.post.data.subtitle,
   image: Astro.props.post.data.image.url,
   imageAlt: Astro.props.post.data.image.alt,
+  status: Astro.props.post.data.status,
 };
 const imageWidth = typeof image === "string" ? 500 : image.width;
 const imageHeight = typeof image === "string" ? 500 : image.height;
 const isPortraitImage = imageHeight > imageWidth;
 const imageFrameClass = isPortraitImage
-  ? "overflow-hidden rounded-xl border border-black/10 bg-[var(--brand-surface)] p-6 sm:p-8 lg:p-10"
-  : "overflow-hidden rounded-xl border border-black/10 bg-[var(--brand-surface)] p-8 lg:p-12";
+  ? "overflow-hidden border border-black/10 bg-[var(--brand-paper)] p-5 sm:p-7"
+  : "overflow-hidden border border-black/10 bg-[var(--brand-paper)] p-2";
 const imageClass = isPortraitImage
-  ? "mx-auto max-h-[420px] w-auto max-w-full rounded-2xl object-contain"
-  : "w-full rounded object-cover";
+  ? "mx-auto max-h-[420px] w-auto max-w-full object-contain"
+  : "h-auto w-full object-contain";
 ---
 
-<article class="h-full flex flex-col py-8 relative group">
+<article class="group relative flex h-full flex-col">
   <a
     href={url}
     title={`Read more: ${title}`}
@@ -32,24 +33,23 @@ const imageClass = isPortraitImage
     <Image width={imageWidth} height={imageHeight} class={imageClass} alt={imageAlt} src={image} />
   </div>
 
-  <div
-    class="grid grid-cols-1 gap-4 md:grid-cols-3 justify-between h-full mt-4 relative z-0"
-  >
+  <div class="relative z-0 mt-5 flex h-full flex-col">
+    <p class="field-label">{status === "ongoing" ? "Ongoing partnership" : "Focused project"}</p>
     <Text
       tag="h2"
-      variant="textBase"
-      class="text-black font-medium group-hover:text-black/70"
+      variant="displaySM"
+      class="font-editorial mt-3 font-medium text-black group-hover:text-[var(--brand-orange)]"
     >
       {title}
     </Text>
-    <div class="md:col-span-2">
+    <div class="mt-4">
       <Text tag="p" variant="textSM" class="text-base-500">
         {subtitle}
       </Text>
       <Text
         tag="span"
         variant="textSM"
-        class="text-base-500 group-hover:text-black font-medium mt-4 flex"
+        class="mt-5 flex font-medium text-base-500 group-hover:text-black"
       >
         &rarr; Read more
       </Text>

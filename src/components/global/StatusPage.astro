@@ -1,0 +1,42 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  symbol?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryHref = "/",
+  primaryLabel = "Back to the site",
+  secondaryHref,
+  secondaryLabel,
+  symbol = "✓",
+} = Astro.props;
+---
+
+<section class="bg-[var(--brand-surface-soft)]">
+  <Wrapper variant="wide" class="grid min-h-[64svh] items-center py-16 sm:py-24">
+    <div class="grid gap-9 border-y border-black/10 py-10 lg:grid-cols-[8rem_1fr] lg:gap-14">
+      <span class="font-editorial grid size-16 place-items-center bg-[var(--brand-orange)] text-3xl" aria-hidden="true">{symbol}</span>
+      <div>
+        <p class="field-label">{eyebrow}</p>
+        <h1 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.95] tracking-[-.04em] sm:text-7xl">{title}</h1>
+        <p class="mt-6 max-w-2xl text-base leading-7 text-base-600">{description}</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={primaryHref} class="site-cta">{primaryLabel} →</a>
+          {secondaryHref && secondaryLabel && <a href={secondaryHref} class="inline-flex min-h-11 items-center text-sm font-semibold underline decoration-black/20 underline-offset-4">{secondaryLabel} →</a>}
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

@@ -1,10 +1,20 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PageIntro from "@/components/global/PageIntro.astro";
+import EditorialList from "@/components/global/EditorialList.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 
-const checks = ["The work happens repeatedly.", "The current process takes meaningful time or causes delays.", "The inputs and desired output can be explained clearly.", "A person can review the result before it matters.", "Improvement can be measured in time, response speed, quality, or revenue."];
+const checks = [
+  { title: "It repeats", body: "The work happens often enough for improvement to matter." },
+  { title: "It costs something", body: "The current process takes meaningful time or causes delays." },
+  { title: "It can be explained", body: "The inputs and desired output are clear enough to describe." },
+  { title: "A person can review it", body: "Human judgment can catch problems before the result matters." },
+  { title: "Progress is measurable", body: "You can see improvement in time, response speed, quality, or revenue." },
+];
 ---
 
 <BaseLayout pageTitle="AI Opportunity Checklist — Raleigh AI Guy" pageDescription="A short checklist for deciding whether a business workflow is a useful AI opportunity.">
-  <section><Wrapper class="py-16 sm:py-24 lg:py-32"><p class="text-sm font-medium text-base-500">AI opportunity checklist</p><h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Is this workflow worth improving?</h1><p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">A promising opportunity usually has most of these characteristics.</p><ul class="mt-10 divide-y divide-black/10 border-y border-black/10">{checks.map((check, index) => <li class="grid grid-cols-[2rem_1fr] gap-4 py-5"><span class="text-xs text-base-400">0{index + 1}</span><span class="text-sm font-medium">{check}</span></li>)}</ul><p class="mt-8 text-sm leading-6 text-base-500">If your workflow fits, email me a short description and I’ll give you an honest read.</p><a href="mailto:hello@raleighaiguy.com?subject=AI%20opportunity" class="site-cta mt-6">Email me</a></Wrapper></section>
+  <PageIntro eyebrow="AI opportunity checklist" title="Is this workflow worth improving?" description="A promising opportunity usually has most of these characteristics." />
+  <EditorialList eyebrow="Five useful signals" title="Look for work that can prove its value." items={checks} surface="soft" />
+  <ContactBand eyebrow="Does your workflow fit?" title="Send me a short description and I’ll give you an honest read." ctaLabel="Describe the workflow" />
 </BaseLayout>

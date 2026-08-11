@@ -7,26 +7,31 @@ const links = [
   { text: "Work", href: "/projects/" },
   { text: "Writing", href: "/blog/" },
   { text: "Workshops", href: "/ai-workshops/" },
+  { text: "Contact", href: "/contact/" },
 ];
 ---
 
 <header>
-  <Wrapper class="pt-8 sm:pt-12">
-    <div class="flex items-center justify-between gap-5 border-b border-black/10 pb-5">
+  <Wrapper variant="wide" class="pt-6 sm:pt-8">
+    <div class="flex items-center justify-between gap-6 border-b border-black/10 pb-5">
       <a href="/" class="flex items-center gap-3 text-sm font-semibold tracking-tight" aria-label="Raleigh AI Guy home">
-        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="48" height="48" class="size-11 rounded-lg border border-black/10" aria-hidden="true" />
-        <span>Raleigh AI Guy</span>
+        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="48" height="48" class="size-10 border border-black/10" aria-hidden="true" />
+        <span class="leading-tight">Raleigh AI Guy<small class="font-utility mt-1 block text-[.58rem] font-normal uppercase tracking-[.12em] text-base-500">AI for real work</small></span>
       </a>
-      <div class="flex items-center gap-4">
-        <a href="mailto:hello@raleighaiguy.com" class="hidden text-sm font-medium text-base-500 hover:text-black sm:block">Email me</a>
+      <nav class="hidden items-center gap-7 md:flex" aria-label="Main navigation">
+        {links.slice(0, -1).map((link) => (
+          <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="text-sm font-medium text-base-500 transition-colors hover:text-black aria-[current=page]:text-black">{link.text}</a>
+        ))}
+        <a href="/contact/" aria-current={currentPath.startsWith("/contact/") ? "page" : undefined} class="site-cta">Let’s work together →</a>
+      </nav>
+      <div class="md:hidden">
         <details class="group relative">
           <summary class="cursor-pointer list-none text-sm font-medium text-base-500 hover:text-black">Menu</summary>
-          <nav class="absolute right-0 top-full z-40 mt-3 w-40 rounded-xl border border-black/10 bg-white p-4 shadow-sm" aria-label="Main navigation">
+          <nav class="absolute right-0 top-full z-40 mt-3 w-44 border border-black/10 bg-[var(--brand-paper)] p-4 shadow-sm" aria-label="Mobile navigation">
             <div class="space-y-3">
               {links.map((link) => (
                 <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="block text-sm font-medium text-base-500 hover:text-black aria-[current=page]:text-black">{link.text}</a>
               ))}
-              <a href="mailto:hello@raleighaiguy.com" class="block text-sm font-medium text-base-500 hover:text-black sm:hidden">Email me</a>
             </div>
           </nav>
         </details>

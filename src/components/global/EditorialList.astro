@@ -1,0 +1,42 @@
+---
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+interface Item {
+  title: string;
+  body?: string;
+  label?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: Item[];
+  surface?: "canvas" | "soft" | "paper";
+}
+
+const { eyebrow, title, items, surface = "canvas" } = Astro.props;
+const surfaceClass = surface === "soft" ? "bg-[var(--brand-surface-soft)]" : surface === "paper" ? "bg-[var(--brand-paper)]" : "";
+---
+
+<section class={surfaceClass}>
+  <Wrapper variant="wide" class="py-14 sm:py-20">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <p class="field-label">{eyebrow}</p>
+        <h2 class="font-editorial mt-4 text-4xl leading-[1.02] sm:text-5xl">{title}</h2>
+      </div>
+      <ol class="border-t border-black/15 lg:col-span-8">
+        {items.map((item, index) => (
+          <li class="grid gap-4 border-b border-black/15 py-6 sm:grid-cols-[3rem_minmax(10rem,14rem)_1fr] sm:gap-6">
+            <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+            <h3 class="text-base font-semibold">{item.title}</h3>
+            <div>
+              {item.label && <p class="field-label mb-2">{item.label}</p>}
+              {item.body && <p class="text-sm leading-6 text-base-600">{item.body}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Wrapper>
+</section>

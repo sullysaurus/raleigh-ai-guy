@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: "standard" | "prose"; // Define any variants you need
+  variant?: "standard" | "wide" | "prose"; // Define any variants you need
   class?: string; // Optional prop for additional classes
 }
 const { variant = "standard", class: extraClass = "" } = Astro.props;
@@ -8,6 +8,7 @@ const { variant = "standard", class: extraClass = "" } = Astro.props;
 const variantClasses = {
   // All purpose wrapper
   standard: "max-w-3xl mx-auto px-6 sm:px-8 w-full",
+  wide: "max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 w-full",
   // Wrapper for prose blocks
   prose:
     "prose-ul:text-base-500 prose max-w-3xl pt-0 mx-auto prose-a:text-black prose-p:text-base-500 prose-code:text-black prose-strong:text-black prose-ol:text-base-500 prose-headings:text-black prose-headings:text-base text-sm",

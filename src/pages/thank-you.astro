@@ -1,15 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import StatusPage from "@/components/global/StatusPage.astro";
 ---
-
 <BaseLayout pageTitle="Request Received" pageDescription="Danny Sullivan has received your request and will follow up personally." noindex>
-  <div class="grid min-h-[70svh] place-items-center bg-[var(--brand-bg)] px-5 text-[var(--brand-text)]">
-    <section class="w-full max-w-xl text-center">
-      <span class="mx-auto grid size-12 place-items-center rounded-full bg-[var(--brand-orange)] text-xl text-[var(--brand-ink)]">✓</span>
-      <p class="mt-7 text-xs font-medium uppercase tracking-[0.14em] text-base-500">Request received</p>
-      <h1 class="mt-4 font-sans text-4xl font-semibold tracking-tight sm:text-5xl">I’ll review it personally.</h1>
-      <p class="mx-auto mt-6 max-w-lg text-base leading-7 text-base-500">I’ll read what you shared and follow up by email personally. For a free workflow review, that email will include the next step for scheduling our call.</p>
-      <a href="/" class="brand-button mt-8">Back to the site →</a>
-    </section>
-  </div>
+  <StatusPage eyebrow="Request received" title="I’ll review it personally." description="I’ll read what you shared and follow up by email with the most useful next step." />
 </BaseLayout>

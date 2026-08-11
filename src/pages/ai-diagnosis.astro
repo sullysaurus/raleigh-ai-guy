@@ -1,47 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PageIntro from "@/components/global/PageIntro.astro";
+import EditorialList from "@/components/global/EditorialList.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 
 const deliverables = [
-  ["Understand the workflow", "A focused conversation about the work, the people involved, and where time or opportunities are being lost."],
-  ["Rank the opportunities", "A short list of the best places to use AI, automation, ordinary software, or a clearer process."],
-  ["Review value and risk", "An honest view of what could improve, what still needs human judgment, and what could make the system fail."],
-  ["Choose a next step", "A practical recommendation you can use with me, your team, or another provider."],
+  { title: "Understand the workflow", body: "A focused conversation about the work, the people involved, and where time or opportunities are being lost." },
+  { title: "Rank the opportunities", body: "A short list of the best places to use AI, automation, ordinary software, or a clearer process." },
+  { title: "Review value and risk", body: "An honest view of what could improve, what still needs human judgment, and what could make the system fail." },
+  { title: "Choose a next step", body: "A practical recommendation you can use with me, your team, or another provider." },
 ];
 ---
 
 <BaseLayout pageTitle="AI Workflow Diagnosis — Raleigh AI Guy" pageDescription="A focused review of a business workflow to find the useful AI opportunities and avoid unnecessary complexity.">
-  <section>
-    <Wrapper class="py-16 sm:py-24 lg:py-32">
-      <p class="text-sm font-medium text-base-500">AI workflow diagnosis</p>
-      <h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Find the work worth improving.</h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">Before buying tools or commissioning a build, get a clear view of where AI can help, where it cannot, and what the smallest useful next step looks like.</p>
-      <a href="mailto:hello@raleighaiguy.com?subject=AI%20workflow%20diagnosis" class="site-cta mt-8">Email me about a workflow</a>
-    </Wrapper>
-  </section>
-
-  <section>
-    <Wrapper class="py-12 sm:py-16">
-      <div class="border-t border-black/10 pt-3"><h2 class="text-sm font-medium">What the conversation covers</h2></div>
-      <div class="mt-8 divide-y divide-black/10 border-y border-black/10">
-        {deliverables.map(([title, body], index) => (
-          <article class="grid gap-3 py-6 sm:grid-cols-[3rem_13rem_1fr] sm:gap-6">
-            <span class="text-xs font-medium text-base-400">0{index + 1}</span>
-            <h3 class="text-sm font-medium">{title}</h3>
-            <p class="text-sm leading-6 text-base-500">{body}</p>
-          </article>
-        ))}
-      </div>
-    </Wrapper>
-  </section>
-
-  <section>
-    <Wrapper class="py-16 sm:py-24">
-      <div class="border-t border-black/10 pt-8">
-        <h2 class="text-2xl font-medium tracking-tight">Bring a real workflow, not an AI shopping list.</h2>
-        <p class="mt-5 max-w-2xl text-sm leading-6 text-base-500">The best starting point is repetitive work involving email, forms, documents, reporting, customer follow-up, or information that has to move between people and tools.</p>
-        <a href="mailto:hello@raleighaiguy.com?subject=AI%20workflow%20diagnosis" class="site-cta mt-7">Email me</a>
-      </div>
-    </Wrapper>
-  </section>
+  <PageIntro eyebrow="AI workflow diagnosis" title="Find the work worth improving." description="Before buying tools or commissioning a build, get a clear view of where AI can help, where it cannot, and what the smallest useful next step looks like." ctaHref="/contact/" ctaLabel="Bring me a workflow" />
+  <EditorialList eyebrow="What we cover" title="Clarity before complexity." items={deliverables} surface="soft" />
+  <ContactBand eyebrow="A better starting point" title="Bring a real workflow, not an AI shopping list." description="Repetitive work involving email, forms, documents, reporting, or customer follow-up is often a useful place to begin." ctaLabel="Start the diagnosis" />
 </BaseLayout>

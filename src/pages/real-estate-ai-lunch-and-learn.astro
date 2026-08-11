@@ -1,10 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PageIntro from "@/components/global/PageIntro.astro";
+import EditorialList from "@/components/global/EditorialList.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 
-const topics = ["Where AI is genuinely useful in real-estate work", "Practical examples for listings, follow-up, research, and content", "Common privacy, accuracy, and review mistakes", "How to choose one small workflow to improve first"];
+const topics = [
+  { title: "Useful work", body: "Where AI is genuinely useful in real-estate work." },
+  { title: "Recognizable examples", body: "Practical applications for listings, follow-up, research, and content." },
+  { title: "Good judgment", body: "Common privacy, accuracy, and review mistakes." },
+  { title: "A first move", body: "How to choose one small workflow to improve first." },
+];
 ---
 
 <BaseLayout pageTitle="Practical AI for Real Estate Teams" pageDescription="A practical AI lunch-and-learn for real-estate teams and professional groups in Raleigh.">
-  <section><Wrapper class="py-16 sm:py-24 lg:py-32"><p class="text-sm font-medium text-base-500">Real-estate lunch and learn</p><h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">A practical AI conversation for real-estate teams.</h1><p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">A clear, grounded session about the work agents and teams already do—without turning it into a tool demo or a sales pitch.</p><a href="mailto:hello@raleighaiguy.com?subject=Real-estate%20AI%20session" class="site-cta mt-8">Email me about a session</a></Wrapper></section><section><Wrapper class="pb-16 sm:pb-24"><div class="border-t border-black/10 pt-3"><h2 class="text-sm font-medium">What we can cover</h2></div><ul class="mt-8 divide-y divide-black/10 border-y border-black/10">{topics.map((topic, index) => <li class="grid grid-cols-[2rem_1fr] gap-4 py-5"><span class="text-xs text-base-400">0{index + 1}</span><span class="text-sm font-medium">{topic}</span></li>)}</ul></Wrapper></section>
+  <PageIntro eyebrow="Real-estate lunch and learn" title="A practical AI conversation for real-estate teams." description="A clear, grounded session about the work agents and teams already do, without turning it into a tool demo or sales pitch." ctaHref="/contact/" ctaLabel="Ask about a session" />
+  <EditorialList eyebrow="The conversation" title="Useful ideas, grounded in the work." items={topics} surface="soft" />
+  <ContactBand eyebrow="Raleigh or remote" title="Shape the session around what your team needs to understand." ctaLabel="Plan a session" />
 </BaseLayout>

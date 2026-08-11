@@ -1,39 +1,42 @@
 ---
 pubDate: 2026-07-19
-title: ZimZoom Photo Booth Website
-subtitle: A colorful, conversion-focused website that turns six photo experiences, statewide reach, and a remarkable event history into one unmistakably energetic brand.
+title: ZimZoom Ongoing AI Partnership
+subtitle: A working partnership to remove operational friction one useful system at a time—starting with inbox triage and expanding into the website, customer journey, and daily work.
 live: "https://zimzoomphotobooth.com/"
+status: ongoing
 image:
   url: "/src/images/projects/zimzoom-homepage.png"
   alt: "ZimZoom Photo Booth homepage featuring celebrating guests and the headline Extraordinary Photo Booth Experiences."
 ---
 
-## Overview
+## The partnership
 
-[ZimZoom Photo Booth](https://zimzoomphotobooth.com/) creates photo booth experiences for weddings, parties, university events, and brand activations across North Carolina. I designed and built a complete website that captures the energy of the events while giving customers a clear way to compare experiences, see the work, and check their date.
+[ZimZoom Photo Booth](https://zimzoomphotobooth.com/) creates photo booth experiences for weddings, parties, university events, and brand activations across North Carolina. We are working together over time to find where work gets stuck, improve the customer experience, and build practical systems around the way the business actually runs.
 
-The site brings six services, real event photography, customization options, statewide locations, reviews, FAQs, and booking into one bold visual system. It presents ZimZoom as more than a booth rental: an experienced creative partner that knows how to make a room come alive.
+This is not a one-off AI build. We take one useful problem at a time, understand the owner’s existing judgment, and improve the workflow without adding unnecessary complexity.
 
-## The challenge
+## Where we started: the inbox
 
-ZimZoom has substantial proof—thousands of events, millions of photos, recognizable clients, strong reviews, and a broad service area. The challenge was organizing all of that credibility without losing the playful personality that makes the brand memorable.
+A busy service-business inbox mixes new leads, active customers, payment questions, scheduling changes, and messages that can wait. Our first project was a human-reviewed triage workflow shaped around ZimZoom’s own priorities. It prepares a short action list while leaving every consequential decision with the owner.
 
-The website also needed to distinguish six related experiences, work for both private celebrations and brand events, and give visitors enough information to choose confidently without slowing down the path to availability.
+[See how the inbox triage workflow works →](/blog/posts/create-first-claude-skill-organize-inbox/)
 
-## What I built
+## The work is expanding
 
-- A custom responsive website and high-energy visual design system
-- Brand positioning and conversion copy for private and corporate events
-- Clear presentation of six distinct photo and event experiences
-- A gallery system built around real event imagery and customization examples
-- Client, event-volume, review, and media-recognition proof sections
-- Statewide location and service-area storytelling
-- A guided availability form connected to the live booking workflow
+The website became another part of the partnership. ZimZoom has six distinct experiences, strong event photography, statewide reach, recognizable clients, and years of proof. We brought that story into a clearer digital experience that helps visitors compare options, trust the team, and check their date.
+
+Our ongoing work includes:
+
+- Finding repeated decisions and administrative work worth improving
+- Teaching the team how to use AI safely in their real workflows
+- Building small systems only where they remove meaningful friction
+- Improving the website and customer journey as the business evolves
+- Reviewing what works, correcting what does not, and deciding what to tackle next
 
 ## My role
 
-Product strategy, positioning, information architecture, UX and visual design, conversion copy, responsive frontend development, content structure, accessibility, booking flow, and launch.
+Ongoing AI partner, workflow design, team education, product strategy, positioning, UX and visual design, conversion copy, frontend development, and customer-journey improvement.
 
 ## Why it matters
 
-ZimZoom already knew how to make events memorable. The new site gives that experience a digital expression with the same confidence and personality. Visitors can now feel the energy, understand the options, trust the team behind them, and move naturally from inspiration to availability.
+Useful AI adoption rarely arrives as one giant transformation. It grows through a series of well-chosen improvements that save time, strengthen the customer experience, and leave the business more capable. That is the work ZimZoom and I are doing together.

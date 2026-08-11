@@ -1,47 +1,19 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import PageIntro from "@/components/global/PageIntro.astro";
+import EditorialList from "@/components/global/EditorialList.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
 
 const agenda = [
-  ["AI without the hype", "What current tools do well, where they fail, and what still needs human judgment."],
-  ["Useful examples", "Live workflows shaped around work your team recognizes."],
-  ["Find the friction", "Identify one process worth improving first."],
-  ["Questions and next steps", "Apply the ideas to your team, tools, and concerns."],
+  { title: "AI without the hype", body: "What current tools do well, where they fail, and what still needs human judgment." },
+  { title: "Useful examples", body: "Live workflows shaped around work your team recognizes." },
+  { title: "Find the friction", body: "Identify one process worth improving first." },
+  { title: "Questions and next steps", body: "Apply the ideas to your team, tools, and concerns." },
 ];
 ---
 
 <BaseLayout pageTitle="Practical AI Workshops for Raleigh Teams" pageDescription="Practical AI workshops for teams that want clearer judgment and useful workflows without the hype.">
-  <section>
-    <Wrapper class="py-16 sm:py-24 lg:py-32">
-      <p class="text-sm font-medium text-base-500">Workshops · Raleigh or remote</p>
-      <h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Make AI useful for the work your team already does.</h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">A practical session built around honest questions, recognizable workflows, and a clear understanding of where AI helps and where it does not.</p>
-      <a href="mailto:hello@raleighaiguy.com?subject=AI%20workshop" class="site-cta mt-8">Email me about a workshop</a>
-    </Wrapper>
-  </section>
-
-  <section>
-    <Wrapper class="py-12 sm:py-16">
-      <div class="border-t border-black/10 pt-3"><h2 class="text-sm font-medium">A simple workshop outline</h2></div>
-      <ol class="mt-8 divide-y divide-black/10 border-y border-black/10">
-        {agenda.map(([title, body], index) => (
-          <li class="grid gap-3 py-6 sm:grid-cols-[3rem_13rem_1fr] sm:gap-6">
-            <span class="text-xs font-medium text-base-400">0{index + 1}</span>
-            <h3 class="text-sm font-medium">{title}</h3>
-            <p class="text-sm leading-6 text-base-500">{body}</p>
-          </li>
-        ))}
-      </ol>
-    </Wrapper>
-  </section>
-
-  <section>
-    <Wrapper class="py-16 sm:py-24">
-      <div class="border-t border-black/10 pt-8">
-        <h2 class="text-2xl font-medium tracking-tight">Tell me what your team is trying to understand.</h2>
-        <p class="mt-5 max-w-xl text-sm leading-6 text-base-500">I’ll reply personally about the audience, format, and whether I’m the right person for the session.</p>
-        <a href="mailto:hello@raleighaiguy.com?subject=AI%20workshop" class="site-cta mt-7">Email me</a>
-      </div>
-    </Wrapper>
-  </section>
+  <PageIntro eyebrow="Workshops · Raleigh or remote" title="Make AI useful for the work your team already does." description="A practical session built around honest questions, recognizable workflows, and a clear understanding of where AI helps and where it does not." ctaHref="/contact/" ctaLabel="Ask about a workshop" />
+  <EditorialList eyebrow="A simple workshop outline" title="Learn it by using it." items={agenda} surface="soft" />
+  <ContactBand eyebrow="Built around your team" title="Tell me what your team is trying to understand." description="I’ll reply personally about the audience, format, and whether I’m the right person for the session." ctaLabel="Plan a workshop" />
 </BaseLayout>

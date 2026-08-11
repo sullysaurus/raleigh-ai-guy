@@ -1,47 +1,85 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import BlogCard2 from "@/components/blog/BlogCard2.astro";
 
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
+const featured = posts[0];
+const remaining = posts.slice(1);
 const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
+const formatDate = (date: Date) => date.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
 ---
 
 <BaseLayout pageTitle="Practical AI Guides" pageDescription="Plain-English AI guides for small businesses and teams that want useful results at work.">
   <section>
-    <Wrapper class="py-16 sm:py-24 lg:py-32">
-      <p class="text-sm font-medium text-base-500">Writing</p>
-      <h1 class="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">Practical notes about using AI at work.</h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-base-500">Clear workflows, honest tool comparisons, and small systems you can actually put to use.</p>
+    <Wrapper variant="wide" class="py-14 sm:py-20">
+      <div class="grid gap-7 border-t border-black/10 pt-6 lg:grid-cols-12 lg:items-end lg:gap-14">
+        <div class="lg:col-span-8">
+          <p class="field-label">Field notes · Practical AI</p>
+          <h1 class="font-editorial mt-5 max-w-4xl text-5xl font-medium leading-[.94] tracking-[-.045em] sm:text-7xl">Useful ideas for doing better work with AI.</h1>
+        </div>
+        <p class="max-w-lg text-base leading-7 text-base-600 lg:col-span-4">Clear workflows, honest tool comparisons, and small systems you can put to use without rebuilding your business around a tool.</p>
+      </div>
     </Wrapper>
   </section>
 
   {tags.length > 0 && (
-    <Wrapper class="pb-8">
-      <nav class="flex flex-wrap gap-x-4 gap-y-2 border-t border-black/10 pt-4" aria-label="Browse writing by topic">
-        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="text-sm text-base-500 hover:text-black">{tag.replaceAll("-", " ")}</a>)}
-      </nav>
-    </Wrapper>
+    <section class="border-y border-black/10 bg-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="flex flex-wrap items-center gap-x-5 gap-y-2 py-4">
+        <span class="field-label mr-2">Browse topics</span>
+        {tags.map((tag) => <a href={`/blog/tags/${tag}`} class="text-sm font-medium text-base-600 underline decoration-black/15 underline-offset-4 hover:text-black hover:decoration-black">{tag.replaceAll("-", " ")}</a>)}
+      </Wrapper>
+    </section>
+  )}
+
+  {featured && (
+    <section>
+      <Wrapper variant="wide" class="py-12 sm:py-16">
+        <a href={`/blog/posts/${featured.id}`} class="group grid overflow-hidden bg-[var(--brand-forest)] text-[var(--brand-paper)] lg:grid-cols-12">
+          <div class="flex items-center bg-[#f7f1e4] lg:col-span-7">
+            <Image src={featured.data.image.url} alt={featured.data.image.alt} widths={[640, 960, 1280]} sizes="(min-width: 1024px) 650px, 100vw" loading="eager" class="aspect-video h-auto w-full object-contain" />
+          </div>
+          <div class="flex flex-col p-7 sm:p-10 lg:col-span-5">
+            <div class="flex items-center justify-between gap-4"><p class="field-label text-white/55">Latest note</p><time class="font-utility text-[.62rem] uppercase tracking-[.08em] text-white/45" datetime={featured.data.pubDate.toISOString().slice(0, 10)}>{formatDate(featured.data.pubDate)}</time></div>
+            <h2 class="font-editorial mt-8 text-4xl leading-[1.02] sm:text-5xl">{featured.data.title}</h2>
+            <p class="mt-5 text-sm leading-6 text-white/65">{featured.data.description}</p>
+            <span class="mt-8 text-sm font-semibold underline decoration-white/25 underline-offset-4 lg:mt-auto lg:pt-8">Read the note →</span>
+          </div>
+        </a>
+      </Wrapper>
+    </section>
   )}
 
   <section>
-    <Wrapper class="pb-16 sm:pb-24">
-      <div class="divide-y divide-black/10 border-y border-black/10">
-        {posts.map((post) => <div class="py-3"><BlogCard2 post={post} /></div>)}
+    <Wrapper variant="wide" class="pb-16 sm:pb-24">
+      <div class="mb-7 flex items-end justify-between gap-5"><div><p class="field-label">The notebook</p><h2 class="font-editorial mt-3 text-4xl">More practical guides</h2></div><p class="font-utility text-[.62rem] uppercase tracking-[.08em] text-base-500">{remaining.length} notes</p></div>
+      <div class="grid gap-px border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+        {remaining.map((post, index) => (
+          <article class="bg-[var(--brand-paper)]">
+            <a href={`/blog/posts/${post.id}`} class="group flex min-h-64 flex-col p-6 sm:p-7">
+              <div class="flex items-center justify-between gap-3"><span class="field-label text-[var(--brand-orange)]">{String(index + 2).padStart(2, "0")}</span><time class="font-utility text-[.6rem] uppercase tracking-[.06em] text-base-500" datetime={post.data.pubDate.toISOString().slice(0, 10)}>{formatDate(post.data.pubDate)}</time></div>
+              <h3 class="font-editorial mt-6 text-3xl leading-[1.03] group-hover:text-[var(--brand-orange)]">{post.data.title}</h3>
+              <p class="mt-4 line-clamp-3 text-sm leading-6 text-base-600">{post.data.description}</p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-7">{post.data.tags.slice(0, 2).map((tag) => <span class="field-label">{tag.replaceAll("-", " ")}</span>)}</div>
+            </a>
+          </article>
+        ))}
       </div>
     </Wrapper>
   </section>
 
-  <section>
-    <Wrapper class="pb-16 sm:pb-24">
-      <div class="border-t border-black/10 pt-8">
-        <h2 class="text-2xl font-medium tracking-tight">Have a question about AI and your work?</h2>
-        <p class="mt-4 text-sm leading-6 text-base-500">Email me the situation and I’ll point you toward the most useful next step.</p>
-        <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-6">Email me</a>
-      </div>
+  <section class="bg-[var(--brand-orange)]">
+    <Wrapper variant="wide" class="grid gap-6 py-10 sm:grid-cols-[1fr_auto] sm:items-center">
+      <div><p class="field-label text-black/60">Have a question?</p><h2 class="font-editorial mt-3 text-4xl leading-none">Send me the part that is stuck.</h2></div>
+      <a href="/contact/" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)]">Start a conversation →</a>
     </Wrapper>
   </section>
 </BaseLayout>
