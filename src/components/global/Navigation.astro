@@ -14,9 +14,9 @@ const links = [
 <header>
   <Wrapper variant="wide" class="pt-6 sm:pt-8">
     <div class="flex items-center justify-between gap-6 border-b border-black/10 pb-5">
-      <a href="/" class="flex items-center gap-3 text-sm font-semibold tracking-tight" aria-label="Raleigh AI Guy home">
-        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="48" height="48" class="size-10 border border-black/10" aria-hidden="true" />
-        <span class="leading-tight">Raleigh AI Guy<small class="font-utility mt-1 block text-[.58rem] font-normal uppercase tracking-[.12em] text-base-500">AI for real work</small></span>
+      <a href="/" class="group flex items-center gap-3" aria-label="Raleigh AI Guy home">
+        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="192" height="192" class="size-14 mix-blend-multiply transition-transform duration-300 group-hover:-rotate-2 sm:size-16" aria-hidden="true" />
+        <span class="font-utility hidden text-[.58rem] font-medium uppercase leading-[1.5] tracking-[.12em] text-base-500 sm:block">AI for<br />real work</span>
       </a>
       <nav class="hidden items-center gap-7 md:flex" aria-label="Main navigation">
         {links.slice(0, -1).map((link) => (

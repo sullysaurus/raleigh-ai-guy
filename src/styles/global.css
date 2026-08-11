@@ -6,6 +6,7 @@
 @theme {
   --font-sans: "Instrument Sans", sans-serif;
   --font-serif: "Newsreader", serif;
+  --font-display: "League Gothic", "Arial Narrow", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
   --color-white: #fffdf7;
   --color-black: #16201b;
@@ -33,7 +34,7 @@
   --brand-line: rgb(22 32 27 / 14%);
   --brand-line-strong: rgb(22 32 27 / 30%);
   --brand-form: #fffdf7;
-  --brand-orange: #e65f36;
+  --brand-orange: #ff3218;
   --brand-forest: #163d32;
   --brand-moss: #7b8b72;
   --brand-yellow: #eee4cf;
@@ -60,7 +61,19 @@ body {
 
 h1, h2, h3, h4 { text-wrap: balance; }
 
-.font-editorial { font-family: "Newsreader", serif; }
+.font-editorial {
+  font-family: "League Gothic", "Arial Narrow", sans-serif;
+  font-stretch: condensed;
+  font-weight: 400;
+  letter-spacing: -.018em;
+  text-transform: uppercase;
+}
+.font-editorial em {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  letter-spacing: -.04em;
+  text-transform: none;
+}
 .font-utility { font-family: "IBM Plex Mono", monospace; }
 
 .field-label {
