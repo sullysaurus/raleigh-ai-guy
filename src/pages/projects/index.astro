@@ -5,7 +5,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ProjectsEntries from "@/components/projects/ProjectsEntries.astro";
 import { getCollection } from "astro:content";
 
-const projectOrder = ["garden-art-landscapes", "inbox-triage-workflow"];
+const projectOrder = ["garden-art-landscapes", "zimzoom-photo-booth", "inbox-triage-workflow"];
 const allProjects = (await getCollection("projects")).sort(
   (a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id)
 );

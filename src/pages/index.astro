@@ -3,8 +3,10 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import gardenImage from "@/images/projects/case-study-landscaping-seo.png";
-import inboxImage from "@/images/projects/case-study-inbox-triage.png";
+import gardenImage from "@/images/projects/garden-art-homepage.png";
+import zimZoomImage from "@/images/projects/zimzoom-homepage.png";
+import leadRecoveryImage from "@/images/projects/raleigh-lead-recovery-homepage.png";
+import profileImage from "../../danny.jpeg";
 
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -18,16 +20,16 @@ const caseStudies = [
     result: "18 useful pages published, live measurement in place, and early rankings moving into view.",
     href: "/projects/garden-art-landscapes/",
     image: gardenImage,
-    alt: "Garden & Art Landscapes SEO reporting dashboard",
+    alt: "Garden & Art Landscapes homepage featuring a lush Raleigh garden and the headline Landscapes with a point of view.",
   },
   {
-    label: "Operations workflow",
-    title: "Inbox triage system",
-    description: "A reusable workflow that reads incoming messages, applies the business owner’s own priorities, and prepares a short action list for review.",
-    result: "Less time scanning the inbox, clearer follow-up, and a human approval step before anything changes.",
-    href: "/projects/inbox-triage-workflow/",
-    image: inboxImage,
-    alt: "A simple inbox triage workflow",
+    label: "Website and conversion system",
+    title: "ZimZoom Photo Booth",
+    description: "A complete digital experience that brings six services, real event photography, statewide reach, and booking into one energetic brand.",
+    result: "A clearer path from first impression to choosing an experience and checking a date.",
+    href: "/projects/zimzoom-photo-booth/",
+    image: zimZoomImage,
+    alt: "ZimZoom Photo Booth homepage featuring celebrating guests and the headline Extraordinary Photo Booth Experiences.",
   },
 ];
 ---
@@ -38,14 +40,64 @@ const caseStudies = [
 >
   <section>
     <Wrapper class="py-16 sm:py-24 lg:py-32">
-      <p class="text-sm font-medium text-base-500">Danny Sullivan · Raleigh, North Carolina</p>
-      <h1 class="mt-6 max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.045em] text-black sm:text-6xl">
-        I help small businesses make AI useful.
-      </h1>
-      <p class="mt-8 max-w-2xl text-lg leading-8 text-base-500">
-        I study how the work gets done, find the few opportunities worth acting on, and build practical systems that save time without creating more complexity.
-      </p>
-      <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-8">Email me</a>
+      <div class="grid gap-8 border-t border-black/10 pt-6 md:grid-cols-[9rem_minmax(0,1fr)] md:items-start lg:gap-12">
+        <Image
+          src={profileImage}
+          alt="Danny Sullivan"
+          width={615}
+          height={615}
+          loading="eager"
+          class="size-32 rounded-xl object-cover sm:size-36"
+        />
+        <div>
+          <p class="text-sm font-medium text-base-500">Danny Sullivan · Raleigh, North Carolina</p>
+          <h1 class="mt-6 max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.045em] text-black sm:text-5xl lg:text-6xl">
+            I help small businesses get good at AI.
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-base-500">
+            I teach teams how to use AI in their real work, then work alongside them to build the systems worth keeping.
+          </p>
+          <a href="mailto:hello@raleighaiguy.com" class="site-cta mt-8">Email me</a>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section>
+    <Wrapper class="py-12 sm:py-20">
+      <div class="border-t border-black/10 pt-3">
+        <p class="text-sm font-medium text-black">Built in the real world. Taught in plain English.</p>
+        <div class="mt-8 grid gap-8 sm:grid-cols-[.8fr_1.2fr] sm:gap-12">
+          <div>
+            <h2 class="text-3xl font-medium leading-tight tracking-[-0.035em] text-black">
+              I’ve spent my career building, teaching, and running businesses.
+            </h2>
+            <p class="mt-5 text-sm leading-6 text-base-500">
+              That mix helps me turn technical possibilities into practical systems your team can understand, use, and improve.
+            </p>
+            <a href="/about/" class="mt-5 inline-flex text-sm font-medium text-base-500 hover:text-black">Read the full story →</a>
+          </div>
+
+          <div class="divide-y divide-black/10 border-y border-black/10">
+            <article class="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
+              <p class="text-xs font-medium uppercase tracking-[.08em] text-base-400">Production AI</p>
+              <p class="text-sm leading-6 text-base-500"><strong class="font-medium text-black">AI Product Engineer at Gametime.</strong> I build live-event systems with millions in GMV riding on their reliability.</p>
+            </article>
+            <article class="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
+              <p class="text-xs font-medium uppercase tracking-[.08em] text-base-400">AI education</p>
+              <p class="text-sm leading-6 text-base-500"><strong class="font-medium text-black">Nearly five years at Pluralsight.</strong> I created hands-on AI and machine-learning training and built tools for content teams.</p>
+            </article>
+            <article class="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
+              <p class="text-xs font-medium uppercase tracking-[.08em] text-base-400">Business owner</p>
+              <p class="text-sm leading-6 text-base-500"><strong class="font-medium text-black">Built, operated, and sold a Raleigh service business.</strong> I know useful work has to earn its keep.</p>
+            </article>
+            <article class="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
+              <p class="text-xs font-medium uppercase tracking-[.08em] text-base-400">Before AI</p>
+              <p class="text-sm leading-6 text-base-500"><strong class="font-medium text-black">Software developer, teacher, and professional baseball player.</strong> An unusual path that taught me to explain clearly and keep improving.</p>
+            </article>
+          </div>
+        </div>
+      </div>
     </Wrapper>
   </section>
 
@@ -62,6 +114,48 @@ const caseStudies = [
     </Wrapper>
   </section>
 
+  <section>
+    <Wrapper class="py-12 sm:py-20">
+      <div class="border-t border-black/10 pt-3">
+        <p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[.08em] text-base-600">
+          <span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
+          Building now · Beta testers wanted
+        </p>
+        <div class="mt-7 rounded-xl border border-black/10 bg-[var(--brand-surface)] p-6 sm:p-8">
+          <div>
+            <h2 class="max-w-xl text-3xl font-medium leading-tight tracking-[-0.035em] text-black">
+              Raleigh Lead Recovery catches the calls your team misses.
+            </h2>
+            <p class="mt-5 max-w-2xl text-base leading-7 text-base-500">
+              I’m building Mabel, an automated call assistant for local service businesses. She answers missed calls, gets the important details, and puts a clean lead summary on your phone and dashboard—without making you change your number.
+            </p>
+          </div>
+
+          <a href="https://raleighleadrecovery.com" target="_blank" rel="noreferrer" class="group mt-8 block overflow-hidden rounded-lg border border-black/10 bg-white" aria-label="Visit Raleigh Lead Recovery">
+            <Image
+              src={leadRecoveryImage}
+              alt="Raleigh Lead Recovery homepage showing Mabel answering a missed customer call."
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 768px) 704px, 100vw"
+              class="aspect-[10/7] w-full object-cover transition duration-300 group-hover:scale-[1.01]"
+            />
+          </a>
+
+          <ul class="mt-8 grid gap-3 border-y border-black/10 py-5 text-sm text-base-500 sm:grid-cols-3">
+            <li>Keep your current number</li>
+            <li>Only missed calls roll over</li>
+            <li>Lead details arrive instantly</li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <a href="https://raleighleadrecovery.com/signup" target="_blank" rel="noreferrer" class="site-cta">Join the beta ↗</a>
+            <a href="https://raleighleadrecovery.com" target="_blank" rel="noreferrer" class="text-sm font-medium text-base-500 hover:text-black">See how it works ↗</a>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
   <section id="recent-work">
     <Wrapper class="py-12 sm:py-20">
       <div class="flex items-center justify-between gap-5 border-t border-black/10 pt-3">
@@ -73,7 +167,7 @@ const caseStudies = [
           <article>
             <a href={study.href} class="group block">
               <div class="overflow-hidden rounded-xl border border-black/10 bg-[var(--brand-surface)]">
-                <Image src={study.image} alt={study.alt} widths={[640, 960, 1280]} sizes="(min-width: 768px) 768px, 100vw" loading="eager" class="aspect-[3/2] w-full object-cover transition duration-300 group-hover:scale-[1.01]" />
+                <Image src={study.image} alt={study.alt} widths={[640, 960, 1280]} sizes="(min-width: 768px) 768px, 100vw" loading="eager" class="h-auto w-full object-contain transition duration-300 group-hover:scale-[1.01]" />
               </div>
               <div class="mt-5 grid gap-4 sm:grid-cols-[12rem_1fr]">
                 <div><p class="accent-label text-xs font-medium uppercase tracking-[.08em]">{study.label}</p><h3 class="mt-2 text-lg font-medium tracking-tight">{study.title}</h3></div>

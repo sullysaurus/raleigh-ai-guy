@@ -214,7 +214,7 @@ textarea:focus-visible {
 
   .site-cta:hover { background: #dc7a52; transform: translateY(-1px); }
 
-  .accent-label { color: var(--brand-orange); }
+  .accent-label { color: var(--brand-muted); }
 
   .brand-dark-section {
     color: var(--brand-text);
