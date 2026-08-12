@@ -144,3 +144,5 @@ Yes—when it creates a measurable advantage that a simpler approach cannot deli
 No—when it exists to make the business sound current, replaces a reliable rule with an unpredictable one, or creates more review and maintenance than it removes.
 
 The goal is not an AI-powered company. The goal is a company that serves customers better and wastes less time.
+
+If you can see the friction but cannot tell which opportunity is worth pursuing first, the [AI Opportunity Assessment](/ai-opportunity-assessment/) turns the baseline into a prioritized, practical next step.

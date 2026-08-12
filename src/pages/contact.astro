@@ -5,7 +5,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 <BaseLayout
   pageTitle="Work with Danny Sullivan — Raleigh AI Guy"
-  pageDescription="Tell Danny where AI could make your team's work better. Ask about ongoing AI support, team workshops, or a custom AI system."
+  pageDescription="Tell Danny where work is taking too long or creating delays. Find the right next step: an AI assessment, a focused improvement, or ongoing support."
 >
   <section>
     <Wrapper variant="wide" class="py-16 sm:py-24 lg:py-28">
@@ -13,7 +13,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         <div class="grid gap-6 sm:grid-cols-[1fr_.75fr] sm:items-end sm:gap-12">
           <div>
             <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Work with me</p>
-            <h1 class="font-editorial mt-6 max-w-3xl text-5xl font-medium leading-[.95] tracking-[-0.045em] sm:text-7xl">What do you want your team to get better at?</h1>
+            <h1 class="font-editorial mt-6 max-w-3xl text-5xl font-medium leading-[.95] tracking-[-0.045em] sm:text-7xl">What is taking too much time—or creating too much delay?</h1>
           </div>
           <p class="max-w-lg text-sm leading-6 text-base-500 sm:pb-1">Tell me where you are trying to go. I’ll read it personally and reply with the most useful next step.</p>
         </div>
@@ -29,18 +29,24 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           </div>
 
           <fieldset class="mt-8">
-            <legend class="intake-label">How would you like to work together?</legend>
+            <legend class="intake-label">What sounds closest to what you need?</legend>
             <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="Ongoing AI Partner" required /><span>Ongoing AI partner</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="Team AI Workshop" /><span>Team AI workshop</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="Custom AI System" /><span>Custom AI system</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="Not sure yet" /><span>Not sure yet</span></label>
+              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="assessment" required /><span>Assessment · $997</span></label>
+              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="focused" /><span>One workflow · $2,000</span></label>
+              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="partner" /><span>Ongoing · $2k–$5k/mo</span></label>
+              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="unsure" /><span>Not sure yet</span></label>
             </div>
           </fieldset>
 
-          <div class="mt-8 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
-            <label class="intake-label">What should AI help your team do better?
-              <textarea class="intake-field intake-textarea" name="goal" rows="4" maxlength="1800" placeholder="A process, bottleneck, or outcome you want to improve…" required></textarea>
+          <div class="mt-8 grid gap-5 lg:grid-cols-2">
+            <label class="intake-label">Where does work pile up?
+              <textarea class="intake-field intake-textarea" name="goal" rows="4" maxlength="1800" placeholder="A repeated task, slow handoff, missed follow-up, or decision that takes too long…" required></textarea>
+            </label>
+            <label class="intake-label">What happens when it is slow, inconsistent, or missed?
+              <textarea class="intake-field intake-textarea" name="business_impact" rows="4" maxlength="1400" placeholder="Lost time, delayed revenue, customer frustration, rework…" required></textarea>
+            </label>
+            <label class="intake-label">Who is involved? <span class="font-normal text-base-400">(optional)</span>
+              <textarea class="intake-field intake-textarea" name="people_involved" rows="3" maxlength="1000" placeholder="Which roles or team members touch the work?"></textarea>
             </label>
             <label class="intake-label">What have you tried? <span class="font-normal text-base-400">(optional)</span>
               <textarea class="intake-field intake-textarea" name="past_attempts" rows="4" maxlength="1200" placeholder="Tools, experiments, or nothing yet"></textarea>
@@ -48,7 +54,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
           </div>
 
           <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <button type="submit" class="site-cta">Start the conversation →</button>
+            <button type="submit" class="site-cta">Find the right next step →</button>
             <p class="text-xs leading-5 text-base-400">No sales sequence. You’ll hear directly from me.</p>
           </div>
         </form>
@@ -58,3 +64,11 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
     </Wrapper>
   </section>
 </BaseLayout>
+
+<script>
+  const requestedService = new URLSearchParams(window.location.search).get("service");
+  const requestedChoice = requestedService
+    ? document.querySelector<HTMLInputElement>(`input[name="service"][value="${CSS.escape(requestedService)}"]`)
+    : null;
+  if (requestedChoice) requestedChoice.checked = true;
+</script>

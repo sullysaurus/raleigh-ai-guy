@@ -212,7 +212,7 @@ const questions = [
           </div>
           <p class="mt-8 max-w-2xl text-sm leading-6 text-white/50">Your AIQ is a practical snapshot of how your business currently uses AI—not a judgment of your team’s intelligence or potential.</p>
           <div class="mt-8 flex flex-wrap gap-6">
-            <a href="/blog/" class="site-cta">Explore practical AI guides →</a>
+            <a data-result-cta href="/ai-opportunity-assessment/" class="site-cta">See how the assessment works →</a>
             <button type="button" data-retake class="min-h-11 text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">Score another workflow</button>
           </div>
         </div>
@@ -297,12 +297,12 @@ const questions = [
       }, 0);
       var score = Math.round((rawScore / (totalQuestions * 3)) * 100);
       var result = score < 25
-        ? { title: 'AI Curious', copy: 'Your next step is choosing one real business problem—not another tool. Curiosity becomes useful when it has a specific job to do.' }
+        ? { title: 'AI Curious', copy: 'Your next step is choosing one real business problem—not another tool. Curiosity becomes useful when it has a specific job to do.', href: '/ai-opportunity-assessment/', cta: 'See how the assessment works →' }
         : score < 50
-          ? { title: 'AI Experimenter', copy: 'You have activity, but useful experiments still depend on individuals. The next gain comes from turning one promising test into a repeatable practice.' }
+          ? { title: 'AI Experimenter', copy: 'You have activity, but useful experiments still depend on individuals. The next gain comes from turning one promising test into a repeatable practice.', href: '/ai-opportunity-assessment/', cta: 'Find the right workflow to improve →' }
           : score < 75
-            ? { title: 'AI Operator', copy: 'You have promising practices. Stronger measurement, shared standards, and clearer ownership can turn scattered wins into business capability.' }
-            : { title: 'AI Builder', copy: 'You are ready to scale proven workflows with stronger systems and oversight. Keep the focus on measurable outcomes and team ownership.' };
+            ? { title: 'AI Operator', copy: 'You have promising practices. Stronger measurement, shared standards, and clearer ownership can turn scattered wins into business capability.', href: '/services/#focused-improvement', cta: 'Plan a focused improvement →' }
+            : { title: 'AI Builder', copy: 'You are ready to scale proven workflows with stronger systems and oversight. Keep the focus on measurable outcomes and team ownership.', href: '/services/#ongoing-partner', cta: 'Explore an ongoing partnership →' };
 
       var dimensions = { direction: { score: 0, max: 0 }, practice: { score: 0, max: 0 }, judgment: { score: 0, max: 0 }, results: { score: 0, max: 0 } };
       steps.forEach(function (step) {
@@ -347,6 +347,11 @@ const questions = [
       resultSection.querySelector('[data-result-title]').textContent = result.title;
       resultSection.querySelector('[data-result-copy]').textContent = result.copy;
       resultSection.querySelector('[data-result-recommendation]').textContent = recommendation;
+      var resultCta = resultSection.querySelector('[data-result-cta]');
+      if (resultCta) {
+        resultCta.setAttribute('href', result.href);
+        resultCta.textContent = result.cta;
+      }
       resultSection.classList.remove('hidden');
       resultSection.focus({ preventScroll: true });
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });

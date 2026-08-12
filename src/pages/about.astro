@@ -4,6 +4,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import EditorialList from "@/components/global/EditorialList.astro";
 import ContactBand from "@/components/global/ContactBand.astro";
+import gametimeLogo from "@/images/brands/gametime.jpg";
+import pluralsightLogo from "@/images/brands/pluralsight.png";
+import twoULogo from "@/images/brands/2u.png";
+import stashLogo from "@/images/brands/stash.png";
+import popstarLogo from "@/images/brands/popstar.png";
 import profileImage from "../../danny.jpeg";
 
 const experience = [
@@ -27,6 +32,21 @@ const experience = [
           <p class="mt-7 max-w-2xl text-lg leading-8 text-base-600">I’m an AI product engineer, educator, and small-business builder based in Raleigh, North Carolina.</p>
         </div>
         <div class="relative w-40 lg:col-span-3 lg:w-full lg:max-w-[15rem] lg:justify-self-end"><div class="absolute -right-3 -top-3 h-full w-full bg-[var(--brand-orange)]" aria-hidden="true"></div><Image src={profileImage} alt="Danny Sullivan" widths={[160, 320, 480]} sizes="(min-width: 1024px) 240px, 160px" loading="eager" class="relative aspect-square w-full object-cover grayscale" /></div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-y border-black/10 bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-12 sm:py-16">
+      <div class="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+        <div><p class="field-label">Experience behind the work</p><h2 class="font-editorial mt-4 max-w-3xl text-4xl leading-[1.02] sm:text-5xl">I can build it, teach it, run it, and help it grow.</h2></div>
+        <a href="https://www.pluralsight.com/authors/danny-sullivan" target="_blank" rel="noreferrer" class="text-sm font-semibold underline decoration-black/20 underline-offset-4">View my courses ↗</a>
+      </div>
+      <div class="mt-8 grid gap-px border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="flex min-h-52 flex-col bg-[var(--brand-paper)] p-6"><div class="flex h-14 items-center"><Image src={gametimeLogo} alt="Gametime" width={165} densities={[1, 2]} quality={95} class="h-auto w-[10rem] mix-blend-multiply" /></div><p class="field-label mt-auto pt-8">Production AI</p><p class="mt-2 text-sm leading-6 text-base-600">Reliable systems for real customer experiences.</p></article>
+        <article class="flex min-h-52 flex-col bg-[var(--brand-paper)] p-6"><div class="flex h-14 items-center gap-3"><Image src={pluralsightLogo} alt="Pluralsight" width={100} densities={[1, 2]} quality={95} class="h-auto w-[6.25rem]" /><span class="h-7 w-px bg-black/10"></span><div class="relative h-12 w-16 overflow-hidden" role="img" aria-label="2U"><Image src={twoULogo} alt="" width={180} densities={[1, 2]} quality={95} class="absolute left-1/2 top-1/2 h-auto w-44 -translate-x-1/2 -translate-y-1/2" /></div></div><p class="field-label mt-auto pt-8">AI education</p><p class="mt-2 text-sm leading-6 text-base-600">28 courses and labs, plus classroom teaching.</p></article>
+        <article class="flex min-h-52 flex-col bg-[var(--brand-paper)] p-6"><div class="flex h-14 items-center"><Image src={popstarLogo} alt="Popstar Photo Booth" width={145} densities={[1, 2]} class="h-auto w-36" /></div><p class="field-label mt-auto pt-8">Business owner</p><p class="mt-2 text-sm leading-6 text-base-600">Built, operated, and sold a Raleigh service business.</p></article>
+        <article class="flex min-h-52 flex-col bg-[var(--brand-paper)] p-6"><div class="flex h-14 items-center"><Image src={stashLogo} alt="Stash" width={145} densities={[1, 2]} quality={95} class="h-auto w-36" /></div><p class="field-label mt-auto pt-8">Growth marketing</p><p class="mt-2 text-sm leading-6 text-base-600">Messaging, journeys, product decisions, and acquisition.</p></article>
       </div>
     </Wrapper>
   </section>
