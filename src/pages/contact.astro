@@ -4,71 +4,81 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <BaseLayout
-  pageTitle="Work with Danny Sullivan — Raleigh AI Guy"
-  pageDescription="Tell Danny where work is taking too long or creating delays. Find the right next step: an AI assessment, a focused improvement, or ongoing support."
+  pageTitle="Apply for a One-Week Business Build — Raleigh AI Guy"
+  pageDescription="You do not need to know the exact opportunity. Share a little about your business and Danny will help uncover the best problem to solve on your first call."
 >
   <section>
-    <Wrapper variant="wide" class="py-16 sm:py-24 lg:py-28">
-      <div class="border-t border-black/10 pt-6">
-        <div class="grid gap-6 sm:grid-cols-[1fr_.75fr] sm:items-end sm:gap-12">
-          <div>
-            <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Work with me</p>
-            <h1 class="font-editorial mt-6 max-w-3xl text-5xl font-medium leading-[.95] tracking-[-0.045em] sm:text-7xl">What is taking too much time—or creating too much delay?</h1>
+    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>One-week build application</p>
+          <h1 class="font-editorial mt-6 text-5xl font-medium leading-[.92] tracking-[-.045em] sm:text-7xl">You bring the business. We’ll find the problem together.</h1>
+          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">You do not need an AI idea, a technical plan, or even a perfectly defined pain point. Tell me what feels harder than it should. On the call, I’ll ask questions and help uncover the opportunity with the strongest potential return.</p>
+          <div class="mt-8 border-l-2 border-[var(--brand-orange)] pl-5">
+            <p class="font-semibold">If you qualify</p>
+            <p class="mt-2 text-sm leading-6 text-base-600">On our first call, we choose one focused opportunity. Then I take on the initial risk and build a working proof of value in one week. You invest in the full system only after you see what it can save or earn.</p>
           </div>
-          <p class="max-w-lg text-sm leading-6 text-base-500 sm:pb-1">Tell me where you are trying to go. I’ll read it personally and reply with the most useful next step.</p>
+          <p class="font-utility mt-8 text-[.62rem] uppercase tracking-[.1em] text-base-500">No assessment fee · No build fee · No obligation</p>
         </div>
 
-        <form name="work-with-me" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website" class="mt-10 border-y border-black/10 py-7 sm:mt-12 sm:py-9">
-          <input type="hidden" name="form-name" value="work-with-me" />
-          <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
+        <div class="border-t border-black/15 pt-7 lg:col-span-7">
+          <form name="one-week-build" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
+            <input type="hidden" name="form-name" value="one-week-build" />
+            <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
 
-          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <label class="intake-label">Name<input class="intake-field" type="text" name="name" autocomplete="name" placeholder="Your name" required /></label>
-            <label class="intake-label">Work email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
-            <label class="intake-label sm:col-span-2 lg:col-span-1">Company <span class="font-normal text-base-400">(optional)</span><input class="intake-field" type="text" name="company" autocomplete="organization" placeholder="Business name" /></label>
-          </div>
-
-          <fieldset class="mt-8">
-            <legend class="intake-label">What sounds closest to what you need?</legend>
-            <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="assessment" required /><span>Assessment · $997</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="focused" /><span>One workflow · $2,000</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="partner" /><span>Ongoing · $2k–$5k/mo</span></label>
-              <label class="intake-choice"><input class="peer sr-only" type="radio" name="service" value="unsure" /><span>Not sure yet</span></label>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="intake-label">Name<input class="intake-field" type="text" name="name" autocomplete="name" placeholder="Your name" required /></label>
+              <label class="intake-label">Work email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
+              <label class="intake-label sm:col-span-2">Company<input class="intake-field" type="text" name="company" autocomplete="organization" placeholder="Business name" required /></label>
             </div>
-          </fieldset>
 
-          <div class="mt-8 grid gap-5 lg:grid-cols-2">
-            <label class="intake-label">Where does work pile up?
-              <textarea class="intake-field intake-textarea" name="goal" rows="4" maxlength="1800" placeholder="A repeated task, slow handoff, missed follow-up, or decision that takes too long…" required></textarea>
-            </label>
-            <label class="intake-label">What happens when it is slow, inconsistent, or missed?
-              <textarea class="intake-field intake-textarea" name="business_impact" rows="4" maxlength="1400" placeholder="Lost time, delayed revenue, customer frustration, rework…" required></textarea>
-            </label>
-            <label class="intake-label">Who is involved? <span class="font-normal text-base-400">(optional)</span>
-              <textarea class="intake-field intake-textarea" name="people_involved" rows="3" maxlength="1000" placeholder="Which roles or team members touch the work?"></textarea>
-            </label>
-            <label class="intake-label">What have you tried? <span class="font-normal text-base-400">(optional)</span>
-              <textarea class="intake-field intake-textarea" name="past_attempts" rows="4" maxlength="1200" placeholder="Tools, experiments, or nothing yet"></textarea>
-            </label>
-          </div>
+            <div class="mt-7 grid gap-5 sm:grid-cols-2">
+              <label class="intake-label">How many people work in the business?
+                <select class="intake-field" name="team_size" required>
+                  <option value="" selected disabled>Choose a range</option>
+                  <option>Just me</option><option>2–5</option><option>6–15</option><option>16–50</option><option>51+</option>
+                </select>
+              </label>
+              <label class="intake-label">Approximate annual revenue
+                <select class="intake-field" name="revenue" required>
+                  <option value="" selected disabled>Choose a range</option>
+                  <option>Under $250k</option><option>$250k–$1m</option><option>$1m–$5m</option><option>$5m–$10m</option><option>$10m+</option><option>Prefer not to say</option>
+                </select>
+              </label>
+            </div>
 
-          <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <button type="submit" class="site-cta">Find the right next step →</button>
-            <p class="text-xs leading-5 text-base-400">No sales sequence. You’ll hear directly from me.</p>
-          </div>
-        </form>
+            <div class="mt-7 grid gap-5 sm:grid-cols-2">
+              <label class="intake-label">Where do you feel the most friction?
+                <select class="intake-field" name="friction" required>
+                  <option value="" selected disabled>Choose the closest fit</option>
+                  <option>Repetitive admin and busywork</option><option>Sales, leads, and follow-up</option><option>Customer service and communication</option><option>Marketing and content</option><option>Scheduling, handoffs, and operations</option><option>Reporting and finding information</option><option>I’m not sure yet</option>
+                </select>
+              </label>
+              <label class="intake-label">How much time could better systems give back?
+                <select class="intake-field" name="hours_saved" required>
+                  <option value="" selected disabled>A rough estimate is fine</option>
+                  <option>Under 5 hours per week</option><option>5–10 hours per week</option><option>10–20 hours per week</option><option>20+ hours per week</option><option>I don’t know yet</option>
+                </select>
+              </label>
+              <label class="intake-label sm:col-span-2">If I show you clear time or money savings, are you ready to invest monthly?
+                <select class="intake-field" name="readiness" required>
+                  <option value="" selected disabled>Choose the honest answer</option>
+                  <option>Yes — I’m ready now</option><option>Yes — within the next 3 months</option><option>Possibly — it depends on the value</option><option>No — I’m only exploring</option>
+                </select>
+              </label>
+            </div>
 
-        <p class="mt-6 text-sm text-base-500">Prefer email? <a href="mailto:hello@raleighaiguy.com" class="font-medium text-black underline decoration-black/20 underline-offset-4 hover:decoration-black">hello@raleighaiguy.com</a></p>
+            <label class="intake-label mt-7">Anything you want me to know? <span class="font-normal text-base-400">(optional)</span>
+              <textarea class="intake-field min-h-24 resize-y" name="context" rows="3" maxlength="800" placeholder="Share a specific frustration or goal if you have one. It is completely fine to leave this blank."></textarea>
+            </label>
+
+            <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <button type="submit" class="site-cta">See if my business qualifies →</button>
+              <p class="text-xs leading-5 text-base-400">I review every application myself. No sales sequence.</p>
+            </div>
+          </form>
+        </div>
       </div>
     </Wrapper>
   </section>
 </BaseLayout>
-
-<script>
-  const requestedService = new URLSearchParams(window.location.search).get("service");
-  const requestedChoice = requestedService
-    ? document.querySelector<HTMLInputElement>(`input[name="service"][value="${CSS.escape(requestedService)}"]`)
-    : null;
-  if (requestedChoice) requestedChoice.checked = true;
-</script>

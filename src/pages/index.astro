@@ -1,203 +1,160 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import OfferLadder from "@/components/global/OfferLadder.astro";
-import gardenImage from "@/images/projects/garden-art-proof-homepage.png";
 import zimZoomImage from "@/images/projects/zimzoom-proof-homepage.png";
-import backToTheStartImage from "@/images/projects/back-to-the-start-website.png";
-import southernRevelryImage from "@/images/projects/southern-revelry-website.png";
-import popstarWebsiteImage from "@/images/projects/popstar-photobooths-website.png";
 import profileImage from "../../danny.jpeg";
 
-const posts = (await getCollection("posts"))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 2);
+const outcomes = [
+  ["Make more", "Respond faster, follow up consistently, and create room for more customers."],
+  ["Do less busywork", "Take repeated admin, handoffs, and copy-and-paste work off your plate."],
+  ["Get time back", "Give yourself and your team more time for the work only people can do."],
+];
 
-const caseStudies = [
-  {
-    label: "Focused improvement",
-    title: "Raleigh landscaping SEO system",
-    description: "I built the company’s new website and an ongoing SEO system that turns real expertise, project photos, and local search data into a repeatable path to new inquiries.",
-    result: "18 useful pages published, live measurement in place, and early rankings moving into view.",
-    href: "/projects/garden-art-landscapes/",
-    image: gardenImage,
-    alt: "Garden & Art Landscapes homepage featuring a lush Raleigh garden and the headline Landscapes with a point of view.",
-  },
-  {
-    label: "Ongoing AI partnership",
-    title: "ZimZoom Photo Booth",
-    description: "An ongoing partnership to find and fix operational friction—starting with inbox triage, then expanding into the website, customer journey, and day-to-day work.",
-    result: "We work through one real bottleneck at a time, building useful systems and improving how the business runs.",
-    href: "/projects/zimzoom-photo-booth/",
-    secondaryHref: "/blog/posts/create-first-claude-skill-organize-inbox/",
-    secondaryLabel: "See the inbox workflow",
-    image: zimZoomImage,
-    alt: "ZimZoom Photo Booth homepage featuring celebrating guests and the headline Extraordinary Photo Booth Experiences.",
-  },
-  {
-    label: "Website + ongoing growth",
-    title: "Back to the Start",
-    description: "I built the website for this Coldplay tribute band and continue working with the team to drive qualified traffic and increase booking opportunities through useful content.",
-    result: "A distinctive booking-focused site backed by an ongoing content and traffic partnership.",
-    href: "https://backtothestart.band/",
-    external: true,
-    image: backToTheStartImage,
-    alt: "Back to the Start website featuring the Coldplay tribute band performing on stage.",
-  },
-  {
-    label: "Ongoing growth partnership",
-    title: "Southern Revelry",
-    description: "An ongoing partnership for a Texas photo booth company—streamlining how the business works while strengthening search visibility and building content that supports more qualified inquiries.",
-    result: "Website, SEO, content, and operational improvements working together around growth and bookings.",
-    href: "https://southernrevelrytx.com/",
-    external: true,
-    image: southernRevelryImage,
-    alt: "Southern Revelry website featuring a group posing in front of a photo booth backdrop.",
-  },
-  {
-    label: "Built, grown, and sold",
-    title: "Popstar Photo Booths",
-    description: "I built and operated this Raleigh service business using the same practical growth approach I bring to client work: a conversion-focused website, local SEO, useful content, and automations supporting Google Ads and day-to-day operations.",
-    result: "A firsthand test of the systems—not a client experiment. I grew the business and ultimately sold it.",
-    href: "https://popstarphotobooths.com/",
-    external: true,
-    image: popstarWebsiteImage,
-    alt: "Popstar Photo Booths website featuring wedding guests celebrating in a photo booth.",
-  },
+const steps = [
+  ["Find the leverage", "On our first call, I learn how the business works and find the best place to save time or make money. You do not need to diagnose it first."],
+  ["Build the proof", "If you qualify, I build a focused working version in one week—enough to show the opportunity before you make a larger investment."],
+  ["See the return", "You see the system in action and what it saves or earns. Then you decide whether we keep improving it together each month."],
+];
+
+const fitSignals = [
+  "Repeated work is taking at least 5 hours a week",
+  "Faster follow-up or more capacity could create real revenue",
+  "You can give me access to understand and test the work",
+  "You are ready to invest monthly once the value is visible",
 ];
 ---
 
 <BaseLayout
-  pageTitle="Raleigh AI Guy — Practical AI systems for small businesses"
-  pageDescription="Danny Sullivan teaches Raleigh small businesses how to use AI in real work, then helps build the systems worth keeping."
+  pageTitle="Make More, Do Less Busywork, and Get Time Back — Raleigh AI Guy"
+  pageDescription="Danny Sullivan builds practical business systems that increase capacity, reduce busywork, and give owners time back. See a working proof of value before you invest."
 >
   <section class="overflow-hidden">
-    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
-      <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-        <div class="field-reveal lg:col-span-9">
-          <p class="field-label">Danny Sullivan · Raleigh, NC</p>
-          <h1 class="font-editorial mt-6 max-w-4xl text-[clamp(3.5rem,8vw,7.2rem)] font-medium leading-[.88] tracking-[-0.055em] text-black">
-            Make AI useful.<br /><em class="font-normal text-[var(--brand-orange)]">Then make it yours.</em>
+    <Wrapper variant="wide" class="py-8 sm:py-14 lg:py-20">
+      <div class="grid min-w-0 items-end gap-8 lg:grid-cols-12 lg:gap-14">
+        <div class="field-reveal relative min-w-0 lg:col-span-9">
+          <div class="pr-20 lg:pr-0">
+            <p class="field-label flex max-w-[13rem] items-center gap-2 sm:max-w-none sm:whitespace-nowrap"><span class="size-2 shrink-0 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Danny Sullivan · Raleigh AI Guy</p>
+            <p class="font-utility mt-2 text-[.6rem] uppercase tracking-[.1em] text-base-500">Practical systems for small businesses</p>
+          </div>
+          <div class="absolute right-2 top-0 w-16 lg:hidden">
+            <div class="absolute -right-2 -top-2 size-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
+            <Image src={profileImage} alt="Danny Sullivan" widths={[128, 192]} sizes="64px" loading="eager" class="relative aspect-square w-full object-cover grayscale" />
+          </div>
+
+          <h1 class="font-editorial mt-5 max-w-5xl text-[clamp(2.5rem,7vw,5.8rem)] font-medium leading-[.9] tracking-[-.05em] text-black sm:mt-6">
+            Make more money.<br />Do less busywork.<br /><em class="font-normal text-[var(--brand-orange)]">Get your time back.</em>
           </h1>
-          <p class="mt-8 max-w-xl text-lg leading-8 text-base-600 sm:text-xl">
-            Find where AI can recover meaningful time, improve customer response, or remove operational friction—then test the smallest solution worth keeping.
+          <p class="font-editorial mt-4 max-w-4xl text-[clamp(1.65rem,3.6vw,3.2rem)] leading-[1.02] tracking-[-.03em] text-black sm:mt-6">
+            I build the proof first. You invest after you see the value.
           </p>
-          <div class="mt-8 flex flex-wrap items-center gap-5">
-            <a href="/ai-opportunity-scorecard/" class="site-cta">What’s your AIQ? →</a>
-            <a href="/services/" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">See how I help →</a>
+          <p class="mt-4 max-w-xl text-base leading-6 text-base-600 sm:mt-6 sm:text-lg sm:leading-8">We find the best opportunity on our first call. If you qualify, I build the working proof in one week.</p>
+          <div class="mt-5 flex flex-col items-start gap-3 min-[420px]:flex-row min-[420px]:items-center sm:mt-7 sm:gap-5">
+            <a href="/contact/" class="site-cta">See if your business qualifies →</a>
+            <a href="#how-it-works" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">How it works</a>
           </div>
+          <p class="font-utility mt-3 max-w-full text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500 sm:mt-5 sm:text-[.64rem]">No assessment fee · No upfront build fee · No obligation</p>
         </div>
 
-        <div class="field-reveal field-reveal-delay relative w-40 lg:col-span-3 lg:w-full lg:max-w-[17rem] lg:justify-self-end">
+        <div class="field-reveal field-reveal-delay relative hidden w-full max-w-[17rem] lg:col-span-3 lg:block lg:justify-self-end">
           <div class="absolute -right-3 -top-3 h-full w-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
-          <Image
-            src={profileImage}
-            alt="Danny Sullivan"
-            widths={[480, 720, 960]}
-            sizes="(min-width: 1024px) 272px, 160px"
-            loading="eager"
-            class="relative aspect-square w-full object-cover grayscale"
-          />
-          <p class="font-utility absolute -bottom-4 left-3 whitespace-nowrap bg-[var(--brand-paper)] px-3 py-2 text-[.58rem] uppercase tracking-[.1em]">Teacher · Builder · Owner</p>
+          <Image src={profileImage} alt="Danny Sullivan" widths={[480, 720, 960]} sizes="(min-width: 1024px) 272px, 160px" loading="eager" class="relative aspect-square w-full object-cover grayscale" />
+          <p class="font-utility absolute -bottom-4 left-3 whitespace-nowrap bg-[var(--brand-paper)] px-3 py-2 text-[.58rem] uppercase tracking-[.1em]">You run it. I improve it.</p>
         </div>
       </div>
     </Wrapper>
   </section>
 
-  <section class="border-y border-black/10 bg-[var(--brand-surface-soft)]">
-    <Wrapper variant="wide" class="py-14 sm:py-20">
-      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-6">
-          <p class="field-label">The real starting point</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.98] tracking-[-.04em] sm:text-6xl">You don’t need another list of AI tools.</h2>
-          <p class="mt-6 max-w-xl text-base leading-7 text-base-600">You are busy running the business. The hard part is not finding more software—it is knowing which repeated task, delay, or customer handoff is valuable enough to improve first.</p>
-        </div>
-        <div class="lg:col-span-6">
-          <ul class="border-t border-black/15">
-            <li class="border-b border-black/15 py-5 text-base font-semibold">Work keeps piling up in the same place.</li>
-            <li class="border-b border-black/15 py-5 text-base font-semibold">The team is experimenting, but results are inconsistent.</li>
-            <li class="border-b border-black/15 py-5 text-base font-semibold">You cannot tell which AI idea is actually worth the effort.</li>
-            <li class="border-b border-black/15 py-5 text-base font-semibold">You want progress without buying a complicated system too soon.</li>
-          </ul>
-          <div class="mt-7 flex flex-wrap items-center gap-5">
-            <a href="/ai-opportunity-assessment/" class="site-cta">Start with the assessment →</a>
-            <a href="/ai-opportunity-scorecard/" class="text-sm font-semibold underline decoration-black/20 underline-offset-4">Or check your AIQ →</a>
+  <section class="border-y border-black/10 bg-[var(--brand-forest)] text-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-9 sm:py-11">
+      <div class="grid gap-6 sm:grid-cols-3 sm:gap-px sm:bg-white/15">
+        {outcomes.map(([title, body]) => (
+          <div class="border-t border-white/15 pt-5 first:border-t-0 first:pt-0 sm:border-l sm:border-t-0 sm:px-7 sm:pt-0 sm:first:border-l-0 sm:first:pl-0 sm:last:pr-0">
+            <p class="font-editorial text-3xl">{title}</p>
+            <p class="mt-2 text-sm leading-6 text-white/55">{body}</p>
           </div>
-        </div>
-      </div>
-    </Wrapper>
-  </section>
-
-  <OfferLadder surface />
-
-  <section id="selected-work" class="border-t border-black/10 bg-[var(--brand-paper)]">
-    <Wrapper variant="wide" class="py-16 sm:py-24">
-      <div class="flex items-end justify-between gap-6">
-        <div><p class="field-label">Selected work</p><h2 class="font-editorial mt-4 text-4xl leading-none sm:text-5xl">Proof over promises.</h2></div>
-        <a href="/projects/" class="text-sm font-semibold underline decoration-black/20 underline-offset-4">See all work →</a>
-      </div>
-      <div class="mt-14 space-y-20 sm:space-y-28">
-        {caseStudies.map((study, index) => (
-          <article class="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-            <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class:list={["group block lg:col-span-7", index % 2 === 1 && "lg:order-2"]}>
-              <div class="aspect-[36/25] overflow-hidden border border-black/10 bg-white">
-                <Image src={study.image} alt={study.alt} widths={[640, 960, 1280]} sizes="(min-width: 1024px) 650px, 100vw" loading="lazy" class="size-full object-cover object-top transition duration-500 group-hover:scale-[1.015]" />
-              </div>
-            </a>
-            <div class:list={["lg:col-span-5", index % 2 === 1 && "lg:order-1"]}>
-              <p class="field-label">0{index + 1} · {study.label}</p>
-              <h3 class="font-editorial mt-5 text-4xl leading-[1.02] tracking-[-.025em] sm:text-5xl">{study.title}</h3>
-              <p class="mt-5 text-base leading-7 text-base-600">{study.description}</p>
-              <p class="mt-5 border-l-2 border-[var(--brand-orange)] pl-4 text-sm font-semibold leading-6">{study.result}</p>
-              <div class="mt-6 flex flex-wrap gap-x-6 gap-y-3">
-                <a href={study.href} target={study.external ? "_blank" : undefined} rel={study.external ? "noreferrer" : undefined} class="inline-flex text-sm font-semibold underline decoration-black/20 underline-offset-4">{study.external ? "Visit the live site ↗" : "Read the case study →"}</a>
-                {study.secondaryHref && <a href={study.secondaryHref} class="inline-flex text-sm font-semibold text-base-600 underline decoration-black/15 underline-offset-4 hover:text-black">{study.secondaryLabel} →</a>}
-              </div>
-            </div>
-          </article>
         ))}
       </div>
     </Wrapper>
   </section>
 
-  <section class="border-b border-black/10 bg-[var(--brand-surface-soft)]">
-    <Wrapper variant="wide" class="py-12 sm:py-16">
-      <div class="grid gap-7 lg:grid-cols-[1fr_3fr] lg:items-start">
-        <div><p class="field-label">Why Danny</p><h2 class="font-editorial mt-4 text-4xl leading-none">Builder, teacher, owner.</h2></div>
-        <div class="grid gap-px border border-black/10 bg-black/10 sm:grid-cols-3">
-          <p class="bg-[var(--brand-paper)] p-6 text-sm leading-6"><strong class="block text-base">Production AI</strong><span class="text-base-600">Systems with millions in GMV riding on their reliability.</span></p>
-          <p class="bg-[var(--brand-paper)] p-6 text-sm leading-6"><strong class="block text-base">28 courses and labs</strong><span class="text-base-600">Experience turning technical work into practical instruction.</span></p>
-          <p class="bg-[var(--brand-paper)] p-6 text-sm leading-6"><strong class="block text-base">Built and sold locally</strong><span class="text-base-600">Firsthand understanding of what has to earn its keep.</span></p>
+  <section class="bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div class="lg:col-span-5">
+          <p class="field-label">What this looks like · Zim Zoom</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">Every system should show what it saves or earns.</h2>
+          <p class="mt-6 text-base leading-7 text-base-600">Zim Zoom Photo Booth had valuable work spread across a busy inbox, repeated decisions, customer handoffs, and day-to-day admin. We started where better systems could create the clearest return.</p>
+          <p class="mt-5 text-base leading-7 text-base-600">The owner dashboard connects each improvement to hours returned, estimated dollar value, and the work being handled. That makes the monthly value easy to see.</p>
+          <a href="/projects/zimzoom-photo-booth/" class="mt-7 inline-flex text-sm font-semibold underline decoration-black/20 underline-offset-4">Read the Zim Zoom story →</a>
+        </div>
+
+        <div class="lg:col-span-7">
+          <!-- Swap this framework for the approved live dashboard screenshot and verified metrics when supplied. -->
+          <div class="border border-black/15 bg-[var(--brand-ink)] p-3 shadow-[12px_12px_0_var(--brand-orange)] sm:p-5">
+            <div class="flex items-center justify-between gap-5 border-b border-white/15 pb-4">
+              <div><p class="font-utility text-[.6rem] uppercase tracking-[.12em] text-white/45">Owner dashboard</p><p class="mt-1 text-sm font-semibold text-white">Zim Zoom · Value tracker</p></div>
+              <span class="font-utility flex items-center gap-2 text-[.58rem] uppercase tracking-[.1em] text-white/50"><span class="size-2 rounded-full bg-[var(--brand-orange)]"></span>Measurement active</span>
+            </div>
+            <div class="grid gap-3 py-4 sm:grid-cols-3">
+              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Hours returned</p><p class="font-editorial mt-5 text-3xl text-white">Tracked</p><p class="mt-1 text-xs text-white/45">Against the old workflow</p></div>
+              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Value created</p><p class="font-editorial mt-5 text-3xl text-white">Visible</p><p class="mt-1 text-xs text-white/45">Using an agreed baseline</p></div>
+              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Next move</p><p class="font-editorial mt-5 text-3xl text-[var(--brand-orange)]">Clear</p><p class="mt-1 text-xs text-white/45">Every month</p></div>
+            </div>
+            <div class="overflow-hidden border border-white/15 bg-white"><Image src={zimZoomImage} alt="Zim Zoom Photo Booth website, one part of the ongoing customer and operations work" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 620px, 100vw" loading="lazy" class="aspect-[16/9] w-full object-cover object-top" /></div>
+          </div>
         </div>
       </div>
-      <a href="/about/" class="mt-6 inline-flex text-sm font-semibold underline decoration-black/20 underline-offset-4">Read my background →</a>
     </Wrapper>
   </section>
 
-  <section>
+  <section id="how-it-works" class="scroll-mt-6 bg-[var(--brand-paper)]">
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-4"><p class="field-label">From the field notes</p><h2 class="font-editorial mt-4 text-4xl leading-none sm:text-5xl">Practical ideas for doing the work.</h2><a href="/blog/" class="mt-6 inline-flex text-sm font-semibold underline decoration-black/20 underline-offset-4">See all writing →</a></div>
-        <div class="border-t border-black/15 lg:col-span-8">
-          {posts.map((post, index) => (
-            <a href={`/blog/posts/${post.id}`} class="group grid gap-3 border-b border-black/15 py-6 sm:grid-cols-[3rem_1fr_auto] sm:items-center">
-              <span class="field-label text-[var(--brand-orange)]">0{index + 1}</span>
-              <span class="text-lg font-semibold group-hover:text-[var(--brand-orange)]">{post.data.title}</span>
-              <span class="font-utility text-[.62rem] uppercase tracking-[.08em] text-base-500">{post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
-            </a>
+        <div class="lg:col-span-4">
+          <p class="field-label">The offer</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">One call. One week. Clear value.</h2>
+          <p class="mt-6 text-sm leading-6 text-base-600">You do not need an AI idea or a perfectly defined problem. That is what the first call is for.</p>
+        </div>
+        <ol class="border-t border-black/15 lg:col-span-8">
+          {steps.map(([title, body], index) => (
+            <li class="grid gap-4 border-b border-black/15 py-6 sm:grid-cols-[3rem_11rem_1fr] sm:gap-6">
+              <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="font-semibold">{title}</h3>
+              <p class="text-sm leading-6 text-base-600">{body}</p>
+            </li>
           ))}
+        </ol>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label">Who qualifies</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">Saving time should create real money.</h2>
+          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">I take on the risk of the first build only for businesses where a useful system can create clear ongoing value.</p>
+        </div>
+        <div class="lg:col-span-7">
+          <ul class="border-t border-black/15">
+            {fitSignals.map((signal) => <li class="grid grid-cols-[1.5rem_1fr] gap-4 border-b border-black/15 py-5 text-base font-semibold"><span class="text-[var(--brand-orange)]">✓</span><span>{signal}</span></li>)}
+          </ul>
+          <div class="mt-8 flex flex-wrap items-center gap-5">
+            <a href="/contact/" class="site-cta">See if you qualify →</a>
+            <p class="max-w-sm text-xs leading-5 text-base-500">A short application. Mostly multiple choice. Reviewed personally by me.</p>
+          </div>
         </div>
       </div>
     </Wrapper>
   </section>
 
   <section class="bg-[var(--brand-orange)]">
-    <Wrapper variant="wide" class="py-14 sm:py-18">
+    <Wrapper variant="wide" class="py-14 sm:py-20">
       <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
-        <div><p class="field-label text-black/60">Not sure what you need?</p><h2 class="font-editorial mt-4 max-w-3xl text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl">That is exactly what the assessment is for.</h2></div>
-        <div class="flex flex-wrap gap-4 sm:justify-end"><a href="/ai-opportunity-assessment/" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">See the assessment →</a><a href="/ai-opportunity-scorecard/" class="inline-flex min-h-12 items-center text-sm font-semibold underline decoration-black/30 underline-offset-4">Check your AIQ →</a></div>
+        <div><p class="field-label text-black/60">Make more without doing more</p><h2 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Let’s find the system that gives your business leverage.</h2><p class="mt-5 max-w-2xl text-sm leading-6 text-black/70">I build a focused proof of value in one week. You see what it can save or earn before investing in the full system and monthly partnership.</p></div>
+        <a href="/contact/" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Apply for a proof of value →</a>
       </div>
     </Wrapper>
   </section>

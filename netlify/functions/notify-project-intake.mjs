@@ -20,17 +20,38 @@ export default {
   async formSubmitted(event) {
     const data = event.data ?? {};
     const formName = clean(data["form-name"] ?? data.form_name, "");
+    const isOneWeekBuild = formName === "one-week-build" || Boolean(data.friction && data.hours_saved && data.readiness && data.email);
     const isWorkWithMe = formName === "work-with-me" || Boolean(data.service && data.goal && data.email);
     const isAssessment = Boolean(data.typical_day && data.magic_wand && data.email);
 
-    if (!isWorkWithMe && !isAssessment) return;
+    if (!isOneWeekBuild && !isWorkWithMe && !isAssessment) return;
 
     const webhookUrl = process.env.SLACK_INTAKE_WEBHOOK_URL;
     if (!webhookUrl) throw new Error("SLACK_INTAKE_WEBHOOK_URL is not configured");
 
     const name = clean(data.name, "Someone");
     const company = clean(data.company, "No company provided");
-    const payload = isWorkWithMe ? {
+    const payload = isOneWeekBuild ? {
+      text: `New one-week build application from ${name} (${company})`,
+      blocks: [
+        { type: "header", text: { type: "plain_text", text: "New one-week build application", emoji: true } },
+        {
+          type: "section",
+          fields: [
+            { type: "mrkdwn", text: `*From*\n${truncate(name, 250)}` },
+            { type: "mrkdwn", text: `*Company*\n${truncate(company, 250)}` },
+            { type: "mrkdwn", text: `*Email*\n${truncate(data.email, 250)}` },
+            { type: "mrkdwn", text: `*Team size*\n${truncate(data.team_size, 250)}` },
+            { type: "mrkdwn", text: `*Annual revenue*\n${truncate(data.revenue, 250)}` },
+            { type: "mrkdwn", text: `*Possible time returned*\n${truncate(data.hours_saved, 250)}` },
+            { type: "mrkdwn", text: `*Readiness*\n${truncate(data.readiness, 250)}` },
+          ],
+        },
+        { type: "divider" },
+        section("Where they feel the most friction", data.friction),
+        section("Optional context", data.context),
+      ],
+    } : isWorkWithMe ? {
       text: `New work-with-me inquiry from ${name} (${company})`,
       blocks: [
         { type: "header", text: { type: "plain_text", text: "New work-with-me inquiry", emoji: true } },

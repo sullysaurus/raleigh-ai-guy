@@ -189,7 +189,7 @@ const questions = [
           <p data-form-status class="mt-4 hidden text-right text-sm text-base-600" role="status"></p>
         </form>
 
-        <noscript><p class="mt-8 border border-black/15 bg-[var(--brand-paper)] p-5 text-sm leading-6">This interactive quiz requires JavaScript. You can still request an honest workflow review by emailing <a class="font-semibold underline" href="mailto:hello@raleighaiguy.com?subject=AIQ%20workflow%20review">hello@raleighaiguy.com</a>.</p></noscript>
+        <noscript><p class="mt-8 border border-black/15 bg-[var(--brand-paper)] p-5 text-sm leading-6">This interactive quiz requires JavaScript. You can still apply for a one-week build by emailing <a class="font-semibold underline" href="mailto:hello@raleighaiguy.com?subject=One-week%20build%20application">hello@raleighaiguy.com</a>.</p></noscript>
       </div>
     </Wrapper>
   </section>
@@ -212,7 +212,7 @@ const questions = [
           </div>
           <p class="mt-8 max-w-2xl text-sm leading-6 text-white/50">Your AIQ is a practical snapshot of how your business currently uses AI—not a judgment of your team’s intelligence or potential.</p>
           <div class="mt-8 flex flex-wrap gap-6">
-            <a data-result-cta href="/ai-opportunity-assessment/" class="site-cta">See how the assessment works →</a>
+            <a data-result-cta href="/contact/" class="site-cta">See if your business qualifies →</a>
             <button type="button" data-retake class="min-h-11 text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">Score another workflow</button>
           </div>
         </div>
@@ -297,9 +297,9 @@ const questions = [
       }, 0);
       var score = Math.round((rawScore / (totalQuestions * 3)) * 100);
       var result = score < 25
-        ? { title: 'AI Curious', copy: 'Your next step is choosing one real business problem—not another tool. Curiosity becomes useful when it has a specific job to do.', href: '/ai-opportunity-assessment/', cta: 'See how the assessment works →' }
+        ? { title: 'AI Curious', copy: 'Your next step is uncovering one real business problem—not choosing another tool. Curiosity becomes useful when it has a specific job to do.', href: '/contact/', cta: 'See if your business qualifies →' }
         : score < 50
-          ? { title: 'AI Experimenter', copy: 'You have activity, but useful experiments still depend on individuals. The next gain comes from turning one promising test into a repeatable practice.', href: '/ai-opportunity-assessment/', cta: 'Find the right workflow to improve →' }
+          ? { title: 'AI Experimenter', copy: 'You have activity, but useful experiments still depend on individuals. The next gain comes from turning one promising test into a repeatable practice.', href: '/contact/', cta: 'Uncover the right workflow →' }
           : score < 75
             ? { title: 'AI Operator', copy: 'You have promising practices. Stronger measurement, shared standards, and clearer ownership can turn scattered wins into business capability.', href: '/services/#focused-improvement', cta: 'Plan a focused improvement →' }
             : { title: 'AI Builder', copy: 'You are ready to scale proven workflows with stronger systems and oversight. Keep the focus on measurable outcomes and team ownership.', href: '/services/#ongoing-partner', cta: 'Explore an ongoing partnership →' };
