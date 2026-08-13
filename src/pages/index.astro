@@ -33,27 +33,20 @@ const fitSignals = [
     <Wrapper variant="wide" class="py-8 sm:py-14 lg:py-20">
       <div class="grid min-w-0 items-end gap-8 lg:grid-cols-12 lg:gap-14">
         <div class="field-reveal relative min-w-0 lg:col-span-9">
-          <div class="pr-20 lg:pr-0">
-            <p class="field-label flex max-w-[13rem] items-center gap-2 sm:max-w-none sm:whitespace-nowrap"><span class="size-2 shrink-0 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Danny Sullivan · Raleigh AI Guy</p>
+          <div class="hidden lg:block">
+            <p class="field-label flex items-center gap-2 whitespace-nowrap"><span class="size-2 shrink-0 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Danny Sullivan · Raleigh AI Guy</p>
             <p class="font-utility mt-2 text-[.6rem] uppercase tracking-[.1em] text-base-500">Practical systems for small businesses</p>
           </div>
-          <div class="absolute right-2 top-0 w-16 lg:hidden">
-            <div class="absolute -right-2 -top-2 size-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
-            <Image src={profileImage} alt="Danny Sullivan" widths={[128, 192]} sizes="64px" loading="eager" class="relative aspect-square w-full object-cover grayscale" />
-          </div>
 
-          <h1 class="font-editorial mt-5 max-w-5xl text-[clamp(2.5rem,7vw,5.8rem)] font-medium leading-[.9] tracking-[-.05em] text-black sm:mt-6">
+          <h1 class="font-editorial max-w-5xl text-[clamp(2.5rem,7vw,5.8rem)] font-medium leading-[.9] tracking-[-.05em] text-black lg:mt-6">
             Make more money.<br />Do less busywork.<br /><em class="font-normal text-[var(--brand-orange)]">Get your time back.</em>
           </h1>
-          <p class="font-editorial mt-4 max-w-4xl text-[clamp(1.65rem,3.6vw,3.2rem)] leading-[1.02] tracking-[-.03em] text-black sm:mt-6">
-            I build the proof first. You invest after you see the value.
-          </p>
-          <p class="mt-4 max-w-xl text-base leading-6 text-base-600 sm:mt-6 sm:text-lg sm:leading-8">We find the best opportunity on our first call. If you qualify, I build the working proof in one week.</p>
-          <div class="mt-5 flex flex-col items-start gap-3 min-[420px]:flex-row min-[420px]:items-center sm:mt-7 sm:gap-5">
+          <p class="mt-6 max-w-2xl text-lg leading-7 text-base-600 sm:text-xl sm:leading-8 lg:mt-8">On our first call, we find the best opportunity. If you qualify, I build a working proof in one week—so you see the value before you invest.</p>
+          <div class="mt-6 flex flex-col items-start gap-3 min-[420px]:flex-row min-[420px]:items-center sm:mt-7 sm:gap-5">
             <a href="/contact/" class="site-cta">See if your business qualifies →</a>
-            <a href="#how-it-works" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">How it works</a>
+            <a href="#how-it-works" class="hidden text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black sm:block">How it works</a>
           </div>
-          <p class="font-utility mt-3 max-w-full text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500 sm:mt-5 sm:text-[.64rem]">No assessment fee · No upfront build fee · No obligation</p>
+          <p class="font-utility mt-4 max-w-full text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500 sm:mt-5 sm:text-[.64rem]">No upfront build fee · No obligation</p>
         </div>
 
         <div class="field-reveal field-reveal-delay relative hidden w-full max-w-[17rem] lg:col-span-3 lg:block lg:justify-self-end">
