@@ -40,7 +40,13 @@ const fitSignals = [
           <h1 class="font-editorial max-w-5xl text-[clamp(2.5rem,7vw,5.8rem)] font-medium leading-[.9] tracking-[-.05em] text-black lg:mt-6">
             Make more money.<br />Do less busywork.<br /><em class="font-normal text-[var(--brand-orange)]">Get your time back.</em>
           </h1>
-          <p class="mt-6 max-w-2xl text-lg leading-7 text-base-600 sm:text-xl sm:leading-8 lg:mt-8">We find the best opportunity on our first call. If you qualify, I build a working proof in one week—with no upfront build fee. See what it saves, then decide whether to continue monthly.</p>
+          <div class="mt-6 max-w-2xl sm:mt-7 lg:mt-8">
+            <div class="relative float-right mb-2 ml-4 w-16 sm:w-20 lg:hidden">
+              <div class="absolute -right-1.5 -top-1.5 size-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
+              <Image src={profileImage} alt="Danny Sullivan" widths={[128, 192]} sizes="(min-width: 640px) 80px, 64px" loading="eager" class="relative aspect-square w-full object-cover grayscale" />
+            </div>
+            <p class="text-lg leading-7 text-base-600 sm:text-xl sm:leading-8">We find the best opportunity on our first call. If you qualify, I build a working proof in one week—with no upfront build fee. See what it saves, then decide whether to continue monthly.</p>
+          </div>
           <div class="mt-6 flex flex-col items-start gap-3 min-[420px]:flex-row min-[420px]:items-center sm:mt-7 sm:gap-5">
             <a href="/contact/" class="site-cta">See if your business qualifies →</a>
             <a href="#how-it-works" class="hidden text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black sm:block">How it works</a>
