@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-import zimZoomImage from "@/images/projects/zimzoom-proof-homepage.png";
 import profileImage from "../../danny.jpeg";
 
 const outcomes = [
@@ -75,27 +74,18 @@ const fitSignals = [
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
         <div class="lg:col-span-5">
-          <p class="field-label">What this looks like · Zim Zoom</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">Every system should show what it saves or earns.</h2>
-          <p class="mt-6 text-base leading-7 text-base-600">Zim Zoom Photo Booth had valuable work spread across a busy inbox, repeated decisions, customer handoffs, and day-to-day admin. We started where better systems could create the clearest return.</p>
-          <p class="mt-5 text-base leading-7 text-base-600">The owner dashboard connects each improvement to hours returned, estimated dollar value, and the work being handled. That makes the monthly value easy to see.</p>
+          <p class="field-label">Case study · Zim Zoom</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">Four scattered systems. One clear command center.</h2>
+          <p class="mt-6 text-base leading-7 text-base-600">Zim Zoom’s operational data was spread across VSCO, Superhuman Docs/Coda, Slack, and manual team workflows. The owner had to connect events, booth capacity, staffing, payments, metrics, and approvals by hand.</p>
+          <p class="mt-5 text-base leading-7 text-base-600">I built an owner-focused command center in a matter of days. It is projected to return 350–800 hours per year—roughly $25,000–$120,000 in annual productivity value.</p>
           <a href="/projects/zimzoom-photo-booth/" class="mt-7 inline-flex text-sm font-semibold underline decoration-black/20 underline-offset-4">Read the Zim Zoom story →</a>
         </div>
 
         <div class="lg:col-span-7">
-          <!-- Swap this framework for the approved live dashboard screenshot and verified metrics when supplied. -->
-          <div class="border border-black/15 bg-[var(--brand-ink)] p-3 shadow-[12px_12px_0_var(--brand-orange)] sm:p-5">
-            <div class="flex items-center justify-between gap-5 border-b border-white/15 pb-4">
-              <div><p class="font-utility text-[.6rem] uppercase tracking-[.12em] text-white/45">Owner dashboard</p><p class="mt-1 text-sm font-semibold text-white">Zim Zoom · Value tracker</p></div>
-              <span class="font-utility flex items-center gap-2 text-[.58rem] uppercase tracking-[.1em] text-white/50"><span class="size-2 rounded-full bg-[var(--brand-orange)]"></span>Measurement active</span>
-            </div>
-            <div class="grid gap-3 py-4 sm:grid-cols-3">
-              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Hours returned</p><p class="font-editorial mt-5 text-3xl text-white">Tracked</p><p class="mt-1 text-xs text-white/45">Against the old workflow</p></div>
-              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Value created</p><p class="font-editorial mt-5 text-3xl text-white">Visible</p><p class="mt-1 text-xs text-white/45">Using an agreed baseline</p></div>
-              <div class="border border-white/15 p-4"><p class="font-utility text-[.56rem] uppercase tracking-[.1em] text-white/40">Next move</p><p class="font-editorial mt-5 text-3xl text-[var(--brand-orange)]">Clear</p><p class="mt-1 text-xs text-white/45">Every month</p></div>
-            </div>
-            <div class="overflow-hidden border border-white/15 bg-white"><Image src={zimZoomImage} alt="Zim Zoom Photo Booth website, one part of the ongoing customer and operations work" widths={[640, 960, 1280]} sizes="(min-width: 1024px) 620px, 100vw" loading="lazy" class="aspect-[16/9] w-full object-cover object-top" /></div>
+          <div class="border border-black/15 bg-white p-2 shadow-[12px_12px_0_var(--brand-orange)] sm:p-3">
+            <img src="/case-study/01-owner-overview.png" alt="Demo of the Zim Zoom operations command center owner overview using simulated data" width="1440" height="1644" loading="lazy" class="aspect-[4/3] w-full object-cover object-top" />
           </div>
+          <p class="font-utility mt-5 text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500">Command-center demo · Simulated records · No real customer or operational data shown</p>
         </div>
       </div>
     </Wrapper>

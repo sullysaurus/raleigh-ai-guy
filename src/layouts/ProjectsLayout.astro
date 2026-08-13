@@ -13,6 +13,7 @@ const projectImageHeight = typeof projectImage === "string" ? 900 : projectImage
 const isPortraitImage = projectImageHeight > projectImageWidth;
 const imageFrameClass = isPortraitImage ? "bg-[var(--brand-paper)] p-5 sm:p-8" : "bg-[var(--brand-paper)] p-2 sm:p-3";
 const projectImageClass = isPortraitImage ? "mx-auto max-h-[760px] w-auto max-w-full object-contain" : "mx-auto w-full object-contain";
+const caseStudyCover = frontmatter.caseStudyCover;
 const socialImage = await getImage({
   src: projectImage,
   width: 1200,
@@ -43,7 +44,11 @@ const socialImage = await getImage({
           <div class="font-utility mt-6 flex flex-wrap items-center justify-between gap-5 text-[.65rem] uppercase tracking-[.08em] text-base-500"><p>{projectStatus} <time datetime={projectDateTime}>{projectDate}</time></p><a href={frontmatter.live} class="font-sans text-sm font-semibold normal-case tracking-normal text-black underline decoration-black/20 underline-offset-4">Visit project →</a></div>
         </div>
       </div>
-      <div class:list={["mt-10 border border-black/10", imageFrameClass]}><Image width={projectImageWidth} height={projectImageHeight} src={projectImage} alt={frontmatter.image.alt} class={projectImageClass} /></div>
+      {caseStudyCover ? (
+        <div class="mt-10 overflow-hidden border border-black/10 bg-[#f5f5f5] p-2 sm:p-3"><img src={caseStudyCover.url} alt={caseStudyCover.alt} width="1440" height="1644" loading="eager" class="mx-auto w-full object-contain" /></div>
+      ) : (
+        <div class:list={["mt-10 border border-black/10", imageFrameClass]}><Image width={projectImageWidth} height={projectImageHeight} src={projectImage} alt={frontmatter.image.alt} class={projectImageClass} /></div>
+      )}
       <div class="mt-14 grid gap-8 lg:grid-cols-[10rem_minmax(0,46rem)] lg:justify-center lg:gap-14">
         <aside class="field-label"><span class="block text-[var(--brand-orange)]">Project notes</span><span class="mt-3 block normal-case tracking-normal text-base-500">Strategy, decisions, and what changed.</span></aside>
         <div class="prose post-body min-w-0 max-w-none prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-a:text-black prose-strong:text-black"><slot /></div>

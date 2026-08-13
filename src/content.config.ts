@@ -15,6 +15,10 @@ const projects = defineCollection({
         url: image(),
         alt: z.string(),
       }),
+      caseStudyCover: z.object({
+        url: z.string(),
+        alt: z.string(),
+      }).optional(),
     }),
 });
 
