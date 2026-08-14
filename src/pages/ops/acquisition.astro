@@ -372,8 +372,10 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     document.querySelector("#prospect-count")!.textContent = String(prospects.length);
     const smartlead = liveServices.smartlead;
     const smartleadConnected = smartlead?.status === "connected";
-    document.querySelector("#outreach-count")!.textContent = String(smartleadConnected ? Number(smartlead.sent || 0) : count(["Outreach"]));
-    document.querySelector("#reply-count")!.textContent = String(smartleadConnected ? Number(smartlead.replied || 0) : count(["Replied", "Meeting", "Proof", "Customer"]));
+    const pipelineSent = Math.max(prospects.reduce((sum, prospect) => sum + prospect.sent, 0), count(["Outreach", "Replied", "Meeting", "Proof", "Customer"]));
+    const pipelineReplies = count(["Replied", "Meeting", "Proof", "Customer"]);
+    document.querySelector("#outreach-count")!.textContent = String(smartleadConnected ? Math.max(Number(smartlead.sent || 0), pipelineSent) : count(["Outreach"]));
+    document.querySelector("#reply-count")!.textContent = String(smartleadConnected ? Math.max(Number(smartlead.replied || 0), pipelineReplies) : pipelineReplies);
     document.querySelector("#outreach-note")!.textContent = smartleadConnected ? "Emails sent by Smartlead" : "Active sequences";
     document.querySelector("#reply-note")!.textContent = smartleadConnected ? "Smartlead replies" : "Human responses";
     const calendlyMeetings = liveServices.calendly?.status === "connected" ? Number(liveServices.calendly.upcoming || 0) : null;
@@ -393,7 +395,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   }
 
   const serviceLabels: Record<string, (service: ServiceState) => string> = {
-    smartlead: (service) => service.status === "connected" ? `${service.sent || 0} sent · ${service.replied || 0} replies` : statusLabel(service.status),
+    smartlead: (service) => service.status === "connected" ? `${Math.max(Number(service.sent || 0), prospects.reduce((sum, prospect) => sum + prospect.sent, 0), prospects.filter((prospect) => ["Outreach", "Replied", "Meeting", "Proof", "Customer"].includes(prospect.stage)).length)} sent · ${Math.max(Number(service.replied || 0), prospects.filter((prospect) => ["Replied", "Meeting", "Proof", "Customer"].includes(prospect.stage)).length)} replies` : statusLabel(service.status),
     stripe: (service) => service.status === "connected" ? `$${Number(service.mrr || 0).toLocaleString()} MRR` : statusLabel(service.status),
     calendly: (service) => service.status === "connected" ? `${service.upcoming || 0} upcoming` : statusLabel(service.status),
     netlifyForms: (service) => service.status === "connected" ? `${service.leads30d || 0} leads · 30d` : statusLabel(service.status),
@@ -424,7 +426,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     const forms = liveServices.netlifyForms;
     const posthog = liveServices.posthog;
     const parts = [
-      smartlead?.status === "connected" ? `${smartlead.sent || 0} Smartlead sends and ${smartlead.replied || 0} replies` : "",
+      smartlead?.status === "connected" ? `${Math.max(Number(smartlead.sent || 0), prospects.reduce((sum, prospect) => sum + prospect.sent, 0), prospects.filter((prospect) => ["Outreach", "Replied", "Meeting", "Proof", "Customer"].includes(prospect.stage)).length)} Smartlead sends and ${Math.max(Number(smartlead.replied || 0), prospects.filter((prospect) => ["Replied", "Meeting", "Proof", "Customer"].includes(prospect.stage)).length)} replies` : "",
       stripe?.status === "connected" ? `$${Number(stripe.mrr || 0).toLocaleString()} active MRR` : "",
       calendly?.status === "connected" ? `${calendly.upcoming || 0} upcoming calls` : "",
       forms?.status === "connected" ? `${forms.leads30d || 0} form leads in 30 days` : "",
@@ -488,8 +490,8 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   function renderCampaign() {
     const smartlead = liveServices.smartlead;
     if (smartlead?.status === "connected") {
-      const leads = Number(smartlead.leads || 0);
-      const sent = Number(smartlead.sent || 0);
+      const leads = Math.max(Number(smartlead.leads || 0), prospects.filter((prospect) => prospect.campaign).length);
+      const sent = Math.max(Number(smartlead.sent || 0), prospects.reduce((sum, prospect) => sum + prospect.sent, 0), prospects.filter((prospect) => ["Outreach", "Replied", "Meeting", "Proof", "Customer"].includes(prospect.stage)).length);
       const bounced = Number(smartlead.bounced || 0);
       const progress = leads ? Math.min(100, Math.round((sent / leads) * 100)) : 0;
       document.querySelector("#batch-name")!.textContent = String(smartlead.campaignName || "Smartlead campaign");
