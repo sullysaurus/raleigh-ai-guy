@@ -28,7 +28,9 @@ export const handler = async (event) => {
   try {
     const payload = JSON.parse(event.body || "{}");
     const incoming = normalize(payload);
-    if (!incoming.email) return json(400, { error: "Webhook payload is missing a lead email" });
+    // Smartlead's connection test does not include a real lead. Acknowledge it
+    // without writing an activity; production events continue through below.
+    if (!incoming.email) return json(200, { ok: true, test: true });
     const dedupeId = eventId(incoming.email, incoming.type, incoming.at, incoming.campaignId);
     const state = await getState(event);
     if (state.processedEvents.includes(dedupeId)) return json(200, { ok: true, duplicate: true });
