@@ -310,6 +310,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     if (status === "not_configured") return "Needs credential";
     if (status === "tracking_only") return "Tracking only";
     if (status === "planned") return "Planned";
+    if (status === "permission_required") return "Needs read permission";
     if (status === "error") return "Connection error";
     return status || "Unavailable";
   }
@@ -318,7 +319,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
       const card = document.querySelector<HTMLElement>(`[data-service="${name}"]`);
       if (!card) return;
       card.classList.toggle("connected", service.status === "connected");
-      card.classList.toggle("warning", ["not_configured", "tracking_only", "planned"].includes(service.status));
+      card.classList.toggle("warning", ["not_configured", "tracking_only", "planned", "permission_required"].includes(service.status));
       card.classList.toggle("failed", service.status === "error");
       card.querySelector("em")!.textContent = serviceLabels[name]?.(service) || statusLabel(service.status);
     });

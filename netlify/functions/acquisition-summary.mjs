@@ -38,17 +38,22 @@ const monthlyAmount = (item) => {
 
 const stripeSummary = async () => {
   if (!process.env.STRIPE_SECRET_KEY) return { status: "not_configured" };
-  const params = new URLSearchParams({ status: "active", limit: "100" });
-  params.append("expand[]", "data.items.data.price");
-  const data = await requestJson(`https://api.stripe.com/v1/subscriptions?${params}`, {
-    headers: { authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}` },
-  });
-  const subscriptions = Array.isArray(data.data) ? data.data : [];
-  const mrr = subscriptions.reduce(
-    (total, subscription) => total + (subscription.items?.data || []).reduce((sum, item) => sum + monthlyAmount(item), 0),
-    0,
-  );
-  return { status: "connected", mrr: Math.round(mrr / 100), subscriptions: subscriptions.length };
+  try {
+    const params = new URLSearchParams({ status: "active", limit: "100" });
+    params.append("expand[]", "data.items.data.price");
+    const data = await requestJson(`https://api.stripe.com/v1/subscriptions?${params}`, {
+      headers: { authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}` },
+    });
+    const subscriptions = Array.isArray(data.data) ? data.data : [];
+    const mrr = subscriptions.reduce(
+      (total, subscription) => total + (subscription.items?.data || []).reduce((sum, item) => sum + monthlyAmount(item), 0),
+      0,
+    );
+    return { status: "connected", mrr: Math.round(mrr / 100), subscriptions: subscriptions.length };
+  } catch (error) {
+    if (error instanceof Error && /permission denied|required permissions/i.test(error.message)) return { status: "permission_required" };
+    throw error;
+  }
 };
 
 const calendlySummary = async () => {
