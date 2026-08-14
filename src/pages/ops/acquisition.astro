@@ -1,29 +1,6 @@
 ---
 import OpsShell from "@/components/ops/OpsShell.astro";
-import { realtorProspects } from "@/data/realtorProspects";
-
-const statusMap: Record<string, string> = {
-  Research: "Research", "Ready to DM": "Approved", "Invite sent": "Outreach",
-  Connected: "Outreach", "DM sent": "Outreach", "Follow-up due": "Outreach",
-  Replied: "Replied", "Discovery booked": "Meeting", "Free build": "Proof",
-  Nurture: "Nurture", "Not a fit": "Closed",
-};
-const seededProspects = realtorProspects.map((contact) => ({
-  id: contact.id,
-  company: contact.organization,
-  contact: contact.name,
-  email: contact.email,
-  industry: contact.segment || "Real estate",
-  score: contact.fitScore,
-  stage: statusMap[contact.status] || "Research",
-  verified: contact.status === "Ready to DM" || contact.status === "Connected",
-  lastTouch: contact.lastContact,
-  nextAction: contact.nextFollowUp ? "Follow up" : contact.status === "Research" ? "Verify research" : "Review next move",
-  nextActionDate: contact.nextFollowUp,
-  workflow: contact.automationIdea,
-  notes: contact.notes,
-}));
-const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
+const seedJson = "[]";
 ---
 
 <OpsShell
