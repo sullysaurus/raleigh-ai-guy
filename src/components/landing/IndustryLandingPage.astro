@@ -2,6 +2,8 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import type { IndustryLandingPage } from "@/data/industryLandingPages";
+import { Image } from "astro:assets";
+import profileImage from "../../../danny.jpeg";
 
 interface Props {
   page: IndustryLandingPage;
@@ -37,18 +39,31 @@ const steps = [
         </div>
 
         <aside class="field-reveal field-reveal-delay lg:col-span-4">
-          <div class="border border-black/15 bg-[var(--brand-paper)] p-6 shadow-[10px_10px_0_var(--brand-orange)] sm:p-7">
-            <p class="field-label">A typical handoff</p>
-            <ol class="mt-6 space-y-0">
-              {page.workflow.map((item, index) => (
-                <li class="relative flex items-center gap-4 pb-6 last:pb-0">
-                  {index < page.workflow.length - 1 && <span class="absolute left-[.68rem] top-7 h-[calc(100%-1rem)] w-px bg-black/15" aria-hidden="true"></span>}
-                  <span class="relative z-10 grid size-[1.4rem] shrink-0 place-items-center rounded-full border border-black/20 bg-[var(--brand-paper)] font-utility text-[.55rem] text-base-500">{index + 1}</span>
-                  <span class="text-sm font-semibold">{item}</span>
-                </li>
-              ))}
-            </ol>
-            <p class="mt-7 border-t border-black/10 pt-5 text-xs leading-5 text-base-500">The opportunity usually lives between the steps—not inside another disconnected tool.</p>
+          <div class="border border-black/15 bg-[var(--brand-paper)] shadow-[10px_10px_0_var(--brand-orange)]">
+            <figure class="overflow-hidden border-b border-black/15 bg-[var(--brand-paper)]">
+              <Image
+                src={page.heroImage}
+                alt={page.heroImageAlt}
+                widths={[480, 720, 960]}
+                sizes="(min-width: 1024px) 360px, calc(100vw - 3rem)"
+                loading="eager"
+                quality={86}
+                class="aspect-[4/3] h-auto w-full object-cover"
+              />
+            </figure>
+            <div class="p-6 sm:p-7">
+              <p class="field-label">A typical handoff</p>
+              <ol class="mt-6 space-y-0">
+                {page.workflow.map((item, index) => (
+                  <li class="relative flex items-center gap-4 pb-6 last:pb-0">
+                    {index < page.workflow.length - 1 && <span class="absolute left-[.68rem] top-7 h-[calc(100%-1rem)] w-px bg-black/15" aria-hidden="true"></span>}
+                    <span class="relative z-10 grid size-[1.4rem] shrink-0 place-items-center rounded-full border border-black/20 bg-[var(--brand-paper)] font-utility text-[.55rem] text-base-500">{index + 1}</span>
+                    <span class="text-sm font-semibold">{item}</span>
+                  </li>
+                ))}
+              </ol>
+              <p class="mt-7 border-t border-black/10 pt-5 text-xs leading-5 text-base-500">The opportunity usually lives between the steps—not inside another disconnected tool.</p>
+            </div>
           </div>
         </aside>
       </div>
@@ -115,6 +130,47 @@ const steps = [
             </li>
           ))}
         </ol>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="meet-danny" class="scroll-mt-6 border-y border-black/10 bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-14 sm:py-20">
+      <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="relative w-44 sm:w-52 lg:col-span-3 lg:w-full lg:max-w-[14rem]">
+          <div class="absolute -right-3 -top-3 h-full w-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
+          <Image
+            src={profileImage}
+            alt="Danny Sullivan"
+            widths={[176, 352, 528]}
+            sizes="(min-width: 1024px) 224px, 176px"
+            loading="lazy"
+            class="relative aspect-square w-full object-cover grayscale"
+          />
+        </div>
+
+        <div class="lg:col-span-8 lg:col-start-5">
+          <p class="field-label">Who does the work</p>
+          <h2 class="font-editorial mt-5 max-w-3xl text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">You work directly with me.</h2>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600">I’m Danny Sullivan, a Raleigh-based AI product engineer, educator, and former service-business owner. From the first call through the working proof, I handle the questions, the build, and the follow-through myself.</p>
+
+          <div class="mt-8 grid gap-px border border-black/10 bg-black/10 sm:grid-cols-3">
+            <div class="bg-[var(--brand-paper)] p-5">
+              <p class="field-label text-[var(--brand-orange)]">Build</p>
+              <p class="mt-3 text-sm font-semibold leading-6">Production AI systems for real customer experiences</p>
+            </div>
+            <div class="bg-[var(--brand-paper)] p-5">
+              <p class="field-label text-[var(--brand-orange)]">Teach</p>
+              <p class="mt-3 text-sm font-semibold leading-6">28 AI and software courses and labs</p>
+            </div>
+            <div class="bg-[var(--brand-paper)] p-5">
+              <p class="field-label text-[var(--brand-orange)]">Operate</p>
+              <p class="mt-3 text-sm font-semibold leading-6">Built, ran, and sold a Raleigh service business</p>
+            </div>
+          </div>
+
+          <a href="/about/" class="mt-7 inline-flex text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">More about my background →</a>
+        </div>
       </div>
     </Wrapper>
   </section>

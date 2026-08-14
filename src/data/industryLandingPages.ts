@@ -1,3 +1,9 @@
+import type { ImageMetadata } from "astro";
+import specialtyContractorsImage from "@/images/industries/specialty-contractors.jpg";
+import restorationRemediationImage from "@/images/industries/restoration-remediation.jpg";
+import commercialLandscapingImage from "@/images/industries/commercial-landscaping.jpg";
+import propertyManagementImage from "@/images/industries/property-management.jpg";
+
 export interface IndustryLandingPage {
   slug: string;
   name: string;
@@ -5,6 +11,8 @@ export interface IndustryLandingPage {
   eyebrow: string;
   pageTitle: string;
   pageDescription: string;
+  heroImage: ImageMetadata;
+  heroImageAlt: string;
   headline: string;
   headlineAccent: string;
   intro: string;
@@ -28,6 +36,9 @@ export const industryLandingPages: IndustryLandingPage[] = [
     pageTitle: "AI Workflow Automation for Raleigh Specialty Contractors",
     pageDescription:
       "Raleigh AI Guy helps HVAC, plumbing, and electrical contractors recover estimates, reduce office busywork, and build a working proof before they invest.",
+    heroImage: specialtyContractorsImage,
+    heroImageAlt:
+      "Illustrated contractor workflow showing a service estimate moving through customer follow-up to a booked job",
     headline: "Win more of the work",
     headlineAccent: "you already quoted.",
     intro:
@@ -90,6 +101,9 @@ export const industryLandingPages: IndustryLandingPage[] = [
     pageTitle: "AI Workflow Automation for Raleigh Restoration Companies",
     pageDescription:
       "Raleigh AI Guy helps restoration and remediation teams improve intake, job handoffs, documentation, and customer updates with a one-week proof of value.",
+    heroImage: restorationRemediationImage,
+    heroImageAlt:
+      "Illustrated restoration workflow showing an emergency call, property inspection, field documentation, and dispatch",
     headline: "Move urgent jobs faster—",
     headlineAccent: "without more office chaos.",
     intro:
@@ -152,6 +166,9 @@ export const industryLandingPages: IndustryLandingPage[] = [
     pageTitle: "AI Workflow Automation for Raleigh Commercial Landscaping",
     pageDescription:
       "Raleigh AI Guy helps commercial landscaping companies improve field handoffs, enhancement quoting, client reporting, and follow-up with a one-week proof.",
+    heroImage: commercialLandscapingImage,
+    heroImageAlt:
+      "Illustrated commercial landscaping workflow showing a property plan, field observations, and an enhancement proposal",
     headline: "Turn field activity into",
     headlineAccent: "clear next steps.",
     intro:
@@ -214,6 +231,9 @@ export const industryLandingPages: IndustryLandingPage[] = [
     pageTitle: "AI Workflow Automation for Raleigh Property Management",
     pageDescription:
       "Raleigh AI Guy helps property managers reduce maintenance coordination, resident communication, vendor follow-up, and reporting work with a one-week proof.",
+    heroImage: propertyManagementImage,
+    heroImageAlt:
+      "Illustrated property management workflow connecting a resident maintenance request, office team, vendor, and owner update",
     headline: "Keep every request moving—",
     headlineAccent: "without living in the inbox.",
     intro:
