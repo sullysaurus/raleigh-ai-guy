@@ -49,6 +49,12 @@ The function activates sources only when their credentials are present:
 - Smartlead uses `SMARTLEAD_API_KEY` for active campaign, lead, send, reply, bounce, tracking, and daily-limit metrics. Set `SMARTLEAD_CAMPAIGN_IDS` to a comma-separated allowlist when the dashboard should include specific campaigns instead of every active campaign.
 - Netlify deployment health uses the automatic `SITE_ID` and needs no extra token.
 
+Lead records and activity are stored privately with Netlify Blobs through the protected `acquisition-data` function. The dashboard can import active Smartlead campaign leads and refreshes its reply queue automatically every 30 seconds.
+
+For real-time delivery and reply updates, set `SMARTLEAD_WEBHOOK_SECRET` and create a Smartlead webhook for `SENT`, `REPLIED`, `BOUNCED`, and `UNSUBSCRIBED` events at:
+
+`https://raleighaiguy.com/.netlify/functions/smartlead-webhook?token=SMARTLEAD_WEBHOOK_SECRET`
+
 Clay is reserved as the future enrichment layer. The intended flow is Clay → a protected dashboard webhook → the pipeline, followed by Smartlead campaign assignment. Clay recommends webhooks/HTTP actions for this kind of table workflow; no Clay credential is needed until that workflow is created.
 
 Never prefix these server credentials with `PUBLIC_` or expose them in client-side code.

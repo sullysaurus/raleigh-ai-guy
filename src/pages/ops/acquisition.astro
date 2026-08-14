@@ -127,11 +127,25 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     </label>
     <div class="control-actions">
       <button id="import-pipeline" class="button-secondary" type="button">Import</button>
+      <button id="sync-smartlead" class="button-secondary" type="button">Pull Smartlead leads</button>
       <button id="add-prospect" class="button-primary" type="button">Add prospect</button>
     </div>
   </section>
 
-  <p class="privacy-note"><span></span>Prospect edits stay in this browser. Live integrations return aggregate metrics only through a key-protected server function.</p>
+  <p class="privacy-note"><span></span><span id="storage-state">Working locally until the command center is unlocked.</span></p>
+
+  <section class="action-grid" aria-label="Lead response desk">
+    <article class="reply-desk">
+      <header><div><p>Response desk</p><h2>Replies that need a human.</h2></div><strong id="hot-count">0 open</strong></header>
+      <div id="reply-queue" class="reply-queue"></div>
+      <p id="empty-replies" class="empty-desk">No unanswered replies. New Smartlead responses will land here automatically.</p>
+    </article>
+    <article class="activity-desk">
+      <header><div><p>Live wire</p><h2>Recent activity</h2></div><span id="activity-state">Waiting for sync</span></header>
+      <ol id="activity-feed" class="activity-feed"></ol>
+      <p id="empty-activity" class="empty-desk">Activity from Smartlead and your pipeline changes will appear here.</p>
+    </article>
+  </section>
 
   <section class="pipeline-ledger" aria-labelledby="ledger-title">
     <header>
@@ -175,6 +189,29 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     </form>
   </dialog>
 
+  <dialog id="detail-dialog" class="pipeline-dialog detail-dialog">
+    <form id="detail-form" method="dialog">
+      <header><div><p>Account file</p><h2 id="detail-title">Lead details</h2></div><button type="button" data-close-detail aria-label="Close">×</button></header>
+      <input name="id" type="hidden" />
+      <div class="form-grid">
+        <label><span>Company *</span><input name="company" required /></label>
+        <label><span>Contact *</span><input name="contact" required /></label>
+        <label><span>Email</span><input name="email" type="email" /></label>
+        <label><span>Industry</span><input name="industry" /></label>
+        <label><span>Stage</span><select name="stage" data-stage-select></select></label>
+        <label><span>Score</span><input name="score" type="number" min="0" max="100" /></label>
+        <label class="span-two"><span>Workflow hypothesis</span><textarea name="workflow" rows="3"></textarea></label>
+        <label><span>Next move</span><input name="nextAction" /></label>
+        <label><span>Due date</span><input name="nextActionDate" type="date" /></label>
+        <label><span>Monthly revenue</span><input name="mrr" type="number" min="0" /></label>
+        <label><span>Campaign</span><input name="campaign" /></label>
+        <label class="span-two"><span>Notes</span><textarea name="notes" rows="4"></textarea></label>
+      </div>
+      <section id="reply-context" class="reply-context" hidden><p>Latest reply</p><strong id="reply-subject"></strong><blockquote id="reply-body"></blockquote></section>
+      <footer><button id="delete-prospect" type="button" class="button-danger">Delete</button><span></span><button type="button" data-close-detail class="button-secondary">Cancel</button><button type="submit" class="button-primary">Save account</button></footer>
+    </form>
+  </dialog>
+
   <dialog id="connection-dialog" class="pipeline-dialog connection-dialog">
     <form id="connection-form" method="dialog">
       <header><div><p>Private connection</p><h2>Unlock live metrics</h2></div><button type="button" data-close-connection aria-label="Close">×</button></header>
@@ -195,8 +232,10 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     id: string; company: string; contact: string; email: string; industry: string;
     score: number; stage: Stage; verified: boolean; campaign: string; sent: number;
     bounced: boolean; lastTouch: string; nextAction: string; nextActionDate: string;
-    workflow: string; mrr: number; notes: string;
+    workflow: string; mrr: number; notes: string; campaignId: number | null; smartleadId: number | null;
+    replySubject: string; replyBody: string; replyAt: string; source: string; updatedAt: string;
   };
+  type Activity = { id: string; type: string; title: string; detail: string; prospectId?: string; at: string };
   type ServiceState = { status: string; [key: string]: string | number };
   type LiveServices = Record<string, ServiceState>;
 
@@ -209,16 +248,20 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   const prospectDialog = document.querySelector<HTMLDialogElement>("#prospect-dialog")!;
   const importDialog = document.querySelector<HTMLDialogElement>("#import-dialog")!;
   const connectionDialog = document.querySelector<HTMLDialogElement>("#connection-dialog")!;
+  const detailDialog = document.querySelector<HTMLDialogElement>("#detail-dialog")!;
   const prospectForm = document.querySelector<HTMLFormElement>("#prospect-form")!;
   const importForm = document.querySelector<HTMLFormElement>("#import-form")!;
   const connectionForm = document.querySelector<HTMLFormElement>("#connection-form")!;
+  const detailForm = document.querySelector<HTMLFormElement>("#detail-form")!;
   const importJson = document.querySelector<HTMLTextAreaElement>("#import-json")!;
   const toast = document.querySelector<HTMLDivElement>("#pipeline-toast")!;
   const dashboardKey = document.querySelector<HTMLInputElement>("#dashboard-key")!;
   const connectionError = document.querySelector<HTMLParagraphElement>("#connection-error")!;
   let prospects = loadProspects();
+  let activities: Activity[] = [];
   let liveServices: LiveServices = {};
   let toastTimer = 0;
+  let persistTimer = 0;
 
   stages.forEach((stage) => {
     filter.add(new Option(stage, stage));
@@ -235,7 +278,10 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
       verified: Boolean(value.verified), campaign: String(value.campaign || "").trim(), sent: Math.max(0, Number(value.sent || 0)),
       bounced: Boolean(value.bounced), lastTouch: String(value.lastTouch || ""), nextAction: String(value.nextAction || "Research account").trim(),
       nextActionDate: String(value.nextActionDate || ""), workflow: String(value.workflow || "").trim(), mrr: Math.max(0, Number(value.mrr || 0)),
-      notes: String(value.notes || "").trim(),
+      notes: String(value.notes || "").trim(), campaignId: value.campaignId == null ? null : Number(value.campaignId),
+      smartleadId: value.smartleadId == null ? null : Number(value.smartleadId), replySubject: String(value.replySubject || "").trim(),
+      replyBody: String(value.replyBody || "").trim(), replyAt: String(value.replyAt || ""), source: String(value.source || "Manual"),
+      updatedAt: String(value.updatedAt || new Date().toISOString()),
     };
   }
   function loadProspects(): Prospect[] {
@@ -246,17 +292,65 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
       return JSON.parse(seed).map(clean);
     } catch { return []; }
   }
-  function save(message = "Pipeline saved") {
+  function save(message = "Pipeline saved", activity?: Omit<Activity, "id" | "at">) {
     localStorage.setItem(storageKey, JSON.stringify(prospects));
+    if (activity) activities.unshift({ ...activity, id: id(), at: new Date().toISOString() });
     render();
     toast.textContent = message; toast.classList.add("visible");
     window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 1600);
+    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+    if (key) {
+      window.clearTimeout(persistTimer);
+      persistTimer = window.setTimeout(() => persistRemote(key), 350);
+    }
+  }
+  async function persistRemote(key: string) {
+    const state = document.querySelector("#storage-state")!;
+    state.textContent = "Saving to the private command center…";
+    try {
+      const response = await fetch("/.netlify/functions/acquisition-data", { method: "PUT", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ prospects, activities, replace: true }) });
+      if (!response.ok) throw new Error("Save failed");
+      state.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
+    } catch { state.textContent = "Cloud save failed. Your latest edits are still safe in this browser."; }
   }
   function esc(value: string) {
     return value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" })[char]!);
   }
   function due(prospect: Prospect) {
     return Boolean(prospect.nextAction && (!prospect.nextActionDate || prospect.nextActionDate <= new Date().toISOString().slice(0, 10)) && !["Customer", "Closed", "Nurture"].includes(prospect.stage));
+  }
+  function relativeTime(value: string) {
+    const elapsed = Date.now() - Date.parse(value);
+    if (!Number.isFinite(elapsed)) return "Just now";
+    const minutes = Math.max(0, Math.round(elapsed / 60000));
+    if (minutes < 60) return `${minutes || 1}m ago`;
+    const hours = Math.round(minutes / 60);
+    if (hours < 48) return `${hours}h ago`;
+    return `${Math.round(hours / 24)}d ago`;
+  }
+  function renderDesk() {
+    const replies = prospects.filter((prospect) => prospect.stage === "Replied").sort((a, b) => Date.parse(b.replyAt || b.updatedAt) - Date.parse(a.replyAt || a.updatedAt));
+    document.querySelector("#hot-count")!.textContent = `${replies.length} open`;
+    document.querySelector("#reply-queue")!.innerHTML = replies.slice(0, 6).map((prospect) => `<button type="button" data-open-id="${esc(prospect.id)}">
+      <span>${esc(prospect.company.slice(0, 2).toUpperCase())}</span><div><strong>${esc(prospect.contact)} replied</strong><p>${esc(prospect.replySubject || prospect.replyBody || "Open the account to review the response.")}</p></div><em>${relativeTime(prospect.replyAt || prospect.updatedAt)}</em>
+    </button>`).join("");
+    (document.querySelector("#empty-replies") as HTMLElement).hidden = replies.length > 0;
+    document.querySelector("#activity-feed")!.innerHTML = activities.slice(0, 8).map((activity) => `<li><span class="activity-${esc(activity.type)}"></span><div><strong>${esc(activity.title)}</strong><p>${esc(activity.detail)}</p></div><time>${relativeTime(activity.at)}</time></li>`).join("");
+    (document.querySelector("#empty-activity") as HTMLElement).hidden = activities.length > 0;
+    document.querySelector("#activity-state")!.textContent = activities.length ? `${activities.length} recorded events` : "Waiting for sync";
+  }
+  function openDetail(prospect: Prospect) {
+    const fields = ["id", "company", "contact", "email", "industry", "stage", "score", "workflow", "nextAction", "nextActionDate", "mrr", "campaign", "notes"] as const;
+    fields.forEach((field) => {
+      const control = detailForm.elements.namedItem(field) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+      if (control) control.value = String(prospect[field] ?? "");
+    });
+    document.querySelector("#detail-title")!.textContent = prospect.company;
+    const context = document.querySelector<HTMLElement>("#reply-context")!;
+    context.hidden = !prospect.replyBody && !prospect.replySubject;
+    document.querySelector("#reply-subject")!.textContent = prospect.replySubject || "Reply received";
+    document.querySelector("#reply-body")!.textContent = prospect.replyBody || "The response body was not included by Smartlead.";
+    detailDialog.showModal();
   }
   function render() {
     const query = search.value.toLowerCase().trim();
@@ -295,6 +389,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     const customers = count(["Customer"]); const meetings = count(["Meeting", "Proof", "Customer"]);
     document.querySelector("#conversion-note")!.textContent = prospects.length ? `${Math.round((meetings / prospects.length) * 100)}% reached a meeting · ${customers} customers` : "Add your first prospects to establish a baseline.";
     renderCampaign();
+    renderDesk();
   }
 
   const serviceLabels: Record<string, (service: ServiceState) => string> = {
@@ -338,13 +433,30 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     document.querySelector("#live-summary")!.textContent = parts.length ? parts.join(" · ") : "Connected. Add the credentials marked above to unlock more live metrics.";
     render();
   }
+  async function loadRemote(key: string, migrate = false) {
+    const response = await fetch("/.netlify/functions/acquisition-data", { headers: { "x-ops-key": key } });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || "Could not load the command center.");
+    if (migrate && (!payload.prospects || payload.prospects.length === 0) && prospects.length) {
+      await persistRemote(key);
+    } else {
+      prospects = (payload.prospects || []).map(clean);
+      activities = Array.isArray(payload.activities) ? payload.activities : [];
+      localStorage.setItem(storageKey, JSON.stringify(prospects));
+      render();
+    }
+    document.querySelector("#storage-state")!.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
+  }
   async function syncServices(key: string) {
     const button = document.querySelector<HTMLButtonElement>("#sync-services")!;
     button.disabled = true; button.textContent = "Syncing…"; connectionError.textContent = "";
     try {
-      const response = await fetch("/.netlify/functions/acquisition-summary", { headers: { "x-ops-key": key } });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || "Could not connect to live services.");
+      const [summaryResponse] = await Promise.all([
+        fetch("/.netlify/functions/acquisition-summary", { headers: { "x-ops-key": key } }),
+        loadRemote(key, true),
+      ]);
+      const payload = await summaryResponse.json();
+      if (!summaryResponse.ok) throw new Error(payload.error || "Could not connect to live services.");
       sessionStorage.setItem("raleigh-ai-guy:ops-key", key);
       liveServices = payload.services || {};
       document.querySelector("#last-synced")!.textContent = `Synced ${new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(new Date(payload.generatedAt))}`;
@@ -357,6 +469,21 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
       if (!connectionDialog.open) connectionDialog.showModal();
       button.textContent = "Connect live data";
     } finally { button.disabled = false; }
+  }
+  async function syncSmartlead() {
+    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+    if (!key) { connectionDialog.showModal(); return; }
+    const button = document.querySelector<HTMLButtonElement>("#sync-smartlead")!;
+    button.disabled = true; button.textContent = "Pulling leads…";
+    try {
+      const response = await fetch("/.netlify/functions/acquisition-data", { method: "POST", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ action: "sync_smartlead" }) });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Smartlead sync failed.");
+      prospects = (payload.prospects || []).map(clean); activities = payload.activities || [];
+      localStorage.setItem(storageKey, JSON.stringify(prospects)); render();
+      toast.textContent = "Smartlead leads synced"; toast.classList.add("visible");
+    } catch (error) { toast.textContent = error instanceof Error ? error.message : "Smartlead sync failed"; toast.classList.add("visible"); }
+    finally { button.disabled = false; button.textContent = "Pull Smartlead leads"; }
   }
   function renderCampaign() {
     const smartlead = liveServices.smartlead;
@@ -395,7 +522,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   list.addEventListener("change", (event) => {
     const target = event.target as HTMLSelectElement;
     const row = target.closest<HTMLElement>("[data-id]"); const prospect = prospects.find((p) => p.id === row?.dataset.id);
-    if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; save("Stage updated"); window.posthog?.capture?.("ops_pipeline_stage_changed", { stage: prospect.stage }); }
+    if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; prospect.updatedAt = new Date().toISOString(); save("Stage updated", { type: "stage", title: `${prospect.company} moved to ${prospect.stage}`, detail: prospect.nextAction, prospectId: prospect.id }); window.posthog?.capture?.("ops_pipeline_stage_changed", { stage: prospect.stage }); }
   });
   list.addEventListener("click", (event) => {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button");
@@ -404,11 +531,25 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
     const current = stages.indexOf(prospect.stage);
     if (button.hasAttribute("data-forward") && current < stages.length - 1) prospect.stage = stages[current + 1];
     if (button.hasAttribute("data-back") && current > 0) prospect.stage = stages[current - 1];
-    save("Stage updated");
+    prospect.updatedAt = new Date().toISOString();
+    save("Stage updated", { type: "stage", title: `${prospect.company} moved to ${prospect.stage}`, detail: prospect.nextAction, prospectId: prospect.id });
+  });
+  list.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest("button, select")) return;
+    const row = target.closest<HTMLElement>("[data-id]");
+    const prospect = prospects.find((item) => item.id === row?.dataset.id);
+    if (prospect) openDetail(prospect);
+  });
+  document.querySelector("#reply-queue")!.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLElement>("[data-open-id]");
+    const prospect = prospects.find((item) => item.id === button?.dataset.openId);
+    if (prospect) openDetail(prospect);
   });
   search.addEventListener("input", render); filter.addEventListener("change", render);
   document.querySelector("#add-prospect")!.addEventListener("click", () => { prospectForm.reset(); prospectDialog.showModal(); });
   document.querySelector("#import-pipeline")!.addEventListener("click", () => { importJson.value = ""; document.querySelector("#import-error")!.textContent = ""; importDialog.showModal(); });
+  document.querySelector("#sync-smartlead")!.addEventListener("click", syncSmartlead);
   document.querySelector("#sync-services")!.addEventListener("click", () => {
     const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
     if (key) syncServices(key); else { dashboardKey.value = ""; connectionError.textContent = ""; connectionDialog.showModal(); }
@@ -416,11 +557,27 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   document.querySelectorAll("[data-close-prospect]").forEach((el) => el.addEventListener("click", () => prospectDialog.close()));
   document.querySelectorAll("[data-close-import]").forEach((el) => el.addEventListener("click", () => importDialog.close()));
   document.querySelectorAll("[data-close-connection]").forEach((el) => el.addEventListener("click", () => connectionDialog.close()));
+  document.querySelectorAll("[data-close-detail]").forEach((el) => el.addEventListener("click", () => detailDialog.close()));
   connectionForm.addEventListener("submit", (event) => { event.preventDefault(); syncServices(dashboardKey.value); });
   prospectForm.addEventListener("submit", (event) => {
     event.preventDefault(); const data = new FormData(prospectForm);
     prospects.push(clean({ company: String(data.get("company") || ""), contact: String(data.get("contact") || ""), email: String(data.get("email") || ""), industry: String(data.get("industry") || ""), score: Number(data.get("score") || 0), stage: String(data.get("stage") || "Research") as Stage, workflow: String(data.get("workflow") || ""), nextAction: String(data.get("nextAction") || "") }));
-    prospectDialog.close(); save("Prospect added");
+    const prospect = prospects.at(-1)!;
+    prospectDialog.close(); save("Prospect added", { type: "created", title: `${prospect.company} added`, detail: prospect.nextAction, prospectId: prospect.id });
+  });
+  detailForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(detailForm); const prospect = prospects.find((item) => item.id === String(data.get("id")));
+    if (!prospect) return;
+    Object.assign(prospect, clean({ ...prospect, company: String(data.get("company") || ""), contact: String(data.get("contact") || ""), email: String(data.get("email") || ""), industry: String(data.get("industry") || ""), stage: String(data.get("stage") || "Research") as Stage, score: Number(data.get("score") || 0), workflow: String(data.get("workflow") || ""), nextAction: String(data.get("nextAction") || ""), nextActionDate: String(data.get("nextActionDate") || ""), mrr: Number(data.get("mrr") || 0), campaign: String(data.get("campaign") || ""), notes: String(data.get("notes") || ""), updatedAt: new Date().toISOString() }));
+    detailDialog.close(); save("Account saved", { type: "updated", title: `${prospect.company} updated`, detail: `${prospect.stage} · ${prospect.nextAction}`, prospectId: prospect.id });
+  });
+  document.querySelector("#delete-prospect")!.addEventListener("click", () => {
+    const prospectId = (detailForm.elements.namedItem("id") as HTMLInputElement).value;
+    const prospect = prospects.find((item) => item.id === prospectId);
+    if (!prospect || !window.confirm(`Remove ${prospect.company} from the pipeline?`)) return;
+    prospects = prospects.filter((item) => item.id !== prospectId); detailDialog.close();
+    save("Prospect removed", { type: "deleted", title: `${prospect.company} removed`, detail: prospect.contact });
   });
   importForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -433,7 +590,7 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
         if (found) Object.assign(found, record, { id: found.id }); else prospects.push(record);
       });
       if (!Array.isArray(payload) && payload.campaign && typeof payload.campaign === "object") localStorage.setItem(campaignKey, JSON.stringify(payload.campaign));
-      importDialog.close(); save("Pipeline imported");
+      importDialog.close(); save("Pipeline imported", { type: "import", title: "Pipeline import completed", detail: `${incoming.length} records processed` });
     } catch (error) { document.querySelector("#import-error")!.textContent = error instanceof Error ? error.message : "Could not import that data."; }
   });
   document.querySelector("#export-pipeline")!.addEventListener("click", () => {
@@ -445,6 +602,10 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   render();
   const savedOpsKey = sessionStorage.getItem("raleigh-ai-guy:ops-key");
   if (savedOpsKey) syncServices(savedOpsKey);
+  window.setInterval(() => {
+    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+    if (key && !document.querySelector("dialog[open]")) loadRemote(key).catch(() => {});
+  }, 30000);
 </script>
 
 <style is:global>
@@ -518,12 +679,32 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   .button-secondary, .pipeline-ledger > header button { color: var(--forest); background: transparent; }
   .privacy-note { display: flex; align-items: center; gap: .55rem; margin-top: .7rem; color: var(--muted); font-size: .6rem; }
   .privacy-note span { width: .42rem; height: .42rem; border-radius: 999px; background: #2a8f65; }
+  .privacy-note span:last-child { width: auto; height: auto; border-radius: 0; background: none; }
+  .action-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1.1rem; margin-top: 1.1rem; }
+  .reply-desk, .activity-desk { min-width: 0; border: 1px solid var(--line); border-radius: .45rem; padding: 1.35rem; background: var(--paper); }
+  .reply-desk > header, .activity-desk > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .reply-desk header p, .activity-desk header p, .reply-context > p { color: var(--muted); font: 600 .58rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+  .reply-desk h2, .activity-desk h2 { margin-top: .35rem; font: 500 1.55rem/1 "Newsreader", serif; }
+  .reply-desk header > strong { border-radius: 999px; padding: .42rem .65rem; color: #b74832; background: rgb(223 93 55 / 10%); font: 600 .57rem/1 "IBM Plex Mono", monospace; text-transform: uppercase; }
+  .activity-desk header > span { color: var(--muted); font: 500 .57rem/1.3 "IBM Plex Mono", monospace; }
+  .reply-queue { display: grid; gap: .55rem; margin-top: 1.15rem; }
+  .reply-queue button { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .75rem; width: 100%; border: 1px solid var(--line); border-radius: .35rem; padding: .8rem; text-align: left; background: #fffaf0; transition: border-color 150ms ease, transform 150ms ease; }
+  .reply-queue button:hover { border-color: rgb(223 93 55 / 55%); transform: translateY(-1px); }
+  .reply-queue button > span { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; border-radius: 999px; color: #fff8ef; background: var(--orange); font: 600 .56rem/1 "IBM Plex Mono", monospace; }
+  .reply-queue div { min-width: 0; }.reply-queue strong { display: block; font-size: .69rem; }.reply-queue p { margin-top: .3rem; overflow: hidden; color: var(--muted); font-size: .59rem; text-overflow: ellipsis; white-space: nowrap; }
+  .reply-queue em { color: var(--orange); font: 500 .55rem/1 "IBM Plex Mono", monospace; white-space: nowrap; }
+  .activity-feed { display: grid; margin-top: 1.15rem; }
+  .activity-feed li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .65rem; border-top: 1px solid var(--line); padding: .72rem 0; }
+  .activity-feed li > span { width: .5rem; height: .5rem; margin-top: .18rem; border-radius: 999px; background: #9d9b93; }.activity-feed li > span.activity-replied { background: var(--orange); box-shadow: 0 0 0 .2rem rgb(223 93 55 / 10%); }.activity-feed li > span.activity-sent, .activity-feed li > span.activity-sync { background: #2a8f65; }
+  .activity-feed strong { display: block; font-size: .64rem; }.activity-feed p { margin-top: .25rem; overflow: hidden; color: var(--muted); font-size: .56rem; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }.activity-feed time { color: var(--muted); font: 500 .52rem/1 "IBM Plex Mono", monospace; white-space: nowrap; }
+  .empty-desk { margin-top: 1.15rem; border: 1px dashed var(--line); border-radius: .35rem; padding: 1rem; color: var(--muted); font-size: .63rem; line-height: 1.5; }.empty-desk[hidden] { display: none; }
   .pipeline-ledger { margin-top: .85rem; border: 1px solid var(--line); border-radius: .45rem; overflow: hidden; background: var(--paper); }
   .pipeline-ledger > header { display: flex; align-items: center; justify-content: space-between; padding: 1.35rem; }
   .pipeline-ledger > header button { min-height: 2.3rem; padding-block: .45rem; }
   .ledger-head, .ledger-row { display: grid; grid-template-columns: minmax(17rem, 1.4fr) 9rem 8.5rem minmax(14rem, 1fr) 5.3rem; gap: 1rem; align-items: center; }
   .ledger-head { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: .65rem 1rem; color: var(--muted); background: rgb(24 33 28 / 3%); font: 600 .54rem/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
   .ledger-row { min-height: 5.3rem; border-bottom: 1px solid var(--line); padding: .8rem 1rem; }
+  .ledger-row { cursor: pointer; }.ledger-row:hover { background: rgb(223 93 55 / 3%); }
   .ledger-row:last-child { border-bottom: 0; }
   .account-cell { display: flex; min-width: 0; align-items: center; gap: .75rem; }
   .account-cell > span { display: grid; flex: 0 0 2.25rem; height: 2.25rem; place-items: center; border: 1px solid var(--line); border-radius: 999px; color: var(--orange); font: 600 .56rem/1 "IBM Plex Mono", monospace; }
@@ -554,9 +735,12 @@ const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
   .connection-field > span { display: block; margin-bottom: .45rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
   #import-json { width: calc(100% - 2.5rem); margin: 1rem 1.25rem; border: 1px solid var(--line); border-radius: .35rem; padding: .8rem; background: #fffdf7; font: .65rem/1.55 "IBM Plex Mono", monospace; }
   .import-error { min-height: 1rem; margin: 0 1.25rem 1rem; color: #b74832; font-size: .65rem; }
+  .detail-dialog { width: min(48rem, calc(100% - 2rem)); }.detail-dialog footer > span { flex: 1; }
+  .reply-context { margin: 0 1.25rem 1.25rem; border-left: .2rem solid var(--orange); padding: .95rem 1rem; background: rgb(223 93 55 / 6%); }.reply-context strong { display: block; margin-top: .55rem; font-size: .7rem; }.reply-context blockquote { margin-top: .5rem; color: var(--muted); font-size: .68rem; line-height: 1.55; white-space: pre-wrap; }
+  .button-danger { min-height: 2.75rem; border: 1px solid rgb(183 72 50 / 35%); border-radius: .35rem; padding: .65rem .9rem; color: #b74832; background: transparent; font-size: .68rem; font-weight: 650; }
   .pipeline-toast { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 50; padding: .75rem 1rem; border-radius: .35rem; color: #fff8ef; background: var(--forest); font-size: .68rem; opacity: 0; transform: translateY(.6rem); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }
   .pipeline-toast.visible { opacity: 1; transform: translateY(0); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
-  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.integration-panel > header { align-items: stretch; flex-direction: column; }.integration-actions { align-items: stretch; flex-direction: column; }.integration-grid { grid-template-columns: 1fr; }.control-actions { justify-content: stretch; }.control-actions button { flex: 1; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; } }
+  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.action-grid { grid-template-columns: 1fr; }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
+  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.integration-panel > header { align-items: stretch; flex-direction: column; }.integration-actions { align-items: stretch; flex-direction: column; }.integration-grid { grid-template-columns: 1fr; }.control-actions { flex-wrap: wrap; justify-content: stretch; }.control-actions button { flex: 1 1 9rem; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; }.detail-dialog footer { flex-wrap: wrap; }.detail-dialog footer > span { display: none; } }
 </style>
