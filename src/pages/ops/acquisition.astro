@@ -1,0 +1,378 @@
+---
+import OpsShell from "@/components/ops/OpsShell.astro";
+---
+
+<OpsShell
+  title="Outbound Control Room"
+  description="One quiet place to move Raleigh businesses from researched account to reply, working proof, and recurring revenue. Data stays in this browser until a secure backend is connected."
+  eyebrow="Raleigh AI Guy · Acquisition system"
+  current="acquisition"
+>
+  <section class="command-strip" aria-labelledby="today-title">
+    <div class="command-signal"><span></span><strong>LIVE</strong></div>
+    <div>
+      <p>Today’s operating brief</p>
+      <h2 id="today-title"><span id="attention-count">0</span> next moves need attention.</h2>
+    </div>
+    <div class="command-meta">
+      <span id="campaign-state">No active campaign</span>
+      <strong id="today-label">Today</strong>
+    </div>
+  </section>
+
+  <section class="scoreboard" aria-label="Acquisition scoreboard">
+    <article>
+      <p>Prospects</p><strong id="prospect-count">0</strong><span>Researched and scored</span>
+    </article>
+    <article>
+      <p>In outreach</p><strong id="outreach-count">0</strong><span>Active sequences</span>
+    </article>
+    <article class="accent-card">
+      <p>Replies</p><strong id="reply-count">0</strong><span>Human responses</span>
+    </article>
+    <article>
+      <p>Meetings</p><strong id="meeting-count">0</strong><span>Discovery booked</span>
+    </article>
+    <article>
+      <p>Proofs</p><strong id="proof-count">0</strong><span>Working builds</span>
+    </article>
+    <article class="revenue-card">
+      <p>MRR</p><strong id="mrr-total">$0</strong><span>Closed revenue</span>
+    </article>
+  </section>
+
+  <section class="pipeline-map" aria-labelledby="pipeline-map-title">
+    <header>
+      <div><p>Conversion path</p><h2 id="pipeline-map-title">From evidence to revenue.</h2></div>
+      <p id="conversion-note">Add your first prospects to establish a baseline.</p>
+    </header>
+    <div class="stage-track" id="stage-track"></div>
+  </section>
+
+  <section class="health-grid" aria-label="System health">
+    <article class="health-panel">
+      <header><div><p>Sending infrastructure</p><h2>Domain health</h2></div><span class="status-pill status-good">Protected</span></header>
+      <dl>
+        <div><dt>Sending domain</dt><dd>raleighaiguy.net</dd></div>
+        <div><dt>Primary domain</dt><dd>Protected from outbound</dd></div>
+        <div><dt>Daily ceiling</dt><dd>5 messages</dd></div>
+        <div><dt>Open / click tracking</dt><dd>Disabled</dd></div>
+      </dl>
+    </article>
+    <article class="health-panel campaign-panel">
+      <header><div><p>Current batch</p><h2 id="batch-name">No campaign loaded</h2></div><span id="batch-status" class="status-pill">Draft</span></header>
+      <div class="campaign-progress"><span id="campaign-progress-bar"></span></div>
+      <div class="campaign-stats">
+        <span><strong id="batch-leads">0</strong> leads</span>
+        <span><strong id="batch-sent">0</strong> sent</span>
+        <span><strong id="batch-bounced">0</strong> bounced</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="ledger-controls" aria-label="Pipeline controls">
+    <label>
+      <span>Search pipeline</span>
+      <input id="pipeline-search" type="search" placeholder="Company, contact, email…" autocomplete="off" />
+    </label>
+    <label>
+      <span>Stage</span>
+      <select id="stage-filter"><option value="all">All stages</option></select>
+    </label>
+    <div class="control-actions">
+      <button id="import-pipeline" class="button-secondary" type="button">Import</button>
+      <button id="add-prospect" class="button-primary" type="button">Add prospect</button>
+    </div>
+  </section>
+
+  <p class="privacy-note"><span></span>Private browser storage. Prospect data is not embedded in the public site or sent to RaleighAIGuy.com.</p>
+
+  <section class="pipeline-ledger" aria-labelledby="ledger-title">
+    <header>
+      <div><p>Account ledger</p><h2 id="ledger-title">Every account. One next move.</h2></div>
+      <button id="export-pipeline" type="button">Export JSON</button>
+    </header>
+    <div class="ledger-head" aria-hidden="true">
+      <span>Account</span><span>Stage</span><span>Signal</span><span>Next move</span><span></span>
+    </div>
+    <div id="pipeline-list" class="pipeline-list"></div>
+    <div id="empty-pipeline" class="empty-pipeline">
+      <span>00</span>
+      <div><strong>No accounts in this view.</strong><p>Import a batch or add a prospect manually.</p></div>
+    </div>
+  </section>
+
+  <dialog id="prospect-dialog" class="pipeline-dialog">
+    <form id="prospect-form" method="dialog">
+      <header><div><p>New account</p><h2>Add a prospect</h2></div><button type="button" data-close-prospect aria-label="Close">×</button></header>
+      <div class="form-grid">
+        <label><span>Company *</span><input name="company" required autocomplete="organization" /></label>
+        <label><span>Contact *</span><input name="contact" required autocomplete="name" /></label>
+        <label><span>Email</span><input name="email" type="email" autocomplete="email" /></label>
+        <label><span>Industry</span><input name="industry" placeholder="Specialty contractors" /></label>
+        <label><span>Score</span><input name="score" type="number" min="0" max="100" value="70" /></label>
+        <label><span>Stage</span><select name="stage" data-stage-select></select></label>
+        <label class="span-two"><span>Workflow hypothesis</span><textarea name="workflow" rows="3"></textarea></label>
+        <label class="span-two"><span>Next move</span><input name="nextAction" placeholder="Verify email, review copy, reply…" /></label>
+      </div>
+      <footer><button type="button" data-close-prospect class="button-secondary">Cancel</button><button type="submit" class="button-primary">Add to pipeline</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="import-dialog" class="pipeline-dialog">
+    <form id="import-form" method="dialog">
+      <header><div><p>Private import</p><h2>Load pipeline data</h2></div><button type="button" data-close-import aria-label="Close">×</button></header>
+      <p class="dialog-copy">Paste an exported prospect array, or a package with prospects and campaign details. Records merge by email or company and contact.</p>
+      <textarea id="import-json" rows="13" spellcheck="false" placeholder='{"prospects":[{"company":"Example Co","contact":"Alex"}],"campaign":{"name":"Batch 01","status":"Active"}}'></textarea>
+      <p id="import-error" class="import-error" role="alert"></p>
+      <footer><button type="button" data-close-import class="button-secondary">Cancel</button><button type="submit" class="button-primary">Import records</button></footer>
+    </form>
+  </dialog>
+
+  <div id="pipeline-toast" class="pipeline-toast" role="status" aria-live="polite">Saved</div>
+</OpsShell>
+
+<script>
+  const stages = ["Research", "Verified", "Approved", "Outreach", "Replied", "Meeting", "Proof", "Customer", "Nurture", "Closed"] as const;
+  type Stage = typeof stages[number];
+  type Prospect = {
+    id: string; company: string; contact: string; email: string; industry: string;
+    score: number; stage: Stage; verified: boolean; campaign: string; sent: number;
+    bounced: boolean; lastTouch: string; nextAction: string; nextActionDate: string;
+    workflow: string; mrr: number; notes: string;
+  };
+
+  const storageKey = "raleigh-ai-guy:acquisition:v1";
+  const campaignKey = "raleigh-ai-guy:campaign:v1";
+  const list = document.querySelector<HTMLDivElement>("#pipeline-list")!;
+  const empty = document.querySelector<HTMLDivElement>("#empty-pipeline")!;
+  const search = document.querySelector<HTMLInputElement>("#pipeline-search")!;
+  const filter = document.querySelector<HTMLSelectElement>("#stage-filter")!;
+  const prospectDialog = document.querySelector<HTMLDialogElement>("#prospect-dialog")!;
+  const importDialog = document.querySelector<HTMLDialogElement>("#import-dialog")!;
+  const prospectForm = document.querySelector<HTMLFormElement>("#prospect-form")!;
+  const importForm = document.querySelector<HTMLFormElement>("#import-form")!;
+  const importJson = document.querySelector<HTMLTextAreaElement>("#import-json")!;
+  const toast = document.querySelector<HTMLDivElement>("#pipeline-toast")!;
+  let prospects = loadProspects();
+  let toastTimer = 0;
+
+  stages.forEach((stage) => {
+    filter.add(new Option(stage, stage));
+    document.querySelectorAll<HTMLSelectElement>("[data-stage-select]").forEach((select) => select.add(new Option(stage, stage)));
+  });
+
+  function id() { return typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`; }
+  function clean(value: Partial<Prospect>): Prospect {
+    const requestedStage = String(value.stage || "Research") as Stage;
+    return {
+      id: String(value.id || id()), company: String(value.company || "").trim(), contact: String(value.contact || "").trim(),
+      email: String(value.email || "").trim(), industry: String(value.industry || "Unclassified").trim(),
+      score: Math.min(100, Math.max(0, Number(value.score || 0))), stage: stages.includes(requestedStage) ? requestedStage : "Research",
+      verified: Boolean(value.verified), campaign: String(value.campaign || "").trim(), sent: Math.max(0, Number(value.sent || 0)),
+      bounced: Boolean(value.bounced), lastTouch: String(value.lastTouch || ""), nextAction: String(value.nextAction || "Research account").trim(),
+      nextActionDate: String(value.nextActionDate || ""), workflow: String(value.workflow || "").trim(), mrr: Math.max(0, Number(value.mrr || 0)),
+      notes: String(value.notes || "").trim(),
+    };
+  }
+  function loadProspects(): Prospect[] {
+    try { return JSON.parse(localStorage.getItem(storageKey) || "[]").map(clean); } catch { return []; }
+  }
+  function save(message = "Pipeline saved") {
+    localStorage.setItem(storageKey, JSON.stringify(prospects));
+    render();
+    toast.textContent = message; toast.classList.add("visible");
+    window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 1600);
+  }
+  function esc(value: string) {
+    return value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" })[char]!);
+  }
+  function due(prospect: Prospect) {
+    return Boolean(prospect.nextAction && (!prospect.nextActionDate || prospect.nextActionDate <= new Date().toISOString().slice(0, 10)) && !["Customer", "Closed", "Nurture"].includes(prospect.stage));
+  }
+  function render() {
+    const query = search.value.toLowerCase().trim();
+    const visible = prospects.filter((p) => (filter.value === "all" || p.stage === filter.value) && [p.company, p.contact, p.email, p.industry].join(" ").toLowerCase().includes(query));
+    list.innerHTML = visible.map((p) => {
+      const stageIndex = stages.indexOf(p.stage);
+      const signal = p.bounced ? "Bounced" : p.verified ? `Verified · ${p.score}` : `Score ${p.score}`;
+      return `<article class="ledger-row" data-id="${esc(p.id)}">
+        <div class="account-cell"><span>${esc(p.company.slice(0, 2).toUpperCase())}</span><div><strong>${esc(p.company)}</strong><p>${esc(p.contact)}${p.email ? ` · ${esc(p.email)}` : ""}</p></div></div>
+        <label class="stage-cell"><span class="sr-only">Stage</span><select data-field="stage">${stages.map((stage) => `<option ${stage === p.stage ? "selected" : ""}>${stage}</option>`).join("")}</select></label>
+        <div class="signal-cell ${p.bounced ? "danger" : p.verified ? "good" : ""}"><span></span>${esc(signal)}</div>
+        <div class="action-cell"><strong>${esc(p.nextAction || "No next move")}</strong><p>${p.nextActionDate ? esc(p.nextActionDate) : esc(p.workflow || p.industry)}</p></div>
+        <div class="row-actions"><button type="button" data-back ${stageIndex <= 0 ? "disabled" : ""} aria-label="Move back">←</button><button type="button" data-forward ${stageIndex >= stages.length - 1 ? "disabled" : ""} aria-label="Move forward">→</button></div>
+      </article>`;
+    }).join("");
+    empty.hidden = visible.length > 0;
+
+    const count = (wanted: Stage[]) => prospects.filter((p) => wanted.includes(p.stage)).length;
+    document.querySelector("#prospect-count")!.textContent = String(prospects.length);
+    document.querySelector("#outreach-count")!.textContent = String(count(["Outreach"]));
+    document.querySelector("#reply-count")!.textContent = String(count(["Replied", "Meeting", "Proof", "Customer"]));
+    document.querySelector("#meeting-count")!.textContent = String(count(["Meeting"]));
+    document.querySelector("#proof-count")!.textContent = String(count(["Proof"]));
+    document.querySelector("#mrr-total")!.textContent = `$${prospects.reduce((sum, p) => sum + p.mrr, 0).toLocaleString()}`;
+    document.querySelector("#attention-count")!.textContent = String(prospects.filter(due).length);
+    document.querySelector("#today-label")!.textContent = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric" }).format(new Date());
+
+    const activeStages = stages.slice(0, 8);
+    document.querySelector("#stage-track")!.innerHTML = activeStages.map((stage, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><strong>${stage}</strong><p>${count([stage])}</p></article>`).join("");
+    const customers = count(["Customer"]); const meetings = count(["Meeting", "Proof", "Customer"]);
+    document.querySelector("#conversion-note")!.textContent = prospects.length ? `${Math.round((meetings / prospects.length) * 100)}% reached a meeting · ${customers} customers` : "Add your first prospects to establish a baseline.";
+    renderCampaign();
+  }
+  function renderCampaign() {
+    let campaign: { name?: string; status?: string; leads?: number; sent?: number; bounced?: number } = {};
+    try { campaign = JSON.parse(localStorage.getItem(campaignKey) || "{}"); } catch {}
+    const leads = Number(campaign.leads || prospects.filter((p) => p.campaign).length);
+    const sent = Number(campaign.sent || prospects.reduce((sum, p) => sum + p.sent, 0));
+    const bounced = Number(campaign.bounced || prospects.filter((p) => p.bounced).length);
+    const progress = leads ? Math.min(100, Math.round((prospects.filter((p) => p.sent > 0).length / leads) * 100)) : 0;
+    document.querySelector("#batch-name")!.textContent = campaign.name || "No campaign loaded";
+    document.querySelector("#batch-status")!.textContent = campaign.status || "Draft";
+    document.querySelector("#campaign-state")!.textContent = campaign.status === "Active" ? "Campaign active" : "No active campaign";
+    document.querySelector("#batch-leads")!.textContent = String(leads);
+    document.querySelector("#batch-sent")!.textContent = String(sent);
+    document.querySelector("#batch-bounced")!.textContent = String(bounced);
+    (document.querySelector("#campaign-progress-bar") as HTMLElement).style.width = `${progress}%`;
+  }
+
+  list.addEventListener("change", (event) => {
+    const target = event.target as HTMLSelectElement;
+    const row = target.closest<HTMLElement>("[data-id]"); const prospect = prospects.find((p) => p.id === row?.dataset.id);
+    if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; save("Stage updated"); }
+  });
+  list.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button");
+    const row = button?.closest<HTMLElement>("[data-id]"); const prospect = prospects.find((p) => p.id === row?.dataset.id);
+    if (!button || !prospect) return;
+    const current = stages.indexOf(prospect.stage);
+    if (button.hasAttribute("data-forward") && current < stages.length - 1) prospect.stage = stages[current + 1];
+    if (button.hasAttribute("data-back") && current > 0) prospect.stage = stages[current - 1];
+    save("Stage updated");
+  });
+  search.addEventListener("input", render); filter.addEventListener("change", render);
+  document.querySelector("#add-prospect")!.addEventListener("click", () => { prospectForm.reset(); prospectDialog.showModal(); });
+  document.querySelector("#import-pipeline")!.addEventListener("click", () => { importJson.value = ""; document.querySelector("#import-error")!.textContent = ""; importDialog.showModal(); });
+  document.querySelectorAll("[data-close-prospect]").forEach((el) => el.addEventListener("click", () => prospectDialog.close()));
+  document.querySelectorAll("[data-close-import]").forEach((el) => el.addEventListener("click", () => importDialog.close()));
+  prospectForm.addEventListener("submit", (event) => {
+    event.preventDefault(); const data = new FormData(prospectForm);
+    prospects.push(clean({ company: String(data.get("company") || ""), contact: String(data.get("contact") || ""), email: String(data.get("email") || ""), industry: String(data.get("industry") || ""), score: Number(data.get("score") || 0), stage: String(data.get("stage") || "Research") as Stage, workflow: String(data.get("workflow") || ""), nextAction: String(data.get("nextAction") || "") }));
+    prospectDialog.close(); save("Prospect added");
+  });
+  importForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    try {
+      const payload = JSON.parse(importJson.value);
+      const incoming = Array.isArray(payload) ? payload : payload.prospects;
+      if (!Array.isArray(incoming)) throw new Error("Paste a prospect array or a pipeline package.");
+      incoming.map(clean).filter((p) => p.company && p.contact).forEach((record) => {
+        const found = prospects.find((p) => (record.email && p.email.toLowerCase() === record.email.toLowerCase()) || (p.company.toLowerCase() === record.company.toLowerCase() && p.contact.toLowerCase() === record.contact.toLowerCase()));
+        if (found) Object.assign(found, record, { id: found.id }); else prospects.push(record);
+      });
+      if (!Array.isArray(payload) && payload.campaign && typeof payload.campaign === "object") localStorage.setItem(campaignKey, JSON.stringify(payload.campaign));
+      importDialog.close(); save("Pipeline imported");
+    } catch (error) { document.querySelector("#import-error")!.textContent = error instanceof Error ? error.message : "Could not import that data."; }
+  });
+  document.querySelector("#export-pipeline")!.addEventListener("click", () => {
+    let campaign = {};
+    try { campaign = JSON.parse(localStorage.getItem(campaignKey) || "{}"); } catch {}
+    const payload = { prospects, campaign, exportedAt: new Date().toISOString() };
+    const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" })); link.download = `raleigh-ai-guy-pipeline-${new Date().toISOString().slice(0, 10)}.json`; link.click(); URL.revokeObjectURL(link.href);
+  });
+  render();
+</script>
+
+<style>
+  :global(.ops-content) { --ink: #18211c; --muted: #69726c; --line: rgb(24 33 28 / 15%); --paper: #faf7ef; --forest: #173c31; --orange: #df5d37; }
+  .command-strip { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.25rem; border: 1px solid var(--line); border-radius: .45rem; padding: 1.2rem 1.35rem; background: var(--paper); box-shadow: 0 1.2rem 3rem rgb(24 33 28 / 5%); }
+  .command-signal { display: grid; justify-items: center; gap: .35rem; }
+  .command-signal span { width: .65rem; height: .65rem; border-radius: 999px; background: #2a8f65; box-shadow: 0 0 0 .28rem rgb(42 143 101 / 13%); }
+  .command-signal strong, .command-strip p, .pipeline-map header p, .health-panel header p, .pipeline-ledger > header p { color: var(--muted); font: 600 .58rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+  .command-strip h2 { margin-top: .3rem; font: 500 clamp(1.35rem, 2.2vw, 2rem)/1 "Newsreader", serif; }
+  .command-meta { display: grid; justify-items: end; gap: .35rem; }
+  .command-meta span { color: #2a7559; font-size: .72rem; font-weight: 650; }
+  .command-meta strong { color: var(--muted); font: 500 .68rem/1 "IBM Plex Mono", monospace; }
+  .scoreboard { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 1.1rem; border: 1px solid var(--line); border-radius: .45rem; overflow: hidden; background: var(--paper); }
+  .scoreboard article { min-height: 9.5rem; border-right: 1px solid var(--line); padding: 1.1rem; }
+  .scoreboard article:last-child { border-right: 0; }
+  .scoreboard p { color: var(--muted); font-size: .67rem; }
+  .scoreboard strong { display: block; margin-top: 1rem; font: 500 2.25rem/1 "Newsreader", serif; }
+  .scoreboard span { display: block; margin-top: 1.45rem; color: var(--muted); font-size: .62rem; line-height: 1.35; }
+  .scoreboard .accent-card { color: #fff8ef; background: var(--orange); }
+  .scoreboard .accent-card p, .scoreboard .accent-card span { color: rgb(255 248 239 / 70%); }
+  .scoreboard .revenue-card { color: #fff8ef; background: var(--forest); }
+  .scoreboard .revenue-card p, .scoreboard .revenue-card span { color: rgb(255 248 239 / 62%); }
+  .pipeline-map { margin-top: 1.1rem; border: 1px solid var(--line); border-radius: .45rem; padding: 1.35rem; background: var(--paper); }
+  .pipeline-map > header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+  .pipeline-map h2, .health-panel h2, .pipeline-ledger h2, .pipeline-dialog h2 { margin-top: .35rem; font: 500 1.55rem/1 "Newsreader", serif; }
+  .pipeline-map > header > p { max-width: 24rem; text-align: right; text-transform: none; letter-spacing: 0; line-height: 1.5; }
+  .stage-track { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); margin-top: 1.3rem; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .stage-track article { position: relative; display: flex; min-height: 6.6rem; flex-direction: column; align-items: flex-start; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: .85rem; }
+  .stage-track article::after { position: absolute; right: -.25rem; top: 50%; z-index: 2; width: .45rem; height: .45rem; border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); background: var(--paper); content: ""; transform: rotate(45deg); }
+  .stage-track article:last-child::after { display: none; }
+  .stage-track span { color: var(--orange); font: 600 .56rem/1 "IBM Plex Mono", monospace; }
+  .stage-track strong { display: block; margin-top: .8rem; font-size: .68rem; line-height: 1.2; }
+  .stage-track p { margin-top: .75rem; font: 500 1.4rem/1 "Newsreader", serif; }
+  .health-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 1.1rem; margin-top: 1.1rem; }
+  .health-panel { border: 1px solid var(--line); border-radius: .45rem; padding: 1.35rem; background: var(--paper); }
+  .health-panel header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .status-pill { border: 1px solid var(--line); border-radius: 999px; padding: .42rem .65rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+  .status-good { border-color: rgb(42 117 89 / 25%); color: #2a7559; background: rgb(42 117 89 / 7%); }
+  .health-panel dl { display: grid; grid-template-columns: 1fr 1fr; margin-top: 1.25rem; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .health-panel dl div { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: .85rem; }
+  .health-panel dt { color: var(--muted); font-size: .58rem; }
+  .health-panel dd { margin-top: .4rem; font-size: .7rem; font-weight: 620; }
+  .campaign-progress { height: .42rem; margin-top: 1.6rem; overflow: hidden; border-radius: 999px; background: rgb(24 33 28 / 8%); }
+  .campaign-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--orange); transition: width 500ms ease; }
+  .campaign-stats { display: flex; gap: 1.2rem; margin-top: 1rem; color: var(--muted); font-size: .65rem; }
+  .campaign-stats strong { color: var(--ink); }
+  .ledger-controls { display: grid; grid-template-columns: minmax(14rem, 1fr) 12rem auto; align-items: end; gap: .8rem; margin-top: 2rem; }
+  .ledger-controls label > span, .pipeline-dialog label > span { display: block; margin-bottom: .45rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+  .ledger-controls input, .ledger-controls select, .pipeline-dialog input, .pipeline-dialog select, .pipeline-dialog textarea { width: 100%; min-height: 2.75rem; border: 1px solid var(--line); border-radius: .35rem; padding: .65rem .75rem; color: var(--ink); background: var(--paper); font-size: .72rem; }
+  .control-actions { display: flex; gap: .55rem; }
+  .button-primary, .button-secondary, .pipeline-ledger > header button { min-height: 2.75rem; border: 1px solid var(--forest); border-radius: .35rem; padding: .65rem .9rem; font-size: .68rem; font-weight: 650; }
+  .button-primary { color: #fff8ef; background: var(--forest); }
+  .button-secondary, .pipeline-ledger > header button { color: var(--forest); background: transparent; }
+  .privacy-note { display: flex; align-items: center; gap: .55rem; margin-top: .7rem; color: var(--muted); font-size: .6rem; }
+  .privacy-note span { width: .42rem; height: .42rem; border-radius: 999px; background: #2a8f65; }
+  .pipeline-ledger { margin-top: .85rem; border: 1px solid var(--line); border-radius: .45rem; overflow: hidden; background: var(--paper); }
+  .pipeline-ledger > header { display: flex; align-items: center; justify-content: space-between; padding: 1.35rem; }
+  .pipeline-ledger > header button { min-height: 2.3rem; padding-block: .45rem; }
+  .ledger-head, .ledger-row { display: grid; grid-template-columns: minmax(17rem, 1.4fr) 9rem 8.5rem minmax(14rem, 1fr) 5.3rem; gap: 1rem; align-items: center; }
+  .ledger-head { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: .65rem 1rem; color: var(--muted); background: rgb(24 33 28 / 3%); font: 600 .54rem/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+  .ledger-row { min-height: 5.3rem; border-bottom: 1px solid var(--line); padding: .8rem 1rem; }
+  .ledger-row:last-child { border-bottom: 0; }
+  .account-cell { display: flex; min-width: 0; align-items: center; gap: .75rem; }
+  .account-cell > span { display: grid; flex: 0 0 2.25rem; height: 2.25rem; place-items: center; border: 1px solid var(--line); border-radius: 999px; color: var(--orange); font: 600 .56rem/1 "IBM Plex Mono", monospace; }
+  .account-cell div { min-width: 0; }
+  .account-cell strong, .action-cell strong { display: block; overflow: hidden; font-size: .7rem; text-overflow: ellipsis; white-space: nowrap; }
+  .account-cell p, .action-cell p { margin-top: .35rem; overflow: hidden; color: var(--muted); font-size: .59rem; text-overflow: ellipsis; white-space: nowrap; }
+  .stage-cell select { width: 100%; border: 1px solid var(--line); border-radius: 999px; padding: .45rem .6rem; background: transparent; font-size: .62rem; }
+  .signal-cell { display: flex; align-items: center; gap: .42rem; color: var(--muted); font-size: .61rem; }
+  .signal-cell span { width: .42rem; height: .42rem; border-radius: 999px; background: #b6aaa0; }
+  .signal-cell.good { color: #2a7559; }.signal-cell.good span { background: #2a8f65; }
+  .signal-cell.danger { color: #b74832; }.signal-cell.danger span { background: #d5553b; }
+  .row-actions { display: flex; justify-content: end; gap: .3rem; }
+  .row-actions button { display: grid; width: 2.1rem; height: 2.1rem; place-items: center; border: 1px solid var(--line); border-radius: .3rem; background: transparent; font-size: .75rem; }
+  .row-actions button:disabled { opacity: .25; }
+  .empty-pipeline { display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--line); padding: 2rem 1.35rem; }
+  .empty-pipeline[hidden] { display: none; }.empty-pipeline > span { color: var(--orange); font: 500 2.2rem/1 "Newsreader", serif; }
+  .empty-pipeline strong { font-size: .75rem; }.empty-pipeline p { margin-top: .3rem; color: var(--muted); font-size: .65rem; }
+  .pipeline-dialog { width: min(42rem, calc(100% - 2rem)); border: 1px solid var(--line); border-radius: .5rem; padding: 0; color: var(--ink); background: #f7f3e9; box-shadow: 0 2rem 6rem rgb(24 33 28 / 25%); }
+  .pipeline-dialog::backdrop { background: rgb(10 20 15 / 55%); backdrop-filter: blur(3px); }
+  .pipeline-dialog header, .pipeline-dialog footer { display: flex; align-items: center; justify-content: space-between; padding: 1.15rem 1.25rem; }
+  .pipeline-dialog header { border-bottom: 1px solid var(--line); }.pipeline-dialog footer { justify-content: end; gap: .55rem; border-top: 1px solid var(--line); }
+  .pipeline-dialog header button { border: 0; background: transparent; font-size: 1.3rem; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.25rem; }.span-two { grid-column: span 2; }
+  .dialog-copy { padding: 1.1rem 1.25rem 0; color: var(--muted); font-size: .7rem; line-height: 1.55; }
+  #import-json { width: calc(100% - 2.5rem); margin: 1rem 1.25rem; border: 1px solid var(--line); border-radius: .35rem; padding: .8rem; background: #fffdf7; font: .65rem/1.55 "IBM Plex Mono", monospace; }
+  .import-error { min-height: 1rem; margin: 0 1.25rem 1rem; color: #b74832; font-size: .65rem; }
+  .pipeline-toast { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 50; padding: .75rem 1rem; border-radius: .35rem; color: #fff8ef; background: var(--forest); font-size: .68rem; opacity: 0; transform: translateY(.6rem); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }
+  .pipeline-toast.visible { opacity: 1; transform: translateY(0); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
+  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.control-actions { justify-content: stretch; }.control-actions button { flex: 1; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; } }
+</style>
