@@ -108,19 +108,28 @@ const smartleadSummary = async () => {
     .filter((campaign) => requestedIds.length ? requestedIds.includes(Number(campaign.id)) : campaign.status === "ACTIVE")
     .slice(0, 10);
   const campaigns = await Promise.all(selected.map(async (campaign) => {
-    const [analytics, leads] = await Promise.all([
+    const [analytics, statistics, leads] = await Promise.all([
       requestJson(keyedUrl(`/campaigns/${campaign.id}/analytics`)),
+      requestJson(keyedUrl(`/campaigns/${campaign.id}/statistics`, { limit: "1000", offset: "0" })),
       requestJson(keyedUrl(`/campaigns/${campaign.id}/leads`, { limit: "1", offset: "0" })),
     ]);
-    const sent = Number(analytics.total_sent || analytics.sent || 0);
-    const bounced = Number(analytics.total_bounced || analytics.bounced || Math.round(sent * Number(analytics.bounce_rate || 0) / 100));
+    const statisticRows = Array.isArray(statistics.data) ? statistics.data : [];
+    const statisticTotals = statisticRows.reduce((totals, row) => ({
+      sent: totals.sent + Number(row.sent || (row.sent_time || row.email_status ? 1 : 0)),
+      replied: totals.replied + Number(row.replied || (String(row.email_status || "").toLowerCase() === "replied" ? 1 : 0)),
+      bounced: totals.bounced + Number(row.bounced || (String(row.email_status || "").toLowerCase() === "bounced" ? 1 : 0)),
+    }), { sent: 0, replied: 0, bounced: 0 });
+    const topLevel = !Array.isArray(statistics.data) && statistics.data ? statistics.data : {};
+    const sent = Math.max(Number(analytics.total_sent || analytics.sent || 0), Number(topLevel.sent || topLevel.contacted || 0), statisticTotals.sent);
+    const replied = Math.max(Number(analytics.total_replied || analytics.replied || 0), Number(topLevel.replied || 0), statisticTotals.replied);
+    const bounced = Math.max(Number(analytics.total_bounced || analytics.bounced || 0), Number(topLevel.bounced || 0), statisticTotals.bounced, Math.round(sent * Number(analytics.bounce_rate || 0) / 100));
     return {
       id: Number(campaign.id),
       name: String(campaign.name || `Campaign ${campaign.id}`),
       status: String(campaign.status || "UNKNOWN"),
       leads: Number(leads.total_leads || leads.total || 0),
       sent,
-      replied: Number(analytics.total_replied || analytics.replied || 0),
+      replied,
       bounced,
       maxDaily: Number(campaign.max_leads_per_day || 0),
       openTracking: !campaign.track_settings?.includes("DONT_EMAIL_OPEN"),
