@@ -269,4 +269,3 @@ export const industryLandingPages: IndustryLandingPage[] = [
     formPrompt: "Tell me which maintenance, vendor, resident, or owner workflow creates the most back-and-forth.",
   },
 ];
-
