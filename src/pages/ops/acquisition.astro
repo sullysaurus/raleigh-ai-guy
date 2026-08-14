@@ -285,7 +285,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   render();
 </script>
 
-<style>
+<style is:global>
   :global(.ops-content) { --ink: #18211c; --muted: #69726c; --line: rgb(24 33 28 / 15%); --paper: #faf7ef; --forest: #173c31; --orange: #df5d37; }
   .command-strip { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.25rem; border: 1px solid var(--line); border-radius: .45rem; padding: 1.2rem 1.35rem; background: var(--paper); box-shadow: 0 1.2rem 3rem rgb(24 33 28 / 5%); }
   .command-signal { display: grid; justify-items: center; gap: .35rem; }
