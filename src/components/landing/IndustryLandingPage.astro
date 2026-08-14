@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const bookingUrl = `https://calendly.com/hello-raleighaiguy/30min?utm_source=raleighaiguy&utm_medium=industry-landing-page&utm_campaign=${encodeURIComponent(page.slug)}`;
+const emailUrl = `mailto:hello@raleighaiguy.com?subject=${encodeURIComponent(`Workflow call — ${page.shortName}`)}`;
 
 const steps = [
   ["Show me the work", "On a short call, you walk me through the current process. I ask questions, find the strongest leverage point, and agree on one result worth proving."],
@@ -32,7 +34,7 @@ const steps = [
           </h1>
           <p class="mt-8 max-w-2xl text-lg leading-8 text-base-600 sm:text-xl">{page.intro}</p>
           <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href="#show-me" class="site-cta">Show me the workflow you’d fix →</a>
+            <a href={bookingUrl} class="site-cta">Book a 20-minute workflow call →</a>
             <a href="#proof" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">See what the proof could include</a>
           </div>
           <p class="font-utility mt-5 text-[.62rem] uppercase tracking-[.1em] text-base-500">One workflow · One-week proof · No upfront build fee</p>
@@ -212,36 +214,40 @@ const steps = [
     </Wrapper>
   </section>
 
-  <section id="show-me" class="scroll-mt-6 bg-[var(--brand-orange)]">
+  <section id="book-call" class="scroll-mt-6 bg-[var(--brand-orange)]">
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p class="field-label text-black/55">Show me the workflow</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">I’ll tell you where I would start.</h2>
-          <p class="mt-6 max-w-lg text-base leading-7 text-black/70">{page.formPrompt} I’ll review it personally and reply with the next useful question—not add you to a generic sales sequence.</p>
-          <p class="font-utility mt-7 text-[.6rem] uppercase tracking-[.1em] text-black/55">Short form · Personal reply · No obligation</p>
+          <p class="field-label text-black/55">Book a workflow call</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me one repetitive process.</h2>
+          <p class="mt-6 max-w-lg text-base leading-7 text-black/70">{page.formPrompt} Pick a time and give me the short version. We’ll use the call to decide whether there is a useful, measurable place to start.</p>
+          <p class="font-utility mt-7 text-[.6rem] uppercase tracking-[.1em] text-black/55">20 minutes · Directly with Danny · No obligation</p>
         </div>
 
-        <div class="border-t border-black/20 pt-8 lg:col-span-7">
-          <form name="industry-opportunity" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
-            <input type="hidden" name="form-name" value="industry-opportunity" />
-            <input type="hidden" name="industry" value={page.slug} />
-            <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
+        <div class="lg:col-span-7">
+          <p class="field-label text-black/55">What happens on the call</p>
+          <ol class="mt-5 border-t border-black/20">
+            <li class="grid gap-3 border-b border-black/20 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+              <span class="field-label text-black/45">01</span>
+              <h3 class="font-semibold">Identify one workflow</h3>
+              <p class="text-sm leading-6 text-black/65">Walk through the repetitive process, where it stalls, and who has to keep it moving.</p>
+            </li>
+            <li class="grid gap-3 border-b border-black/20 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+              <span class="field-label text-black/45">02</span>
+              <h3 class="font-semibold">Estimate the value</h3>
+              <p class="text-sm leading-6 text-black/65">Put a rough number on the time, capacity, or revenue a better workflow could recover.</p>
+            </li>
+            <li class="grid gap-3 border-b border-black/20 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+              <span class="field-label text-black/45">03</span>
+              <h3 class="font-semibold">Decide on the proof</h3>
+              <p class="text-sm leading-6 text-black/65">Leave knowing whether a focused one-week proof makes sense and what it should demonstrate.</p>
+            </li>
+          </ol>
 
-            <div class="grid gap-5 sm:grid-cols-2">
-              <label class="intake-label">Name<input class="intake-field border-black/25 bg-white/45" type="text" name="name" autocomplete="name" placeholder="Your name" required /></label>
-              <label class="intake-label">Work email<input class="intake-field border-black/25 bg-white/45" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
-              <label class="intake-label sm:col-span-2">Company<input class="intake-field border-black/25 bg-white/45" type="text" name="company" autocomplete="organization" placeholder="Business name" required /></label>
-              <label class="intake-label sm:col-span-2">Where does the work get stuck?
-                <textarea class="intake-field intake-textarea border-black/25 bg-white/45" name="workflow" rows="4" maxlength="800" placeholder={page.formPrompt} required></textarea>
-              </label>
-            </div>
-
-            <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <button type="submit" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Show Danny the workflow →</button>
-              <p class="text-xs leading-5 text-black/55">I review every note myself.</p>
-            </div>
-          </form>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <a href={bookingUrl} class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Book a 20-minute workflow call →</a>
+            <a href={emailUrl} class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">Prefer email?</a>
+          </div>
         </div>
       </div>
     </Wrapper>
