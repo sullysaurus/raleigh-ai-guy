@@ -15,7 +15,7 @@ const { page } = Astro.props;
 
 // Fetch and filter valid project entries
 const allProjects = await getCollection('projects');
-const portfolioProjectIds = ["zimzoom-photo-booth", "garden-art-landscapes"];
+const portfolioProjectIds = ["zimzoom-photo-booth", "southern-revelry-command-center", "garden-art-landscapes"];
 const validProjects = allProjects.filter(item => item.data?.title && portfolioProjectIds.includes(item.id));
 
 // Use original order or sort alphabetically if needed
