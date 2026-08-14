@@ -1,13 +1,38 @@
 ---
 import OpsShell from "@/components/ops/OpsShell.astro";
+import { realtorProspects } from "@/data/realtorProspects";
+
+const statusMap: Record<string, string> = {
+  Research: "Research", "Ready to DM": "Approved", "Invite sent": "Outreach",
+  Connected: "Outreach", "DM sent": "Outreach", "Follow-up due": "Outreach",
+  Replied: "Replied", "Discovery booked": "Meeting", "Free build": "Proof",
+  Nurture: "Nurture", "Not a fit": "Closed",
+};
+const seededProspects = realtorProspects.map((contact) => ({
+  id: contact.id,
+  company: contact.organization,
+  contact: contact.name,
+  email: contact.email,
+  industry: contact.segment || "Real estate",
+  score: contact.fitScore,
+  stage: statusMap[contact.status] || "Research",
+  verified: contact.status === "Ready to DM" || contact.status === "Connected",
+  lastTouch: contact.lastContact,
+  nextAction: contact.nextFollowUp ? "Follow up" : contact.status === "Research" ? "Verify research" : "Review next move",
+  nextActionDate: contact.nextFollowUp,
+  workflow: contact.automationIdea,
+  notes: contact.notes,
+}));
+const seedJson = JSON.stringify(seededProspects).replaceAll("<", "\\u003c");
 ---
 
 <OpsShell
   title="Outbound Control Room"
-  description="One quiet place to move Raleigh businesses from researched account to reply, working proof, and recurring revenue. Data stays in this browser until a secure backend is connected."
+  description="One quiet place to move Raleigh businesses from researched account to reply, working proof, and recurring revenue—with live signals from the services already in the stack."
   eyebrow="Raleigh AI Guy · Acquisition system"
   current="acquisition"
 >
+  <script id="seed-acquisition" type="application/json" set:html={seedJson}></script>
   <section class="command-strip" aria-labelledby="today-title">
     <div class="command-signal"><span></span><strong>LIVE</strong></div>
     <div>
@@ -25,10 +50,10 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       <p>Prospects</p><strong id="prospect-count">0</strong><span>Researched and scored</span>
     </article>
     <article>
-      <p>In outreach</p><strong id="outreach-count">0</strong><span>Active sequences</span>
+      <p>In outreach</p><strong id="outreach-count">0</strong><span id="outreach-note">Active sequences</span>
     </article>
     <article class="accent-card">
-      <p>Replies</p><strong id="reply-count">0</strong><span>Human responses</span>
+      <p>Replies</p><strong id="reply-count">0</strong><span id="reply-note">Human responses</span>
     </article>
     <article>
       <p>Meetings</p><strong id="meeting-count">0</strong><span>Discovery booked</span>
@@ -55,8 +80,8 @@ import OpsShell from "@/components/ops/OpsShell.astro";
       <dl>
         <div><dt>Sending domain</dt><dd>raleighaiguy.net</dd></div>
         <div><dt>Primary domain</dt><dd>Protected from outbound</dd></div>
-        <div><dt>Daily ceiling</dt><dd>5 messages</dd></div>
-        <div><dt>Open / click tracking</dt><dd>Disabled</dd></div>
+        <div><dt>Daily ceiling</dt><dd id="sending-ceiling">5 messages</dd></div>
+        <div><dt>Open / click tracking</dt><dd id="tracking-state">Disabled</dd></div>
       </dl>
     </article>
     <article class="health-panel campaign-panel">
@@ -68,6 +93,27 @@ import OpsShell from "@/components/ops/OpsShell.astro";
         <span><strong id="batch-bounced">0</strong> bounced</span>
       </div>
     </article>
+  </section>
+
+  <section class="integration-panel" aria-labelledby="integration-title">
+    <header>
+      <div><p>Live connections</p><h2 id="integration-title">The services behind the funnel.</h2></div>
+      <div class="integration-actions">
+        <span id="last-synced">Not synced</span>
+        <button id="sync-services" class="button-primary" type="button">Connect live data</button>
+      </div>
+    </header>
+    <div class="integration-grid">
+      <article data-service="smartlead"><span></span><div><strong>Smartlead</strong><p>Campaigns, sends, and replies</p></div><em>Waiting</em></article>
+      <article data-service="stripe"><span></span><div><strong>Stripe</strong><p>Active MRR and subscriptions</p></div><em>Waiting</em></article>
+      <article data-service="calendly"><span></span><div><strong>Calendly</strong><p>Upcoming workflow calls</p></div><em>Waiting</em></article>
+      <article data-service="netlifyForms"><span></span><div><strong>Netlify Forms</strong><p>New inbound leads</p></div><em>Waiting</em></article>
+      <article data-service="posthog"><span></span><div><strong>PostHog</strong><p>Visitors and pageviews</p></div><em>Waiting</em></article>
+      <article data-service="netlifyDeploy"><span></span><div><strong>Netlify Deploy</strong><p>Production build health</p></div><em>Waiting</em></article>
+      <article class="tracking-service connected"><span></span><div><strong>Google Analytics</strong><p>Site-wide tracking is active</p></div><em>Tracking</em></article>
+      <article data-service="clay" class="warning"><span></span><div><strong>Clay</strong><p>Future enrichment and research</p></div><em>Planned</em></article>
+    </div>
+    <p id="live-summary" class="live-summary">Live metrics remain locked until you enter the private dashboard key.</p>
   </section>
 
   <section class="ledger-controls" aria-label="Pipeline controls">
@@ -85,7 +131,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     </div>
   </section>
 
-  <p class="privacy-note"><span></span>Private browser storage. Prospect data is not embedded in the public site or sent to RaleighAIGuy.com.</p>
+  <p class="privacy-note"><span></span>Prospect edits stay in this browser. Live integrations return aggregate metrics only through a key-protected server function.</p>
 
   <section class="pipeline-ledger" aria-labelledby="ledger-title">
     <header>
@@ -129,6 +175,16 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     </form>
   </dialog>
 
+  <dialog id="connection-dialog" class="pipeline-dialog connection-dialog">
+    <form id="connection-form" method="dialog">
+      <header><div><p>Private connection</p><h2>Unlock live metrics</h2></div><button type="button" data-close-connection aria-label="Close">×</button></header>
+      <p class="dialog-copy">Enter the value configured as <code>OPS_DASHBOARD_KEY</code> in Netlify. It stays in this browser tab and is never embedded in the site.</p>
+      <label class="connection-field"><span>Dashboard key</span><input id="dashboard-key" type="password" required autocomplete="current-password" /></label>
+      <p id="connection-error" class="import-error" role="alert"></p>
+      <footer><button type="button" data-close-connection class="button-secondary">Cancel</button><button type="submit" class="button-primary">Connect services</button></footer>
+    </form>
+  </dialog>
+
   <div id="pipeline-toast" class="pipeline-toast" role="status" aria-live="polite">Saved</div>
 </OpsShell>
 
@@ -141,6 +197,8 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     bounced: boolean; lastTouch: string; nextAction: string; nextActionDate: string;
     workflow: string; mrr: number; notes: string;
   };
+  type ServiceState = { status: string; [key: string]: string | number };
+  type LiveServices = Record<string, ServiceState>;
 
   const storageKey = "raleigh-ai-guy:acquisition:v1";
   const campaignKey = "raleigh-ai-guy:campaign:v1";
@@ -150,11 +208,16 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   const filter = document.querySelector<HTMLSelectElement>("#stage-filter")!;
   const prospectDialog = document.querySelector<HTMLDialogElement>("#prospect-dialog")!;
   const importDialog = document.querySelector<HTMLDialogElement>("#import-dialog")!;
+  const connectionDialog = document.querySelector<HTMLDialogElement>("#connection-dialog")!;
   const prospectForm = document.querySelector<HTMLFormElement>("#prospect-form")!;
   const importForm = document.querySelector<HTMLFormElement>("#import-form")!;
+  const connectionForm = document.querySelector<HTMLFormElement>("#connection-form")!;
   const importJson = document.querySelector<HTMLTextAreaElement>("#import-json")!;
   const toast = document.querySelector<HTMLDivElement>("#pipeline-toast")!;
+  const dashboardKey = document.querySelector<HTMLInputElement>("#dashboard-key")!;
+  const connectionError = document.querySelector<HTMLParagraphElement>("#connection-error")!;
   let prospects = loadProspects();
+  let liveServices: LiveServices = {};
   let toastTimer = 0;
 
   stages.forEach((stage) => {
@@ -176,7 +239,12 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     };
   }
   function loadProspects(): Prospect[] {
-    try { return JSON.parse(localStorage.getItem(storageKey) || "[]").map(clean); } catch { return []; }
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) return JSON.parse(stored).map(clean);
+      const seed = document.querySelector<HTMLScriptElement>("#seed-acquisition")?.textContent || "[]";
+      return JSON.parse(seed).map(clean);
+    } catch { return []; }
   }
   function save(message = "Pipeline saved") {
     localStorage.setItem(storageKey, JSON.stringify(prospects));
@@ -208,11 +276,17 @@ import OpsShell from "@/components/ops/OpsShell.astro";
 
     const count = (wanted: Stage[]) => prospects.filter((p) => wanted.includes(p.stage)).length;
     document.querySelector("#prospect-count")!.textContent = String(prospects.length);
-    document.querySelector("#outreach-count")!.textContent = String(count(["Outreach"]));
-    document.querySelector("#reply-count")!.textContent = String(count(["Replied", "Meeting", "Proof", "Customer"]));
-    document.querySelector("#meeting-count")!.textContent = String(count(["Meeting"]));
+    const smartlead = liveServices.smartlead;
+    const smartleadConnected = smartlead?.status === "connected";
+    document.querySelector("#outreach-count")!.textContent = String(smartleadConnected ? Number(smartlead.sent || 0) : count(["Outreach"]));
+    document.querySelector("#reply-count")!.textContent = String(smartleadConnected ? Number(smartlead.replied || 0) : count(["Replied", "Meeting", "Proof", "Customer"]));
+    document.querySelector("#outreach-note")!.textContent = smartleadConnected ? "Emails sent by Smartlead" : "Active sequences";
+    document.querySelector("#reply-note")!.textContent = smartleadConnected ? "Smartlead replies" : "Human responses";
+    const calendlyMeetings = liveServices.calendly?.status === "connected" ? Number(liveServices.calendly.upcoming || 0) : null;
+    document.querySelector("#meeting-count")!.textContent = String(calendlyMeetings ?? count(["Meeting"]));
     document.querySelector("#proof-count")!.textContent = String(count(["Proof"]));
-    document.querySelector("#mrr-total")!.textContent = `$${prospects.reduce((sum, p) => sum + p.mrr, 0).toLocaleString()}`;
+    const stripeMrr = liveServices.stripe?.status === "connected" ? Number(liveServices.stripe.mrr || 0) : null;
+    document.querySelector("#mrr-total")!.textContent = `$${(stripeMrr ?? prospects.reduce((sum, p) => sum + p.mrr, 0)).toLocaleString()}`;
     document.querySelector("#attention-count")!.textContent = String(prospects.filter(due).length);
     document.querySelector("#today-label")!.textContent = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric" }).format(new Date());
 
@@ -222,7 +296,86 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     document.querySelector("#conversion-note")!.textContent = prospects.length ? `${Math.round((meetings / prospects.length) * 100)}% reached a meeting · ${customers} customers` : "Add your first prospects to establish a baseline.";
     renderCampaign();
   }
+
+  const serviceLabels: Record<string, (service: ServiceState) => string> = {
+    smartlead: (service) => service.status === "connected" ? `${service.sent || 0} sent · ${service.replied || 0} replies` : statusLabel(service.status),
+    stripe: (service) => service.status === "connected" ? `$${Number(service.mrr || 0).toLocaleString()} MRR` : statusLabel(service.status),
+    calendly: (service) => service.status === "connected" ? `${service.upcoming || 0} upcoming` : statusLabel(service.status),
+    netlifyForms: (service) => service.status === "connected" ? `${service.leads30d || 0} leads · 30d` : statusLabel(service.status),
+    posthog: (service) => service.status === "connected" ? `${service.visitors30d || 0} visitors · 30d` : statusLabel(service.status),
+    netlifyDeploy: (service) => service.status === "connected" ? `Live · ${service.commit || "ready"}` : statusLabel(service.status),
+    clay: (service) => statusLabel(service.status),
+  };
+  function statusLabel(status: string) {
+    if (status === "not_configured") return "Needs credential";
+    if (status === "tracking_only") return "Tracking only";
+    if (status === "planned") return "Planned";
+    if (status === "error") return "Connection error";
+    return status || "Unavailable";
+  }
+  function paintServices() {
+    Object.entries(liveServices).forEach(([name, service]) => {
+      const card = document.querySelector<HTMLElement>(`[data-service="${name}"]`);
+      if (!card) return;
+      card.classList.toggle("connected", service.status === "connected");
+      card.classList.toggle("warning", ["not_configured", "tracking_only", "planned"].includes(service.status));
+      card.classList.toggle("failed", service.status === "error");
+      card.querySelector("em")!.textContent = serviceLabels[name]?.(service) || statusLabel(service.status);
+    });
+    const stripe = liveServices.stripe;
+    const smartlead = liveServices.smartlead;
+    const calendly = liveServices.calendly;
+    const forms = liveServices.netlifyForms;
+    const posthog = liveServices.posthog;
+    const parts = [
+      smartlead?.status === "connected" ? `${smartlead.sent || 0} Smartlead sends and ${smartlead.replied || 0} replies` : "",
+      stripe?.status === "connected" ? `$${Number(stripe.mrr || 0).toLocaleString()} active MRR` : "",
+      calendly?.status === "connected" ? `${calendly.upcoming || 0} upcoming calls` : "",
+      forms?.status === "connected" ? `${forms.leads30d || 0} form leads in 30 days` : "",
+      posthog?.status === "connected" ? `${posthog.visitors30d || 0} visitors in 30 days` : "",
+    ].filter(Boolean);
+    document.querySelector("#live-summary")!.textContent = parts.length ? parts.join(" · ") : "Connected. Add the credentials marked above to unlock more live metrics.";
+    render();
+  }
+  async function syncServices(key: string) {
+    const button = document.querySelector<HTMLButtonElement>("#sync-services")!;
+    button.disabled = true; button.textContent = "Syncing…"; connectionError.textContent = "";
+    try {
+      const response = await fetch("/.netlify/functions/acquisition-summary", { headers: { "x-ops-key": key } });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Could not connect to live services.");
+      sessionStorage.setItem("raleigh-ai-guy:ops-key", key);
+      liveServices = payload.services || {};
+      document.querySelector("#last-synced")!.textContent = `Synced ${new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(new Date(payload.generatedAt))}`;
+      button.textContent = "Sync again";
+      connectionDialog.close();
+      paintServices();
+      window.posthog?.capture?.("ops_services_synced", { connected: Object.values(liveServices).filter((service) => service.status === "connected").length });
+    } catch (error) {
+      connectionError.textContent = error instanceof Error ? error.message : "Could not connect to live services.";
+      if (!connectionDialog.open) connectionDialog.showModal();
+      button.textContent = "Connect live data";
+    } finally { button.disabled = false; }
+  }
   function renderCampaign() {
+    const smartlead = liveServices.smartlead;
+    if (smartlead?.status === "connected") {
+      const leads = Number(smartlead.leads || 0);
+      const sent = Number(smartlead.sent || 0);
+      const bounced = Number(smartlead.bounced || 0);
+      const progress = leads ? Math.min(100, Math.round((sent / leads) * 100)) : 0;
+      document.querySelector("#batch-name")!.textContent = String(smartlead.campaignName || "Smartlead campaign");
+      document.querySelector("#batch-status")!.textContent = String(smartlead.campaignStatus || "Active");
+      document.querySelector("#campaign-state")!.textContent = `${smartlead.campaigns || 0} Smartlead campaign${Number(smartlead.campaigns || 0) === 1 ? "" : "s"} active`;
+      document.querySelector("#batch-leads")!.textContent = String(leads);
+      document.querySelector("#batch-sent")!.textContent = String(sent);
+      document.querySelector("#batch-bounced")!.textContent = String(bounced);
+      document.querySelector("#sending-ceiling")!.textContent = `${smartlead.maxDaily || 0} leads / day`;
+      const tracking = [smartlead.openTracking ? "opens" : "", smartlead.clickTracking ? "clicks" : ""].filter(Boolean);
+      document.querySelector("#tracking-state")!.textContent = tracking.length ? `${tracking.join(" + ")} enabled` : "Disabled";
+      (document.querySelector("#campaign-progress-bar") as HTMLElement).style.width = `${progress}%`;
+      return;
+    }
     let campaign: { name?: string; status?: string; leads?: number; sent?: number; bounced?: number } = {};
     try { campaign = JSON.parse(localStorage.getItem(campaignKey) || "{}"); } catch {}
     const leads = Number(campaign.leads || prospects.filter((p) => p.campaign).length);
@@ -241,7 +394,7 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   list.addEventListener("change", (event) => {
     const target = event.target as HTMLSelectElement;
     const row = target.closest<HTMLElement>("[data-id]"); const prospect = prospects.find((p) => p.id === row?.dataset.id);
-    if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; save("Stage updated"); }
+    if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; save("Stage updated"); window.posthog?.capture?.("ops_pipeline_stage_changed", { stage: prospect.stage }); }
   });
   list.addEventListener("click", (event) => {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button");
@@ -255,8 +408,14 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   search.addEventListener("input", render); filter.addEventListener("change", render);
   document.querySelector("#add-prospect")!.addEventListener("click", () => { prospectForm.reset(); prospectDialog.showModal(); });
   document.querySelector("#import-pipeline")!.addEventListener("click", () => { importJson.value = ""; document.querySelector("#import-error")!.textContent = ""; importDialog.showModal(); });
+  document.querySelector("#sync-services")!.addEventListener("click", () => {
+    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+    if (key) syncServices(key); else { dashboardKey.value = ""; connectionError.textContent = ""; connectionDialog.showModal(); }
+  });
   document.querySelectorAll("[data-close-prospect]").forEach((el) => el.addEventListener("click", () => prospectDialog.close()));
   document.querySelectorAll("[data-close-import]").forEach((el) => el.addEventListener("click", () => importDialog.close()));
+  document.querySelectorAll("[data-close-connection]").forEach((el) => el.addEventListener("click", () => connectionDialog.close()));
+  connectionForm.addEventListener("submit", (event) => { event.preventDefault(); syncServices(dashboardKey.value); });
   prospectForm.addEventListener("submit", (event) => {
     event.preventDefault(); const data = new FormData(prospectForm);
     prospects.push(clean({ company: String(data.get("company") || ""), contact: String(data.get("contact") || ""), email: String(data.get("email") || ""), industry: String(data.get("industry") || ""), score: Number(data.get("score") || 0), stage: String(data.get("stage") || "Research") as Stage, workflow: String(data.get("workflow") || ""), nextAction: String(data.get("nextAction") || "") }));
@@ -283,6 +442,8 @@ import OpsShell from "@/components/ops/OpsShell.astro";
     const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" })); link.download = `raleigh-ai-guy-pipeline-${new Date().toISOString().slice(0, 10)}.json`; link.click(); URL.revokeObjectURL(link.href);
   });
   render();
+  const savedOpsKey = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+  if (savedOpsKey) syncServices(savedOpsKey);
 </script>
 
 <style is:global>
@@ -329,6 +490,24 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .campaign-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--orange); transition: width 500ms ease; }
   .campaign-stats { display: flex; gap: 1.2rem; margin-top: 1rem; color: var(--muted); font-size: .65rem; }
   .campaign-stats strong { color: var(--ink); }
+  .integration-panel { margin-top: 1.1rem; border: 1px solid var(--line); border-radius: .45rem; padding: 1.35rem; background: var(--paper); }
+  .integration-panel > header { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+  .integration-panel > header p { color: var(--muted); font: 600 .58rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+  .integration-panel h2 { margin-top: .35rem; font: 500 1.55rem/1 "Newsreader", serif; }
+  .integration-actions { display: flex; align-items: center; gap: .75rem; }
+  .integration-actions > span { color: var(--muted); font: 500 .58rem/1 "IBM Plex Mono", monospace; }
+  .integration-actions button:disabled { cursor: wait; opacity: .65; }
+  .integration-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 1.25rem; border: 1px solid var(--line); background: var(--line); }
+  .integration-grid article { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .7rem; min-height: 4.6rem; padding: .8rem; background: var(--paper); }
+  .integration-grid article > span { width: .5rem; height: .5rem; border-radius: 999px; background: #aaa39a; }
+  .integration-grid article.connected > span { background: #2a8f65; box-shadow: 0 0 0 .2rem rgb(42 143 101 / 12%); }
+  .integration-grid article.warning > span { background: #d69a35; }
+  .integration-grid article.failed > span { background: #d5553b; }
+  .integration-grid strong { display: block; font-size: .67rem; }
+  .integration-grid p { margin-top: .25rem; color: var(--muted); font-size: .57rem; }
+  .integration-grid em { color: var(--muted); font: 500 .56rem/1.25 "IBM Plex Mono", monospace; text-align: right; }
+  .integration-grid article.connected em { color: #2a7559; }
+  .live-summary { margin-top: .9rem; color: var(--muted); font-size: .64rem; line-height: 1.5; }
   .ledger-controls { display: grid; grid-template-columns: minmax(14rem, 1fr) 12rem auto; align-items: end; gap: .8rem; margin-top: 2rem; }
   .ledger-controls label > span, .pipeline-dialog label > span { display: block; margin-bottom: .45rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
   .ledger-controls input, .ledger-controls select, .pipeline-dialog input, .pipeline-dialog select, .pipeline-dialog textarea { width: 100%; min-height: 2.75rem; border: 1px solid var(--line); border-radius: .35rem; padding: .65rem .75rem; color: var(--ink); background: var(--paper); font-size: .72rem; }
@@ -368,11 +547,15 @@ import OpsShell from "@/components/ops/OpsShell.astro";
   .pipeline-dialog header button { border: 0; background: transparent; font-size: 1.3rem; }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.25rem; }.span-two { grid-column: span 2; }
   .dialog-copy { padding: 1.1rem 1.25rem 0; color: var(--muted); font-size: .7rem; line-height: 1.55; }
+  .dialog-copy code { color: var(--ink); font: 600 .66rem/1 "IBM Plex Mono", monospace; }
+  .connection-dialog { width: min(31rem, calc(100% - 2rem)); }
+  .connection-field { display: block; padding: 1.1rem 1.25rem; }
+  .connection-field > span { display: block; margin-bottom: .45rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
   #import-json { width: calc(100% - 2.5rem); margin: 1rem 1.25rem; border: 1px solid var(--line); border-radius: .35rem; padding: .8rem; background: #fffdf7; font: .65rem/1.55 "IBM Plex Mono", monospace; }
   .import-error { min-height: 1rem; margin: 0 1.25rem 1rem; color: #b74832; font-size: .65rem; }
   .pipeline-toast { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 50; padding: .75rem 1rem; border-radius: .35rem; color: #fff8ef; background: var(--forest); font-size: .68rem; opacity: 0; transform: translateY(.6rem); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }
   .pipeline-toast.visible { opacity: 1; transform: translateY(0); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
-  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.control-actions { justify-content: stretch; }.control-actions button { flex: 1; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; } }
+  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
+  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.integration-panel > header { align-items: stretch; flex-direction: column; }.integration-actions { align-items: stretch; flex-direction: column; }.integration-grid { grid-template-columns: 1fr; }.control-actions { justify-content: stretch; }.control-actions button { flex: 1; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; } }
 </style>
