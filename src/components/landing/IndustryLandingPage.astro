@@ -1,0 +1,194 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import type { IndustryLandingPage } from "@/data/industryLandingPages";
+
+interface Props {
+  page: IndustryLandingPage;
+}
+
+const { page } = Astro.props;
+
+const steps = [
+  ["Show me the work", "On a short call, you walk me through the current process. I ask questions, find the strongest leverage point, and agree on one result worth proving."],
+  ["I build the proof", "If the opportunity is a fit, I build a focused working version in one week. The scope stays deliberately small and measurable."],
+  ["You see the return", "You see the workflow in action and what it could save or earn. Then you decide whether a full implementation and monthly partnership make sense."],
+];
+---
+
+<BaseLayout pageTitle={page.pageTitle} pageDescription={page.pageDescription}>
+  <section class="overflow-hidden border-b border-black/10">
+    <Wrapper variant="wide" class="py-10 sm:py-16 lg:py-20">
+      <div class="grid items-end gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="field-reveal lg:col-span-8">
+          <p class="field-label flex items-center gap-2">
+            <span class="size-2 shrink-0 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
+            {page.eyebrow}
+          </p>
+          <h1 class="font-editorial mt-7 max-w-5xl text-[clamp(3.25rem,7.5vw,6.8rem)] font-medium leading-[.86] tracking-[-.055em] text-black">
+            {page.headline}<br /><em class="font-normal text-[var(--brand-orange)]">{page.headlineAccent}</em>
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-base-600 sm:text-xl">{page.intro}</p>
+          <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <a href="#show-me" class="site-cta">Show me the workflow you’d fix →</a>
+            <a href="#proof" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">See what the proof could include</a>
+          </div>
+          <p class="font-utility mt-5 text-[.62rem] uppercase tracking-[.1em] text-base-500">One workflow · One-week proof · No upfront build fee</p>
+        </div>
+
+        <aside class="field-reveal field-reveal-delay lg:col-span-4">
+          <div class="border border-black/15 bg-[var(--brand-paper)] p-6 shadow-[10px_10px_0_var(--brand-orange)] sm:p-7">
+            <p class="field-label">A typical handoff</p>
+            <ol class="mt-6 space-y-0">
+              {page.workflow.map((item, index) => (
+                <li class="relative flex items-center gap-4 pb-6 last:pb-0">
+                  {index < page.workflow.length - 1 && <span class="absolute left-[.68rem] top-7 h-[calc(100%-1rem)] w-px bg-black/15" aria-hidden="true"></span>}
+                  <span class="relative z-10 grid size-[1.4rem] shrink-0 place-items-center rounded-full border border-black/20 bg-[var(--brand-paper)] font-utility text-[.55rem] text-base-500">{index + 1}</span>
+                  <span class="text-sm font-semibold">{item}</span>
+                </li>
+              ))}
+            </ol>
+            <p class="mt-7 border-t border-black/10 pt-5 text-xs leading-5 text-base-500">The opportunity usually lives between the steps—not inside another disconnected tool.</p>
+          </div>
+        </aside>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-forest)] text-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label text-white/45">Where the work gets stuck</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">{page.frictionTitle}</h2>
+          <p class="mt-6 max-w-lg text-base leading-7 text-white/60">{page.frictionIntro}</p>
+        </div>
+        <div class="border-t border-white/15 lg:col-span-7">
+          {page.frictions.map((friction, index) => (
+            <article class="grid gap-3 border-b border-white/15 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+              <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="font-semibold">{friction.title}</h3>
+              <p class="text-sm leading-6 text-white/55">{friction.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="proof" class="scroll-mt-6 bg-[var(--brand-surface-soft)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="max-w-3xl">
+        <p class="field-label">What the first proof could look like</p>
+        <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">{page.proofTitle}</h2>
+        <p class="mt-6 text-base leading-7 text-base-600">{page.proofIntro}</p>
+      </div>
+
+      <div class="mt-12 grid gap-5 lg:grid-cols-3">
+        {page.proofIdeas.map((idea, index) => (
+          <article class="group relative min-h-72 overflow-hidden border border-black/15 bg-[var(--brand-paper)] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7">
+            <span class="font-editorial absolute -right-2 -top-7 text-[8rem] leading-none text-black/[.035]" aria-hidden="true">{index + 1}</span>
+            <p class="field-label text-[var(--brand-orange)]">{idea.label}</p>
+            <h3 class="font-editorial mt-16 text-4xl leading-[.95] tracking-[-.03em]">{idea.title}</h3>
+            <p class="mt-5 text-sm leading-6 text-base-600">{idea.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="font-utility mt-6 text-[.6rem] uppercase leading-5 tracking-[.09em] text-base-500">Examples, not a predetermined package. The first call determines the highest-value starting point.</p>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-4">
+          <p class="field-label">How the offer works</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">One call. One week. Clear value.</h2>
+          <p class="mt-6 text-sm leading-6 text-base-600">No paid assessment. No AI homework. No large project before you can see whether the idea works.</p>
+        </div>
+        <ol class="border-t border-black/15 lg:col-span-8">
+          {steps.map(([title, body], index) => (
+            <li class="grid gap-4 border-b border-black/15 py-7 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+              <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="font-semibold">{title}</h3>
+              <p class="text-sm leading-6 text-base-600">{body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-y border-black/10 bg-[var(--brand-bg)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label">Who this is for</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">The proof should create a business case—not just a demo.</h2>
+        </div>
+        <div class="lg:col-span-7">
+          <ul class="border-t border-black/15">
+            {page.fitSignals.map((signal) => (
+              <li class="grid grid-cols-[1.5rem_1fr] gap-4 border-b border-black/15 py-5 text-base font-semibold">
+                <span class="text-[var(--brand-orange)]">✓</span><span>{signal}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-sm leading-6 text-base-600">If the numbers, access, or opportunity are not there, I will tell you before either of us spends a week on the wrong problem.</p>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-forest)] text-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label text-white/45">A real operations example</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">Four scattered systems became one clear command center.</h2>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-lg leading-8 text-white/70">Zim Zoom’s events, capacity, staffing, payments, metrics, and approvals were spread across separate tools and manual handoffs. I built an owner-focused command center in days so the work could be seen and managed in one place.</p>
+          <p class="mt-6 text-sm leading-6 text-white/55">Different industry. Same operating pattern: valuable information scattered across people and systems, with an owner or office team doing the connecting by hand.</p>
+          <a href="/projects/zimzoom-photo-booth/" class="mt-8 inline-flex text-sm font-semibold underline decoration-white/25 underline-offset-4 hover:decoration-white">See the working example →</a>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section id="show-me" class="scroll-mt-6 bg-[var(--brand-orange)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p class="field-label text-black/55">Show me the workflow</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">I’ll tell you where I would start.</h2>
+          <p class="mt-6 max-w-lg text-base leading-7 text-black/70">{page.formPrompt} I’ll review it personally and reply with the next useful question—not add you to a generic sales sequence.</p>
+          <p class="font-utility mt-7 text-[.6rem] uppercase tracking-[.1em] text-black/55">Short form · Personal reply · No obligation</p>
+        </div>
+
+        <div class="border-t border-black/20 pt-8 lg:col-span-7">
+          <form name="industry-opportunity" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
+            <input type="hidden" name="form-name" value="industry-opportunity" />
+            <input type="hidden" name="industry" value={page.slug} />
+            <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="intake-label">Name<input class="intake-field border-black/25 bg-white/45" type="text" name="name" autocomplete="name" placeholder="Your name" required /></label>
+              <label class="intake-label">Work email<input class="intake-field border-black/25 bg-white/45" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
+              <label class="intake-label sm:col-span-2">Company<input class="intake-field border-black/25 bg-white/45" type="text" name="company" autocomplete="organization" placeholder="Business name" required /></label>
+              <label class="intake-label sm:col-span-2">Where does the work get stuck?
+                <textarea class="intake-field intake-textarea border-black/25 bg-white/45" name="workflow" rows="4" maxlength="800" placeholder={page.formPrompt} required></textarea>
+              </label>
+            </div>
+
+            <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <button type="submit" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Show Danny the workflow →</button>
+              <p class="text-xs leading-5 text-black/55">I review every note myself.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>
+

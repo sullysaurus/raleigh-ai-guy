@@ -1,0 +1,19 @@
+---
+import IndustryLandingPage from "@/components/landing/IndustryLandingPage.astro";
+import { industryLandingPages, type IndustryLandingPage as IndustryLandingPageData } from "@/data/industryLandingPages";
+
+export function getStaticPaths() {
+  return industryLandingPages.map((page) => ({
+    params: { industry: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: IndustryLandingPageData;
+}
+
+const { page } = Astro.props;
+---
+
+<IndustryLandingPage page={page} />
