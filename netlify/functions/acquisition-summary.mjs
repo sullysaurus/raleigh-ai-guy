@@ -1,4 +1,4 @@
-import { timingSafeEqual } from "node:crypto";
+import { authorized } from "../lib/acquisition-store.mjs";
 
 const json = (statusCode, body) => ({
   statusCode,
@@ -8,12 +8,6 @@ const json = (statusCode, body) => ({
   },
   body: JSON.stringify(body),
 });
-
-const safeEqual = (left, right) => {
-  const a = Buffer.from(String(left || ""));
-  const b = Buffer.from(String(right || ""));
-  return a.length === b.length && timingSafeEqual(a, b);
-};
 
 const requestJson = async (url, options = {}) => {
   const response = await fetch(url, options);
@@ -199,7 +193,7 @@ export const handler = async (event) => {
   if (event.httpMethod !== "GET") return json(405, { error: "Method not allowed" });
   const expected = process.env.OPS_DASHBOARD_KEY;
   if (!expected) return json(503, { error: "OPS_DASHBOARD_KEY is not configured" });
-  if (!safeEqual(event.headers?.["x-ops-key"], expected)) return json(401, { error: "Invalid dashboard key" });
+  if (!authorized(event)) return json(401, { error: "Invalid dashboard key" });
 
   const entries = await Promise.all([
     guarded("stripe", stripeSummary),
