@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-06-21T09:00:00-04:00
 title: "Does Your Small Business Need AI? Use This Practical Test"
+targetKeyword: "does my business need ai"
 description: "Decide where AI can save your small business time or money—and when a checklist, template, or ordinary automation is the better answer."
 image:
   url: "/src/images/posts/do-i-need-ai-v2.png"

@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-05-27T09:00:00-04:00
 title: "Claude Cowork Explained: When to Use It Instead of Chat"
+targetKeyword: "claude cowork"
 description: "Learn when to use Claude Chat or Claude Cowork, what Cowork can handle, and how to delegate a practical business task safely."
 image:
   url: "/src/images/posts/claude-cowork.png"

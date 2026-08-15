@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-21T12:00:00-04:00
 title: "Claude for Business Owners: A Practical 60-Minute Bootcamp"
+targetKeyword: "claude for business owners"
 description: "A plain-English Claude bootcamp for nontechnical business owners covering Projects, prompts, instructions, Design, Skills, connectors, Cowork, and safe first workflows."
 image:
   url: "/src/images/posts/claude-business-bootcamp.png"

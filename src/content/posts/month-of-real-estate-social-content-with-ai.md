@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-18T09:00:00-04:00
 title: "How Real Estate Agents Can Create a Month of Social Content With Claude"
+targetKeyword: "claude social media for real estate"
 description: "A simple Claude and Claude Design workflow for turning one trustworthy real estate source into a useful month of social content."
 image:
   url: "/src/images/posts/real-estate-social-content.png"

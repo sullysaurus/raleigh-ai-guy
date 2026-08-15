@@ -1,0 +1,28 @@
+name: Publish scheduled SEO content
+
+on:
+  schedule:
+    - cron: "20 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-seo-publishing
+  cancel-in-progress: false
+
+jobs:
+  trigger-production-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger the Netlify production build
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK_URL" ]; then
+            echo "::warning::NETLIFY_BUILD_HOOK_URL is not configured; scheduled publication was not triggered."
+            exit 0
+          fi
+          curl --fail --silent --show-error --request POST "$NETLIFY_BUILD_HOOK_URL"

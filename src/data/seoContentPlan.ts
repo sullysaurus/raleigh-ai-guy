@@ -16,9 +16,9 @@ export type SeoPlanItem = {
   cta: string;
 };
 
-const researchPending = "Keywords Everywhere · United States refresh pending";
+const researchPending = "Keywords Everywhere · metric unavailable in capped Global pass";
 
-export const seoContentPlan: SeoPlanItem[] = [
+const baseSeoContentPlan: SeoPlanItem[] = [
   { id: 1, keyword: "ai consultant raleigh nc", title: "What a Raleigh AI Consultant Actually Does for a Small Business", slug: "what-raleigh-ai-consultant-does-small-business", cluster: "Local AI consulting", intent: "Hire", funnel: "Decision", publishDate: "2026-08-18", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Raleigh owners comparing local help", cta: "Book a workflow call" },
   { id: 2, keyword: "ai consulting cost", title: "How Much Does AI Consulting Cost for a Small Business?", slug: "ai-consulting-cost-small-business", cluster: "Local AI consulting", intent: "Compare", funnel: "Decision", publishDate: "2026-08-20", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners budgeting for implementation", cta: "Estimate one workflow" },
   { id: 3, keyword: "ai readiness assessment", title: "Is Your Business Ready for AI? A Practical Readiness Assessment", slug: "small-business-ai-readiness-assessment", cluster: "Local AI consulting", intent: "Learn", funnel: "Consideration", publishDate: "2026-08-25", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners unsure where to begin", cta: "Take the AI opportunity scorecard" },
@@ -50,7 +50,7 @@ export const seoContentPlan: SeoPlanItem[] = [
   { id: 27, keyword: "automated tenant communication", title: "What Property Managers Should and Should Not Automate in Tenant Communication", slug: "automated-tenant-communication", cluster: "Real estate", intent: "Learn", funnel: "Consideration", publishDate: "2026-11-17", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Property managers protecting service quality", cta: "Review a communication workflow" },
   { id: 28, keyword: "ai listing presentation", title: "How to Build a Stronger Listing Presentation With AI", slug: "ai-real-estate-listing-presentation", cluster: "Real estate", intent: "Learn", funnel: "Awareness", publishDate: "2026-11-19", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Listing agents preparing seller meetings", cta: "Book a free office workshop" },
   { id: 29, keyword: "real estate transaction automation", title: "Five Real Estate Transaction Tasks Worth Automating", slug: "real-estate-transaction-automation", cluster: "Real estate", intent: "Learn", funnel: "Consideration", publishDate: "2026-11-24", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Teams and transaction coordinators", cta: "Map a transaction workflow" },
-  { id: 30, keyword: "ai fair housing real estate", title: "Using AI in Real Estate Without Creating Fair Housing Problems", slug: "ai-real-estate-fair-housing-review", cluster: "Real estate", intent: "Learn", funnel: "Consideration", publishDate: "2026-11-26", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Agents reviewing AI-generated copy", cta: "Get the review checklist" },
+  { id: 30, keyword: "ai fair housing real estate", title: "Using AI in Real Estate Without Creating Fair Housing Problems", slug: "ai-real-estate-fair-housing-review", cluster: "Real estate", intent: "Learn", funnel: "Consideration", publishDate: "2026-11-25", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Agents reviewing AI-generated copy", cta: "Get the review checklist" },
 
   { id: 31, keyword: "ai for contractors", title: "Nine Practical Ways Contractors Can Use AI", slug: "ai-for-contractors-practical-workflows", cluster: "Contractors", intent: "Learn", funnel: "Awareness", publishDate: "2026-12-01", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners of local contracting businesses", cta: "Book a workflow call" },
   { id: 32, keyword: "chatgpt for contractors", title: "ChatGPT for Contractors: What It Is Good At and Where It Fails", slug: "chatgpt-for-contractors", cluster: "Contractors", intent: "Learn", funnel: "Awareness", publishDate: "2026-12-03", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Contractors testing generative AI", cta: "Choose a safe first workflow" },
@@ -59,9 +59,9 @@ export const seoContentPlan: SeoPlanItem[] = [
   { id: 35, keyword: "ai for plumbing companies", title: "Five AI Workflows for Plumbing Companies", slug: "ai-workflows-plumbing-companies", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-15", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Plumbing owners and dispatch teams", cta: "Book a workflow call" },
   { id: 36, keyword: "ai for electricians", title: "How Electrical Contractors Can Use AI Without Complicating the Field", slug: "ai-workflows-electrical-contractors", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-17", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Electrical business owners", cta: "Identify an office bottleneck" },
   { id: 37, keyword: "ai for roofing companies", title: "AI for Roofing Companies: Lead Follow-Up, Estimates, and Job Updates", slug: "ai-workflows-roofing-companies", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-22", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Roofing owners and sales managers", cta: "Map a roofing workflow" },
-  { id: 38, keyword: "ai for restoration companies", title: "AI Workflows for Restoration and Remediation Companies", slug: "ai-workflows-restoration-remediation", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-24", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Restoration owners and coordinators", cta: "Book a workflow call" },
+  { id: 38, keyword: "ai for restoration companies", title: "AI Workflows for Restoration and Remediation Companies", slug: "ai-workflows-restoration-remediation", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-23", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Restoration owners and coordinators", cta: "Book a workflow call" },
   { id: 39, keyword: "ai for landscaping business", title: "How Landscaping Companies Can Use AI in the Office", slug: "ai-workflows-landscaping-companies", cluster: "Contractors", intent: "Learn", funnel: "Consideration", publishDate: "2026-12-29", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Landscaping owners and office teams", cta: "See the Garden & Art case study" },
-  { id: 40, keyword: "contractor follow up automation", title: "A Better Follow-Up System for Contractors Who Send Estimates", slug: "contractor-estimate-follow-up-automation", cluster: "Contractors", intent: "Learn", funnel: "Decision", publishDate: "2026-12-31", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Contractors losing estimates to silence", cta: "Build an estimate follow-up proof" },
+  { id: 40, keyword: "contractor follow up automation", title: "A Better Follow-Up System for Contractors Who Send Estimates", slug: "contractor-estimate-follow-up-automation", cluster: "Contractors", intent: "Learn", funnel: "Decision", publishDate: "2026-12-30", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Contractors losing estimates to silence", cta: "Build an estimate follow-up proof" },
 
   { id: 41, keyword: "ai agents for small business", title: "AI Agents for Small Business: What They Can Actually Do", slug: "ai-agents-small-business", cluster: "AI tools and education", intent: "Learn", funnel: "Awareness", publishDate: "2027-01-05", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners sorting hype from useful capability", cta: "Find a practical first workflow" },
   { id: 42, keyword: "what is an ai workflow", title: "What Is an AI Workflow? A Plain-English Explanation", slug: "what-is-an-ai-workflow", cluster: "AI tools and education", intent: "Learn", funnel: "Awareness", publishDate: "2027-01-07", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Nontechnical business owners", cta: "See workflow examples" },
@@ -74,3 +74,44 @@ export const seoContentPlan: SeoPlanItem[] = [
   { id: 49, keyword: "ai social media tools for small business", title: "AI Social Media Tools for Small Business: A Workflow-First Guide", slug: "ai-social-media-tools-small-business", cluster: "AI tools and education", intent: "Compare", funnel: "Awareness", publishDate: "2027-02-02", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners building a repeatable content system", cta: "Plan a content workflow" },
   { id: 50, keyword: "ai bookkeeping for small business", title: "Where AI Helps With Small-Business Bookkeeping—and Where It Should Not Decide", slug: "ai-bookkeeping-small-business", cluster: "AI tools and education", intent: "Learn", funnel: "Awareness", publishDate: "2027-02-04", status: "Research", volume: null, cpc: null, competition: null, evidence: researchPending, audience: "Owners evaluating finance automation", cta: "Identify a safe workflow" },
 ];
+
+const researchByKeyword = new Map(keywordResearch.items.map((item) => [item.keyword, item]));
+const titleOverrides: Record<number, string> = {
+  1: "What a Raleigh AI Consultant Does for Small Businesses",
+  3: "AI Readiness Assessment for Small Businesses",
+  5: "How to Estimate AI Workflow ROI Before You Build",
+  8: "AI Implementation Checklist for Small Businesses",
+  10: "AI Data Privacy Checklist for Small Businesses",
+  19: "How to Qualify Leads With AI and Keep It Human",
+  23: "Automate Open-House Follow-Up Without Generic Drips",
+  27: "Tenant Communication Automation: What Should Stay Human",
+  30: "AI, Real Estate, and Fair Housing: A Practical Review",
+  32: "ChatGPT for Contractors: Strengths, Limits, and Risks",
+  33: "Five AI Workflows for Construction Companies",
+  34: "AI Workflows for HVAC Dispatch and Follow-Up",
+  36: "Practical AI Workflows for Electrical Contractors",
+  37: "AI Workflows for Roofing Leads and Job Updates",
+  45: "AI Business Process Automation: A Practical Guide",
+  48: "AI Lead Generation for Small Business Without Spam",
+  49: "AI Social Media Tools for Small Business",
+  50: "AI for Small-Business Bookkeeping: Useful, Not Autonomous",
+};
+const planNowValue = import.meta.env?.CONTENT_BUILD_AT || (typeof process !== "undefined" ? process.env.CONTENT_BUILD_AT : undefined);
+const planNow = planNowValue ? new Date(planNowValue) : new Date();
+
+export const seoContentPlan: SeoPlanItem[] = baseSeoContentPlan.map((item) => {
+  const research = researchByKeyword.get(item.keyword);
+  if (!research) return item;
+  return {
+    ...item,
+    title: titleOverrides[item.id] || item.title,
+    status: new Date(`${item.publishDate}T00:00:00-04:00`) <= planNow ? "Published" : "Scheduled",
+    volume: research.volume,
+    cpc: research.cpc,
+    competition: research.competition,
+    evidence: research.volume === null
+      ? researchPending
+      : `Keywords Everywhere · ${keywordResearch.country} · ${keywordResearch.collectedAt}`,
+  };
+});
+import keywordResearch from "../../seo/keywords-everywhere-research.json";

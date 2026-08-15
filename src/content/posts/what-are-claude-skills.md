@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-05-20T09:00:00-04:00
 title: "Claude Skills Explained for Small Business"
+targetKeyword: "claude skills for small business"
 description: "Learn what Claude Skills are, where they save time, and how to turn a repeated small-business task into a reusable workflow without coding."
 image:
   url: "/src/images/posts/claude-skills-v2.png"

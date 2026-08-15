@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-15T09:00:00-04:00
 title: "How to Write Better Real Estate Listing Descriptions With Claude"
+targetKeyword: "claude real estate listing descriptions"
 description: "A practical Claude workflow for drafting listing descriptions while protecting accuracy, voice, and Fair Housing review."
 image:
   url: "/src/images/posts/ai-listing-descriptions.png"

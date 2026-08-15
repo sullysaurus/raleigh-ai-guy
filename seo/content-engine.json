@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "brand": {
+    "name": "Raleigh AI Guy",
+    "siteUrl": "https://raleighaiguy.com",
+    "audience": "Raleigh-area small-business owners and service teams looking for practical AI and workflow automation help",
+    "markets": ["Raleigh", "Wake County", "The Triangle", "North Carolina"],
+    "voice": "Plain-English, practical, specific, honest about tradeoffs, and focused on measurable business outcomes",
+    "verifiedFacts": [
+      "Danny Sullivan operates Raleigh AI Guy in Raleigh, North Carolina.",
+      "The primary consultation CTA is a workflow call booked through Calendly.",
+      "Raleigh AI Guy offers free lunch-and-learn sessions for qualifying real estate offices."
+    ],
+    "prohibitedClaims": [
+      "Guaranteed rankings, savings, revenue, or implementation results",
+      "Legal, tax, accounting, fair-housing, privacy, or security advice",
+      "Tool partnerships, certifications, or customer outcomes not documented in the repository"
+    ]
+  },
+  "content": {
+    "directory": "src/content/posts",
+    "schemaFile": "src/content.config.ts",
+    "extensions": ["md", "mdx"],
+    "fields": {
+      "title": "title",
+      "description": "description",
+      "publishedDate": "pubDate",
+      "updatedDate": "updatedDate",
+      "targetKeyword": "targetKeyword"
+    },
+    "primaryCtas": {
+      "workflowCall": "https://calendly.com/hello-raleighaiguy/30min",
+      "scorecard": "/ai-opportunity-scorecard/",
+      "services": "/services/",
+      "realtorWorkshop": "/contact/"
+    },
+    "defaultImages": {
+      "Local AI consulting": "/src/images/posts/do-i-need-ai-v2.png",
+      "Small-business workflows": "/src/images/posts/claude-inbox-skill.png",
+      "Real estate": "/src/images/posts/real-estate-ai-tools-2026.png",
+      "Contractors": "/src/images/industries/specialty-contractors.jpg",
+      "AI tools and education": "/src/images/posts/chatgpt-vs-claude.png"
+    }
+  },
+  "workflow": {
+    "queueFile": "seo/keyword-seeds.json",
+    "stateFile": "seo/content-state.json",
+    "variationMapFile": "seo/keyword-variation-map.json",
+    "researchSnapshotFile": "seo/keywords-everywhere-research.json",
+    "commands": {
+      "queue": "npm run content:check",
+      "brief": "npm run content:check",
+      "markDraft": "npm run content:check",
+      "check": "npm run content:check",
+      "build": "npm run build",
+      "test": "npm run test:seo"
+    }
+  },
+  "publishing": {
+    "cadence": "twice weekly",
+    "timezone": "America/New_York",
+    "dateField": "pubDate",
+    "releaseMechanism": "scheduled Netlify static rebuild",
+    "automationFile": ".github/workflows/publish-scheduled-content.yml",
+    "deployProvider": "Netlify",
+    "buildHookName": "Scheduled SEO publishing"
+  },
+  "research": {
+    "country": "United States",
+    "currency": "USD",
+    "dailyCreditLimit": 100
+  },
+  "tracking": {
+    "sitemapUrl": "https://raleighaiguy.com/sitemap-index.xml",
+    "robotsUrl": "https://raleighaiguy.com/robots.txt",
+    "gscProperty": "https://raleighaiguy.com/",
+    "dashboardUrl": "https://raleighaiguy.com/ops/seo-dashboard/",
+    "organicLeadEvent": "workflow_call_clicked"
+  }
+}

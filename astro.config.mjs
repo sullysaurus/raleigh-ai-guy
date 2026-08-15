@@ -18,6 +18,9 @@ export default defineConfig({
     drafts: true,
   },
   site: "https://raleighaiguy.com",
+  image: {
+    dangerouslyProcessSVG: true,
+  },
   integrations: [
     sitemap({
       filter: (page) =>

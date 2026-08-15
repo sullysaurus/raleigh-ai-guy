@@ -3,8 +3,9 @@ import { getCollection } from "astro:content";
 
 import OpsShell from "@/components/ops/OpsShell.astro";
 import { seoContentPlan } from "@/data/seoContentPlan";
+import { publishedPosts } from "@/lib/publishing";
 
-const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = publishedPosts(await getCollection("posts")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const clusters = [...new Set(seoContentPlan.map((item) => item.cluster))];
 const planJson = JSON.stringify(seoContentPlan).replace(/</g, "\\u003c");
 const nextPublish = seoContentPlan.find((item) => item.status !== "Published");
@@ -62,7 +63,7 @@ const displayDate = (value: string | Date) => new Intl.DateTimeFormat("en-US", {
       <article data-seo-service="searchConsole"><span class="service-dot"></span><div><strong>Search Console</strong><p>Queries, pages, clicks, impressions, CTR, and position</p></div><em>Needs credential</em></article>
       <article data-seo-service="analytics"><span class="service-dot"></span><div><strong>Google Analytics</strong><p>Organic sessions, engagement, and booking conversions</p></div><em>Needs credential</em></article>
       <article data-seo-service="posthog"><span class="service-dot"></span><div><strong>PostHog</strong><p>Reading behavior, scorecard use, and on-page actions</p></div><em>Tracking</em></article>
-      <article class="research-source warning"><span class="service-dot"></span><div><strong>Keywords Everywhere</strong><p>Demand, CPC, competition, and third-party rank evidence</p></div><em>US research pending</em></article>
+      <article class="research-source warning"><span class="service-dot"></span><div><strong>Keywords Everywhere</strong><p>Demand, CPC, competition, and third-party rank evidence</p></div><em>Global snapshot · US refresh pending</em></article>
     </div>
     <p class="source-note"><strong>Why PostHog is not enough:</strong> it sees what people do after they arrive. Search Console sees what Google showed before the visit, and GA4 connects organic sessions to business outcomes.</p>
   </section>
@@ -116,7 +117,7 @@ const displayDate = (value: string | Date) => new Intl.DateTimeFormat("en-US", {
       <label><span>Intent</span><select id="intent-filter"><option value="all">All intent</option><option>Hire</option><option>Compare</option><option>Learn</option></select></label>
       <div><strong id="plan-count">50 posts</strong><span>Aug 2026–Feb 2027</span></div>
     </div>
-    <p class="research-warning"><span></span><strong>Research gate:</strong> titles and clusters are planned; volume, CPC, competition, and final order remain provisional until the United States Keywords Everywhere pass is complete.</p>
+    <p class="research-warning"><span></span><strong>Research gate:</strong> the dated Global snapshot is attached; United States metrics and final evidence ordering remain provisional until the extension market is changed.</p>
     <div class="plan-table-wrap">
       <table class="plan-table">
         <thead><tr><th>Publish</th><th>Target keyword</th><th>Article</th><th>Cluster / intent</th><th>KE evidence</th><th>Status</th><th>CTA</th></tr></thead>

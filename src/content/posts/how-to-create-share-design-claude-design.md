@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-20T09:00:00-04:00
 title: "What Is Claude Design? A Beginner's Guide for Small Business"
+targetKeyword: "claude design for small business"
 description: "Learn what Claude Design is, what it can create, and how to send your work to Canva for easy editing and sharing."
 image:
   url: "/src/images/posts/claude-design-client-handoff.png"

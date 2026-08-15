@@ -1,0 +1,143 @@
+---
+import { seoContentPlan } from "@/data/seoContentPlan";
+import { seoGuideProfiles } from "@/data/seoGuideProfiles";
+
+const { slug } = Astro.props;
+const plan = seoContentPlan.find((item) => item.slug === slug);
+const profile = plan ? seoGuideProfiles[plan.keyword] : undefined;
+
+if (!plan || !profile) throw new Error(`Missing scheduled guide profile for ${slug}`);
+
+const calendly = "https://calendly.com/hello-raleighaiguy/30min";
+const ctaHref = profile.ctaHref
+  || (/scorecard|opportunity/i.test(plan.cta) ? "/ai-opportunity-scorecard/" : null)
+  || (plan.cluster === "Real estate" ? "/contact/" : calendly);
+const isWorkflowCall = ctaHref.startsWith("https://calendly.com/");
+const relatedByCluster = {
+  "Local AI consulting": [
+    ["Test whether your business actually needs AI", "/blog/posts/do-i-need-ai/"],
+    ["Take the AI opportunity scorecard", "/ai-opportunity-scorecard/"],
+    ["See practical AI services", "/services/"],
+  ],
+  "Small-business workflows": [
+    ["See an inbox-triage workflow", "/projects/inbox-triage-workflow/"],
+    ["Take the AI opportunity scorecard", "/ai-opportunity-scorecard/"],
+    ["Compare ChatGPT and Claude for business", "/blog/posts/chatgpt-vs-claude-which-should-you-use/"],
+  ],
+  "Real estate": [
+    ["See practical AI tools for real estate agents", "/blog/posts/ai-tools-for-real-estate-agents-2026/"],
+    ["Write better listing descriptions with AI", "/blog/posts/write-real-estate-listing-descriptions-with-ai/"],
+    ["Ask about a free office lunch and learn", "/contact/"],
+  ],
+  Contractors: [
+    ["Explore AI workflows for specialty contractors", "/for/specialty-contractors/"],
+    ["See practical AI services", "/services/"],
+    ["Take the AI opportunity scorecard", "/ai-opportunity-scorecard/"],
+  ],
+  "AI tools and education": [
+    ["Test whether your business actually needs AI", "/blog/posts/do-i-need-ai/"],
+    ["Compare ChatGPT and Claude for business", "/blog/posts/chatgpt-vs-claude-which-should-you-use/"],
+    ["Take the AI opportunity scorecard", "/ai-opportunity-scorecard/"],
+  ],
+} as const;
+const related = relatedByCluster[plan.cluster];
+const officialReferences: Record<string, Array<[string, string]>> = {
+  "ai fair housing real estate": [["HUD guidance on digital-platform housing advertising", "https://www.hud.gov/sites/dfiles/FHEO/documents/FHEO_Guidance_on_Advertising_through_Digital_Platforms.pdf"]],
+  "ai for property management": [["HUD guidance on screening applicants for rental housing", "https://www.hud.gov/sites/dfiles/FHEO/documents/FHEO_Guidance_on_Screening_of_Applicants_for_Rental_Housing.pdf"]],
+  "automated tenant communication": [["HUD fair-housing resources", "https://www.hud.gov/fairhousing"]],
+  "ai data privacy small business": [["FTC guidance on AI privacy and confidentiality commitments", "https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2024/01/ai-companies-uphold-your-privacy-confidentiality-commitments"]],
+  "ai policy for small business": [["FTC privacy and security guidance for businesses", "https://www.ftc.gov/business-guidance/privacy-security"]],
+  "ai lead generation small business": [["FTC CAN-SPAM compliance guide for businesses", "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business"]],
+  "ai for contractors": [["OSHA recommended practices for safety and health programs", "https://www.osha.gov/safety-management/"]],
+  "ai for construction companies": [["OSHA help and responsibilities for employers", "https://www.osha.gov/employers/"]],
+};
+const sources = officialReferences[plan.keyword] || [];
+---
+
+<p class="lead-answer"><strong>{profile.answer}</strong></p>
+
+<p>{profile.context}</p>
+
+<h2>Where this earns its keep</h2>
+
+<p>The best place to use this approach is a narrow, repeated job with a clear owner. Start with one of these:</p>
+
+<ul>
+  {profile.useCases.map((item) => <li>{item}</li>)}
+</ul>
+
+<p>Pick one. A useful first system is intentionally smaller than the version you can imagine six months from now.</p>
+
+<h2>A practical workflow</h2>
+
+<ol>
+  {profile.steps.map((item) => <li><strong>{item.title}.</strong> {item.detail}</li>)}
+</ol>
+
+<p>This sequence separates interpretation from execution. AI can help understand messy language or draft a useful output; ordinary rules should still validate required fields, route records, and control sensitive actions.</p>
+
+<h2>What should stay human</h2>
+
+<p>Automation should remove clerical work without quietly taking ownership of judgment. Keep a person responsible for:</p>
+
+<ul>
+  {profile.controls.map((item) => <li>{item}</li>)}
+</ul>
+
+<p>For customer-facing, financial, legal, safety, housing, or employment decisions, treat generated material as a draft. Use the policies and qualified professionals appropriate to your business before relying on it.</p>
+
+<h2>Run a two-week test</h2>
+
+<p>Do not judge the workflow by how impressive the first demo looks. Record a baseline, run it beside the current process, and compare:</p>
+
+<ul>
+  {profile.measures.map((item) => <li>{item}</li>)}
+</ul>
+
+<p>Review every result during the test. Stop if the review burden, error risk, or maintenance cost is larger than the time or revenue you recover.</p>
+
+<h2>The decision rule</h2>
+
+<p>{profile.decision}</p>
+
+<p>If the process is inconsistent, document it before adding AI. If a checklist or an existing product feature solves the problem, use that. Build only when the remaining friction is valuable enough to justify ownership and maintenance.</p>
+
+{sources.length > 0 && (
+  <>
+    <h2>Official references</h2>
+    <p>Use these primary sources as a starting point, then apply the policies and qualified guidance appropriate to your business.</p>
+    <ul>{sources.map(([label, href]) => <li><a href={href} rel="noreferrer">{label}</a></li>)}</ul>
+  </>
+)}
+
+<h2>Keep exploring</h2>
+
+<ul>
+  {related.map(([label, href]) => <li><a href={href}>{label}</a></li>)}
+</ul>
+
+<div class="guide-cta">
+  <p><strong>{plan.cta}</strong></p>
+  <p>{profile.ctaCopy}</p>
+  <a href={ctaHref} data-seo-content-cta>{profile.ctaLabel || plan.cta} →</a>
+</div>
+
+<script is:inline define:vars={{ targetKeyword: plan.keyword, articleSlug: plan.slug, destination: ctaHref, isWorkflowCall }}>
+  document.querySelector('[data-seo-content-cta]')?.addEventListener('click', function () {
+    const properties = { target_keyword: targetKeyword, article_slug: articleSlug, destination };
+    window.posthog?.capture('seo_content_cta_clicked', properties);
+    window.gtag?.('event', 'seo_content_cta_clicked', properties);
+    if (isWorkflowCall) {
+      window.posthog?.capture('workflow_call_clicked', properties);
+      window.gtag?.('event', 'workflow_call_clicked', properties);
+    }
+  });
+</script>
+
+<style>
+  .lead-answer { font-size: 1.15em; line-height: 1.65; }
+  .guide-cta { margin-top: 2.5rem; border-left: .25rem solid var(--brand-orange); background: #f5efe3; padding: 1.35rem 1.5rem; }
+  .guide-cta p { margin: 0; }
+  .guide-cta p + p { margin-top: .45rem; color: #4f5a54; }
+  .guide-cta a { display: inline-block; margin-top: 1rem; font-weight: 700; }
+</style>

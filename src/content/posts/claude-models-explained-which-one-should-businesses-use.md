@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-21T11:00:00-04:00
 title: "Claude Models for Business: Sonnet, Haiku, Opus, or Fable?"
+targetKeyword: "claude models for business"
 description: "Compare Claude Sonnet, Haiku, Opus, and Fable in plain English, with practical examples of which model to use for everyday business work."
 image:
   url: "/src/images/posts/claude-models-business-guide.png"

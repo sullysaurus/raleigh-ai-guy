@@ -34,6 +34,12 @@ const posts = defineCollection({
         alt: z.string(),
       }),
       tags: z.array(z.string()),
+      targetKeyword: z.string().optional(),
+      cluster: z.string().optional(),
+      intent: z.enum(["Hire", "Compare", "Learn"]).optional(),
+      contentStatus: z.enum(["drafted", "scheduled", "published"]).optional(),
+      cta: z.string().optional(),
+      updatedDate: z.coerce.date().optional(),
     }),
 });
 

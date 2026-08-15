@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f1ede4"/>
+  <rect x="42" y="42" width="1116" height="546" rx="8" fill="none" stroke="#17352c" stroke-width="2"/>
+  <path d="M822 130h250v250H822z" fill="#17352c"/>
+  <circle cx="947" cy="255" r="76" fill="none" stroke="#ef6a43" stroke-width="16"/>
+  <path d="M885 255h124M947 193v124" stroke="#f1ede4" stroke-width="6"/>
+  <text x="78" y="105" class="label">RALEIGH AI GUY · FIELD 05 / TOOLKIT</text>
+  <text x="78" y="250" class="title">The Best AI Tools for Small Business, Organized</text><text x="78" y="326" class="title">by Job</text>
+  <text x="78" y="520" class="keyword">BEST AI TOOLS FOR SMALL BUSINESS</text>
+  <text x="1080" y="548" text-anchor="end" class="number">46</text>
+  <style>.label,.keyword,.number{font:600 19px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:3px;fill:#a9432d}.keyword{font-size:15px;fill:#52625c}.number{font-size:22px;fill:#17352c}.title{font:500 58px Georgia,serif;fill:#111b17}</style>
+</svg>

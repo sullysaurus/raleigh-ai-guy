@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-05-06T09:00:00-04:00
 title: "How to Create a Daily Calendar Briefing with Claude"
+targetKeyword: "claude calendar briefing"
 description: "Connect Claude to Google Calendar, create a no-code morning briefing Skill, and schedule it to prepare your day automatically."
 image:
   url: "/src/images/posts/claude-daily-calendar-briefing.png"

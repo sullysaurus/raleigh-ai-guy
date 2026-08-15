@@ -4,9 +4,11 @@ import BlogLayout from "@/layouts/BlogLayout.astro";
 // Content
 import { getCollection, render } from "astro:content";
 import readingTime from "reading-time";
+import { publishedPosts } from "@/lib/publishing";
+import { seoGuideProfiles } from "@/data/seoGuideProfiles";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("posts");
+  const blogEntries = publishedPosts(await getCollection("posts"));
   return blogEntries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -15,7 +17,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 // Calculate reading time from the raw markdown body
 const { Content } = await render(entry);
-const stats = readingTime(entry.body ?? "");
+const scheduledProfile = entry.data.targetKeyword ? seoGuideProfiles[entry.data.targetKeyword] : undefined;
+const stats = readingTime(scheduledProfile ? JSON.stringify(scheduledProfile) : (entry.body ?? ""));
 ---
 
 <BlogLayout frontmatter={entry.data} readingTime={stats.text}>

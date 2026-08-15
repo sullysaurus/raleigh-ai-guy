@@ -3,9 +3,10 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageIntro from "@/components/global/PageIntro.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { publishedPosts } from "@/lib/publishing";
 
 export async function getStaticPaths() {
-  const all = await getCollection("posts");
+  const all = publishedPosts(await getCollection("posts"));
   const tags = [...new Set(all.flatMap((post) => post.data.tags))];
   return tags.map((tag) => ({
     params: { tag },

@@ -8,7 +8,10 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "content:validate": "node scripts/validate-content-engine.mjs",
+    "content:check": "node scripts/validate-content-engine.mjs",
+    "test:seo": "npm run content:check"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

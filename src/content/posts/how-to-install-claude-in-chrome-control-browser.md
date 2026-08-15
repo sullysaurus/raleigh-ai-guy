@@ -1,6 +1,7 @@
 ---
 pubDate: 2026-07-23T09:00:00-04:00
 title: "Find Listing Errors Before Your Clients Do"
+targetKeyword: "claude chrome real estate listings"
 description: "Use Claude in Chrome to compare an active real estate listing across public websites, flag inconsistencies, and keep final review in your hands."
 image:
   url: "/src/images/posts/claude-in-chrome-browser-work.png"
