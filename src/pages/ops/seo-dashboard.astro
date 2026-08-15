@@ -1,0 +1,448 @@
+---
+import { getCollection } from "astro:content";
+
+import OpsShell from "@/components/ops/OpsShell.astro";
+import { seoContentPlan } from "@/data/seoContentPlan";
+
+const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const clusters = [...new Set(seoContentPlan.map((item) => item.cluster))];
+const planJson = JSON.stringify(seoContentPlan).replace(/</g, "\\u003c");
+const nextPublish = seoContentPlan.find((item) => item.status !== "Published");
+const displayDate = (value: string | Date) => new Intl.DateTimeFormat("en-US", {
+  month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
+}).format(new Date(value));
+---
+
+<OpsShell
+  title="SEO Engine"
+  description="One operating view for search demand, rankings, organic conversions, published authority, and the 50-post editorial system."
+  eyebrow="Raleigh AI Guy · Organic growth system"
+  current="seo"
+>
+  <script id="seo-plan-data" type="application/json" set:html={planJson}></script>
+
+  <section class="seo-command" aria-labelledby="seo-command-title">
+    <div class="seo-command-signal"><span></span><strong>FIELD SIGNAL</strong></div>
+    <div>
+      <p>Editorial operating brief</p>
+      <h2 id="seo-command-title"><span id="move-count">5</span> moves can grow qualified search visibility.</h2>
+    </div>
+    <div class="seo-command-meta">
+      <span id="seo-sync-state">Waiting for live Google data</span>
+      <button id="sync-seo" type="button">Connect SEO data</button>
+    </div>
+  </section>
+
+  <section class="seo-scoreboard" aria-label="SEO engine scoreboard">
+    <article><span>Published library</span><strong>{posts.length}</strong><p>Articles Google can discover</p></article>
+    <article class="score-accent"><span>Editorial roadmap</span><strong>{seoContentPlan.length}</strong><p>New evidence-led posts</p></article>
+    <article><span>Topic clusters</span><strong>{clusters.length}</strong><p>Distinct areas of authority</p></article>
+    <article><span>Search clicks · 28d</span><strong id="gsc-clicks">—</strong><p id="gsc-clicks-note">Connect Search Console</p></article>
+    <article><span>Organic sessions · 28d</span><strong id="organic-sessions">—</strong><p id="organic-note">Connect GA4</p></article>
+    <article><span>Organic conversions</span><strong id="organic-conversions">—</strong><p id="conversion-note">Key events from GA4</p></article>
+  </section>
+
+  <section class="seo-field-board" aria-labelledby="field-board-title">
+    <header>
+      <div><p>Work next</p><h2 id="field-board-title">The next five moves.</h2></div>
+      <span>Ordered by evidence, business value, and effort</span>
+    </header>
+    <ol id="seo-next-moves">
+      <li><span>01</span><div><strong>Validate the 50-keyword roadmap in Keywords Everywhere</strong><p>United States volume, CPC, competition, and intent decide the final publishing order.</p></div><em>Research</em></li>
+      <li><span>02</span><div><strong>Connect the Google read-only service account</strong><p>Add Search Console and Analytics access so rankings and organic conversions update here.</p></div><em>Connection</em></li>
+      <li><span>03</span><div><strong>Protect the current 13-article library</strong><p>Use existing query ownership before creating overlapping pages that compete with one another.</p></div><em>Content map</em></li>
+      <li><span>04</span><div><strong>Brief the first local-intent article</strong><p>{nextPublish?.title}</p></div><em>{nextPublish ? displayDate(nextPublish.publishDate) : "Ready"}</em></li>
+      <li><span>05</span><div><strong>Define the booking conversion in GA4</strong><p>Organic visibility matters only when it creates qualified workflow calls and scorecard completions.</p></div><em>Measurement</em></li>
+    </ol>
+  </section>
+
+  <section class="seo-connections" aria-labelledby="connections-title">
+    <header><div><p>Evidence sources</p><h2 id="connections-title">What each system knows.</h2></div><span id="last-updated">Not synced</span></header>
+    <div class="connection-grid">
+      <article data-seo-service="searchConsole"><span class="service-dot"></span><div><strong>Search Console</strong><p>Queries, pages, clicks, impressions, CTR, and position</p></div><em>Needs credential</em></article>
+      <article data-seo-service="analytics"><span class="service-dot"></span><div><strong>Google Analytics</strong><p>Organic sessions, engagement, and booking conversions</p></div><em>Needs credential</em></article>
+      <article data-seo-service="posthog"><span class="service-dot"></span><div><strong>PostHog</strong><p>Reading behavior, scorecard use, and on-page actions</p></div><em>Tracking</em></article>
+      <article class="research-source warning"><span class="service-dot"></span><div><strong>Keywords Everywhere</strong><p>Demand, CPC, competition, and third-party rank evidence</p></div><em>US research pending</em></article>
+    </div>
+    <p class="source-note"><strong>Why PostHog is not enough:</strong> it sees what people do after they arrive. Search Console sees what Google showed before the visit, and GA4 connects organic sessions to business outcomes.</p>
+  </section>
+
+  <section class="search-evidence" aria-labelledby="search-evidence-title">
+    <header>
+      <div><p>Search Console · latest 28 days</p><h2 id="search-evidence-title">Queries within striking distance.</h2></div>
+      <p id="gsc-window">Google normally reports two to three days behind.</p>
+    </header>
+    <div class="search-summary">
+      <article><span>Impressions</span><strong id="gsc-impressions">—</strong><p>Times Raleigh AI Guy appeared</p></article>
+      <article><span>Click-through rate</span><strong id="gsc-ctr">—</strong><p>Clicks divided by impressions</p></article>
+      <article><span>Ranking queries</span><strong id="ranking-query-count">—</strong><p>Query and page combinations</p></article>
+      <article><span>PostHog readers</span><strong id="article-reads">—</strong><p>Article reads in 30 days</p></article>
+    </div>
+    <div class="opportunity-table-wrap">
+      <table class="opportunity-table">
+        <thead><tr><th>Query</th><th>Position</th><th>Visibility</th><th>Ranking page</th><th>Recommended move</th></tr></thead>
+        <tbody id="opportunity-rows">
+          <tr><td colspan="5" class="table-empty">Connect Search Console to turn live impressions into an improvement queue.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="cluster-section" aria-labelledby="cluster-title">
+    <header><div><p>Authority map</p><h2 id="cluster-title">Five lanes, one useful library.</h2></div><p>The roadmap separates intent so every post has a clear job and a commercial page to support.</p></header>
+    <div class="cluster-grid">
+      {clusters.map((cluster, index) => {
+        const items = seoContentPlan.filter((item) => item.cluster === cluster);
+        const decisions = items.filter((item) => item.funnel === "Decision").length;
+        return (
+          <article style={`--cluster-index:${index + 1}`}>
+            <span>0{index + 1}</span>
+            <div><strong>{cluster}</strong><p>{items.length} posts · {decisions} decision-stage</p></div>
+            <div class="cluster-meter"><i style={`width:${Math.max(18, items.length * 6)}%`}></i></div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="editorial-plan" aria-labelledby="editorial-title">
+    <header>
+      <div><p>Publishing engine</p><h2 id="editorial-title">The 50-post field plan.</h2></div>
+      <p>Two posts per week. Final order changes when United States keyword evidence and live Search Console ownership are attached.</p>
+    </header>
+    <div class="plan-controls">
+      <label><span>Find a keyword or post</span><input id="plan-search" type="search" placeholder="Search the roadmap…" /></label>
+      <label><span>Cluster</span><select id="cluster-filter"><option value="all">All clusters</option>{clusters.map((cluster) => <option value={cluster}>{cluster}</option>)}</select></label>
+      <label><span>Intent</span><select id="intent-filter"><option value="all">All intent</option><option>Hire</option><option>Compare</option><option>Learn</option></select></label>
+      <div><strong id="plan-count">50 posts</strong><span>Aug 2026–Feb 2027</span></div>
+    </div>
+    <p class="research-warning"><span></span><strong>Research gate:</strong> titles and clusters are planned; volume, CPC, competition, and final order remain provisional until the United States Keywords Everywhere pass is complete.</p>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead><tr><th>Publish</th><th>Target keyword</th><th>Article</th><th>Cluster / intent</th><th>KE evidence</th><th>Status</th><th>CTA</th></tr></thead>
+        <tbody>
+          {seoContentPlan.map((item) => (
+            <tr data-plan-row data-cluster={item.cluster} data-intent={item.intent} data-search={`${item.keyword} ${item.title} ${item.audience}`.toLowerCase()}>
+              <td data-label="Publish"><strong>{displayDate(item.publishDate)}</strong><small>#{String(item.id).padStart(2, "0")}</small></td>
+              <td data-label="Keyword"><strong>{item.keyword}</strong><small>{item.audience}</small></td>
+              <td data-label="Article"><strong>{item.title}</strong><small>/{item.slug}/</small></td>
+              <td data-label="Cluster"><strong>{item.cluster}</strong><small>{item.funnel} · {item.intent}</small></td>
+              <td data-label="Evidence">{item.volume === null ? <><strong class="pending-value">Pending US refresh</strong><small>{item.evidence}</small></> : <><strong>{item.volume.toLocaleString()} / month</strong><small>${item.cpc?.toFixed(2)} CPC · {item.competition} competition</small></>}</td>
+              <td data-label="Status"><span class={`plan-status status-${item.status.toLowerCase().replaceAll(" ", "-")}`}>{item.status}</span></td>
+              <td data-label="CTA"><span>{item.cta}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p id="plan-empty" class="table-empty" hidden>No posts match those filters.</p>
+    </div>
+  </section>
+
+  <section class="published-library" aria-labelledby="library-title">
+    <header><div><p>Current authority</p><h2 id="library-title">Protect what is already live.</h2></div><a href="/blog/">Open the blog ↗</a></header>
+    <div class="library-grid">
+      {posts.map((post, index) => (
+        <a href={`/blog/posts/${post.id}/`}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div><strong>{post.data.title}</strong><p>{post.data.tags.join(" · ")}</p></div>
+          <time datetime={post.data.pubDate.toISOString()}>{displayDate(post.data.pubDate)}</time>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <dialog id="seo-connection-dialog" class="seo-dialog">
+    <form id="seo-connection-form" method="dialog">
+      <header><p>Private Field Office</p><h2>Enter your dashboard password</h2></header>
+      <p>The SEO Engine uses the same secure 30-day session as the outbound command center.</p>
+      <label><span>Dashboard password</span><input id="seo-dashboard-key" type="password" required autocomplete="current-password" /></label>
+      <p id="seo-connection-error" role="alert"></p>
+      <button type="submit">Unlock SEO Engine</button>
+    </form>
+  </dialog>
+</OpsShell>
+
+<script>
+  type ServiceState = Record<string, any>;
+  const dialog = document.querySelector<HTMLDialogElement>("#seo-connection-dialog")!;
+  const form = document.querySelector<HTMLFormElement>("#seo-connection-form")!;
+  const keyInput = document.querySelector<HTMLInputElement>("#seo-dashboard-key")!;
+  const error = document.querySelector<HTMLParagraphElement>("#seo-connection-error")!;
+  const syncButton = document.querySelector<HTMLButtonElement>("#sync-seo")!;
+
+  const readJson = async (response: Response) => {
+    const text = await response.text();
+    try { return JSON.parse(text); }
+    catch { throw new Error(`SEO service returned an invalid response (HTTP ${response.status}).`); }
+  };
+  const number = (value: unknown) => Number(value || 0).toLocaleString("en-US");
+  const percent = (value: unknown) => `${(Number(value || 0) * 100).toFixed(1)}%`;
+  const delta = (current: number, previous: number) => {
+    if (!previous) return current ? "New activity" : "No activity yet";
+    const change = ((current - previous) / previous) * 100;
+    return `${change >= 0 ? "+" : ""}${change.toFixed(0)}% vs. prior 28 days`;
+  };
+  const serviceLabel = (name: string, service: ServiceState) => {
+    if (service.status === "connected") {
+      if (name === "searchConsole") return `${number(service.clicks)} clicks · ${number(service.impressions)} impressions`;
+      if (name === "analytics") return `${number(service.current?.organicSessions)} organic sessions`;
+      if (name === "posthog") return `${number(service.visitors30d)} visitors · 30d`;
+      return "Connected";
+    }
+    if (service.status === "tracking_only") return "Tracking only";
+    if (service.status === "error") return "Connection error";
+    return "Needs credential";
+  };
+  const opportunityMove = (row: ServiceState) => {
+    if (row.position >= 4 && row.position <= 10 && row.ctr < .03) return "Improve title and search snippet";
+    if (row.position > 10 && row.position <= 20) return "Strengthen proof and internal links";
+    if (row.position <= 3 && row.ctr < .05) return "Protect rank; test a clearer promise";
+    if (row.impressions >= 25 && row.clicks === 0) return "Check intent and page ownership";
+    return "Monitor query ownership";
+  };
+  const pagePath = (value: unknown) => {
+    try { return new URL(String(value)).pathname; }
+    catch { return String(value || "Unknown page"); }
+  };
+  const paint = (payload: ServiceState) => {
+    const services = payload.services || {};
+    document.querySelector("#last-updated")!.textContent = `Synced ${new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(new Date(payload.generatedAt))}`;
+    document.querySelector("#seo-sync-state")!.textContent = "Live evidence refreshed";
+    syncButton.textContent = "Sync again";
+    Object.entries(services).forEach(([name, raw]) => {
+      const service = raw as ServiceState;
+      const card = document.querySelector<HTMLElement>(`[data-seo-service="${name}"]`);
+      if (!card) return;
+      card.classList.toggle("connected", service.status === "connected");
+      card.classList.toggle("failed", service.status === "error");
+      card.classList.toggle("warning", service.status !== "connected");
+      card.querySelector("em")!.textContent = serviceLabel(name, service);
+    });
+
+    const gsc = services.searchConsole || {};
+    if (gsc.status === "connected") {
+      document.querySelector("#gsc-clicks")!.textContent = number(gsc.clicks);
+      document.querySelector("#gsc-clicks-note")!.textContent = `${number(gsc.impressions)} impressions`;
+      document.querySelector("#gsc-impressions")!.textContent = number(gsc.impressions);
+      document.querySelector("#gsc-ctr")!.textContent = percent(gsc.ctr);
+      document.querySelector("#ranking-query-count")!.textContent = number(gsc.rows?.length);
+      document.querySelector("#gsc-window")!.textContent = `${gsc.window} · compared with ${gsc.comparisonWindow}`;
+      const ranked = [...(gsc.rows || [])].sort((a, b) => {
+        const aStrike = a.position >= 4 && a.position <= 20 ? 1 : 0;
+        const bStrike = b.position >= 4 && b.position <= 20 ? 1 : 0;
+        return bStrike - aStrike || b.impressions - a.impressions;
+      }).slice(0, 12);
+      document.querySelector("#opportunity-rows")!.innerHTML = ranked.length ? ranked.map((row) => `
+        <tr>
+          <td data-label="Query"><strong>${escapeHtml(row.keyword)}</strong><small>${row.clicks} clicks</small></td>
+          <td data-label="Position"><strong class="position-value">#${row.position.toFixed(1)}</strong><small>${row.positionChange == null ? "New query" : `${row.positionChange >= 0 ? "Up" : "Down"} ${Math.abs(row.positionChange).toFixed(1)}`}</small></td>
+          <td data-label="Visibility"><strong>${number(row.impressions)} impressions</strong><small>${percent(row.ctr)} CTR</small></td>
+          <td data-label="Page"><a href="${escapeAttribute(row.page)}">${escapeHtml(pagePath(row.page))}</a></td>
+          <td data-label="Move"><strong>${opportunityMove(row)}</strong></td>
+        </tr>`).join("") : `<tr><td colspan="5" class="table-empty">No finalized query data is available for this period yet.</td></tr>`;
+    }
+
+    const analytics = services.analytics || {};
+    if (analytics.status === "connected") {
+      const current = analytics.current || {};
+      const previous = analytics.previous || {};
+      document.querySelector("#organic-sessions")!.textContent = number(current.organicSessions);
+      document.querySelector("#organic-note")!.textContent = delta(current.organicSessions, previous.organicSessions);
+      document.querySelector("#organic-conversions")!.textContent = number(current.organicConversions);
+      document.querySelector("#conversion-note")!.textContent = delta(current.organicConversions, previous.organicConversions);
+    }
+    const posthog = services.posthog || {};
+    if (posthog.status === "connected") document.querySelector("#article-reads")!.textContent = number(posthog.articleReads30d);
+  };
+  const escapeHtml = (value: unknown) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[character] || character));
+  const escapeAttribute = escapeHtml;
+  const load = async () => {
+    syncButton.disabled = true; syncButton.textContent = "Syncing…"; error.textContent = "";
+    try {
+      const response = await fetch("/.netlify/functions/seo-dashboard");
+      const payload = await readJson(response);
+      if (response.status === 401) { dialog.showModal(); return false; }
+      if (!response.ok) throw new Error(payload.error || "Could not load SEO data.");
+      paint(payload);
+      if (dialog.open) dialog.close();
+      return true;
+    } catch (caught) {
+      document.querySelector("#seo-sync-state")!.textContent = caught instanceof Error ? caught.message : "SEO sync failed";
+      return false;
+    } finally { syncButton.disabled = false; if (syncButton.textContent === "Syncing…") syncButton.textContent = "Connect SEO data"; }
+  };
+  const startSession = async (key: string) => {
+    const response = await fetch("/.netlify/functions/ops-session", { method: "POST", headers: { "x-ops-key": key } });
+    const payload = await readJson(response);
+    if (!response.ok || !payload.authenticated) throw new Error(payload.error || "Could not unlock the SEO Engine.");
+    keyInput.value = "";
+    await load();
+  };
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); error.textContent = "";
+    try { await startSession(keyInput.value); }
+    catch (caught) { error.textContent = caught instanceof Error ? caught.message : "Could not unlock the SEO Engine."; }
+  });
+  dialog.addEventListener("cancel", (event) => event.preventDefault());
+  syncButton.addEventListener("click", load);
+
+  const search = document.querySelector<HTMLInputElement>("#plan-search")!;
+  const cluster = document.querySelector<HTMLSelectElement>("#cluster-filter")!;
+  const intent = document.querySelector<HTMLSelectElement>("#intent-filter")!;
+  const rows = [...document.querySelectorAll<HTMLElement>("[data-plan-row]")];
+  const filterPlan = () => {
+    const query = search.value.trim().toLowerCase(); let shown = 0;
+    rows.forEach((row) => {
+      row.hidden = !((cluster.value === "all" || row.dataset.cluster === cluster.value) && (intent.value === "all" || row.dataset.intent === intent.value) && (!query || row.dataset.search?.includes(query)));
+      if (!row.hidden) shown += 1;
+    });
+    document.querySelector("#plan-count")!.textContent = `${shown} post${shown === 1 ? "" : "s"}`;
+    document.querySelector<HTMLElement>("#plan-empty")!.hidden = shown !== 0;
+  };
+  search.addEventListener("input", filterPlan); cluster.addEventListener("change", filterPlan); intent.addEventListener("change", filterPlan);
+  load();
+</script>
+
+<style>
+  :global(.ops-content:has(.seo-command)) { --seo-paper: #f8f5eb; --seo-ink: #172d26; --seo-coral: #e85f38; --seo-moss: #2f7456; --seo-amber: #a96c18; --seo-line: rgb(23 45 38 / 16%); display: grid; gap: 1.35rem; }
+  .seo-command { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.1rem; border: 1px solid rgb(246 242 231 / 14%); border-radius: .45rem; padding: 1rem 1.1rem; background: var(--seo-ink); color: #f6f2e7; }
+  .seo-command-signal { display: flex; align-items: center; gap: .55rem; color: rgb(246 242 231 / 55%); font: 600 .56rem/1 "IBM Plex Mono", monospace; letter-spacing: .13em; }
+  .seo-command-signal span { width: .5rem; height: .5rem; border-radius: 99px; background: var(--seo-coral); box-shadow: 0 0 0 .28rem rgb(232 95 56 / 12%); }
+  .seo-command p, .seo-field-board header p, .seo-connections header p, .search-evidence header > div p, .cluster-section header > div p, .editorial-plan header > div p, .published-library header p { color: #b54a2e; font: 600 .58rem/1.4 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+  .seo-command h2 { margin-top: .25rem; color: #fffdf7; font: 500 clamp(1.15rem, 2.2vw, 1.8rem)/1.1 "Newsreader", serif; letter-spacing: -.02em; }
+  .seo-command-meta { display: flex; align-items: center; gap: .9rem; }
+  .seo-command-meta > span { color: rgb(246 242 231 / 55%); font-size: .68rem; }
+  .seo-command button, .seo-dialog button { min-height: 2.65rem; border: 1px solid var(--seo-coral); border-radius: .3rem; padding: 0 .9rem; background: var(--seo-coral); color: #fff; font-size: .7rem; font-weight: 750; cursor: pointer; transition: transform 120ms cubic-bezier(.23,1,.32,1), background 160ms ease; }
+  .seo-command button:hover, .seo-dialog button:hover { background: #cf4c29; }
+  .seo-command button:active, .seo-dialog button:active { transform: scale(.97); }
+  .seo-command button:focus-visible, .seo-dialog button:focus-visible, .plan-controls :is(input, select):focus-visible { outline: 3px solid rgb(232 95 56 / 28%); outline-offset: 2px; }
+  .seo-command button:disabled { cursor: wait; opacity: .6; }
+
+  .seo-scoreboard { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--seo-line); border-radius: .45rem; overflow: hidden; background: rgb(255 255 255 / 52%); }
+  .seo-scoreboard article { min-height: 8.2rem; padding: 1rem; border-right: 1px solid var(--seo-line); }
+  .seo-scoreboard article:last-child { border-right: 0; }
+  .seo-scoreboard span { display: block; color: #66726b; font: 600 .56rem/1.35 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+  .seo-scoreboard strong { display: block; margin-top: .8rem; color: var(--seo-ink); font: 550 clamp(2rem, 3.6vw, 3.4rem)/.8 "Newsreader", serif; font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+  .seo-scoreboard p { margin-top: .8rem; color: #68726c; font-size: .65rem; line-height: 1.4; }
+  .seo-scoreboard .score-accent { background: #f0ded3; }
+  .seo-scoreboard .score-accent strong { color: #a83f25; }
+
+  .seo-field-board { border-radius: .45rem; overflow: hidden; background: var(--seo-ink); color: #f6f2e7; }
+  .seo-field-board > header, .seo-connections > header, .search-evidence > header, .cluster-section > header, .editorial-plan > header, .published-library > header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding: 1.1rem 1.2rem; border-bottom: 1px solid var(--seo-line); }
+  .seo-field-board header { border-color: rgb(246 242 231 / 13%); }
+  .seo-field-board h2, .seo-connections h2, .search-evidence h2, .cluster-section h2, .editorial-plan h2, .published-library h2 { margin-top: .25rem; font: 500 clamp(1.5rem, 2.5vw, 2.4rem)/1 "Newsreader", serif; letter-spacing: -.03em; }
+  .seo-field-board header > span { color: rgb(246 242 231 / 48%); font-size: .64rem; }
+  .seo-field-board ol { list-style: none; margin: 0; padding: 0; }
+  .seo-field-board li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: .95rem 1.2rem; border-bottom: 1px solid rgb(246 242 231 / 10%); }
+  .seo-field-board li:last-child { border-bottom: 0; }
+  .seo-field-board li > span { color: var(--seo-coral); font: 600 .58rem/1 "IBM Plex Mono", monospace; }
+  .seo-field-board li strong { display: block; color: #fffdf7; font-size: .78rem; }
+  .seo-field-board li p { margin-top: .28rem; color: rgb(246 242 231 / 52%); font-size: .67rem; line-height: 1.45; }
+  .seo-field-board li em { border: 1px solid rgb(246 242 231 / 14%); border-radius: 99px; padding: .35rem .55rem; color: rgb(246 242 231 / 62%); font: 500 .54rem/1 "IBM Plex Mono", monospace; font-style: normal; white-space: nowrap; }
+
+  .seo-connections, .search-evidence, .cluster-section, .editorial-plan, .published-library { border: 1px solid var(--seo-line); border-radius: .45rem; background: rgb(255 255 255 / 45%); overflow: hidden; }
+  .seo-connections header > span, .published-library header > a { color: #657069; font-size: .65rem; }
+  .connection-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .connection-grid article { display: grid; grid-template-columns: .55rem minmax(0, 1fr); gap: .7rem; min-height: 7rem; padding: 1rem; border-right: 1px solid var(--seo-line); }
+  .connection-grid article:last-child { border-right: 0; }
+  .service-dot { width: .46rem; height: .46rem; margin-top: .18rem; border: 1px solid #7d8982; border-radius: 99px; }
+  .connection-grid article.connected .service-dot { border-color: var(--seo-moss); background: var(--seo-moss); box-shadow: 0 0 0 .25rem rgb(47 116 86 / 10%); }
+  .connection-grid article.failed .service-dot { border-color: #a23d2d; background: #a23d2d; }
+  .connection-grid article.warning .service-dot { border-color: var(--seo-amber); background: #f3ddba; }
+  .connection-grid strong { display: block; color: var(--seo-ink); font-size: .76rem; }
+  .connection-grid p { margin-top: .28rem; color: #6a756e; font-size: .64rem; line-height: 1.4; }
+  .connection-grid em { grid-column: 2; margin-top: .5rem; color: #8b5a18; font: 600 .55rem/1.2 "IBM Plex Mono", monospace; font-style: normal; }
+  .connection-grid .connected em { color: var(--seo-moss); }
+  .source-note { padding: .8rem 1rem; border-top: 1px solid var(--seo-line); background: #f3eee2; color: #5f6a63; font-size: .66rem; line-height: 1.55; }
+  .source-note strong { color: var(--seo-ink); }
+
+  .search-evidence > header > p, .cluster-section > header > p, .editorial-plan > header > p { max-width: 28rem; color: #66716b; font-size: .67rem; line-height: 1.55; }
+  .search-summary { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--seo-line); }
+  .search-summary article { padding: 1rem 1.1rem; border-right: 1px solid var(--seo-line); }
+  .search-summary article:last-child { border-right: 0; }
+  .search-summary span { color: #69746d; font: 600 .55rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+  .search-summary strong { display: block; margin-top: .55rem; color: var(--seo-ink); font: 550 2rem/1 "Newsreader", serif; font-variant-numeric: tabular-nums; }
+  .search-summary p { margin-top: .4rem; color: #768078; font-size: .6rem; }
+  .opportunity-table-wrap, .plan-table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  .opportunity-table { min-width: 850px; }
+  th { padding: .72rem .85rem; background: #e5e2d9; color: #5e6962; font: 600 .54rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .08em; text-align: left; text-transform: uppercase; }
+  td { padding: .82rem .85rem; border-bottom: 1px solid var(--seo-line); color: #4f5c55; font-size: .65rem; line-height: 1.4; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:hover { background: rgb(255 255 255 / 58%); }
+  td strong, td a { color: var(--seo-ink); font-size: .68rem; font-weight: 700; }
+  td small { display: block; margin-top: .25rem; color: #7a847e; font-size: .57rem; }
+  td a { text-decoration-color: var(--seo-coral); text-underline-offset: 3px; }
+  .position-value { font: 550 1.35rem/1 "Newsreader", serif; font-variant-numeric: tabular-nums; }
+  .table-empty { padding: 2rem; color: #747e78; font-size: .7rem; text-align: center; }
+
+  .cluster-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .cluster-grid article { display: grid; align-content: space-between; min-height: 9rem; padding: 1rem; border-right: 1px solid var(--seo-line); }
+  .cluster-grid article:last-child { border-right: 0; }
+  .cluster-grid article > span { color: var(--seo-coral); font: 600 .56rem/1 "IBM Plex Mono", monospace; }
+  .cluster-grid strong { color: var(--seo-ink); font-size: .74rem; }
+  .cluster-grid p { margin-top: .3rem; color: #758078; font-size: .6rem; }
+  .cluster-meter { height: .25rem; margin-top: 1rem; background: rgb(23 45 38 / 8%); }
+  .cluster-meter i { display: block; height: 100%; max-width: 100%; background: var(--seo-ink); }
+
+  .plan-controls { display: grid; grid-template-columns: minmax(16rem, 1fr) 13rem 9rem auto; align-items: end; gap: .7rem; padding: .9rem 1rem; border-bottom: 1px solid var(--seo-line); background: #ebe7dc; }
+  .plan-controls label { display: grid; gap: .35rem; color: #657069; font: 600 .54rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+  .plan-controls input, .plan-controls select { min-height: 2.55rem; border: 1px solid rgb(23 45 38 / 22%); border-radius: .3rem; padding: 0 .7rem; background: #dfdbd0; color: var(--seo-ink); font: 500 .68rem/1 sans-serif; }
+  .plan-controls > div { min-height: 2.55rem; display: grid; align-content: center; justify-items: end; }
+  .plan-controls > div strong { color: var(--seo-ink); font-size: .72rem; }
+  .plan-controls > div span { color: #758078; font-size: .56rem; }
+  .research-warning { display: flex; align-items: center; gap: .55rem; padding: .72rem 1rem; border-bottom: 1px solid #d9c7a5; background: #f4e8cf; color: #74521f; font-size: .61rem; line-height: 1.45; }
+  .research-warning > span { flex: 0 0 auto; width: .44rem; height: .44rem; border-radius: 99px; background: var(--seo-amber); }
+  .plan-table { min-width: 1420px; }
+  .plan-table th:nth-child(1) { width: 7%; } .plan-table th:nth-child(2) { width: 16%; } .plan-table th:nth-child(3) { width: 22%; } .plan-table th:nth-child(4) { width: 14%; } .plan-table th:nth-child(5) { width: 14%; } .plan-table th:nth-child(6) { width: 9%; }
+  .pending-value { color: #8e5b16; }
+  .plan-status { display: inline-block; border-radius: 99px; padding: .34rem .5rem; background: #e8e1d3; color: #6c5a3e; font: 650 .53rem/1 "IBM Plex Mono", monospace; }
+  tr[hidden] { display: none; }
+
+  .published-library header a { color: var(--seo-ink); font-weight: 700; text-decoration-color: var(--seo-coral); text-underline-offset: 4px; }
+  .library-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .library-grid > a { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: .75rem; min-height: 4.7rem; padding: .8rem 1rem; border-right: 1px solid var(--seo-line); border-bottom: 1px solid var(--seo-line); color: inherit; text-decoration: none; transition: background 160ms ease; }
+  .library-grid > a:nth-child(2n) { border-right: 0; }
+  .library-grid > a:hover { background: #fffdf7; }
+  .library-grid > a > span { color: var(--seo-coral); font: 600 .54rem/1 "IBM Plex Mono", monospace; }
+  .library-grid strong { display: block; color: var(--seo-ink); font-size: .7rem; }
+  .library-grid p { margin-top: .25rem; color: #7a847e; font-size: .57rem; }
+  .library-grid time { color: #6f7973; font: 500 .55rem/1 "IBM Plex Mono", monospace; white-space: nowrap; }
+
+  .seo-dialog { width: min(31rem, calc(100vw - 2rem)); border: 1px solid rgb(23 45 38 / 20%); border-radius: .5rem; padding: 0; background: var(--seo-paper); color: var(--seo-ink); box-shadow: 0 1rem 4rem rgb(0 0 0 / 24%); }
+  .seo-dialog::backdrop { background: rgb(10 24 19 / 62%); backdrop-filter: blur(5px); }
+  .seo-dialog form { padding: 1.4rem; }
+  .seo-dialog header { padding-bottom: 1rem; border-bottom: 1px solid var(--seo-line); }
+  .seo-dialog header p { color: #b54a2e; font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+  .seo-dialog h2 { margin-top: .45rem; font: 500 2rem/1 "Newsreader", serif; letter-spacing: -.03em; }
+  .seo-dialog form > p { margin: 1rem 0; color: #657069; font-size: .7rem; line-height: 1.55; }
+  .seo-dialog label { display: grid; gap: .4rem; color: #59665e; font-size: .64rem; font-weight: 700; }
+  .seo-dialog input { min-height: 2.8rem; border: 1px solid rgb(23 45 38 / 25%); border-radius: .3rem; padding: 0 .75rem; background: #e6e1d6; color: var(--seo-ink); font-size: .8rem; }
+  #seo-connection-error { min-height: 1rem; color: #a23d2d; }
+  .seo-dialog button { width: 100%; }
+
+  @media (max-width: 1180px) {
+    .seo-scoreboard { grid-template-columns: repeat(3, 1fr); }
+    .seo-scoreboard article:nth-child(3) { border-right: 0; }
+    .seo-scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--seo-line); }
+    .connection-grid, .cluster-grid { grid-template-columns: repeat(2, 1fr); }
+    .connection-grid article:nth-child(2n), .cluster-grid article:nth-child(2n) { border-right: 0; }
+    .connection-grid article:nth-child(-n+2), .cluster-grid article:not(:last-child) { border-bottom: 1px solid var(--seo-line); }
+    .cluster-grid article:last-child { grid-column: 1 / -1; }
+    .plan-controls { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .seo-command { grid-template-columns: 1fr; }
+    .seo-command-meta { align-items: stretch; flex-direction: column; }
+    .seo-scoreboard, .search-summary, .connection-grid, .cluster-grid, .library-grid { grid-template-columns: 1fr; }
+    .seo-scoreboard article, .connection-grid article, .cluster-grid article, .library-grid > a { border-right: 0; border-bottom: 1px solid var(--seo-line); }
+    .seo-scoreboard article:last-child, .connection-grid article:last-child, .cluster-grid article:last-child, .library-grid > a:last-child { border-bottom: 0; }
+    .cluster-grid article:last-child { grid-column: auto; }
+    .seo-field-board > header, .seo-connections > header, .search-evidence > header, .cluster-section > header, .editorial-plan > header, .published-library > header { align-items: start; flex-direction: column; gap: .7rem; }
+    .seo-field-board li { grid-template-columns: 1.6rem minmax(0, 1fr); }
+    .seo-field-board li em { grid-column: 2; justify-self: start; }
+    .plan-controls { grid-template-columns: 1fr; }
+    .plan-controls > div { justify-items: start; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: 0ms !important; } }
+</style>
