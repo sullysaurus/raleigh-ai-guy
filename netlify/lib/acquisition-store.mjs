@@ -59,6 +59,17 @@ export const cleanProspect = (value = {}) => {
     replyBody: String(value.replyBody || "").trim(),
     replyAt: String(value.replyAt || ""),
     source: String(value.source || "Manual"),
+    title: String(value.title || "").trim(),
+    location: String(value.location || "").trim(),
+    domain: String(value.domain || "").trim().toLowerCase(),
+    website: String(value.website || "").trim(),
+    linkedin: String(value.linkedin || "").trim(),
+    employeeCount: Math.max(0, Number(value.employeeCount || 0)),
+    apolloId: String(value.apolloId || ""),
+    emailStatus: String(value.emailStatus || "unverified"),
+    emailSubStatus: String(value.emailSubStatus || ""),
+    scoreReasons: Array.isArray(value.scoreReasons) ? value.scoreReasons.map(String).slice(0, 8) : [],
+    approvedAt: String(value.approvedAt || ""),
     updatedAt: String(value.updatedAt || new Date().toISOString()),
   };
 };
@@ -93,6 +104,7 @@ export const mergeProspects = (existing, incoming) => {
     const found = merged.find((prospect) =>
       (record.email && prospect.email === record.email)
       || (record.smartleadId && prospect.smartleadId === record.smartleadId)
+      || (record.apolloId && prospect.apolloId === record.apolloId)
       || (prospect.company.toLowerCase() === record.company.toLowerCase() && prospect.contact.toLowerCase() === record.contact.toLowerCase()),
     );
     if (found) Object.assign(found, cleanProspect({ ...found, ...raw, id: found.id }));

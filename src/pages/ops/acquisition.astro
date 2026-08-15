@@ -82,6 +82,10 @@ const seedJson = "[]";
     </header>
     <div class="integration-grid">
       <article data-service="smartlead"><span></span><div><strong>Smartlead</strong><p>Campaigns, sends, and replies</p></div><em>Waiting</em></article>
+      <article data-workbench-service="apollo"><span></span><div><strong>Apollo</strong><p>Company and decision-maker search</p></div><em>Not connected</em></article>
+      <article data-workbench-service="zeroBounce"><span></span><div><strong>ZeroBounce</strong><p>Pre-send email verification</p></div><em>Not connected</em></article>
+      <article data-workbench-service="hubspot"><span></span><div><strong>HubSpot</strong><p>Future CRM system of record</p></div><em>Planned</em></article>
+      <article data-workbench-service="n8n"><span></span><div><strong>n8n</strong><p>Future workflow orchestration</p></div><em>Planned</em></article>
       <article data-service="stripe"><span></span><div><strong>Stripe</strong><p>Active MRR and subscriptions</p></div><em>Waiting</em></article>
       <article data-service="calendly"><span></span><div><strong>Calendly</strong><p>Upcoming workflow calls</p></div><em>Waiting</em></article>
       <article data-service="netlifyForms"><span></span><div><strong>Netlify Forms</strong><p>New inbound leads</p></div><em>Waiting</em></article>
@@ -91,6 +95,68 @@ const seedJson = "[]";
       <article data-service="clay" class="warning"><span></span><div><strong>Clay</strong><p>Future enrichment and research</p></div><em>Planned</em></article>
     </div>
     <p id="live-summary" class="live-summary">Live metrics remain locked until you enter the private dashboard key.</p>
+  </section>
+
+  <section class="campaign-queue" aria-labelledby="campaign-queue-title">
+    <header>
+      <div><p>Campaign queue · Hold for domain approval</p><h2 id="campaign-queue-title">Free AI lunch & learn for Raleigh realtors.</h2></div>
+      <span id="realtor-campaign-state">Ready to draft</span>
+    </header>
+    <div class="campaign-brief-grid">
+      <article><span>Audience</span><strong>Broker-owners, team leads, office managers</strong><p>Raleigh and the Triangle · teams with 10–100 agents</p></article>
+      <article><span>Offer</span><strong>30-minute practical AI session</strong><p>Five workflows, useful templates, no sales pitch</p></article>
+      <article><span>Ask</span><strong>“Would this be useful for your office?”</strong><p>Reply-first CTA · no calendar link in cold email</p></article>
+      <article><span>Cadence</span><strong>4 touches across 15 days</strong><p>Tuesday–Thursday · 9:15 AM–2:45 PM ET</p></article>
+    </div>
+    <details class="campaign-copy">
+      <summary>Review the four-email sequence</summary>
+      <ol>
+        <li><span>Day 0 · team training</span><p>A practical, office-level AI walkthrough with five workflows for listing copy, follow-up, market updates, and weekly content.</p></li>
+        <li><span>Day 4 · hands-on angle</span><p>Agents leave with prompts and templates they can use the same day.</p></li>
+        <li><span>Day 8 · no paid tools required</span><p>The session works with tools agents likely already have.</p></li>
+        <li><span>Day 15 · close the loop</span><p>A respectful “later” option, then no more follow-up.</p></li>
+      </ol>
+    </details>
+    <footer>
+      <div><span class="hold-dot"></span><p><strong>Launch hold:</strong> approve the sending domain, confirm who covers lunch, attach the sender, then add only ZeroBounce-valid leads.</p></div>
+      <button id="queue-realtor-campaign" class="button-primary" type="button" disabled>Queue draft in Smartlead</button>
+    </footer>
+  </section>
+
+  <section class="lead-workbench" aria-labelledby="workbench-title">
+    <header>
+      <div><p>Prospecting workbench</p><h2 id="workbench-title">Find. Verify. Qualify. Send.</h2></div>
+      <span id="workbench-status">Unlock the command center to inspect providers.</span>
+    </header>
+    <div class="workbench-flow" aria-label="Lead processing stages">
+      <article><span>01</span><strong>Apollo</strong><p>Find Raleigh decision-makers</p></article>
+      <article><span>02</span><strong>ZeroBounce</strong><p>Block unsafe addresses</p></article>
+      <article><span>03</span><strong>Qualification</strong><p>Score fit with reasons</p></article>
+      <article><span>04</span><strong>Smartlead</strong><p>Send only after approval</p></article>
+    </div>
+    <form id="lead-search-form" class="lead-search-form">
+      <label><span>Market</span><input name="location" value="Raleigh, North Carolina" /></label>
+      <label><span>Industry</span><input name="industry" value="specialty contractor" /></label>
+      <label class="titles-field"><span>Decision-maker titles</span><input name="titles" value="owner, founder, president, operations manager, general manager" /></label>
+      <label><span>Team size</span><select name="employeeRange"><option value="2,50">2–50</option><option value="2,200" selected>2–200</option><option value="11,500">11–500</option></select></label>
+      <button class="button-primary" type="submit" disabled>Search Apollo</button>
+    </form>
+    <div class="candidate-toolbar">
+      <div><strong id="candidate-count">No search run</strong><span id="selection-count">0 selected</span></div>
+      <div>
+        <button id="enrich-candidates" class="button-secondary" type="button" disabled>Reveal selected emails</button>
+        <button id="verify-candidates" class="button-secondary" type="button" disabled>Verify selected</button>
+        <button id="approve-candidates" class="button-secondary" type="button" disabled>Approve selected</button>
+      </div>
+    </div>
+    <div id="candidate-results" class="candidate-results"></div>
+    <p id="candidate-empty" class="candidate-empty">Connect Apollo to search for new prospects. Existing pipeline emails can still be verified with ZeroBounce.</p>
+    <footer class="handoff-bar">
+      <div><span>Approved handoff</span><strong>Only ZeroBounce-valid leads can enter Smartlead.</strong></div>
+      <label><span class="sr-only">Smartlead campaign</span><select id="handoff-campaign"><option value="">Choose campaign</option></select></label>
+      <button id="verify-pipeline" class="button-secondary" type="button">Verify selected pipeline emails</button>
+      <button id="send-smartlead" class="button-primary" type="button">Send approved to Smartlead</button>
+    </footer>
   </section>
 
   <section class="ledger-controls" aria-label="Pipeline controls">
@@ -211,10 +277,14 @@ const seedJson = "[]";
     bounced: boolean; lastTouch: string; nextAction: string; nextActionDate: string;
     workflow: string; mrr: number; notes: string; campaignId: number | null; smartleadId: number | null;
     replySubject: string; replyBody: string; replyAt: string; source: string; updatedAt: string;
+    title: string; location: string; domain: string; website: string; linkedin: string; employeeCount: number;
+    apolloId: string; emailStatus: string; emailSubStatus: string; scoreReasons: string[]; approvedAt: string;
   };
   type Activity = { id: string; type: string; title: string; detail: string; prospectId?: string; at: string };
   type ServiceState = { status: string; [key: string]: string | number };
   type LiveServices = Record<string, ServiceState>;
+  type CampaignOption = { id: number; name: string; status: string };
+  type WorkbenchStatus = { apollo: boolean; zeroBounce: boolean; smartlead: boolean; hubspot: boolean; n8n: boolean; clay: boolean; campaigns: CampaignOption[]; realtorCampaign: CampaignOption | null };
 
   const storageKey = "raleigh-ai-guy:acquisition:v1";
   const campaignKey = "raleigh-ai-guy:campaign:v1";
@@ -237,6 +307,9 @@ const seedJson = "[]";
   let prospects = loadProspects();
   let activities: Activity[] = [];
   let liveServices: LiveServices = {};
+  let workbenchStatus: WorkbenchStatus = { apollo: false, zeroBounce: false, smartlead: false, hubspot: false, n8n: false, clay: false, campaigns: [], realtorCampaign: null };
+  let candidates: Prospect[] = [];
+  const selectedIds = new Set<string>();
   let toastTimer = 0;
   let persistTimer = 0;
 
@@ -258,6 +331,10 @@ const seedJson = "[]";
       notes: String(value.notes || "").trim(), campaignId: value.campaignId == null ? null : Number(value.campaignId),
       smartleadId: value.smartleadId == null ? null : Number(value.smartleadId), replySubject: String(value.replySubject || "").trim(),
       replyBody: String(value.replyBody || "").trim(), replyAt: String(value.replyAt || ""), source: String(value.source || "Manual"),
+      title: String(value.title || "").trim(), location: String(value.location || "").trim(), domain: String(value.domain || "").trim().toLowerCase(),
+      website: String(value.website || "").trim(), linkedin: String(value.linkedin || "").trim(), employeeCount: Math.max(0, Number(value.employeeCount || 0)),
+      apolloId: String(value.apolloId || ""), emailStatus: String(value.emailStatus || "unverified"), emailSubStatus: String(value.emailSubStatus || ""),
+      scoreReasons: Array.isArray(value.scoreReasons) ? value.scoreReasons.map(String).slice(0, 8) : [], approvedAt: String(value.approvedAt || ""),
       updatedAt: String(value.updatedAt || new Date().toISOString()),
     };
   }
@@ -289,6 +366,85 @@ const seedJson = "[]";
       if (!response.ok) throw new Error("Save failed");
       state.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
     } catch { state.textContent = "Cloud save failed. Your latest edits are still safe in this browser."; }
+  }
+  async function workbenchApi(action: string, payload: Record<string, unknown> = {}) {
+    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
+    if (!key) { connectionDialog.showModal(); throw new Error("Unlock the command center first"); }
+    const response = await fetch("/.netlify/functions/lead-workbench", { method: "POST", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ action, ...payload }) });
+    const body = await readJson(response);
+    if (!response.ok) throw new Error(body.error || "Lead workbench request failed");
+    return body;
+  }
+  async function readJson(response: Response) {
+    const text = await response.text();
+    try { return JSON.parse(text); }
+    catch {
+      const local = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+      throw new Error(local ? "Local functions are unavailable in Astro dev. Run `npx netlify dev` or use the production command center." : `Service returned an invalid response (HTTP ${response.status}).`);
+    }
+  }
+  function mergeLocal(incoming: Prospect[]) {
+    incoming.map(clean).forEach((record) => {
+      const found = prospects.find((prospect) => (record.email && prospect.email === record.email) || (record.apolloId && prospect.apolloId === record.apolloId));
+      if (found) Object.assign(found, record, { id: found.id }); else prospects.push(record);
+    });
+  }
+  function paintWorkbenchStatus() {
+    (["apollo", "zeroBounce", "hubspot", "n8n"] as const).forEach((name) => {
+      const card = document.querySelector<HTMLElement>(`[data-workbench-service="${name}"]`);
+      if (!card) return;
+      const connected = Boolean(workbenchStatus[name]);
+      card.classList.toggle("connected", connected); card.classList.toggle("warning", !connected);
+      card.querySelector("em")!.textContent = connected ? "Connected" : name === "apollo" || name === "zeroBounce" ? "Needs credential" : "Planned";
+    });
+    const connected = [workbenchStatus.apollo, workbenchStatus.zeroBounce, workbenchStatus.smartlead].filter(Boolean).length;
+    document.querySelector("#workbench-status")!.textContent = `${connected}/3 active providers · ${workbenchStatus.apollo ? "Apollo ready" : "Apollo account needed"}`;
+    const campaign = document.querySelector<HTMLSelectElement>("#handoff-campaign")!;
+    const current = campaign.value;
+    campaign.innerHTML = `<option value="">Choose campaign</option>${workbenchStatus.campaigns.map((item) => `<option value="${item.id}">${esc(item.name)} · ${esc(item.status)}</option>`).join("")}`;
+    if ([...campaign.options].some((option) => option.value === current)) campaign.value = current;
+    (document.querySelector("#lead-search-form button") as HTMLButtonElement).disabled = !workbenchStatus.apollo;
+    (document.querySelector("#verify-pipeline") as HTMLButtonElement).disabled = !workbenchStatus.zeroBounce;
+    const realtorButton = document.querySelector<HTMLButtonElement>("#queue-realtor-campaign")!;
+    realtorButton.disabled = !workbenchStatus.smartlead || Boolean(workbenchStatus.realtorCampaign);
+    realtorButton.textContent = workbenchStatus.realtorCampaign ? "Draft queued in Smartlead" : "Queue draft in Smartlead";
+    const realtorState = document.querySelector("#realtor-campaign-state")!;
+    realtorState.textContent = workbenchStatus.realtorCampaign ? `Smartlead #${workbenchStatus.realtorCampaign.id} · ${workbenchStatus.realtorCampaign.status}` : workbenchStatus.smartlead ? "Ready to draft" : "Connect Smartlead to queue";
+  }
+  async function loadWorkbenchStatus() {
+    try { workbenchStatus = await workbenchApi("status"); paintWorkbenchStatus(); }
+    catch (error) { document.querySelector("#workbench-status")!.textContent = error instanceof Error ? error.message : "Providers unavailable"; }
+  }
+  function renderCandidates() {
+    const results = document.querySelector("#candidate-results")!;
+    results.innerHTML = candidates.map((lead) => `<article data-candidate-id="${esc(lead.id)}">
+      <label><input type="checkbox" data-select-id="${esc(lead.id)}" ${selectedIds.has(lead.id) ? "checked" : ""} /><span>${esc(lead.company.slice(0, 2).toUpperCase())}</span></label>
+      <div class="candidate-person"><strong>${esc(lead.contact)}</strong><p>${esc(lead.title || "Decision maker")} · ${esc(lead.company)}</p><em>${esc(lead.location || "Location unavailable")}${lead.employeeCount ? ` · ${lead.employeeCount} people` : ""}</em></div>
+      <div class="candidate-score"><strong>${lead.score}</strong><span>FIT</span><p>${esc(lead.scoreReasons.slice(0, 2).join(" · ") || "Needs enrichment")}</p></div>
+      <div class="candidate-email ${lead.emailStatus}"><strong>${esc(lead.email || "Email not revealed")}</strong><span>${esc(lead.emailStatus.replaceAll("_", " "))}</span></div>
+    </article>`).join("");
+    (document.querySelector("#candidate-empty") as HTMLElement).hidden = candidates.length > 0;
+    document.querySelector("#candidate-count")!.textContent = candidates.length ? `${candidates.length} candidates` : "No search run";
+    updateSelection();
+  }
+  function updateSelection() {
+    const selectedCandidates = candidates.filter((lead) => selectedIds.has(lead.id));
+    const selectedPipeline = prospects.filter((lead) => selectedIds.has(lead.id));
+    document.querySelector("#selection-count")!.textContent = `${new Set([...selectedCandidates, ...selectedPipeline].map((lead) => lead.id)).size} selected`;
+    (document.querySelector("#enrich-candidates") as HTMLButtonElement).disabled = !workbenchStatus.apollo || !selectedCandidates.some((lead) => !lead.email);
+    (document.querySelector("#verify-candidates") as HTMLButtonElement).disabled = !workbenchStatus.zeroBounce || !selectedCandidates.some((lead) => lead.email);
+    (document.querySelector("#approve-candidates") as HTMLButtonElement).disabled = !selectedPipeline.some((lead) => lead.emailStatus === "valid" && lead.stage !== "Approved");
+  }
+  function hydrateRemoteState(payload: { prospects?: Partial<Prospect>[]; activities?: Activity[] }) {
+    const selectedApolloIds = new Set(candidates.filter((candidate) => selectedIds.has(candidate.id) && candidate.apolloId).map((candidate) => candidate.apolloId));
+    prospects = (payload.prospects || []).map(clean); activities = payload.activities || [];
+    localStorage.setItem(storageKey, JSON.stringify(prospects));
+    candidates = candidates.map((candidate) => prospects.find((lead) => lead.apolloId && lead.apolloId === candidate.apolloId) || candidate);
+    candidates.filter((candidate) => selectedApolloIds.has(candidate.apolloId)).forEach((candidate) => selectedIds.add(candidate.id));
+    render(); renderCandidates();
+  }
+  function notifyWorkbench(message: string) {
+    toast.textContent = message; toast.classList.add("visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2400);
   }
   function esc(value: string) {
     return value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;" })[char]!);
@@ -334,9 +490,9 @@ const seedJson = "[]";
     const visible = prospects.filter((p) => (filter.value === "all" || p.stage === filter.value) && [p.company, p.contact, p.email, p.industry].join(" ").toLowerCase().includes(query));
     list.innerHTML = visible.map((p) => {
       const stageIndex = stages.indexOf(p.stage);
-      const signal = p.bounced ? "Bounced" : p.verified ? `Verified · ${p.score}` : `Score ${p.score}`;
+      const signal = p.bounced ? "Bounced" : p.emailStatus === "valid" ? `Valid · ${p.score}` : p.emailStatus !== "unverified" ? `${p.emailStatus} · ${p.score}` : p.verified ? `Provider verified · ${p.score}` : `Score ${p.score}`;
       return `<article class="ledger-row" data-id="${esc(p.id)}">
-        <div class="account-cell"><span>${esc(p.company.slice(0, 2).toUpperCase())}</span><div><strong>${esc(p.company)}</strong><p>${esc(p.contact)}${p.email ? ` · ${esc(p.email)}` : ""}</p></div></div>
+        <div class="account-cell"><input type="checkbox" data-select-id="${esc(p.id)}" ${selectedIds.has(p.id) ? "checked" : ""} aria-label="Select ${esc(p.company)}" /><span>${esc(p.company.slice(0, 2).toUpperCase())}</span><div><strong>${esc(p.company)}</strong><p>${esc(p.contact)}${p.email ? ` · ${esc(p.email)}` : ""}</p></div></div>
         <label class="stage-cell"><span class="sr-only">Stage</span><select data-field="stage">${stages.map((stage) => `<option ${stage === p.stage ? "selected" : ""}>${stage}</option>`).join("")}</select></label>
         <div class="signal-cell ${p.bounced ? "danger" : p.verified ? "good" : ""}"><span></span>${esc(signal)}</div>
         <div class="action-cell"><strong>${esc(p.nextAction || "No next move")}</strong><p>${p.nextActionDate ? esc(p.nextActionDate) : esc(p.workflow || p.industry)}</p></div>
@@ -369,6 +525,7 @@ const seedJson = "[]";
     document.querySelector("#conversion-note")!.textContent = prospects.length ? `${Math.round((meetings / prospects.length) * 100)}% reached a meeting · ${customers} customers` : "Add your first prospects to establish a baseline.";
     renderCampaign();
     renderDesk();
+    updateSelection();
   }
 
   const serviceLabels: Record<string, (service: ServiceState) => string> = {
@@ -414,7 +571,7 @@ const seedJson = "[]";
   }
   async function loadRemote(key: string, migrate = false) {
     const response = await fetch("/.netlify/functions/acquisition-data", { headers: { "x-ops-key": key } });
-    const payload = await response.json();
+    const payload = await readJson(response);
     if (!response.ok) throw new Error(payload.error || "Could not load the command center.");
     if (migrate && (!payload.prospects || payload.prospects.length === 0) && prospects.length) {
       await persistRemote(key);
@@ -434,7 +591,7 @@ const seedJson = "[]";
         fetch("/.netlify/functions/acquisition-summary", { headers: { "x-ops-key": key } }),
         loadRemote(key, true),
       ]);
-      const payload = await summaryResponse.json();
+      const payload = await readJson(summaryResponse);
       if (!summaryResponse.ok) throw new Error(payload.error || "Could not connect to live services.");
       sessionStorage.setItem("raleigh-ai-guy:ops-key", key);
       liveServices = payload.services || {};
@@ -442,6 +599,7 @@ const seedJson = "[]";
       button.textContent = "Sync again";
       connectionDialog.close();
       paintServices();
+      await loadWorkbenchStatus();
       window.posthog?.capture?.("ops_services_synced", { connected: Object.values(liveServices).filter((service) => service.status === "connected").length });
     } catch (error) {
       connectionError.textContent = error instanceof Error ? error.message : "Could not connect to live services.";
@@ -456,7 +614,7 @@ const seedJson = "[]";
     button.disabled = true; button.textContent = "Pulling leads…";
     try {
       const response = await fetch("/.netlify/functions/acquisition-data", { method: "POST", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ action: "sync_smartlead" }) });
-      const payload = await response.json();
+      const payload = await readJson(response);
       if (!response.ok) throw new Error(payload.error || "Smartlead sync failed.");
       prospects = (payload.prospects || []).map(clean); activities = payload.activities || [];
       localStorage.setItem(storageKey, JSON.stringify(prospects)); render();
@@ -499,7 +657,11 @@ const seedJson = "[]";
   }
 
   list.addEventListener("change", (event) => {
-    const target = event.target as HTMLSelectElement;
+    const target = event.target as HTMLSelectElement | HTMLInputElement;
+    if (target instanceof HTMLInputElement && target.dataset.selectId) {
+      target.checked ? selectedIds.add(target.dataset.selectId) : selectedIds.delete(target.dataset.selectId);
+      updateSelection(); return;
+    }
     const row = target.closest<HTMLElement>("[data-id]"); const prospect = prospects.find((p) => p.id === row?.dataset.id);
     if (prospect && target.dataset.field === "stage") { prospect.stage = target.value as Stage; prospect.updatedAt = new Date().toISOString(); save("Stage updated", { type: "stage", title: `${prospect.company} moved to ${prospect.stage}`, detail: prospect.nextAction, prospectId: prospect.id }); window.posthog?.capture?.("ops_pipeline_stage_changed", { stage: prospect.stage }); }
   });
@@ -515,7 +677,7 @@ const seedJson = "[]";
   });
   list.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
-    if (target.closest("button, select")) return;
+    if (target.closest("button, select, input")) return;
     const row = target.closest<HTMLElement>("[data-id]");
     const prospect = prospects.find((item) => item.id === row?.dataset.id);
     if (prospect) openDetail(prospect);
@@ -524,6 +686,80 @@ const seedJson = "[]";
     const button = (event.target as HTMLElement).closest<HTMLElement>("[data-open-id]");
     const prospect = prospects.find((item) => item.id === button?.dataset.openId);
     if (prospect) openDetail(prospect);
+  });
+  document.querySelector("#candidate-results")!.addEventListener("change", (event) => {
+    const checkbox = (event.target as HTMLElement).closest<HTMLInputElement>("[data-select-id]");
+    if (!checkbox) return;
+    checkbox.checked ? selectedIds.add(checkbox.dataset.selectId!) : selectedIds.delete(checkbox.dataset.selectId!);
+    updateSelection();
+  });
+  document.querySelector<HTMLFormElement>("#lead-search-form")!.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget; const button = form.querySelector<HTMLButtonElement>("button")!; const data = new FormData(form);
+    button.disabled = true; button.textContent = "Searching…"; document.querySelector("#workbench-status")!.textContent = "Searching Apollo without consuming enrichment credits…";
+    try {
+      const payload = await workbenchApi("search", { filters: { location: data.get("location"), industry: data.get("industry"), titles: data.get("titles"), employeeRange: data.get("employeeRange"), limit: 15 } });
+      candidates = (payload.leads || []).map(clean); selectedIds.clear(); renderCandidates();
+      document.querySelector("#workbench-status")!.textContent = `${payload.total || candidates.length} Apollo matches · previewing ${candidates.length}`;
+      window.posthog?.capture?.("ops_apollo_search", { results: candidates.length });
+    } catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Apollo search failed"); }
+    finally { button.disabled = !workbenchStatus.apollo; button.textContent = "Search Apollo"; }
+  });
+  document.querySelector("#enrich-candidates")!.addEventListener("click", async () => {
+    const selected = candidates.filter((lead) => selectedIds.has(lead.id) && !lead.email);
+    if (!selected.length || !window.confirm(`Reveal work emails for ${selected.length} selected lead${selected.length === 1 ? "" : "s"}? Apollo may use enrichment credits.`)) return;
+    const button = document.querySelector<HTMLButtonElement>("#enrich-candidates")!; button.disabled = true; button.textContent = "Revealing…";
+    try {
+      const payload = await workbenchApi("enrich", { leads: selected });
+      const enriched = (payload.leads || []).map(clean); mergeLocal(enriched);
+      candidates = candidates.map((candidate) => enriched.find((lead) => lead.apolloId === candidate.apolloId) || candidate);
+      save("Apollo enrichment saved", { type: "enrich", title: "Apollo enrichment completed", detail: `${enriched.length} candidates processed` }); renderCandidates();
+    } catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Apollo enrichment failed"); }
+    finally { button.textContent = "Reveal selected emails"; updateSelection(); }
+  });
+  document.querySelector("#verify-candidates")!.addEventListener("click", async () => {
+    const selected = candidates.filter((lead) => selectedIds.has(lead.id) && lead.email);
+    if (!selected.length || !window.confirm(`Use ${selected.length} ZeroBounce credit${selected.length === 1 ? "" : "s"} to verify these emails?`)) return;
+    const button = document.querySelector<HTMLButtonElement>("#verify-candidates")!; button.disabled = true; button.textContent = "Verifying…";
+    try { hydrateRemoteState(await workbenchApi("verify", { leads: selected })); notifyWorkbench("ZeroBounce verification complete"); }
+    catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Verification failed"); }
+    finally { button.textContent = "Verify selected"; updateSelection(); }
+  });
+  document.querySelector("#verify-pipeline")!.addEventListener("click", async () => {
+    const selected = prospects.filter((lead) => selectedIds.has(lead.id) && lead.email && lead.emailStatus !== "valid");
+    if (!selected.length) { notifyWorkbench("Select at least one unverified pipeline email"); return; }
+    if (!window.confirm(`Use ${selected.length} ZeroBounce credit${selected.length === 1 ? "" : "s"} to verify the selected pipeline emails?`)) return;
+    try { hydrateRemoteState(await workbenchApi("verify", { leads: selected })); notifyWorkbench("Pipeline verification complete"); }
+    catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Verification failed"); }
+  });
+  document.querySelector("#approve-candidates")!.addEventListener("click", () => {
+    const approved = prospects.filter((lead) => selectedIds.has(lead.id) && lead.emailStatus === "valid" && !["Outreach", "Replied", "Meeting", "Proof", "Customer"].includes(lead.stage));
+    if (!approved.length) { notifyWorkbench("Only ZeroBounce-valid leads can be approved"); return; }
+    approved.forEach((lead) => Object.assign(lead, { stage: "Approved", approvedAt: new Date().toISOString(), nextAction: "Send to Smartlead", updatedAt: new Date().toISOString() }));
+    save(`${approved.length} lead${approved.length === 1 ? "" : "s"} approved`, { type: "approval", title: `${approved.length} lead${approved.length === 1 ? "" : "s"} approved`, detail: "Ready for Smartlead handoff" });
+  });
+  document.querySelector("#send-smartlead")!.addEventListener("click", async () => {
+    const campaignId = Number(document.querySelector<HTMLSelectElement>("#handoff-campaign")!.value);
+    const ids = prospects.filter((lead) => selectedIds.has(lead.id) && lead.stage === "Approved").map((lead) => lead.id);
+    if (!ids.length) { notifyWorkbench("Select approved leads first"); return; }
+    if (!campaignId) { notifyWorkbench("Choose a Smartlead campaign"); return; }
+    if (!window.confirm(`Send ${ids.length} approved lead${ids.length === 1 ? "" : "s"} to the selected Smartlead campaign?`)) return;
+    const button = document.querySelector<HTMLButtonElement>("#send-smartlead")!; button.disabled = true; button.textContent = "Sending…";
+    try { const payload = await workbenchApi("handoff", { ids, campaignId }); hydrateRemoteState(payload.state); selectedIds.clear(); notifyWorkbench(`${payload.result.added_count || 0} leads added to Smartlead`); }
+    catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Smartlead handoff failed"); }
+    finally { button.disabled = false; button.textContent = "Send approved to Smartlead"; }
+  });
+  document.querySelector("#queue-realtor-campaign")!.addEventListener("click", async () => {
+    if (!window.confirm("Create this campaign and its four-email sequence as a DRAFT in Smartlead? It will not be activated or connected to a sender.")) return;
+    const button = document.querySelector<HTMLButtonElement>("#queue-realtor-campaign")!;
+    button.disabled = true; button.textContent = "Queuing draft…";
+    try {
+      const payload = await workbenchApi("queue_realtor_campaign");
+      workbenchStatus.realtorCampaign = payload.campaign;
+      if (!workbenchStatus.campaigns.some((campaign) => campaign.id === payload.campaign.id)) workbenchStatus.campaigns.push(payload.campaign);
+      paintWorkbenchStatus();
+      notifyWorkbench(payload.created ? "Realtor campaign drafted in Smartlead" : "Realtor campaign was already queued");
+    } catch (error) { notifyWorkbench(error instanceof Error ? error.message : "Could not queue the campaign"); paintWorkbenchStatus(); }
   });
   search.addEventListener("input", render); filter.addEventListener("change", render);
   document.querySelector("#add-prospect")!.addEventListener("click", () => { prospectForm.reset(); prospectDialog.showModal(); });
@@ -649,6 +885,20 @@ const seedJson = "[]";
   .integration-grid em { color: var(--muted); font: 500 .56rem/1.25 "IBM Plex Mono", monospace; text-align: right; }
   .integration-grid article.connected em { color: #2a7559; }
   .live-summary { margin-top: .9rem; color: var(--muted); font-size: .64rem; line-height: 1.5; }
+  .campaign-queue { margin-top: 1.1rem; overflow: hidden; border: 1px solid var(--line); border-radius: .45rem; background: var(--paper); }
+  .campaign-queue > header { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; padding: 1.35rem; }.campaign-queue > header p { color: var(--orange); font: 600 .58rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }.campaign-queue h2 { max-width: 39rem; margin-top: .35rem; font: 500 1.75rem/1 "Newsreader", serif; }.campaign-queue > header > span { border: 1px solid rgb(214 154 53 / 35%); border-radius: 999px; padding: .4rem .55rem; color: #9a6517; background: rgb(214 154 53 / 8%); font: 600 .52rem/1 "IBM Plex Mono", monospace; text-transform: uppercase; white-space: nowrap; }
+  .campaign-brief-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }.campaign-brief-grid article { min-height: 6.4rem; border-right: 1px solid var(--line); padding: .9rem; }.campaign-brief-grid article:last-child { border-right: 0; }.campaign-brief-grid span, .campaign-copy li span { color: var(--orange); font: 600 .52rem/1 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }.campaign-brief-grid strong { display: block; margin-top: .65rem; font-size: .68rem; line-height: 1.35; }.campaign-brief-grid p { margin-top: .35rem; color: var(--muted); font-size: .57rem; line-height: 1.4; }
+  .campaign-copy { margin: 0 1.35rem; border-bottom: 1px solid var(--line); }.campaign-copy summary { cursor: pointer; padding: .85rem 0; font-size: .65rem; font-weight: 650; }.campaign-copy ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; padding-bottom: 1rem; }.campaign-copy li { list-style: none; border-left: .14rem solid rgb(223 93 55 / 30%); padding-left: .65rem; }.campaign-copy li p { margin-top: .4rem; color: var(--muted); font-size: .57rem; line-height: 1.45; }
+  .campaign-queue > footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.35rem; }.campaign-queue > footer > div { display: flex; align-items: flex-start; gap: .55rem; }.campaign-queue > footer p { max-width: 46rem; color: var(--muted); font-size: .6rem; line-height: 1.45; }.campaign-queue > footer p strong { color: var(--ink); }.hold-dot { flex: 0 0 auto; width: .48rem; height: .48rem; margin-top: .14rem; border-radius: 999px; background: #d69a35; box-shadow: 0 0 0 .2rem rgb(214 154 53 / 10%); }.campaign-queue > footer button:disabled { cursor: not-allowed; opacity: .48; }
+  .lead-workbench { margin-top: 1.1rem; border: 1px solid var(--line); border-radius: .45rem; padding: 1.35rem; background: var(--paper); }
+  .lead-workbench > header { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; }.lead-workbench > header p { color: var(--muted); font: 600 .58rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }.lead-workbench h2 { margin-top: .35rem; font: 500 1.75rem/1 "Newsreader", serif; }.lead-workbench > header > span { color: var(--muted); font: 500 .58rem/1.4 "IBM Plex Mono", monospace; text-align: right; }
+  .workbench-flow { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 1.25rem; border: 1px solid var(--line); }
+  .workbench-flow article { position: relative; min-height: 5.7rem; border-right: 1px solid var(--line); padding: .85rem; background: linear-gradient(135deg, rgb(255 255 255 / 42%), transparent); }.workbench-flow article:last-child { border-right: 0; }.workbench-flow article::after { position: absolute; right: -.24rem; top: 1.3rem; z-index: 2; width: .42rem; height: .42rem; border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); background: var(--paper); content: ""; transform: rotate(45deg); }.workbench-flow article:last-child::after { display: none; }.workbench-flow span { color: var(--orange); font: 600 .55rem/1 "IBM Plex Mono", monospace; }.workbench-flow strong { display: block; margin-top: .7rem; font-size: .68rem; }.workbench-flow p { margin-top: .35rem; color: var(--muted); font-size: .57rem; }
+  .lead-search-form { display: grid; grid-template-columns: 1fr 1fr 1.5fr .65fr auto; align-items: end; gap: .65rem; margin-top: 1.1rem; }.lead-search-form label > span, .handoff-bar label > span { display: block; margin-bottom: .4rem; color: var(--muted); font: 600 .54rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }.lead-search-form input, .lead-search-form select, .handoff-bar select { width: 100%; min-height: 2.7rem; border: 1px solid var(--line); border-radius: .35rem; padding: .62rem .7rem; color: var(--ink); background: #fffdf7; font-size: .67rem; }
+  .candidate-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }.candidate-toolbar > div:first-child { display: flex; align-items: baseline; gap: .7rem; }.candidate-toolbar strong { font-size: .69rem; }.candidate-toolbar span { color: var(--muted); font-size: .58rem; }.candidate-toolbar > div:last-child { display: flex; gap: .45rem; }.candidate-toolbar button { min-height: 2.35rem; padding: .5rem .7rem; }.candidate-toolbar button:disabled, .lead-search-form button:disabled, .handoff-bar button:disabled { cursor: not-allowed; opacity: .4; }
+  .candidate-results { display: grid; margin-top: .8rem; border: 1px solid var(--line); }.candidate-results article { display: grid; grid-template-columns: auto minmax(15rem, 1.5fr) minmax(9rem, .65fr) minmax(12rem, 1fr); align-items: center; gap: .85rem; min-height: 5rem; border-bottom: 1px solid var(--line); padding: .75rem; background: #fffaf0; }.candidate-results article:last-child { border-bottom: 0; }.candidate-results article > label { display: flex; align-items: center; gap: .6rem; }.candidate-results input, .account-cell input { width: .9rem; height: .9rem; border-color: var(--line); color: var(--orange); }.candidate-results label > span { display: grid; width: 2.15rem; height: 2.15rem; place-items: center; border: 1px solid var(--line); border-radius: 999px; color: var(--orange); font: 600 .54rem/1 "IBM Plex Mono", monospace; }.candidate-person strong, .candidate-email strong { display: block; overflow: hidden; font-size: .68rem; text-overflow: ellipsis; white-space: nowrap; }.candidate-person p { margin-top: .25rem; color: var(--ink); font-size: .59rem; }.candidate-person em { display: block; margin-top: .25rem; color: var(--muted); font-size: .55rem; }.candidate-score { display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: .35rem; }.candidate-score strong { color: var(--orange); font: 500 1.5rem/1 "Newsreader", serif; }.candidate-score span { color: var(--muted); font: 600 .5rem/1 "IBM Plex Mono", monospace; }.candidate-score p { grid-column: span 2; margin-top: .3rem; color: var(--muted); font-size: .53rem; line-height: 1.35; }.candidate-email { min-width: 0; }.candidate-email span { display: block; width: max-content; margin-top: .35rem; border-radius: 999px; padding: .25rem .4rem; color: var(--muted); background: rgb(24 33 28 / 6%); font: 600 .5rem/1 "IBM Plex Mono", monospace; text-transform: uppercase; }.candidate-email.valid span { color: #2a7559; background: rgb(42 117 89 / 9%); }.candidate-email.invalid span, .candidate-email.spamtrap span, .candidate-email.abuse span, .candidate-email.do_not_mail span { color: #b74832; background: rgb(183 72 50 / 9%); }.candidate-email.catch-all span, .candidate-email.unknown span { color: #9a6517; background: rgb(214 154 53 / 10%); }
+  .candidate-empty { margin-top: .8rem; border: 1px dashed var(--line); border-radius: .35rem; padding: 1rem; color: var(--muted); font-size: .64rem; }.candidate-empty[hidden] { display: none; }
+  .handoff-bar { display: grid; grid-template-columns: minmax(14rem, 1fr) 14rem auto auto; align-items: center; gap: .65rem; margin-top: 1rem; border-radius: .35rem; padding: .85rem; color: #fff8ef; background: var(--forest); }.handoff-bar div > span { display: block; color: rgb(255 248 239 / 55%); font: 600 .52rem/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }.handoff-bar div > strong { display: block; margin-top: .35rem; font-size: .65rem; }.handoff-bar select { border-color: rgb(255 255 255 / 18%); color: #fff8ef; background: rgb(255 255 255 / 8%); }.handoff-bar .button-secondary { border-color: rgb(255 255 255 / 35%); color: #fff8ef; }.handoff-bar .button-primary { border-color: var(--orange); background: var(--orange); }
   .ledger-controls { display: grid; grid-template-columns: minmax(14rem, 1fr) 12rem auto; align-items: end; gap: .8rem; margin-top: 2rem; }
   .ledger-controls label > span, .pipeline-dialog label > span { display: block; margin-bottom: .45rem; color: var(--muted); font: 600 .57rem/1 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
   .ledger-controls input, .ledger-controls select, .pipeline-dialog input, .pipeline-dialog select, .pipeline-dialog textarea { width: 100%; min-height: 2.75rem; border: 1px solid var(--line); border-radius: .35rem; padding: .65rem .75rem; color: var(--ink); background: var(--paper); font-size: .72rem; }
@@ -720,6 +970,6 @@ const seedJson = "[]";
   .pipeline-toast { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 50; padding: .75rem 1rem; border-radius: .35rem; color: #fff8ef; background: var(--forest); font-size: .68rem; opacity: 0; transform: translateY(.6rem); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }
   .pipeline-toast.visible { opacity: 1; transform: translateY(0); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.action-grid { grid-template-columns: 1fr; }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
-  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track { grid-template-columns: 1fr 1fr; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.integration-panel > header { align-items: stretch; flex-direction: column; }.integration-actions { align-items: stretch; flex-direction: column; }.integration-grid { grid-template-columns: 1fr; }.control-actions { flex-wrap: wrap; justify-content: stretch; }.control-actions button { flex: 1 1 9rem; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; }.detail-dialog footer { flex-wrap: wrap; }.detail-dialog footer > span { display: none; } }
+  @media (max-width: 1100px) { .scoreboard { grid-template-columns: repeat(3, 1fr); }.scoreboard article:nth-child(3) { border-right: 0; }.scoreboard article:nth-child(-n+3) { border-bottom: 1px solid var(--line); }.stage-track { grid-template-columns: repeat(4, 1fr); }.integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.campaign-brief-grid, .campaign-copy ol { grid-template-columns: 1fr 1fr; }.campaign-brief-grid article:nth-child(2) { border-right: 0; }.campaign-brief-grid article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }.lead-search-form { grid-template-columns: 1fr 1fr; }.titles-field { grid-column: span 2; }.handoff-bar { grid-template-columns: 1fr 1fr; }.action-grid { grid-template-columns: 1fr; }.ledger-head { display: none; }.ledger-row { grid-template-columns: minmax(15rem, 1fr) 8rem 7.5rem auto; }.action-cell { grid-column: 1 / 4; }.row-actions { grid-column: 4; grid-row: 1 / 3; } }
+  @media (max-width: 720px) { .command-strip { grid-template-columns: auto 1fr; }.command-meta { display: none; }.scoreboard { grid-template-columns: 1fr 1fr; }.scoreboard article { border-bottom: 1px solid var(--line); }.scoreboard article:nth-child(2n) { border-right: 0; }.stage-track, .workbench-flow { grid-template-columns: 1fr 1fr; }.workbench-flow article:nth-child(2) { border-right: 0; }.campaign-queue > header, .campaign-queue > footer, .lead-workbench > header, .candidate-toolbar { align-items: stretch; flex-direction: column; }.campaign-queue > header > span { width: max-content; }.campaign-brief-grid, .campaign-copy ol { grid-template-columns: 1fr; }.campaign-brief-grid article { border-right: 0; border-bottom: 1px solid var(--line); }.campaign-brief-grid article:last-child { border-bottom: 0; }.lead-workbench > header > span { text-align: left; }.lead-search-form, .handoff-bar { grid-template-columns: 1fr; }.titles-field { grid-column: 1; }.candidate-toolbar > div:last-child { flex-wrap: wrap; }.candidate-toolbar button { flex: 1 1 8rem; }.candidate-results article { grid-template-columns: auto 1fr; }.candidate-score, .candidate-email { grid-column: 2; }.health-grid, .ledger-controls { grid-template-columns: 1fr; }.integration-panel > header { align-items: stretch; flex-direction: column; }.integration-actions { align-items: stretch; flex-direction: column; }.integration-grid { grid-template-columns: 1fr; }.control-actions { flex-wrap: wrap; justify-content: stretch; }.control-actions button { flex: 1 1 9rem; }.ledger-row { grid-template-columns: 1fr auto; gap: .7rem; }.stage-cell, .signal-cell, .action-cell { grid-column: 1; }.row-actions { grid-column: 2; grid-row: 1 / 5; }.form-grid { grid-template-columns: 1fr; }.span-two { grid-column: 1; }.detail-dialog footer { flex-wrap: wrap; }.detail-dialog footer > span { display: none; } }
 </style>
