@@ -37,8 +37,9 @@ The private `/clients/zimzoom/` page starts a Stripe Checkout subscription throu
 
 `/ops/acquisition/` can read aggregate metrics through the protected
 `acquisition-summary` Netlify Function. Set `OPS_DASHBOARD_KEY` before using
-live data. Enter that same key in the dashboard; it is kept in session storage
-and sent only to the same-origin function.
+live data. Enter that same key once; the `ops-session` function exchanges it for
+a signed, HttpOnly, Secure, SameSite session cookie that lasts 30 days. The key
+is never embedded in client-side code or stored in browser-readable storage.
 
 The function activates sources only when their credentials are present:
 

@@ -1,5 +1,5 @@
 import { connectLambda, getStore } from "@netlify/blobs";
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 
 const STORE_NAME = "acquisition-command-center";
 const STATE_KEY = "pipeline-v1";
@@ -20,9 +20,22 @@ const safeEqual = (left, right) => {
   return a.length === b.length && timingSafeEqual(a, b);
 };
 
+export const opsSessionToken = () => {
+  const expected = process.env.OPS_DASHBOARD_KEY;
+  return expected ? createHmac("sha256", expected).update("raleigh-ai-guy:ops-session:v1").digest("base64url") : "";
+};
+
+const cookieValue = (event, name) => {
+  const cookies = String(event.headers?.cookie || event.headers?.Cookie || "").split(";");
+  const match = cookies.map((part) => part.trim()).find((part) => part.startsWith(`${name}=`));
+  return match ? decodeURIComponent(match.slice(name.length + 1)) : "";
+};
+
 export const authorized = (event) => {
   const expected = process.env.OPS_DASHBOARD_KEY;
-  return Boolean(expected && safeEqual(event.headers?.["x-ops-key"], expected));
+  const headerAuthorized = expected && safeEqual(event.headers?.["x-ops-key"], expected);
+  const cookieAuthorized = safeEqual(cookieValue(event, "rag_ops_session"), opsSessionToken());
+  return Boolean(expected && (headerAuthorized || cookieAuthorized));
 };
 
 export const webhookAuthorized = (event) => {

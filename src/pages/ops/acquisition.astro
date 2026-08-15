@@ -257,11 +257,11 @@ const seedJson = "[]";
 
   <dialog id="connection-dialog" class="pipeline-dialog connection-dialog">
     <form id="connection-form" method="dialog">
-      <header><div><p>Private connection</p><h2>Unlock live metrics</h2></div><button type="button" data-close-connection aria-label="Close">×</button></header>
-      <p class="dialog-copy">Enter the value configured as <code>OPS_DASHBOARD_KEY</code> in Netlify. It stays in this browser tab and is never embedded in the site.</p>
-      <label class="connection-field"><span>Dashboard key</span><input id="dashboard-key" type="password" required autocomplete="current-password" /></label>
+      <header><div><p>Private command center</p><h2>Enter your password</h2></div></header>
+      <p class="dialog-copy">Netlify checks the password securely and remembers this device for 30 days. The password is never embedded in the site or stored where page scripts can read it.</p>
+      <label class="connection-field"><span>Dashboard password</span><input id="dashboard-key" type="password" required autocomplete="current-password" autofocus /></label>
       <p id="connection-error" class="import-error" role="alert"></p>
-      <footer><button type="button" data-close-connection class="button-secondary">Cancel</button><button type="submit" class="button-primary">Connect services</button></footer>
+      <footer><button type="submit" class="button-primary">Unlock command center</button></footer>
     </form>
   </dialog>
 
@@ -309,6 +309,7 @@ const seedJson = "[]";
   let liveServices: LiveServices = {};
   let workbenchStatus: WorkbenchStatus = { apollo: false, zeroBounce: false, smartlead: false, hubspot: false, n8n: false, clay: false, campaigns: [], realtorCampaign: null };
   let candidates: Prospect[] = [];
+  let sessionActive = false;
   const selectedIds = new Set<string>();
   let toastTimer = 0;
   let persistTimer = 0;
@@ -352,25 +353,29 @@ const seedJson = "[]";
     render();
     toast.textContent = message; toast.classList.add("visible");
     window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 1600);
-    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-    if (key) {
+    if (sessionActive) {
       window.clearTimeout(persistTimer);
-      persistTimer = window.setTimeout(() => persistRemote(key), 350);
+      persistTimer = window.setTimeout(() => persistRemote(), 350);
     }
   }
-  async function persistRemote(key: string) {
+  function authHeaders(key = "", jsonBody = false) {
+    const headers: Record<string, string> = {};
+    if (jsonBody) headers["content-type"] = "application/json";
+    if (key) headers["x-ops-key"] = key;
+    return headers;
+  }
+  async function persistRemote() {
     const state = document.querySelector("#storage-state")!;
     state.textContent = "Saving to the private command center…";
     try {
-      const response = await fetch("/.netlify/functions/acquisition-data", { method: "PUT", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ prospects, activities, replace: true }) });
+      const response = await fetch("/.netlify/functions/acquisition-data", { method: "PUT", headers: authHeaders("", true), body: JSON.stringify({ prospects, activities, replace: true }) });
       if (!response.ok) throw new Error("Save failed");
       state.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
     } catch { state.textContent = "Cloud save failed. Your latest edits are still safe in this browser."; }
   }
   async function workbenchApi(action: string, payload: Record<string, unknown> = {}) {
-    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-    if (!key) { connectionDialog.showModal(); throw new Error("Unlock the command center first"); }
-    const response = await fetch("/.netlify/functions/lead-workbench", { method: "POST", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ action, ...payload }) });
+    if (!sessionActive) { connectionDialog.showModal(); throw new Error("Unlock the command center first"); }
+    const response = await fetch("/.netlify/functions/lead-workbench", { method: "POST", headers: authHeaders("", true), body: JSON.stringify({ action, ...payload }) });
     const body = await readJson(response);
     if (!response.ok) throw new Error(body.error || "Lead workbench request failed");
     return body;
@@ -381,6 +386,28 @@ const seedJson = "[]";
     catch {
       const local = ["localhost", "127.0.0.1"].includes(window.location.hostname);
       throw new Error(local ? "Local functions are unavailable in Astro dev. Run `npx netlify dev` or use the production command center." : `Service returned an invalid response (HTTP ${response.status}).`);
+    }
+  }
+  async function startSession(key: string) {
+    const response = await fetch("/.netlify/functions/ops-session", { method: "POST", headers: authHeaders(key) });
+    const payload = await readJson(response);
+    if (!response.ok || !payload.authenticated) throw new Error(payload.error || "Could not create a secure dashboard session.");
+    sessionActive = true;
+    dashboardKey.value = "";
+    await syncServices();
+  }
+  async function restoreSession(showPrompt = false) {
+    try {
+      const response = await fetch("/.netlify/functions/ops-session");
+      const payload = await readJson(response);
+      if (!response.ok || !payload.authenticated) throw new Error("No saved session");
+      sessionActive = true;
+      await syncServices();
+      return true;
+    } catch {
+      sessionActive = false;
+      if (showPrompt) { dashboardKey.value = ""; connectionError.textContent = ""; connectionDialog.showModal(); }
+      return false;
     }
   }
   function mergeLocal(incoming: Prospect[]) {
@@ -569,12 +596,12 @@ const seedJson = "[]";
     document.querySelector("#live-summary")!.textContent = parts.length ? parts.join(" · ") : "Connected. Add the credentials marked above to unlock more live metrics.";
     render();
   }
-  async function loadRemote(key: string, migrate = false) {
-    const response = await fetch("/.netlify/functions/acquisition-data", { headers: { "x-ops-key": key } });
+  async function loadRemote(migrate = false) {
+    const response = await fetch("/.netlify/functions/acquisition-data");
     const payload = await readJson(response);
     if (!response.ok) throw new Error(payload.error || "Could not load the command center.");
     if (migrate && (!payload.prospects || payload.prospects.length === 0) && prospects.length) {
-      await persistRemote(key);
+      await persistRemote();
     } else {
       prospects = (payload.prospects || []).map(clean);
       activities = Array.isArray(payload.activities) ? payload.activities : [];
@@ -583,17 +610,23 @@ const seedJson = "[]";
     }
     document.querySelector("#storage-state")!.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
   }
-  async function syncServices(key: string) {
+  async function syncServices(key = "") {
     const button = document.querySelector<HTMLButtonElement>("#sync-services")!;
     button.disabled = true; button.textContent = "Syncing…"; connectionError.textContent = "";
     try {
       const [summaryResponse] = await Promise.all([
-        fetch("/.netlify/functions/acquisition-summary", { headers: { "x-ops-key": key } }),
-        loadRemote(key, true),
+        fetch("/.netlify/functions/acquisition-summary", { headers: authHeaders(key) }),
+        fetch("/.netlify/functions/acquisition-data", { headers: authHeaders(key) }).then(async (response) => {
+          const payload = await readJson(response);
+          if (!response.ok) throw new Error(payload.error || "Could not load the command center.");
+          if ((!payload.prospects || payload.prospects.length === 0) && prospects.length) await persistRemote();
+          else { prospects = (payload.prospects || []).map(clean); activities = Array.isArray(payload.activities) ? payload.activities : []; localStorage.setItem(storageKey, JSON.stringify(prospects)); render(); }
+          document.querySelector("#storage-state")!.textContent = "Saved securely in Netlify · Smartlead replies update automatically.";
+        }),
       ]);
       const payload = await readJson(summaryResponse);
       if (!summaryResponse.ok) throw new Error(payload.error || "Could not connect to live services.");
-      sessionStorage.setItem("raleigh-ai-guy:ops-key", key);
+      sessionActive = true;
       liveServices = payload.services || {};
       document.querySelector("#last-synced")!.textContent = `Synced ${new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(new Date(payload.generatedAt))}`;
       button.textContent = "Sync again";
@@ -608,12 +641,11 @@ const seedJson = "[]";
     } finally { button.disabled = false; }
   }
   async function syncSmartlead() {
-    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-    if (!key) { connectionDialog.showModal(); return; }
+    if (!sessionActive) { connectionDialog.showModal(); return; }
     const button = document.querySelector<HTMLButtonElement>("#sync-smartlead")!;
     button.disabled = true; button.textContent = "Pulling leads…";
     try {
-      const response = await fetch("/.netlify/functions/acquisition-data", { method: "POST", headers: { "content-type": "application/json", "x-ops-key": key }, body: JSON.stringify({ action: "sync_smartlead" }) });
+      const response = await fetch("/.netlify/functions/acquisition-data", { method: "POST", headers: authHeaders("", true), body: JSON.stringify({ action: "sync_smartlead" }) });
       const payload = await readJson(response);
       if (!response.ok) throw new Error(payload.error || "Smartlead sync failed.");
       prospects = (payload.prospects || []).map(clean); activities = payload.activities || [];
@@ -766,14 +798,18 @@ const seedJson = "[]";
   document.querySelector("#import-pipeline")!.addEventListener("click", () => { importJson.value = ""; document.querySelector("#import-error")!.textContent = ""; importDialog.showModal(); });
   document.querySelector("#sync-smartlead")!.addEventListener("click", syncSmartlead);
   document.querySelector("#sync-services")!.addEventListener("click", () => {
-    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-    if (key) syncServices(key); else { dashboardKey.value = ""; connectionError.textContent = ""; connectionDialog.showModal(); }
+    if (sessionActive) syncServices(); else restoreSession(true);
   });
   document.querySelectorAll("[data-close-prospect]").forEach((el) => el.addEventListener("click", () => prospectDialog.close()));
   document.querySelectorAll("[data-close-import]").forEach((el) => el.addEventListener("click", () => importDialog.close()));
   document.querySelectorAll("[data-close-connection]").forEach((el) => el.addEventListener("click", () => connectionDialog.close()));
   document.querySelectorAll("[data-close-detail]").forEach((el) => el.addEventListener("click", () => detailDialog.close()));
-  connectionForm.addEventListener("submit", (event) => { event.preventDefault(); syncServices(dashboardKey.value); });
+  connectionDialog.addEventListener("cancel", (event) => { if (!sessionActive) event.preventDefault(); });
+  connectionForm.addEventListener("submit", async (event) => {
+    event.preventDefault(); connectionError.textContent = "";
+    try { await startSession(dashboardKey.value); }
+    catch (error) { connectionError.textContent = error instanceof Error ? error.message : "Could not unlock the command center."; }
+  });
   prospectForm.addEventListener("submit", (event) => {
     event.preventDefault(); const data = new FormData(prospectForm);
     prospects.push(clean({ company: String(data.get("company") || ""), contact: String(data.get("contact") || ""), email: String(data.get("email") || ""), industry: String(data.get("industry") || ""), score: Number(data.get("score") || 0), stage: String(data.get("stage") || "Research") as Stage, workflow: String(data.get("workflow") || ""), nextAction: String(data.get("nextAction") || "") }));
@@ -815,11 +851,9 @@ const seedJson = "[]";
     const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" })); link.download = `raleigh-ai-guy-pipeline-${new Date().toISOString().slice(0, 10)}.json`; link.click(); URL.revokeObjectURL(link.href);
   });
   render();
-  const savedOpsKey = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-  if (savedOpsKey) syncServices(savedOpsKey);
+  restoreSession(true);
   window.setInterval(() => {
-    const key = sessionStorage.getItem("raleigh-ai-guy:ops-key");
-    if (key && !document.querySelector("dialog[open]")) loadRemote(key).catch(() => {});
+    if (sessionActive && !document.querySelector("dialog[open]")) loadRemote().catch(() => {});
   }, 30000);
 </script>
 
