@@ -1,0 +1,401 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const bookingUrl = "https://calendly.com/hello-raleighaiguy/30min?utm_source=raleighaiguy&utm_medium=landing_page&utm_campaign=honeybook_command_center";
+
+const sourceConnections = [
+  { name: "HoneyBook", signal: "Inquiries, stages, bookings, meetings, payments", tone: "core" },
+  { name: "Google Ads", signal: "Spend, leads, bookings, revenue, ROAS", tone: "paid" },
+  { name: "Meta Ads", signal: "Campaigns, creative, lead cost, attributed outcomes", tone: "paid" },
+  { name: "Search Console", signal: "Queries, pages, clicks, visibility opportunities", tone: "organic" },
+  { name: "Google Analytics", signal: "Traffic, journeys, conversions, channel quality", tone: "organic" },
+  { name: "Sheets + your stack", signal: "Historical leads, operating notes, custom business data", tone: "ops" },
+];
+
+const ownerQuestions = [
+  "Which leads need attention today?",
+  "Which campaign creates bookings—not just form fills?",
+  "What is booked, collected, and still outstanding?",
+  "Where are good leads falling out of the process?",
+  "What should we publish next to grow organic demand?",
+  "Did a connection, automation, or tracking rule fail?",
+];
+
+const blueprintIncludes = [
+  ["Your operating picture", "We map the decisions you need to make each week and the numbers required to make them."],
+  ["Your connection plan", "We identify what can connect directly, what should arrive through supported automation, and what should remain manual."],
+  ["Your first dashboard view", "You leave with a clear recommendation for the owner screen, lead queue, attribution view, and next build phase."],
+];
+
+const faq = [
+  ["Does this replace HoneyBook?", "No. HoneyBook stays responsible for client projects, contracts, files, invoices, and payments. The command center sits above it, combining HoneyBook signals with the marketing and operating data around them."],
+  ["Can Meta Ads be included?", "Yes. With the right account permissions, a read-only Meta Ads connection can report spend, campaigns, creatives, lead volume, and cost per lead. Booking and revenue attribution depends on having reliable identifiers and clean lead-source data."],
+  ["How does HoneyBook connect?", "The build uses supported HoneyBook and Zapier events such as new inquiries, project bookings, stage changes, meetings, and payments. We confirm the available fields before promising a metric; unsupported custom fields may need a mapped import or another approved workflow."],
+  ["Is this just a marketing dashboard?", "No. Marketing reporting is one layer. The useful part is connecting demand to follow-up, proposals, bookings, collections, and the next action the owner or team should take."],
+  ["Can you add an automated content system?", "Yes. It can be added as a second phase: keyword research, an editorial calendar, drafting guardrails, scheduled publishing, Search Console feedback, and a prioritized next-action queue."],
+  ["What happens after the blueprint call?", "If the opportunity is a fit, I scope a phased custom build. You will know what the first useful version includes, which accounts need access, and what should wait until the foundation is proven."],
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(([name, text]) => ({
+    "@type": "Question",
+    name,
+    acceptedAnswer: { "@type": "Answer", text },
+  })),
+};
+---
+
+<BaseLayout
+  pageTitle="Custom HoneyBook Command Center"
+  pageDescription="Turn HoneyBook, Google Ads, Meta Ads, Search Console, Analytics, and your operating data into one custom command center built around the decisions you make."
+  socialImage="/case-study/southern-revelry/01-command-center.png"
+  socialImageAlt="Custom HoneyBook revenue and operations command center"
+  minimal={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <header class="hb-header">
+    <Wrapper variant="wide" class="flex min-h-20 items-center justify-between gap-5">
+      <a href="/" class="flex items-center gap-3 text-sm font-semibold" aria-label="Raleigh AI Guy home">
+        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="48" height="48" class="size-10 border border-black/10" aria-hidden="true" />
+        <span>Raleigh AI Guy<small class="font-utility mt-1 block text-[.56rem] font-normal uppercase tracking-[.12em] text-base-500">Custom business systems</small></span>
+      </a>
+      <a href={bookingUrl} data-booking-cta data-placement="header" class="hb-cta">Map my command center</a>
+    </Wrapper>
+  </header>
+
+  <main>
+    <section class="hb-hero">
+      <Wrapper variant="wide" class="relative py-14 sm:py-20 lg:py-24">
+        <div class="hb-orbit hb-orbit-one" aria-hidden="true"></div>
+        <div class="hb-orbit hb-orbit-two" aria-hidden="true"></div>
+        <div class="grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <div class="field-reveal relative z-10">
+            <p class="field-label text-white/55"><span class="mr-2 inline-block size-2 rounded-full bg-[var(--brand-orange)]"></span>For service businesses already using HoneyBook</p>
+            <h1 class="font-editorial mt-6 text-[clamp(3.6rem,7.2vw,7.2rem)] leading-[.82] tracking-[-.055em] text-[var(--brand-paper)]">
+              HoneyBook runs the work.<br /><em class="font-normal text-[var(--brand-orange)]">See the whole business.</em>
+            </h1>
+            <p class="mt-7 max-w-xl text-lg leading-8 text-white/68">I build a private command center that connects HoneyBook to Google Ads, Meta Ads, Search Console, Analytics, and the data your business still keeps in spreadsheets.</p>
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+              <a href={bookingUrl} data-booking-cta data-placement="hero" class="hb-cta hb-cta-bright">Map my command center</a>
+              <p class="font-utility text-[.6rem] uppercase tracking-[.09em] text-white/45">Complimentary 30-minute blueprint</p>
+            </div>
+            <ul class="mt-8 grid gap-3 text-sm text-white/62 sm:grid-cols-3">
+              <li><span>01</span> Keep HoneyBook</li>
+              <li><span>02</span> Connect the signals</li>
+              <li><span>03</span> See the next move</li>
+            </ul>
+          </div>
+
+          <div class="field-reveal field-reveal-delay relative z-10">
+            <div class="hb-console" aria-label="Illustration of a HoneyBook command center">
+              <div class="hb-console-bar">
+                <div><span class="hb-live"></span>Owner view</div>
+                <p>Last sync · 2 min ago</p>
+              </div>
+              <div class="hb-metric-grid">
+                <article><span>New inquiries</span><strong>24</strong><em>6 need a reply</em></article>
+                <article><span>Booked revenue</span><strong>$48.6k</strong><em>↑ 18% this month</em></article>
+                <article><span>Ad spend</span><strong>$4.2k</strong><em>11.6× booked ROAS</em></article>
+              </div>
+              <div class="hb-console-body">
+                <div class="hb-priority">
+                  <div class="hb-section-title"><span>Priority queue</span><em>5 actions</em></div>
+                  <ol>
+                    <li><span>01</span><div><strong>Proposal viewed twice</strong><small>Follow up with Morgan · $4,800</small></div><em>Today</em></li>
+                    <li><span>02</span><div><strong>Meta lead needs a reply</strong><small>Wedding inquiry · 47 minutes ago</small></div><em>Now</em></li>
+                    <li><span>03</span><div><strong>High-intent SEO page</strong><small>612 impressions · 2.1% CTR</small></div><em>Improve</em></li>
+                  </ol>
+                </div>
+                <div class="hb-sources">
+                  <div class="hb-section-title"><span>Connections</span><em>Healthy</em></div>
+                  <div class="hb-source-list">
+                    {sourceConnections.slice(0, 5).map((source) => <p><span></span>{source.name}<em>Live</em></p>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="font-utility mt-4 text-[.56rem] uppercase leading-4 tracking-[.08em] text-white/38">Concept view · Your build is designed around your workflow and accounts</p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="border-b border-black/10 bg-[var(--brand-orange)]">
+      <Wrapper variant="wide" class="grid gap-6 py-8 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10">
+        <p class="font-utility text-[.62rem] uppercase tracking-[.1em] text-black/55">The distinction</p>
+        <p class="font-editorial max-w-5xl text-3xl leading-tight tracking-[-.025em] sm:text-4xl">HoneyBook is the client system of record. Your command center turns its data—and the data around it—into priorities, attribution, and action.</p>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4">
+            <p class="field-label">The gap</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">A CRM can show the project. It cannot see the whole journey alone.</h2>
+          </div>
+          <div class="lg:col-span-8">
+            <div class="hb-comparison">
+              <div class="hb-comparison-head"><span>HoneyBook does well</span><span>Your command center adds</span></div>
+              {[
+                ["Projects, contracts, invoices, payments", "One owner view across operations and marketing"],
+                ["Lead and booking reports inside HoneyBook", "Cross-channel attribution from spend to collected revenue"],
+                ["Client communication and workflow stages", "A prioritized queue for replies, proposals, follow-up, and exceptions"],
+                ["Lead forms and supported integrations", "Custom data modeling, historical imports, alerts, and connection health"],
+              ].map(([left, right]) => <div class="hb-comparison-row"><p>{left}</p><p><span>+</span>{right}</p></div>)}
+            </div>
+            <p class="mt-5 text-sm leading-6 text-base-500">The goal is not to duplicate HoneyBook. It is to give the owner a decision layer that HoneyBook, ad platforms, analytics tools, and spreadsheets cannot provide separately.</p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="hb-signal-section">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="max-w-3xl">
+          <p class="field-label text-white/45">One operating picture</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] text-[var(--brand-paper)] sm:text-7xl">Connect the systems. Keep the source truth.</h2>
+          <p class="mt-6 max-w-2xl text-base leading-7 text-white/58">Read-only access comes first. Every metric keeps a source, sync state, and honest boundary so the dashboard never presents a guess as confirmed business data.</p>
+        </div>
+        <div class="mt-12 grid gap-px overflow-hidden border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-3">
+          {sourceConnections.map((source, index) => (
+            <article class="hb-connection-card">
+              <div><span>{String(index + 1).padStart(2, "0")}</span><em class:list={[`tone-${source.tone}`]}></em></div>
+              <h3>{source.name}</h3>
+              <p>{source.signal}</p>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-surface-soft)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p class="field-label">What becomes visible</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">Open one screen. Know what deserves attention.</h2>
+            <p class="mt-6 text-base leading-7 text-base-600">The command center is organized around business questions—not a pile of charts.</p>
+          </div>
+          <ol class="border-t border-black/15">
+            {ownerQuestions.map((question, index) => (
+              <li class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-black/15 py-5 sm:grid-cols-[3rem_1fr_auto] sm:items-center">
+                <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+                <strong class="font-editorial text-2xl font-normal leading-tight sm:text-3xl">{question}</strong>
+                <span class="hidden text-base-500 sm:block">→</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-5">
+            <p class="field-label">Real build · Southern Revelry</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">The proof is already built.</h2>
+            <p class="mt-6 text-base leading-7 text-base-600">For a Texas event-services company, HoneyBook, historical Sheets data, Google Ads, Search Console, and manual follow-up workflows became one secure revenue and operations view.</p>
+            <p class="mt-4 text-sm leading-6 text-base-500">The command center keeps HoneyBook as the client system of record while adding sales attention, advertising efficiency, organic opportunities, historical context, and integration health.</p>
+            <a href={bookingUrl} data-booking-cta data-placement="proof" class="hb-cta mt-7">Map my command center</a>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="border border-black/15 bg-white p-2 shadow-[12px_12px_0_var(--brand-orange)] sm:p-3">
+              <img src="/case-study/southern-revelry/01-command-center.png" alt="Southern Revelry revenue and operations command center demo using simulated data" width="1440" height="900" loading="lazy" class="w-full" />
+            </div>
+            <p class="font-utility mt-5 text-[.56rem] uppercase leading-4 tracking-[.08em] text-base-500">Case-study demo · Simulated records · No customer, payment, or event data shown</p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="border-y border-black/10 bg-[var(--brand-yellow)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+          <div>
+            <p class="field-label">One offer</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">Your complimentary Command Center Blueprint.</h2>
+            <p class="mt-6 text-base leading-7 text-base-600">A focused 30-minute working call for established service businesses using HoneyBook. We map the dashboard before you decide whether to build it.</p>
+            <a href={bookingUrl} data-booking-cta data-placement="offer" class="hb-cta mt-7">Map my command center</a>
+          </div>
+          <ol class="border-t border-black/15">
+            {blueprintIncludes.map(([title, body], index) => (
+              <li class="grid gap-3 border-b border-black/15 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
+                <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+                <h3 class="font-semibold">{title}</h3>
+                <p class="text-sm leading-6 text-base-600">{body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4">
+            <p class="field-label">Optional phase two</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">Turn the dashboard into a growth engine.</h2>
+          </div>
+          <div class="lg:col-span-8">
+            <div class="hb-growth-card">
+              <div class="hb-growth-label">Automated content system</div>
+              <h3>Research → plan → publish → measure → improve</h3>
+              <p>Once the operating foundation is reliable, I can add a content engine that turns keyword and customer research into a scheduled editorial pipeline, publishes approved work, and sends Search Console results back into the next-action queue.</p>
+              <div class="hb-growth-flow"><span>Keywords</span><i>→</i><span>Briefs</span><i>→</i><span>Review</span><i>→</i><span>Publish</span><i>→</i><span>Rankings</span></div>
+            </div>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-forest)] text-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4">
+            <p class="field-label text-white/45">Straight answer</p>
+            <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">Can an off-the-shelf service do this?</h2>
+          </div>
+          <div class="space-y-7 text-base leading-7 text-white/65 lg:col-span-8">
+            <p><strong class="text-white">Part of it.</strong> Databox, AgencyAnalytics, Whatagraph, and Looker Studio can combine marketing sources and automate reporting. They are strong choices when the need is primarily charts and recurring reports.</p>
+            <p><strong class="text-white">The custom build earns its keep when your questions cross systems.</strong> HoneyBook follow-up, proposal state, booked revenue, historical spreadsheets, campaign spend, organic demand, exceptions, and team-owned next actions need a shared data model—not merely side-by-side widgets.</p>
+            <p>The blueprint call will tell us which path fits. If an off-the-shelf tool solves the real problem, I will say so.</p>
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-paper)]">
+      <Wrapper variant="wide" class="py-16 sm:py-24">
+        <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4"><p class="field-label">Questions</p><h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.04em] sm:text-6xl">Before you connect anything.</h2></div>
+          <div class="border-t border-black/15 lg:col-span-8">
+            {faq.map(([question, answer]) => (
+              <details class="group border-b border-black/15 py-5">
+                <summary class="grid cursor-pointer list-none grid-cols-[1fr_auto] gap-5 font-semibold"><span>{question}</span><span class="text-[var(--brand-orange)] transition-transform group-open:rotate-45">+</span></summary>
+                <p class="mt-4 max-w-2xl text-sm leading-6 text-base-600">{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    </section>
+
+    <section class="bg-[var(--brand-orange)]">
+      <Wrapper variant="wide" class="py-16 sm:py-20">
+        <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
+          <div>
+            <p class="field-label text-black/55">One next step</p>
+            <h2 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.9] tracking-[-.045em] sm:text-7xl">Stop rebuilding the story by hand.</h2>
+            <p class="mt-5 max-w-2xl text-base leading-7 text-black/68">Bring the tools you use and the questions you cannot answer quickly. We will map the first useful command-center view together.</p>
+          </div>
+          <a href={bookingUrl} data-booking-cta data-placement="final" class="hb-cta hb-cta-dark">Map my command center</a>
+        </div>
+      </Wrapper>
+    </section>
+  </main>
+
+  <footer class="bg-[var(--brand-ink)] text-white/55">
+    <Wrapper variant="wide" class="flex flex-col gap-4 py-8 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} Danny Sullivan · Raleigh AI Guy</p>
+      <div class="flex gap-5"><a href="mailto:hello@raleighaiguy.com" class="hover:text-white">Email</a><a href="/privacy/" class="hover:text-white">Privacy</a></div>
+    </Wrapper>
+  </footer>
+
+  <script>
+    const attributionKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid"];
+    const currentParams = new URLSearchParams(window.location.search);
+    const pageAttribution = Object.fromEntries(attributionKeys.map((key) => [key, currentParams.get(key)]).filter(([, value]) => value));
+
+    document.querySelectorAll<HTMLAnchorElement>("[data-booking-cta]").forEach((link) => {
+      const destination = new URL(link.href);
+      Object.entries(pageAttribution).forEach(([key, value]) => destination.searchParams.set(key, value));
+      link.href = destination.toString();
+      link.addEventListener("click", () => {
+        const placement = link.dataset.placement || "unknown";
+        window.posthog?.capture?.("honeybook_command_center_cta_clicked", { placement, ...pageAttribution });
+        window.gtag?.("event", "generate_lead", { offer: "honeybook_command_center_blueprint", placement, ...pageAttribution });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .hb-header { position: relative; z-index: 30; border-bottom: 1px solid rgb(22 32 27 / 12%); background: var(--brand-paper); }
+  .hb-hero { position: relative; overflow: hidden; background: #0d2c24; }
+  .hb-hero::before { position: absolute; inset: 0; background-image: linear-gradient(rgb(255 255 255 / 3%) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 3%) 1px, transparent 1px); background-size: 32px 32px; content: ""; mask-image: linear-gradient(to bottom, black, transparent 90%); }
+  .hb-orbit { position: absolute; border: 1px solid rgb(230 95 54 / 22%); border-radius: 999px; pointer-events: none; }
+  .hb-orbit-one { top: -18rem; right: -14rem; width: 48rem; height: 48rem; }
+  .hb-orbit-two { right: 10rem; bottom: -24rem; width: 38rem; height: 38rem; }
+  .hb-cta { display: inline-flex; min-height: 2.9rem; align-items: center; justify-content: center; border: 1px solid var(--brand-ink); border-radius: .22rem; padding: .7rem 1rem; color: var(--brand-paper); background: var(--brand-forest); font-size: .82rem; font-weight: 650; transition: transform 160ms ease, background-color 160ms ease; }
+  .hb-cta:hover { transform: translateY(-2px); background: var(--brand-ink); }
+  .hb-cta-bright { border-color: var(--brand-orange); color: var(--brand-ink); background: var(--brand-orange); }
+  .hb-cta-bright:hover { background: #f17a55; }
+  .hb-cta-dark { border-color: var(--brand-ink); background: var(--brand-ink); }
+  .hb-hero ul span { margin-right: .35rem; color: var(--brand-orange); font-family: "IBM Plex Mono", monospace; font-size: .62rem; }
+  .hb-console { border: 1px solid rgb(255 255 255 / 18%); background: #f6f2e8; box-shadow: 20px 20px 0 rgb(230 95 54 / 88%), 0 32px 80px rgb(0 0 0 / 28%); transform: rotate(.6deg); }
+  .hb-console-bar { display: flex; min-height: 3.2rem; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid rgb(22 32 27 / 14%); padding: 0 1rem; color: #16201b; font-family: "IBM Plex Mono", monospace; font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; }
+  .hb-console-bar div { display: flex; align-items: center; gap: .5rem; font-weight: 600; }
+  .hb-console-bar p { color: #707770; }
+  .hb-live { width: .5rem; height: .5rem; border-radius: 999px; background: #36a36c; box-shadow: 0 0 0 4px rgb(54 163 108 / 14%); }
+  .hb-metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgb(22 32 27 / 14%); }
+  .hb-metric-grid article { min-width: 0; border-right: 1px solid rgb(22 32 27 / 14%); padding: 1rem; }
+  .hb-metric-grid article:last-child { border-right: 0; }
+  .hb-metric-grid span, .hb-metric-grid em { display: block; color: #68716a; font-family: "IBM Plex Mono", monospace; font-size: .5rem; font-style: normal; letter-spacing: .04em; text-transform: uppercase; }
+  .hb-metric-grid strong { display: block; margin-block: .3rem; color: #16201b; font-family: "Newsreader", serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 500; line-height: 1; }
+  .hb-metric-grid em { color: #28724f; }
+  .hb-console-body { display: grid; grid-template-columns: 1.45fr .75fr; min-height: 18rem; }
+  .hb-priority { border-right: 1px solid rgb(22 32 27 / 14%); padding: 1rem; }
+  .hb-sources { padding: 1rem; }
+  .hb-section-title { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #6c746e; font-family: "IBM Plex Mono", monospace; font-size: .52rem; letter-spacing: .08em; text-transform: uppercase; }
+  .hb-section-title em { color: #28724f; font-style: normal; }
+  .hb-priority ol { margin-top: .75rem; border-top: 1px solid rgb(22 32 27 / 12%); }
+  .hb-priority li { display: grid; grid-template-columns: 1.5rem 1fr auto; align-items: center; gap: .6rem; border-bottom: 1px solid rgb(22 32 27 / 12%); padding: .85rem 0; }
+  .hb-priority li > span { color: var(--brand-orange); font-family: "IBM Plex Mono", monospace; font-size: .5rem; }
+  .hb-priority li strong, .hb-priority li small { display: block; }
+  .hb-priority li strong { color: #16201b; font-size: .69rem; }
+  .hb-priority li small { margin-top: .18rem; color: #717871; font-size: .55rem; }
+  .hb-priority li > em { color: #68716a; font-family: "IBM Plex Mono", monospace; font-size: .46rem; font-style: normal; text-transform: uppercase; }
+  .hb-source-list { margin-top: .8rem; }
+  .hb-source-list p { display: grid; grid-template-columns: .45rem 1fr auto; align-items: center; gap: .45rem; border-bottom: 1px solid rgb(22 32 27 / 10%); padding: .68rem 0; color: #39423c; font-size: .59rem; font-weight: 600; }
+  .hb-source-list p > span { width: .38rem; height: .38rem; border-radius: 999px; background: #36a36c; }
+  .hb-source-list p em { color: #2c7653; font-family: "IBM Plex Mono", monospace; font-size: .45rem; font-style: normal; text-transform: uppercase; }
+  .hb-comparison { border-top: 1px solid rgb(22 32 27 / 16%); }
+  .hb-comparison-head, .hb-comparison-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-bottom: 1px solid rgb(22 32 27 / 14%); padding: 1rem 0; }
+  .hb-comparison-head { color: var(--brand-muted); font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+  .hb-comparison-row p { color: var(--brand-muted); font-size: .88rem; line-height: 1.5; }
+  .hb-comparison-row p:last-child { color: var(--brand-ink); font-weight: 600; }
+  .hb-comparison-row p span { margin-right: .6rem; color: var(--brand-orange); }
+  .hb-signal-section { background: #122a23; }
+  .hb-connection-card { min-height: 13rem; padding: 1.5rem; background: #122a23; transition: background-color 180ms ease; }
+  .hb-connection-card:hover { background: #17382e; }
+  .hb-connection-card > div { display: flex; align-items: center; justify-content: space-between; color: white; font-family: "IBM Plex Mono", monospace; font-size: .58rem; }
+  .hb-connection-card div em { width: .55rem; height: .55rem; border-radius: 999px; background: var(--brand-orange); box-shadow: 0 0 0 5px rgb(230 95 54 / 10%); }
+  .hb-connection-card h3 { margin-top: 3rem; color: var(--brand-paper); font-family: "Newsreader", serif; font-size: 2rem; font-weight: 400; }
+  .hb-connection-card p { margin-top: .6rem; max-width: 15rem; color: rgb(255 255 255 / 48%); font-size: .8rem; line-height: 1.55; }
+  .hb-growth-card { position: relative; overflow: hidden; border: 1px solid rgb(22 32 27 / 15%); padding: clamp(1.5rem, 4vw, 3rem); background: var(--brand-forest); box-shadow: 12px 12px 0 var(--brand-orange); }
+  .hb-growth-card::after { position: absolute; right: -5rem; bottom: -6rem; width: 16rem; height: 16rem; border: 1px solid rgb(255 255 255 / 10%); border-radius: 999px; content: ""; }
+  .hb-growth-label { color: rgb(255 255 255 / 45%); font-family: "IBM Plex Mono", monospace; font-size: .6rem; letter-spacing: .09em; text-transform: uppercase; }
+  .hb-growth-card h3 { margin-top: 1rem; max-width: 38rem; color: var(--brand-paper); font-family: "Newsreader", serif; font-size: clamp(2.2rem, 5vw, 4.3rem); line-height: .96; letter-spacing: -.035em; }
+  .hb-growth-card > p { margin-top: 1.3rem; max-width: 42rem; color: rgb(255 255 255 / 58%); font-size: .9rem; line-height: 1.7; }
+  .hb-growth-flow { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 2rem; }
+  .hb-growth-flow span { border: 1px solid rgb(255 255 255 / 17%); padding: .5rem .65rem; color: rgb(255 255 255 / 72%); font-family: "IBM Plex Mono", monospace; font-size: .53rem; text-transform: uppercase; }
+  .hb-growth-flow i { color: var(--brand-orange); font-style: normal; }
+  @media (max-width: 700px) {
+    .hb-header .hb-cta { min-height: 2.5rem; padding-inline: .7rem; font-size: .7rem; }
+    .hb-console { box-shadow: 10px 10px 0 rgb(230 95 54 / 88%); transform: none; }
+    .hb-metric-grid { grid-template-columns: 1fr; }
+    .hb-metric-grid article { border-right: 0; border-bottom: 1px solid rgb(22 32 27 / 14%); }
+    .hb-metric-grid article:last-child { border-bottom: 0; }
+    .hb-console-body { grid-template-columns: 1fr; }
+    .hb-priority { border-right: 0; border-bottom: 1px solid rgb(22 32 27 / 14%); }
+    .hb-comparison-head { display: none; }
+    .hb-comparison-row { grid-template-columns: 1fr; gap: .5rem; padding: 1.2rem 0; }
+  }
+</style>
