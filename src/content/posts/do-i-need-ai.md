@@ -146,4 +146,4 @@ No—when it exists to make the business sound current, replaces a reliable rule
 
 The goal is not an AI-powered company. The goal is a company that serves customers better and wastes less time.
 
-If you can feel the friction but cannot tell which opportunity is worth pursuing first, [apply for a one-week build](/contact/). We will uncover the best starting point together; if your business qualifies, I will build the first working solution and show you its value before you decide whether to continue.
+If you can feel the friction but cannot tell which opportunity is worth pursuing first, [book a workflow strategy call](/contact/). We will trace where the work gets stuck, estimate what fixing it could mean, and decide whether AI, ordinary automation, or a simpler process is the right answer.

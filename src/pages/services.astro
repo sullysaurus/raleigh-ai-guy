@@ -5,20 +5,20 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import ContactBand from "@/components/global/ContactBand.astro";
 
 const process = [
-  ["Find the friction", "You tell me what feels slow, difficult, or expensive. On our first call, I ask questions and learn enough about the business to identify the strongest opportunity."],
-  ["Choose one result", "We agree on one focused solution, what it should improve, and the baseline we will use to show its value."],
-  ["Build the proof", "I create a focused working version in one week. The scope is intentionally small: enough to prove the opportunity before a larger investment."],
-  ["Build on the value", "You see the result and the economics first. Then we choose the monthly scope that creates the strongest return."],
+  ["Find the bottleneck", "You show me where work gets stuck, repeated, or lost. I learn how the business operates and identify the strongest opportunity."],
+  ["Design the right system", "We define the result, map the workflow, and choose the simplest technology that can produce it reliably."],
+  ["Build it around your work", "I create the system around your real tools, people, and decisions—not a generic AI demo."],
+  ["Measure and improve", "We track the time, capacity, or revenue it creates and keep improving the system as the business grows."],
 ];
 ---
 
-<BaseLayout pageTitle="A One-Week Business Build Before You Pay" pageDescription="You do not need to diagnose the problem. Danny uncovers the best opportunity with you, builds a focused working solution in one week, and shows you its value before you pay.">
-  <PageIntro eyebrow="The offer" title="I find the opportunity with you. Then I build the proof before asking you to invest." description="No paid assessment and no technical homework. If your business qualifies, we use our first call to uncover the best starting point. I build a focused proof of value in one week. You see what it can save or earn before investing in the full system." ctaHref="/contact/" ctaLabel="See if you qualify" />
+<BaseLayout pageTitle="Custom AI Systems for Service Businesses — Raleigh AI Guy" pageDescription="Danny Sullivan designs and builds practical AI systems around the real workflows, tools, and teams of established service businesses.">
+  <PageIntro eyebrow="Services" title="Your business has outgrown the way it works." description="I turn manual processes, disconnected tools, and knowledge trapped in the owner’s head into practical systems your team can use. Start with the bottleneck—not an AI shopping list." ctaHref="/contact/" ctaLabel="Book a workflow strategy call" />
 
   <section class="bg-[var(--brand-paper)]">
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-4"><p class="field-label">The process</p><h2 class="font-editorial mt-5 text-5xl leading-[.96]">From vague friction to measurable proof.</h2><p class="mt-6 text-sm leading-6 text-base-600">You are close enough to the work to know something is off. My job is to help find the leverage inside it.</p></div>
+        <div class="lg:col-span-4"><p class="field-label">The process</p><h2 class="font-editorial mt-5 text-5xl leading-[.96]">From daily friction to a system your team can run.</h2><p class="mt-6 text-sm leading-6 text-base-600">You are close enough to the work to know something is off. My job is to find the leverage and build the fix.</p></div>
         <ol class="border-t border-black/15 lg:col-span-8">
           {process.map(([title, body], index) => <li class="grid gap-4 border-b border-black/15 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6"><span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span><h3 class="font-semibold">{title}</h3><p class="text-sm leading-6 text-base-600">{body}</p></li>)}
         </ol>
@@ -29,18 +29,18 @@ const process = [
   <section class="bg-[var(--brand-forest)] text-[var(--brand-paper)]">
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-5"><p class="field-label text-white/50">What happens after the first build</p><h2 class="font-editorial mt-5 text-5xl leading-[.96]">You see the value before choosing the monthly relationship.</h2></div>
+        <div class="lg:col-span-5"><p class="field-label text-white/50">How the work grows</p><h2 class="font-editorial mt-5 text-5xl leading-[.96]">Start with the bottleneck that matters most.</h2></div>
         <div class="lg:col-span-7">
-          <p class="text-base leading-7 text-white/65">Once you can see the time and money the solution creates, you can choose an ongoing monthly scope. That may mean improving the first system, adding the next high-value workflow, training the team, or maintaining the measurement dashboard.</p>
+          <p class="text-base leading-7 text-white/65">We start with one important workflow, build it well, and measure what changes. From there, we can improve the system, connect the next workflow, train the team, or maintain the reporting that keeps the value visible.</p>
           <div class="mt-8 grid gap-px bg-white/15 sm:grid-cols-2">
-            <div class="bg-[var(--brand-forest)] py-6 sm:pr-7"><p class="field-label text-white/45">Continue when</p><p class="mt-3 text-sm font-semibold leading-6">The time returned, money protected, or new capacity clearly supports the monthly investment.</p></div>
-            <div class="border-t border-white/15 bg-[var(--brand-forest)] py-6 sm:border-l sm:border-t-0 sm:pl-7"><p class="field-label text-white/45">Walk away when</p><p class="mt-3 text-sm font-semibold leading-6">The proof is weak, the workflow is not ready, or the result is not valuable enough to keep.</p></div>
+            <div class="bg-[var(--brand-forest)] py-6 sm:pr-7"><p class="field-label text-white/45">Build when</p><p class="mt-3 text-sm font-semibold leading-6">The time returned, money protected, or new capacity makes the investment worthwhile.</p></div>
+            <div class="border-t border-white/15 bg-[var(--brand-forest)] py-6 sm:border-l sm:border-t-0 sm:pl-7"><p class="field-label text-white/45">Simplify when</p><p class="mt-3 text-sm font-semibold leading-6">A process change or existing tool can solve the problem without custom software.</p></div>
           </div>
-          <p class="mt-7 border-l-2 border-[var(--brand-orange)] pl-5 text-sm leading-6 text-white/65">I take on the risk of the focused one-week proof. The full system, ongoing scope, and pricing are agreed only after you have seen the value.</p>
+          <p class="mt-7 border-l-2 border-[var(--brand-orange)] pl-5 text-sm leading-6 text-white/65">I will recommend the simplest reliable answer—even when the right answer is a clearer process or an existing tool instead of a custom build.</p>
         </div>
       </div>
     </Wrapper>
   </section>
 
-  <ContactBand eyebrow="Start with a few honest estimates" title="You do not need to know the exact pain point." description="Tell me about the business, what feels harder than it should, and the rough value of making it better. We will uncover the opportunity together." ctaHref="/contact/" ctaLabel="Apply for a proof of value" />
+  <ContactBand eyebrow="Start with the work itself" title="Bring me the bottleneck." description="Tell me what keeps falling through the cracks, taking too long, or requiring your constant attention. We’ll decide what is worth fixing." ctaHref="/contact/" ctaLabel="Book a workflow strategy call" />
 </BaseLayout>

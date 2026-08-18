@@ -4,26 +4,26 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <BaseLayout
-  pageTitle="Apply for a One-Week Business Build — Raleigh AI Guy"
-  pageDescription="You do not need to know the exact opportunity. Share a little about your business and Danny will help uncover the best problem to solve on your first call."
+  pageTitle="Book a Workflow Strategy Call — Raleigh AI Guy"
+  pageDescription="Tell Danny Sullivan where work gets stuck, repeated, or lost. He will review your workflow and help identify what is worth fixing."
 >
   <section>
     <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>One-week build application</p>
-          <h1 class="font-editorial mt-6 text-5xl font-medium leading-[.92] tracking-[-.045em] sm:text-7xl">You bring the business. We’ll find the problem together.</h1>
-          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">You do not need an AI idea, a technical plan, or even a perfectly defined pain point. Tell me what feels harder than it should. On the call, I’ll ask questions and help uncover the opportunity with the strongest potential return.</p>
+          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Workflow strategy call</p>
+          <h1 class="font-editorial mt-6 text-5xl font-medium leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me the bottleneck.</h1>
+          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">Tell me what keeps falling through the cracks, taking too long, or requiring your constant attention. I’ll review it personally, and we’ll use our first call to determine what is worth fixing.</p>
           <div class="mt-8 border-l-2 border-[var(--brand-orange)] pl-5">
-            <p class="font-semibold">If you qualify</p>
-            <p class="mt-2 text-sm leading-6 text-base-600">On our first call, we choose one focused opportunity. Then I take on the initial risk and build a working proof of value in one week. You invest in the full system only after you see what it can save or earn.</p>
+            <p class="font-semibold">What happens next</p>
+            <p class="mt-2 text-sm leading-6 text-base-600">We trace the current workflow, identify the most valuable point of friction, and decide whether a custom system, an existing tool, or a simpler process is the right answer.</p>
           </div>
-          <p class="font-utility mt-8 text-[.62rem] uppercase tracking-[.1em] text-base-500">No assessment fee · No build fee · No obligation</p>
+          <p class="font-utility mt-8 text-[.62rem] uppercase tracking-[.1em] text-base-500">Directly with Danny · Practical advice · No generic AI pitch</p>
         </div>
 
         <div class="border-t border-black/15 pt-7 lg:col-span-7">
-          <form name="one-week-build" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
-            <input type="hidden" name="form-name" value="one-week-build" />
+          <form name="workflow-strategy-call" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
+            <input type="hidden" name="form-name" value="workflow-strategy-call" />
             <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
 
             <div class="grid gap-5 sm:grid-cols-2">
@@ -60,10 +60,10 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                   <option>Under 5 hours per week</option><option>5–10 hours per week</option><option>10–20 hours per week</option><option>20+ hours per week</option><option>I don’t know yet</option>
                 </select>
               </label>
-              <label class="intake-label sm:col-span-2">If I show you clear time or money savings, are you ready to invest monthly?
+              <label class="intake-label sm:col-span-2">If the right system can create clear time or money savings, when would you want to act?
                 <select class="intake-field" name="readiness" required>
                   <option value="" selected disabled>Choose the honest answer</option>
-                  <option>Yes — I’m ready now</option><option>Yes — within the next 3 months</option><option>Possibly — it depends on the value</option><option>No — I’m only exploring</option>
+                  <option>I’m ready now</option><option>Within the next 3 months</option><option>It depends on the opportunity</option><option>I’m only exploring</option>
                 </select>
               </label>
             </div>
@@ -73,8 +73,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
             </label>
 
             <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <button type="submit" class="site-cta">See if my business qualifies →</button>
-              <p class="text-xs leading-5 text-base-400">I review every application myself. No sales sequence.</p>
+              <button type="submit" class="site-cta">Tell Danny what’s slowing us down →</button>
+              <p class="text-xs leading-5 text-base-400">I review every request myself. No sales sequence.</p>
             </div>
           </form>
         </div>

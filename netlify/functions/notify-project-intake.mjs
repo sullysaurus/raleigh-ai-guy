@@ -20,21 +20,21 @@ export default {
   async formSubmitted(event) {
     const data = event.data ?? {};
     const formName = clean(data["form-name"] ?? data.form_name, "");
-    const isOneWeekBuild = formName === "one-week-build" || Boolean(data.friction && data.hours_saved && data.readiness && data.email);
+    const isWorkflowStrategyCall = formName === "workflow-strategy-call" || Boolean(data.friction && data.hours_saved && data.readiness && data.email);
     const isWorkWithMe = formName === "work-with-me" || Boolean(data.service && data.goal && data.email);
     const isAssessment = Boolean(data.typical_day && data.magic_wand && data.email);
 
-    if (!isOneWeekBuild && !isWorkWithMe && !isAssessment) return;
+    if (!isWorkflowStrategyCall && !isWorkWithMe && !isAssessment) return;
 
     const webhookUrl = process.env.SLACK_INTAKE_WEBHOOK_URL;
     if (!webhookUrl) throw new Error("SLACK_INTAKE_WEBHOOK_URL is not configured");
 
     const name = clean(data.name, "Someone");
     const company = clean(data.company, "No company provided");
-    const payload = isOneWeekBuild ? {
-      text: `New one-week build application from ${name} (${company})`,
+    const payload = isWorkflowStrategyCall ? {
+      text: `New workflow strategy call request from ${name} (${company})`,
       blocks: [
-        { type: "header", text: { type: "plain_text", text: "New one-week build application", emoji: true } },
+        { type: "header", text: { type: "plain_text", text: "New workflow strategy call request", emoji: true } },
         {
           type: "section",
           fields: [

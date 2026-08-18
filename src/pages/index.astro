@@ -11,22 +11,22 @@ const outcomes = [
 ];
 
 const steps = [
-  ["Find the leverage", "On our first call, I learn how the business works and find the best place to save time or make money. You do not need to diagnose it first."],
-  ["Build the proof", "If you qualify, I build a focused working version in one week—enough to show the opportunity before you make a larger investment."],
-  ["See the return", "You see the system in action and what it saves or earns. Then you decide whether we keep improving it together each month."],
+  ["Find the bottleneck", "We identify where work gets stuck, repeated, or lost—and what fixing it would mean for the business."],
+  ["Design the right system", "I map a practical solution around how your team actually works, using AI only where it creates a real advantage."],
+  ["Build and improve it", "I create the system, measure its impact, and keep improving it as your business and team grow."],
 ];
 
 const fitSignals = [
   "Repeated work is taking at least 5 hours a week",
   "Faster follow-up or more capacity could create real revenue",
   "You can give me access to understand and test the work",
-  "You are ready to invest monthly once the value is visible",
+  "You are ready to invest in a system that earns its keep",
 ];
 ---
 
 <BaseLayout
-  pageTitle="Make More, Do Less Busywork, and Get Time Back — Raleigh AI Guy"
-  pageDescription="Danny Sullivan builds practical business systems that increase capacity, reduce busywork, and give owners time back. See a working proof of value before you invest."
+  pageTitle="Custom AI Systems for Service Businesses — Raleigh AI Guy"
+  pageDescription="Danny Sullivan turns scattered tools, manual follow-up, and owner-dependent workflows into practical AI systems for established service businesses."
 >
   <section class="overflow-hidden">
     <Wrapper variant="wide" class="py-8 sm:py-14 lg:py-20">
@@ -34,24 +34,24 @@ const fitSignals = [
         <div class="field-reveal relative min-w-0 lg:col-span-9">
           <div class="hidden lg:block">
             <p class="field-label flex items-center gap-2 whitespace-nowrap"><span class="size-2 shrink-0 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Danny Sullivan · Raleigh AI Guy</p>
-            <p class="font-utility mt-2 text-[.6rem] uppercase tracking-[.1em] text-base-500">Practical systems for small businesses</p>
+            <p class="font-utility mt-2 text-[.6rem] uppercase tracking-[.1em] text-base-500">Custom AI systems for established service businesses</p>
           </div>
 
           <h1 class="font-editorial max-w-5xl text-[clamp(2.5rem,7vw,5.8rem)] font-medium leading-[.9] tracking-[-.05em] text-black lg:mt-6">
-            Make more money.<br />Do less busywork.<br /><em class="font-normal text-[var(--brand-orange)]">Get your time back.</em>
+            Stop holding your<br />business together<br /><em class="font-normal text-[var(--brand-orange)]">by hand.</em>
           </h1>
           <div class="mt-6 max-w-2xl sm:mt-7 lg:mt-8">
             <div class="relative float-right mb-2 ml-4 w-16 sm:w-20 lg:hidden">
               <div class="absolute -right-1.5 -top-1.5 size-full bg-[var(--brand-orange)]" aria-hidden="true"></div>
               <Image src={profileImage} alt="Danny Sullivan" widths={[128, 192]} sizes="(min-width: 640px) 80px, 64px" loading="eager" class="relative aspect-square w-full object-cover grayscale" />
             </div>
-            <p class="text-lg leading-7 text-base-600 sm:text-xl sm:leading-8">We find the best opportunity on our first call. If you qualify, I build a working proof in one week—with no upfront build fee. See what it saves, then decide whether to continue monthly.</p>
+            <p class="text-lg leading-7 text-base-600 sm:text-xl sm:leading-8">I turn scattered tools, manual follow-up, and owner-dependent workflows into practical systems that save time, protect revenue, and help your team run without constant intervention.</p>
           </div>
           <div class="mt-6 flex flex-col items-start gap-3 min-[420px]:flex-row min-[420px]:items-center sm:mt-7 sm:gap-5">
-            <a href="/contact/" class="site-cta">See if your business qualifies →</a>
-            <a href="#how-it-works" class="hidden text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black sm:block">How it works</a>
+            <a href="/contact/" class="site-cta">Book a workflow strategy call →</a>
+            <a href="/projects/" class="hidden text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black sm:block">See what I’ve built</a>
           </div>
-          <p class="font-utility mt-4 max-w-full text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500 sm:mt-5 sm:text-[.64rem]">No upfront build fee · No obligation</p>
+          <p class="font-utility mt-4 max-w-full text-[.58rem] uppercase leading-4 tracking-[.08em] text-base-500 sm:mt-5 sm:text-[.64rem]">Raleigh-based · Built directly with Danny · No generic AI pitch</p>
         </div>
 
         <div class="field-reveal field-reveal-delay relative hidden w-full max-w-[17rem] lg:col-span-3 lg:block lg:justify-self-end">
@@ -102,8 +102,8 @@ const fitSignals = [
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
           <p class="field-label">The offer</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">One call. One week. Clear value.</h2>
-          <p class="mt-6 text-sm leading-6 text-base-600">You do not need an AI idea or a perfectly defined problem. That is what the first call is for.</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">From daily bottleneck to a system your team can run.</h2>
+          <p class="mt-6 text-sm leading-6 text-base-600">You do not need an AI idea or a technical plan. Start with the work that keeps getting stuck.</p>
         </div>
         <ol class="border-t border-black/15 lg:col-span-8">
           {steps.map(([title, body], index) => (
@@ -122,17 +122,17 @@ const fitSignals = [
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p class="field-label">Who qualifies</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">Saving time should create real money.</h2>
-          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">I take on the risk of the first build only for businesses where a useful system can create clear ongoing value.</p>
+          <p class="field-label">A good fit</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.95] tracking-[-.035em] sm:text-6xl">The right system should earn its keep.</h2>
+          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">This work is for established businesses where fixing an important workflow can create measurable time, capacity, or revenue.</p>
         </div>
         <div class="lg:col-span-7">
           <ul class="border-t border-black/15">
             {fitSignals.map((signal) => <li class="grid grid-cols-[1.5rem_1fr] gap-4 border-b border-black/15 py-5 text-base font-semibold"><span class="text-[var(--brand-orange)]">✓</span><span>{signal}</span></li>)}
           </ul>
           <div class="mt-8 flex flex-wrap items-center gap-5">
-            <a href="/contact/" class="site-cta">See if you qualify →</a>
-            <p class="max-w-sm text-xs leading-5 text-base-500">A short application. Mostly multiple choice. Reviewed personally by me.</p>
+            <a href="/contact/" class="site-cta">Tell me what’s slowing you down →</a>
+            <p class="max-w-sm text-xs leading-5 text-base-500">A short project brief, reviewed personally by me.</p>
           </div>
         </div>
       </div>
@@ -142,8 +142,8 @@ const fitSignals = [
   <section class="bg-[var(--brand-orange)]">
     <Wrapper variant="wide" class="py-14 sm:py-20">
       <div class="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
-        <div><p class="field-label text-black/60">Make more without doing more</p><h2 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Let’s find the system that gives your business leverage.</h2><p class="mt-5 max-w-2xl text-sm leading-6 text-black/70">I build a focused proof of value in one week. You see what it can save or earn before investing in the full system and monthly partnership.</p></div>
-        <a href="/contact/" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Apply for a proof of value →</a>
+        <div><p class="field-label text-black/60">Make more without doing more</p><h2 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me the bottleneck.</h2><p class="mt-5 max-w-2xl text-sm leading-6 text-black/70">Tell me what keeps falling through the cracks, taking too long, or requiring your constant attention. We’ll find the right system to fix it.</p></div>
+        <a href="/contact/" class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Book a workflow strategy call →</a>
       </div>
     </Wrapper>
   </section>

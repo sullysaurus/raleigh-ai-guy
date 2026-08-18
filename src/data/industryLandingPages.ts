@@ -35,14 +35,14 @@ export const industryLandingPages: IndustryLandingPage[] = [
     eyebrow: "For Raleigh HVAC, plumbing & electrical contractors",
     pageTitle: "AI Workflow Automation for Raleigh Specialty Contractors",
     pageDescription:
-      "Raleigh AI Guy helps HVAC, plumbing, and electrical contractors recover estimates, reduce office busywork, and build a working proof before they invest.",
+      "Raleigh AI Guy builds practical AI systems that help HVAC, plumbing, and electrical contractors recover estimates and reduce office busywork.",
     heroImage: specialtyContractorsImage,
     heroImageAlt:
       "Illustrated contractor workflow showing a service estimate moving through customer follow-up to a booked job",
     headline: "Win more of the work",
     headlineAccent: "you already quoted.",
     intro:
-      "Your team should not have to remember every estimate, retype every technician note, or chase every customer by hand. I find one expensive workflow and build a focused working proof in one week—before you pay a build fee.",
+      "Your team should not have to remember every estimate, retype every technician note, or chase every customer by hand. I turn that expensive manual work into a practical system built around your operation.",
     workflow: ["New lead", "Estimate", "Follow-up", "Booked job"],
     frictionTitle: "Good work gets lost between the field and the office.",
     frictionIntro:
@@ -67,7 +67,7 @@ export const industryLandingPages: IndustryLandingPage[] = [
     ],
     proofTitle: "Start with one workflow that can pay for itself.",
     proofIntro:
-      "We do not begin with a giant software project. We choose one measurable bottleneck and prove the value first.",
+      "We do not begin with a giant software project. We choose one measurable bottleneck and build around the way your team actually works.",
     proofIdeas: [
       {
         label: "Revenue",
@@ -100,14 +100,14 @@ export const industryLandingPages: IndustryLandingPage[] = [
     eyebrow: "For Raleigh restoration & remediation companies",
     pageTitle: "AI Workflow Automation for Raleigh Restoration Companies",
     pageDescription:
-      "Raleigh AI Guy helps restoration and remediation teams improve intake, job handoffs, documentation, and customer updates with a one-week proof of value.",
+      "Raleigh AI Guy builds practical AI systems that help restoration and remediation teams improve intake, job handoffs, documentation, and customer updates.",
     heroImage: restorationRemediationImage,
     heroImageAlt:
       "Illustrated restoration workflow showing an emergency call, property inspection, field documentation, and dispatch",
     headline: "Move urgent jobs faster—",
     headlineAccent: "without more office chaos.",
     intro:
-      "When every lead feels urgent, the handoffs matter: first call, dispatch, documentation, customer updates, and insurance communication. I find one weak link and build a focused working proof in one week—before you pay a build fee.",
+      "When every lead feels urgent, the handoffs matter: first call, dispatch, documentation, customer updates, and insurance communication. I turn the weakest link into a clearer system your team can run.",
     workflow: ["Emergency call", "Dispatch", "Documentation", "Clear next step"],
     frictionTitle: "Urgency exposes every manual handoff.",
     frictionIntro:
@@ -130,9 +130,9 @@ export const industryLandingPages: IndustryLandingPage[] = [
         body: "Staff manually bridge technicians, project managers, customers, adjusters, and vendors all day.",
       },
     ],
-    proofTitle: "Prove one calmer, faster handoff first.",
+    proofTitle: "Build one calmer, faster handoff first.",
     proofIntro:
-      "The first build is intentionally focused. We agree on the workflow, the baseline, and what a useful result should change.",
+      "We start with one focused workflow, agree on the baseline, and define what a useful result should change.",
     proofIdeas: [
       {
         label: "Intake",
@@ -165,14 +165,14 @@ export const industryLandingPages: IndustryLandingPage[] = [
     eyebrow: "For Raleigh commercial landscaping companies",
     pageTitle: "AI Workflow Automation for Raleigh Commercial Landscaping",
     pageDescription:
-      "Raleigh AI Guy helps commercial landscaping companies improve field handoffs, enhancement quoting, client reporting, and follow-up with a one-week proof.",
+      "Raleigh AI Guy builds practical AI systems for commercial landscaping field handoffs, enhancement quoting, client reporting, and follow-up.",
     heroImage: commercialLandscapingImage,
     heroImageAlt:
       "Illustrated commercial landscaping workflow showing a property plan, field observations, and an enhancement proposal",
     headline: "Turn field activity into",
     headlineAccent: "clear next steps.",
     intro:
-      "Property notes, crew updates, enhancement opportunities, client requests, and photos should not require hours of office translation. I find one expensive workflow and build a focused working proof in one week—before you pay a build fee.",
+      "Property notes, crew updates, enhancement opportunities, client requests, and photos should not require hours of office translation. I turn that repetitive work into a practical field-to-office system.",
     workflow: ["Property visit", "Field notes", "Office action", "Client update"],
     frictionTitle: "The work happens outside. The paperwork waits inside.",
     frictionIntro:
@@ -230,14 +230,14 @@ export const industryLandingPages: IndustryLandingPage[] = [
     eyebrow: "For Raleigh property management companies",
     pageTitle: "AI Workflow Automation for Raleigh Property Management",
     pageDescription:
-      "Raleigh AI Guy helps property managers reduce maintenance coordination, resident communication, vendor follow-up, and reporting work with a one-week proof.",
+      "Raleigh AI Guy builds practical AI systems that reduce maintenance coordination, resident communication, vendor follow-up, and reporting work.",
     heroImage: propertyManagementImage,
     heroImageAlt:
       "Illustrated property management workflow connecting a resident maintenance request, office team, vendor, and owner update",
     headline: "Keep every request moving—",
     headlineAccent: "without living in the inbox.",
     intro:
-      "Maintenance requests, resident questions, vendor updates, owner reporting, and renewals create an endless coordination loop. I find one expensive workflow and build a focused working proof in one week—before you pay a build fee.",
+      "Maintenance requests, resident questions, vendor updates, owner reporting, and renewals create an endless coordination loop. I turn that manual back-and-forth into a system your team can see and run.",
     workflow: ["Resident request", "Triage", "Vendor action", "Everyone updated"],
     frictionTitle: "Property management is a communication business disguised as an inbox.",
     frictionIntro:
@@ -262,7 +262,7 @@ export const industryLandingPages: IndustryLandingPage[] = [
     ],
     proofTitle: "Fix one coordination loop before changing everything.",
     proofIntro:
-      "We choose a workflow with clear volume and measurable effort, then build enough to see whether the improvement deserves a full implementation.",
+      "We choose a workflow with clear volume and measurable effort, then build the system around the people responsible for keeping it moving.",
     proofIdeas: [
       {
         label: "Maintenance",

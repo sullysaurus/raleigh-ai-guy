@@ -11,12 +11,12 @@ interface Props {
 
 const { page } = Astro.props;
 const bookingUrl = `https://calendly.com/hello-raleighaiguy/30min?utm_source=raleighaiguy&utm_medium=industry-landing-page&utm_campaign=${encodeURIComponent(page.slug)}`;
-const emailUrl = `mailto:hello@raleighaiguy.com?subject=${encodeURIComponent(`Workflow call — ${page.shortName}`)}`;
+const emailUrl = `mailto:danny@raleighaiguy.com?subject=${encodeURIComponent(`Workflow call — ${page.shortName}`)}`;
 
 const steps = [
-  ["Show me the work", "On a short call, you walk me through the current process. I ask questions, find the strongest leverage point, and agree on one result worth proving."],
-  ["I build the proof", "If the opportunity is a fit, I build a focused working version in one week. The scope stays deliberately small and measurable."],
-  ["You see the return", "You see the workflow in action and what it could save or earn. Then you decide whether a full implementation and monthly partnership make sense."],
+  ["Show me the work", "On a short call, you walk me through the current process. I ask questions, find the strongest leverage point, and define the result that matters."],
+  ["I design the system", "I map a practical solution around your real tools, people, and decisions, using AI only where it creates a clear advantage."],
+  ["We build and improve it", "I create the system, measure what changes, and improve it as your team and business grow."],
 ];
 ---
 
@@ -34,10 +34,10 @@ const steps = [
           </h1>
           <p class="mt-8 max-w-2xl text-lg leading-8 text-base-600 sm:text-xl">{page.intro}</p>
           <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href={bookingUrl} class="site-cta">Book a 20-minute workflow call →</a>
-            <a href="#proof" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">See what the proof could include</a>
+            <a href={bookingUrl} class="site-cta">Book a workflow strategy call →</a>
+            <a href="#proof" class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">See what a system could include</a>
           </div>
-          <p class="font-utility mt-5 text-[.62rem] uppercase tracking-[.1em] text-base-500">One workflow · One-week proof · No upfront build fee</p>
+          <p class="font-utility mt-5 text-[.62rem] uppercase tracking-[.1em] text-base-500">Built around your workflow · Directly with Danny · No generic AI pitch</p>
         </div>
 
         <aside class="field-reveal field-reveal-delay lg:col-span-4">
@@ -96,7 +96,7 @@ const steps = [
   <section id="proof" class="scroll-mt-6 bg-[var(--brand-surface-soft)]">
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="max-w-3xl">
-        <p class="field-label">What the first proof could look like</p>
+        <p class="field-label">What the right system could look like</p>
         <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">{page.proofTitle}</h2>
         <p class="mt-6 text-base leading-7 text-base-600">{page.proofIntro}</p>
       </div>
@@ -119,9 +119,9 @@ const steps = [
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
-          <p class="field-label">How the offer works</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">One call. One week. Clear value.</h2>
-          <p class="mt-6 text-sm leading-6 text-base-600">No paid assessment. No AI homework. No large project before you can see whether the idea works.</p>
+          <p class="field-label">How the work happens</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">From daily bottleneck to a system your team can run.</h2>
+          <p class="mt-6 text-sm leading-6 text-base-600">You do not need an AI idea or technical plan. Start with the work that keeps getting stuck.</p>
         </div>
         <ol class="border-t border-black/15 lg:col-span-8">
           {steps.map(([title, body], index) => (
@@ -154,7 +154,7 @@ const steps = [
         <div class="lg:col-span-8 lg:col-start-5">
           <p class="field-label">Who does the work</p>
           <h2 class="font-editorial mt-5 max-w-3xl text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">You work directly with me.</h2>
-          <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600">I’m Danny Sullivan, a Raleigh-based AI product engineer, educator, and former service-business owner. From the first call through the working proof, I handle the questions, the build, and the follow-through myself.</p>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600">I’m Danny Sullivan, a Raleigh-based AI product engineer, educator, and former service-business owner. From the first call through design, implementation, and follow-through, I handle the work myself.</p>
 
           <div class="mt-8 grid gap-px border border-black/10 bg-black/10 sm:grid-cols-3">
             <div class="bg-[var(--brand-paper)] p-5">
@@ -182,7 +182,7 @@ const steps = [
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
           <p class="field-label">Who this is for</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">The proof should create a business case—not just a demo.</h2>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.94] tracking-[-.04em] sm:text-6xl">The system should create a business case—not just a demo.</h2>
         </div>
         <div class="lg:col-span-7">
           <ul class="border-t border-black/15">
@@ -192,7 +192,7 @@ const steps = [
               </li>
             ))}
           </ul>
-          <p class="mt-6 text-sm leading-6 text-base-600">If the numbers, access, or opportunity are not there, I will tell you before either of us spends a week on the wrong problem.</p>
+          <p class="mt-6 text-sm leading-6 text-base-600">If the numbers, access, or opportunity are not there, I will tell you before either of us invests in the wrong problem.</p>
         </div>
       </div>
     </Wrapper>
@@ -218,8 +218,8 @@ const steps = [
     <Wrapper variant="wide" class="py-16 sm:py-24">
       <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p class="field-label text-black/55">Book a workflow call</p>
-          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me one repetitive process.</h2>
+          <p class="field-label text-black/55">Workflow strategy call</p>
+          <h2 class="font-editorial mt-5 text-5xl leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me the bottleneck.</h2>
           <p class="mt-6 max-w-lg text-base leading-7 text-black/70">{page.formPrompt} Pick a time and give me the short version. We’ll use the call to decide whether there is a useful, measurable place to start.</p>
           <p class="font-utility mt-7 text-[.6rem] uppercase tracking-[.1em] text-black/55">20 minutes · Directly with Danny · No obligation</p>
         </div>
@@ -239,13 +239,13 @@ const steps = [
             </li>
             <li class="grid gap-3 border-b border-black/20 py-6 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6">
               <span class="field-label text-black/45">03</span>
-              <h3 class="font-semibold">Decide on the proof</h3>
-              <p class="text-sm leading-6 text-black/65">Leave knowing whether a focused one-week proof makes sense and what it should demonstrate.</p>
+              <h3 class="font-semibold">Choose the right next step</h3>
+              <p class="text-sm leading-6 text-black/65">Leave knowing whether the answer is a custom system, an existing tool, or a simpler process.</p>
             </li>
           </ol>
 
           <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href={bookingUrl} class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Book a 20-minute workflow call →</a>
+            <a href={bookingUrl} class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">Book a workflow strategy call →</a>
             <a href={emailUrl} class="text-sm font-semibold underline decoration-black/25 underline-offset-4 hover:decoration-black">Prefer email?</a>
           </div>
         </div>

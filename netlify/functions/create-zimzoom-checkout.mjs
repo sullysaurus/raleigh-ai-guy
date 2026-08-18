@@ -19,7 +19,7 @@ export const handler = async (event) => {
   if (!stripeSecretKey || !priceId) {
     console.error("Stripe Checkout is missing STRIPE_SECRET_KEY or STRIPE_ZIMZOOM_PRICE_ID");
     return json(503, {
-      error: "Checkout is not configured yet. Please email hello@raleighaiguy.com.",
+      error: "Checkout is not configured yet. Please email danny@raleighaiguy.com.",
     });
   }
 
@@ -51,7 +51,7 @@ export const handler = async (event) => {
     if (!response.ok || !session.url) {
       console.error("Stripe Checkout Session creation failed", response.status, session?.error?.type);
       return json(502, {
-        error: "Checkout could not be started. Please email hello@raleighaiguy.com.",
+        error: "Checkout could not be started. Please email danny@raleighaiguy.com.",
       });
     }
 
@@ -66,7 +66,7 @@ export const handler = async (event) => {
   } catch (error) {
     console.error("Stripe Checkout request failed", error instanceof Error ? error.message : "Unknown error");
     return json(502, {
-      error: "Checkout could not be started. Please email hello@raleighaiguy.com.",
+      error: "Checkout could not be started. Please email danny@raleighaiguy.com.",
     });
   }
 };
