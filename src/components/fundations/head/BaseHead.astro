@@ -36,7 +36,7 @@ const canonical = new URL(
   Astro.site ?? "https://raleighaiguy.com"
 ).toString();
 const siteUrl = new URL("/", Astro.site ?? "https://raleighaiguy.com").toString();
-const image = new URL(socialImage ?? "/brand/raleigh-ai-guy-social-card.png?v=20260813-offer", siteUrl).toString();
+const image = new URL(socialImage ?? "/brand/raleigh-ai-guy-social-card.png?v=20260818-print", siteUrl).toString();
 const imageType = image.endsWith(".webp")
   ? "image/webp"
   : image.endsWith(".jpg") || image.endsWith(".jpeg")
@@ -79,7 +79,7 @@ const schema = {
   canonical={canonical}
   siteName={siteName}
   image={image}
-  imageAlt={socialImageAlt ?? "Make more money, do less busywork, and get your time back with Raleigh AI Guy"}
+  imageAlt={socialImageAlt ?? "Practical AI for the people doing the work — Raleigh AI Guy"}
   imageWidth={socialImageWidth}
   imageHeight={socialImageHeight}
   imageType={imageType}

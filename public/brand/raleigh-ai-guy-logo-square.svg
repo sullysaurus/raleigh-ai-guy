@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
   <title id="title">Raleigh AI Guy</title>
-  <desc id="desc">Burnt-orange Raleigh AI Guy monogram on warm cream.</desc>
-  <rect width="400" height="400" fill="#f8f3ea"/>
-  <path d="M200 78a122 122 0 0 1 122 122v122H200A122 122 0 0 1 78 200 122 122 0 0 1 200 78Z" fill="#ff6f4f"/>
+  <desc id="desc">Raleigh AI Guy print-style square logo.</desc>
+  <defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#fff" opacity=".7"/></pattern></defs>
+  <rect width="400" height="400" fill="#17130f"/>
+  <rect x="12" y="12" width="376" height="376" fill="#eee8d6"/>
+  <rect x="12" y="12" width="376" height="376" fill="url(#dots)"/>
+  <text x="42" y="148" fill="#17130f" font-family="Arial Black,Arial,sans-serif" font-size="88" font-weight="900" letter-spacing="-6">RALEIGH</text>
+  <text x="42" y="235" fill="#17130f" font-family="Arial Black,Arial,sans-serif" font-size="88" font-weight="900" letter-spacing="-6">AI GUY</text>
+  <g transform="rotate(-1 250 315)"><rect x="153" y="287" width="202" height="51" fill="#17130f"/><rect x="149" y="283" width="202" height="51" fill="#f0df55" stroke="#17130f" stroke-width="3"/><text x="165" y="315" fill="#17130f" font-family="Courier New,monospace" font-size="15" font-weight="700" letter-spacing="1">MAKING AI USEFUL</text></g>
 </svg>

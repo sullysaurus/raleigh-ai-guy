@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4200 700" role="img" aria-labelledby="title desc">
   <title id="title">Raleigh AI Guy LinkedIn company banner</title>
-  <desc id="desc">Practical AI systems for service businesses and small teams.</desc>
-  <rect width="4200" height="700" fill="#f8f3ea"/>
-  <circle cx="4010" cy="650" r="520" fill="#ff6f4f"/>
-  <rect x="3500" y="90" width="280" height="280" fill="#eee4d2"/>
-  <!-- LinkedIn overlays the lower-left of company banners with the profile logo. -->
-  <path d="M1104 146a104 104 0 0 1 104 104v104H1104A104 104 0 0 1 1000 250 104 104 0 0 1 1104 146Z" fill="#ff6f4f"/>
-  <text x="1320" y="300" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="178" font-weight="800" letter-spacing="-8">Practical AI for Raleigh</text>
-  <text x="1330" y="475" fill="#292219" font-family="Georgia, serif" font-size="185" font-style="italic">businesses.</text>
-  <text x="1335" y="565" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="8">RALEIGH AI GUY · DANNY SULLIVAN</text>
+  <desc id="desc">Practical AI for people with a business to run.</desc>
+  <defs><pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#fff" opacity=".7"/></pattern></defs>
+  <rect width="4200" height="700" fill="#17130f"/>
+  <rect x="20" y="20" width="4160" height="610" fill="#eee8d6"/>
+  <rect x="20" y="20" width="4160" height="610" fill="url(#dots)"/>
+  <rect x="20" y="645" width="4160" height="35" fill="#f43e8d"/>
+  <text x="1080" y="245" fill="#17130f" font-family="Impact,Arial Black,sans-serif" font-size="205">PRACTICAL AI FOR PEOPLE</text>
+  <text x="1080" y="425" fill="#f43e8d" font-family="Impact,Arial Black,sans-serif" font-size="205">WITH A BUSINESS TO RUN.</text>
+  <text x="1080" y="535" fill="#17130f" font-family="Courier New,monospace" font-size="40" font-weight="700" letter-spacing="4">CONCIERGE · IN PERSON · CUSTOM AUTOMATIONS</text>
+  <g transform="rotate(-1 3840 130)"><rect x="3740" y="88" width="300" height="76" fill="#17130f"/><rect x="3730" y="78" width="300" height="76" fill="#f0df55" stroke="#17130f" stroke-width="6"/><text x="3780" y="127" fill="#17130f" font-family="Courier New,monospace" font-size="25" font-weight="700">RALEIGH AI GUY</text></g>
 </svg>

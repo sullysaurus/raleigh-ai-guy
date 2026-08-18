@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Raleigh AI Guy">
-  <rect width="512" height="512" fill="#f8f3ea"/>
-  <path d="M256 96a160 160 0 0 1 160 160v160H256A160 160 0 0 1 96 256 160 160 0 0 1 256 96Z" fill="#ff6f4f"/>
+  <rect width="512" height="512" fill="#17130f"/>
+  <rect x="18" y="18" width="476" height="386" fill="#eee8d6"/>
+  <text x="151" y="377" fill="#17130f" font-family="Impact,Arial Black,sans-serif" font-size="360" letter-spacing="-10">AI</text>
+  <rect x="18" y="422" width="476" height="72" fill="#f43e8d"/>
+  <g transform="rotate(4 421 64)"><rect x="373" y="37" width="94" height="52" fill="#17130f"/><rect x="383" y="47" width="74" height="32" fill="#f0df55"/></g>
 </svg>

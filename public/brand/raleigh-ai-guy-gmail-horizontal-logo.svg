@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 132" role="img" aria-labelledby="title desc">
   <title id="title">Raleigh AI Guy email logo</title>
-  <desc id="desc">Raleigh AI Guy, practical AI for Raleigh businesses.</desc>
-  <rect width="320" height="132" fill="#f8f3ea"/>
-  <path d="M61 22a39 39 0 0 1 39 39v39H61A39 39 0 0 1 22 61 39 39 0 0 1 61 22Z" fill="#ff6f4f"/>
-  <text x="120" y="59" fill="#292219" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" letter-spacing="-.8">Raleigh AI Guy</text>
-  <text x="121" y="83" fill="#827462" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" letter-spacing=".8">PRACTICAL AI · RALEIGH, NC</text>
+  <desc id="desc">Raleigh AI Guy, practical AI in Raleigh, North Carolina.</desc>
+  <rect width="320" height="132" fill="#eee8d6"/>
+  <rect x="18" y="22" width="66" height="66" fill="#f43e8d"/>
+  <rect x="14" y="18" width="66" height="66" fill="#f0df55" stroke="#17130f" stroke-width="4"/>
+  <text x="28" y="73" fill="#17130f" font-family="Impact,Arial Black,sans-serif" font-size="52">AI</text>
+  <text x="101" y="49" fill="#17130f" font-family="Arial Black,Arial,sans-serif" font-size="27" font-weight="900" letter-spacing="-1.5">RALEIGH</text>
+  <text x="101" y="75" fill="#17130f" font-family="Arial Black,Arial,sans-serif" font-size="27" font-weight="900" letter-spacing="-1.5">AI GUY</text>
+  <text x="102" y="99" fill="#17130f" font-family="Courier New,monospace" font-size="8" font-weight="700" letter-spacing=".7">PRACTICAL AI · RALEIGH, NC</text>
 </svg>
