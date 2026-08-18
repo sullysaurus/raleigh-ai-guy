@@ -4,78 +4,48 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
 <BaseLayout
-  pageTitle="Book a Workflow Strategy Call — Raleigh AI Guy"
-  pageDescription="Tell Danny Sullivan where work gets stuck, repeated, or lost. He will review your workflow and help identify what is worth fixing."
+  pageTitle="Contact Danny Sullivan — Raleigh AI Guy"
+  pageDescription="Get in touch with Danny Sullivan about custom automation, AI concierge support, in-person training, partnerships, speaking, or media."
 >
   <section>
     <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
-      <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-5">
-          <p class="field-label flex items-center gap-2"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Workflow strategy call</p>
-          <h1 class="font-editorial mt-6 text-5xl font-medium leading-[.92] tracking-[-.045em] sm:text-7xl">Bring me the bottleneck.</h1>
-          <p class="mt-6 max-w-lg text-base leading-7 text-base-600">Tell me what keeps falling through the cracks, taking too long, or requiring your constant attention. I’ll review it personally, and we’ll use our first call to determine what is worth fixing.</p>
-          <div class="mt-8 border-l-2 border-[var(--brand-orange)] pl-5">
-            <p class="font-semibold">What happens next</p>
-            <p class="mt-2 text-sm leading-6 text-base-600">We trace the current workflow, identify the most valuable point of friction, and decide whether a custom system, an existing tool, or a simpler process is the right answer.</p>
-          </div>
-          <p class="font-utility mt-8 text-[.62rem] uppercase tracking-[.1em] text-base-500">Directly with Danny · Practical advice · No generic AI pitch</p>
+      <div class="mx-auto max-w-3xl">
+        <div class="text-center">
+          <p class="print-stamp mx-auto">Contact</p>
+          <h1 class="font-editorial mt-6 text-6xl font-medium leading-[.9] tracking-[-.045em] sm:text-8xl">Get in touch.</h1>
+          <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-base-600">Custom automation, AI concierge support, in-person training, partnerships, speaking, or media. If it feels like a strong fit, I’ll reply personally.</p>
         </div>
 
-        <div class="border-t border-black/15 pt-7 lg:col-span-7">
-          <form name="workflow-strategy-call" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
-            <input type="hidden" name="form-name" value="workflow-strategy-call" />
+        <div class="print-panel mt-10 p-6 sm:p-9">
+          <form name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
+            <input type="hidden" name="form-name" value="contact" />
             <p class="hidden"><label>Do not fill this out: <input name="website" /></label></p>
 
             <div class="grid gap-5 sm:grid-cols-2">
-              <label class="intake-label">Name<input class="intake-field" type="text" name="name" autocomplete="name" placeholder="Your name" required /></label>
-              <label class="intake-label">Work email<input class="intake-field" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></label>
-              <label class="intake-label sm:col-span-2">Company<input class="intake-field" type="text" name="company" autocomplete="organization" placeholder="Business name" required /></label>
+              <label class="intake-label sm:col-span-2">Name *<input class="intake-field" type="text" name="name" autocomplete="name" required /></label>
+              <label class="intake-label">Email *<input class="intake-field" type="email" name="email" autocomplete="email" required /></label>
+              <label class="intake-label">Company<input class="intake-field" type="text" name="company" autocomplete="organization" /></label>
             </div>
 
-            <div class="mt-7 grid gap-5 sm:grid-cols-2">
-              <label class="intake-label">How many people work in the business?
-                <select class="intake-field" name="team_size" required>
-                  <option value="" selected disabled>Choose a range</option>
-                  <option>Just me</option><option>2–5</option><option>6–15</option><option>16–50</option><option>51+</option>
-                </select>
-              </label>
-              <label class="intake-label">Approximate annual revenue
-                <select class="intake-field" name="revenue" required>
-                  <option value="" selected disabled>Choose a range</option>
-                  <option>Under $250k</option><option>$250k–$1m</option><option>$1m–$5m</option><option>$5m–$10m</option><option>$10m+</option><option>Prefer not to say</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="mt-7 grid gap-5 sm:grid-cols-2">
-              <label class="intake-label">Where do you feel the most friction?
-                <select class="intake-field" name="friction" required>
-                  <option value="" selected disabled>Choose the closest fit</option>
-                  <option>Repetitive admin and busywork</option><option>Sales, leads, and follow-up</option><option>Customer service and communication</option><option>Marketing and content</option><option>Scheduling, handoffs, and operations</option><option>Reporting and finding information</option><option>I’m not sure yet</option>
-                </select>
-              </label>
-              <label class="intake-label">How much time could better systems give back?
-                <select class="intake-field" name="hours_saved" required>
-                  <option value="" selected disabled>A rough estimate is fine</option>
-                  <option>Under 5 hours per week</option><option>5–10 hours per week</option><option>10–20 hours per week</option><option>20+ hours per week</option><option>I don’t know yet</option>
-                </select>
-              </label>
-              <label class="intake-label sm:col-span-2">If the right system can create clear time or money savings, when would you want to act?
-                <select class="intake-field" name="readiness" required>
-                  <option value="" selected disabled>Choose the honest answer</option>
-                  <option>I’m ready now</option><option>Within the next 3 months</option><option>It depends on the opportunity</option><option>I’m only exploring</option>
-                </select>
-              </label>
-            </div>
-
-            <label class="intake-label mt-7">Anything you want me to know? <span class="font-normal text-base-400">(optional)</span>
-              <textarea class="intake-field min-h-24 resize-y" name="context" rows="3" maxlength="800" placeholder="Share a specific frustration or goal if you have one. It is completely fine to leave this blank."></textarea>
+            <label class="intake-label mt-7">Reason *
+              <select class="intake-field" name="reason" required>
+                <option value="" selected disabled>Choose one</option>
+                <option>Custom automation</option>
+                <option>AI concierge support</option>
+                <option>In-person training or workshop</option>
+                <option>Partnership</option>
+                <option>Speaking</option>
+                <option>Media or press</option>
+                <option>Something else</option>
+              </select>
             </label>
 
-            <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <button type="submit" class="site-cta">Tell Danny what’s slowing us down →</button>
-              <p class="text-xs leading-5 text-base-400">I review every request myself. No sales sequence.</p>
-            </div>
+            <label class="intake-label mt-7">Message *
+              <textarea class="intake-field intake-textarea" name="message" rows="6" maxlength="2000" required></textarea>
+            </label>
+
+            <button type="submit" class="site-cta mt-7 w-full">Send message →</button>
+            <p class="mt-5 text-center text-xs leading-5 text-base-500">One form for everything. I read every message myself.</p>
           </form>
         </div>
       </div>

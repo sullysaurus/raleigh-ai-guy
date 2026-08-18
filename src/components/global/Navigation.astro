@@ -10,32 +10,58 @@ const links = [
 ];
 ---
 
-<header>
-  <Wrapper variant="wide" class="pt-6 sm:pt-8">
-    <div class="flex items-center justify-between gap-6 border-b border-black/10 pb-5">
-      <a href="/" class="flex items-center gap-3 text-sm font-semibold tracking-tight" aria-label="Raleigh AI Guy home">
-        <img src="/brand/raleigh-ai-guy-header-mark.png" alt="" width="48" height="48" class="size-10 border border-black/10" aria-hidden="true" />
-        <span class="leading-tight">Raleigh AI Guy<small class="font-utility mt-1 block text-[.58rem] font-normal uppercase tracking-[.12em] text-base-500">AI for real work</small></span>
+<header class="print-header">
+  <Wrapper variant="wide">
+    <div class="print-header-inner">
+      <a href="/" class="print-brand" aria-label="Raleigh AI Guy home">
+        <span>Raleigh</span><span>AI Guy</span>
       </a>
-      <nav class="hidden items-center gap-7 md:flex" aria-label="Main navigation">
+      <span class="print-tape">Making AI useful</span>
+
+      <nav class="print-links" aria-label="Main navigation">
         {links.map((link) => (
-          <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="text-sm font-medium text-base-500 transition-colors hover:text-black aria-[current=page]:text-black">{link.text}</a>
+          <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined}>{link.text}</a>
         ))}
-        <a href="/contact/" aria-current={currentPath.startsWith("/contact/") ? "page" : undefined} class="site-cta">Book a strategy call →</a>
+        <a href="/contact/" aria-current={currentPath.startsWith("/contact/") ? "page" : undefined} class="print-contact">Work with Danny →</a>
       </nav>
-      <div class="md:hidden">
-        <details class="group relative">
-          <summary class="cursor-pointer list-none text-sm font-medium text-base-500 hover:text-black">Menu</summary>
-          <nav class="absolute right-0 top-full z-40 mt-3 w-44 border border-black/10 bg-[var(--brand-paper)] p-4 shadow-sm" aria-label="Mobile navigation">
-            <div class="space-y-3">
-              {links.map((link) => (
-                <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined} class="block text-sm font-medium text-base-500 hover:text-black aria-[current=page]:text-black">{link.text}</a>
-              ))}
-              <a href="/contact/" aria-current={currentPath.startsWith("/contact/") ? "page" : undefined} class="site-cta mt-2 w-full">Book a strategy call →</a>
-            </div>
-          </nav>
-        </details>
-      </div>
+
+      <details class="print-menu">
+        <summary>Menu</summary>
+        <nav aria-label="Mobile navigation">
+          {links.map((link) => (
+            <a href={link.href} aria-current={currentPath.startsWith(link.href) ? "page" : undefined}>{link.text}</a>
+          ))}
+          <a href="/contact/" aria-current={currentPath.startsWith("/contact/") ? "page" : undefined}>Work with Danny</a>
+        </nav>
+      </details>
     </div>
   </Wrapper>
 </header>
+
+<style>
+  .print-header { position: relative; z-index: 25; }
+  .print-header-inner { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 1.8rem; padding-block: 1.8rem 1rem; border-bottom: 2px solid var(--brand-ink); }
+  .print-brand { color: var(--brand-ink); font-family: "Instrument Sans", sans-serif; font-size: clamp(1.45rem, 2.6vw, 2.15rem); font-weight: 850; letter-spacing: -.07em; line-height: .75; text-transform: uppercase; }
+  .print-brand span { display: block; }
+  .print-tape { justify-self: start; padding: .4rem .65rem .32rem; background: var(--brand-yellow); box-shadow: 2px 2px 0 rgb(23 19 15 / 18%); font-size: .55rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; transform: rotate(-1.5deg); }
+  .print-links { display: flex; align-items: center; justify-content: flex-end; gap: 1.3rem; }
+  .print-links a, .print-menu a { color: var(--brand-ink); font-family: "Instrument Sans", sans-serif; font-size: .67rem; font-weight: 800; letter-spacing: .03em; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .35rem; text-transform: uppercase; }
+  .print-links a:hover, .print-links a[aria-current="page"] { text-decoration-color: var(--brand-orange); }
+  .print-links .print-contact { border: 2px solid var(--brand-ink); padding: .65rem .8rem .55rem; background: var(--brand-orange); box-shadow: 3px 3px 0 var(--brand-ink); text-decoration: none; transition: transform 130ms ease, box-shadow 130ms ease; }
+  .print-links .print-contact:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--brand-ink); }
+  .print-menu { position: relative; display: none; justify-self: end; }
+  .print-menu summary { cursor: pointer; font-family: "Instrument Sans", sans-serif; font-size: .7rem; font-weight: 800; list-style: none; text-transform: uppercase; }
+  .print-menu summary::-webkit-details-marker { display: none; }
+  .print-menu nav { position: absolute; top: 2rem; right: 0; display: grid; min-width: 11rem; gap: .9rem; border: 2px solid var(--brand-ink); padding: 1rem; background: var(--brand-yellow); box-shadow: 4px 4px 0 var(--brand-ink); }
+
+  @media (max-width: 800px) {
+    .print-header-inner { grid-template-columns: auto 1fr auto; gap: .9rem; }
+    .print-links { display: none; }
+    .print-menu { display: block; }
+  }
+  @media (max-width: 430px) {
+    .print-header-inner { padding-top: 1.25rem; }
+    .print-brand { font-size: 1.4rem; }
+    .print-tape { max-width: 7rem; padding-inline: .42rem; font-size: .48rem; text-align: center; }
+  }
+</style>

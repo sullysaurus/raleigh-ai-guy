@@ -3,33 +3,59 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 const year = new Date().getFullYear();
 const links = [
-  { text: "Book a strategy call", href: "/contact/" },
+  { text: "Contact", href: "/contact/" },
   { text: "Services", href: "/services/" },
   { text: "About", href: "/about/" },
   { text: "Work", href: "/projects/" },
   { text: "Writing", href: "/blog/" },
-  { text: "Contact", href: "/contact/" },
   { text: "Privacy", href: "/privacy/" },
   { text: "LinkedIn", href: "https://www.linkedin.com/in/danny-sullivan-raleigh/" },
   { text: "YouTube", href: "https://www.youtube.com/@raleigh_ai_guy" },
-  { text: "Instagram", href: "https://www.instagram.com/raleigh_ai_guy" },
-  { text: "Google Business Profile", href: "https://share.google/mDTKpZT1EqpR3SD8C" },
-  { text: "Raleigh Lead Recovery", href: "https://raleighleadrecovery.com" },
 ];
 ---
 
-<footer class="mt-auto bg-[var(--brand-forest)] text-[var(--brand-paper)]">
-  <Wrapper variant="wide" class="py-12 sm:py-16">
-    <div class="grid gap-10 border-t border-white/15 pt-6 sm:grid-cols-[1fr_auto]">
+<footer class="print-footer">
+  <Wrapper variant="wide">
+    <div class="print-footer-cta">
       <div>
-        <p class="flex items-center gap-2 text-sm font-semibold"><span class="size-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>Raleigh AI Guy</p>
-        <p class="mt-3 max-w-sm text-sm leading-6 text-white/65">I turn scattered tools, manual work, and owner-dependent processes into practical systems your team can run.</p>
-        <a href="mailto:danny@raleighaiguy.com" class="mt-5 inline-block text-sm font-medium underline decoration-white/25 underline-offset-4 hover:decoration-white">danny@raleighaiguy.com</a>
+        <p class="print-kicker">Start with the work itself</p>
+        <h2>Tell me what you’re trying to make easier.</h2>
       </div>
-      <nav class="grid grid-cols-2 gap-x-8 gap-y-2" aria-label="Footer navigation">
-        {links.map((link) => <a href={link.href} class="text-sm text-white/60 hover:text-white">{link.text}</a>)}
-      </nav>
+      <a href="/contact/">Work with Danny <span aria-hidden="true">→</span></a>
     </div>
-    <p class="font-utility mt-12 text-[.65rem] uppercase tracking-[.1em] text-white/40">© {year} Danny Sullivan · Raleigh, North Carolina</p>
+
+    <div class="print-footer-bottom">
+      <div>
+        <strong>Raleigh AI Guy</strong>
+        <p>Making AI useful for the people who run real businesses.</p>
+        <a class="email" href="/contact/">One form for everything →</a>
+      </div>
+      <nav aria-label="Footer navigation">
+        {links.map((link) => <a href={link.href}>{link.text}</a>)}
+      </nav>
+      <p class="copyright">© {year} Danny Sullivan · Raleigh, North Carolina</p>
+    </div>
   </Wrapper>
 </footer>
+
+<style>
+  .print-footer { position: relative; z-index: 1; color: var(--brand-ink); background: var(--brand-paper); }
+  .print-footer-cta { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding-block: clamp(4rem, 7vw, 6.5rem); border-top: 2px solid var(--brand-ink); }
+  .print-kicker { margin-bottom: .7rem; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .print-footer h2 { max-width: 50rem; font-family: "League Gothic", sans-serif; font-size: clamp(3.7rem, 7vw, 6.7rem); font-weight: 400; letter-spacing: -.025em; line-height: .82; text-decoration: underline; text-decoration-color: var(--brand-orange); text-decoration-thickness: .07em; text-underline-offset: .09em; text-transform: uppercase; }
+  .print-footer-cta > a { display: inline-flex; min-width: 14rem; min-height: 3.3rem; align-items: center; justify-content: space-between; gap: 1.5rem; border: 2px solid var(--brand-ink); padding: .75rem 1rem .62rem; color: var(--brand-ink); background: var(--brand-orange); box-shadow: 4px 4px 0 var(--brand-ink); font-family: "Instrument Sans", sans-serif; font-size: .76rem; font-weight: 850; text-transform: uppercase; transition: transform 130ms ease, box-shadow 130ms ease; }
+  .print-footer-cta > a:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--brand-ink); }
+  .print-footer-bottom { display: grid; grid-template-columns: 1fr auto; gap: 2rem; padding-block: 2.5rem; border-top: 2px solid var(--brand-ink); }
+  .print-footer strong { font-family: "Instrument Sans", sans-serif; font-size: 1.15rem; font-weight: 850; text-transform: uppercase; }
+  .print-footer-bottom p { margin-top: .45rem; font-size: .7rem; font-weight: 700; line-height: 1.45; }
+  .email { display: inline-flex; margin-top: 1rem; color: inherit; font-size: .72rem; font-weight: 700; text-decoration: underline; text-decoration-color: var(--brand-orange); text-underline-offset: .3rem; }
+  .print-footer nav { display: grid; grid-template-columns: repeat(2, auto); align-content: start; gap: .55rem 1.4rem; }
+  .print-footer nav a { color: inherit; font-family: "Instrument Sans", sans-serif; font-size: .64rem; font-weight: 800; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25rem; text-transform: uppercase; }
+  .print-footer nav a:hover { text-decoration-color: var(--brand-orange); }
+  .copyright { grid-column: 1 / -1; margin-top: 1rem !important; text-transform: uppercase; }
+  @media (max-width: 720px) {
+    .print-footer-cta { grid-template-columns: 1fr; align-items: start; }
+    .print-footer-bottom { grid-template-columns: 1fr; }
+    .print-footer nav { justify-content: start; }
+  }
+</style>

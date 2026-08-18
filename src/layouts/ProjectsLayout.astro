@@ -34,8 +34,8 @@ const socialImage = await getImage({
 >
   <section class="brand-page">
     <Wrapper variant="wide" class="pb-20 pt-12 sm:pt-16">
-      <a href="/projects/" class="field-label hover:text-black">← Selected work</a>
-      <div class="mt-8 grid gap-8 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-14">
+      <a href="/projects/" class="print-stamp hover:text-black">← Selected work</a>
+      <div class="mt-8 grid gap-8 border-t-[3px] border-black pt-8 lg:grid-cols-12 lg:gap-14">
         <div class="lg:col-span-7">
           <h1 class="font-editorial text-5xl font-medium leading-[.95] tracking-[-.045em] text-black sm:text-7xl">{frontmatter.title}</h1>
         </div>
@@ -45,12 +45,12 @@ const socialImage = await getImage({
         </div>
       </div>
       {caseStudyCover ? (
-        <div class="mt-10 overflow-hidden border border-black/10 bg-[#f5f5f5] p-2 sm:p-3"><img src={caseStudyCover.url} alt={caseStudyCover.alt} width="1440" height="1644" loading="eager" class="mx-auto w-full object-contain" /></div>
+        <div class="mt-10 overflow-hidden border-2 border-black bg-[#f5f5f5] p-2 shadow-[7px_7px_0_var(--brand-ink)] sm:p-3"><img src={caseStudyCover.url} alt={caseStudyCover.alt} width="1440" height="1644" loading="eager" class="mx-auto w-full object-contain" /></div>
       ) : (
-        <div class:list={["mt-10 border border-black/10", imageFrameClass]}><Image width={projectImageWidth} height={projectImageHeight} src={projectImage} alt={frontmatter.image.alt} class={projectImageClass} /></div>
+        <div class:list={["mt-10 border-2 border-black shadow-[7px_7px_0_var(--brand-ink)]", imageFrameClass]}><Image width={projectImageWidth} height={projectImageHeight} src={projectImage} alt={frontmatter.image.alt} class={projectImageClass} /></div>
       )}
       <div class="mt-14 grid gap-8 lg:grid-cols-[10rem_minmax(0,46rem)] lg:justify-center lg:gap-14">
-        <aside class="field-label"><span class="block text-[var(--brand-orange)]">Project notes</span><span class="mt-3 block normal-case tracking-normal text-base-500">Strategy, decisions, and what changed.</span></aside>
+        <aside class="field-label"><span class="print-stamp !bg-[var(--brand-orange)]">Project notes</span><span class="mt-5 block normal-case tracking-normal text-base-500">Strategy, decisions, and what changed.</span></aside>
         <div class="prose post-body min-w-0 max-w-none prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-a:text-black prose-strong:text-black"><slot /></div>
       </div>
       {(previous || next) && <nav class="mt-24 flex flex-col gap-6 border-t border-black/10 pt-6 text-xs md:flex-row md:justify-between">

@@ -8,11 +8,11 @@ const profile = plan ? seoGuideProfiles[plan.keyword] : undefined;
 
 if (!plan || !profile) throw new Error(`Missing scheduled guide profile for ${slug}`);
 
-const calendly = "https://calendly.com/hello-raleighaiguy/30min";
+const calendly = "/contact/";
 const ctaHref = profile.ctaHref
   || (/scorecard|opportunity/i.test(plan.cta) ? "/ai-opportunity-scorecard/" : null)
   || (plan.cluster === "Real estate" ? "/contact/" : calendly);
-const isWorkflowCall = ctaHref.startsWith("https://calendly.com/");
+const isWorkflowCall = ctaHref === "/contact/";
 const relatedByCluster = {
   "Local AI consulting": [
     ["Test whether your business actually needs AI", "/blog/posts/do-i-need-ai/"],

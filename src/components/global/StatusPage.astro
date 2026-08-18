@@ -26,10 +26,10 @@ const {
 
 <section class="bg-[var(--brand-surface-soft)]">
   <Wrapper variant="wide" class="grid min-h-[64svh] items-center py-16 sm:py-24">
-    <div class="grid gap-9 border-y border-black/10 py-10 lg:grid-cols-[8rem_1fr] lg:gap-14">
-      <span class="font-editorial grid size-16 place-items-center bg-[var(--brand-orange)] text-3xl" aria-hidden="true">{symbol}</span>
+    <div class="print-panel grid gap-9 p-7 sm:p-10 lg:grid-cols-[8rem_1fr] lg:gap-14">
+      <span class="font-editorial grid size-20 -rotate-2 place-items-center border-2 border-black bg-[var(--brand-orange)] text-3xl shadow-[4px_4px_0_var(--brand-ink)]" aria-hidden="true">{symbol}</span>
       <div>
-        <p class="field-label">{eyebrow}</p>
+        <p class="print-stamp">{eyebrow}</p>
         <h1 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.95] tracking-[-.04em] sm:text-7xl">{title}</h1>
         <p class="mt-6 max-w-2xl text-base leading-7 text-base-600">{description}</p>
         <div class="mt-8 flex flex-wrap gap-4">

@@ -15,8 +15,8 @@ const imageWidth = typeof image === "string" ? 500 : image.width;
 const imageHeight = typeof image === "string" ? 500 : image.height;
 const isPortraitImage = imageHeight > imageWidth;
 const imageFrameClass = isPortraitImage
-  ? "overflow-hidden border border-black/10 bg-[var(--brand-paper)] p-5 sm:p-7"
-  : "overflow-hidden border border-black/10 bg-[var(--brand-paper)] p-2";
+  ? "overflow-hidden border-2 border-black bg-[var(--brand-paper)] p-5 shadow-[5px_5px_0_var(--brand-ink)] sm:p-7"
+  : "overflow-hidden border-2 border-black bg-[var(--brand-paper)] p-2 shadow-[5px_5px_0_var(--brand-ink)]";
 const imageClass = isPortraitImage
   ? "mx-auto max-h-[420px] w-auto max-w-full object-contain"
   : "h-auto w-full object-contain";
@@ -34,7 +34,7 @@ const imageClass = isPortraitImage
   </div>
 
   <div class="relative z-0 mt-5 flex h-full flex-col">
-    <p class="field-label">{status === "ongoing" ? "Ongoing partnership" : "Focused project"}</p>
+    <p class="print-stamp">{status === "ongoing" ? "Ongoing partnership" : "Focused project"}</p>
     <Text
       tag="h2"
       variant="displaySM"

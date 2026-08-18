@@ -25,10 +25,10 @@ const surfaceClass = surface === "soft" ? "bg-[var(--brand-surface-soft)]" : sur
         <p class="field-label">{eyebrow}</p>
         <h2 class="font-editorial mt-4 text-4xl leading-[1.02] sm:text-5xl">{title}</h2>
       </div>
-      <ol class="border-t border-black/15 lg:col-span-8">
+      <ol class="border-t-[3px] border-black lg:col-span-8">
         {items.map((item, index) => (
-          <li class="grid gap-4 border-b border-black/15 py-6 sm:grid-cols-[3rem_minmax(10rem,14rem)_1fr] sm:gap-6">
-            <span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
+          <li class="grid gap-4 border-b-2 border-black py-6 sm:grid-cols-[3rem_minmax(10rem,14rem)_1fr] sm:gap-6">
+            <span class="print-stamp !bg-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span>
             <h3 class="text-base font-semibold">{item.title}</h3>
             <div>
               {item.label && <p class="field-label mb-2">{item.label}</p>}

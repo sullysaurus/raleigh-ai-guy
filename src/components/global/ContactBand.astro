@@ -18,13 +18,13 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-[var(--brand-orange)]">
+<section class="border-y-[3px] border-black bg-[var(--brand-orange)]">
   <Wrapper variant="wide" class="grid gap-7 py-10 sm:grid-cols-[1fr_auto] sm:items-end sm:py-12">
     <div>
-      <p class="field-label text-black/60">{eyebrow}</p>
+      <p class="print-stamp bg-[var(--brand-yellow)]">{eyebrow}</p>
       <h2 class="font-editorial mt-3 max-w-3xl text-4xl leading-[.98] tracking-[-.035em] sm:text-5xl">{title}</h2>
       {description && <p class="mt-4 max-w-2xl text-sm leading-6 text-black/65">{description}</p>}
     </div>
-    <a href={ctaHref} class="inline-flex min-h-12 items-center justify-center bg-[var(--brand-ink)] px-5 text-sm font-semibold text-[var(--brand-paper)] transition-transform hover:-translate-y-0.5">{ctaLabel} →</a>
+    <a href={ctaHref} class="inline-flex min-h-12 items-center justify-center border-2 border-black bg-[var(--brand-yellow)] px-5 text-sm font-bold uppercase text-black shadow-[4px_4px_0_var(--brand-ink)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--brand-ink)]">{ctaLabel} →</a>
   </Wrapper>
 </section>

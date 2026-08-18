@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
-const bookingUrl = "https://calendly.com/hello-raleighaiguy/30min?utm_source=raleighaiguy&utm_medium=landing_page&utm_campaign=honeybook_command_center";
+const bookingUrl = "/contact/";
 
 const sourceConnections = [
   { name: "HoneyBook", signal: "Inquiries, stages, bookings, meetings, payments", tone: "core" },
@@ -304,7 +304,7 @@ const faqSchema = {
   <footer class="bg-[var(--brand-ink)] text-white/55">
     <Wrapper variant="wide" class="flex flex-col gap-4 py-8 text-xs sm:flex-row sm:items-center sm:justify-between">
       <p>© {new Date().getFullYear()} Danny Sullivan · Raleigh AI Guy</p>
-      <div class="flex gap-5"><a href="mailto:danny@raleighaiguy.com" class="hover:text-white">Email</a><a href="/privacy/" class="hover:text-white">Privacy</a></div>
+      <div class="flex gap-5"><a href="/contact/" class="hover:text-white">Contact</a><a href="/privacy/" class="hover:text-white">Privacy</a></div>
     </Wrapper>
   </footer>
 

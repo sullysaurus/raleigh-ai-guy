@@ -4,43 +4,43 @@
 @plugin "tailwind-scrollbar-hide";
 
 @theme {
-  --font-sans: "Instrument Sans", sans-serif;
-  --font-serif: "Newsreader", serif;
-  --font-mono: "IBM Plex Mono", monospace;
-  --color-white: #fffdf7;
-  --color-black: #16201b;
-  --color-base-50: oklch(0.985 0 0);
-  --color-base-100: oklch(0.967 0.001 286.375);
-  --color-base-200: oklch(0.92 0.004 286.32);
-  --color-base-300: oklch(0.871 0.006 286.286);
-  --color-base-400: oklch(0.705 0.015 286.067);
-  --color-base-500: oklch(0.552 0.016 285.938);
-  --color-base-600: oklch(0.442 0.017 285.786);
-  --color-base-700: oklch(0.37 0.013 285.805);
-  --color-base-800: oklch(0.274 0.006 286.033);
-  --color-base-900: oklch(0.21 0.006 285.885);
-  --color-base-950: oklch(0.141 0.005 285.823);
+  --font-sans: "Courier Prime", monospace;
+  --font-serif: "League Gothic", sans-serif;
+  --font-mono: "Courier Prime", monospace;
+  --color-white: #f7f1df;
+  --color-black: #17130f;
+  --color-base-50: #faf6e8;
+  --color-base-100: #f1ecdc;
+  --color-base-200: #e3dcc9;
+  --color-base-300: #cfc5af;
+  --color-base-400: #a99d88;
+  --color-base-500: #776d5e;
+  --color-base-600: #594f43;
+  --color-base-700: #433a31;
+  --color-base-800: #302922;
+  --color-base-900: #211b17;
+  --color-base-950: #17130f;
 }
 
 :root {
-  --brand-ink: #16201b;
-  --brand-text: #16201b;
-  --brand-bg: #f3f0e8;
-  --brand-paper: #fffdf7;
-  --brand-surface: #fffdf7;
-  --brand-surface-soft: #dfe5da;
-  --brand-muted: #667069;
-  --brand-line: rgb(22 32 27 / 14%);
-  --brand-line-strong: rgb(22 32 27 / 30%);
-  --brand-form: #fffdf7;
-  --brand-orange: #e65f36;
-  --brand-forest: #163d32;
-  --brand-moss: #7b8b72;
-  --brand-yellow: #eee4cf;
-  --brand-acid: #f3f0e8;
-  --brand-pink: #dfe5da;
-  --brand-blue: #dfe5da;
-  --focus-ring: #e65f36;
+  --brand-ink: #17130f;
+  --brand-text: #17130f;
+  --brand-bg: #eee8d6;
+  --brand-paper: #f1ecdc;
+  --brand-surface: #f7f1df;
+  --brand-surface-soft: #e4dcc7;
+  --brand-muted: #655b4d;
+  --brand-line: rgb(23 19 15 / 18%);
+  --brand-line-strong: rgb(23 19 15 / 62%);
+  --brand-form: #f7f1df;
+  --brand-orange: #f43e8d;
+  --brand-forest: #17130f;
+  --brand-moss: #8e806a;
+  --brand-yellow: #f0df55;
+  --brand-acid: #f0df55;
+  --brand-pink: #f43e8d;
+  --brand-blue: #f0df55;
+  --focus-ring: #f43e8d;
   --site-shell: 72rem;
   font-feature-settings: "liga" 1, "calt" 1, "dlig" 1, "ss07" 1,
     "ss08" 1, "zero" 1, "tnum" 1, "cv03" 1, "cv04" 1, "cv01" 1,
@@ -51,21 +51,41 @@
 html { background: var(--brand-bg); }
 
 body {
+  position: relative;
   min-width: 320px;
   color: var(--brand-text);
-  background: var(--brand-bg);
-  font-family: "Instrument Sans", sans-serif;
+  background-color: var(--brand-bg);
+  background-image:
+    radial-gradient(circle at 15% 9%, rgb(255 255 255 / 48%) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 75% 42%, rgb(23 19 15 / 6%) 0 .7px, transparent 1px),
+    repeating-linear-gradient(97deg, transparent 0 97px, rgb(23 19 15 / 2.2%) 98px 99px);
+  background-size: 19px 19px, 13px 13px, auto;
+  font-family: "Courier Prime", monospace;
   text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4 { text-wrap: balance; }
+body::after {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(23 19 15 / 5%), transparent 1.2%, transparent 98.7%, rgb(23 19 15 / 6%)),
+    linear-gradient(rgb(23 19 15 / 3%), transparent 1%, transparent 99%, rgb(23 19 15 / 5%));
+  box-shadow: inset 0 0 80px rgb(23 19 15 / 6%);
+  content: "";
+  mix-blend-mode: multiply;
+}
 
-.font-editorial { font-family: "Newsreader", serif; }
-.font-utility { font-family: "IBM Plex Mono", monospace; }
+h1, h2, h3, h4 { text-wrap: balance; }
+h1, h2 { font-family: "League Gothic", "Instrument Sans", sans-serif; font-weight: 400; letter-spacing: -.025em; text-transform: uppercase; }
+
+.font-editorial { font-family: "League Gothic", "Instrument Sans", sans-serif; font-weight: 400; letter-spacing: -.02em; text-transform: uppercase; }
+.font-utility { font-family: "Courier Prime", monospace; }
 
 .field-label {
   color: var(--brand-muted);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Courier Prime", monospace;
   font-size: .67rem;
   font-weight: 500;
   letter-spacing: .1em;
@@ -93,7 +113,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
   .field-reveal-delay { animation: none; }
 }
 
-::selection { color: var(--brand-ink); background: #f1a083; }
+::selection { color: var(--brand-ink); background: var(--brand-yellow); }
 
 a, button, summary { -webkit-tap-highlight-color: transparent; }
 
@@ -115,9 +135,22 @@ textarea:focus-visible {
 
 .post-body > :where(p, ul, ol, blockquote) { max-width: 46rem; }
 .post-body pre { overflow-x: auto; }
+.post-body :where(h2, h3) {
+  font-family: "League Gothic", sans-serif;
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: .95;
+  text-transform: uppercase;
+}
+.post-body h2 { margin-top: 3.5rem; border-top: 3px solid var(--brand-ink); padding-top: 1rem; font-size: 2.75rem; }
+.post-body h3 { font-size: 2rem; }
+.post-body :where(ul, ol) { padding-left: 1.4rem; }
+.post-body li::marker { color: var(--brand-pink); font-family: "Courier Prime", monospace; font-weight: 700; }
+.post-body blockquote { border-left: .5rem solid var(--brand-yellow); background: rgb(247 241 223 / 78%); padding: 1rem 1.25rem; color: var(--brand-ink); font-style: normal; }
+.post-body code:not(pre code) { border: 1px solid var(--brand-ink); background: var(--brand-yellow); padding: .08rem .25rem; color: var(--brand-ink); }
 
 .privacy-copy section + section { margin-top: 3rem; }
-.privacy-copy h2 { font-family: "Newsreader", serif; font-size: 2rem; font-weight: 500; line-height: 1.05; }
+.privacy-copy h2 { font-family: "League Gothic", sans-serif; font-size: 3rem; font-weight: 400; line-height: .95; text-transform: uppercase; }
 .privacy-copy p { margin-top: 1rem; color: var(--brand-muted); font-size: .95rem; line-height: 1.75; }
 .privacy-copy ul { margin-top: 1rem; list-style: disc; padding-left: 1.25rem; color: var(--brand-muted); font-size: .95rem; line-height: 1.75; }
 .privacy-copy li + li { margin-top: .5rem; }
@@ -132,7 +165,7 @@ textarea:focus-visible {
   .site-eyebrow,
   .brand-eyebrow {
     color: var(--brand-muted);
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: .68rem;
     font-weight: 500;
     letter-spacing: .1em;
@@ -141,25 +174,52 @@ textarea:focus-visible {
 
   .brand-page { color: var(--brand-text); background: var(--brand-bg); }
 
+  .print-panel {
+    border: 2px solid var(--brand-ink);
+    background: var(--brand-paper);
+    box-shadow: 6px 6px 0 var(--brand-ink);
+  }
+
+  .print-rule { border-color: var(--brand-ink); border-width: 2px; }
+
+  .print-stamp {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    border: 2px solid var(--brand-ink);
+    padding: .38rem .55rem .3rem;
+    color: var(--brand-ink);
+    background: var(--brand-yellow);
+    box-shadow: 2px 2px 0 var(--brand-ink);
+    font-family: "Courier Prime", monospace;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+  }
+
   .brand-button {
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--brand-ink);
-    border-radius: .25rem;
+    border: 2px solid var(--brand-ink);
+    border-radius: 0;
     padding-inline: 1rem;
     color: var(--brand-paper);
     background: var(--brand-ink);
-    box-shadow: none;
-    font-size: .875rem;
-    font-weight: 550;
-    letter-spacing: 0;
-    text-transform: none;
-    transition: opacity 160ms ease;
+    box-shadow: 4px 4px 0 var(--brand-orange);
+    font-family: "Instrument Sans", sans-serif;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    transition: transform 140ms ease, box-shadow 140ms ease;
   }
 
-  .brand-button:hover { opacity: .68; transform: none; box-shadow: none; }
+  .brand-button:hover { opacity: 1; transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--brand-orange); }
 
   .intake-label {
     display: block;
@@ -173,11 +233,11 @@ textarea:focus-visible {
     width: 100%;
     min-height: 2.9rem;
     margin-top: .55rem;
-    border: 1px solid var(--brand-line-strong);
-    border-radius: .4rem;
+    border: 2px solid var(--brand-ink);
+    border-radius: 0;
     padding: .7rem .8rem;
     color: var(--brand-text);
-    background: rgb(255 253 247 / 65%);
+    background: rgb(247 241 223 / 72%);
     font-size: .9rem;
     font-weight: 450;
     transition: border-color 160ms ease, background-color 160ms ease;
@@ -195,8 +255,8 @@ textarea:focus-visible {
     min-height: 2.9rem;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--brand-line-strong);
-    border-radius: .4rem;
+    border: 2px solid var(--brand-ink);
+    border-radius: 0;
     padding: .65rem .8rem;
     color: var(--brand-muted);
     background: transparent;
@@ -223,17 +283,21 @@ textarea:focus-visible {
     min-height: 2.75rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(18 22 29 / 18%);
-    border-radius: .25rem;
+    border: 2px solid var(--brand-ink);
+    border-radius: 0;
     padding-inline: 1rem;
     color: var(--brand-ink);
-    background: var(--brand-orange);
-    font-size: .875rem;
-    font-weight: 600;
-    transition: background-color 160ms ease, transform 160ms ease;
+    background: var(--brand-yellow);
+    box-shadow: 4px 4px 0 var(--brand-ink);
+    font-family: "Instrument Sans", sans-serif;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    transition: transform 140ms ease, box-shadow 140ms ease;
   }
 
-  .site-cta:hover { background: #dc7a52; transform: translateY(-1px); }
+  .site-cta:hover { background: var(--brand-yellow); transform: translate(2px, 2px) rotate(-.25deg); box-shadow: 2px 2px 0 var(--brand-ink); }
 
 }
 

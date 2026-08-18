@@ -14,13 +14,13 @@ const variantClasses = {
   default: [
     "text-white",
     "bg-black",
-    "hover:bg-base-800",
+    "hover:translate-x-0.5 hover:translate-y-0.5",
     "focus:ring-white",
   ],
   muted: [
     "text-black",
-    "bg-base-100",
-    "hover:bg-base-200",
+    "bg-[var(--brand-yellow)]",
+    "hover:translate-x-0.5 hover:translate-y-0.5",
     "focus:ring-black",
   ],
 };
@@ -42,7 +42,10 @@ const additionalClasses = className ? className.split(" ") : [];
 
 const classList = [
   "flex",
-  "rounded-lg",
+  "border-2",
+  "border-black",
+  "rounded-none",
+  "shadow-[4px_4px_0_var(--brand-ink)]",
   "cursor-pointer",
   "items-center",
   "justify-center",
