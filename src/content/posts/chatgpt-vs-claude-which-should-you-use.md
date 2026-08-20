@@ -4,8 +4,8 @@ title: "ChatGPT vs. Claude: Which Is Better for Small Business?"
 targetKeyword: "chatgpt vs claude for small business"
 description: "An honest ChatGPT vs. Claude comparison for small-business work, including writing, research, projects, connectors, and when using both makes sense."
 image:
-  url: "/src/images/posts/chatgpt-vs-claude.png"
-  alt: "Two equally capable AI workstations taking different paths to the same finished result"
+  url: "/src/images/posts/field-notes/chatgpt-vs-claude-which-should-you-use.png"
+  alt: "Raleigh AI Guy field-note cover comparing ChatGPT and Claude"
 tags:
   - chatgpt
   - claude

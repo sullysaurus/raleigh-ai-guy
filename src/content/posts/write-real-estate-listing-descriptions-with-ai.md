@@ -4,8 +4,8 @@ title: "How to Write Better Real Estate Listing Descriptions With Claude"
 targetKeyword: "claude real estate listing descriptions"
 description: "A practical Claude workflow for drafting listing descriptions while protecting accuracy, voice, and Fair Housing review."
 image:
-  url: "/src/images/posts/ai-listing-descriptions.png"
-  alt: "A checked property fact sheet becoming a reviewed real estate listing description in Claude"
+  url: "/src/images/posts/field-notes/write-real-estate-listing-descriptions-with-ai.png"
+  alt: "Raleigh AI Guy field-note cover about writing real estate listing copy from verified facts"
 tags:
   - claude
   - real-estate

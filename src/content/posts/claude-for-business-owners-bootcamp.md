@@ -4,8 +4,8 @@ title: "Claude for Business Owners: A Practical 60-Minute Bootcamp"
 targetKeyword: "claude for business owners"
 description: "A plain-English Claude bootcamp for nontechnical business owners covering Projects, prompts, instructions, Design, Skills, connectors, Cowork, and safe first workflows."
 image:
-  url: "/src/images/posts/claude-business-bootcamp.png"
-  alt: "A one-hour Claude roadmap connecting Projects, prompts, Design, Skills, connectors, and Cowork"
+  url: "/src/images/posts/field-notes/claude-for-business-owners-bootcamp.png"
+  alt: "Raleigh AI Guy field-note cover for a sixty-minute Claude bootcamp"
 tags:
   - claude
   - small-business

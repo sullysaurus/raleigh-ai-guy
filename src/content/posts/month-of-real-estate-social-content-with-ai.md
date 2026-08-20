@@ -4,8 +4,8 @@ title: "How Real Estate Agents Can Create a Month of Social Content With Claude"
 targetKeyword: "claude social media for real estate"
 description: "A simple Claude and Claude Design workflow for turning one trustworthy real estate source into a useful month of social content."
 image:
-  url: "/src/images/posts/real-estate-social-content.png"
-  alt: "A calendar beside a timer representing a fast real estate social-content workflow in Claude"
+  url: "/src/images/posts/field-notes/month-of-real-estate-social-content-with-ai.png"
+  alt: "Raleigh AI Guy field-note cover about planning a month of real estate social content"
 tags:
   - claude
   - real-estate

@@ -4,8 +4,8 @@ title: "7 Practical Ways Real Estate Agents Can Use Claude in 2026"
 targetKeyword: "claude for real estate agents"
 description: "A simple Claude workflow for real estate agents who want to write faster, create better marketing, and follow up consistently without juggling AI tools."
 image:
-  url: "/src/images/posts/real-estate-ai-tools-2026.png"
-  alt: "A house surrounded by cards representing practical Claude workflows for real estate agents"
+  url: "/src/images/posts/field-notes/ai-tools-for-real-estate-agents-2026.png"
+  alt: "Raleigh AI Guy field-note cover about practical AI uses in real estate"
 tags:
   - claude
   - real-estate

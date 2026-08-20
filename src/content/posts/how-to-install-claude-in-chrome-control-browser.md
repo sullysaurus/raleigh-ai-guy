@@ -4,8 +4,8 @@ title: "Find Listing Errors Before Your Clients Do"
 targetKeyword: "claude chrome real estate listings"
 description: "Use Claude in Chrome to compare an active real estate listing across public websites, flag inconsistencies, and keep final review in your hands."
 image:
-  url: "/src/images/posts/claude-in-chrome-browser-work.png"
-  alt: "An AI assistant checking a real estate listing across browser tabs while waiting for human approval"
+  url: "/src/images/posts/field-notes/how-to-install-claude-in-chrome-control-browser.png"
+  alt: "Raleigh AI Guy field-note cover about reviewing real estate listings in a browser"
 tags:
   - claude
   - real-estate

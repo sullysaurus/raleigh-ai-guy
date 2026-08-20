@@ -4,8 +4,8 @@ title: "How to Create a Daily Calendar Briefing with Claude"
 targetKeyword: "claude calendar briefing"
 description: "Connect Claude to Google Calendar, create a no-code morning briefing Skill, and schedule it to prepare your day automatically."
 image:
-  url: "/src/images/posts/claude-daily-calendar-briefing.png"
-  alt: "A branded daily briefing timeline showing Claude preparing calendar meetings, email context, and documents"
+  url: "/src/images/posts/field-notes/daily-calendar-briefing-claude.png"
+  alt: "Raleigh AI Guy field-note cover about creating a daily AI briefing"
 tags:
   - claude
   - small-business

@@ -4,8 +4,8 @@ title: "Does Your Small Business Need AI? Use This Practical Test"
 targetKeyword: "does my business need ai"
 description: "Decide where AI can save your small business time or money—and when a checklist, template, or ordinary automation is the better answer."
 image:
-  url: "/src/images/posts/do-i-need-ai-v2.png"
-  alt: "A decision balance comparing a simple process with AI based on time and money saved"
+  url: "/src/images/posts/field-notes/do-i-need-ai.png"
+  alt: "Raleigh AI Guy field-note cover for the practical do-you-need-AI test"
 tags:
   - small-business
 ---

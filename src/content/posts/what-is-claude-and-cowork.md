@@ -4,8 +4,8 @@ title: "Claude Cowork Explained: When to Use It Instead of Chat"
 targetKeyword: "claude cowork"
 description: "Learn when to use Claude Chat or Claude Cowork, what Cowork can handle, and how to delegate a practical business task safely."
 image:
-  url: "/src/images/posts/claude-cowork.png"
-  alt: "Abstract editorial workspace coordinating documents, files, and research streams"
+  url: "/src/images/posts/field-notes/what-is-claude-and-cowork.png"
+  alt: "Raleigh AI Guy field-note cover about when to use Claude Cowork"
 tags:
   - claude
   - small-business

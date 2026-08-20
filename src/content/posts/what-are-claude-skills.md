@@ -4,8 +4,8 @@ title: "Claude Skills Explained for Small Business"
 targetKeyword: "claude skills for small business"
 description: "Learn what Claude Skills are, where they save time, and how to turn a repeated small-business task into a reusable workflow without coding."
 image:
-  url: "/src/images/posts/claude-skills-v2.png"
-  alt: "A modular set of AI instruction blocks arranged as a reusable system"
+  url: "/src/images/posts/field-notes/what-are-claude-skills.png"
+  alt: "Raleigh AI Guy field-note cover about repeatable work with Claude Skills"
 tags:
   - claude
   - small-business

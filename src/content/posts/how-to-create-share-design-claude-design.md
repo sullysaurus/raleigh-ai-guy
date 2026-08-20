@@ -4,8 +4,8 @@ title: "What Is Claude Design? A Beginner's Guide for Small Business"
 targetKeyword: "claude design for small business"
 description: "Learn what Claude Design is, what it can create, and how to send your work to Canva for easy editing and sharing."
 image:
-  url: "/src/images/posts/claude-design-client-handoff.png"
-  alt: "A simple Claude Design workflow moving from an idea to a design and then to Canva"
+  url: "/src/images/posts/field-notes/how-to-create-share-design-claude-design.png"
+  alt: "Raleigh AI Guy field-note cover about Claude Design and client handoff"
 tags:
   - claude
   - small-business

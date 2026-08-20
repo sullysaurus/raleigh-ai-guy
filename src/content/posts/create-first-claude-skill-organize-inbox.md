@@ -4,8 +4,8 @@ title: "How to Use Claude to Triage Your Gmail Inbox"
 targetKeyword: "claude gmail inbox"
 description: "Create a no-code Claude Skill that triages Gmail, prepares a daily action list, and runs automatically at a time you choose."
 image:
-  url: "/src/images/posts/claude-inbox-skill.png"
-  alt: "An organized inbox workflow represented by sorted paper trays and message cards"
+  url: "/src/images/posts/field-notes/create-first-claude-skill-organize-inbox.png"
+  alt: "Raleigh AI Guy field-note cover about inbox triage with Claude"
 tags:
   - claude
   - small-business
