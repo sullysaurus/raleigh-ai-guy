@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const stages = [
+  ["Prepare the list", "Import eligible past inquiries, estimates, and customers. Normalize the data, remove duplicates, validate contact details, and honor suppression or opt-out records."],
+  ["Reopen the conversation", "Use thoughtful email follow-up or let Mabel make controlled, transparent calls that reference the original inquiry and ask whether the need is still open."],
+  ["Qualify what comes back", "Classify interested, not interested, wrong-number, do-not-contact, and future-timing outcomes so the sales team only sees useful next steps."],
+  ["Hand off the opportunity", "Send interested leads to the right person with context, transcript or reply, requested timing, and a clear next action."],
+];
+
+const channels = [
+  ["Email reactivation", "Apollo-supported research when appropriate, email validation, Smartlead sending infrastructure, sequence writing, reply classification, and inbox handoff."],
+  ["Voice reactivation", "Mabel calls approved lists in controlled batches, has a natural follow-up conversation, records the outcome, and alerts your team when someone is interested."],
+  ["Missed-call recovery", "Route unanswered or after-hours calls to a trained intake assistant that captures the reason, urgency, location, and callback details."],
+];
+---
+
+<BaseLayout pageTitle="Lead Recovery & Reactivation with Mabel — Raleigh AI Guy" pageDescription="Recover value from old inquiries, unresponsive estimates, past customers, and missed calls with careful list preparation, email follow-up, and Mabel voice reactivation.">
+  <section class="border-b-[3px] border-black bg-[var(--brand-ink)] text-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class="print-stamp bg-[var(--brand-orange)]">Lead Recovery / powered by Mabel</p>
+          <h1 class="font-editorial mt-7 max-w-5xl text-6xl leading-[.86] sm:text-8xl lg:text-[7.7rem]">The next customer may already be in your old lead list.</h1>
+        </div>
+        <div class="border-l-2 border-white/40 pl-5 lg:col-span-4">
+          <p class="text-base leading-7 text-white/65">You already paid to generate the inquiry. The recovery system finds the people who still have a need and gives your team a clean reason to follow up.</p>
+          <div class="mt-7 flex flex-wrap gap-3"><a class="inline-flex min-h-12 items-center border-2 border-white bg-[var(--brand-orange)] px-4 text-xs font-black uppercase text-black shadow-[4px_4px_0_#fff]" href="https://www.raleighleadrecovery.com/demo" target="_blank" rel="noopener noreferrer">Hear Mabel call you →</a><a class="inline-flex min-h-12 items-center border-2 border-white px-4 text-xs font-black uppercase text-white" href="/contact/?service=mabel">Plan a campaign</a></div>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-yellow)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-4"><p class="field-label">The recovery loop</p><h2 class="font-editorial mt-5 text-5xl leading-[.92] sm:text-6xl">A respectful way back into the conversation.</h2></div>
+        <ol class="border-x-2 border-t-2 border-black bg-[var(--brand-paper)] lg:col-span-8">
+          {stages.map(([title, body], index) => <li class="grid gap-4 border-b-2 border-black p-6 sm:grid-cols-[3rem_12rem_1fr]"><span class="field-label text-[var(--brand-orange)]">0{index + 1}</span><h3 class="font-bold">{title}</h3><p class="text-sm leading-6 text-base-600">{body}</p></li>)}
+        </ol>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-y-[3px] border-black bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <p class="print-stamp">Choose the right channel</p>
+      <div class="mt-10 grid border-l-2 border-t-2 border-black lg:grid-cols-3">
+        {channels.map(([title, body], index) => <article class:list={["flex min-h-80 flex-col justify-between border-b-2 border-r-2 border-black p-6", index === 1 && "bg-[var(--brand-orange)]"]}><span class="field-label">0{index + 1}</span><div><h2 class="font-editorial text-4xl leading-none">{title}</h2><p class:list={["mt-5 text-sm leading-6", index === 1 ? "text-black/65" : "text-base-600"]}>{body}</p></div></article>)}
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-ink)] text-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="grid gap-12 py-16 sm:py-24 lg:grid-cols-12">
+      <div class="lg:col-span-5"><p class="field-label text-white/45">What Mabel returns</p><h2 class="font-editorial mt-5 text-5xl leading-[.9] sm:text-6xl">Not a bigger inbox. A shorter follow-up list.</h2></div>
+      <div class="grid gap-px bg-white/20 sm:grid-cols-2 lg:col-span-7">
+        {["Confirmed interest and timing", "Conversation summary or email reply", "Recording and transcript when applicable", "Immediate owner or sales-rep alert", "Clear next action and assigned owner", "Suppression and do-not-contact outcomes"].map((item, index) => <div class="bg-[var(--brand-ink)] p-5"><span class="field-label text-[var(--brand-orange)]">0{index + 1}</span><p class="mt-7 text-sm font-bold leading-6">{item}</p></div>)}
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="border-b-[3px] border-black bg-[var(--brand-orange)]">
+    <Wrapper variant="wide" class="grid gap-10 py-14 sm:grid-cols-[1fr_auto] sm:items-end sm:py-18">
+      <div><p class="print-stamp bg-[var(--brand-yellow)]">Experience it first</p><h2 class="font-editorial mt-4 max-w-4xl text-5xl leading-[.9] sm:text-7xl">Put yourself in the customer’s seat. Mabel will call you live.</h2><p class="mt-5 max-w-2xl text-sm leading-6 text-black/65">Choose an industry, enter your number, and hear the conversation before considering a real campaign.</p></div>
+      <a class="inline-flex min-h-14 min-w-56 items-center justify-between border-2 border-black bg-[var(--brand-yellow)] px-5 text-xs font-black uppercase shadow-[5px_5px_0_var(--brand-ink)]" href="https://www.raleighleadrecovery.com/demo" target="_blank" rel="noopener noreferrer">Try Mabel live <span>→</span></a>
+    </Wrapper>
+  </section>
+</BaseLayout>

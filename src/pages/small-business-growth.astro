@@ -1,0 +1,137 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ContactBand from "@/components/global/ContactBand.astro";
+
+const packages = [
+  {
+    number: "01",
+    name: "Brand & Website Foundation",
+    shorthand: "Look established everywhere.",
+    price: "$2,500",
+    cadence: "one-time · from",
+    service: "foundation",
+    description: "For a small business that needs a credible, complete presence—not five disconnected freelancers and a folder of mystery files.",
+    includes: [
+      "Strategy-led, conversion-ready website",
+      "Primary and reversed logo refinement",
+      "Social profile, header, and share-image kit",
+      "Google Business Profile cleanup and brand refresh",
+      "Google Analytics 4 and Search Console setup or audit",
+      "Technical SEO, metadata, sitemap, and launch checks",
+      "Contact forms, conversion events, and 30-day launch care",
+    ],
+  },
+  {
+    number: "02",
+    name: "Local Visibility Engine",
+    shorthand: "Build a reason to be found.",
+    price: "$4,500",
+    cadence: "setup · then $750/mo",
+    service: "visibility",
+    description: "For a business that has the basics but needs a durable local search and publishing system that compounds over time.",
+    includes: [
+      "Everything in Brand & Website Foundation",
+      "Keyword, competitor, and local-intent research",
+      "Search-led content map and editorial calendar",
+      "Auto SEO publishing system with human review gates",
+      "Four researched, internally linked articles per month",
+      "Google Business posting and review-request workflow",
+      "Rank, traffic, lead, and conversion reporting",
+    ],
+  },
+  {
+    number: "03",
+    name: "Follow-Up Growth System",
+    shorthand: "Turn attention into conversations.",
+    price: "$6,500",
+    cadence: "setup · then $1,250/mo",
+    service: "followup",
+    description: "For a business ready to pair visibility with a responsible, measurable system for reactivation and outbound follow-up.",
+    includes: [
+      "Everything in Local Visibility Engine",
+      "CRM cleanup, pipeline stages, and lead-routing rules",
+      "Apollo research and targeted list-building workflow",
+      "Email validation, suppression, and list hygiene",
+      "Smartlead domains, inboxes, warmup, and deliverability setup",
+      "Personalized email sequences and reply qualification",
+      "Reactivation reporting and qualified-lead handoff",
+    ],
+  },
+];
+
+const missingPieces = [
+  ["Measurement", "Calls, forms, booked meetings, and qualified leads—not just pageviews."],
+  ["Reputation", "A practical review-request flow and consistent business information across the places customers check."],
+  ["Ownership", "Your domains, accounts, analytics, creative files, and documentation remain yours."],
+  ["Guardrails", "Human review, consent-aware outreach, suppression lists, and clear unsubscribe handling."],
+];
+---
+
+<BaseLayout pageTitle="Small Business Growth Packages — Raleigh AI Guy" pageDescription="Three practical small-business packages for websites, brand assets, Google Business, analytics, automated SEO, email infrastructure, and follow-up systems.">
+  <section class="border-b-[3px] border-black">
+    <Wrapper variant="wide" class="py-14 sm:py-20 lg:py-24">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class="print-stamp">Small Business Growth</p>
+          <h1 class="font-editorial mt-6 max-w-5xl text-6xl leading-[.86] sm:text-8xl lg:text-[7.5rem]">Get the whole business presence working together.</h1>
+        </div>
+        <div class="border-l-2 border-black pl-5 lg:col-span-4">
+          <p class="text-base leading-7 text-base-600">A polished website is useful. A website connected to search, measurement, reputation, and follow-up is a growth system.</p>
+          <p class="mt-5 text-sm font-bold">Clear scope. Real ownership. No mystery retainer.</p>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="py-16 sm:py-24">
+      <div class="mb-12 grid gap-6 lg:grid-cols-12">
+        <p class="field-label lg:col-span-3">Three ways in</p>
+        <div class="lg:col-span-7"><h2 class="font-editorial text-5xl leading-[.9] sm:text-6xl">Start where the business is—not where an agency wants it to be.</h2></div>
+      </div>
+      <div class="border-x-2 border-t-2 border-black">
+        {packages.map((item, index) => (
+          <article class:list={["grid border-b-2 border-black lg:grid-cols-12", index === 1 && "bg-[var(--brand-yellow)]", index === 2 && "bg-[var(--brand-ink)] text-[var(--brand-paper)]"]}>
+            <div class="border-b-2 border-black p-6 lg:col-span-3 lg:border-b-0 lg:border-r-2 lg:p-8">
+              <span class:list={["field-label", index === 2 && "text-white/50"]}>Package / {item.number}</span>
+              <p class="mt-8 font-editorial text-4xl leading-none">{item.name}</p>
+              <p class:list={["mt-4 text-sm leading-6", index === 2 ? "text-white/60" : "text-base-600"]}>{item.shorthand}</p>
+            </div>
+            <div class="border-b-2 border-black p-6 lg:col-span-6 lg:border-b-0 lg:border-r-2 lg:p-8">
+              <p class:list={["max-w-2xl text-sm leading-6", index === 2 ? "text-white/65" : "text-base-600"]}>{item.description}</p>
+              <ul class="mt-7 grid gap-3 sm:grid-cols-2">
+                {item.includes.map((feature) => <li class:list={["border-t pt-3 text-xs font-bold leading-5", index === 2 ? "border-white/20" : "border-black/20"]}><span class="mr-2 text-[var(--brand-orange)]">↗</span>{feature}</li>)}
+              </ul>
+            </div>
+            <div class="flex flex-col justify-between p-6 lg:col-span-3 lg:p-8">
+              <div><p class:list={["field-label", index === 2 && "text-white/50"]}>{item.cadence}</p><p class="font-editorial mt-2 text-5xl">{item.price}</p></div>
+              <a class:list={["mt-10 inline-flex min-h-12 items-center justify-between border-2 px-4 text-xs font-black uppercase", index === 2 ? "border-white bg-[var(--brand-orange)] text-black shadow-[4px_4px_0_#fff]" : "border-black bg-[var(--brand-orange)] shadow-[4px_4px_0_var(--brand-ink)]"]} href={`/contact/?service=${item.service}`}>Request this package <span>→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="mt-5 max-w-3xl text-xs leading-5 text-base-500">Starting prices assume a focused local-service business and a cooperative build. Advertising spend, paid software, domain and inbox costs, photography, and unusually large migrations are separate and approved before work begins.</p>
+    </Wrapper>
+  </section>
+
+  <section class="border-y-[3px] border-black bg-[var(--brand-orange)]">
+    <Wrapper variant="wide" class="py-16 sm:py-20">
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-4"><p class="print-stamp bg-[var(--brand-yellow)]">Often overlooked</p><h2 class="font-editorial mt-5 text-5xl leading-[.9]">The pieces that make the package actually work.</h2></div>
+        <div class="grid gap-px bg-black lg:col-span-8 sm:grid-cols-2">
+          {missingPieces.map(([title, body], index) => <article class="bg-[var(--brand-paper)] p-6"><span class="field-label">0{index + 1}</span><h3 class="font-editorial mt-7 text-3xl">{title}</h3><p class="mt-3 text-sm leading-6 text-base-600">{body}</p></article>)}
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <section class="bg-[var(--brand-paper)]">
+    <Wrapper variant="wide" class="grid gap-10 py-16 sm:py-24 lg:grid-cols-12">
+      <div class="lg:col-span-5"><p class="field-label">A note on Auto SEO</p><h2 class="font-editorial mt-5 text-5xl leading-[.92] sm:text-6xl">Automation handles the production line. Judgment still runs the room.</h2></div>
+      <div class="lg:col-span-7 lg:pt-12"><p class="text-base leading-7 text-base-600">The system researches search demand, organizes keywords into useful topic clusters, drafts content, builds internal links, and prepares publishing. Every piece still passes through factual, brand, duplication, and quality checks before it goes live. The goal is a dependable content engine—not a flood of disposable AI articles.</p><a class="site-cta mt-8" href="/contact/?service=visibility">Ask about the visibility engine →</a></div>
+    </Wrapper>
+  </section>
+
+  <ContactBand eyebrow="Not sure which package fits?" title="Start with a 30-minute fit call." description="I’ll look at what is already working, what is missing, and whether one of these packages is the right next move." ctaHref="/contact/?service=foundation" ctaLabel="Talk through the options" />
+</BaseLayout>

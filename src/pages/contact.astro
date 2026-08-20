@@ -33,6 +33,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
                 <option>Custom automation</option>
                 <option>AI concierge support</option>
                 <option>In-person training or workshop</option>
+                <option>Small Business Growth package</option>
+                <option>Lead recovery with Mabel</option>
                 <option>Partnership</option>
                 <option>Speaking</option>
                 <option>Media or press</option>
@@ -51,4 +53,18 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
       </div>
     </Wrapper>
   </section>
+
+  <script>
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+    const reason = document.querySelector<HTMLSelectElement>('select[name="reason"]');
+    const requestedOptions: Record<string, string> = {
+      foundation: "Small Business Growth package",
+      visibility: "Small Business Growth package",
+      followup: "Small Business Growth package",
+      mabel: "Lead recovery with Mabel",
+    };
+    if (reason && requestedService && requestedOptions[requestedService]) {
+      reason.value = requestedOptions[requestedService];
+    }
+  </script>
 </BaseLayout>
