@@ -476,9 +476,10 @@ const notesUrl = "/blog/";
     .poster-header { grid-template-columns: auto 1fr auto; gap: 1rem; }
     .desktop-nav { display: none; }
     .mobile-nav { display: block; position: relative; }
-    .mobile-nav summary { cursor: pointer; font-family: "Instrument Sans", sans-serif; font-size: .72rem; font-weight: 800; list-style: none; text-transform: uppercase; }
+    .mobile-nav summary { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: flex-end; cursor: pointer; font-family: "Instrument Sans", sans-serif; font-size: .72rem; font-weight: 800; list-style: none; text-transform: uppercase; }
     .mobile-nav summary::-webkit-details-marker { display: none; }
-    .mobile-nav nav { position: absolute; top: 2rem; right: 0; z-index: 30; display: grid; min-width: 10rem; gap: .8rem; border: 2px solid var(--poster-ink); padding: 1rem; background: var(--poster-yellow); box-shadow: 4px 4px 0 var(--poster-ink); }
+    .mobile-nav nav { position: absolute; top: 2.75rem; right: 0; z-index: 30; display: grid; min-width: 10rem; border: 2px solid var(--poster-ink); padding: .5rem 1rem; background: var(--poster-yellow); box-shadow: 4px 4px 0 var(--poster-ink); }
+    .mobile-nav nav a { display: flex; min-height: 44px; align-items: center; }
 
     .hero { grid-template-columns: 1fr; }
     .hero-copy { padding: 3.5rem 0 1rem; }

@@ -50,9 +50,10 @@ const links = [
   .print-links .print-contact { border: 2px solid var(--brand-ink); padding: .65rem .8rem .55rem; background: var(--brand-orange); box-shadow: 3px 3px 0 var(--brand-ink); text-decoration: none; transition: transform 130ms ease, box-shadow 130ms ease; }
   .print-links .print-contact:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--brand-ink); }
   .print-menu { position: relative; display: none; justify-self: end; }
-  .print-menu summary { cursor: pointer; font-family: "Instrument Sans", sans-serif; font-size: .7rem; font-weight: 800; list-style: none; text-transform: uppercase; }
+  .print-menu summary { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: flex-end; cursor: pointer; font-family: "Instrument Sans", sans-serif; font-size: .7rem; font-weight: 800; list-style: none; text-transform: uppercase; }
   .print-menu summary::-webkit-details-marker { display: none; }
-  .print-menu nav { position: absolute; top: 2rem; right: 0; display: grid; min-width: 11rem; gap: .9rem; border: 2px solid var(--brand-ink); padding: 1rem; background: var(--brand-yellow); box-shadow: 4px 4px 0 var(--brand-ink); }
+  .print-menu nav { position: absolute; top: 2.75rem; right: 0; display: grid; min-width: 11rem; border: 2px solid var(--brand-ink); padding: .5rem 1rem; background: var(--brand-yellow); box-shadow: 4px 4px 0 var(--brand-ink); }
+  .print-menu nav a { display: flex; min-height: 44px; align-items: center; }
 
   @media (max-width: 800px) {
     .print-header-inner { grid-template-columns: auto 1fr auto; gap: .9rem; }

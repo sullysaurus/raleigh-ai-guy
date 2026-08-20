@@ -158,6 +158,7 @@ textarea:focus-visible {
 @media (max-width: 640px) {
   .post-body { font-size: .96rem; line-height: 1.75; }
   .post-body h2 { font-size: 3rem; }
+  .post-body pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 
 .privacy-copy section + section { margin-top: 3rem; }
