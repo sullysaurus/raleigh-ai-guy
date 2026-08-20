@@ -133,8 +133,12 @@ textarea:focus-visible {
   text-underline-offset: 4px;
 }
 
+.post-body { color: var(--brand-ink); font-family: "Courier Prime", monospace; font-size: 1.02rem; line-height: 1.82; }
 .post-body > :where(p, ul, ol, blockquote) { max-width: 46rem; }
-.post-body pre { overflow-x: auto; }
+.post-body > p:first-child { margin-top: 0; font-size: 1.16rem; font-weight: 700; line-height: 1.7; }
+.post-body p { color: #4f463a; }
+.post-body p + p { margin-top: 1.35rem; }
+.post-body pre { overflow-x: auto; border: 2px solid var(--brand-ink); border-radius: 0; box-shadow: 5px 5px 0 var(--brand-orange); }
 .post-body :where(h2, h3) {
   font-family: "League Gothic", sans-serif;
   font-weight: 400;
@@ -142,12 +146,19 @@ textarea:focus-visible {
   line-height: .95;
   text-transform: uppercase;
 }
-.post-body h2 { margin-top: 3.5rem; border-top: 3px solid var(--brand-ink); padding-top: 1rem; font-size: 2.75rem; }
-.post-body h3 { font-size: 2rem; }
-.post-body :where(ul, ol) { padding-left: 1.4rem; }
+.post-body h2 { margin-top: 4rem; border-top: 3px solid var(--brand-ink); padding-top: 1rem; font-size: clamp(3rem, 6vw, 4rem); }
+.post-body h3 { margin-top: 2.75rem; font-size: 2.4rem; }
+.post-body :where(ul, ol) { margin-top: 1.25rem; padding-left: 1.5rem; }
+.post-body li { margin-top: .55rem; padding-left: .2rem; color: #4f463a; }
 .post-body li::marker { color: var(--brand-pink); font-family: "Courier Prime", monospace; font-weight: 700; }
-.post-body blockquote { border-left: .5rem solid var(--brand-yellow); background: rgb(247 241 223 / 78%); padding: 1rem 1.25rem; color: var(--brand-ink); font-style: normal; }
+.post-body blockquote { margin-block: 2rem; border: 2px solid var(--brand-ink); border-left: .6rem solid var(--brand-orange); background: var(--brand-yellow); padding: 1.25rem 1.5rem; color: var(--brand-ink); font-style: normal; box-shadow: 4px 4px 0 var(--brand-ink); }
+.post-body blockquote p { color: var(--brand-ink); }
 .post-body code:not(pre code) { border: 1px solid var(--brand-ink); background: var(--brand-yellow); padding: .08rem .25rem; color: var(--brand-ink); }
+
+@media (max-width: 640px) {
+  .post-body { font-size: .96rem; line-height: 1.75; }
+  .post-body h2 { font-size: 3rem; }
+}
 
 .privacy-copy section + section { margin-top: 3rem; }
 .privacy-copy h2 { font-family: "League Gothic", sans-serif; font-size: 3rem; font-weight: 400; line-height: .95; text-transform: uppercase; }

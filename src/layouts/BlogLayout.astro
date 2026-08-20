@@ -24,23 +24,30 @@ const socialImage = await getImage({
   socialImageHeight={630}
 >
   <article class="brand-page">
-    <header><div class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20 lg:px-10">
-      <a href="/blog/" class="print-stamp hover:text-black">← Field notes</a>
-      <h1 class="font-editorial mt-7 max-w-5xl text-5xl font-medium leading-[.94] tracking-[-.045em] sm:text-7xl">{frontmatter.title}</h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-base-600">{frontmatter.description}</p>
-      <div class="font-utility mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-[.65rem] uppercase tracking-[.06em] text-base-500">
-        <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
-        {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="hover:text-black">{tag.replaceAll("-", " ")}</a>)}
+    <header class="border-y-[3px] border-black bg-[var(--brand-ink)] text-[var(--brand-paper)]">
+      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-8 sm:py-16 lg:grid-cols-12 lg:items-center lg:px-10">
+        <div class="lg:col-span-7">
+          <a href="/blog/" class="print-stamp !bg-[var(--brand-yellow)] hover:text-black">← Writing</a>
+          <h1 class="font-editorial mt-7 max-w-5xl text-6xl leading-[.88] sm:text-8xl">{frontmatter.title}</h1>
+          <p class="mt-6 max-w-3xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">{frontmatter.description}</p>
+          <div class="font-utility mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-[.65rem] uppercase tracking-[.06em] text-white/50">
+            <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time><span>{readingTime}</span>
+            {frontmatter.tags.map((tag) => <a href={`/blog/tags/${tag}`} class="border-b border-white/20 hover:border-[var(--brand-orange)] hover:text-white">{tag.replaceAll("-", " ")}</a>)}
+          </div>
+        </div>
+        <div class="relative lg:col-span-5">
+          <span class="absolute -left-3 -top-3 z-10 bg-[var(--brand-orange)] px-3 py-2 font-utility text-[.58rem] font-black uppercase tracking-[.08em] text-black">Filed in Raleigh, NC</span>
+          <div class="overflow-hidden border-2 border-white bg-[#f7f1e4] p-2 shadow-[7px_7px_0_var(--brand-orange)]">
+            <Image src={frontmatter.image.url} alt={frontmatter.image.alt} widths={[640, 960]} sizes="(min-width: 1024px) 440px, 100vw" loading="eager" class="aspect-[1200/630] h-auto w-full object-cover" />
+          </div>
+        </div>
       </div>
-      <div class="mt-10 overflow-hidden border-2 border-black bg-[#f7f1e4] p-2 shadow-[7px_7px_0_var(--brand-ink)]">
-        <Image src={frontmatter.image.url} alt={frontmatter.image.alt} widths={[768, 1200, 1600]} sizes="(min-width: 1024px) 1120px, 100vw" loading="eager" class="aspect-[1200/630] h-auto w-full object-cover" />
-      </div>
-    </div></header>
+    </header>
 
     <div class="border-y-[3px] border-black bg-[var(--brand-paper)]">
-      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-8 sm:py-16 lg:grid-cols-[10rem_minmax(0,46rem)] lg:justify-center lg:gap-16 lg:px-10">
-        <aside class="field-label"><span class="print-stamp !bg-[var(--brand-orange)]">Written by</span><a href="/about/" class="mt-5 block font-sans text-sm font-semibold normal-case tracking-normal text-black hover:underline">Danny Sullivan</a><span class="mt-1 block font-sans text-xs font-normal normal-case tracking-normal text-base-500">Raleigh AI Guy<br />Raleigh, NC</span></aside>
-        <div class="prose post-body min-w-0 max-w-none prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-base-300 prose-a:underline-offset-4 prose-strong:text-black"><slot /></div>
+      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-8 sm:py-20 lg:grid-cols-[12rem_minmax(0,46rem)] lg:justify-center lg:gap-16 lg:px-10">
+        <aside class="h-fit border-t-2 border-black pt-5 lg:sticky lg:top-8"><span class="field-label">Filed by</span><a href="/about/" class="mt-4 block text-sm font-black uppercase text-black underline decoration-[var(--brand-orange)] decoration-2 underline-offset-4">Danny Sullivan</a><span class="mt-2 block text-xs leading-5 text-base-500">Raleigh AI Guy<br />Raleigh, North Carolina</span><div class="mt-6 border-t border-black/20 pt-4"><span class="field-label">Reading time</span><strong class="mt-2 block text-sm">{readingTime}</strong></div><a href="/blog/" class="mt-8 inline-block text-xs font-black uppercase">← All writing</a></aside>
+        <div class="prose post-body min-w-0 max-w-none prose-pre:max-w-full prose-pre:overflow-x-auto prose-a:text-black prose-a:underline prose-a:decoration-[var(--brand-orange)] prose-a:decoration-2 prose-a:underline-offset-4 prose-strong:text-black"><slot /></div>
       </div>
     </div>
 

@@ -9,12 +9,12 @@ const posts = publishedPosts(await getCollection("posts"));
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout pageTitle="Blog Topics" pageDescription="Browse practical AI guides by topic." noindex>
-  <PageIntro eyebrow="Field notes · Topics" title="Browse by subject." description="Jump straight to the practical guides that match the work you are trying to improve." />
-  <section class="bg-[var(--brand-paper)]">
+<BaseLayout pageTitle="Writing Topics" pageDescription="Browse practical AI guides by topic." noindex>
+  <PageIntro eyebrow="Writing · Topic index" title="Find the useful thread." description="Jump straight to the field notes that match the work, tool, or decision you are trying to improve." />
+  <section class="border-y-[3px] border-black bg-[var(--brand-yellow)]">
     <Wrapper variant="wide" class="py-12 sm:py-16">
-      <div class="grid gap-px border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-        {tags.map((tag, index) => <a href={`/blog/tags/${tag}`} class="group flex min-h-36 flex-col justify-between bg-[var(--brand-paper)] p-6"><span class="field-label text-[var(--brand-orange)]">{String(index + 1).padStart(2, "0")}</span><strong class="font-editorial mt-5 text-3xl font-normal capitalize group-hover:text-[var(--brand-orange)]">{tag.replaceAll("-", " ")} →</strong></a>)}
+      <div class="grid border-l-2 border-t-2 border-black sm:grid-cols-2 lg:grid-cols-3">
+        {tags.map((tag, index) => <a href={`/blog/tags/${tag}`} class:list={["group flex min-h-48 flex-col justify-between border-b-2 border-r-2 border-black p-6 transition hover:bg-[var(--brand-orange)]", index % 5 === 0 ? "bg-[var(--brand-paper)]" : "bg-[var(--brand-yellow)]"]}><span class="field-label">Topic / {String(index + 1).padStart(2, "0")}</span><strong class="font-editorial mt-8 text-4xl font-normal capitalize leading-none group-hover:translate-x-1">{tag.replaceAll("-", " ")} <span>→</span></strong></a>)}
       </div>
     </Wrapper>
   </section>

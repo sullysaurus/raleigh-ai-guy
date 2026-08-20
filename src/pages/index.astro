@@ -24,7 +24,6 @@ const services = [
   },
 ];
 
-// Swap this for the external Substack URL once the publication is live.
 const notesUrl = "/blog/";
 ---
 
@@ -45,7 +44,7 @@ const notesUrl = "/blog/";
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#case-study">Case study</a>
-        <a href="#notes">Substack</a>
+        <a href="#notes">Writing</a>
         <a href="/contact/">Contact</a>
       </nav>
 
@@ -55,7 +54,7 @@ const notesUrl = "/blog/";
           <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#case-study">Case study</a>
-          <a href="#notes">Substack</a>
+          <a href="#notes">Writing</a>
           <a href="/contact/">Contact</a>
         </nav>
       </details>
@@ -134,6 +133,12 @@ const notesUrl = "/blog/";
             </article>
           ))}
         </div>
+
+        <div class="secondary-offers" aria-label="Additional Raleigh AI Guy services">
+          <p><span>Also in the notebook</span>Focused packages for businesses that need the growth fundamentals or a better way to recover existing demand.</p>
+          <a href="/small-business-growth/"><small>Packaged service / 01</small><strong>Small Business Growth</strong><span>Website, brand, local visibility, Auto SEO, and follow-up. →</span></a>
+          <a href="/lead-recovery/"><small>Revenue recovery / 02</small><strong>Lead Recovery with Mabel</strong><span>Re-engage old leads and return qualified opportunities to your team. →</span></a>
+        </div>
       </section>
 
       <section id="case-study" class="case-study poster-shell" aria-labelledby="case-study-title">
@@ -156,7 +161,7 @@ const notesUrl = "/blog/";
       <section id="notes" class="notes poster-shell" aria-labelledby="notes-title">
         <div class="notes-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
         <div>
-          <p class="section-kicker pink">From the Substack</p>
+          <p class="section-kicker pink">From the field notes</p>
           <h2 id="notes-title">AI for real work</h2>
           <p>Notes on practical AI, better workflows, and systems that make businesses easier to run.</p>
         </div>
@@ -422,6 +427,16 @@ const notesUrl = "/blog/";
   .service-card p { margin-top: 1rem; font-size: .86rem; font-weight: 700; line-height: 1.48; }
   .service-card > a { margin-top: auto; padding-top: 1.5rem; color: var(--poster-pink); font-family: "Instrument Sans", sans-serif; font-size: .72rem; font-weight: 850; text-decoration: underline; text-underline-offset: .3rem; text-transform: uppercase; }
 
+  .secondary-offers { display: grid; grid-template-columns: .8fr 1fr 1fr; border: 2px solid var(--poster-ink); margin-top: 2rem; background: var(--poster-ink); gap: 2px; }
+  .secondary-offers > * { min-width: 0; padding: 1.4rem; background: var(--poster-paper); }
+  .secondary-offers > p { margin: 0; font-size: .72rem; font-weight: 700; line-height: 1.55; }
+  .secondary-offers > p span { display: block; margin-bottom: .65rem; color: var(--poster-pink); font-size: .6rem; text-transform: uppercase; }
+  .secondary-offers > a { display: flex; min-height: 10rem; flex-direction: column; transition: background 150ms ease; }
+  .secondary-offers > a:hover { background: var(--poster-yellow); }
+  .secondary-offers small { font-size: .58rem; font-weight: 700; text-transform: uppercase; }
+  .secondary-offers strong { margin-top: 1rem; font-family: "League Gothic", sans-serif; font-size: 2rem; font-weight: 400; line-height: .95; text-transform: uppercase; }
+  .secondary-offers a span { margin-top: auto; padding-top: 1.25rem; font-size: .68rem; font-weight: 700; line-height: 1.4; }
+
   .case-study { display: grid; grid-template-columns: .6fr 1.25fr .9fr; border: 2px solid var(--poster-ink); margin-block: clamp(4rem, 7vw, 6rem) 1.5rem; box-shadow: 6px 6px 0 var(--poster-ink); }
   .case-label, .case-metric, .case-action { padding: clamp(1.5rem, 3vw, 2.4rem); }
   .case-metric, .case-action { border-left: 1.5px dashed var(--poster-line); }
@@ -476,6 +491,8 @@ const notesUrl = "/blog/";
     .service-grid { grid-template-columns: 1fr; }
     .service-card { min-height: 20rem; }
     .service-card + .service-card { border-top: 1.5px dashed var(--poster-line); border-left: 0; }
+    .secondary-offers { grid-template-columns: 1fr 1fr; }
+    .secondary-offers > p { grid-column: 1 / -1; }
     .case-study { grid-template-columns: 1fr 1.5fr; }
     .case-action { grid-column: 1 / -1; border-top: 1.5px dashed var(--poster-line); border-left: 0; }
     .notes { grid-template-columns: auto 1fr; }
@@ -509,6 +526,8 @@ const notesUrl = "/blog/";
     .section-rule-heading { grid-template-columns: 1fr; }
     .section-rule-heading span { display: none; }
     .service-card { padding-inline: 1.2rem; }
+    .secondary-offers { grid-template-columns: 1fr; }
+    .secondary-offers > p { grid-column: auto; }
     .case-study { grid-template-columns: 1fr; margin-inline: auto; }
     .case-metric, .case-action { border-top: 1.5px dashed var(--poster-line); border-left: 0; }
     .case-metric strong { font-size: 6.2rem; }
