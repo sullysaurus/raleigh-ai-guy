@@ -101,7 +101,7 @@ import AdminLayout from "@/layouts/AdminLayout.astro";
         <div class="expense-cost">${item.amountCents ? `<strong>${money(item.amountCents, 2)}</strong><span>${intervalText(item)}</span>` : `<strong class="missing-cost">ADD COST</strong><span>${intervalText(item)}</span>`}</div>
         <div class="expense-schedule"><strong>${item.renewalDate ? escapeHtml(item.renewalDate) : item.billingDay ? `Day ${item.billingDay}` : "Not set"}</strong><span>${item.renewalDate ? "renewal" : "billing date"}</span></div>
         <div><span class="expense-status status-${escapeHtml(item.status)}">${escapeHtml(item.status)}</span></div>
-        <div class="expense-actions">${item.accountUrl ? `<a href="${escapeHtml(item.accountUrl)}" target="_blank" rel="noreferrer" aria-label="Open ${escapeHtml(item.vendor)} account">↗</a>` : ""}<button type="button" data-edit="${escapeHtml(item.id)}">Edit</button><button type="button" data-delete="${escapeHtml(item.id)}">×</button></div>
+        <div class="expense-actions">${item.accountUrl ? `<a href="${escapeHtml(item.accountUrl)}" target="_blank" rel="noreferrer" aria-label="Open ${escapeHtml(item.vendor)} account">Open ↗</a>` : ""}<button type="button" data-edit="${escapeHtml(item.id)}">Edit</button><button type="button" class="delete-action" data-delete="${escapeHtml(item.id)}">Delete</button></div>
       </article>
     `).join("") || '<p class="expense-empty">No expenses match this view.</p>';
   }
@@ -216,8 +216,10 @@ import AdminLayout from "@/layouts/AdminLayout.astro";
   .expense-actions { display: flex; justify-content: flex-end; gap: .4rem; }
   .expense-actions :is(a,button) { display: grid; min-width: 2rem; min-height: 2rem; place-items: center; border: 1px solid #17130f; padding-inline: .45rem; color: #17130f; background: transparent; font-size: .6rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
   .expense-actions a { color: #f7f1df; background: #17130f; }
+  .expense-actions .delete-action { border-color: #c2276a; color: #c2276a; }
+  .expense-actions .delete-action:hover { color: #f7f1df; background: #c2276a; }
   .expense-loading, .expense-empty { padding: 2rem 1rem; color: #776d5e; font-size: .72rem; }
-  .expense-dialog { width: min(calc(100% - 2rem), 48rem); max-height: calc(100svh - 2rem); border: 2px solid #17130f; border-radius: 0; padding: 0; color: #17130f; background: #f1ecdc; box-shadow: 10px 10px 0 #f43e8d; }
+  .expense-dialog { position: fixed; inset: 50% auto auto 50%; width: min(calc(100% - 2rem), 48rem); max-height: calc(100dvh - 2rem); margin: 0; overflow-y: auto; transform: translate(-50%, -50%); border: 2px solid #17130f; border-radius: 0; padding: 0; color: #17130f; background: #f1ecdc; box-shadow: 10px 10px 0 #f43e8d; }
   .expense-dialog::backdrop, .delete-expense-dialog::backdrop { background: rgb(23 19 15 / 78%); backdrop-filter: blur(3px); }
   .expense-dialog form > header { display: flex; align-items: start; justify-content: space-between; border-bottom: 2px solid #17130f; padding: 1.3rem 1.5rem; }
   .expense-dialog header p { color: #f43e8d; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
@@ -230,7 +232,7 @@ import AdminLayout from "@/layouts/AdminLayout.astro";
   .expense-error { min-height: 1.3rem; margin-inline: 1.5rem; color: #c2276a; font-size: .68rem; }
   .expense-dialog footer { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border-top: 1px solid rgb(23 19 15 / 20%); padding: 1.1rem 1.5rem 1.4rem; }
   .expense-text-button { font-size: .68rem; text-decoration: underline; text-underline-offset: 3px; }
-  .delete-expense-dialog { width: min(calc(100% - 2rem), 30rem); border: 2px solid #17130f; border-radius: 0; padding: 2rem; color: #17130f; background: #f0df55; box-shadow: 8px 8px 0 #f43e8d; }
+  .delete-expense-dialog { position: fixed; inset: 50% auto auto 50%; width: min(calc(100% - 2rem), 30rem); max-height: calc(100dvh - 2rem); margin: 0; overflow-y: auto; transform: translate(-50%, -50%); border: 2px solid #17130f; border-radius: 0; padding: 2rem; color: #17130f; background: #f0df55; box-shadow: 8px 8px 0 #f43e8d; }
   .delete-expense-dialog form > span { font-size: .58rem; font-weight: 700; letter-spacing: .1em; }
   .delete-expense-dialog h2 { margin-top: .7rem; font-size: 2.8rem; line-height: .9; }
   .delete-expense-dialog p { margin-top: 1rem; font-size: .72rem; line-height: 1.6; }

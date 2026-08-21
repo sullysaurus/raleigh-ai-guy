@@ -18,7 +18,8 @@ const links = [
 
 <BaseLayout pageTitle={`${title} — Admin`} pageDescription={description} noindex minimal>
   <div class="admin-root">
-    <section id="admin-gate" class="admin-gate" aria-labelledby="admin-gate-title">
+    <section id="admin-session-check" class="admin-session-check" aria-live="polite"><span></span><p>Opening private admin…</p></section>
+    <section id="admin-gate" class="admin-gate" aria-labelledby="admin-gate-title" hidden>
       <form id="admin-login-form" class="admin-gate-card">
         <span class="admin-gate-index">PRIVATE / ADMIN</span>
         <div class="admin-gate-mark" aria-hidden="true">RA</div>
@@ -60,6 +61,7 @@ const links = [
 
 <script>
   const gate = document.querySelector("#admin-gate");
+  const sessionCheck = document.querySelector("#admin-session-check");
   const app = document.querySelector("#admin-app");
   const form = document.querySelector("#admin-login-form");
   const error = document.querySelector("#admin-login-error");
@@ -71,6 +73,7 @@ const links = [
   };
 
   const unlock = () => {
+    sessionCheck.hidden = true;
     gate.hidden = true;
     app.hidden = false;
     window.dispatchEvent(new CustomEvent("admin:ready"));
@@ -102,13 +105,18 @@ const links = [
     try {
       const response = await fetch("/.netlify/functions/ops-session");
       const payload = await readJson(response);
-      if (response.ok && payload.authenticated) unlock();
+      if (response.ok && payload.authenticated) { unlock(); return; }
     } catch {}
+    sessionCheck.hidden = true;
+    gate.hidden = false;
   })();
 </script>
 
 <style is:global>
   .admin-root { min-height: 100svh; color: #17130f; background: #eee8d6; }
+  .admin-session-check { display: grid; min-height: 100svh; place-items: center; align-content: center; gap: 1rem; color: rgb(247 241 223 / 62%); background: #17130f; font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+  .admin-session-check[hidden] { display: none; }
+  .admin-session-check span { width: 2rem; height: 2rem; border: 2px solid rgb(247 241 223 / 18%); border-top-color: #f43e8d; border-radius: 999px; animation: admin-spin 700ms linear infinite; }
   .admin-gate { display: grid; min-height: 100svh; place-items: center; padding: 1.5rem; color: #f7f1df; background: #17130f; background-image: linear-gradient(rgb(247 241 223 / 4%) 1px, transparent 1px), linear-gradient(90deg, rgb(247 241 223 / 4%) 1px, transparent 1px); background-size: 34px 34px; }
   .admin-gate-card { position: relative; width: min(100%, 35rem); border: 1px solid rgb(247 241 223 / 28%); padding: clamp(2rem, 7vw, 4.5rem); background: #201a16; box-shadow: 14px 14px 0 #f43e8d; animation: admin-rise 500ms cubic-bezier(.22,1,.36,1) both; }
   .admin-gate-index { position: absolute; top: 1rem; right: 1rem; color: rgb(247 241 223 / 40%); font-size: .58rem; letter-spacing: .12em; }
@@ -144,6 +152,7 @@ const links = [
   .admin-button { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; border: 2px solid #17130f; padding-inline: 1rem; color: #f7f1df; background: #17130f; box-shadow: 4px 4px 0 #f43e8d; font-size: .68rem; font-weight: 700; text-decoration: none; text-transform: uppercase; transition: transform 140ms ease, box-shadow 140ms ease; }
   .admin-button:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #f43e8d; }
   @keyframes admin-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes admin-spin { to { rotate: 360deg; } }
   @media (max-width: 820px) {
     .admin-rail { display: none; }
     .admin-workspace { margin-left: 0; }
@@ -154,5 +163,5 @@ const links = [
     .admin-mobile-head nav a[aria-current="page"] { color: #f0df55; }
     .admin-page-head { grid-template-columns: 1fr; gap: 1rem; }
   }
-  @media (prefers-reduced-motion: reduce) { .admin-gate-card { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .admin-gate-card { animation: none; } .admin-session-check span { animation-duration: 2s; } }
 </style>
