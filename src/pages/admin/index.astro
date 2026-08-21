@@ -64,7 +64,8 @@ import AdminLayout from "@/layouts/AdminLayout.astro";
   window.addEventListener("admin:ready", () => loadOverview().catch((error) => { document.querySelector("#admin-brief-copy").textContent = error.message; }));
 </script>
 
-<style>
+<!-- Rows are rendered client-side, so these selectors must remain global. -->
+<style is:global>
   .admin-brief { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(16rem,.7fr); align-items: end; gap: 3rem; }
   .admin-brief span { display: inline-block; border-bottom: 1px solid #17130f; padding-bottom: .35rem; font-size: .6rem; letter-spacing: .12em; }
   .admin-brief h2 { margin-top: 1rem; font-size: clamp(4.5rem, 8vw, 8rem); line-height: .78; }

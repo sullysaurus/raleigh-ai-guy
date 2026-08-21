@@ -263,7 +263,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   restoreSession();
 </script>
 
-<style>
+<!-- Client rows are rendered client-side, so these selectors must remain global. -->
+<style is:global>
   .client-app { min-height: 100svh; color: #17130f; background: #eee8d6; }
   .client-gate { display: grid; min-height: 100svh; place-items: center; padding: 1.5rem; background: #17130f; background-image: linear-gradient(rgb(247 241 223 / 4%) 1px, transparent 1px), linear-gradient(90deg, rgb(247 241 223 / 4%) 1px, transparent 1px); background-size: 34px 34px; }
   .gate-card { position: relative; width: min(100%, 35rem); border: 1px solid rgb(247 241 223 / 28%); padding: clamp(2rem, 7vw, 4.5rem); color: #f7f1df; background: #201a16; box-shadow: 14px 14px 0 #f43e8d; animation: ledger-in 500ms cubic-bezier(.22,1,.36,1) both; }
