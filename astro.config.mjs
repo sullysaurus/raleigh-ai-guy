@@ -26,6 +26,7 @@ export default defineConfig({
       filter: (page) =>
         !page.endsWith("/404/") &&
         !page.includes("/blog/tags/") &&
+        !page.includes("/admin/") &&
         !page.includes("/clients/") &&
         !page.includes("thank-you/"),
     }),

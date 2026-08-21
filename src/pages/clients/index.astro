@@ -29,10 +29,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
     <div id="client-dashboard" class="client-dashboard" hidden>
       <aside class="client-rail">
-        <a href="/clients/" class="rail-mark"><span>RA</span><strong>Client<br />Office</strong></a>
-        <nav aria-label="Client dashboard">
-          <p>Workspace</p>
-          <a href="/clients/" aria-current="page"><span></span>Client ledger</a>
+        <a href="/admin/" class="rail-mark"><span>RA</span><strong>Admin<br />Office</strong></a>
+        <nav aria-label="Admin dashboard">
+          <p>Business</p>
+          <a href="/admin/"><span></span>Overview</a>
+          <a href="/clients/" aria-current="page"><span></span>Clients</a>
+          <a href="/admin/expenses/"><span></span>Expenses</a>
         </nav>
         <div class="rail-foot">
           <span>PRIVATE</span>

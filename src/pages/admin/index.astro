@@ -1,0 +1,94 @@
+---
+import AdminLayout from "@/layouts/AdminLayout.astro";
+---
+
+<AdminLayout
+  title="Admin overview"
+  description="One private view of clients, recurring software spend, billing readiness, and the next records that need attention."
+  current="overview"
+>
+  <section class="admin-brief">
+    <div><span>OPERATING BRIEF / <span id="admin-date"></span></span><h2>The whole office,<br />on one page.</h2></div>
+    <p id="admin-brief-copy">Loading the private ledger…</p>
+  </section>
+
+  <section class="admin-scoreboard" aria-label="Business totals">
+    <article><span>Clients</span><strong id="overview-client-count">—</strong><small>payment profiles</small></article>
+    <article><span>Recurring revenue</span><strong id="overview-revenue">—</strong><small>monthly equivalent</small></article>
+    <article class="cost-card"><span>Software spend</span><strong id="overview-spend">—</strong><small>known monthly equivalent</small></article>
+    <article><span>Needs review</span><strong id="overview-review">—</strong><small>missing costs</small></article>
+  </section>
+
+  <section class="admin-panels">
+    <article class="admin-panel">
+      <header><div><p>Clients</p><h2>Payment profiles</h2></div><a href="/clients/">Open ledger →</a></header>
+      <div id="overview-clients" class="overview-rows"><p class="overview-loading">Loading clients…</p></div>
+    </article>
+    <article class="admin-panel">
+      <header><div><p>Expenses</p><h2>Software stack</h2></div><a href="/admin/expenses/">Open expenses →</a></header>
+      <div id="overview-expenses" class="overview-rows"><p class="overview-loading">Loading expenses…</p></div>
+    </article>
+  </section>
+</AdminLayout>
+
+<script>
+  const money = (cents) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(cents / 100);
+  const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (character) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[character]);
+  const monthly = (item) => item.billingInterval === "month" ? item.amountCents : item.billingInterval === "year" ? item.amountCents / 12 : 0;
+
+  async function loadOverview() {
+    const [clientsResponse, expensesResponse] = await Promise.all([
+      fetch("/.netlify/functions/clients"), fetch("/.netlify/functions/expenses"),
+    ]);
+    const [clientsPayload, expensesPayload] = await Promise.all([clientsResponse.json(), expensesResponse.json()]);
+    if (!clientsResponse.ok) throw new Error(clientsPayload.error || "Could not load clients");
+    if (!expensesResponse.ok) throw new Error(expensesPayload.error || "Could not load expenses");
+    const clients = clientsPayload.clients || [];
+    const expenses = expensesPayload.expenses || [];
+    const activeExpenses = expenses.filter((item) => ["active", "trial"].includes(item.status));
+    const clientMonthly = clients.reduce((sum, item) => sum + monthly(item), 0);
+    const expenseMonthly = activeExpenses.reduce((sum, item) => sum + monthly(item), 0);
+    const missing = activeExpenses.filter((item) => !item.amountCents).length;
+    document.querySelector("#overview-client-count").textContent = String(clients.length).padStart(2, "0");
+    document.querySelector("#overview-revenue").textContent = money(clientMonthly);
+    document.querySelector("#overview-spend").textContent = money(expenseMonthly);
+    document.querySelector("#overview-review").textContent = String(missing).padStart(2, "0");
+    document.querySelector("#admin-brief-copy").textContent = missing
+      ? `${missing} software ${missing === 1 ? "cost needs" : "costs need"} an amount before the expense total is complete.`
+      : "Every active software cost has an amount. The monthly view is current.";
+    document.querySelector("#overview-clients").innerHTML = clients.slice(0, 4).map((client) => `<div><span>${escapeHtml(client.company)}</span><strong>${money(monthly(client))}<small>/mo</small></strong></div>`).join("") || "<p>No clients yet.</p>";
+    document.querySelector("#overview-expenses").innerHTML = activeExpenses.slice(0, 6).map((expense) => `<div><span>${escapeHtml(expense.vendor)}</span><strong>${expense.amountCents ? money(monthly(expense)) : '<em>ADD COST</em>'}</strong></div>`).join("") || "<p>No expenses yet.</p>";
+  }
+
+  document.querySelector("#admin-date").textContent = new Intl.DateTimeFormat("en-US", { month: "short", day: "2-digit", year: "numeric" }).format(new Date()).toUpperCase();
+  window.addEventListener("admin:ready", () => loadOverview().catch((error) => { document.querySelector("#admin-brief-copy").textContent = error.message; }));
+</script>
+
+<style>
+  .admin-brief { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(16rem,.7fr); align-items: end; gap: 3rem; }
+  .admin-brief span { display: inline-block; border-bottom: 1px solid #17130f; padding-bottom: .35rem; font-size: .6rem; letter-spacing: .12em; }
+  .admin-brief h2 { margin-top: 1rem; font-size: clamp(4.5rem, 8vw, 8rem); line-height: .78; }
+  .admin-brief > p { border-left: 4px solid #f43e8d; padding-left: 1rem; color: #655b4d; font-size: .77rem; line-height: 1.7; }
+  .admin-scoreboard { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3rem; border: 2px solid #17130f; background: #f1ecdc; box-shadow: 7px 7px 0 #17130f; }
+  .admin-scoreboard article { min-height: 9rem; padding: 1.2rem; }
+  .admin-scoreboard article + article { border-left: 2px solid #17130f; }
+  .admin-scoreboard span, .admin-scoreboard small { display: block; color: #655b4d; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .admin-scoreboard strong { display: block; margin-block: .75rem .45rem; font-family: "League Gothic", sans-serif; font-size: clamp(2.5rem,4vw,4rem); font-weight: 400; line-height: .85; text-transform: uppercase; }
+  .admin-scoreboard .cost-card { background: #f0df55; }
+  .admin-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
+  .admin-panel { border-top: 3px solid #17130f; }
+  .admin-panel > header { display: flex; align-items: end; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+  .admin-panel header p { color: #f43e8d; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .admin-panel h2 { margin-top: .2rem; font-size: 2.5rem; line-height: .9; }
+  .admin-panel header a { color: inherit; font-size: .62rem; font-weight: 700; text-transform: uppercase; }
+  .overview-rows { border: 1px solid rgb(23 19 15 / 25%); background: rgb(247 241 223 / 55%); }
+  .overview-rows > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.75rem; padding: .8rem 1rem; }
+  .overview-rows > div + div { border-top: 1px solid rgb(23 19 15 / 18%); }
+  .overview-rows span { font-family: "Newsreader", serif; font-size: 1.05rem; }
+  .overview-rows strong { font-size: .75rem; }
+  .overview-rows small { color: #776d5e; font-size: .58rem; }
+  .overview-rows em { border: 1px solid #17130f; padding: .25rem .35rem; background: #f0df55; font-size: .55rem; font-style: normal; }
+  .overview-loading, .overview-rows > p { padding: 1rem; color: #776d5e; font-size: .7rem; }
+  @media (max-width: 900px) { .admin-scoreboard { grid-template-columns: 1fr 1fr; } .admin-scoreboard article:nth-child(3) { border-top: 2px solid #17130f; border-left: 0; } .admin-scoreboard article:nth-child(4) { border-top: 2px solid #17130f; } }
+  @media (max-width: 680px) { .admin-brief, .admin-panels { grid-template-columns: 1fr; gap: 1.5rem; } .admin-scoreboard { grid-template-columns: 1fr; } .admin-scoreboard article + article, .admin-scoreboard article:nth-child(4) { border-top: 2px solid #17130f; border-left: 0; } }
+</style>

@@ -1,0 +1,242 @@
+---
+import AdminLayout from "@/layouts/AdminLayout.astro";
+---
+
+<AdminLayout
+  title="Expense ledger"
+  description="Track every software subscription, renewal, usage bill, and trial in one private monthly operating view."
+  current="expenses"
+  eyebrow="Admin / Software operations"
+>
+  <section class="expense-command">
+    <div><span>COST CONTROL / SOFTWARE</span><h2>Know what the<br />stack costs.</h2></div>
+    <button id="new-expense" class="admin-button" type="button">+ Add expense</button>
+  </section>
+
+  <section class="expense-totals" aria-label="Expense totals">
+    <article><span>Monthly equivalent</span><strong id="expense-monthly">—</strong><small>active known costs</small></article>
+    <article><span>Annual run rate</span><strong id="expense-annual">—</strong><small>monthly × 12</small></article>
+    <article class="expense-alert"><span>Needs amount</span><strong id="expense-missing">—</strong><small>complete the ledger</small></article>
+    <article><span>Active tools</span><strong id="expense-active">—</strong><small>including trials</small></article>
+  </section>
+
+  <section class="expense-ledger" aria-labelledby="expense-ledger-title">
+    <header>
+      <div><p>Subscription register</p><h2 id="expense-ledger-title">Software & services</h2></div>
+      <label><span class="sr-only">Search expenses</span><input id="expense-search" type="search" placeholder="Search vendor or category…" /></label>
+    </header>
+    <div class="expense-columns" aria-hidden="true"><span>Vendor / category</span><span>Cost</span><span>Schedule</span><span>Status</span><span></span></div>
+    <div id="expense-list" class="expense-list"><p class="expense-loading">Loading private expenses…</p></div>
+  </section>
+
+  <dialog id="expense-dialog" class="expense-dialog">
+    <form id="expense-form" method="dialog">
+      <header><div><p id="expense-form-kicker">New operating cost</p><h2 id="expense-form-title">Add expense</h2></div><button type="button" data-close-expense aria-label="Close">×</button></header>
+      <input type="hidden" name="id" />
+      <div class="expense-form-grid">
+        <label><span>Vendor *</span><input name="vendor" required placeholder="Software company" /></label>
+        <label><span>Category *</span><input name="category" required list="expense-categories" placeholder="AI tools" /></label>
+        <label><span>Amount in USD</span><input name="amountDollars" type="number" min="0" step="0.01" placeholder="0.00" /></label>
+        <label><span>Billing schedule</span><select name="billingInterval"><option value="month">Monthly</option><option value="year">Yearly</option><option value="usage">Usage / variable</option><option value="one_time">One-time</option></select></label>
+        <label><span>Status</span><select name="status"><option value="active">Active</option><option value="trial">Trial</option><option value="paused">Paused</option><option value="canceled">Canceled</option></select></label>
+        <label><span>Billing day</span><input name="billingDay" type="number" min="1" max="31" placeholder="15" /></label>
+        <label><span>Renewal date</span><input name="renewalDate" type="date" /></label>
+        <label><span>Account / billing URL</span><input name="accountUrl" type="url" placeholder="https://…" /></label>
+        <label class="span-two"><span>Notes</span><textarea name="notes" rows="3" placeholder="Plan, seats, owner, cancellation notes…"></textarea></label>
+      </div>
+      <p id="expense-error" class="expense-error" role="alert"></p>
+      <footer><button type="button" class="expense-text-button" data-close-expense>Cancel</button><button id="save-expense" type="submit" class="admin-button">Save expense →</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="delete-expense-dialog" class="delete-expense-dialog">
+    <form method="dialog" id="delete-expense-form">
+      <span>REMOVE RECORD</span><h2>Delete <span id="delete-vendor"></span>?</h2><p>This removes the expense from this ledger. It does not cancel the subscription with the vendor.</p>
+      <input type="hidden" name="id" />
+      <footer><button type="button" data-cancel-delete>Keep it</button><button type="submit">Delete record</button></footer>
+    </form>
+  </dialog>
+
+  <datalist id="expense-categories"><option>AI tools</option><option>Analytics</option><option>Database & infrastructure</option><option>Developer tools</option><option>Email verification</option><option>Hosting & deployment</option><option>Sales & outreach</option><option>Sales & prospecting</option><option>Scheduling</option><option>Other</option></datalist>
+  <div id="expense-toast" class="expense-toast" role="status" aria-live="polite"></div>
+</AdminLayout>
+
+<script>
+  const list = document.querySelector("#expense-list");
+  const search = document.querySelector("#expense-search");
+  const dialog = document.querySelector("#expense-dialog");
+  const form = document.querySelector("#expense-form");
+  const error = document.querySelector("#expense-error");
+  const saveButton = document.querySelector("#save-expense");
+  const deleteDialog = document.querySelector("#delete-expense-dialog");
+  const deleteForm = document.querySelector("#delete-expense-form");
+  const toast = document.querySelector("#expense-toast");
+  let expenses = [];
+
+  const money = (cents, digits = 0) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: digits }).format(cents / 100);
+  const monthly = (item) => item.billingInterval === "month" ? item.amountCents : item.billingInterval === "year" ? item.amountCents / 12 : 0;
+  const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (character) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[character]);
+  const intervalText = (item) => ({ month: "Monthly", year: "Yearly", usage: "Variable usage", one_time: "One-time" })[item.billingInterval];
+
+  function notify(message) {
+    toast.textContent = message;
+    toast.classList.add("visible");
+    window.setTimeout(() => toast.classList.remove("visible"), 2200);
+  }
+
+  function render() {
+    const active = expenses.filter((item) => ["active", "trial"].includes(item.status));
+    const monthlyTotal = active.reduce((sum, item) => sum + monthly(item), 0);
+    const missing = active.filter((item) => !item.amountCents).length;
+    document.querySelector("#expense-monthly").textContent = money(monthlyTotal);
+    document.querySelector("#expense-annual").textContent = money(monthlyTotal * 12);
+    document.querySelector("#expense-missing").textContent = String(missing).padStart(2, "0");
+    document.querySelector("#expense-active").textContent = String(active.length).padStart(2, "0");
+    const query = search.value.trim().toLowerCase();
+    const visible = expenses.filter((item) => `${item.vendor} ${item.category} ${item.notes}`.toLowerCase().includes(query));
+    list.innerHTML = visible.map((item, index) => `
+      <article class="expense-row ${!item.amountCents && ["active","trial"].includes(item.status) ? "needs-cost" : ""}">
+        <span class="expense-index">${String(index + 1).padStart(2, "0")}</span>
+        <div class="expense-vendor"><strong>${escapeHtml(item.vendor)}</strong><p>${escapeHtml(item.category)}${item.notes ? ` · ${escapeHtml(item.notes)}` : ""}</p></div>
+        <div class="expense-cost">${item.amountCents ? `<strong>${money(item.amountCents, 2)}</strong><span>${intervalText(item)}</span>` : `<strong class="missing-cost">ADD COST</strong><span>${intervalText(item)}</span>`}</div>
+        <div class="expense-schedule"><strong>${item.renewalDate ? escapeHtml(item.renewalDate) : item.billingDay ? `Day ${item.billingDay}` : "Not set"}</strong><span>${item.renewalDate ? "renewal" : "billing date"}</span></div>
+        <div><span class="expense-status status-${escapeHtml(item.status)}">${escapeHtml(item.status)}</span></div>
+        <div class="expense-actions">${item.accountUrl ? `<a href="${escapeHtml(item.accountUrl)}" target="_blank" rel="noreferrer" aria-label="Open ${escapeHtml(item.vendor)} account">↗</a>` : ""}<button type="button" data-edit="${escapeHtml(item.id)}">Edit</button><button type="button" data-delete="${escapeHtml(item.id)}">×</button></div>
+      </article>
+    `).join("") || '<p class="expense-empty">No expenses match this view.</p>';
+  }
+
+  async function api(method, body) {
+    const response = await fetch("/.netlify/functions/expenses", { method, headers: body ? { "content-type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || "Expense service failed");
+    return payload;
+  }
+
+  async function load() {
+    const payload = await api("GET");
+    expenses = payload.expenses || [];
+    render();
+  }
+
+  function openForm(expense = null) {
+    form.reset();
+    error.textContent = "";
+    form.elements.id.value = expense?.id || "";
+    form.elements.vendor.value = expense?.vendor || "";
+    form.elements.category.value = expense?.category || "";
+    form.elements.amountDollars.value = expense?.amountCents ? (expense.amountCents / 100).toFixed(2) : "";
+    form.elements.billingInterval.value = expense?.billingInterval || "month";
+    form.elements.status.value = expense?.status || "active";
+    form.elements.billingDay.value = expense?.billingDay || "";
+    form.elements.renewalDate.value = expense?.renewalDate || "";
+    form.elements.accountUrl.value = expense?.accountUrl || "";
+    form.elements.notes.value = expense?.notes || "";
+    document.querySelector("#expense-form-kicker").textContent = expense ? "Update operating cost" : "New operating cost";
+    document.querySelector("#expense-form-title").textContent = expense ? `Edit ${expense.vendor}` : "Add expense";
+    dialog.showModal();
+  }
+
+  document.querySelector("#new-expense").addEventListener("click", () => openForm());
+  document.querySelectorAll("[data-close-expense]").forEach((button) => button.addEventListener("click", () => dialog.close()));
+  search.addEventListener("input", render);
+  list.addEventListener("click", (event) => {
+    const edit = event.target.closest("[data-edit]");
+    if (edit) openForm(expenses.find((item) => item.id === edit.dataset.edit));
+    const remove = event.target.closest("[data-delete]");
+    if (remove) {
+      const expense = expenses.find((item) => item.id === remove.dataset.delete);
+      deleteForm.elements.id.value = expense.id;
+      document.querySelector("#delete-vendor").textContent = expense.vendor;
+      deleteDialog.showModal();
+    }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    error.textContent = "";
+    saveButton.disabled = true;
+    saveButton.textContent = "Saving…";
+    const body = Object.fromEntries(new FormData(form));
+    try {
+      const payload = await api(body.id ? "PUT" : "POST", body);
+      expenses = payload.expenses || [];
+      dialog.close();
+      render();
+      notify(`${payload.expense.vendor} saved.`);
+    } catch (problem) { error.textContent = problem instanceof Error ? problem.message : "Could not save expense."; }
+    finally { saveButton.disabled = false; saveButton.textContent = "Save expense →"; }
+  });
+
+  deleteForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const id = deleteForm.elements.id.value;
+    const vendor = expenses.find((item) => item.id === id)?.vendor || "Expense";
+    try {
+      const payload = await api("DELETE", { id });
+      expenses = payload.expenses || [];
+      deleteDialog.close();
+      render();
+      notify(`${vendor} removed from the ledger.`);
+    } catch (problem) { notify(problem instanceof Error ? problem.message : "Could not delete expense."); }
+  });
+  document.querySelector("[data-cancel-delete]").addEventListener("click", () => deleteDialog.close());
+  window.addEventListener("admin:ready", () => load().catch((problem) => { list.innerHTML = `<p class="expense-empty">${escapeHtml(problem.message)}</p>`; }));
+</script>
+
+<style>
+  .expense-command { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+  .expense-command > div > span { display: inline-block; border-bottom: 1px solid #17130f; padding-bottom: .35rem; font-size: .6rem; letter-spacing: .12em; }
+  .expense-command h2 { margin-top: 1rem; font-size: clamp(4.5rem, 8vw, 8rem); line-height: .78; }
+  .expense-totals { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3rem; border: 2px solid #17130f; background: #f1ecdc; box-shadow: 7px 7px 0 #17130f; }
+  .expense-totals article { min-height: 8.5rem; padding: 1.2rem; }
+  .expense-totals article + article { border-left: 2px solid #17130f; }
+  .expense-totals span, .expense-totals small { display: block; color: #655b4d; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  .expense-totals strong { display: block; margin-block: .7rem .45rem; font-family: "League Gothic", sans-serif; font-size: clamp(2.5rem,4vw,4rem); font-weight: 400; line-height: .85; }
+  .expense-totals .expense-alert { background: #f0df55; }
+  .expense-ledger { margin-top: 4rem; border-top: 3px solid #17130f; }
+  .expense-ledger > header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-block: 1.1rem; }
+  .expense-ledger header p { color: #f43e8d; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .expense-ledger h2 { margin-top: .2rem; font-size: 3rem; line-height: .9; }
+  .expense-ledger input[type="search"] { width: min(19rem, 42vw); border: 1px solid #17130f; border-radius: 0; background: #f7f1df; font-size: .7rem; }
+  .expense-columns, .expense-row { display: grid; grid-template-columns: minmax(14rem,1.5fr) minmax(7rem,.55fr) minmax(7rem,.55fr) minmax(5.5rem,.4fr) minmax(8rem,.55fr); gap: 1rem; align-items: center; }
+  .expense-columns { border-block: 1px solid rgb(23 19 15 / 25%); padding: .62rem 1rem .62rem 3.8rem; color: #776d5e; font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+  .expense-row { position: relative; min-height: 6.4rem; border-bottom: 1px solid rgb(23 19 15 / 20%); padding: .9rem 1rem .9rem 3.8rem; transition: background 150ms ease; }
+  .expense-row:hover { background: rgb(247 241 223 / 60%); }
+  .expense-row.needs-cost { box-shadow: inset 4px 0 #f0df55; }
+  .expense-index { position: absolute; left: 1rem; top: 1.2rem; color: #f43e8d; font-size: .6rem; font-weight: 700; }
+  .expense-vendor strong { font-family: "Newsreader", serif; font-size: 1.2rem; }
+  .expense-vendor p { max-width: 30rem; margin-top: .25rem; overflow: hidden; color: #655b4d; font-size: .62rem; text-overflow: ellipsis; white-space: nowrap; }
+  .expense-cost strong, .expense-schedule strong { display: block; font-size: .75rem; }
+  .expense-cost span, .expense-schedule span { display: block; margin-top: .25rem; color: #776d5e; font-size: .58rem; }
+  .missing-cost { display: inline-block !important; border: 1px solid #17130f; padding: .25rem .35rem; background: #f0df55; font-size: .55rem !important; }
+  .expense-status { display: inline-flex; border: 1px solid #17130f; padding: .3rem .42rem; font-size: .55rem; font-weight: 700; text-transform: uppercase; }
+  .status-active { color: #f7f1df; background: #17130f; }.status-trial { background: #f0df55; }.status-paused { background: #e3dcc9; }.status-canceled { opacity: .5; text-decoration: line-through; }
+  .expense-actions { display: flex; justify-content: flex-end; gap: .4rem; }
+  .expense-actions :is(a,button) { display: grid; min-width: 2rem; min-height: 2rem; place-items: center; border: 1px solid #17130f; padding-inline: .45rem; color: #17130f; background: transparent; font-size: .6rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+  .expense-actions a { color: #f7f1df; background: #17130f; }
+  .expense-loading, .expense-empty { padding: 2rem 1rem; color: #776d5e; font-size: .72rem; }
+  .expense-dialog { width: min(calc(100% - 2rem), 48rem); max-height: calc(100svh - 2rem); border: 2px solid #17130f; border-radius: 0; padding: 0; color: #17130f; background: #f1ecdc; box-shadow: 10px 10px 0 #f43e8d; }
+  .expense-dialog::backdrop, .delete-expense-dialog::backdrop { background: rgb(23 19 15 / 78%); backdrop-filter: blur(3px); }
+  .expense-dialog form > header { display: flex; align-items: start; justify-content: space-between; border-bottom: 2px solid #17130f; padding: 1.3rem 1.5rem; }
+  .expense-dialog header p { color: #f43e8d; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .expense-dialog h2 { margin-top: .2rem; font-size: 3rem; line-height: .9; }
+  .expense-dialog header button { font-size: 1.7rem; line-height: 1; }
+  .expense-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; }
+  .expense-form-grid label > span { display: block; color: #594f43; font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .expense-form-grid :is(input,select,textarea) { width: 100%; margin-top: .4rem; border: 1px solid #17130f; border-radius: 0; background: #f7f1df; font-size: .75rem; }
+  .expense-form-grid .span-two { grid-column: 1 / -1; }
+  .expense-error { min-height: 1.3rem; margin-inline: 1.5rem; color: #c2276a; font-size: .68rem; }
+  .expense-dialog footer { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border-top: 1px solid rgb(23 19 15 / 20%); padding: 1.1rem 1.5rem 1.4rem; }
+  .expense-text-button { font-size: .68rem; text-decoration: underline; text-underline-offset: 3px; }
+  .delete-expense-dialog { width: min(calc(100% - 2rem), 30rem); border: 2px solid #17130f; border-radius: 0; padding: 2rem; color: #17130f; background: #f0df55; box-shadow: 8px 8px 0 #f43e8d; }
+  .delete-expense-dialog form > span { font-size: .58rem; font-weight: 700; letter-spacing: .1em; }
+  .delete-expense-dialog h2 { margin-top: .7rem; font-size: 2.8rem; line-height: .9; }
+  .delete-expense-dialog p { margin-top: 1rem; font-size: .72rem; line-height: 1.6; }
+  .delete-expense-dialog footer { display: flex; justify-content: flex-end; gap: .7rem; margin-top: 1.5rem; }
+  .delete-expense-dialog footer button { border: 1px solid #17130f; padding: .65rem .8rem; font-size: .62rem; font-weight: 700; text-transform: uppercase; }
+  .delete-expense-dialog footer button:last-child { color: #f7f1df; background: #17130f; }
+  .expense-toast { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 40; translate: 0 150%; border: 2px solid #17130f; padding: .9rem 1rem; background: #f0df55; box-shadow: 4px 4px 0 #17130f; font-size: .68rem; transition: translate 200ms ease; }.expense-toast.visible { translate: 0; }
+  @media (max-width: 1050px) { .expense-columns { display: none; } .expense-row { grid-template-columns: 1fr 1fr 1fr; } .expense-vendor { grid-column: 1 / 3; }.expense-actions { grid-column: 3; grid-row: 1; }.expense-schedule { display: none; } }
+  @media (max-width: 760px) { .expense-command { align-items: start; flex-direction: column; }.expense-totals { grid-template-columns: 1fr 1fr; }.expense-totals article:nth-child(3) { border-top: 2px solid #17130f; border-left: 0; }.expense-totals article:nth-child(4) { border-top: 2px solid #17130f; }.expense-ledger > header { align-items: start; flex-direction: column; }.expense-ledger input[type="search"] { width: 100%; }.expense-row { grid-template-columns: 1fr; gap: .7rem; padding-left: 3.5rem; }.expense-vendor,.expense-actions { grid-column: auto; grid-row: auto; }.expense-actions { justify-content: flex-start; }.expense-form-grid { grid-template-columns: 1fr; }.expense-form-grid .span-two { grid-column: auto; } }
+</style>

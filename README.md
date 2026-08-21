@@ -27,7 +27,9 @@ The production site is configured for `https://raleighaiguy.com`.
 
 ## Stripe Checkout
 
-The password-protected `/clients/` ledger uses the same `OPS_DASHBOARD_KEY` secure session as the internal operations tools. It lists client payment profiles and can create a new Stripe product, Stripe price, and immediately shareable payment page without a site rebuild. New profiles are stored privately in Netlify Blobs.
+The password-protected `/admin/` back office uses the same `OPS_DASHBOARD_KEY` secure session as the internal operations tools. It combines client billing and software expenses in one overview. `/clients/` manages client payment profiles; `/admin/expenses/` manages recurring, annual, one-time, and usage-based software costs. Both private ledgers are stored in Netlify Blobs.
+
+The expense ledger starts with requested or code-evidenced services such as Supabase, Vercel, Smartlead, Apollo, Netlify, PostHog, ZeroBounce, and Calendly. Seeded costs are intentionally blank until the actual account plan is entered; the dashboard does not infer a vendor's public list price as the business's real expense.
 
 The existing `/clients/zimzoom/` page remains ZimZoom's stable payment URL. New clients receive a URL in the form `/clients/pay/?client=client-slug`; the page reads only the client-facing payment details and sends the client to Stripe Checkout.
 
