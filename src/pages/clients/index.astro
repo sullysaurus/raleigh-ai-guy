@@ -1,0 +1,361 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  pageTitle="Client ledger"
+  pageDescription="Private Raleigh AI Guy client and billing dashboard."
+  noindex
+  minimal
+>
+  <div class="client-app">
+    <section id="client-gate" class="client-gate" aria-labelledby="gate-title">
+      <div class="gate-card">
+        <span class="gate-index">PRIVATE / 01</span>
+        <div class="gate-mark" aria-hidden="true">RA</div>
+        <p class="gate-eyebrow">Raleigh AI Guy · Client office</p>
+        <h1 id="gate-title">Open the ledger.</h1>
+        <p class="gate-copy">Client profiles, payment pages, and recurring fees stay behind your private dashboard key.</p>
+        <form id="client-login-form" class="gate-form">
+          <label for="dashboard-key">Dashboard password</label>
+          <div>
+            <input id="dashboard-key" name="dashboardKey" type="password" autocomplete="current-password" required />
+            <button type="submit">Unlock →</button>
+          </div>
+          <p id="login-error" role="alert"></p>
+        </form>
+      </div>
+    </section>
+
+    <div id="client-dashboard" class="client-dashboard" hidden>
+      <aside class="client-rail">
+        <a href="/clients/" class="rail-mark"><span>RA</span><strong>Client<br />Office</strong></a>
+        <nav aria-label="Client dashboard">
+          <p>Workspace</p>
+          <a href="/clients/" aria-current="page"><span></span>Client ledger</a>
+        </nav>
+        <div class="rail-foot">
+          <span>PRIVATE</span>
+          <button id="sign-out" type="button">Lock dashboard</button>
+        </div>
+      </aside>
+
+      <main class="client-workspace">
+        <header class="client-head">
+          <div>
+            <p>Accounts / Payment profiles</p>
+            <h1>Client ledger</h1>
+          </div>
+          <button id="open-client-dialog" class="ledger-button" type="button">+ New client</button>
+        </header>
+
+        <div class="client-content">
+          <section class="ledger-intro" aria-labelledby="ledger-title">
+            <div>
+              <span class="ledger-kicker">LIVE BOOK / <span id="today-label"></span></span>
+              <h2 id="ledger-title">Every client.<br />One clean way to pay.</h2>
+            </div>
+            <p>Create the account once. The dashboard creates its Stripe product and price, then gives you a private payment page to send to the client.</p>
+          </section>
+
+          <section class="ledger-stats" aria-label="Client totals">
+            <article><span>Active profiles</span><strong id="client-count">—</strong><small>ready to share</small></article>
+            <article><span>Recurring book</span><strong id="monthly-total">—</strong><small>monthly equivalent</small></article>
+            <article class="stat-accent"><span>Payment system</span><strong>Stripe</strong><small>secure hosted checkout</small></article>
+          </section>
+
+          <section class="account-ledger" aria-labelledby="accounts-title">
+            <header>
+              <div><p>Account register</p><h2 id="accounts-title">Current clients</h2></div>
+              <span id="ledger-status">Loading private records…</span>
+            </header>
+            <div class="ledger-columns" aria-hidden="true">
+              <span>Client / service</span><span>Billing</span><span>Payment page</span>
+            </div>
+            <div id="client-list" class="client-list"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="new-client-dialog" class="client-dialog">
+      <form id="new-client-form" method="dialog">
+        <header>
+          <div><p>New account / Stripe-backed</p><h2>Create client profile</h2></div>
+          <button type="button" data-close-dialog aria-label="Close">×</button>
+        </header>
+        <div class="dialog-grid">
+          <label><span>Company *</span><input name="company" required autocomplete="organization" placeholder="Acme Services" /></label>
+          <label><span>Billing email *</span><input name="contactEmail" type="email" required autocomplete="email" placeholder="owner@acme.com" /></label>
+          <label><span>Legal / invoice name</span><input name="legalName" placeholder="Acme Services LLC" /></label>
+          <label><span>Payment URL slug *</span><input name="slug" required pattern="[a-z0-9-]+" placeholder="acme-services" /></label>
+          <label class="span-two"><span>Service name *</span><input name="serviceTitle" required value="Monthly AI consulting" /></label>
+          <label><span>Fee in USD *</span><input name="amountDollars" type="number" min="1" step="0.01" required placeholder="500" /></label>
+          <label><span>Billing schedule *</span><select name="billingInterval"><option value="month">Monthly</option><option value="year">Yearly</option><option value="one_time">One-time</option></select></label>
+          <label class="span-two"><span>Client-facing description</span><textarea name="description" rows="3">Ongoing AI consulting and implementation support under the signed consulting agreement.</textarea></label>
+        </div>
+        <div class="dialog-note"><span>STRIPE ACTION</span><p>Creating this profile also creates a product and price in the connected Stripe account. It does not charge the client.</p></div>
+        <p id="create-error" class="dialog-error" role="alert"></p>
+        <footer>
+          <button type="button" class="text-button" data-close-dialog>Cancel</button>
+          <button id="create-client" type="submit" class="ledger-button">Create profile + price →</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div id="client-toast" class="client-toast" role="status" aria-live="polite"></div>
+  </div>
+</BaseLayout>
+
+<script>
+  const gate = document.querySelector("#client-gate");
+  const dashboard = document.querySelector("#client-dashboard");
+  const loginForm = document.querySelector("#client-login-form");
+  const loginError = document.querySelector("#login-error");
+  const clientList = document.querySelector("#client-list");
+  const ledgerStatus = document.querySelector("#ledger-status");
+  const dialog = document.querySelector("#new-client-dialog");
+  const clientForm = document.querySelector("#new-client-form");
+  const createError = document.querySelector("#create-error");
+  const createButton = document.querySelector("#create-client");
+  const toast = document.querySelector("#client-toast");
+  let clients = [];
+
+  const readJson = async (response) => {
+    const text = await response.text();
+    try { return JSON.parse(text); }
+    catch { throw new Error("The client service returned an invalid response."); }
+  };
+
+  const money = (cents) => new Intl.NumberFormat("en-US", {
+    style: "currency", currency: "USD", maximumFractionDigits: cents % 100 ? 2 : 0,
+  }).format(cents / 100);
+
+  const intervalLabel = (client) => client.billingInterval === "one_time"
+    ? "one time"
+    : `per ${client.billingInterval}`;
+
+  const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
+  })[character]);
+
+  function renderClients() {
+    document.querySelector("#client-count").textContent = String(clients.length).padStart(2, "0");
+    const monthly = clients.reduce((total, client) => {
+      if (client.billingInterval === "month") return total + client.amountCents;
+      if (client.billingInterval === "year") return total + client.amountCents / 12;
+      return total;
+    }, 0);
+    document.querySelector("#monthly-total").textContent = money(monthly);
+    ledgerStatus.textContent = `${clients.length} profile${clients.length === 1 ? "" : "s"} · private records loaded`;
+    clientList.innerHTML = clients.map((client, index) => `
+      <article class="client-row">
+        <span class="row-index">${String(index + 1).padStart(2, "0")}</span>
+        <div class="row-account">
+          <strong>${escapeHtml(client.company)}</strong>
+          <p>${escapeHtml(client.serviceTitle)}${client.contactEmail ? ` · ${escapeHtml(client.contactEmail)}` : ""}</p>
+        </div>
+        <div class="row-billing"><strong>${money(client.amountCents)}</strong><span>${intervalLabel(client)}</span></div>
+        <div class="row-actions">
+          <button type="button" data-copy-url="${escapeHtml(client.checkoutPath)}">Copy link</button>
+          <a href="${escapeHtml(client.checkoutPath)}" target="_blank" rel="noreferrer">Open ↗</a>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  async function loadClients() {
+    const response = await fetch("/.netlify/functions/clients");
+    const payload = await readJson(response);
+    if (!response.ok) throw new Error(payload.error || "Could not load clients");
+    clients = payload.clients || [];
+    renderClients();
+  }
+
+  function showDashboard() {
+    gate.hidden = true;
+    dashboard.hidden = false;
+  }
+
+  async function restoreSession() {
+    try {
+      const response = await fetch("/.netlify/functions/ops-session");
+      const payload = await readJson(response);
+      if (!response.ok || !payload.authenticated) return;
+      showDashboard();
+      await loadClients();
+    } catch {}
+  }
+
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    loginError.textContent = "";
+    const key = new FormData(loginForm).get("dashboardKey");
+    try {
+      const response = await fetch("/.netlify/functions/ops-session", { method: "POST", headers: { "x-ops-key": String(key || "") } });
+      const payload = await readJson(response);
+      if (!response.ok || !payload.authenticated) throw new Error(payload.error || "That password did not work.");
+      loginForm.reset();
+      showDashboard();
+      await loadClients();
+    } catch (error) {
+      loginError.textContent = error instanceof Error ? error.message : "Could not unlock the dashboard.";
+    }
+  });
+
+  document.querySelector("#open-client-dialog").addEventListener("click", () => {
+    clientForm.reset();
+    createError.textContent = "";
+    dialog.showModal();
+  });
+  document.querySelectorAll("[data-close-dialog]").forEach((button) => button.addEventListener("click", () => dialog.close()));
+
+  clientForm.querySelector('[name="company"]').addEventListener("input", (event) => {
+    const slug = clientForm.querySelector('[name="slug"]');
+    if (slug.dataset.edited === "true") return;
+    slug.value = event.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  });
+  clientForm.querySelector('[name="slug"]').addEventListener("input", (event) => { event.target.dataset.edited = "true"; });
+
+  clientForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    createError.textContent = "";
+    createButton.disabled = true;
+    createButton.textContent = "Creating in Stripe…";
+    try {
+      const body = Object.fromEntries(new FormData(clientForm));
+      const response = await fetch("/.netlify/functions/clients", {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body),
+      });
+      const payload = await readJson(response);
+      if (!response.ok) throw new Error(payload.error || "Could not create the client profile");
+      dialog.close();
+      await loadClients();
+      toast.textContent = `${payload.client.company} is ready to bill.`;
+      toast.classList.add("visible");
+      window.setTimeout(() => toast.classList.remove("visible"), 2600);
+    } catch (error) {
+      createError.textContent = error instanceof Error ? error.message : "Could not create the client profile.";
+    } finally {
+      createButton.disabled = false;
+      createButton.textContent = "Create profile + price →";
+    }
+  });
+
+  clientList.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-copy-url]");
+    if (!button) return;
+    const url = new URL(button.dataset.copyUrl, window.location.origin).href;
+    await navigator.clipboard.writeText(url);
+    const original = button.textContent;
+    button.textContent = "Copied ✓";
+    window.setTimeout(() => { button.textContent = original; }, 1400);
+  });
+
+  document.querySelector("#sign-out").addEventListener("click", async () => {
+    await fetch("/.netlify/functions/ops-session", { method: "DELETE" });
+    window.location.reload();
+  });
+
+  document.querySelector("#today-label").textContent = new Intl.DateTimeFormat("en-US", { month: "short", day: "2-digit", year: "numeric" }).format(new Date()).toUpperCase();
+  restoreSession();
+</script>
+
+<style>
+  .client-app { min-height: 100svh; color: #17130f; background: #eee8d6; }
+  .client-gate { display: grid; min-height: 100svh; place-items: center; padding: 1.5rem; background: #17130f; background-image: linear-gradient(rgb(247 241 223 / 4%) 1px, transparent 1px), linear-gradient(90deg, rgb(247 241 223 / 4%) 1px, transparent 1px); background-size: 34px 34px; }
+  .gate-card { position: relative; width: min(100%, 35rem); border: 1px solid rgb(247 241 223 / 28%); padding: clamp(2rem, 7vw, 4.5rem); color: #f7f1df; background: #201a16; box-shadow: 14px 14px 0 #f43e8d; animation: ledger-in 500ms cubic-bezier(.22,1,.36,1) both; }
+  .gate-index { position: absolute; top: 1rem; right: 1rem; color: rgb(247 241 223 / 40%); font-size: .62rem; letter-spacing: .12em; }
+  .gate-mark { display: grid; width: 3.5rem; height: 3.5rem; place-items: center; border: 2px solid #f0df55; border-radius: 999px; color: #f0df55; font-size: .82rem; font-weight: 700; }
+  .gate-eyebrow { margin-top: 2.5rem; color: #f43e8d; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+  .gate-card h1 { margin-top: .55rem; font-size: clamp(4rem, 13vw, 6.5rem); line-height: .82; }
+  .gate-copy { margin-top: 1.5rem; color: rgb(247 241 223 / 62%); font-size: .82rem; line-height: 1.65; }
+  .gate-form { margin-top: 2rem; }
+  .gate-form label { display: block; color: rgb(247 241 223 / 58%); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+  .gate-form > div { display: grid; grid-template-columns: 1fr auto; margin-top: .55rem; }
+  .gate-form input { min-width: 0; border: 1px solid rgb(247 241 223 / 35%); border-radius: 0; color: #f7f1df; background: transparent; }
+  .gate-form button { border: 1px solid #f0df55; padding: .7rem 1rem; color: #17130f; background: #f0df55; font-size: .7rem; font-weight: 700; text-transform: uppercase; }
+  #login-error, .dialog-error { min-height: 1.35rem; margin-top: .65rem; color: #f43e8d; font-size: .72rem; }
+  .client-dashboard { min-height: 100svh; }
+  .client-rail { position: fixed; inset: 0 auto 0 0; z-index: 10; display: flex; width: 14.5rem; flex-direction: column; color: #f7f1df; background: #17130f; }
+  .rail-mark { display: flex; align-items: center; gap: .9rem; border-bottom: 1px solid rgb(247 241 223 / 16%); padding: 1.6rem; color: inherit; text-decoration: none; }
+  .rail-mark span { display: grid; width: 2.7rem; height: 2.7rem; place-items: center; border: 1px solid #f43e8d; border-radius: 999px; color: #f43e8d; font-size: .7rem; font-weight: 700; }
+  .rail-mark strong { font-family: "Newsreader", serif; font-size: 1.25rem; line-height: .88; }
+  .client-rail nav { padding: 2rem 1rem; }
+  .client-rail nav p { padding-inline: .65rem; color: rgb(247 241 223 / 38%); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; }
+  .client-rail nav a { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; padding: .7rem .65rem; color: #f7f1df; background: rgb(247 241 223 / 8%); font-size: .75rem; text-decoration: none; }
+  .client-rail nav a span { width: .4rem; height: .4rem; border-radius: 999px; background: #f0df55; }
+  .rail-foot { display: flex; align-items: center; justify-content: space-between; margin: auto 1.5rem 1.5rem; border-top: 1px solid rgb(247 241 223 / 14%); padding-top: 1rem; }
+  .rail-foot span { color: #f43e8d; font-size: .58rem; letter-spacing: .12em; }
+  .rail-foot button { color: rgb(247 241 223 / 55%); font-size: .65rem; text-decoration: underline; text-underline-offset: 3px; }
+  .client-workspace { min-height: 100svh; margin-left: 14.5rem; }
+  .client-head { display: flex; align-items: end; justify-content: space-between; gap: 2rem; border-bottom: 2px solid #17130f; padding: 1.6rem clamp(1.25rem, 4vw, 3.5rem); }
+  .client-head p, .account-ledger header p { color: #776d5e; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+  .client-head h1 { margin-top: .2rem; font-size: clamp(2.5rem, 5vw, 4rem); line-height: .9; }
+  .ledger-button { min-height: 2.75rem; border: 2px solid #17130f; padding: .65rem 1rem; color: #f7f1df; background: #17130f; box-shadow: 4px 4px 0 #f43e8d; font-size: .72rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; transition: transform 140ms ease, box-shadow 140ms ease; }
+  .ledger-button:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #f43e8d; }
+  .ledger-button:disabled { cursor: wait; opacity: .62; }
+  .client-content { padding: clamp(1.5rem, 4vw, 3.5rem); }
+  .ledger-intro { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(16rem, .7fr); align-items: end; gap: 3rem; }
+  .ledger-kicker { display: inline-block; border-bottom: 1px solid #17130f; padding-bottom: .35rem; font-size: .62rem; letter-spacing: .12em; }
+  .ledger-intro h2 { margin-top: 1rem; font-size: clamp(4rem, 8vw, 7.5rem); line-height: .78; }
+  .ledger-intro > p { border-left: 4px solid #f43e8d; padding-left: 1rem; color: #655b4d; font-size: .78rem; line-height: 1.7; }
+  .ledger-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; border: 2px solid #17130f; background: #f1ecdc; box-shadow: 7px 7px 0 #17130f; }
+  .ledger-stats article { min-height: 9.25rem; padding: 1.25rem; }
+  .ledger-stats article + article { border-left: 2px solid #17130f; }
+  .ledger-stats span, .ledger-stats small { display: block; color: #655b4d; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+  .ledger-stats strong { display: block; margin-block: .7rem .45rem; font-family: "League Gothic", sans-serif; font-size: clamp(2.6rem, 5vw, 4.25rem); font-weight: 400; line-height: .85; text-transform: uppercase; }
+  .ledger-stats .stat-accent { background: #f0df55; }
+  .account-ledger { margin-top: 4rem; border-top: 3px solid #17130f; }
+  .account-ledger > header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-block: 1.3rem; }
+  .account-ledger h2 { margin-top: .2rem; font-size: 3rem; line-height: .9; }
+  #ledger-status { color: #655b4d; font-size: .65rem; }
+  .ledger-columns, .client-row { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(8rem, .55fr) minmax(13rem, .7fr); gap: 1rem; align-items: center; }
+  .ledger-columns { border-block: 1px solid rgb(23 19 15 / 28%); padding: .65rem 1rem .65rem 4.2rem; color: #776d5e; font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .client-row { position: relative; min-height: 7rem; border-bottom: 1px solid rgb(23 19 15 / 22%); padding: 1rem; padding-left: 4.2rem; transition: background 160ms ease; }
+  .client-row:hover { background: rgb(247 241 223 / 64%); }
+  .row-index { position: absolute; left: 1rem; top: 1.3rem; color: #f43e8d; font-size: .65rem; font-weight: 700; }
+  .row-account strong { font-family: "Newsreader", serif; font-size: 1.45rem; }
+  .row-account p, .row-billing span { margin-top: .3rem; color: #655b4d; font-size: .7rem; }
+  .row-billing strong { display: block; font-size: 1.05rem; }
+  .row-billing span { display: block; }
+  .row-actions { display: flex; justify-content: flex-end; gap: .55rem; }
+  .row-actions a, .row-actions button { border: 1px solid #17130f; padding: .55rem .7rem; color: #17130f; background: transparent; font-size: .65rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+  .row-actions a { color: #f7f1df; background: #17130f; }
+  .client-dialog { width: min(calc(100% - 2rem), 48rem); max-height: calc(100svh - 2rem); border: 2px solid #17130f; border-radius: 0; padding: 0; color: #17130f; background: #f1ecdc; box-shadow: 10px 10px 0 #f43e8d; }
+  .client-dialog::backdrop { background: rgb(23 19 15 / 78%); backdrop-filter: blur(3px); }
+  .client-dialog form > header { display: flex; align-items: start; justify-content: space-between; border-bottom: 2px solid #17130f; padding: 1.35rem 1.5rem; }
+  .client-dialog header p { color: #776d5e; font-size: .6rem; letter-spacing: .11em; text-transform: uppercase; }
+  .client-dialog h2 { margin-top: .25rem; font-size: 3rem; line-height: .9; }
+  .client-dialog header button { font-size: 1.75rem; line-height: 1; }
+  .dialog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; }
+  .dialog-grid label span { display: block; color: #594f43; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .dialog-grid :is(input, select, textarea) { width: 100%; margin-top: .45rem; border: 1px solid #17130f; border-radius: 0; color: #17130f; background: #f7f1df; font-size: .78rem; }
+  .dialog-grid .span-two { grid-column: 1 / -1; }
+  .dialog-note { display: flex; gap: .9rem; margin-inline: 1.5rem; border: 1px solid #17130f; padding: .85rem; background: #f0df55; }
+  .dialog-note span { flex: 0 0 auto; font-size: .6rem; font-weight: 700; letter-spacing: .08em; }
+  .dialog-note p { font-size: .68rem; line-height: 1.5; }
+  .dialog-error { margin-inline: 1.5rem; }
+  .client-dialog footer { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border-top: 1px solid rgb(23 19 15 / 22%); padding: 1.1rem 1.5rem 1.4rem; }
+  .text-button { font-size: .7rem; text-decoration: underline; text-underline-offset: 3px; }
+  .client-toast { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 30; translate: 0 150%; border: 2px solid #17130f; padding: .9rem 1rem; color: #17130f; background: #f0df55; box-shadow: 4px 4px 0 #17130f; font-size: .72rem; transition: translate 220ms ease; }
+  .client-toast.visible { translate: 0; }
+  @keyframes ledger-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 800px) {
+    .client-rail { position: static; width: auto; min-height: auto; }
+    .client-rail nav { display: none; }
+    .rail-mark { padding: 1rem 1.25rem; }
+    .rail-foot { position: absolute; top: 1rem; right: 1.25rem; margin: 0; border: 0; }
+    .rail-foot span { display: none; }
+    .client-workspace { margin-left: 0; }
+    .ledger-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+    .ledger-stats { grid-template-columns: 1fr; }
+    .ledger-stats article + article { border-top: 2px solid #17130f; border-left: 0; }
+    .ledger-columns { display: none; }
+    .client-row { grid-template-columns: 1fr; gap: .8rem; padding-left: 3.6rem; }
+    .row-actions { justify-content: flex-start; }
+    .dialog-grid { grid-template-columns: 1fr; }
+    .dialog-grid .span-two { grid-column: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .gate-card { animation: none; } }
+</style>

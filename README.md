@@ -27,11 +27,18 @@ The production site is configured for `https://raleighaiguy.com`.
 
 ## Stripe Checkout
 
-The private `/clients/zimzoom/` page starts a Stripe Checkout subscription through the `create-zimzoom-checkout` Netlify Function. Configure these environment variables in Netlify for both test and production contexts:
+The password-protected `/clients/` ledger uses the same `OPS_DASHBOARD_KEY` secure session as the internal operations tools. It lists client payment profiles and can create a new Stripe product, Stripe price, and immediately shareable payment page without a site rebuild. New profiles are stored privately in Netlify Blobs.
+
+The existing `/clients/zimzoom/` page remains ZimZoom's stable payment URL. New clients receive a URL in the form `/clients/pay/?client=client-slug`; the page reads only the client-facing payment details and sends the client to Stripe Checkout.
+
+Configure these environment variables in Netlify for both test and production contexts:
 
 - `STRIPE_SECRET_KEY`: Stripe test or live secret key
 - `STRIPE_ZIMZOOM_PRICE_ID`: ID of a recurring USD price for $500 per month
 - `STRIPE_ZIMZOOM_CUSTOMER_EMAIL`: optional client email to prefill in Checkout
+- `OPS_DASHBOARD_KEY`: password used to unlock `/clients/`
+
+Creating a client from the ledger creates Stripe catalog objects but does not charge the client. A charge or subscription begins only after the client completes the hosted Stripe Checkout page.
 
 ## Acquisition dashboard integrations
 

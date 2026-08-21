@@ -1,0 +1,123 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="Secure client payment" pageDescription="Secure Raleigh AI Guy client payment." noindex minimal>
+  <div class="pay-page">
+    <main class="pay-shell">
+      <header class="pay-head">
+        <a href="/">Daniel Sullivan</a>
+        <span>Secure client payment / Stripe</span>
+      </header>
+
+      <section id="payment-loading" class="payment-loading" aria-live="polite">
+        <span></span><p>Loading private payment profile…</p>
+      </section>
+
+      <section id="payment-profile" class="payment-profile" hidden>
+        <div class="payment-copy">
+          <p id="client-legal-name" class="pay-eyebrow"></p>
+          <h1 id="service-title"></h1>
+          <p id="service-description" class="pay-description"></p>
+        </div>
+        <aside class="payment-card" aria-labelledby="payment-summary">
+          <span class="card-index">INVOICE PROFILE / 01</span>
+          <p id="payment-summary" class="pay-eyebrow">Payment summary</p>
+          <div class="price-row">
+            <div><h2 id="card-service-title"></h2><p id="renewal-label"></p></div>
+            <p><strong id="payment-amount"></strong><span id="payment-interval"></span></p>
+          </div>
+          <ul>
+            <li><span>✓</span>Secure checkout and receipts from Stripe</li>
+            <li><span>✓</span>Payment details stay with Stripe</li>
+            <li><span>✓</span>Terms follow the signed agreement</li>
+          </ul>
+          <form action="/.netlify/functions/create-client-checkout" method="POST">
+            <input id="client-slug" type="hidden" name="client" />
+            <button type="submit">Continue to secure checkout →</button>
+          </form>
+          <p class="agreement-note">By continuing, you confirm the service agreement has been signed by both parties.</p>
+        </aside>
+      </section>
+
+      <section id="payment-error" class="payment-error" hidden>
+        <span>PROFILE NOT FOUND</span>
+        <h1>This payment page isn’t available.</h1>
+        <p id="payment-error-message">Check the link or contact Daniel for a fresh payment page.</p>
+        <a href="mailto:danny@raleighaiguy.com">Email Daniel →</a>
+      </section>
+
+      <footer class="pay-footer"><span>Questions about this payment?</span><a href="mailto:danny@raleighaiguy.com">danny@raleighaiguy.com</a></footer>
+    </main>
+  </div>
+</BaseLayout>
+
+<script>
+  const loading = document.querySelector("#payment-loading");
+  const profile = document.querySelector("#payment-profile");
+  const errorPanel = document.querySelector("#payment-error");
+  const slug = new URLSearchParams(window.location.search).get("client") || "";
+  const money = (cents) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: cents % 100 ? 2 : 0 }).format(cents / 100);
+
+  async function loadProfile() {
+    try {
+      if (!slug) throw new Error("This link is missing its client profile.");
+      const response = await fetch(`/.netlify/functions/client-profile?client=${encodeURIComponent(slug)}`);
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Client payment profile not found");
+      const client = payload.client;
+      document.title = `${client.company} payment — Raleigh AI Guy`;
+      document.querySelector("#client-legal-name").textContent = client.legalName;
+      document.querySelector("#service-title").textContent = client.serviceTitle;
+      document.querySelector("#card-service-title").textContent = client.serviceTitle;
+      document.querySelector("#service-description").textContent = client.description;
+      document.querySelector("#payment-amount").textContent = money(client.amountCents);
+      document.querySelector("#payment-interval").textContent = client.billingInterval === "one_time" ? "one-time payment" : `per ${client.billingInterval}`;
+      document.querySelector("#renewal-label").textContent = client.billingInterval === "one_time" ? "One-time project payment" : `Renews ${client.billingInterval}ly until canceled`;
+      document.querySelector("#client-slug").value = client.slug;
+      loading.hidden = true;
+      profile.hidden = false;
+    } catch (error) {
+      loading.hidden = true;
+      errorPanel.hidden = false;
+      document.querySelector("#payment-error-message").textContent = error instanceof Error ? error.message : "Check the link or contact Daniel for a fresh payment page.";
+    }
+  }
+  loadProfile();
+</script>
+
+<style>
+  .pay-page { min-height: 100svh; padding: clamp(1.25rem, 4vw, 3rem); color: #17130f; background: #eee8d6; }
+  .pay-shell { width: min(100%, 70rem); margin-inline: auto; }
+  .pay-head, .pay-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 2px solid #17130f; padding-bottom: 1rem; font-size: .68rem; }
+  .pay-head a, .pay-footer a { color: inherit; font-weight: 700; }
+  .pay-head span { letter-spacing: .1em; text-transform: uppercase; }
+  .payment-loading { display: grid; min-height: 65svh; place-items: center; align-content: center; gap: 1rem; color: #655b4d; font-size: .72rem; }
+  .payment-loading span { width: 2rem; height: 2rem; border: 2px solid rgb(23 19 15 / 20%); border-top-color: #f43e8d; border-radius: 999px; animation: spin 700ms linear infinite; }
+  .payment-profile { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); gap: clamp(2.5rem, 7vw, 6rem); align-items: center; padding-block: clamp(4rem, 9vw, 8rem); }
+  .pay-eyebrow { color: #655b4d; font-size: .65rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+  .payment-copy h1 { max-width: 46rem; margin-top: 1rem; font-size: clamp(4.5rem, 9vw, 8rem); line-height: .8; }
+  .pay-description { max-width: 38rem; margin-top: 1.7rem; border-left: 4px solid #f43e8d; padding-left: 1rem; color: #594f43; font-size: .9rem; line-height: 1.8; }
+  .payment-card { position: relative; border: 2px solid #17130f; padding: clamp(1.5rem, 4vw, 2.25rem); background: #f7f1df; box-shadow: 9px 9px 0 #17130f; }
+  .card-index { position: absolute; top: 1rem; right: 1rem; color: #a99d88; font-size: .55rem; letter-spacing: .08em; }
+  .price-row { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-top: 2rem; border-bottom: 1px solid rgb(23 19 15 / 22%); padding-bottom: 1.5rem; }
+  .price-row h2 { max-width: 14rem; font-family: "Newsreader", serif; font-size: 1.35rem; font-weight: 600; text-transform: none; }
+  .price-row div p, .price-row > p span { display: block; margin-top: .35rem; color: #655b4d; font-size: .62rem; }
+  .price-row > p { flex: 0 0 auto; text-align: right; }
+  .price-row strong { display: block; font-family: "League Gothic", sans-serif; font-size: 3.4rem; font-weight: 400; line-height: .85; }
+  .payment-card ul { display: grid; gap: .8rem; margin-block: 1.5rem; color: #594f43; font-size: .72rem; line-height: 1.45; }
+  .payment-card li { display: flex; gap: .65rem; }
+  .payment-card li span { color: #f43e8d; font-weight: 700; }
+  .payment-card button { width: 100%; min-height: 3.25rem; border: 2px solid #17130f; color: #f7f1df; background: #17130f; box-shadow: 4px 4px 0 #f43e8d; font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+  .agreement-note { margin-top: 1rem; color: #776d5e; font-size: .6rem; line-height: 1.55; text-align: center; }
+  .payment-error { max-width: 46rem; min-height: 65svh; padding-block: 6rem; }
+  .payment-error > span { color: #f43e8d; font-size: .65rem; font-weight: 700; letter-spacing: .1em; }
+  .payment-error h1 { margin-top: 1rem; font-size: clamp(4rem, 9vw, 7rem); line-height: .82; }
+  .payment-error p { margin-top: 1.5rem; color: #655b4d; line-height: 1.7; }
+  .payment-error a { display: inline-block; margin-top: 1.5rem; color: inherit; font-weight: 700; }
+  .pay-footer { border-top: 1px solid rgb(23 19 15 / 22%); border-bottom: 0; padding-block: 1rem; color: #655b4d; }
+  @keyframes spin { to { rotate: 360deg; } }
+  @media (max-width: 760px) { .payment-profile { grid-template-columns: 1fr; } .pay-head { align-items: start; } .pay-head span { max-width: 10rem; text-align: right; } }
+  @media (prefers-reduced-motion: reduce) { .payment-loading span { animation-duration: 2s; } }
+</style>
+

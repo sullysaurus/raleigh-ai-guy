@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="Payment complete" pageDescription="Your Raleigh AI Guy payment is complete." noindex minimal>
+  <div class="complete-page">
+    <main>
+      <span class="complete-index">RECEIPT / COMPLETE</span>
+      <div class="complete-check" aria-hidden="true">✓</div>
+      <p>Payment complete</p>
+      <h1>You’re all set.</h1>
+      <p class="complete-copy">Stripe will email your receipt and billing details. I’ll follow up personally with the next consulting step.</p>
+      <a href="mailto:danny@raleighaiguy.com">Contact Daniel →</a>
+    </main>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const client = new URLSearchParams(window.location.search).get("client") || "client";
+    window.posthog?.capture("consulting_payment_completed", { client });
+  });
+</script>
+
+<style>
+  .complete-page { display: grid; min-height: 100svh; place-items: center; padding: 1.5rem; color: #17130f; background: #eee8d6; }
+  .complete-page main { position: relative; width: min(100%, 39rem); border: 2px solid #17130f; padding: clamp(2rem, 7vw, 4.5rem); text-align: center; background: #f7f1df; box-shadow: 10px 10px 0 #17130f; }
+  .complete-index { position: absolute; top: 1rem; right: 1rem; color: #a99d88; font-size: .58rem; letter-spacing: .1em; }
+  .complete-check { display: grid; width: 4rem; height: 4rem; margin-inline: auto; place-items: center; border: 2px solid #17130f; border-radius: 999px; background: #f0df55; box-shadow: 3px 3px 0 #f43e8d; font-size: 1.5rem; font-weight: 700; }
+  .complete-page main > p:not(.complete-copy) { margin-top: 2rem; color: #655b4d; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .complete-page h1 { margin-top: .7rem; font-size: clamp(4.5rem, 13vw, 7rem); line-height: .8; }
+  .complete-copy { margin-top: 1.5rem; color: #594f43; font-size: .82rem; line-height: 1.7; }
+  .complete-page a { display: inline-flex; min-height: 3rem; align-items: center; margin-top: 2rem; border: 2px solid #17130f; padding-inline: 1rem; color: #f7f1df; background: #17130f; box-shadow: 4px 4px 0 #f43e8d; font-size: .72rem; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+</style>
+
