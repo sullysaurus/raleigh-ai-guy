@@ -64,11 +64,15 @@ export const cleanExpense = (value = {}) => {
 
 export const defaultExpenses = () => seeds.map(cleanExpense);
 
+export const readExpenses = async (store) => {
+  const state = await store.get(STATE_KEY, { type: "json", consistency: "strong" });
+  return Array.isArray(state?.expenses) ? state.expenses.map(cleanExpense) : defaultExpenses();
+};
+
 export const getExpenses = async (event) => {
   connectLambda(event);
   const store = getStore(STORE_NAME);
-  const state = await store.get(STATE_KEY, { type: "json" });
-  return Array.isArray(state?.expenses) ? state.expenses.map(cleanExpense) : defaultExpenses();
+  return readExpenses(store);
 };
 
 export const saveExpenses = async (event, expenses) => {
@@ -78,4 +82,3 @@ export const saveExpenses = async (event, expenses) => {
   await store.setJSON(STATE_KEY, { version: 1, expenses: cleaned, updatedAt: new Date().toISOString() });
   return cleaned;
 };
-
