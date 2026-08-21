@@ -1,4 +1,4 @@
-import { connectLambda, getStore } from "@netlify/blobs";
+import { getStore } from "@netlify/blobs";
 
 const STORE_NAME = "admin-expense-ledger";
 const STATE_KEY = "expenses-v1";
@@ -64,21 +64,27 @@ export const cleanExpense = (value = {}) => {
 
 export const defaultExpenses = () => seeds.map(cleanExpense);
 
+const getExpenseStore = (event) => {
+  const blobContext = JSON.parse(Buffer.from(event.blobs, "base64").toString("utf8"));
+  return getStore({
+    name: STORE_NAME,
+    siteID: event.headers["x-nf-site-id"],
+    token: blobContext.token,
+  });
+};
+
 export const readExpenses = async (store) => {
   const state = await store.get(STATE_KEY, { type: "json", consistency: "strong" });
   return Array.isArray(state?.expenses) ? state.expenses.map(cleanExpense) : defaultExpenses();
 };
 
 export const getExpenses = async (event) => {
-  connectLambda(event);
-  const store = getStore(STORE_NAME);
-  return readExpenses(store);
+  return readExpenses(getExpenseStore(event));
 };
 
 export const saveExpenses = async (event, expenses) => {
   const cleaned = expenses.map(cleanExpense);
-  connectLambda(event);
-  const store = getStore(STORE_NAME);
+  const store = getExpenseStore(event);
   await store.setJSON(STATE_KEY, { version: 1, expenses: cleaned, updatedAt: new Date().toISOString() });
   return cleaned;
 };
